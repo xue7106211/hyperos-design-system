@@ -1,0 +1,89 @@
+---
+title: Button
+description: HyperOS 标准按钮组件，用于触发主要与次要操作
+status: stable
+platforms: [android, ios]
+figmaFileKey: ""
+figmaNodeId: ""
+tokenGroups: ["color.action", "spacing.button", "typography.button"]
+---
+
+<StatusBadge status="stable" />
+
+Button 用于触发页面内的主要或次要操作。HyperOS Button 支持多种视觉层级，并遵循统一的触控区域与 Token 规范。
+
+**支持平台**：Android · iOS
+
+## 设计规范
+
+将 `figmaFileKey` 与 `figmaNodeId` 替换为 HyperOS Figma 组件库中的真实值后，下方将展示对应 Frame：
+
+<FigmaEmbed fileKey="" nodeId="" height={420} />
+
+## 交互原型（可选）
+
+移动端交互演示通过 Figma 原型 embed 呈现，而非 Web 组件 demo：
+
+<FigmaPrototypeEmbed height={560} />
+
+## Design Tokens
+
+<TokenTable groups={["color.action", "spacing.button", "typography.button"]} />
+
+## 平台实现
+
+<PlatformTabs>
+  <PlatformTab platform="android" title="Jetpack Compose">
+{`@Composable
+fun HyperButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier.padding(
+            horizontal = HyperTokens.Spacing.Button.paddingX,
+            vertical = HyperTokens.Spacing.Button.paddingY,
+        ),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = HyperTokens.Color.Action.primaryBg,
+            contentColor = HyperTokens.Color.Action.primaryFg,
+        ),
+    ) {
+        Text(text = text, fontSize = HyperTokens.Typography.Button.label)
+    }
+}`}
+  </PlatformTab>
+  <PlatformTab platform="ios" title="SwiftUI">
+{`struct HyperButton: View {
+    let title: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: HyperTokens.Typography.buttonLabel))
+                .padding(.horizontal, HyperTokens.Spacing.Button.paddingX)
+                .padding(.vertical, HyperTokens.Spacing.Button.paddingY)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(HyperTokens.Color.Action.primaryBg)
+    }
+}`}
+  </PlatformTab>
+</PlatformTabs>
+
+## 用法
+
+<DosDonts
+  doTitle="推荐"
+  dontTitle="避免"
+  doContent="每个视图区域最多一个主要 Button；destructive 操作使用语义色区分；保证最小触控区域 48dp。"
+  dontContent="同一区域堆叠多个 Primary Button；用 Button 承载长段落文本；硬编码色值而绕过 Token。"
+/>
+
+## 无障碍
+
+- 为 Icon-only 按钮提供 `contentDescription` / `accessibilityLabel`
+- 支持 TalkBack / VoiceOver 朗读按钮角色与状态

@@ -1,0 +1,4 @@
+{
+  "title": "Display",
+  "pages": ["list", "card", "chip"]
+}
