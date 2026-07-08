@@ -1,0 +1,549 @@
+query docsOverview($relativePath: String!) {
+  docsOverview(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsOverviewParts
+  }
+}
+
+query docsOverviewConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsOverviewFilter) {
+  docsOverviewConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsOverviewParts
+      }
+    }
+  }
+}
+
+query docsFoundations($relativePath: String!) {
+  docsFoundations(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsFoundationsParts
+  }
+}
+
+query docsFoundationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsFoundationsFilter) {
+  docsFoundationsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsFoundationsParts
+      }
+    }
+  }
+}
+
+query docsComponentsOverview($relativePath: String!) {
+  docsComponentsOverview(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsComponentsOverviewParts
+  }
+}
+
+query docsComponentsOverviewConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsComponentsOverviewFilter) {
+  docsComponentsOverviewConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsComponentsOverviewParts
+      }
+    }
+  }
+}
+
+query docsComponentsActions($relativePath: String!) {
+  docsComponentsActions(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsComponentsActionsParts
+  }
+}
+
+query docsComponentsActionsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsComponentsActionsFilter) {
+  docsComponentsActionsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsComponentsActionsParts
+      }
+    }
+  }
+}
+
+query docsComponentsInputs($relativePath: String!) {
+  docsComponentsInputs(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsComponentsInputsParts
+  }
+}
+
+query docsComponentsInputsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsComponentsInputsFilter) {
+  docsComponentsInputsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsComponentsInputsParts
+      }
+    }
+  }
+}
+
+query docsComponentsNavigation($relativePath: String!) {
+  docsComponentsNavigation(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsComponentsNavigationParts
+  }
+}
+
+query docsComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsComponentsNavigationFilter) {
+  docsComponentsNavigationConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsComponentsNavigationParts
+      }
+    }
+  }
+}
+
+query docsComponentsFeedback($relativePath: String!) {
+  docsComponentsFeedback(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsComponentsFeedbackParts
+  }
+}
+
+query docsComponentsFeedbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsComponentsFeedbackFilter) {
+  docsComponentsFeedbackConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsComponentsFeedbackParts
+      }
+    }
+  }
+}
+
+query docsComponentsDisplay($relativePath: String!) {
+  docsComponentsDisplay(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsComponentsDisplayParts
+  }
+}
+
+query docsComponentsDisplayConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsComponentsDisplayFilter) {
+  docsComponentsDisplayConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsComponentsDisplayParts
+      }
+    }
+  }
+}
+
+query docsPatterns($relativePath: String!) {
+  docsPatterns(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsPatternsParts
+  }
+}
+
+query docsPatternsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsPatternsFilter) {
+  docsPatternsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsPatternsParts
+      }
+    }
+  }
+}
+
+query docsResources($relativePath: String!) {
+  docsResources(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DocsResourcesParts
+  }
+}
+
+query docsResourcesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsResourcesFilter) {
+  docsResourcesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DocsResourcesParts
+      }
+    }
+  }
+}
