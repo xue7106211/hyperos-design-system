@@ -14,6 +14,25 @@ html > body[data-scroll-locked] {
 /* Compact docs typography — closer to ui.shadcn.com/docs density */
 #nd-docs-layout {
   font-size: 15px;
+  /*
+   * Sidebar flush to the viewport edge, content + TOC stay centered like Fumadocs default.
+   * Default grid merges the left 1fr margin into the sidebar area; we split it into a
+   * dedicated spacer column so main/toc keep their original horizontal position.
+   */
+  grid-template:
+    'sidebar sidebar spacer header toc toc'
+    'sidebar sidebar spacer toc-popover toc toc'
+    'sidebar sidebar spacer main toc toc'
+    1fr /
+    0px
+    var(--fd-sidebar-col)
+    minmax(min-content, 1fr)
+    minmax(
+      0,
+      calc(var(--fd-layout-width, 97rem) - var(--fd-sidebar-width) - var(--fd-toc-width))
+    )
+    var(--fd-toc-width)
+    minmax(min-content, 1fr) !important;
 }
 
 #nd-docs-layout .prose {
