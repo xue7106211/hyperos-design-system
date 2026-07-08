@@ -43,6 +43,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # TinaCMS 走本地 filesystem 模式构建 admin bundle
 # 生产环境如接入 TinaCloud，改为传入 NEXT_PUBLIC_TINA_CLIENT_ID / TINA_TOKEN
 ENV TINA_PUBLIC_IS_LOCAL=true
+# 容器里 v8 默认堆上限约 1.5~2GB，tinacms build 编译全部 MDX collection 时会 OOM
+# 抬高到 4GB。要求 Matrix 构建 Pod 内存 ≥ 4GB，否则会被平台 OOMKilled
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 # 等价于 npm run build，即 tinacms build && next build
 RUN npm run build
