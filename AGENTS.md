@@ -73,13 +73,15 @@ npm run dev            # dev server 会自动重新生成
 
 生产走 Docker + Matrix 平台。关键决策：
 
-- **基础镜像**：`micr.cloud.mioffice.cn/devx-build-image/nodejs:22-centos7.9-base`（与 dpilot 等业务项目对齐）
+- **基础镜像**：`micr.cloud.mioffice.cn/devx-build-image/nodejs:22-openeuler2403-base`（Node 22 LTS + openEuler 24.03 / glibc 2.38，兼容 Node.js 生态所有主流原生模块 prebuilt binary）
 - **npm 源**：`https://pkgs.d.xiaomi.net/artifactory/api/npm/mi-npm/`
 - **多阶段**：deps → builder → runner（runner 只保留 Next.js standalone 运行时）
-- **不跑 `tinacms build`**：避免 4GB 内存需求 + 绕开 CentOS7 glibc 2.17 与 better-sqlite3 12.x 的 SIGSEGV；`tina/__generated__/` 直接从仓库读
+- **不跑 `tinacms build`**：省 3~4GB 内存 + 更快构建；`tina/__generated__/` 直接从仓库读
 - **不打 `/admin`**：生产环境 `/admin` 无鉴权、且 filesystem datalayer 不可写，本就不该暴露（Phase 2 前）
 - **构建资源**：Matrix 构建 Pod 内存 **1~2GB** 即可
 - **暴露端口**：`3000`；启动命令用镜像里的 `CMD`（`node server.js`）
+
+> **历史坑**：早期用过 `nodejs:22-centos7.9-base`，glibc 2.17 过老，`better-sqlite3` / `next/og` (`@resvg/resvg-js`) / `sharp` 等原生模块 prebuilt binary 需要 glibc ≥ 2.28，SSG 阶段 SIGSEGV。openEuler 24.03 / glibc 2.38 彻底解决。
 
 Dockerfile 详见仓库根目录同名文件；部署分支约定使用 `staging`。
 
