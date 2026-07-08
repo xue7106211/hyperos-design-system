@@ -10,3 +10,49 @@ html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
 }
+
+/* Compact docs typography — closer to ui.shadcn.com/docs density */
+#nd-docs-layout {
+  font-size: 15px;
+}
+
+#nd-docs-layout .prose {
+  font-size: 15px;
+  line-height: 1.625;
+}
+
+#nd-docs-layout .prose :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+#nd-docs-layout .prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+#nd-docs-layout .prose :where(h3):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#nd-docs-layout .prose :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+#nd-docs-layout .prose :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  margin-top: 0.875rem;
+  margin-bottom: 0.875rem;
+}

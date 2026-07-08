@@ -7,10 +7,10 @@ export default function HomePage() {
     <div className="mx-auto flex max-w-3xl flex-1 flex-col justify-center px-6 py-16 text-center">
       <HyperOSLogo className="mx-auto mb-6 h-8" priority />
       <p className="mb-3 text-sm font-medium text-fd-primary">Design System</p>
-      <h1 className="mb-4 text-4xl font-bold tracking-tight text-fd-foreground">
+      <h1 className="mb-4 text-3xl font-bold tracking-tight text-fd-foreground">
         移动端客户端组件设计规范
       </h1>
-      <p className="mb-10 text-lg text-fd-muted-foreground">
+      <p className="mb-10 text-base text-fd-muted-foreground">
         面向 Android / iOS 的设计原则、组件规范、Design Tokens 与 Figma 设计源连接。
         文档站不提供 Web 组件 demo，交互演示通过 Figma 原型嵌入呈现。
       </p>
