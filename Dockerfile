@@ -4,30 +4,36 @@
 # HyperOS Design System 文档站容器化
 # 多阶段构建：deps → builder → runner
 # runner 只包含 Next.js standalone 运行时（node server.js）
+# 基础镜像：小米内部 devx-build-image（与 dpilot 等业务项目一致）
 # ============================================================
 
-# ---------- deps: 只装依赖，缓存友好 ----------
-FROM node:22-alpine AS deps
+ARG BASE_IMAGE=micr.cloud.mioffice.cn/devx-build-image/nodejs:22-centos7.9-base
+ARG NPM_REGISTRY=https://pkgs.d.xiaomi.net/artifactory/api/npm/mi-npm/
 
-# Alpine 编译原生依赖（sharp / better-sqlite3）需要
-RUN apk add --no-cache libc6-compat python3 make g++
+# ---------- deps: 只装依赖，最大化利用层缓存 ----------
+FROM ${BASE_IMAGE} AS deps
+ARG NPM_REGISTRY
 
-WORKDIR /app
+WORKDIR /home/work/app
+
+# 小米内部 npm 源
+RUN npm config set registry "${NPM_REGISTRY}"
 
 # .npmrc 里有 legacy-peer-deps=true，需要一起 COPY
 COPY package.json package-lock.json .npmrc ./
 
-# postinstall 会跑 fumadocs-mdx，此时还没 content，先跳过 scripts
+# postinstall 会跑 fumadocs-mdx，此时还没有 content，先跳过 scripts
 RUN npm ci --ignore-scripts
 
 # ---------- builder: 编译 tinacms admin + next 站点 ----------
-FROM node:22-alpine AS builder
+FROM ${BASE_IMAGE} AS builder
+ARG NPM_REGISTRY
 
-RUN apk add --no-cache libc6-compat
+WORKDIR /home/work/app
 
-WORKDIR /app
+RUN npm config set registry "${NPM_REGISTRY}"
 
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /home/work/app/node_modules ./node_modules
 COPY . .
 
 # 补跑 postinstall 里被跳过的 fumadocs-mdx（生成 .source/）
@@ -42,26 +48,29 @@ ENV TINA_PUBLIC_IS_LOCAL=true
 RUN npm run build
 
 # ---------- runner: 最小运行镜像 ----------
-FROM node:22-alpine AS runner
+FROM ${BASE_IMAGE} AS runner
 
-RUN apk add --no-cache libc6-compat
-
-WORKDIR /app
+WORKDIR /home/work/app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
+ENV TZ=Asia/Shanghai
 
-# 非 root 用户运行
-RUN addgroup --system --gid 1001 nodejs \
- && adduser --system --uid 1001 nextjs
+# 时区：北京时间（与 dpilot 项目对齐）
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+ && echo "Asia/Shanghai" > /etc/timezone
+
+# 非 root 用户运行（CentOS 使用 groupadd / useradd）
+RUN groupadd --system --gid 1001 nodejs \
+ && useradd --system --uid 1001 --gid nodejs --no-create-home --home-dir /home/work/app nextjs
 
 # Next.js standalone 输出：server.js + 精简 node_modules 都在 .next/standalone
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /home/work/app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /home/work/app/.next/static ./.next/static
 # public 里含 tinacms build 生成的 /admin 静态资源
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /home/work/app/public ./public
 
 USER nextjs
 
