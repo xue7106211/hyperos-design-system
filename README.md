@@ -10,6 +10,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
+- TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 代码 block
 
 ## 开发
 
@@ -20,7 +21,9 @@ npm install
 npm run dev
 ```
 
-访问 [http://localhost:3000](http://localhost:3000)
+访问 [http://localhost:3000](http://localhost:3000) · CMS 后台 [http://localhost:3000/admin](http://localhost:3000/admin)
+
+复制 `.env.example` 为 `.env` 后启动（TinaCMS 本地模式需要 `TINA_PUBLIC_IS_LOCAL=true`）。
 
 ## 构建与检查
 

@@ -48,3 +48,5 @@ Thumbs.db
 
 # TinaCMS generated (Phase 2)
 tina/__generated__/
+public/admin/
+public/uploads/
