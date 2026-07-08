@@ -31,10 +31,13 @@
 ```bash
 npm install          # 安装依赖（postinstall 会运行 fumadocs-mdx）
 npm run dev          # TinaCMS + Next.js 开发（/admin → CMS 后台）
-npm run build        # tinacms build + 生产构建（提交前必须能通过）
+npm run build        # 本地全量构建（tinacms build + next build），改 tina schema 后必跑
+npm run tina:build   # 只跑 tinacms build（刷新 tina/__generated__/）
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
+
+> **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。详见"容器化部署"节。
 
 ### TinaCMS 后台
 
@@ -44,6 +47,41 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`DosDonts`、`PlatformCodeBlock` 等
 - 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
 - Collections 与站点 `meta.json` 分组对齐；组件子目录（Actions / Inputs 等）使用 `**/*` glob 递归索引
+
+### TinaCMS schema 变更（重要）
+
+`tina/__generated__/` 是 `tinacms build` 的产物，**已提交到仓库**。生产 Docker 构建只跑 `npx next build`，直接读这份产物，不再重跑 tinacms build。
+
+**改到以下文件时必须同步更新 `tina/__generated__/`**：
+
+- `tina/config.ts`
+- `tina/schema/**/*`
+
+**同步方式**（二选一）：
+
+```bash
+npm run tina:build     # 只跑 tinacms build，最快
+# 或
+npm run dev            # dev server 会自动重新生成
+```
+
+然后 `git add tina/__generated__/` 一起提交。**忘记同步会导致 Matrix CI 类型检查失败或运行时行为异常**。
+
+只是新增 `content/docs/**` 下的 MDX 文档、改 UI 组件、动 Tailwind 等，不需要重新生成。
+
+## 容器化部署
+
+生产走 Docker + Matrix 平台。关键决策：
+
+- **基础镜像**：`micr.cloud.mioffice.cn/devx-build-image/nodejs:22-centos7.9-base`（与 dpilot 等业务项目对齐）
+- **npm 源**：`https://pkgs.d.xiaomi.net/artifactory/api/npm/mi-npm/`
+- **多阶段**：deps → builder → runner（runner 只保留 Next.js standalone 运行时）
+- **不跑 `tinacms build`**：避免 4GB 内存需求 + 绕开 CentOS7 glibc 2.17 与 better-sqlite3 12.x 的 SIGSEGV；`tina/__generated__/` 直接从仓库读
+- **不打 `/admin`**：生产环境 `/admin` 无鉴权、且 filesystem datalayer 不可写，本就不该暴露（Phase 2 前）
+- **构建资源**：Matrix 构建 Pod 内存 **1~2GB** 即可
+- **暴露端口**：`3000`；启动命令用镜像里的 `CMD`（`node server.js`）
+
+Dockerfile 详见仓库根目录同名文件；部署分支约定使用 `staging`。
 
 ## 目录结构
 
@@ -56,6 +94,7 @@ tina/
   config.ts             # TinaCMS schema（collections + block 模板）
   schema/blocks.ts      # FigmaEmbed、TokenTable 等 MDX block
   database.ts           # 本地 filesystem datalayer
+  __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
 public/uploads/         # TinaCMS 媒体上传（本地模式）
 src/
   app/                  # Next.js 路由与布局
@@ -71,7 +110,9 @@ CLAUDE.md               # 指向本文件
 package-lock.json       # npm 锁文件
 ```
 
-**生成目录（勿手改）**：`.source/`（`fumadocs-mdx` 生成）、`.next/`（Next.js 构建缓存）
+**生成目录**：
+- `.source/`（`fumadocs-mdx` 生成）、`.next/`（Next.js 构建缓存）— gitignore，勿手改
+- `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见下面"TinaCMS schema 变更"节）；子目录 `.cache/` 仍 gitignore
 
 **注意**：`docs/` ≠ `content/docs/`。前者是仓库内设计说明，后者是站点页面内容。
 
@@ -178,6 +219,7 @@ Foundations → Components → Patterns → Resources
 - [ ] 未破坏 `docs/v1/` 工程设计文档
 - [ ] 未添加 Storybook / Web 组件 playground
 - [ ] Figma embed 使用占位或有效 `fileKey`
+- [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
 
 ## 路线图（Agent 勿提前实现）
 
