@@ -27,7 +27,7 @@ const queryFns = Object.fromEntries(
     collection,
     tinaClient.queries[collection as keyof typeof tinaClient.queries],
   ]),
-) as Record<
+) as unknown as Record<
   TinaDocCollection,
   (vars: { relativePath: string }) => Promise<{
     data?: Record<string, unknown>;
