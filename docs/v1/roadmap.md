@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 实施路线图
 
 > **版本**：V1.0  
-> **状态**：Phase 0–1 已完成（2026-07-08）
+> **状态**：Phase 0–1 已完成；Phase 2 TinaCMS 本地模式已接入（2026-07-08）
 
 ## 已完成
 
@@ -14,10 +14,12 @@
 - [x] 紧凑排版、sidebar 贴左 + 内容居中布局
 - [x] 全文搜索、明暗主题、LLM 导出（`llms.txt` / `llms-full.txt`）
 - [x] `AGENTS.md`、`CLAUDE.md` 与工程设计文档索引
+- [x] TinaCMS `/admin` 本地模式 + 自定义 MDX block（FigmaEmbed、TokenTable、DosDonts、PlatformCodeBlock）
 
 ## 下一步
 
-- [ ] Phase 2：TinaCMS `/admin` 可视化编辑
+- [ ] TinaCMS 生产鉴权（Auth.js / 内网 SSO）与 Git 同步
+- [ ] Phase 2：TinaCloud 或自托管 datalayer 部署
 - [ ] Phase 3：Tokens Studio → GitHub 自动同步
 - [ ] Figma Code Connect（Compose / SwiftUI）试点
 - [ ] 小米域名部署、已有规范文本批量导入

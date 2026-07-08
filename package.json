@@ -3,11 +3,13 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
     "start": "next start",
     "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "tina:build": "tinacms build",
+    "tina:dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\""
   },
   "dependencies": {
     "cnfast": "^0.0.8",
@@ -17,10 +19,13 @@
     "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "tinacms": "^3.10.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.2",
+    "@tinacms/cli": "^2.5.3",
+    "@tinacms/datalayer": "^2.0.27",
     "@types/mdx": "^2.0.14",
     "@types/node": "^26.1.0",
     "@types/react": "^19.2.17",

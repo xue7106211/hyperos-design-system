@@ -26,15 +26,24 @@
 
 ## 常用命令
 
-包管理器：**npm**（`package-lock.json`）
+包管理器：**npm**（`package-lock.json`；`.npmrc` 启用 `legacy-peer-deps`）
 
 ```bash
 npm install          # 安装依赖（postinstall 会运行 fumadocs-mdx）
-npm run dev          # 开发服务器 http://localhost:3000
-npm run build        # 生产构建（提交前必须能通过）
+npm run dev          # TinaCMS + Next.js 开发（/admin → CMS 后台）
+npm run build        # tinacms build + 生产构建（提交前必须能通过）
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
+
+### TinaCMS 后台
+
+- 本地开发：复制 `.env.example` 为 `.env`，运行 `npm run dev`
+- 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/` 下的 MDX 规范
+- **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
+- 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`DosDonts`、`PlatformCodeBlock` 等
+- 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
+- Collections 与站点 `meta.json` 分组对齐；组件子目录（Actions / Inputs 等）使用 `**/*` glob 递归索引
 
 ## 目录结构
 
@@ -43,12 +52,18 @@ content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
 docs/                   # 工程设计文档（技术方案、IA、路线图）
 docs/v1/                # V1 设计决策与规划
 tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
+tina/
+  config.ts             # TinaCMS schema（collections + block 模板）
+  schema/blocks.ts      # FigmaEmbed、TokenTable 等 MDX block
+  database.ts           # 本地 filesystem datalayer
+public/uploads/         # TinaCMS 媒体上传（本地模式）
 src/
   app/                  # Next.js 路由与布局
   components/
     mdx/                # 自定义 MDX 组件（优先在此扩展）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source loader、layout 配置
+  lib/                  # source loader、layout 配置、tina-docs 数据层
+  components/tina/      # Tina Visual Editing（useTina + TinaMarkdown）
 public/logo/            # Logo 静态资源
 source.config.ts        # MDX frontmatter Zod schema
 AGENTS.md               # 本文件（Agent 指引权威来源）
@@ -109,6 +124,7 @@ Foundations → Components → Patterns → Resources
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
 | `TokenTable` | 从 `tokens/tokens.json` 按 group 渲染表格 |
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab（Client Component） |
+| `PlatformCodeBlock` | Tina CMS 友好的平台代码 block（扁平 android/ios 字段） |
 | `StatusBadge` | stable / beta / deprecated 标签 |
 | `DosDonts` | Do / Don't 双栏 |
 
@@ -167,7 +183,7 @@ Foundations → Components → Patterns → Resources
 
 以下属于后续 Phase，除非用户明确要求，否则不要主动实现：
 
-- **Phase 2**：TinaCMS `/admin` 可视化编辑
+- **Phase 2（进行中）**：TinaCMS `/admin` 已接入本地模式；待补 TinaCloud / 自托管鉴权与生产 Git 同步
 - **Phase 3**：Tokens Studio + Style Dictionary CI、Figma Code Connect
 
 当前状态见 [docs/v1/roadmap.md](docs/v1/roadmap.md)。
