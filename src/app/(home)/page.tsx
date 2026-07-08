@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import { HyperOSLogo } from '@/components/HyperOSLogo';
 import { docsRoute } from '@/lib/shared';
 
 export default function HomePage() {
   return (
     <div className="mx-auto flex max-w-3xl flex-1 flex-col justify-center px-6 py-16 text-center">
-      <p className="mb-3 text-sm font-medium text-fd-primary">HyperOS Design System</p>
+      <HyperOSLogo className="mx-auto mb-6 h-8" priority />
+      <p className="mb-3 text-sm font-medium text-fd-primary">Design System</p>
       <h1 className="mb-4 text-4xl font-bold tracking-tight text-fd-foreground">
         移动端客户端组件设计规范
       </h1>

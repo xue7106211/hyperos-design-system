@@ -1,10 +1,12 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { appName, docsRoute, gitConfig } from './shared';
+import { HyperOSLogo } from '@/components/HyperOSLogo';
+import { docsRoute, gitConfig } from './shared';
 
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: appName,
+      title: <HyperOSLogo className="h-5" priority />,
+      url: '/',
     },
     links: [
       {
