@@ -56,3 +56,20 @@ html > body[data-scroll-locked] {
   margin-top: 0.875rem;
   margin-bottom: 0.875rem;
 }
+
+/* Compact TOC — prose on anchor links overrides text-sm otherwise */
+#nd-docs-layout #nd-toc #toc-title {
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+#nd-docs-layout #nd-toc a {
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+#nd-docs-layout #nd-toc [class*='overflow-auto'] {
+  font-size: 0.8125rem;
+}

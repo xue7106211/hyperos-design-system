@@ -1,54 +1,240 @@
 ---
 title: Button
-description: HyperOS 标准按钮组件，用于触发主要与次要操作
+description: HyperOS 按钮规范——强调层级、类型、交互状态与多设备适配
 status: stable
-platforms: [android, ios]
-figmaFileKey: ""
-figmaNodeId: ""
+platforms: [android, ios, pad]
+figmaFileKey: "7PVSm4yEbknNLFaqauI4EM"
+figmaNodeId: "5580-1384"
 tokenGroups: ["color.action", "spacing.button", "typography.button"]
 ---
 
 <StatusBadge status="stable" />
 
-Button 用于触发页面内的主要或次要操作。HyperOS Button 支持多种视觉层级，并遵循统一的触控区域与 Token 规范。
+## 概述
 
-**支持平台**：Android · iOS
+按钮是一种让用户可以直观识别并立即执行操作的基础交互元素。它在整个操作系统中作为一致的行为语言运作，通过**清晰性（Clarity）**和**一致性（Consistency）**建立可靠的用户体验。
 
-## 设计规范
+**支持平台**：Android · iOS · Pad
 
-将 `figmaFileKey` 与 `figmaNodeId` 替换为 HyperOS Figma 组件库中的真实值后，下方将展示对应 Frame：
+### 核心属性
 
-<FigmaEmbed fileKey="" nodeId="" height={420} />
+| 维度 | 说明 |
+|------|------|
+| **样式（Style）** | 通过颜色、尺寸和形状表现视觉层级和上下文信息 |
+| **内容（Content）** | 通过文本、图标或二者结合直观传达操作意图 |
+| **角色（Role）** | 见下表 |
 
-## 交互原型（可选）
+| 角色 | 说明 |
+|------|------|
+| **行为触发（Action Trigger）** | 帮助用户快速识别可执行的任务，并立即完成操作 |
+| **优先级表达（Priority Signaling）** | 通过颜色、样式和尺寸，清晰传达操作的重要性和层级结构 |
+| **状态反馈（State Feedback）** | 通过视觉、听觉、触觉或多模态的实时反馈（按下、加载、完成等），让用户在不同环境下都能获得稳定且可信赖的交互体验 |
 
-移动端交互演示通过 Figma 原型 embed 呈现，而非 Web 组件 demo：
+## 核心原则
 
-<FigmaPrototypeEmbed height={560} />
+按钮是用户与系统之间最清晰、最直观的交互组件。以下四个原则构成设计基础：
+
+| 原则 | 说明 |
+|------|------|
+| **识别性（Recognition）** | 易于识别，与周围内容明显区分；通过颜色、边框、阴影、间距等视觉提示表明可操作性 |
+| **可操作性（Operability）** | 无论触控、鼠标、键盘还是辅助设备，都应易于访问，并提供足够的触控区域和容错范围 |
+| **状态反馈（State Feedback）** | 交互过程中通过视觉、听觉、触觉或多模态方式清晰传递状态变化 |
+| **一致性（Consistency）** | 同一强调层级与类型在全系统内保持统一的视觉与行为表现 |
+
+## 强调层级与类型
+
+### 强调层级
+
+按钮根据操作的重要性和视觉强调程度分为三个层级：
+
+| 层级 | 说明 | 典型样式 |
+|------|------|----------|
+| **高强调（High）** | 关键操作 | 鲜明颜色或突出底板，吸引注意 |
+| **中强调（Medium）** | 重要但次要的操作 | 颜色对比或边框，保持存在感 |
+| **低强调（Low）** | 附加功能 | 弱化背景或去除边框，减少干扰 |
+
+### 按钮类型
+
+| 类型 | 说明 | 文档 |
+|------|------|------|
+| **悬浮按钮（FAB）** | 触发页面中最主要或常用操作，位置固定 | [Floating Action Button](/docs/components/actions/floating-action-button) |
+| **胶囊型按钮（大）** | 流程中的关键操作（提交、确认、完成等） | 本文 § 胶囊型按钮（大） |
+| **胶囊型按钮（小）** | 灵活布局或辅助功能（筛选、排序、次级确认） | 本文 § 胶囊型按钮（小） |
+| **文本按钮** | 低优先级，无背景和边框，文本为核心 | 本文 § 文本按钮 |
+| **图标按钮** | 工具栏或面板等空间有限的快速操作 | [Icon Button](/docs/components/actions/icon-button) |
+| **警示 / 破坏性按钮** | 删除、重置等高风险操作，需明显区分并二次确认 | 可应用于胶囊型、文本或图标按钮 |
+| **切换按钮** | 状态开启 / 关闭或多选，必须清晰显示当前状态 | — |
+
+## 交互状态
+
+按钮在交互过程中应提供即时、一致、清晰的反馈：
+
+| 状态 | 说明 |
+|------|------|
+| **默认（Default）** | 正常可交互状态 |
+| **悬停（Hovered）** | 指针经过时的轻微变化，提示可点击 |
+| **按下（Pressed）** | 即时按压反馈 |
+| **聚焦（Focused）** | 键盘 / 辅助设备导航时显示焦点位置 |
+| **禁用（Disabled）** | 降低对比度但保持识别性 |
+| **选中（Selected）** | 清晰区分已激活状态（常用于切换按钮） |
+
+下方为 **Dev Mode** 嵌入（`mode=dev`），可查看组件标注与属性；Component playground 弹窗需在 [Figma 中打开](https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?node-id=5580-1384&m=dev) 后使用 Inspect → Open in playground。
+
+<FigmaEmbed
+  fileKey="7PVSm4yEbknNLFaqauI4EM"
+  nodeId="5580-1384"
+  mode="dev"
+  height={520}
+/>
+
+## 使用指南
+
+### 可以做
+
+<DosDonts
+  doTitle="推荐"
+  dontTitle="避免"
+  doContent={
+    <>
+      <ul>
+        <li><strong>明确层级</strong>：关键操作使用高强调，辅助操作使用低强调</li>
+        <li><strong>标签简洁清晰</strong>：以动词开头，直观传达意图</li>
+        <li><strong>保证尺寸和间距</strong>：满足无障碍标准</li>
+        <li><strong>一致的状态反馈</strong>：帮助用户准确理解操作状态</li>
+        <li><strong>响应式设计</strong>：根据屏幕调整按钮大小与对齐</li>
+        <li><strong>考虑包容性</strong>：支持多语言文本扩展与大字号模式，避免内容溢出</li>
+        <li>保持逻辑顺序，与用户流程一致</li>
+        <li>优先水平排列，空间不足时再垂直堆叠</li>
+      </ul>
+    </>
+  }
+  dontContent={
+    <>
+      <ul>
+        <li>多个高强调按钮并列，造成视觉干扰</li>
+        <li>模糊或冗长的标签</li>
+        <li>不规则的间距与布局</li>
+        <li>缺乏反馈或低对比度</li>
+      </ul>
+    </>
+  }
+/>
+
+### 悬浮按钮（FAB）
+
+触发当前页面或栏中的**最突出、最常用**操作。位置固定，不随页面内容滚动，通常位于页面或栏的右下角。
+
+FAB 让用户快速触达最需要的操作，避免额外的思考和查找；**堆砌过多 FAB 会偏离这一初衷**。
+
+| 规则 | 说明 |
+|------|------|
+| 图标含义 | 清晰易懂 |
+| 数量 | 一个页面或栏中**最多一个**悬浮按钮 |
+| 侧边导航 | 侧边栏可收起或切换 TAB，**不应**将 FAB 放在侧边导航栏上 |
+| 浮窗 / 弹窗 | **避免**在浮窗或弹窗中使用 FAB |
+
+#### 布局
+
+| 属性 | 规格 |
+|------|------|
+| 对齐 | 图标居中 |
+| 层次 | 容器伴随轻微投影 |
+| 颜色 | 可自定义，需与系统整体色调统一；避免容器色与背景过于接近 |
+| 容器尺寸 | **58 × 58 dp** |
+| 图标尺寸 | **26 × 26 dp** |
+| 位置 | 通常位于右下角 |
+| 投影 | 垂直 **6 dp**，模糊直径 **23 dp** |
+| 适配 | 手机、折叠屏内屏、平板保持比例一致 |
+
+完整规范见 [Floating Action Button](/docs/components/actions/floating-action-button)。
+
+### 胶囊型按钮（大）
+
+流程中的关键操作，适用于**提交、确认、完成**等核心操作。提供**强调、普通、警示**三种场景：
+
+| 场景 | 说明 |
+|------|------|
+| **强调** | 界面上很突出，引导用户关注当前页面主要操作，通常需用户明确确认后执行 |
+| **普通** | 一般重要但不具强引导性的操作，执行与否对用户影响较小，更多依赖按钮文本传达意义 |
+| **警示** | 删除、重置等不可逆的破坏性操作，需明显区分并提供二次确认 |
+
+### 胶囊型按钮（小）
+
+根据屏幕大小和可用空间，用于主次操作的灵活布局或辅助功能（筛选、排序、次级确认等）。同样提供**强调、普通、警示**三种场景：
+
+| 场景 | 说明 |
+|------|------|
+| **普通（推荐默认）** | 局部但重要的辅助操作，如列表或卡片中的附加入口；视觉中性，不过度抢占注意力；可作为与列表内容平级的附加操作或前置入口 |
+| **强调（谨慎使用）** | 不建议作为默认样式；仅在有明确业务必要时使用，例如锁屏编辑页「取消」与「确认」并列时，将「确认」设为强调以突出优先级 |
+| **警示** | 同大胶囊型，用于局部破坏性操作 |
+
+> 同一页面中**避免多个小尺寸强调按钮并列**，以免分散注意力并降低决策清晰度。
+
+### 文本按钮
+
+用于**低优先级**操作，无背景和边框，纯文本形式，最大限度减少对内容的干扰。按钮文字是核心元素，直接传达触摸后将执行的动作。
+
+| 要点 | 说明 |
+|------|------|
+| 文案 | 以动词为主，简短明确，避免过长或模糊 |
+| 点击区域 | 文本内点击区域不强引导，仅作为可点击提示 |
+| 段落内区分 | 可点击与不可点击文本通过**下划线**和**强调色**区分 |
+| 彩色背景 | 若文本背景为彩色且统一色更适合视觉，可**仅通过下划线**区分 |
+
+### 图标按钮
+
+适合工具栏或控制面板等**空间有限**的场景，用于功能性引导、系统导航或栏目聚合等快速操作。
+
+| 场景 | 说明 |
+|------|------|
+| **系统导航** | 返回上一级或常见导航操作 |
+| **功能性引导** | 对整页或局部区域进行独立操作 |
+| **栏目聚合入口** | 多个平级入口时的统一聚合 |
+| **页面主操作** | 以符合日常认知的图形呈现，如搜索、刷新 |
+
+完整规范见 [Icon Button](/docs/components/actions/icon-button)。
 
 ## Design Tokens
 
 <TokenTable groups={["color.action", "spacing.button", "typography.button"]} />
 
-## 平台实现
+## 平台实现参考
+
+以下为静态代码示例，展示 Token 引用方式；完整 API 以客户端组件库为准。
 
 <PlatformTabs>
   <PlatformTab platform="android" title="Jetpack Compose">
-{`@Composable
-fun HyperButton(
+{`enum class HyperButtonEmphasis { High, Medium, Low }
+
+@Composable
+fun HyperCapsuleButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    emphasis: HyperButtonEmphasis = HyperButtonEmphasis.High,
+    enabled: Boolean = true,
 ) {
-    Button(
-        onClick = onClick,
-        modifier = modifier.padding(
-            horizontal = HyperTokens.Spacing.Button.paddingX,
-            vertical = HyperTokens.Spacing.Button.paddingY,
-        ),
-        colors = ButtonDefaults.buttonColors(
+    val colors = when (emphasis) {
+        HyperButtonEmphasis.High -> ButtonDefaults.buttonColors(
             containerColor = HyperTokens.Color.Action.primaryBg,
             contentColor = HyperTokens.Color.Action.primaryFg,
+        )
+        HyperButtonEmphasis.Medium -> ButtonDefaults.outlinedButtonColors(
+            contentColor = HyperTokens.Color.Action.secondaryFg,
+        )
+        HyperButtonEmphasis.Low -> ButtonDefaults.textButtonColors(
+            contentColor = HyperTokens.Color.Action.primaryBg,
+        )
+    }
+
+    Button(
+        onClick = onClick,
+        enabled = enabled,
+        modifier = modifier.defaultMinSize(minHeight = 48.dp),
+        colors = colors,
+        contentPadding = PaddingValues(
+            horizontal = HyperTokens.Spacing.Button.paddingX,
+            vertical = HyperTokens.Spacing.Button.paddingY,
         ),
     ) {
         Text(text = text, fontSize = HyperTokens.Typography.Button.label)
@@ -56,34 +242,68 @@ fun HyperButton(
 }`}
   </PlatformTab>
   <PlatformTab platform="ios" title="SwiftUI">
-{`struct HyperButton: View {
+{`enum HyperButtonEmphasis {
+    case high, medium, low
+}
+
+struct HyperCapsuleButton: View {
     let title: String
     let action: () -> Void
+    var emphasis: HyperButtonEmphasis = .high
+    var isEnabled: Bool = true
 
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.system(size: HyperTokens.Typography.buttonLabel))
+                .font(.system(size: HyperTokens.Typography.buttonLabel,
+                              weight: .medium))
+                .frame(minHeight: 44)
                 .padding(.horizontal, HyperTokens.Spacing.Button.paddingX)
                 .padding(.vertical, HyperTokens.Spacing.Button.paddingY)
         }
-        .buttonStyle(.borderedProminent)
-        .tint(HyperTokens.Color.Action.primaryBg)
+        .buttonStyle(styleForEmphasis)
+        .disabled(!isEnabled)
+    }
+
+    @ViewBuilder
+    private var styleForEmphasis: some PrimitiveButtonStyle {
+        switch emphasis {
+        case .high: .borderedProminent
+        case .medium: .bordered
+        case .low: .plain
+        }
     }
 }`}
   </PlatformTab>
 </PlatformTabs>
 
-## 用法
+## 多设备适配
 
-<DosDonts
-  doTitle="推荐"
-  dontTitle="避免"
-  doContent="每个视图区域最多一个主要 Button；destructive 操作使用语义色区分；保证最小触控区域 48dp。"
-  dontContent="同一区域堆叠多个 Primary Button；用 Button 承载长段落文本；硬编码色值而绕过 Token。"
-/>
+在多设备环境下，按钮设计需保持一致的原则，同时根据屏幕大小、交互方式和视距调整尺寸、间距、对比度和反馈：
+
+| 设备 | 要点 |
+|------|------|
+| **手机** | 以触控为主；最小触控区域 **44 × 44 pt**；主要按钮置于底部安全区域 |
+| **折叠屏** | 展开时扩展尺寸和间距，折叠时保持紧凑；按钮居中适配比例变化 |
+| **平板** | 大屏下可适度加宽；配合双手 / 键盘 / 笔操作；通过分组与间距明确区域，保证远距离识别 |
+| **可穿戴设备** | 屏幕极小、触控精度低；提供更大触控区域；按钮数量最小化，仅保留关键操作 |
 
 ## 无障碍
 
-- 为 Icon-only 按钮提供 `contentDescription` / `accessibilityLabel`
-- 支持 TalkBack / VoiceOver 朗读按钮角色与状态
+- Icon-only 按钮必须提供 `contentDescription`（Android）/ `accessibilityLabel`（iOS）
+- Disabled 态需同步到无障碍树，避免读屏仍播报为可点击
+- 聚焦态需清晰可见，满足键盘与辅助设备导航
+- 文字与背景对比度满足 WCAG AA
+
+## 更改日志
+
+| 版本 | 日期 | 说明 |
+|------|------|------|
+| 1.0.0 | 2026-07-08 | 初始规范：强调层级、胶囊型 / 文本 / 图标 / FAB、交互状态与多设备适配 |
+
+## 相关
+
+- [Icon Button](/docs/components/actions/icon-button)
+- [Floating Action Button](/docs/components/actions/floating-action-button)
+- [Dialog](/docs/components/feedback/dialog)
+- [Motion 基础规范](/docs/foundations/motion)

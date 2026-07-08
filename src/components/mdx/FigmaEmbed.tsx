@@ -2,6 +2,7 @@ type FigmaEmbedProps = {
   fileKey?: string;
   nodeId?: string;
   type?: 'design' | 'proto';
+  mode?: 'design' | 'dev';
   height?: number;
   theme?: 'light' | 'dark' | 'system';
 };
@@ -10,6 +11,7 @@ export function FigmaEmbed({
   fileKey,
   nodeId,
   type = 'design',
+  mode = 'design',
   height = 480,
   theme = 'system',
 }: FigmaEmbedProps) {
@@ -34,6 +36,10 @@ export function FigmaEmbed({
 
   if (nodeId) {
     params.set('node-id', nodeId);
+  }
+
+  if (mode === 'dev') {
+    params.set('mode', 'dev');
   }
 
   const src = `https://embed.figma.com/${type}/${fileKey}?${params.toString()}`;
