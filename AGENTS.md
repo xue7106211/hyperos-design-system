@@ -45,10 +45,14 @@ docs/v1/                # V1 设计决策与规划
 tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
 src/
   app/                  # Next.js 路由与布局
-  components/mdx/       # 自定义 MDX 组件（优先在此扩展）
+  components/
+    mdx/                # 自定义 MDX 组件（优先在此扩展）
+    HyperOSLogo.tsx     # 站点 Logo（light / dark）
   lib/                  # source loader、layout 配置
+public/logo/            # Logo 静态资源
 source.config.ts        # MDX frontmatter Zod schema
-AGENTS.md               # 本文件
+AGENTS.md               # 本文件（Agent 指引权威来源）
+CLAUDE.md               # 指向本文件
 package-lock.json       # npm 锁文件
 ```
 
@@ -80,7 +84,7 @@ Foundations → Components → Patterns → Resources
 
 1. frontmatter（`title`、`description`、`status`、`platforms`、`tokenGroups`）
 2. `<StatusBadge />` + 简介
-3. `<FigmaEmbed fileKey="..." nodeId="..." />`
+3. `<FigmaEmbed fileKey="..." nodeId="..." />`（Dev Mode 标注：加 `mode="dev"`）
 4. （可选）`<FigmaPrototypeEmbed />` 用于移动端交互演示
 5. `<TokenTable groups={[...]} />`
 6. `<PlatformTabs>` + `<PlatformTab platform="android|ios">` 静态代码
@@ -101,7 +105,7 @@ Foundations → Components → Patterns → Resources
 
 | 组件 | 用途 |
 |------|------|
-| `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`） |
+| `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`；可选 `mode="dev"` 查看 Dev Mode 标注） |
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
 | `TokenTable` | 从 `tokens/tokens.json` 按 group 渲染表格 |
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab（Client Component） |
@@ -121,11 +125,18 @@ Foundations → Components → Patterns → Resources
 
 ## 主题与品牌
 
-- UI chrome token：`src/app/global.css` 中的 `--color-fd-*`（Fumadocs 文档站皮肤）
+- 文档站 UI：Fumadocs 默认 `neutral.css` 主题（`src/app/global.css` 未覆盖 `--color-fd-*` 品牌色）
+- 排版与布局：`global.css` 中紧凑 typography、sidebar 贴左 + 内容居中 grid
+- Logo：`src/components/HyperOSLogo.tsx` + `public/logo/`
 - 业务 Design Token：`tokens/tokens.json`（HyperOS 设计规范）
 - 站点名与 nav：[src/lib/shared.ts](src/lib/shared.ts)、[src/lib/layout.shared.tsx](src/lib/layout.shared.tsx)
 
-两者不要混用。
+文档站 chrome token 与业务 Design Token **不要混用**。
+
+## 搜索与 AI 导出
+
+- 全文搜索：Orama（[src/app/api/search/route.ts](src/app/api/search/route.ts)）
+- LLM 导出：`/llms.txt`（索引）、`/llms-full.txt`（全文）、`/llms.mdx/docs/*`（单页 Markdown）
 
 ## Figma 集成
 
@@ -164,6 +175,7 @@ Foundations → Components → Patterns → Resources
 ## 相关文档
 
 - [README.md](README.md) — 快速上手
+- [CLAUDE.md](CLAUDE.md) — Claude 入口（指向本文件）
 - [docs/index.md](docs/index.md) — 工程设计文档索引
 - [docs/v1/technical-design.md](docs/v1/technical-design.md) — V1 技术方案
 - [docs/v1/information-architecture.md](docs/v1/information-architecture.md) — 站点 IA

@@ -7,7 +7,7 @@
 | 任务 | 阅读 |
 |------|------|
 | 快速上手、本地运行 | [README.md](../README.md) |
-| Agent / 协作者约定 | [AGENTS.md](../AGENTS.md) |
+| Agent / 协作者约定 | [AGENTS.md](../AGENTS.md)（[CLAUDE.md](../CLAUDE.md) 同指向） |
 | 技术选型与架构边界 | [v1/technical-design.md](./v1/technical-design.md) |
 | 站点目录与路由规划 | [v1/information-architecture.md](./v1/information-architecture.md) |
 | 实施进度与后续 Phase | [v1/roadmap.md](./v1/roadmap.md) |
@@ -28,6 +28,8 @@
 | `content/docs/` | Fumadocs 网站 MDX 内容 |
 | `tokens/tokens.json` | W3C DTCG Design Tokens |
 | `src/components/mdx/` | 网站自定义 MDX 组件 |
+| `public/logo/` | HyperOS Logo 静态资源 |
+| `AGENTS.md` / `CLAUDE.md` | Agent 工作指引（CLAUDE 指向 AGENTS） |
 
 ## 版本
 

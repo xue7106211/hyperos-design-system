@@ -5,9 +5,11 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 ## 特性
 
 - 移动端组件规范文档（无 Web 交互 demo）
-- Figma 设计稿 / 原型 iframe 嵌入
+- Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
 - Design Token 表格展示（W3C DTCG）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
+- 全文搜索、明暗主题切换
+- LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
 
 ## 开发
 
@@ -38,8 +40,10 @@ src/
   app/               # Next.js 路由与布局
   components/mdx/    # 自定义 MDX 组件
   lib/               # source loader、layout 配置
+public/logo/         # HyperOS Logo（light / dark）
 source.config.ts     # MDX frontmatter schema
-AGENTS.md            # Agent / 协作者指引
+AGENTS.md            # Agent / 协作者指引（权威）
+CLAUDE.md            # 指向 AGENTS.md
 ```
 
 ## 新增组件文档
@@ -54,6 +58,7 @@ AGENTS.md            # Agent / 协作者指引
 
 ```mdx
 <FigmaEmbed fileKey="YOUR_FILE_KEY" nodeId="1234:5678" height={480} />
+<FigmaEmbed fileKey="YOUR_FILE_KEY" nodeId="1234:5678" mode="dev" height={480} />
 ```
 
 ### Token 表示例
@@ -66,7 +71,8 @@ AGENTS.md            # Agent / 协作者指引
 
 | 文档 | 说明 |
 |------|------|
-| [AGENTS.md](AGENTS.md) | Agent 工作约定与验证清单 |
+| [AGENTS.md](AGENTS.md) | Agent 工作约定与验证清单（权威） |
+| [CLAUDE.md](CLAUDE.md) | Claude 入口，指向 AGENTS.md |
 | [docs/index.md](docs/index.md) | 工程设计文档索引 |
 | [docs/v1/technical-design.md](docs/v1/technical-design.md) | V1 技术方案 |
 | [docs/v1/information-architecture.md](docs/v1/information-architecture.md) | 站点 IA |
