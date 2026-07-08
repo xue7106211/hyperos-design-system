@@ -1,17 +1,16 @@
+import { TinaDocsPageContent } from '@/components/tina/TinaDocsPageContent';
+import { getMDXComponents } from '@/components/mdx';
 import { getPageImage, getPageMarkdownUrl, source } from '@/lib/source';
+import { fetchTinaDoc } from '@/lib/tina-docs';
+import { gitConfig } from '@/lib/shared';
 import {
-  DocsBody,
-  DocsDescription,
   DocsPage,
-  DocsTitle,
   MarkdownCopyButton,
   ViewOptionsPopover,
 } from 'fumadocs-ui/layouts/docs/page';
-import { notFound } from 'next/navigation';
-import { getMDXComponents } from '@/components/mdx';
-import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { gitConfig } from '@/lib/shared';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
@@ -20,30 +19,37 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 
   const MDX = page.data.body;
   const markdownUrl = getPageMarkdownUrl(page).url;
+  const tinaPayload =
+    process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+      ? await fetchTinaDoc(page.path)
+      : null;
+
+  const actions = (
+    <div className="flex flex-row items-center gap-2 border-b pb-6">
+      <MarkdownCopyButton markdownUrl={markdownUrl} />
+      <ViewOptionsPopover
+        markdownUrl={markdownUrl}
+        githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
+      />
+    </div>
+  );
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle className="text-2xl font-semibold tracking-tight">
-        {page.data.title}
-      </DocsTitle>
-      <DocsDescription className="mb-0 text-[15px] leading-relaxed sm:text-base">
-        {page.data.description}
-      </DocsDescription>
-      <div className="flex flex-row gap-2 items-center border-b pb-6">
-        <MarkdownCopyButton markdownUrl={markdownUrl} />
-        <ViewOptionsPopover
-          markdownUrl={markdownUrl}
-          githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
-        />
-      </div>
-      <DocsBody>
-        <MDX
-          components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
-            a: createRelativeLink(source, page),
-          })}
-        />
-      </DocsBody>
+      <TinaDocsPageContent
+        pagePath={page.path}
+        initialPayload={tinaPayload}
+        fallbackTitle={page.data.title}
+        fallbackDescription={page.data.description}
+        actions={actions}
+        fallbackBody={
+          <MDX
+            components={getMDXComponents({
+              a: createRelativeLink(source, page),
+            })}
+          />
+        }
+      />
     </DocsPage>
   );
 }
@@ -52,7 +58,9 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/docs/[[...slug]]'>,
+): Promise<Metadata> {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();

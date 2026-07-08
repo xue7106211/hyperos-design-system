@@ -40,8 +40,10 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 
 - 本地开发：复制 `.env.example` 为 `.env`，运行 `npm run dev`
 - 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/` 下的 MDX 规范
+- **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`DosDonts`、`PlatformCodeBlock` 等
 - 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
+- Collections 与站点 `meta.json` 分组对齐；组件子目录（Actions / Inputs 等）使用 `**/*` glob 递归索引
 
 ## 目录结构
 
@@ -60,7 +62,8 @@ src/
   components/
     mdx/                # 自定义 MDX 组件（优先在此扩展）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source loader、layout 配置
+  lib/                  # source loader、layout 配置、tina-docs 数据层
+  components/tina/      # Tina Visual Editing（useTina + TinaMarkdown）
 public/logo/            # Logo 静态资源
 source.config.ts        # MDX frontmatter Zod schema
 AGENTS.md               # 本文件（Agent 指引权威来源）

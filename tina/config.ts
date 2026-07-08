@@ -9,6 +9,25 @@ const branch =
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
 
+// Tina match globs resolve to `content/docs/<include>.<format>`.
+// Use `**/*` (not `**`) so nested folders like components/actions/ are indexed.
+const componentSections = [
+  { name: 'docsComponentsOverview', label: 'Components · 概览', include: 'components/index' },
+  { name: 'docsComponentsActions', label: 'Components · Actions', include: 'components/actions/**/*' },
+  { name: 'docsComponentsInputs', label: 'Components · Inputs', include: 'components/inputs/**/*' },
+  {
+    name: 'docsComponentsNavigation',
+    label: 'Components · Navigation',
+    include: 'components/navigation/**/*',
+  },
+  {
+    name: 'docsComponentsFeedback',
+    label: 'Components · Feedback',
+    include: 'components/feedback/**/*',
+  },
+  { name: 'docsComponentsDisplay', label: 'Components · Display', include: 'components/display/**/*' },
+] as const;
+
 export default defineConfig({
   contentApiUrlOverride: '/api/tina/gql',
   branch,
@@ -26,29 +45,27 @@ export default defineConfig({
   schema: {
     collections: [
       createDocsCollection({
-        name: 'docsFoundations',
-        label: 'Foundations',
-        match: { include: 'foundations/**' },
+        name: 'docsOverview',
+        label: 'Overview',
+        match: { include: 'index' },
       }),
       createDocsCollection({
-        name: 'docsComponents',
-        label: 'Components',
-        match: { include: 'components/**' },
+        name: 'docsFoundations',
+        label: 'Foundations',
+        match: { include: 'foundations/**/*' },
       }),
+      ...componentSections.map(({ name, label, include }) =>
+        createDocsCollection({ name, label, match: { include } }),
+      ),
       createDocsCollection({
         name: 'docsPatterns',
         label: 'Patterns',
-        match: { include: 'patterns/**' },
+        match: { include: 'patterns/**/*' },
       }),
       createDocsCollection({
         name: 'docsResources',
         label: 'Resources',
-        match: { include: 'resources/**' },
-      }),
-      createDocsCollection({
-        name: 'docsOverview',
-        label: 'Overview',
-        match: { include: 'index' },
+        match: { include: 'resources/**/*' },
       }),
     ],
   },
