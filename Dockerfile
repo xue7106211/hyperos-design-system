@@ -25,7 +25,14 @@ COPY package.json package-lock.json .npmrc ./
 # postinstall 会跑 fumadocs-mdx，此时还没有 content，先跳过 scripts
 RUN npm ci --ignore-scripts
 
-# ---------- builder: 编译 tinacms admin + next 站点 ----------
+# ---------- builder: 编译 next 站点（不跑 tinacms build） ----------
+# 不跑 tinacms build 的原因：
+# 1. 省内存：tinacms build 打 admin SPA + 编译 schema 会顶 3~4GB
+# 2. 避开 CentOS 7.9 (glibc 2.17) 与 better-sqlite3 12.x 的 SIGSEGV
+# 3. 生产不做 CMS 编辑（AGENTS.md 里 Phase 2 才接生产鉴权），/admin 本就不该暴露
+# 4. tina/__generated__/ 已提交到仓库，next build 需要的 client/types 无需重新生成
+# 5. SSG 时 page.tsx 里 TINA_PUBLIC_IS_LOCAL !== 'true' → fetchTinaDoc 返回 null，
+#    走 fumadocs-mdx 静态渲染 fallback，完全不碰 tina 数据层
 FROM ${BASE_IMAGE} AS builder
 ARG NPM_REGISTRY
 
@@ -40,15 +47,8 @@ COPY . .
 RUN npx fumadocs-mdx
 
 ENV NEXT_TELEMETRY_DISABLED=1
-# TinaCMS 走本地 filesystem 模式构建 admin bundle
-# 生产环境如接入 TinaCloud，改为传入 NEXT_PUBLIC_TINA_CLIENT_ID / TINA_TOKEN
-ENV TINA_PUBLIC_IS_LOCAL=true
-# 容器里 v8 默认堆上限约 1.5~2GB，tinacms build 编译全部 MDX collection 时会 OOM
-# 抬高到 4GB。要求 Matrix 构建 Pod 内存 ≥ 4GB，否则会被平台 OOMKilled
-ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-# 等价于 npm run build，即 tinacms build && next build
-RUN npm run build
+RUN npx next build
 
 # ---------- runner: 最小运行镜像 ----------
 FROM ${BASE_IMAGE} AS runner

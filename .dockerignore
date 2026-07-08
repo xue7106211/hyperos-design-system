@@ -11,8 +11,9 @@ out
 build
 .source
 
-# TinaCMS 生成产物（容器内会重新生成）
-tina/__generated__
+# TinaCMS 生成产物
+# tina/__generated__ 已 commit 到仓库供 next build 直接使用，不再排除
+tina/__generated__/.cache
 public/admin
 public/uploads
 
