@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { HyperOSLogo } from "@/components/HyperOSLogo";
 import { defaultDocsRoute } from "@/lib/shared";
@@ -5,6 +6,16 @@ import { defaultDocsRoute } from "@/lib/shared";
 export default function HomePage() {
   return (
     <div className="mx-auto flex max-w-3xl flex-1 flex-col justify-center px-6 py-16 text-center">
+      <div className="mx-auto mb-8 w-[90%] overflow-hidden rounded-2xl border border-fd-border bg-fd-card">
+        <Image
+          src="/home/hyperos-ui-kit-4.png"
+          alt="Figma UI Kit 4.0 — Xiaomi HyperOS 4.0"
+          width={1024}
+          height={576}
+          className="h-auto w-full"
+          priority
+        />
+      </div>
       <HyperOSLogo className="mx-auto mb-6 h-8" priority />
       {/* <p className="mb-3 text-sm font-medium text-fd-primary">Design System</p> */}
       {/* <h1 className="mb-4 text-3xl font-bold tracking-tight text-fd-foreground">
