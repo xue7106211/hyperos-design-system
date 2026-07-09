@@ -39,6 +39,47 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 
 > **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。详见"容器化部署"节。
 
+## Git 远程与同步
+
+本仓库配置了两个远程，**以 GitLab 为主开发**，GitHub 为镜像同步：
+
+| 远程 | 地址 | 角色 |
+|------|------|------|
+| **`gitlab`** | `git@git.n.xiaomi.com:xueyifei1/hyperos-design-system.git` | **主远程**（`main` 跟踪 `gitlab/main`；Matrix 部署、内网协作） |
+| `origin` | `https://github.com/xue7106211/hyperos-design-system.git` | 镜像远程（对外备份 / GitHub 协作） |
+
+### 拉取（只从一个远程）
+
+统一从 **`gitlab`** 拉取，避免在两个远程之间交替 pull 导致历史分叉：
+
+```bash
+git pull gitlab main
+```
+
+不要同时对 `gitlab` 和 `origin` 做 rebase / merge 后再交叉推送。
+
+### 推送（必须双远程同步）
+
+每次 push **`main`** 时，**同时推送到 GitLab 和 GitHub**，不要只推一个仓库：
+
+```bash
+git push gitlab main
+git push origin main
+```
+
+推送后可用下面命令确认两边文件树一致（应无 diff）：
+
+```bash
+git fetch gitlab main && git fetch origin main
+git diff gitlab/main origin/main --stat
+```
+
+### 注意
+
+- GitLab `main` 为**受保护分支**，禁止 force push。
+- 若一边推送失败，先解决冲突或 rebase，再补推另一边；不要长期只维护一个远程。
+- 两边 commit hash 可能因 merge 方式不同而略有差异，但**代码内容应保持一致**。
+
 ### TinaCMS 后台
 
 - 本地开发：复制 `.env.example` 为 `.env`，运行 `npm run dev`
