@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 信息架构
 
-> **版本**：V1.0  
-> **日期**：2026-07-08  
+> **版本**：V1.1  
+> **日期**：2026-07-09  
 > **关联**：[技术设计方案](./technical-design.md)
 
 ---
@@ -12,6 +12,7 @@
 - **按用途分类组件**：Actions、Inputs、Feedback 等，而非按 Figma 文件结构平铺。
 - **Patterns 独立**：页面级模式与原子组件分离，避免组件目录膨胀。
 - **Resources 收口**：Figma 库、Changelog、迁移指南集中入口。
+- **OS 版本分层**：HyperOS 4 / 5 作为顶层 Tab；各版本下复用 Foundations → Components → Patterns → Resources 结构。
 
 ---
 
@@ -19,77 +20,91 @@
 
 ```text
 /  (Landing)
-└── /docs
-    ├── index                          # DS 首页：简介、快速链接、更新动态
+└── /docs                    # → 重定向 /docs/os4
+    ├── os4/                 # HyperOS 4（当前默认）
+    │   ├── index            # DS 首页：简介、快速链接、更新动态
+    │   ├── foundations/
+    │   ├── components/
+    │   ├── patterns/
+    │   └── resources/
+    └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
+        ├── index
+        ├── foundations/
+        ├── components/
+        ├── patterns/
+        └── resources/
+```
+
+各版本内 **Foundations → Components → Patterns → Resources** 子结构一致，示例（以 `os4` 为准）：
+
+```text
+/docs/os4
+    ├── index
     │
     ├── foundations/                   # 基础
     │   ├── index
-    │   ├── principles                 # 设计原则
-    │   ├── colors                     # 色彩（TokenTable）
-    │   ├── typography                 # 字体与排版
-    │   ├── spacing                    # 间距
-    │   ├── elevation                  # 阴影 / 层级
-    │   ├── motion                     # 动效原则
-    │   ├── iconography                # 图标规范
-    │   └── accessibility              # 无障碍
+    │   ├── principles
+    │   ├── colors
+    │   ├── typography
+    │   ├── spacing
+    │   ├── elevation
+    │   ├── motion
+    │   ├── iconography
+    │   └── accessibility
     │
     ├── components/                    # 组件
-    │   ├── index                      # 组件总览（分类卡片）
-    │   ├── actions/
-    │   │   ├── button
-    │   │   ├── icon-button
-    │   │   └── floating-action-button
+    │   ├── index
+    │   ├── actions/                   # button, icon-button, floating-action-button
     │   ├── inputs/
-    │   │   ├── text-field
-    │   │   ├── switch
-    │   │   ├── checkbox
-    │   │   └── slider
     │   ├── navigation/
-    │   │   ├── top-app-bar
-    │   │   ├── bottom-nav
-    │   │   └── tabs
     │   ├── feedback/
-    │   │   ├── dialog
-    │   │   ├── snackbar
-    │   │   └── progress
     │   └── display/
-    │       ├── list
-    │       ├── card
-    │       └── chip
     │
-    ├── patterns/                      # 页面模式
+    ├── patterns/
     │   ├── index
     │   ├── settings-page
     │   ├── list-detail
     │   ├── onboarding
     │   └── empty-states
     │
-    └── resources/                     # 资源
-        ├── figma-library              # Figma 组件库（embed + 链接）
-        ├── design-tokens              # Token JSON 说明与下载
+    └── resources/
+        ├── figma-library
+        ├── design-tokens
         ├── changelog
         └── migration-guides
 ```
 
-> **Phase 0–1 状态**：完整 IA 骨架与占位页已创建；[§7 MVP 最小页面集](#7-v1-mvp-最小页面集) 中的 5 个页面为验收重点，其余页面可逐步填充内容。
+> **Phase 0–1 状态**：`os4` 完整 IA 骨架与占位页已创建；[§7 MVP 最小页面集](#7-v1-mvp-最小页面集) 以 OS4 路径验收。`os5` 目录骨架已建，内容待发布。
 
 ---
 
 ## 3. 路由与文件映射
 
-Fumadocs MDX 默认按文件路径生成 URL：
+Fumadocs MDX 按文件路径生成 URL。根级 `content/docs/meta.json` 注册 OS 版本 Tab：
+
+```json
+{ "title": "文档", "pages": ["os4", "os5"] }
+```
 
 | 文件路径 | URL |
 |----------|-----|
-| `content/docs/index.mdx` | `/docs` |
-| `content/docs/foundations/colors.mdx` | `/docs/foundations/colors` |
-| `content/docs/components/actions/button.mdx` | `/docs/components/actions/button` |
+| `content/docs/os4/index.mdx` | `/docs/os4` |
+| `content/docs/os4/foundations/colors.mdx` | `/docs/os4/foundations/colors` |
+| `content/docs/os4/components/actions/button.mdx` | `/docs/os4/components/actions/button` |
 
-Sidebar 通过 `meta.json` 控制顺序与分组：
+**重定向**（`next.config.mjs`）：
+
+| 请求路径 | 目标 |
+|----------|------|
+| `/docs` | `/docs/os4`（临时） |
+| `/docs/os5`、`/docs/os5/*` | `/docs/os4`（临时，待 OS5 发布） |
+| `/docs/foundations/*` 等旧路径 | `/docs/os4/foundations/*`（永久 301） |
+
+Sidebar 通过各目录 `meta.json` 控制顺序与分组：
 
 ```text
-content/docs/components/actions/
-├── meta.json          # 子目录排序
+content/docs/os4/components/actions/
+├── meta.json
 ├── button.mdx
 └── icon-button.mdx
 ```
@@ -107,13 +122,15 @@ content/docs/components/actions/
 
 ## 4. 页面类型规范
 
-### 4.1 Landing（`/docs`）
+### 4.1 Landing（`/docs/os4`）
 
 | 区块 | 内容 |
 |------|------|
 | Hero | HyperOS DS 一句话定位 + CTA（进入 Foundations / Figma 库） |
 | 快速入口 | Colors · Button · Figma Library |
 | 最近更新 | Changelog 摘要（V1 可静态） |
+
+侧边栏顶部 **DocsVersionSwitcher** 切换 HyperOS 4 / 5（OS5 当前禁用）。
 
 ### 4.2 Foundation 页
 
@@ -132,7 +149,7 @@ content/docs/components/actions/
 | 交互演示（可选） | `<FigmaPrototypeEmbed url />` |
 | Token | `<TokenTable groups={frontmatter.tokenGroups} />` |
 | 平台代码 | `<PlatformTabs>` |
-| 用法 / Do-Don't | MDX + `<DosDonts />`（Phase 2 可接 CMS 富文本） |
+| 用法 / Do-Don't | MDX + `<DosDonts />`（亦可通过 `/admin` 插入 block） |
 
 ### 4.4 Pattern 页
 
@@ -182,8 +199,8 @@ V1 可先 **仅中文**，目录结构与 i18n config 预留英文。
 
 | # | 页面 | 目的 |
 |---|------|------|
-| 1 | `/docs` | 验证 Landing + 导航 |
-| 2 | `/docs/foundations/colors` | 验证 TokenTable |
-| 3 | `/docs/components/actions/button` | 验证完整组件页模板 |
-| 4 | `/docs/resources/figma-library` | 验证 Figma embed + 外链 |
-| 5 | `/docs/resources/changelog` | 验证 Changelog 页面与版本记录（CMS 编辑流程留待 Phase 2） |
+| 1 | `/docs/os4` | 验证 Landing + 导航 + 版本切换器 |
+| 2 | `/docs/os4/foundations/colors` | 验证 TokenTable |
+| 3 | `/docs/os4/components/actions/button` | 验证完整组件页模板 |
+| 4 | `/docs/os4/resources/figma-library` | 验证 Figma embed + 外链 |
+| 5 | `/docs/os4/resources/changelog` | 验证 Changelog 页面与版本记录 |

@@ -11,6 +11,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 全文搜索、明暗主题切换
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
 - TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 代码 block
+- OS 版本切换（HyperOS 4 / 5；侧边栏 `DocsVersionSwitcher`，当前默认 OS4）
 
 ## 开发
 
@@ -29,42 +30,55 @@ npm run dev
 
 ```bash
 npm run build        # tinacms build + 生产构建
+npm run tina:build   # 只跑 tinacms build（改 tina schema 后刷新 __generated__）
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
+
+生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`），详见 [AGENTS.md](AGENTS.md)「容器化部署」与根目录 `Dockerfile`。
 
 ## 目录结构
 
 ```text
 content/docs/        # 网站 MDX 文档（对外）
+  os4/               # HyperOS 4 规范（当前默认，/docs → /docs/os4）
+  os5/               # HyperOS 5 占位（侧栏可见，内容未发布）
 docs/                # 工程设计文档（对内，见 docs/index.md）
 tokens/tokens.json   # Design Tokens（W3C DTCG）
 tina/                # TinaCMS schema 与 block 模板
+  __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
 .env.example         # TinaCMS 本地模式环境变量模板
 src/
   app/               # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
+    docs/            # DocsVersionSwitcher（OS 版本切换）
     mdx/             # 自定义 MDX 组件
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、tina-docs、cn
+  lib/               # source、layout、tina-docs、docs-version-tabs、cn
 public/
   logo/              # HyperOS Logo 静态资源
+  home/              # Landing 页静态图
   uploads/           # TinaCMS 媒体上传（本地模式）
 source.config.ts     # MDX frontmatter schema
-next.config.mjs      # Next.js + fumadocs-mdx 配置
+next.config.mjs      # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts             # Markdown 内容协商
+.npmrc               # legacy-peer-deps（TinaCMS 依赖兼容）
+Dockerfile           # Matrix 生产镜像
+package-lock.json    # npm 锁文件
 AGENTS.md            # Agent / 协作者指引（权威）
 CLAUDE.md            # 指向 AGENTS.md
 ```
 
 ## 新增组件文档
 
-1. 在 `content/docs/components/` 下创建 `.mdx` 文件
+1. 在 `content/docs/os4/components/`（或对应 OS 版本目录）下创建 `.mdx` 文件
 2. 在对应目录的 `meta.json` 中注册页面
 3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<PlatformTabs />`、`<PlatformCodeBlock />` 等组件（亦可通过 `/admin` 插入 block）
 
-参考模板：[content/docs/components/actions/button.mdx](content/docs/components/actions/button.mdx)
+参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx)
+
+> `/docs` 默认进入 OS4；旧路径如 `/docs/components/...` 会 301 重定向到 `/docs/os4/components/...`（见 `next.config.mjs`）。
 
 ### Figma Embed 示例
 

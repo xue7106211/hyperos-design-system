@@ -9,6 +9,7 @@
 | 快速上手、本地运行 | [README.md](../README.md) |
 | Agent / 协作者约定 | [AGENTS.md](../AGENTS.md)（[CLAUDE.md](../CLAUDE.md) 同指向） |
 | CMS 后台录入规范 | `npm run dev` → [http://localhost:3000/admin](http://localhost:3000/admin) |
+| 容器化部署（Matrix） | [AGENTS.md](../AGENTS.md)「容器化部署」· 根目录 `Dockerfile` |
 | 技术选型与架构边界 | [v1/technical-design.md](./v1/technical-design.md) |
 | 站点目录与路由规划 | [v1/information-architecture.md](./v1/information-architecture.md) |
 | 实施进度与后续 Phase | [v1/roadmap.md](./v1/roadmap.md) |
@@ -26,7 +27,12 @@
 | 路径 | 用途 |
 |------|------|
 | `docs/` | 工程设计文档（本目录） |
-| `content/docs/` | Fumadocs 网站 MDX 内容 |
+| `content/docs/` | Fumadocs 网站 MDX 内容（根级 `meta.json` 注册 `os4` / `os5`） |
+| `content/docs/os4/` | HyperOS 4 规范（当前默认，`/docs` → `/docs/os4`） |
+| `content/docs/os5/` | HyperOS 5 占位（侧栏可见，内容未发布） |
+| `src/components/docs/` | `DocsVersionSwitcher`（侧边栏 OS 版本切换） |
+| `src/lib/docs-version-tabs.ts` | 从 page tree 生成版本 Tab；OS5 禁用态 |
+| `src/lib/shared.ts` | `docsVersions`、`defaultDocsRoute` 等站点常量 |
 | `tokens/tokens.json` | W3C DTCG Design Tokens |
 | `src/components/mdx/` | 网站自定义 MDX 组件 |
 | `src/components/tina/` | Tina Visual Editing 组件 |
@@ -38,7 +44,10 @@
 | `proxy.ts` | Markdown 内容协商（`.md` URL 与 `Accept` 重写） |
 | `source.config.ts` | MDX frontmatter Zod schema |
 | `AGENTS.md` / `CLAUDE.md` | Agent 工作指引（CLAUDE 指向 AGENTS） |
+| `Dockerfile` | Matrix 生产镜像（deps → builder → runner；不跑 `tinacms build`） |
+| `.npmrc` | `legacy-peer-deps=true`（TinaCMS 依赖兼容） |
 
 ## 版本
 
-- **V1.0**（2026-07-08）：Fumadocs 文档站 Phase 0–1 已落地；TinaCMS 本地 `/admin` 已接入。
+- **V1.0**（2026-07-08）：Fumadocs 文档站 Phase 0–1 已落地；TinaCMS 本地 `/admin` 已接入；Matrix Docker 部署已配置。
+- **V1.1**（2026-07-09）：文档按 OS 版本分目录（`os4` / `os5`）；侧边栏版本切换器；旧 `/docs/*` 路径重定向兼容。
