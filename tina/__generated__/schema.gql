@@ -54,39 +54,69 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
-  docsOverview(relativePath: String): DocsOverview!
-  docsOverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsOverviewFilter): DocsOverviewConnection!
-  docsFoundations(relativePath: String): DocsFoundations!
-  docsFoundationsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsFoundationsFilter): DocsFoundationsConnection!
-  docsComponentsOverview(relativePath: String): DocsComponentsOverview!
-  docsComponentsOverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsComponentsOverviewFilter): DocsComponentsOverviewConnection!
-  docsComponentsActions(relativePath: String): DocsComponentsActions!
-  docsComponentsActionsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsComponentsActionsFilter): DocsComponentsActionsConnection!
-  docsComponentsInputs(relativePath: String): DocsComponentsInputs!
-  docsComponentsInputsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsComponentsInputsFilter): DocsComponentsInputsConnection!
-  docsComponentsNavigation(relativePath: String): DocsComponentsNavigation!
-  docsComponentsNavigationConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsComponentsNavigationFilter): DocsComponentsNavigationConnection!
-  docsComponentsFeedback(relativePath: String): DocsComponentsFeedback!
-  docsComponentsFeedbackConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsComponentsFeedbackFilter): DocsComponentsFeedbackConnection!
-  docsComponentsDisplay(relativePath: String): DocsComponentsDisplay!
-  docsComponentsDisplayConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsComponentsDisplayFilter): DocsComponentsDisplayConnection!
-  docsPatterns(relativePath: String): DocsPatterns!
-  docsPatternsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsPatternsFilter): DocsPatternsConnection!
-  docsResources(relativePath: String): DocsResources!
-  docsResourcesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsResourcesFilter): DocsResourcesConnection!
+  docsos4Overview(relativePath: String): Docsos4Overview!
+  docsos4OverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4OverviewFilter): Docsos4OverviewConnection!
+  docsos4Foundations(relativePath: String): Docsos4Foundations!
+  docsos4FoundationsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4FoundationsFilter): Docsos4FoundationsConnection!
+  docsos4ComponentsOverview(relativePath: String): Docsos4ComponentsOverview!
+  docsos4ComponentsOverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4ComponentsOverviewFilter): Docsos4ComponentsOverviewConnection!
+  docsos4ComponentsActions(relativePath: String): Docsos4ComponentsActions!
+  docsos4ComponentsActionsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4ComponentsActionsFilter): Docsos4ComponentsActionsConnection!
+  docsos4ComponentsInputs(relativePath: String): Docsos4ComponentsInputs!
+  docsos4ComponentsInputsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4ComponentsInputsFilter): Docsos4ComponentsInputsConnection!
+  docsos4ComponentsNavigation(relativePath: String): Docsos4ComponentsNavigation!
+  docsos4ComponentsNavigationConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4ComponentsNavigationFilter): Docsos4ComponentsNavigationConnection!
+  docsos4ComponentsFeedback(relativePath: String): Docsos4ComponentsFeedback!
+  docsos4ComponentsFeedbackConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4ComponentsFeedbackFilter): Docsos4ComponentsFeedbackConnection!
+  docsos4ComponentsDisplay(relativePath: String): Docsos4ComponentsDisplay!
+  docsos4ComponentsDisplayConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4ComponentsDisplayFilter): Docsos4ComponentsDisplayConnection!
+  docsos4Patterns(relativePath: String): Docsos4Patterns!
+  docsos4PatternsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4PatternsFilter): Docsos4PatternsConnection!
+  docsos4Resources(relativePath: String): Docsos4Resources!
+  docsos4ResourcesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4ResourcesFilter): Docsos4ResourcesConnection!
+  docsos5Overview(relativePath: String): Docsos5Overview!
+  docsos5OverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5OverviewFilter): Docsos5OverviewConnection!
+  docsos5Foundations(relativePath: String): Docsos5Foundations!
+  docsos5FoundationsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5FoundationsFilter): Docsos5FoundationsConnection!
+  docsos5ComponentsOverview(relativePath: String): Docsos5ComponentsOverview!
+  docsos5ComponentsOverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5ComponentsOverviewFilter): Docsos5ComponentsOverviewConnection!
+  docsos5ComponentsActions(relativePath: String): Docsos5ComponentsActions!
+  docsos5ComponentsActionsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5ComponentsActionsFilter): Docsos5ComponentsActionsConnection!
+  docsos5ComponentsInputs(relativePath: String): Docsos5ComponentsInputs!
+  docsos5ComponentsInputsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5ComponentsInputsFilter): Docsos5ComponentsInputsConnection!
+  docsos5ComponentsNavigation(relativePath: String): Docsos5ComponentsNavigation!
+  docsos5ComponentsNavigationConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5ComponentsNavigationFilter): Docsos5ComponentsNavigationConnection!
+  docsos5ComponentsFeedback(relativePath: String): Docsos5ComponentsFeedback!
+  docsos5ComponentsFeedbackConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5ComponentsFeedbackFilter): Docsos5ComponentsFeedbackConnection!
+  docsos5ComponentsDisplay(relativePath: String): Docsos5ComponentsDisplay!
+  docsos5ComponentsDisplayConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5ComponentsDisplayFilter): Docsos5ComponentsDisplayConnection!
+  docsos5Patterns(relativePath: String): Docsos5Patterns!
+  docsos5PatternsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5PatternsFilter): Docsos5PatternsConnection!
+  docsos5Resources(relativePath: String): Docsos5Resources!
+  docsos5ResourcesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5ResourcesFilter): Docsos5ResourcesConnection!
 }
 
 input DocumentFilter {
-  docsOverview: DocsOverviewFilter
-  docsFoundations: DocsFoundationsFilter
-  docsComponentsOverview: DocsComponentsOverviewFilter
-  docsComponentsActions: DocsComponentsActionsFilter
-  docsComponentsInputs: DocsComponentsInputsFilter
-  docsComponentsNavigation: DocsComponentsNavigationFilter
-  docsComponentsFeedback: DocsComponentsFeedbackFilter
-  docsComponentsDisplay: DocsComponentsDisplayFilter
-  docsPatterns: DocsPatternsFilter
-  docsResources: DocsResourcesFilter
+  docsos4Overview: Docsos4OverviewFilter
+  docsos4Foundations: Docsos4FoundationsFilter
+  docsos4ComponentsOverview: Docsos4ComponentsOverviewFilter
+  docsos4ComponentsActions: Docsos4ComponentsActionsFilter
+  docsos4ComponentsInputs: Docsos4ComponentsInputsFilter
+  docsos4ComponentsNavigation: Docsos4ComponentsNavigationFilter
+  docsos4ComponentsFeedback: Docsos4ComponentsFeedbackFilter
+  docsos4ComponentsDisplay: Docsos4ComponentsDisplayFilter
+  docsos4Patterns: Docsos4PatternsFilter
+  docsos4Resources: Docsos4ResourcesFilter
+  docsos5Overview: Docsos5OverviewFilter
+  docsos5Foundations: Docsos5FoundationsFilter
+  docsos5ComponentsOverview: Docsos5ComponentsOverviewFilter
+  docsos5ComponentsActions: Docsos5ComponentsActionsFilter
+  docsos5ComponentsInputs: Docsos5ComponentsInputsFilter
+  docsos5ComponentsNavigation: Docsos5ComponentsNavigationFilter
+  docsos5ComponentsFeedback: Docsos5ComponentsFeedbackFilter
+  docsos5ComponentsDisplay: Docsos5ComponentsDisplayFilter
+  docsos5Patterns: Docsos5PatternsFilter
+  docsos5Resources: Docsos5ResourcesFilter
 }
 
 type DocumentConnectionEdges {
@@ -112,9 +142,9 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = DocsOverview | DocsFoundations | DocsComponentsOverview | DocsComponentsActions | DocsComponentsInputs | DocsComponentsNavigation | DocsComponentsFeedback | DocsComponentsDisplay | DocsPatterns | DocsResources | Folder
+union DocumentNode = Docsos4Overview | Docsos4Foundations | Docsos4ComponentsOverview | Docsos4ComponentsActions | Docsos4ComponentsInputs | Docsos4ComponentsNavigation | Docsos4ComponentsFeedback | Docsos4ComponentsDisplay | Docsos4Patterns | Docsos4Resources | Docsos5Overview | Docsos5Foundations | Docsos5ComponentsOverview | Docsos5ComponentsActions | Docsos5ComponentsInputs | Docsos5ComponentsNavigation | Docsos5ComponentsFeedback | Docsos5ComponentsDisplay | Docsos5Patterns | Docsos5Resources | Folder
 
-type DocsOverview implements Node & Document {
+type Docsos4Overview implements Node & Document {
   title: String!
   description: String
   status: String
@@ -136,7 +166,7 @@ input StringFilter {
   in: [String]
 }
 
-input DocsOverviewBodyStatusBadgeFilter {
+input Docsos4OverviewBodyStatusBadgeFilter {
   status: StringFilter
 }
 
@@ -150,7 +180,7 @@ input NumberFilter {
   in: [Float]
 }
 
-input DocsOverviewBodyFigmaEmbedFilter {
+input Docsos4OverviewBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -158,41 +188,41 @@ input DocsOverviewBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsOverviewBodyFigmaPrototypeEmbedFilter {
+input Docsos4OverviewBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsOverviewBodyTokenTableFilter {
+input Docsos4OverviewBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsOverviewBodyDosDontsFilter {
+input Docsos4OverviewBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsOverviewBodyPlatformCodeBlockFilter {
+input Docsos4OverviewBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsOverviewBodyFilter {
-  StatusBadge: DocsOverviewBodyStatusBadgeFilter
-  FigmaEmbed: DocsOverviewBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsOverviewBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsOverviewBodyTokenTableFilter
-  DosDonts: DocsOverviewBodyDosDontsFilter
-  PlatformCodeBlock: DocsOverviewBodyPlatformCodeBlockFilter
+input Docsos4OverviewBodyFilter {
+  StatusBadge: Docsos4OverviewBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4OverviewBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4OverviewBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4OverviewBodyTokenTableFilter
+  DosDonts: Docsos4OverviewBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4OverviewBodyPlatformCodeBlockFilter
 }
 
-input DocsOverviewFilter {
+input Docsos4OverviewFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -201,21 +231,21 @@ input DocsOverviewFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsOverviewBodyFilter
+  body: Docsos4OverviewBodyFilter
 }
 
-type DocsOverviewConnectionEdges {
+type Docsos4OverviewConnectionEdges {
   cursor: String!
-  node: DocsOverview
+  node: Docsos4Overview
 }
 
-type DocsOverviewConnection implements Connection {
+type Docsos4OverviewConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsOverviewConnectionEdges]
+  edges: [Docsos4OverviewConnectionEdges]
 }
 
-type DocsFoundations implements Node & Document {
+type Docsos4Foundations implements Node & Document {
   title: String!
   description: String
   status: String
@@ -230,11 +260,11 @@ type DocsFoundations implements Node & Document {
   _values: JSON!
 }
 
-input DocsFoundationsBodyStatusBadgeFilter {
+input Docsos4FoundationsBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsFoundationsBodyFigmaEmbedFilter {
+input Docsos4FoundationsBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -242,41 +272,41 @@ input DocsFoundationsBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsFoundationsBodyFigmaPrototypeEmbedFilter {
+input Docsos4FoundationsBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsFoundationsBodyTokenTableFilter {
+input Docsos4FoundationsBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsFoundationsBodyDosDontsFilter {
+input Docsos4FoundationsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsFoundationsBodyPlatformCodeBlockFilter {
+input Docsos4FoundationsBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsFoundationsBodyFilter {
-  StatusBadge: DocsFoundationsBodyStatusBadgeFilter
-  FigmaEmbed: DocsFoundationsBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsFoundationsBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsFoundationsBodyTokenTableFilter
-  DosDonts: DocsFoundationsBodyDosDontsFilter
-  PlatformCodeBlock: DocsFoundationsBodyPlatformCodeBlockFilter
+input Docsos4FoundationsBodyFilter {
+  StatusBadge: Docsos4FoundationsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4FoundationsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4FoundationsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4FoundationsBodyTokenTableFilter
+  DosDonts: Docsos4FoundationsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4FoundationsBodyPlatformCodeBlockFilter
 }
 
-input DocsFoundationsFilter {
+input Docsos4FoundationsFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -285,21 +315,21 @@ input DocsFoundationsFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsFoundationsBodyFilter
+  body: Docsos4FoundationsBodyFilter
 }
 
-type DocsFoundationsConnectionEdges {
+type Docsos4FoundationsConnectionEdges {
   cursor: String!
-  node: DocsFoundations
+  node: Docsos4Foundations
 }
 
-type DocsFoundationsConnection implements Connection {
+type Docsos4FoundationsConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsFoundationsConnectionEdges]
+  edges: [Docsos4FoundationsConnectionEdges]
 }
 
-type DocsComponentsOverview implements Node & Document {
+type Docsos4ComponentsOverview implements Node & Document {
   title: String!
   description: String
   status: String
@@ -314,11 +344,11 @@ type DocsComponentsOverview implements Node & Document {
   _values: JSON!
 }
 
-input DocsComponentsOverviewBodyStatusBadgeFilter {
+input Docsos4ComponentsOverviewBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsComponentsOverviewBodyFigmaEmbedFilter {
+input Docsos4ComponentsOverviewBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -326,41 +356,41 @@ input DocsComponentsOverviewBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsComponentsOverviewBodyFigmaPrototypeEmbedFilter {
+input Docsos4ComponentsOverviewBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsComponentsOverviewBodyTokenTableFilter {
+input Docsos4ComponentsOverviewBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsComponentsOverviewBodyDosDontsFilter {
+input Docsos4ComponentsOverviewBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsComponentsOverviewBodyPlatformCodeBlockFilter {
+input Docsos4ComponentsOverviewBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsComponentsOverviewBodyFilter {
-  StatusBadge: DocsComponentsOverviewBodyStatusBadgeFilter
-  FigmaEmbed: DocsComponentsOverviewBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsComponentsOverviewBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsComponentsOverviewBodyTokenTableFilter
-  DosDonts: DocsComponentsOverviewBodyDosDontsFilter
-  PlatformCodeBlock: DocsComponentsOverviewBodyPlatformCodeBlockFilter
+input Docsos4ComponentsOverviewBodyFilter {
+  StatusBadge: Docsos4ComponentsOverviewBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4ComponentsOverviewBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4ComponentsOverviewBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4ComponentsOverviewBodyTokenTableFilter
+  DosDonts: Docsos4ComponentsOverviewBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4ComponentsOverviewBodyPlatformCodeBlockFilter
 }
 
-input DocsComponentsOverviewFilter {
+input Docsos4ComponentsOverviewFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -369,21 +399,21 @@ input DocsComponentsOverviewFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsComponentsOverviewBodyFilter
+  body: Docsos4ComponentsOverviewBodyFilter
 }
 
-type DocsComponentsOverviewConnectionEdges {
+type Docsos4ComponentsOverviewConnectionEdges {
   cursor: String!
-  node: DocsComponentsOverview
+  node: Docsos4ComponentsOverview
 }
 
-type DocsComponentsOverviewConnection implements Connection {
+type Docsos4ComponentsOverviewConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsComponentsOverviewConnectionEdges]
+  edges: [Docsos4ComponentsOverviewConnectionEdges]
 }
 
-type DocsComponentsActions implements Node & Document {
+type Docsos4ComponentsActions implements Node & Document {
   title: String!
   description: String
   status: String
@@ -398,11 +428,11 @@ type DocsComponentsActions implements Node & Document {
   _values: JSON!
 }
 
-input DocsComponentsActionsBodyStatusBadgeFilter {
+input Docsos4ComponentsActionsBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsComponentsActionsBodyFigmaEmbedFilter {
+input Docsos4ComponentsActionsBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -410,41 +440,41 @@ input DocsComponentsActionsBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsComponentsActionsBodyFigmaPrototypeEmbedFilter {
+input Docsos4ComponentsActionsBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsComponentsActionsBodyTokenTableFilter {
+input Docsos4ComponentsActionsBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsComponentsActionsBodyDosDontsFilter {
+input Docsos4ComponentsActionsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsComponentsActionsBodyPlatformCodeBlockFilter {
+input Docsos4ComponentsActionsBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsComponentsActionsBodyFilter {
-  StatusBadge: DocsComponentsActionsBodyStatusBadgeFilter
-  FigmaEmbed: DocsComponentsActionsBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsComponentsActionsBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsComponentsActionsBodyTokenTableFilter
-  DosDonts: DocsComponentsActionsBodyDosDontsFilter
-  PlatformCodeBlock: DocsComponentsActionsBodyPlatformCodeBlockFilter
+input Docsos4ComponentsActionsBodyFilter {
+  StatusBadge: Docsos4ComponentsActionsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4ComponentsActionsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4ComponentsActionsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4ComponentsActionsBodyTokenTableFilter
+  DosDonts: Docsos4ComponentsActionsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4ComponentsActionsBodyPlatformCodeBlockFilter
 }
 
-input DocsComponentsActionsFilter {
+input Docsos4ComponentsActionsFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -453,21 +483,21 @@ input DocsComponentsActionsFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsComponentsActionsBodyFilter
+  body: Docsos4ComponentsActionsBodyFilter
 }
 
-type DocsComponentsActionsConnectionEdges {
+type Docsos4ComponentsActionsConnectionEdges {
   cursor: String!
-  node: DocsComponentsActions
+  node: Docsos4ComponentsActions
 }
 
-type DocsComponentsActionsConnection implements Connection {
+type Docsos4ComponentsActionsConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsComponentsActionsConnectionEdges]
+  edges: [Docsos4ComponentsActionsConnectionEdges]
 }
 
-type DocsComponentsInputs implements Node & Document {
+type Docsos4ComponentsInputs implements Node & Document {
   title: String!
   description: String
   status: String
@@ -482,11 +512,11 @@ type DocsComponentsInputs implements Node & Document {
   _values: JSON!
 }
 
-input DocsComponentsInputsBodyStatusBadgeFilter {
+input Docsos4ComponentsInputsBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsComponentsInputsBodyFigmaEmbedFilter {
+input Docsos4ComponentsInputsBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -494,41 +524,41 @@ input DocsComponentsInputsBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsComponentsInputsBodyFigmaPrototypeEmbedFilter {
+input Docsos4ComponentsInputsBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsComponentsInputsBodyTokenTableFilter {
+input Docsos4ComponentsInputsBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsComponentsInputsBodyDosDontsFilter {
+input Docsos4ComponentsInputsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsComponentsInputsBodyPlatformCodeBlockFilter {
+input Docsos4ComponentsInputsBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsComponentsInputsBodyFilter {
-  StatusBadge: DocsComponentsInputsBodyStatusBadgeFilter
-  FigmaEmbed: DocsComponentsInputsBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsComponentsInputsBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsComponentsInputsBodyTokenTableFilter
-  DosDonts: DocsComponentsInputsBodyDosDontsFilter
-  PlatformCodeBlock: DocsComponentsInputsBodyPlatformCodeBlockFilter
+input Docsos4ComponentsInputsBodyFilter {
+  StatusBadge: Docsos4ComponentsInputsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4ComponentsInputsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4ComponentsInputsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4ComponentsInputsBodyTokenTableFilter
+  DosDonts: Docsos4ComponentsInputsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4ComponentsInputsBodyPlatformCodeBlockFilter
 }
 
-input DocsComponentsInputsFilter {
+input Docsos4ComponentsInputsFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -537,21 +567,21 @@ input DocsComponentsInputsFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsComponentsInputsBodyFilter
+  body: Docsos4ComponentsInputsBodyFilter
 }
 
-type DocsComponentsInputsConnectionEdges {
+type Docsos4ComponentsInputsConnectionEdges {
   cursor: String!
-  node: DocsComponentsInputs
+  node: Docsos4ComponentsInputs
 }
 
-type DocsComponentsInputsConnection implements Connection {
+type Docsos4ComponentsInputsConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsComponentsInputsConnectionEdges]
+  edges: [Docsos4ComponentsInputsConnectionEdges]
 }
 
-type DocsComponentsNavigation implements Node & Document {
+type Docsos4ComponentsNavigation implements Node & Document {
   title: String!
   description: String
   status: String
@@ -566,11 +596,11 @@ type DocsComponentsNavigation implements Node & Document {
   _values: JSON!
 }
 
-input DocsComponentsNavigationBodyStatusBadgeFilter {
+input Docsos4ComponentsNavigationBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsComponentsNavigationBodyFigmaEmbedFilter {
+input Docsos4ComponentsNavigationBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -578,41 +608,41 @@ input DocsComponentsNavigationBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsComponentsNavigationBodyFigmaPrototypeEmbedFilter {
+input Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsComponentsNavigationBodyTokenTableFilter {
+input Docsos4ComponentsNavigationBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsComponentsNavigationBodyDosDontsFilter {
+input Docsos4ComponentsNavigationBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsComponentsNavigationBodyPlatformCodeBlockFilter {
+input Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsComponentsNavigationBodyFilter {
-  StatusBadge: DocsComponentsNavigationBodyStatusBadgeFilter
-  FigmaEmbed: DocsComponentsNavigationBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsComponentsNavigationBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsComponentsNavigationBodyTokenTableFilter
-  DosDonts: DocsComponentsNavigationBodyDosDontsFilter
-  PlatformCodeBlock: DocsComponentsNavigationBodyPlatformCodeBlockFilter
+input Docsos4ComponentsNavigationBodyFilter {
+  StatusBadge: Docsos4ComponentsNavigationBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4ComponentsNavigationBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4ComponentsNavigationBodyTokenTableFilter
+  DosDonts: Docsos4ComponentsNavigationBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter
 }
 
-input DocsComponentsNavigationFilter {
+input Docsos4ComponentsNavigationFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -621,21 +651,21 @@ input DocsComponentsNavigationFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsComponentsNavigationBodyFilter
+  body: Docsos4ComponentsNavigationBodyFilter
 }
 
-type DocsComponentsNavigationConnectionEdges {
+type Docsos4ComponentsNavigationConnectionEdges {
   cursor: String!
-  node: DocsComponentsNavigation
+  node: Docsos4ComponentsNavigation
 }
 
-type DocsComponentsNavigationConnection implements Connection {
+type Docsos4ComponentsNavigationConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsComponentsNavigationConnectionEdges]
+  edges: [Docsos4ComponentsNavigationConnectionEdges]
 }
 
-type DocsComponentsFeedback implements Node & Document {
+type Docsos4ComponentsFeedback implements Node & Document {
   title: String!
   description: String
   status: String
@@ -650,11 +680,11 @@ type DocsComponentsFeedback implements Node & Document {
   _values: JSON!
 }
 
-input DocsComponentsFeedbackBodyStatusBadgeFilter {
+input Docsos4ComponentsFeedbackBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsComponentsFeedbackBodyFigmaEmbedFilter {
+input Docsos4ComponentsFeedbackBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -662,41 +692,41 @@ input DocsComponentsFeedbackBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsComponentsFeedbackBodyFigmaPrototypeEmbedFilter {
+input Docsos4ComponentsFeedbackBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsComponentsFeedbackBodyTokenTableFilter {
+input Docsos4ComponentsFeedbackBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsComponentsFeedbackBodyDosDontsFilter {
+input Docsos4ComponentsFeedbackBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsComponentsFeedbackBodyPlatformCodeBlockFilter {
+input Docsos4ComponentsFeedbackBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsComponentsFeedbackBodyFilter {
-  StatusBadge: DocsComponentsFeedbackBodyStatusBadgeFilter
-  FigmaEmbed: DocsComponentsFeedbackBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsComponentsFeedbackBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsComponentsFeedbackBodyTokenTableFilter
-  DosDonts: DocsComponentsFeedbackBodyDosDontsFilter
-  PlatformCodeBlock: DocsComponentsFeedbackBodyPlatformCodeBlockFilter
+input Docsos4ComponentsFeedbackBodyFilter {
+  StatusBadge: Docsos4ComponentsFeedbackBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4ComponentsFeedbackBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4ComponentsFeedbackBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4ComponentsFeedbackBodyTokenTableFilter
+  DosDonts: Docsos4ComponentsFeedbackBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4ComponentsFeedbackBodyPlatformCodeBlockFilter
 }
 
-input DocsComponentsFeedbackFilter {
+input Docsos4ComponentsFeedbackFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -705,21 +735,21 @@ input DocsComponentsFeedbackFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsComponentsFeedbackBodyFilter
+  body: Docsos4ComponentsFeedbackBodyFilter
 }
 
-type DocsComponentsFeedbackConnectionEdges {
+type Docsos4ComponentsFeedbackConnectionEdges {
   cursor: String!
-  node: DocsComponentsFeedback
+  node: Docsos4ComponentsFeedback
 }
 
-type DocsComponentsFeedbackConnection implements Connection {
+type Docsos4ComponentsFeedbackConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsComponentsFeedbackConnectionEdges]
+  edges: [Docsos4ComponentsFeedbackConnectionEdges]
 }
 
-type DocsComponentsDisplay implements Node & Document {
+type Docsos4ComponentsDisplay implements Node & Document {
   title: String!
   description: String
   status: String
@@ -734,11 +764,11 @@ type DocsComponentsDisplay implements Node & Document {
   _values: JSON!
 }
 
-input DocsComponentsDisplayBodyStatusBadgeFilter {
+input Docsos4ComponentsDisplayBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsComponentsDisplayBodyFigmaEmbedFilter {
+input Docsos4ComponentsDisplayBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -746,41 +776,41 @@ input DocsComponentsDisplayBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsComponentsDisplayBodyFigmaPrototypeEmbedFilter {
+input Docsos4ComponentsDisplayBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsComponentsDisplayBodyTokenTableFilter {
+input Docsos4ComponentsDisplayBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsComponentsDisplayBodyDosDontsFilter {
+input Docsos4ComponentsDisplayBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsComponentsDisplayBodyPlatformCodeBlockFilter {
+input Docsos4ComponentsDisplayBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsComponentsDisplayBodyFilter {
-  StatusBadge: DocsComponentsDisplayBodyStatusBadgeFilter
-  FigmaEmbed: DocsComponentsDisplayBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsComponentsDisplayBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsComponentsDisplayBodyTokenTableFilter
-  DosDonts: DocsComponentsDisplayBodyDosDontsFilter
-  PlatformCodeBlock: DocsComponentsDisplayBodyPlatformCodeBlockFilter
+input Docsos4ComponentsDisplayBodyFilter {
+  StatusBadge: Docsos4ComponentsDisplayBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4ComponentsDisplayBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4ComponentsDisplayBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4ComponentsDisplayBodyTokenTableFilter
+  DosDonts: Docsos4ComponentsDisplayBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4ComponentsDisplayBodyPlatformCodeBlockFilter
 }
 
-input DocsComponentsDisplayFilter {
+input Docsos4ComponentsDisplayFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -789,21 +819,21 @@ input DocsComponentsDisplayFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsComponentsDisplayBodyFilter
+  body: Docsos4ComponentsDisplayBodyFilter
 }
 
-type DocsComponentsDisplayConnectionEdges {
+type Docsos4ComponentsDisplayConnectionEdges {
   cursor: String!
-  node: DocsComponentsDisplay
+  node: Docsos4ComponentsDisplay
 }
 
-type DocsComponentsDisplayConnection implements Connection {
+type Docsos4ComponentsDisplayConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsComponentsDisplayConnectionEdges]
+  edges: [Docsos4ComponentsDisplayConnectionEdges]
 }
 
-type DocsPatterns implements Node & Document {
+type Docsos4Patterns implements Node & Document {
   title: String!
   description: String
   status: String
@@ -818,11 +848,11 @@ type DocsPatterns implements Node & Document {
   _values: JSON!
 }
 
-input DocsPatternsBodyStatusBadgeFilter {
+input Docsos4PatternsBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsPatternsBodyFigmaEmbedFilter {
+input Docsos4PatternsBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -830,41 +860,41 @@ input DocsPatternsBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsPatternsBodyFigmaPrototypeEmbedFilter {
+input Docsos4PatternsBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsPatternsBodyTokenTableFilter {
+input Docsos4PatternsBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsPatternsBodyDosDontsFilter {
+input Docsos4PatternsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsPatternsBodyPlatformCodeBlockFilter {
+input Docsos4PatternsBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsPatternsBodyFilter {
-  StatusBadge: DocsPatternsBodyStatusBadgeFilter
-  FigmaEmbed: DocsPatternsBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsPatternsBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsPatternsBodyTokenTableFilter
-  DosDonts: DocsPatternsBodyDosDontsFilter
-  PlatformCodeBlock: DocsPatternsBodyPlatformCodeBlockFilter
+input Docsos4PatternsBodyFilter {
+  StatusBadge: Docsos4PatternsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4PatternsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4PatternsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4PatternsBodyTokenTableFilter
+  DosDonts: Docsos4PatternsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4PatternsBodyPlatformCodeBlockFilter
 }
 
-input DocsPatternsFilter {
+input Docsos4PatternsFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -873,21 +903,21 @@ input DocsPatternsFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsPatternsBodyFilter
+  body: Docsos4PatternsBodyFilter
 }
 
-type DocsPatternsConnectionEdges {
+type Docsos4PatternsConnectionEdges {
   cursor: String!
-  node: DocsPatterns
+  node: Docsos4Patterns
 }
 
-type DocsPatternsConnection implements Connection {
+type Docsos4PatternsConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsPatternsConnectionEdges]
+  edges: [Docsos4PatternsConnectionEdges]
 }
 
-type DocsResources implements Node & Document {
+type Docsos4Resources implements Node & Document {
   title: String!
   description: String
   status: String
@@ -902,11 +932,11 @@ type DocsResources implements Node & Document {
   _values: JSON!
 }
 
-input DocsResourcesBodyStatusBadgeFilter {
+input Docsos4ResourcesBodyStatusBadgeFilter {
   status: StringFilter
 }
 
-input DocsResourcesBodyFigmaEmbedFilter {
+input Docsos4ResourcesBodyFigmaEmbedFilter {
   fileKey: StringFilter
   nodeId: StringFilter
   mode: StringFilter
@@ -914,41 +944,41 @@ input DocsResourcesBodyFigmaEmbedFilter {
   theme: StringFilter
 }
 
-input DocsResourcesBodyFigmaPrototypeEmbedFilter {
+input Docsos4ResourcesBodyFigmaPrototypeEmbedFilter {
   url: StringFilter
   fileKey: StringFilter
   nodeId: StringFilter
   height: NumberFilter
 }
 
-input DocsResourcesBodyTokenTableFilter {
+input Docsos4ResourcesBodyTokenTableFilter {
   groups: StringFilter
 }
 
-input DocsResourcesBodyDosDontsFilter {
+input Docsos4ResourcesBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
   doContent: StringFilter
   dontContent: StringFilter
 }
 
-input DocsResourcesBodyPlatformCodeBlockFilter {
+input Docsos4ResourcesBodyPlatformCodeBlockFilter {
   androidTitle: StringFilter
   androidCode: StringFilter
   iosTitle: StringFilter
   iosCode: StringFilter
 }
 
-input DocsResourcesBodyFilter {
-  StatusBadge: DocsResourcesBodyStatusBadgeFilter
-  FigmaEmbed: DocsResourcesBodyFigmaEmbedFilter
-  FigmaPrototypeEmbed: DocsResourcesBodyFigmaPrototypeEmbedFilter
-  TokenTable: DocsResourcesBodyTokenTableFilter
-  DosDonts: DocsResourcesBodyDosDontsFilter
-  PlatformCodeBlock: DocsResourcesBodyPlatformCodeBlockFilter
+input Docsos4ResourcesBodyFilter {
+  StatusBadge: Docsos4ResourcesBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4ResourcesBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4ResourcesBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4ResourcesBodyTokenTableFilter
+  DosDonts: Docsos4ResourcesBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4ResourcesBodyPlatformCodeBlockFilter
 }
 
-input DocsResourcesFilter {
+input Docsos4ResourcesFilter {
   title: StringFilter
   description: StringFilter
   status: StringFilter
@@ -957,18 +987,858 @@ input DocsResourcesFilter {
   figmaNodeId: StringFilter
   figmaPrototypeUrl: StringFilter
   tokenGroups: StringFilter
-  body: DocsResourcesBodyFilter
+  body: Docsos4ResourcesBodyFilter
 }
 
-type DocsResourcesConnectionEdges {
+type Docsos4ResourcesConnectionEdges {
   cursor: String!
-  node: DocsResources
+  node: Docsos4Resources
 }
 
-type DocsResourcesConnection implements Connection {
+type Docsos4ResourcesConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsResourcesConnectionEdges]
+  edges: [Docsos4ResourcesConnectionEdges]
+}
+
+type Docsos5Overview implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5OverviewBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5OverviewBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5OverviewBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5OverviewBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5OverviewBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5OverviewBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5OverviewBodyFilter {
+  StatusBadge: Docsos5OverviewBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5OverviewBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5OverviewBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5OverviewBodyTokenTableFilter
+  DosDonts: Docsos5OverviewBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5OverviewBodyPlatformCodeBlockFilter
+}
+
+input Docsos5OverviewFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5OverviewBodyFilter
+}
+
+type Docsos5OverviewConnectionEdges {
+  cursor: String!
+  node: Docsos5Overview
+}
+
+type Docsos5OverviewConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5OverviewConnectionEdges]
+}
+
+type Docsos5Foundations implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5FoundationsBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5FoundationsBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5FoundationsBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5FoundationsBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5FoundationsBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5FoundationsBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5FoundationsBodyFilter {
+  StatusBadge: Docsos5FoundationsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5FoundationsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5FoundationsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5FoundationsBodyTokenTableFilter
+  DosDonts: Docsos5FoundationsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5FoundationsBodyPlatformCodeBlockFilter
+}
+
+input Docsos5FoundationsFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5FoundationsBodyFilter
+}
+
+type Docsos5FoundationsConnectionEdges {
+  cursor: String!
+  node: Docsos5Foundations
+}
+
+type Docsos5FoundationsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5FoundationsConnectionEdges]
+}
+
+type Docsos5ComponentsOverview implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5ComponentsOverviewBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5ComponentsOverviewBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5ComponentsOverviewBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5ComponentsOverviewBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5ComponentsOverviewBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5ComponentsOverviewBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5ComponentsOverviewBodyFilter {
+  StatusBadge: Docsos5ComponentsOverviewBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5ComponentsOverviewBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5ComponentsOverviewBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5ComponentsOverviewBodyTokenTableFilter
+  DosDonts: Docsos5ComponentsOverviewBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5ComponentsOverviewBodyPlatformCodeBlockFilter
+}
+
+input Docsos5ComponentsOverviewFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5ComponentsOverviewBodyFilter
+}
+
+type Docsos5ComponentsOverviewConnectionEdges {
+  cursor: String!
+  node: Docsos5ComponentsOverview
+}
+
+type Docsos5ComponentsOverviewConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5ComponentsOverviewConnectionEdges]
+}
+
+type Docsos5ComponentsActions implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5ComponentsActionsBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5ComponentsActionsBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5ComponentsActionsBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5ComponentsActionsBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5ComponentsActionsBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5ComponentsActionsBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5ComponentsActionsBodyFilter {
+  StatusBadge: Docsos5ComponentsActionsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5ComponentsActionsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5ComponentsActionsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5ComponentsActionsBodyTokenTableFilter
+  DosDonts: Docsos5ComponentsActionsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5ComponentsActionsBodyPlatformCodeBlockFilter
+}
+
+input Docsos5ComponentsActionsFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5ComponentsActionsBodyFilter
+}
+
+type Docsos5ComponentsActionsConnectionEdges {
+  cursor: String!
+  node: Docsos5ComponentsActions
+}
+
+type Docsos5ComponentsActionsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5ComponentsActionsConnectionEdges]
+}
+
+type Docsos5ComponentsInputs implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5ComponentsInputsBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5ComponentsInputsBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5ComponentsInputsBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5ComponentsInputsBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5ComponentsInputsBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5ComponentsInputsBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5ComponentsInputsBodyFilter {
+  StatusBadge: Docsos5ComponentsInputsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5ComponentsInputsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5ComponentsInputsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5ComponentsInputsBodyTokenTableFilter
+  DosDonts: Docsos5ComponentsInputsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5ComponentsInputsBodyPlatformCodeBlockFilter
+}
+
+input Docsos5ComponentsInputsFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5ComponentsInputsBodyFilter
+}
+
+type Docsos5ComponentsInputsConnectionEdges {
+  cursor: String!
+  node: Docsos5ComponentsInputs
+}
+
+type Docsos5ComponentsInputsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5ComponentsInputsConnectionEdges]
+}
+
+type Docsos5ComponentsNavigation implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5ComponentsNavigationBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5ComponentsNavigationBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5ComponentsNavigationBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5ComponentsNavigationBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5ComponentsNavigationBodyFilter {
+  StatusBadge: Docsos5ComponentsNavigationBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5ComponentsNavigationBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5ComponentsNavigationBodyTokenTableFilter
+  DosDonts: Docsos5ComponentsNavigationBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter
+}
+
+input Docsos5ComponentsNavigationFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5ComponentsNavigationBodyFilter
+}
+
+type Docsos5ComponentsNavigationConnectionEdges {
+  cursor: String!
+  node: Docsos5ComponentsNavigation
+}
+
+type Docsos5ComponentsNavigationConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5ComponentsNavigationConnectionEdges]
+}
+
+type Docsos5ComponentsFeedback implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5ComponentsFeedbackBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5ComponentsFeedbackBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5ComponentsFeedbackBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5ComponentsFeedbackBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5ComponentsFeedbackBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5ComponentsFeedbackBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5ComponentsFeedbackBodyFilter {
+  StatusBadge: Docsos5ComponentsFeedbackBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5ComponentsFeedbackBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5ComponentsFeedbackBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5ComponentsFeedbackBodyTokenTableFilter
+  DosDonts: Docsos5ComponentsFeedbackBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5ComponentsFeedbackBodyPlatformCodeBlockFilter
+}
+
+input Docsos5ComponentsFeedbackFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5ComponentsFeedbackBodyFilter
+}
+
+type Docsos5ComponentsFeedbackConnectionEdges {
+  cursor: String!
+  node: Docsos5ComponentsFeedback
+}
+
+type Docsos5ComponentsFeedbackConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5ComponentsFeedbackConnectionEdges]
+}
+
+type Docsos5ComponentsDisplay implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5ComponentsDisplayBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5ComponentsDisplayBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5ComponentsDisplayBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5ComponentsDisplayBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5ComponentsDisplayBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5ComponentsDisplayBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5ComponentsDisplayBodyFilter {
+  StatusBadge: Docsos5ComponentsDisplayBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5ComponentsDisplayBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5ComponentsDisplayBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5ComponentsDisplayBodyTokenTableFilter
+  DosDonts: Docsos5ComponentsDisplayBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5ComponentsDisplayBodyPlatformCodeBlockFilter
+}
+
+input Docsos5ComponentsDisplayFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5ComponentsDisplayBodyFilter
+}
+
+type Docsos5ComponentsDisplayConnectionEdges {
+  cursor: String!
+  node: Docsos5ComponentsDisplay
+}
+
+type Docsos5ComponentsDisplayConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5ComponentsDisplayConnectionEdges]
+}
+
+type Docsos5Patterns implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5PatternsBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5PatternsBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5PatternsBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5PatternsBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5PatternsBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5PatternsBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5PatternsBodyFilter {
+  StatusBadge: Docsos5PatternsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5PatternsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5PatternsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5PatternsBodyTokenTableFilter
+  DosDonts: Docsos5PatternsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5PatternsBodyPlatformCodeBlockFilter
+}
+
+input Docsos5PatternsFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5PatternsBodyFilter
+}
+
+type Docsos5PatternsConnectionEdges {
+  cursor: String!
+  node: Docsos5Patterns
+}
+
+type Docsos5PatternsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5PatternsConnectionEdges]
+}
+
+type Docsos5Resources implements Node & Document {
+  title: String!
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5ResourcesBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5ResourcesBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5ResourcesBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5ResourcesBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5ResourcesBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5ResourcesBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5ResourcesBodyFilter {
+  StatusBadge: Docsos5ResourcesBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5ResourcesBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5ResourcesBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5ResourcesBodyTokenTableFilter
+  DosDonts: Docsos5ResourcesBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5ResourcesBodyPlatformCodeBlockFilter
+}
+
+input Docsos5ResourcesFilter {
+  title: StringFilter
+  description: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5ResourcesBodyFilter
+}
+
+type Docsos5ResourcesConnectionEdges {
+  cursor: String!
+  node: Docsos5Resources
+}
+
+type Docsos5ResourcesConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5ResourcesConnectionEdges]
 }
 
 type Mutation {
@@ -977,56 +1847,96 @@ type Mutation {
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createFolder(collection: String, relativePath: String!): DocumentNode!
-  updateDocsOverview(relativePath: String!, params: DocsOverviewMutation!): DocsOverview!
-  createDocsOverview(relativePath: String!, params: DocsOverviewMutation!): DocsOverview!
-  updateDocsFoundations(relativePath: String!, params: DocsFoundationsMutation!): DocsFoundations!
-  createDocsFoundations(relativePath: String!, params: DocsFoundationsMutation!): DocsFoundations!
-  updateDocsComponentsOverview(relativePath: String!, params: DocsComponentsOverviewMutation!): DocsComponentsOverview!
-  createDocsComponentsOverview(relativePath: String!, params: DocsComponentsOverviewMutation!): DocsComponentsOverview!
-  updateDocsComponentsActions(relativePath: String!, params: DocsComponentsActionsMutation!): DocsComponentsActions!
-  createDocsComponentsActions(relativePath: String!, params: DocsComponentsActionsMutation!): DocsComponentsActions!
-  updateDocsComponentsInputs(relativePath: String!, params: DocsComponentsInputsMutation!): DocsComponentsInputs!
-  createDocsComponentsInputs(relativePath: String!, params: DocsComponentsInputsMutation!): DocsComponentsInputs!
-  updateDocsComponentsNavigation(relativePath: String!, params: DocsComponentsNavigationMutation!): DocsComponentsNavigation!
-  createDocsComponentsNavigation(relativePath: String!, params: DocsComponentsNavigationMutation!): DocsComponentsNavigation!
-  updateDocsComponentsFeedback(relativePath: String!, params: DocsComponentsFeedbackMutation!): DocsComponentsFeedback!
-  createDocsComponentsFeedback(relativePath: String!, params: DocsComponentsFeedbackMutation!): DocsComponentsFeedback!
-  updateDocsComponentsDisplay(relativePath: String!, params: DocsComponentsDisplayMutation!): DocsComponentsDisplay!
-  createDocsComponentsDisplay(relativePath: String!, params: DocsComponentsDisplayMutation!): DocsComponentsDisplay!
-  updateDocsPatterns(relativePath: String!, params: DocsPatternsMutation!): DocsPatterns!
-  createDocsPatterns(relativePath: String!, params: DocsPatternsMutation!): DocsPatterns!
-  updateDocsResources(relativePath: String!, params: DocsResourcesMutation!): DocsResources!
-  createDocsResources(relativePath: String!, params: DocsResourcesMutation!): DocsResources!
+  updateDocsos4Overview(relativePath: String!, params: Docsos4OverviewMutation!): Docsos4Overview!
+  createDocsos4Overview(relativePath: String!, params: Docsos4OverviewMutation!): Docsos4Overview!
+  updateDocsos4Foundations(relativePath: String!, params: Docsos4FoundationsMutation!): Docsos4Foundations!
+  createDocsos4Foundations(relativePath: String!, params: Docsos4FoundationsMutation!): Docsos4Foundations!
+  updateDocsos4ComponentsOverview(relativePath: String!, params: Docsos4ComponentsOverviewMutation!): Docsos4ComponentsOverview!
+  createDocsos4ComponentsOverview(relativePath: String!, params: Docsos4ComponentsOverviewMutation!): Docsos4ComponentsOverview!
+  updateDocsos4ComponentsActions(relativePath: String!, params: Docsos4ComponentsActionsMutation!): Docsos4ComponentsActions!
+  createDocsos4ComponentsActions(relativePath: String!, params: Docsos4ComponentsActionsMutation!): Docsos4ComponentsActions!
+  updateDocsos4ComponentsInputs(relativePath: String!, params: Docsos4ComponentsInputsMutation!): Docsos4ComponentsInputs!
+  createDocsos4ComponentsInputs(relativePath: String!, params: Docsos4ComponentsInputsMutation!): Docsos4ComponentsInputs!
+  updateDocsos4ComponentsNavigation(relativePath: String!, params: Docsos4ComponentsNavigationMutation!): Docsos4ComponentsNavigation!
+  createDocsos4ComponentsNavigation(relativePath: String!, params: Docsos4ComponentsNavigationMutation!): Docsos4ComponentsNavigation!
+  updateDocsos4ComponentsFeedback(relativePath: String!, params: Docsos4ComponentsFeedbackMutation!): Docsos4ComponentsFeedback!
+  createDocsos4ComponentsFeedback(relativePath: String!, params: Docsos4ComponentsFeedbackMutation!): Docsos4ComponentsFeedback!
+  updateDocsos4ComponentsDisplay(relativePath: String!, params: Docsos4ComponentsDisplayMutation!): Docsos4ComponentsDisplay!
+  createDocsos4ComponentsDisplay(relativePath: String!, params: Docsos4ComponentsDisplayMutation!): Docsos4ComponentsDisplay!
+  updateDocsos4Patterns(relativePath: String!, params: Docsos4PatternsMutation!): Docsos4Patterns!
+  createDocsos4Patterns(relativePath: String!, params: Docsos4PatternsMutation!): Docsos4Patterns!
+  updateDocsos4Resources(relativePath: String!, params: Docsos4ResourcesMutation!): Docsos4Resources!
+  createDocsos4Resources(relativePath: String!, params: Docsos4ResourcesMutation!): Docsos4Resources!
+  updateDocsos5Overview(relativePath: String!, params: Docsos5OverviewMutation!): Docsos5Overview!
+  createDocsos5Overview(relativePath: String!, params: Docsos5OverviewMutation!): Docsos5Overview!
+  updateDocsos5Foundations(relativePath: String!, params: Docsos5FoundationsMutation!): Docsos5Foundations!
+  createDocsos5Foundations(relativePath: String!, params: Docsos5FoundationsMutation!): Docsos5Foundations!
+  updateDocsos5ComponentsOverview(relativePath: String!, params: Docsos5ComponentsOverviewMutation!): Docsos5ComponentsOverview!
+  createDocsos5ComponentsOverview(relativePath: String!, params: Docsos5ComponentsOverviewMutation!): Docsos5ComponentsOverview!
+  updateDocsos5ComponentsActions(relativePath: String!, params: Docsos5ComponentsActionsMutation!): Docsos5ComponentsActions!
+  createDocsos5ComponentsActions(relativePath: String!, params: Docsos5ComponentsActionsMutation!): Docsos5ComponentsActions!
+  updateDocsos5ComponentsInputs(relativePath: String!, params: Docsos5ComponentsInputsMutation!): Docsos5ComponentsInputs!
+  createDocsos5ComponentsInputs(relativePath: String!, params: Docsos5ComponentsInputsMutation!): Docsos5ComponentsInputs!
+  updateDocsos5ComponentsNavigation(relativePath: String!, params: Docsos5ComponentsNavigationMutation!): Docsos5ComponentsNavigation!
+  createDocsos5ComponentsNavigation(relativePath: String!, params: Docsos5ComponentsNavigationMutation!): Docsos5ComponentsNavigation!
+  updateDocsos5ComponentsFeedback(relativePath: String!, params: Docsos5ComponentsFeedbackMutation!): Docsos5ComponentsFeedback!
+  createDocsos5ComponentsFeedback(relativePath: String!, params: Docsos5ComponentsFeedbackMutation!): Docsos5ComponentsFeedback!
+  updateDocsos5ComponentsDisplay(relativePath: String!, params: Docsos5ComponentsDisplayMutation!): Docsos5ComponentsDisplay!
+  createDocsos5ComponentsDisplay(relativePath: String!, params: Docsos5ComponentsDisplayMutation!): Docsos5ComponentsDisplay!
+  updateDocsos5Patterns(relativePath: String!, params: Docsos5PatternsMutation!): Docsos5Patterns!
+  createDocsos5Patterns(relativePath: String!, params: Docsos5PatternsMutation!): Docsos5Patterns!
+  updateDocsos5Resources(relativePath: String!, params: Docsos5ResourcesMutation!): Docsos5Resources!
+  createDocsos5Resources(relativePath: String!, params: Docsos5ResourcesMutation!): Docsos5Resources!
 }
 
 input DocumentUpdateMutation {
-  docsOverview: DocsOverviewMutation
-  docsFoundations: DocsFoundationsMutation
-  docsComponentsOverview: DocsComponentsOverviewMutation
-  docsComponentsActions: DocsComponentsActionsMutation
-  docsComponentsInputs: DocsComponentsInputsMutation
-  docsComponentsNavigation: DocsComponentsNavigationMutation
-  docsComponentsFeedback: DocsComponentsFeedbackMutation
-  docsComponentsDisplay: DocsComponentsDisplayMutation
-  docsPatterns: DocsPatternsMutation
-  docsResources: DocsResourcesMutation
+  docsos4Overview: Docsos4OverviewMutation
+  docsos4Foundations: Docsos4FoundationsMutation
+  docsos4ComponentsOverview: Docsos4ComponentsOverviewMutation
+  docsos4ComponentsActions: Docsos4ComponentsActionsMutation
+  docsos4ComponentsInputs: Docsos4ComponentsInputsMutation
+  docsos4ComponentsNavigation: Docsos4ComponentsNavigationMutation
+  docsos4ComponentsFeedback: Docsos4ComponentsFeedbackMutation
+  docsos4ComponentsDisplay: Docsos4ComponentsDisplayMutation
+  docsos4Patterns: Docsos4PatternsMutation
+  docsos4Resources: Docsos4ResourcesMutation
+  docsos5Overview: Docsos5OverviewMutation
+  docsos5Foundations: Docsos5FoundationsMutation
+  docsos5ComponentsOverview: Docsos5ComponentsOverviewMutation
+  docsos5ComponentsActions: Docsos5ComponentsActionsMutation
+  docsos5ComponentsInputs: Docsos5ComponentsInputsMutation
+  docsos5ComponentsNavigation: Docsos5ComponentsNavigationMutation
+  docsos5ComponentsFeedback: Docsos5ComponentsFeedbackMutation
+  docsos5ComponentsDisplay: Docsos5ComponentsDisplayMutation
+  docsos5Patterns: Docsos5PatternsMutation
+  docsos5Resources: Docsos5ResourcesMutation
   relativePath: String
 }
 
 input DocumentMutation {
-  docsOverview: DocsOverviewMutation
-  docsFoundations: DocsFoundationsMutation
-  docsComponentsOverview: DocsComponentsOverviewMutation
-  docsComponentsActions: DocsComponentsActionsMutation
-  docsComponentsInputs: DocsComponentsInputsMutation
-  docsComponentsNavigation: DocsComponentsNavigationMutation
-  docsComponentsFeedback: DocsComponentsFeedbackMutation
-  docsComponentsDisplay: DocsComponentsDisplayMutation
-  docsPatterns: DocsPatternsMutation
-  docsResources: DocsResourcesMutation
+  docsos4Overview: Docsos4OverviewMutation
+  docsos4Foundations: Docsos4FoundationsMutation
+  docsos4ComponentsOverview: Docsos4ComponentsOverviewMutation
+  docsos4ComponentsActions: Docsos4ComponentsActionsMutation
+  docsos4ComponentsInputs: Docsos4ComponentsInputsMutation
+  docsos4ComponentsNavigation: Docsos4ComponentsNavigationMutation
+  docsos4ComponentsFeedback: Docsos4ComponentsFeedbackMutation
+  docsos4ComponentsDisplay: Docsos4ComponentsDisplayMutation
+  docsos4Patterns: Docsos4PatternsMutation
+  docsos4Resources: Docsos4ResourcesMutation
+  docsos5Overview: Docsos5OverviewMutation
+  docsos5Foundations: Docsos5FoundationsMutation
+  docsos5ComponentsOverview: Docsos5ComponentsOverviewMutation
+  docsos5ComponentsActions: Docsos5ComponentsActionsMutation
+  docsos5ComponentsInputs: Docsos5ComponentsInputsMutation
+  docsos5ComponentsNavigation: Docsos5ComponentsNavigationMutation
+  docsos5ComponentsFeedback: Docsos5ComponentsFeedbackMutation
+  docsos5ComponentsDisplay: Docsos5ComponentsDisplayMutation
+  docsos5Patterns: Docsos5PatternsMutation
+  docsos5Resources: Docsos5ResourcesMutation
 }
 
-input DocsOverviewMutation {
+input Docsos4OverviewMutation {
   title: String
   description: String
   status: String
@@ -1038,7 +1948,7 @@ input DocsOverviewMutation {
   body: JSON
 }
 
-input DocsFoundationsMutation {
+input Docsos4FoundationsMutation {
   title: String
   description: String
   status: String
@@ -1050,7 +1960,7 @@ input DocsFoundationsMutation {
   body: JSON
 }
 
-input DocsComponentsOverviewMutation {
+input Docsos4ComponentsOverviewMutation {
   title: String
   description: String
   status: String
@@ -1062,7 +1972,7 @@ input DocsComponentsOverviewMutation {
   body: JSON
 }
 
-input DocsComponentsActionsMutation {
+input Docsos4ComponentsActionsMutation {
   title: String
   description: String
   status: String
@@ -1074,7 +1984,7 @@ input DocsComponentsActionsMutation {
   body: JSON
 }
 
-input DocsComponentsInputsMutation {
+input Docsos4ComponentsInputsMutation {
   title: String
   description: String
   status: String
@@ -1086,7 +1996,7 @@ input DocsComponentsInputsMutation {
   body: JSON
 }
 
-input DocsComponentsNavigationMutation {
+input Docsos4ComponentsNavigationMutation {
   title: String
   description: String
   status: String
@@ -1098,7 +2008,7 @@ input DocsComponentsNavigationMutation {
   body: JSON
 }
 
-input DocsComponentsFeedbackMutation {
+input Docsos4ComponentsFeedbackMutation {
   title: String
   description: String
   status: String
@@ -1110,7 +2020,7 @@ input DocsComponentsFeedbackMutation {
   body: JSON
 }
 
-input DocsComponentsDisplayMutation {
+input Docsos4ComponentsDisplayMutation {
   title: String
   description: String
   status: String
@@ -1122,7 +2032,7 @@ input DocsComponentsDisplayMutation {
   body: JSON
 }
 
-input DocsPatternsMutation {
+input Docsos4PatternsMutation {
   title: String
   description: String
   status: String
@@ -1134,7 +2044,127 @@ input DocsPatternsMutation {
   body: JSON
 }
 
-input DocsResourcesMutation {
+input Docsos4ResourcesMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5OverviewMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5FoundationsMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5ComponentsOverviewMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5ComponentsActionsMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5ComponentsInputsMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5ComponentsNavigationMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5ComponentsFeedbackMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5ComponentsDisplayMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5PatternsMutation {
+  title: String
+  description: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5ResourcesMutation {
   title: String
   description: String
   status: String

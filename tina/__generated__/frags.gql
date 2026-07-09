@@ -1,4 +1,4 @@
-fragment DocsOverviewParts on DocsOverview {
+fragment Docsos4OverviewParts on Docsos4Overview {
   __typename
   title
   description
@@ -11,7 +11,7 @@ fragment DocsOverviewParts on DocsOverview {
   body
 }
 
-fragment DocsFoundationsParts on DocsFoundations {
+fragment Docsos4FoundationsParts on Docsos4Foundations {
   __typename
   title
   description
@@ -24,7 +24,7 @@ fragment DocsFoundationsParts on DocsFoundations {
   body
 }
 
-fragment DocsComponentsOverviewParts on DocsComponentsOverview {
+fragment Docsos4ComponentsOverviewParts on Docsos4ComponentsOverview {
   __typename
   title
   description
@@ -37,7 +37,7 @@ fragment DocsComponentsOverviewParts on DocsComponentsOverview {
   body
 }
 
-fragment DocsComponentsActionsParts on DocsComponentsActions {
+fragment Docsos4ComponentsActionsParts on Docsos4ComponentsActions {
   __typename
   title
   description
@@ -50,7 +50,7 @@ fragment DocsComponentsActionsParts on DocsComponentsActions {
   body
 }
 
-fragment DocsComponentsInputsParts on DocsComponentsInputs {
+fragment Docsos4ComponentsInputsParts on Docsos4ComponentsInputs {
   __typename
   title
   description
@@ -63,7 +63,7 @@ fragment DocsComponentsInputsParts on DocsComponentsInputs {
   body
 }
 
-fragment DocsComponentsNavigationParts on DocsComponentsNavigation {
+fragment Docsos4ComponentsNavigationParts on Docsos4ComponentsNavigation {
   __typename
   title
   description
@@ -76,7 +76,7 @@ fragment DocsComponentsNavigationParts on DocsComponentsNavigation {
   body
 }
 
-fragment DocsComponentsFeedbackParts on DocsComponentsFeedback {
+fragment Docsos4ComponentsFeedbackParts on Docsos4ComponentsFeedback {
   __typename
   title
   description
@@ -89,7 +89,7 @@ fragment DocsComponentsFeedbackParts on DocsComponentsFeedback {
   body
 }
 
-fragment DocsComponentsDisplayParts on DocsComponentsDisplay {
+fragment Docsos4ComponentsDisplayParts on Docsos4ComponentsDisplay {
   __typename
   title
   description
@@ -102,7 +102,7 @@ fragment DocsComponentsDisplayParts on DocsComponentsDisplay {
   body
 }
 
-fragment DocsPatternsParts on DocsPatterns {
+fragment Docsos4PatternsParts on Docsos4Patterns {
   __typename
   title
   description
@@ -115,7 +115,137 @@ fragment DocsPatternsParts on DocsPatterns {
   body
 }
 
-fragment DocsResourcesParts on DocsResources {
+fragment Docsos4ResourcesParts on Docsos4Resources {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5OverviewParts on Docsos5Overview {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5FoundationsParts on Docsos5Foundations {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ComponentsOverviewParts on Docsos5ComponentsOverview {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ComponentsActionsParts on Docsos5ComponentsActions {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ComponentsInputsParts on Docsos5ComponentsInputs {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ComponentsNavigationParts on Docsos5ComponentsNavigation {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ComponentsFeedbackParts on Docsos5ComponentsFeedback {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ComponentsDisplayParts on Docsos5ComponentsDisplay {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5PatternsParts on Docsos5Patterns {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ResourcesParts on Docsos5Resources {
   __typename
   title
   description
