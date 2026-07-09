@@ -12,7 +12,9 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
     <DocsLayout
       tree={tree}
       tabs={false}
-      sidebar={{ banner: <DocsVersionSwitcher tabs={tabs} /> }}
+      sidebar={{
+        banner: <DocsVersionSwitcher key="docs-version-switcher" tabs={tabs} />,
+      }}
       {...baseOptions()}
     >
       {children}

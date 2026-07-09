@@ -92,3 +92,31 @@ html > body[data-scroll-locked] {
 #nd-docs-layout #nd-toc [class*='overflow-auto'] {
   font-size: 0.8125rem;
 }
+
+/*
+ * Sidebar active item — elevated pill: popover surface + hairline border + shadow.
+ * Sidebar chrome uses fd-card; active uses fd-popover so it reads above the panel.
+ */
+#nd-docs-layout #nd-sidebar a[data-active='true'],
+#nd-docs-layout #nd-sidebar-mobile a[data-active='true'] {
+  background-color: var(--color-fd-popover) !important;
+  color: var(--color-fd-foreground) !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--color-fd-border) !important;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06) !important;
+}
+
+#nd-docs-layout #nd-sidebar a[data-active='true']:hover,
+#nd-docs-layout #nd-sidebar-mobile a[data-active='true']:hover {
+  background-color: var(--color-fd-popover) !important;
+  color: var(--color-fd-foreground) !important;
+  border-color: var(--color-fd-border) !important;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06) !important;
+}
+
+/* Nested items with Fumadocs highlight rail — keep inset-s-2.5 / inset-y-2.5 from utilities */
+#nd-docs-layout #nd-sidebar a[data-active='true'][class*='before:inset-s-2.5']::before,
+#nd-docs-layout #nd-sidebar-mobile a[data-active='true'][class*='before:inset-s-2.5']::before {
+  width: 1px !important;
+  background-color: var(--color-fd-foreground) !important;
+}

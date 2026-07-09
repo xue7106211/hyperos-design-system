@@ -38,19 +38,21 @@ export function DocsVersionSwitcher({ tabs }: DocsVersionSwitcherProps) {
           'hover:bg-fd-accent data-[popup-open]:bg-fd-accent data-[popup-open]:text-fd-accent-foreground',
         )}
       >
-        {selected ? (
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-[0.8125rem] font-normal leading-tight">
-              {selected.title}
-            </p>
-            {selected.description ? (
-              <p className="mt-0.5 truncate text-xs font-normal text-fd-muted-foreground md:hidden">
-                {selected.description}
+        <span className="flex min-w-0 flex-1 items-center gap-2">
+          {selected ? (
+            <span className="min-w-0 flex-1">
+              <p className="truncate text-[0.8125rem] font-normal leading-tight">
+                {selected.title}
               </p>
-            ) : null}
-          </div>
-        ) : null}
-        <ChevronsUpDown className="ms-auto size-3.5 shrink-0 text-fd-muted-foreground" />
+              {selected.description ? (
+                <p className="mt-0.5 truncate text-xs font-normal text-fd-muted-foreground md:hidden">
+                  {selected.description}
+                </p>
+              ) : null}
+            </span>
+          ) : null}
+          <ChevronsUpDown className="ms-auto size-3.5 shrink-0 text-fd-muted-foreground" />
+        </span>
       </PopoverTrigger>
       <PopoverContent className="flex w-(--anchor-width) flex-col gap-0.5 p-1">
         {tabs.map((tab) => {
