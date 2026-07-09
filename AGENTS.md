@@ -45,8 +45,13 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 
 | 远程 | 地址 | 角色 |
 |------|------|------|
-| **`gitlab`** | `git@git.n.xiaomi.com:xueyifei1/hyperos-design-system.git` | **主远程**（`main` 跟踪 `gitlab/main`；Matrix 部署、内网协作） |
+| **`gitlab`** | `git@git.n.xiaomi.com:xueyifei1/hyperos-design-system.git` | **主远程**（`main` 开发、`staging` 部署；Matrix CI、内网协作） |
 | `origin` | `https://github.com/xue7106211/hyperos-design-system.git` | 镜像远程（对外备份 / GitHub 协作） |
+
+| 分支 | 用途 |
+|------|------|
+| **`main`** | 日常开发与 MR 合并目标 |
+| **`staging`** | Matrix 生产部署分支（push 后自动触发 CI/CD） |
 
 ### 拉取（只从一个远程）
 
@@ -72,6 +77,30 @@ git push origin main
 ```bash
 git fetch gitlab main && git fetch origin main
 git diff gitlab/main origin/main --stat
+```
+
+### 发布（main → staging）
+
+**Matrix 生产环境部署的是 `staging` 分支，不是 `main`。** 本地 `npm run dev` 看到的是 `main` 上的最新代码；若只 push 了 `main` 而未同步 `staging`，线上会与本地不一致。
+
+功能合并到 `main` 后，**必须再 merge 到 `staging` 并 push**，才会触发生产部署：
+
+```bash
+git fetch gitlab main staging
+git checkout staging
+git pull gitlab staging
+git merge main
+# 若有冲突：AGENTS.md、next.config.mjs、tina/__generated__/* 优先采用 main 版本
+git push gitlab staging
+git push origin staging
+git checkout main
+```
+
+发布前可用下面命令确认 `staging` 已包含 `main` 的全部提交（无输出即已同步）：
+
+```bash
+git fetch gitlab main staging
+git log --oneline gitlab/staging..gitlab/main
 ```
 
 ### 注意
@@ -124,7 +153,7 @@ npm run dev            # dev server 会自动重新生成
 
 > **历史坑**：早期用过 `nodejs:22-centos7.9-base`，glibc 2.17 过老，`better-sqlite3` / `next/og` (`@resvg/resvg-js`) / `sharp` 等原生模块 prebuilt binary 需要 glibc ≥ 2.28，SSG 阶段 SIGSEGV。openEuler 24.03 / glibc 2.38 彻底解决。
 
-Dockerfile 详见仓库根目录同名文件；部署分支约定使用 `staging`。
+Dockerfile 详见仓库根目录同名文件；部署分支为 `staging`（发布流程见上面「发布（main → staging）」节）。
 
 ## 目录结构
 
@@ -279,6 +308,7 @@ Foundations → Components → Patterns → Resources
 - [ ] 未添加 Storybook / Web 组件 playground
 - [ ] Figma embed 使用占位或有效 `fileKey`
 - [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
+- [ ] 需要上线时，已将 `main` merge 到 `staging` 并双远程 push（见「发布（main → staging）」节）
 
 ## 路线图（Agent 勿提前实现）
 
