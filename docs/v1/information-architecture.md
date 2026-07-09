@@ -171,7 +171,7 @@ V1 可先 **仅中文**，目录结构与 i18n config 预留英文。
 
 | 纳入索引 | 不纳入 |
 |----------|--------|
-| 所有 `/docs` MDX 页面 title + description | `/admin`（Phase 2 TinaCMS，当前不存在） |
+| 所有 `/docs` MDX 页面 title + description | `/admin`（TinaCMS 后台，不纳入文档搜索） |
 | Foundation / Component / Pattern 正文 headings | 内部 draft（若 CI 排除） |
 
 ---

@@ -14,7 +14,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 
 ## 开发
 
-包管理器：**npm**（锁文件：`package-lock.json`）
+包管理器：**npm**（锁文件：`package-lock.json`；`.npmrc` 启用 `legacy-peer-deps`）
 
 ```bash
 npm install
@@ -28,7 +28,7 @@ npm run dev
 ## 构建与检查
 
 ```bash
-npm run build        # 生产构建
+npm run build        # tinacms build + 生产构建
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
@@ -39,12 +39,21 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 content/docs/        # 网站 MDX 文档（对外）
 docs/                # 工程设计文档（对内，见 docs/index.md）
 tokens/tokens.json   # Design Tokens（W3C DTCG）
+tina/                # TinaCMS schema 与 block 模板
+.env.example         # TinaCMS 本地模式环境变量模板
 src/
-  app/               # Next.js 路由与布局
-  components/mdx/    # 自定义 MDX 组件
-  lib/               # source loader、layout 配置
-public/logo/         # HyperOS Logo（light / dark）
+  app/               # Next.js 路由（docs、admin、api/tina、search、llms、og）
+  components/
+    mdx/             # 自定义 MDX 组件
+    tina/            # Tina Visual Editing
+    HyperOSLogo.tsx  # 站点 Logo
+  lib/               # source、layout、tina-docs、cn
+public/
+  logo/              # HyperOS Logo 静态资源
+  uploads/           # TinaCMS 媒体上传（本地模式）
 source.config.ts     # MDX frontmatter schema
+next.config.mjs      # Next.js + fumadocs-mdx 配置
+proxy.ts             # Markdown 内容协商
 AGENTS.md            # Agent / 协作者指引（权威）
 CLAUDE.md            # 指向 AGENTS.md
 ```
@@ -53,7 +62,7 @@ CLAUDE.md            # 指向 AGENTS.md
 
 1. 在 `content/docs/components/` 下创建 `.mdx` 文件
 2. 在对应目录的 `meta.json` 中注册页面
-3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<PlatformTabs />` 等组件
+3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<PlatformTabs />`、`<PlatformCodeBlock />` 等组件（亦可通过 `/admin` 插入 block）
 
 参考模板：[content/docs/components/actions/button.mdx](content/docs/components/actions/button.mdx)
 

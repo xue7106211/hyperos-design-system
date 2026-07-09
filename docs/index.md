@@ -19,7 +19,7 @@
 |------|------|
 | [V1 技术设计方案](./v1/technical-design.md) | 架构、选型、内容模型、Figma / Token 集成 |
 | [V1 站点信息架构](./v1/information-architecture.md) | Sidebar 结构、页面类型、MVP 页面集 |
-| [V1 实施路线图](./v1/roadmap.md) | Phase 0–1 完成情况与 Phase 2–3 计划 |
+| [V1 实施路线图](./v1/roadmap.md) | Phase 0–1 完成、TinaCMS 本地模式与 Phase 2–3 计划 |
 
 ## 路径对照
 
@@ -29,8 +29,14 @@
 | `content/docs/` | Fumadocs 网站 MDX 内容 |
 | `tokens/tokens.json` | W3C DTCG Design Tokens |
 | `src/components/mdx/` | 网站自定义 MDX 组件 |
+| `src/components/tina/` | Tina Visual Editing 组件 |
+| `src/app/api/search/` | Orama 全文搜索 API |
 | `public/logo/` | HyperOS Logo 静态资源 |
+| `public/uploads/` | TinaCMS 媒体上传（本地模式） |
 | `tina/` | TinaCMS schema 与 block 模板 |
+| `.env.example` | TinaCMS 本地模式环境变量模板 |
+| `proxy.ts` | Markdown 内容协商（`.md` URL 与 `Accept` 重写） |
+| `source.config.ts` | MDX frontmatter Zod schema |
 | `AGENTS.md` / `CLAUDE.md` | Agent 工作指引（CLAUDE 指向 AGENTS） |
 
 ## 版本

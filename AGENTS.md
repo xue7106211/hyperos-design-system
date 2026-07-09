@@ -6,7 +6,7 @@
 
 这是一个 **移动端客户端组件库的设计系统文档网站**（非 Web 组件库本身）。
 
-- **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4
+- **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4 + TinaCMS（本地模式）
 - **目标用户**：设计、文档、客户端工程（Android / iOS）
 - **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、Compose / SwiftUI 静态代码参考
 
@@ -97,16 +97,21 @@ tina/
   schema/blocks.ts      # FigmaEmbed、TokenTable 等 MDX block
   database.ts           # 本地 filesystem datalayer
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
-public/uploads/         # TinaCMS 媒体上传（本地模式）
+.env.example            # TinaCMS 本地模式环境变量模板
+public/
+  logo/                 # HyperOS Logo 静态资源
+  uploads/              # TinaCMS 媒体上传（本地模式）
 src/
-  app/                  # Next.js 路由与布局
+  app/                  # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
     mdx/                # 自定义 MDX 组件（优先在此扩展）
+    tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source loader、layout 配置、tina-docs 数据层
-  components/tina/      # Tina Visual Editing（useTina + TinaMarkdown）
-public/logo/            # Logo 静态资源
+  lib/                  # source、layout、tina-docs 数据层、cn
 source.config.ts        # MDX frontmatter Zod schema
+next.config.mjs         # Next.js + fumadocs-mdx 配置
+proxy.ts                # Markdown 内容协商（.md / Accept 重写）
+.npmrc                  # legacy-peer-deps（TinaCMS 依赖兼容）
 AGENTS.md               # 本文件（Agent 指引权威来源）
 CLAUDE.md               # 指向本文件
 package-lock.json       # npm 锁文件
@@ -114,7 +119,7 @@ package-lock.json       # npm 锁文件
 
 **生成目录**：
 - `.source/`（`fumadocs-mdx` 生成）、`.next/`（Next.js 构建缓存）— gitignore，勿手改
-- `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见下面"TinaCMS schema 变更"节）；子目录 `.cache/` 仍 gitignore
+- `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见上面「TinaCMS schema 变更」节）；子目录 `.cache/` 仍 gitignore
 
 **注意**：`docs/` ≠ `content/docs/`。前者是仓库内设计说明，后者是站点页面内容。
 
@@ -216,7 +221,7 @@ Foundations → Components → Patterns → Resources
 
 提交改动前：
 
-- [ ] `npm run build` 成功
+- [ ] `npm run build` 成功（含 `tinacms build`）
 - [ ] 新页面已在 `meta.json` 注册
 - [ ] 未破坏 `docs/v1/` 工程设计文档
 - [ ] 未添加 Storybook / Web 组件 playground
