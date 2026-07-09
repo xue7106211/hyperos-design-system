@@ -2,7 +2,7 @@ import { TinaDocsPageContent } from '@/components/tina/TinaDocsPageContent';
 import { getMDXComponents } from '@/components/mdx';
 import { getPageImage, getPageMarkdownUrl, source } from '@/lib/source';
 import { fetchTinaDoc } from '@/lib/tina-docs';
-import { gitConfig } from '@/lib/shared';
+import { gitConfig, gitRepoUrl } from '@/lib/shared';
 import {
   DocsPage,
   MarkdownCopyButton,
@@ -29,7 +29,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
       <MarkdownCopyButton markdownUrl={markdownUrl} />
       <ViewOptionsPopover
         markdownUrl={markdownUrl}
-        githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
+        githubUrl={`${gitRepoUrl}/-/blob/${gitConfig.branch}/content/docs/${page.path}`}
       />
     </div>
   );

@@ -1,0 +1,20 @@
+---
+title: 色彩
+description: HyperOS 色彩体系与 Design Tokens
+---
+
+HyperOS 色彩体系分为 **品牌色（Brand）**、**语义色（Action / Surface / Text）** 等层级。色彩 Token 采用 W3C DTCG 格式，存放在 `tokens/tokens.json`，可通过 Tokens Studio 从 Figma 同步。
+
+## 使用原则
+
+- 界面中优先使用 **语义 Token**（如 `color.action.primary-bg`），而非直接引用原始色值
+- 暗色模式通过 Token 别名切换，避免硬编码 hex
+- 确保文本与背景对比度满足 WCAG AA
+
+## 色彩 Token
+
+<TokenTable groups={["color.brand", "color.action", "color.surface", "color.text"]} />
+
+## 间距 Token（相关）
+
+<TokenTable groups={["spacing.scale"]} />

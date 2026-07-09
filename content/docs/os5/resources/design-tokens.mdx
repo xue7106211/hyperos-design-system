@@ -1,0 +1,35 @@
+---
+title: Design Tokens
+description: HyperOS Token 文件结构与命名约定
+---
+
+## 文件位置
+
+Design Tokens 以 **W3C DTCG** JSON 格式存放在仓库根目录：
+
+```text
+tokens/tokens.json
+```
+
+## 命名约定
+
+```text
+{color|spacing|typography}.{semantic-group}.{property}
+```
+
+示例：
+
+- `color.action.primary-bg` — 主要操作按钮背景
+- `spacing.button.padding-x` — 按钮水平内边距
+
+## 同步流程（规划）
+
+```text
+Figma (Tokens Studio) → GitHub PR → tokens/tokens.json → 文档站 TokenTable
+```
+
+Phase 3 将接入 Tokens Studio 与 Style Dictionary 自动构建。
+
+## 当前 Token 预览
+
+<TokenTable groups={["color", "spacing", "typography"]} />

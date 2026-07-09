@@ -250,21 +250,29 @@ function createDocsCollection(options) {
 // tina/config.ts
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
 var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
-var componentSections = [
-  { name: "docsComponentsOverview", label: "Components \xB7 \u6982\u89C8", include: "components/index" },
-  { name: "docsComponentsActions", label: "Components \xB7 Actions", include: "components/actions/**/*" },
-  { name: "docsComponentsInputs", label: "Components \xB7 Inputs", include: "components/inputs/**/*" },
+var docVersions = [
+  { id: "os4", label: "OS4" },
+  { id: "os5", label: "OS5" }
+];
+var docSections = [
+  { key: "Overview", label: "\u6982\u89C8", include: "index" },
+  { key: "Foundations", label: "Foundations", include: "foundations/**/*" },
+  { key: "ComponentsOverview", label: "Components \xB7 \u6982\u89C8", include: "components/index" },
+  { key: "ComponentsActions", label: "Components \xB7 Actions", include: "components/actions/**/*" },
+  { key: "ComponentsInputs", label: "Components \xB7 Inputs", include: "components/inputs/**/*" },
   {
-    name: "docsComponentsNavigation",
+    key: "ComponentsNavigation",
     label: "Components \xB7 Navigation",
     include: "components/navigation/**/*"
   },
   {
-    name: "docsComponentsFeedback",
+    key: "ComponentsFeedback",
     label: "Components \xB7 Feedback",
     include: "components/feedback/**/*"
   },
-  { name: "docsComponentsDisplay", label: "Components \xB7 Display", include: "components/display/**/*" }
+  { key: "ComponentsDisplay", label: "Components \xB7 Display", include: "components/display/**/*" },
+  { key: "Patterns", label: "Patterns", include: "patterns/**/*" },
+  { key: "Resources", label: "Resources", include: "resources/**/*" }
 ];
 var config_default = defineConfig({
   contentApiUrlOverride: "/api/tina/gql",
@@ -281,31 +289,15 @@ var config_default = defineConfig({
     }
   },
   schema: {
-    collections: [
-      createDocsCollection({
-        name: "docsOverview",
-        label: "Overview",
-        match: { include: "index" }
-      }),
-      createDocsCollection({
-        name: "docsFoundations",
-        label: "Foundations",
-        match: { include: "foundations/**/*" }
-      }),
-      ...componentSections.map(
-        ({ name, label, include }) => createDocsCollection({ name, label, match: { include } })
-      ),
-      createDocsCollection({
-        name: "docsPatterns",
-        label: "Patterns",
-        match: { include: "patterns/**/*" }
-      }),
-      createDocsCollection({
-        name: "docsResources",
-        label: "Resources",
-        match: { include: "resources/**/*" }
-      })
-    ]
+    collections: docVersions.flatMap(
+      (version) => docSections.map(
+        (section) => createDocsCollection({
+          name: `docs${version.id}${section.key}`,
+          label: `${version.label} \xB7 ${section.label}`,
+          match: { include: `${version.id}/${section.include}` }
+        })
+      )
+    )
   }
 });
 export {

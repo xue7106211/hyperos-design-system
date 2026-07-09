@@ -6,7 +6,7 @@
 
 这是一个 **移动端客户端组件库的设计系统文档网站**（非 Web 组件库本身）。
 
-- **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4
+- **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4 + TinaCMS（本地模式）
 - **目标用户**：设计、文档、客户端工程（Android / iOS）
 - **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、Compose / SwiftUI 静态代码参考
 
@@ -39,14 +39,55 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 
 > **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。详见"容器化部署"节。
 
+## Git 远程与同步
+
+本仓库配置了两个远程，**以 GitLab 为主开发**，GitHub 为镜像同步：
+
+| 远程 | 地址 | 角色 |
+|------|------|------|
+| **`gitlab`** | `git@git.n.xiaomi.com:xueyifei1/hyperos-design-system.git` | **主远程**（`main` 跟踪 `gitlab/main`；Matrix 部署、内网协作） |
+| `origin` | `https://github.com/xue7106211/hyperos-design-system.git` | 镜像远程（对外备份 / GitHub 协作） |
+
+### 拉取（只从一个远程）
+
+统一从 **`gitlab`** 拉取，避免在两个远程之间交替 pull 导致历史分叉：
+
+```bash
+git pull gitlab main
+```
+
+不要同时对 `gitlab` 和 `origin` 做 rebase / merge 后再交叉推送。
+
+### 推送（必须双远程同步）
+
+每次 push **`main`** 时，**同时推送到 GitLab 和 GitHub**，不要只推一个仓库：
+
+```bash
+git push gitlab main
+git push origin main
+```
+
+推送后可用下面命令确认两边文件树一致（应无 diff）：
+
+```bash
+git fetch gitlab main && git fetch origin main
+git diff gitlab/main origin/main --stat
+```
+
+### 注意
+
+- GitLab `main` 为**受保护分支**，禁止 force push。
+- 若一边推送失败，先解决冲突或 rebase，再补推另一边；不要长期只维护一个远程。
+- 两边 commit hash 可能因 merge 方式不同而略有差异，但**代码内容应保持一致**。
+
 ### TinaCMS 后台
 
 - 本地开发：复制 `.env.example` 为 `.env`，运行 `npm run dev`
-- 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/` 下的 MDX 规范
+- 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/os4/`、`content/docs/os5/` 下的 MDX 规范
 - **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`DosDonts`、`PlatformCodeBlock` 等
 - 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
-- Collections 与站点 `meta.json` 分组对齐；组件子目录（Actions / Inputs 等）使用 `**/*` glob 递归索引
+- Collections 按 **OS 版本**（`os4` / `os5`）× 站点分组（Foundations / Components / …）展开；组件子目录使用 `**/*` glob 递归索引
 
 ### TinaCMS schema 变更（重要）
 
@@ -89,24 +130,35 @@ Dockerfile 详见仓库根目录同名文件；部署分支约定使用 `staging
 
 ```text
 content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
+  meta.json             # 根级：os4 / os5 版本 Tab
+  os4/                  # HyperOS 4（当前默认内容）
+  os5/                  # HyperOS 5（占位，侧栏禁用跳转）
 docs/                   # 工程设计文档（技术方案、IA、路线图）
 docs/v1/                # V1 设计决策与规划
 tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
 tina/
-  config.ts             # TinaCMS schema（collections + block 模板）
+  config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
   schema/blocks.ts      # FigmaEmbed、TokenTable 等 MDX block
   database.ts           # 本地 filesystem datalayer
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
-public/uploads/         # TinaCMS 媒体上传（本地模式）
+.env.example            # TinaCMS 本地模式环境变量模板
+public/
+  logo/                 # HyperOS Logo 静态资源
+  home/                 # Landing 页静态图
+  uploads/              # TinaCMS 媒体上传（本地模式）
 src/
-  app/                  # Next.js 路由与布局
+  app/                  # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
+    docs/               # DocsVersionSwitcher（OS 版本切换）
     mdx/                # 自定义 MDX 组件（优先在此扩展）
+    tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source loader、layout 配置、tina-docs 数据层
-  components/tina/      # Tina Visual Editing（useTina + TinaMarkdown）
-public/logo/            # Logo 静态资源
+  lib/                  # source、layout、tina-docs、docs-version-tabs、shared、cn
 source.config.ts        # MDX frontmatter Zod schema
+next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
+proxy.ts                # Markdown 内容协商（.md / Accept 重写）
+Dockerfile              # Matrix 生产镜像（deps → builder → runner）
+.npmrc                  # legacy-peer-deps（TinaCMS 依赖兼容）
 AGENTS.md               # 本文件（Agent 指引权威来源）
 CLAUDE.md               # 指向本文件
 package-lock.json       # npm 锁文件
@@ -114,21 +166,26 @@ package-lock.json       # npm 锁文件
 
 **生成目录**：
 - `.source/`（`fumadocs-mdx` 生成）、`.next/`（Next.js 构建缓存）— gitignore，勿手改
-- `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见下面"TinaCMS schema 变更"节）；子目录 `.cache/` 仍 gitignore
+- `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见上面「TinaCMS schema 变更」节）；子目录 `.cache/` 仍 gitignore
 
 **注意**：`docs/` ≠ `content/docs/`。前者是仓库内设计说明，后者是站点页面内容。
 
 ## 信息架构
 
-站点导航由 `content/docs/**/meta.json` 控制，结构为：
+站点导航由 `content/docs/**/meta.json` 控制。根级 `content/docs/meta.json` 注册 **OS 版本**（`os4` / `os5`）；各版本下为：
 
 ```text
 Foundations → Components → Patterns → Resources
 ```
 
+- **默认版本**：`/docs` → `/docs/os4`（`next.config.mjs` 重定向）
+- **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
+- **旧路径兼容**：`/docs/foundations/...` 等永久重定向到 `/docs/os4/...`
+- **OS5**：侧栏可见但禁用；`/docs/os5` 暂重定向到 OS4，待内容发布后移除
+
 新增页面时 **必须**：
 
-1. 在对应目录创建 `.mdx` 文件
+1. 在对应 OS 版本目录（如 `content/docs/os4/...`）创建 `.mdx` 文件
 2. 更新同级或父级 `meta.json` 的 `pages` 数组
 3. 运行 `npm run build` 验证无 404 / MDX 错误
 
@@ -136,7 +193,7 @@ Foundations → Components → Patterns → Resources
 
 ## 新增组件文档页
 
-参考模板：[content/docs/components/actions/button.mdx](content/docs/components/actions/button.mdx)
+参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx)
 
 推荐页面结构：
 
@@ -188,7 +245,7 @@ Foundations → Components → Patterns → Resources
 - 排版与布局：`global.css` 中紧凑 typography、sidebar 贴左 + 内容居中 grid
 - Logo：`src/components/HyperOSLogo.tsx` + `public/logo/`
 - 业务 Design Token：`tokens/tokens.json`（HyperOS 设计规范）
-- 站点名与 nav：[src/lib/shared.ts](src/lib/shared.ts)、[src/lib/layout.shared.tsx](src/lib/layout.shared.tsx)
+- 站点名、版本与 nav：[src/lib/shared.ts](src/lib/shared.ts)（`docsVersions`、`defaultDocsRoute`）、[src/lib/layout.shared.tsx](src/lib/layout.shared.tsx)
 
 文档站 chrome token 与业务 Design Token **不要混用**。
 
@@ -201,7 +258,7 @@ Foundations → Components → Patterns → Resources
 
 - Embed API：https://developers.figma.com/docs/embeds/embed-figma-file/
 - 无 `fileKey` 时组件显示占位提示（预期行为）
-- 配置说明页：[content/docs/resources/figma-library.mdx](content/docs/resources/figma-library.mdx)
+- 配置说明页：[content/docs/os4/resources/figma-library.mdx](content/docs/os4/resources/figma-library.mdx)
 - Code Connect（Dev Mode）尚未在本仓实现，计划在 Phase 3 试点
 
 ## 代码风格
@@ -216,7 +273,7 @@ Foundations → Components → Patterns → Resources
 
 提交改动前：
 
-- [ ] `npm run build` 成功
+- [ ] `npm run build` 成功（含 `tinacms build`）
 - [ ] 新页面已在 `meta.json` 注册
 - [ ] 未破坏 `docs/v1/` 工程设计文档
 - [ ] 未添加 Storybook / Web 组件 playground

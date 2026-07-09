@@ -1,40 +1,51 @@
-import Link from 'next/link';
-import { HyperOSLogo } from '@/components/HyperOSLogo';
-import { docsRoute } from '@/lib/shared';
+import Image from "next/image";
+import Link from "next/link";
+import { HyperOSLogo } from "@/components/HyperOSLogo";
+import { defaultDocsRoute } from "@/lib/shared";
 
 export default function HomePage() {
   return (
     <div className="mx-auto flex max-w-3xl flex-1 flex-col justify-center px-6 py-16 text-center">
+      <div className="mx-auto mb-8 w-[90%] overflow-hidden rounded-2xl border border-fd-border bg-fd-card">
+        <Image
+          src="/home/hyperos-ui-kit-4.png"
+          alt="Figma UI Kit 4.0 — Xiaomi HyperOS 4.0"
+          width={1024}
+          height={576}
+          className="h-auto w-full"
+          priority
+        />
+      </div>
       <HyperOSLogo className="mx-auto mb-6 h-8" priority />
-      <p className="mb-3 text-sm font-medium text-fd-primary">Design System</p>
-      <h1 className="mb-4 text-3xl font-bold tracking-tight text-fd-foreground">
-        移动端客户端组件设计规范
-      </h1>
+      {/* <p className="mb-3 text-sm font-medium text-fd-primary">Design System</p> */}
+      {/* <h1 className="mb-4 text-3xl font-bold tracking-tight text-fd-foreground">
+        Design System
+      </h1> */}
       <p className="mb-10 text-base text-fd-muted-foreground">
-        面向 Android / iOS 的设计原则、组件规范、Design Tokens 与 Figma 设计源连接。
-        文档站不提供 Web 组件 demo，交互演示通过 Figma 原型嵌入呈现。
+        Xiaomi
+        HyperOS 设计规范自2014年开始不断成长迭代，希望能够为小米旗下的各个软/硬件产品，提供一套由一代代设计师不断磨砺后，经得起推敲的设计资产。
       </p>
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Link
-          href={docsRoute}
+          href={defaultDocsRoute}
           className="rounded-lg bg-fd-primary px-5 py-2.5 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
         >
           进入文档
         </Link>
         <Link
-          href={`${docsRoute}/foundations/colors`}
+          href={`${defaultDocsRoute}/foundations/colors`}
           className="rounded-lg border border-fd-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-fd-muted"
         >
           色彩 Token
         </Link>
         <Link
-          href={`${docsRoute}/components/actions/button`}
+          href={`${defaultDocsRoute}/components/actions/button`}
           className="rounded-lg border border-fd-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-fd-muted"
         >
           Button 组件
         </Link>
         <Link
-          href={`${docsRoute}/resources/figma-library`}
+          href={`${defaultDocsRoute}/resources/figma-library`}
           className="rounded-lg border border-fd-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-fd-muted"
         >
           Figma 库
