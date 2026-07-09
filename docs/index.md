@@ -9,7 +9,7 @@
 | 快速上手、本地运行 | [README.md](../README.md) |
 | Agent / 协作者约定 | [AGENTS.md](../AGENTS.md)（[CLAUDE.md](../CLAUDE.md) 同指向） |
 | CMS 后台录入规范 | `npm run dev` → [http://localhost:3000/admin](http://localhost:3000/admin) |
-| 容器化部署（Matrix） | [AGENTS.md](../AGENTS.md)「容器化部署」· 根目录 `Dockerfile` |
+| 容器化 / MiFlow / Matrix 部署 | [v1/deployment.md](./v1/deployment.md) · 根目录 `Dockerfile` |
 | 技术选型与架构边界 | [v1/technical-design.md](./v1/technical-design.md) |
 | 站点目录与路由规划 | [v1/information-architecture.md](./v1/information-architecture.md) |
 | 实施进度与后续 Phase | [v1/roadmap.md](./v1/roadmap.md) |
@@ -18,6 +18,7 @@
 
 | 文档 | 说明 |
 |------|------|
+| [部署指南：MiFlow / Matrix](./v1/deployment.md) | 平台职责、分支环境、发布步骤、卡点排查 |
 | [V1 技术设计方案](./v1/technical-design.md) | 架构、选型、内容模型、Figma / Token 集成 |
 | [V1 站点信息架构](./v1/information-architecture.md) | Sidebar 结构、页面类型、MVP 页面集 |
 | [V1 实施路线图](./v1/roadmap.md) | Phase 0–1 完成、TinaCMS 本地模式与 Phase 2–3 计划 |
@@ -44,10 +45,12 @@
 | `proxy.ts` | Markdown 内容协商（`.md` URL 与 `Accept` 重写） |
 | `source.config.ts` | MDX frontmatter Zod schema |
 | `AGENTS.md` / `CLAUDE.md` | Agent 工作指引（CLAUDE 指向 AGENTS） |
-| `Dockerfile` | Matrix 生产镜像（deps → builder → runner；不跑 `tinacms build`） |
+| `docs/v1/deployment.md` | MiFlow / Matrix 部署职责、发布步骤、卡点排查 |
+| `Dockerfile` | 生产镜像（deps → builder → runner；不跑 `tinacms build`） |
 | `.npmrc` | `legacy-peer-deps=true`（TinaCMS 依赖兼容） |
 
 ## 版本
 
 - **V1.0**（2026-07-08）：Fumadocs 文档站 Phase 0–1 已落地；TinaCMS 本地 `/admin` 已接入；Matrix Docker 部署已配置。
 - **V1.1**（2026-07-09）：文档按 OS 版本分目录（`os4` / `os5`）；侧边栏版本切换器；旧 `/docs/*` 路径重定向兼容。
+- **V1.2**（2026-07-09）：新增 [v1/deployment.md](./v1/deployment.md)；AGENTS 仅保留发布相关判断要点。

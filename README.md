@@ -35,7 +35,7 @@ npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
 
-生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`），详见 [AGENTS.md](AGENTS.md)「容器化部署」与根目录 `Dockerfile`。
+生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/v1/deployment.md](docs/v1/deployment.md)；镜像定义见根目录 `Dockerfile`。
 
 ## 目录结构
 
@@ -44,6 +44,7 @@ content/docs/        # 网站 MDX 文档（对外）
   os4/               # HyperOS 4 规范（当前默认，/docs → /docs/os4）
   os5/               # HyperOS 5 占位（侧栏可见，内容未发布）
 docs/                # 工程设计文档（对内，见 docs/index.md）
+  v1/deployment.md   # MiFlow / Matrix 部署指南
 tokens/tokens.json   # Design Tokens（W3C DTCG）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
@@ -55,7 +56,7 @@ src/
     mdx/             # 自定义 MDX 组件
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、tina-docs、docs-version-tabs、cn
+  lib/               # source、layout、shared、tina-docs、docs-version-tabs、cn
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
@@ -64,9 +65,9 @@ source.config.ts     # MDX frontmatter schema
 next.config.mjs      # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts             # Markdown 内容协商
 .npmrc               # legacy-peer-deps（TinaCMS 依赖兼容）
-Dockerfile           # Matrix 生产镜像
+Dockerfile           # 生产镜像（MiFlow 构建 / Matrix 运行）
 package-lock.json    # npm 锁文件
-AGENTS.md            # Agent / 协作者指引（权威）
+AGENTS.md            # Agent / 协作者指引（权威，保持精简）
 CLAUDE.md            # 指向 AGENTS.md
 ```
 
@@ -97,9 +98,10 @@ CLAUDE.md            # 指向 AGENTS.md
 
 | 文档 | 说明 |
 |------|------|
-| [AGENTS.md](AGENTS.md) | Agent 工作约定与验证清单（权威） |
+| [AGENTS.md](AGENTS.md) | Agent 工作约定与验证清单（权威，精简） |
 | [CLAUDE.md](CLAUDE.md) | Claude 入口，指向 AGENTS.md |
 | [docs/index.md](docs/index.md) | 工程设计文档索引 |
+| [docs/v1/deployment.md](docs/v1/deployment.md) | MiFlow / Matrix 部署与卡点 |
 | [docs/v1/technical-design.md](docs/v1/technical-design.md) | V1 技术方案 |
 | [docs/v1/information-architecture.md](docs/v1/information-architecture.md) | 站点 IA |
 | [docs/v1/roadmap.md](docs/v1/roadmap.md) | 实施进度 |

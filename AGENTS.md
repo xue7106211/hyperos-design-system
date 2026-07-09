@@ -37,77 +37,24 @@ npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
 
-> **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。详见"容器化部署"节。
+> **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。部署详解见 [docs/v1/deployment.md](docs/v1/deployment.md)。
 
-## Git 远程与同步
+## Git 与发布（Agent 必读）
 
-本仓库配置了两个远程，**以 GitLab 为主开发**，GitHub 为镜像同步：
-
-| 远程 | 地址 | 角色 |
-|------|------|------|
-| **`gitlab`** | `git@git.n.xiaomi.com:xueyifei1/hyperos-design-system.git` | **主远程**（`main` 开发、`staging` 部署；Matrix CI、内网协作） |
-| `origin` | `https://github.com/xue7106211/hyperos-design-system.git` | 镜像远程（对外备份 / GitHub 协作） |
-
-| 分支 | 用途 |
+| 远程 | 角色 |
 |------|------|
-| **`main`** | 日常开发与 MR 合并目标 |
-| **`staging`** | Matrix 生产部署分支（push 后自动触发 CI/CD） |
+| **`gitlab`** | 主远程（开发 + CI） |
+| `origin`（GitHub） | 镜像；push `main` / `staging` 时双端同步 |
 
-### 拉取（只从一个远程）
+| 分支 | 环境 | Agent 判断 |
+|------|------|------------|
+| **`main`** | 正式（`…-prod`，tag `prod-*`） | push main → 只保证 **prod 镜像构建**；**当前流水线不自动发正式**，需 Matrix 手动发 `prod-*` |
+| **`staging`** | 测试（`…-staging`，tag `staging-*`） | 测环境要一致：必须 `main` merge 进 `staging` 再 push |
 
-统一从 **`gitlab`** 拉取，避免在两个远程之间交替 pull 导致历史分叉：
-
-```bash
-git pull gitlab main
-```
-
-不要同时对 `gitlab` 和 `origin` 做 rebase / merge 后再交叉推送。
-
-### 推送（必须双远程同步）
-
-每次 push **`main`** 时，**同时推送到 GitLab 和 GitHub**，不要只推一个仓库：
-
-```bash
-git push gitlab main
-git push origin main
-```
-
-推送后可用下面命令确认两边文件树一致（应无 diff）：
-
-```bash
-git fetch gitlab main && git fetch origin main
-git diff gitlab/main origin/main --stat
-```
-
-### 发布（main → staging）
-
-**Matrix 生产环境部署的是 `staging` 分支，不是 `main`。** 本地 `npm run dev` 看到的是 `main` 上的最新代码；若只 push 了 `main` 而未同步 `staging`，线上会与本地不一致。
-
-功能合并到 `main` 后，**必须再 merge 到 `staging` 并 push**，才会触发生产部署：
-
-```bash
-git fetch gitlab main staging
-git checkout staging
-git pull gitlab staging
-git merge main
-# 若有冲突：AGENTS.md、next.config.mjs、tina/__generated__/* 优先采用 main 版本
-git push gitlab staging
-git push origin staging
-git checkout main
-```
-
-发布前可用下面命令确认 `staging` 已包含 `main` 的全部提交（无输出即已同步）：
-
-```bash
-git fetch gitlab main staging
-git log --oneline gitlab/staging..gitlab/main
-```
-
-### 注意
-
-- GitLab `main` 为**受保护分支**，禁止 force push。
-- 若一边推送失败，先解决冲突或 rebase，再补推另一边；不要长期只维护一个远程。
-- 两边 commit hash 可能因 merge 方式不同而略有差异，但**代码内容应保持一致**。
+- 拉取只用 `git pull gitlab main`，不要双远程交叉 rebase
+- push：`git push gitlab <branch>` + `git push origin <branch>`
+- **不要**把「流水线运行完成」当成站点已更新；以 Matrix 实例 Tag / Running 为准
+- 完整流程、MiFlow/Matrix 职责、卡点排查 → [docs/v1/deployment.md](docs/v1/deployment.md)
 
 ### TinaCMS 后台
 
@@ -139,21 +86,12 @@ npm run dev            # dev server 会自动重新生成
 
 只是新增 `content/docs/**` 下的 MDX 文档、改 UI 组件、动 Tailwind 等，不需要重新生成。
 
-## 容器化部署
+## 容器化（Agent 必读）
 
-生产走 Docker + Matrix 平台。关键决策：
-
-- **基础镜像**：`micr.cloud.mioffice.cn/devx-build-image/nodejs:22-openeuler2403-base`（Node 22 LTS + openEuler 24.03 / glibc 2.38，兼容 Node.js 生态所有主流原生模块 prebuilt binary）
-- **npm 源**：`https://pkgs.d.xiaomi.net/artifactory/api/npm/mi-npm/`
-- **多阶段**：deps → builder → runner（runner 只保留 Next.js standalone 运行时）
-- **不跑 `tinacms build`**：省 3~4GB 内存 + 更快构建；`tina/__generated__/` 直接从仓库读
-- **不打 `/admin`**：生产环境 `/admin` 无鉴权、且 filesystem datalayer 不可写，本就不该暴露（Phase 2 前）
-- **构建资源**：Matrix 构建 Pod 内存 **1~2GB** 即可
-- **暴露端口**：`3000`；启动命令用镜像里的 `CMD`（`node server.js`）
-
-> **历史坑**：早期用过 `nodejs:22-centos7.9-base`，glibc 2.17 过老，`better-sqlite3` / `next/og` (`@resvg/resvg-js`) / `sharp` 等原生模块 prebuilt binary 需要 glibc ≥ 2.28，SSG 阶段 SIGSEGV。openEuler 24.03 / glibc 2.38 彻底解决。
-
-Dockerfile 详见仓库根目录同名文件；部署分支为 `staging`（发布流程见上面「发布（main → staging）」节）。
+- 生产镜像：根目录 `Dockerfile`；**只跑 `npx next build`**，读已提交的 `tina/__generated__/`
+- 改 `tina/config.ts` / `tina/schema/**` 后必须同步 `tina/__generated__/` 再提交
+- 用户问部署 / 环境不一致 / MiFlow·Matrix 时：读 [docs/v1/deployment.md](docs/v1/deployment.md)，不要在本文件展开长教程
+- 用户要求「上正式」时：提醒 **push main ≠ 正式站已更新**；需 Matrix 发 `prod-*`（除非流水线已补「发布prod」）
 
 ## 目录结构
 
@@ -162,8 +100,8 @@ content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
   meta.json             # 根级：os4 / os5 版本 Tab
   os4/                  # HyperOS 4（当前默认内容）
   os5/                  # HyperOS 5（占位，侧栏禁用跳转）
-docs/                   # 工程设计文档（技术方案、IA、路线图）
-docs/v1/                # V1 设计决策与规划
+docs/                   # 工程设计文档（技术方案、IA、路线图、部署）
+docs/v1/                # V1：technical-design / IA / roadmap / deployment
 tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
@@ -182,13 +120,13 @@ src/
     mdx/                # 自定义 MDX 组件（优先在此扩展）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source、layout、tina-docs、docs-version-tabs、shared、cn
+  lib/                  # source、layout、shared、tina-docs、docs-version-tabs、cn
 source.config.ts        # MDX frontmatter Zod schema
 next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts                # Markdown 内容协商（.md / Accept 重写）
-Dockerfile              # Matrix 生产镜像（deps → builder → runner）
+Dockerfile              # 生产镜像（deps → builder → runner；MiFlow 构建）
 .npmrc                  # legacy-peer-deps（TinaCMS 依赖兼容）
-AGENTS.md               # 本文件（Agent 指引权威来源）
+AGENTS.md               # 本文件（Agent 指引；部署细节见 docs/v1/deployment.md）
 CLAUDE.md               # 指向本文件
 package-lock.json       # npm 锁文件
 ```
@@ -308,7 +246,8 @@ Foundations → Components → Patterns → Resources
 - [ ] 未添加 Storybook / Web 组件 playground
 - [ ] Figma embed 使用占位或有效 `fileKey`
 - [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
-- [ ] 需要上线时，已将 `main` merge 到 `staging` 并双远程 push（见「发布（main → staging）」节）
+- [ ] 上测环境：`main` → `staging` 已 merge 并 push；Matrix staging 实例 Tag 已更新
+- [ ] 上正式：`main` 已 push 且 prod 镜像已构建；**Matrix `…-prod` 已发对应 `prod-*`**（勿仅凭流水线绿判断）
 
 ## 路线图（Agent 勿提前实现）
 
@@ -324,6 +263,7 @@ Foundations → Components → Patterns → Resources
 - [README.md](README.md) — 快速上手
 - [CLAUDE.md](CLAUDE.md) — Claude 入口（指向本文件）
 - [docs/index.md](docs/index.md) — 工程设计文档索引
+- [docs/v1/deployment.md](docs/v1/deployment.md) — MiFlow / Matrix 部署与卡点
 - [docs/v1/technical-design.md](docs/v1/technical-design.md) — V1 技术方案
 - [docs/v1/information-architecture.md](docs/v1/information-architecture.md) — 站点 IA
 - [docs/v1/roadmap.md](docs/v1/roadmap.md) — 实施进度
