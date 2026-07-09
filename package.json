@@ -12,6 +12,7 @@
     "tina:dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\""
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.11.1",
     "cnfast": "^0.0.8",
     "fumadocs-core": "16.11.1",
     "fumadocs-mdx": "15.1.0",
