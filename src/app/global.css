@@ -6,6 +6,85 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Home landing — Delphi-inspired reveal (build.delphi.ai) */
+@keyframes home-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-reveal-item {
+  display: inline-block;
+  animation: home-reveal 1.3s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+  animation-delay: calc(var(--index, 0) * 60ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-reveal-item {
+    animation: none;
+  }
+}
+
+/* Home landing tokens — follow html.dark from next-themes / Fumadocs */
+.home-shell {
+  --home-bg: #ffffff;
+  --home-fg-high: #1c1917;
+  --home-fg-mid: #57534e;
+  --home-nav-bg: oklab(0.985 0.001 0.002 / 0.72);
+  --home-nav-shadow:
+    0 -1px 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 1px 1px 0 rgba(255, 255, 255, 1) inset,
+    0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --home-accent: #2655ff;
+  background-color: var(--home-bg);
+  color: var(--home-fg-high);
+  color-scheme: light;
+}
+
+.dark .home-shell {
+  --home-bg: #1e1e1d;
+  --home-fg-high: #eeeeec;
+  --home-fg-mid: #b5b3ad;
+  --home-nav-bg: oklab(0.284 0 0.003 / 0.6);
+  --home-nav-shadow:
+    0 -1px 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 1px 1px 0 rgba(255, 255, 255, 0.15) inset,
+    0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  --home-accent: #2655ff;
+  color-scheme: dark;
+}
+
+.home-shell .home-copy {
+  color: var(--home-fg-mid);
+}
+
+.home-shell .home-link {
+  color: var(--home-fg-high);
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-shell .home-link:hover {
+  color: var(--home-accent);
+}
+
+.home-shell .home-nav-link {
+  color: var(--home-fg-mid);
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-shell .home-nav-link:hover {
+  color: var(--home-fg-high);
+}
+
+.home-shell .home-nav-mark {
+  color: var(--home-fg-high);
+}
+
 html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
