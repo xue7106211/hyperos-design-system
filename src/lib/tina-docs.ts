@@ -1,17 +1,42 @@
 import tinaClient from '../../tina/__generated__/client';
+import type { DocsVersionId } from './shared';
 
-export const TINA_DOC_COLLECTIONS = [
-  'docsOverview',
-  'docsFoundations',
-  'docsComponentsOverview',
-  'docsComponentsActions',
-  'docsComponentsInputs',
-  'docsComponentsNavigation',
-  'docsComponentsFeedback',
-  'docsComponentsDisplay',
-  'docsPatterns',
-  'docsResources',
+const docVersions: DocsVersionId[] = ['os4', 'os5'];
+
+const sectionMatchers = [
+  { suffix: 'Overview', match: (path: string) => path === 'index.mdx' },
+  { suffix: 'Foundations', match: (path: string) => path.startsWith('foundations/') },
+  {
+    suffix: 'ComponentsOverview',
+    match: (path: string) => path === 'components/index.mdx',
+  },
+  {
+    suffix: 'ComponentsActions',
+    match: (path: string) => path.startsWith('components/actions/'),
+  },
+  {
+    suffix: 'ComponentsInputs',
+    match: (path: string) => path.startsWith('components/inputs/'),
+  },
+  {
+    suffix: 'ComponentsNavigation',
+    match: (path: string) => path.startsWith('components/navigation/'),
+  },
+  {
+    suffix: 'ComponentsFeedback',
+    match: (path: string) => path.startsWith('components/feedback/'),
+  },
+  {
+    suffix: 'ComponentsDisplay',
+    match: (path: string) => path.startsWith('components/display/'),
+  },
+  { suffix: 'Patterns', match: (path: string) => path.startsWith('patterns/') },
+  { suffix: 'Resources', match: (path: string) => path.startsWith('resources/') },
 ] as const;
+
+export const TINA_DOC_COLLECTIONS = docVersions.flatMap((version) =>
+  sectionMatchers.map((section) => `docs${version}${section.suffix}` as const),
+);
 
 export type TinaDocCollection = (typeof TINA_DOC_COLLECTIONS)[number];
 
@@ -41,17 +66,14 @@ export function toTinaRelativePath(pagePath: string): string {
 }
 
 export function resolveTinaCollection(relativePath: string): TinaDocCollection | null {
-  if (relativePath === 'index.mdx') return 'docsOverview';
-  if (relativePath.startsWith('foundations/')) return 'docsFoundations';
-  if (relativePath === 'components/index.mdx') return 'docsComponentsOverview';
-  if (relativePath.startsWith('components/actions/')) return 'docsComponentsActions';
-  if (relativePath.startsWith('components/inputs/')) return 'docsComponentsInputs';
-  if (relativePath.startsWith('components/navigation/')) return 'docsComponentsNavigation';
-  if (relativePath.startsWith('components/feedback/')) return 'docsComponentsFeedback';
-  if (relativePath.startsWith('components/display/')) return 'docsComponentsDisplay';
-  if (relativePath.startsWith('patterns/')) return 'docsPatterns';
-  if (relativePath.startsWith('resources/')) return 'docsResources';
-  return null;
+  const [version, ...rest] = relativePath.split('/');
+  if (!docVersions.includes(version as DocsVersionId)) return null;
+
+  const sectionPath = rest.join('/');
+  const section = sectionMatchers.find((item) => item.match(sectionPath));
+  if (!section) return null;
+
+  return `docs${version}${section.suffix}` as TinaDocCollection;
 }
 
 export async function fetchTinaDoc(pagePath: string): Promise<TinaDocPayload | null> {

@@ -1,0 +1,38 @@
+---
+title: Figma 组件库
+description: HyperOS Design System Figma 库链接与 embed 配置
+---
+
+HyperOS 设计系统的 **Figma 组件库** 是设计与文档的对齐源。文档站通过 iframe embed 展示设计稿，无需在 Web 端复刻可交互组件。
+
+## 官方库链接
+
+> 请将下方链接替换为真实的 HyperOS Figma 库 URL。
+
+- **主组件库**：[Figma — HyperOS Components（占位）](https://www.figma.com/)
+- **Token 库**：[Figma — HyperOS Tokens（占位）](https://www.figma.com/)
+
+## Embed 示例
+
+在 MDX 中使用 `FigmaEmbed` 组件：
+
+```mdx
+<FigmaEmbed fileKey="YOUR_FILE_KEY" nodeId="1234:5678" height={480} />
+<FigmaEmbed fileKey="YOUR_FILE_KEY" nodeId="1234:5678" mode="dev" height={480} />
+<FigmaPrototypeEmbed url="https://embed.figma.com/proto/..." height={480} />
+```
+
+或使用 frontmatter 字段 `figmaFileKey` / `figmaNodeId`（为后续 CMS 接入预留）。
+
+## 配置步骤
+
+1. 在 Figma 中打开目标 Frame
+2. 点击 **Share → Get embed code**
+3. 从 URL 提取 `file_key` 与 `node-id`
+4. 填入组件文档 MDX 或 CMS 字段
+
+## 权限说明
+
+Embed 可见性取决于 Figma 文件的 Link Sharing 设置。内网部署时需确保目标用户有权访问对应 Figma 文件。
+
+<FigmaEmbed height={360} />

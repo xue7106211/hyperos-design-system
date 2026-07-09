@@ -1,0 +1,14 @@
+{
+  "title": "Foundations",
+  "pages": [
+    "index",
+    "principles",
+    "colors",
+    "typography",
+    "spacing",
+    "elevation",
+    "motion",
+    "iconography",
+    "accessibility"
+  ]
+}
