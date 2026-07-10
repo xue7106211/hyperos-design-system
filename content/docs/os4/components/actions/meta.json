@@ -1,4 +1,9 @@
 {
-  "title": "Actions",
-  "pages": ["button", "icon-button", "floating-action-button"]
+  "title": "菜单和操作",
+  "pages": [
+    "button",
+    "floating-action-button",
+    "menu",
+    "near-hand-menu"
+  ]
 }

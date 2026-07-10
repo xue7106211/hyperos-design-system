@@ -1,5 +1,5 @@
 ---
-title: Button
+title: 按钮 Button
 description: HyperOS 按钮规范——强调层级、类型、交互状态与多设备适配
 status: stable
 platforms: [android, ios, pad]
@@ -61,7 +61,7 @@ tokenGroups: ["color.action", "spacing.button", "typography.button"]
 | **胶囊型按钮（大）** | 流程中的关键操作（提交、确认、完成等） | 本文 § 胶囊型按钮（大） |
 | **胶囊型按钮（小）** | 灵活布局或辅助功能（筛选、排序、次级确认） | 本文 § 胶囊型按钮（小） |
 | **文本按钮** | 低优先级，无背景和边框，文本为核心 | 本文 § 文本按钮 |
-| **图标按钮** | 工具栏或面板等空间有限的快速操作 | [Icon Button](/docs/os5/components/actions/icon-button) |
+| **图标按钮** | 工具栏或面板等空间有限的快速操作 | 见本页「图标按钮」章节 |
 | **警示 / 破坏性按钮** | 删除、重置等高风险操作，需明显区分并二次确认 | 可应用于胶囊型、文本或图标按钮 |
 | **切换按钮** | 状态开启 / 关闭或多选，必须清晰显示当前状态 | — |
 
@@ -78,7 +78,7 @@ tokenGroups: ["color.action", "spacing.button", "typography.button"]
 | **禁用（Disabled）** | 降低对比度但保持识别性 |
 | **选中（Selected）** | 清晰区分已激活状态（常用于切换按钮） |
 
-下方为 **Dev Mode** 嵌入（`mode=dev`），可查看组件标注与属性；Component playground 弹窗需在 [Figma 中打开](https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?node-id=5580-1384&m=dev) 后使用 Inspect → Open in playground。
+下方为 **Dev Mode** 嵌入（`mode=dev`），可查看组件标注与属性；Component playground 弹窗需在 [Figma 中打开](https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS5-UI-Kit?node-id=5580-1384&m=dev) 后使用 Inspect → Open in playground。
 
 <FigmaEmbed
   fileKey="7PVSm4yEbknNLFaqauI4EM"
@@ -192,7 +192,7 @@ FAB 让用户快速触达最需要的操作，避免额外的思考和查找；*
 | **栏目聚合入口** | 多个平级入口时的统一聚合 |
 | **页面主操作** | 以符合日常认知的图形呈现，如搜索、刷新 |
 
-完整规范见 [Icon Button](/docs/os5/components/actions/icon-button)。
+完整规范见本页「图标按钮」章节。
 
 ## Design Tokens
 
@@ -303,7 +303,6 @@ struct HyperCapsuleButton: View {
 
 ## 相关
 
-- [Icon Button](/docs/os5/components/actions/icon-button)
-- [Floating Action Button](/docs/os5/components/actions/floating-action-button)
-- [Dialog](/docs/os5/components/feedback/dialog)
-- [Motion 基础规范](/docs/os5/foundations/motion)
+- [行动操作按钮 Floating Action Button](/docs/os5/components/actions/floating-action-button)
+- [对话框 Dialog](/docs/os5/components/containers/dialog)
+- [动效](/docs/os5/general/motion)

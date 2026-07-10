@@ -74,7 +74,7 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 - **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`DosDonts`、`PlatformCodeBlock` 等
 - 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
-- Collections 按 **OS 版本**（`os4` / `os5`）× 站点分组（Foundations / Components / …）展开；组件子目录使用 `**/*` glob 递归索引
+- Collections 按 **OS 版本**（`os4` / `os5`）× 站点分组（通用设计 / 控件与组件 / …）展开；组件子目录使用 `**/*` glob 递归索引
 
 ### TinaCMS schema 变更（重要）
 
@@ -110,9 +110,15 @@ npm run dev            # dev server 会自动重新生成
 content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
   meta.json             # 根级：os4 / os5 版本 Tab
   os4/                  # HyperOS 4（当前默认内容）
-  os5/                  # HyperOS 5（占位，侧栏禁用跳转）
+    general/            # 通用设计标准
+    components/         # 控件与组件（navigation / actions / inputs / containers / display）
+    interaction/        # 人机交互标准
+    system/             # 系统特性与能力标准
+    multi-device/        # 多端设备标准
+    best-practices/     # 应用最佳实践标准
+  os5/                  # HyperOS 5（占位，侧栏禁用跳转；结构同 os4）
 docs/                   # 工程设计文档（技术方案、IA、路线图、部署）
-docs/v1/                # V1：technical-design / IA / roadmap / deployment
+docs/v1/                # technical-design / IA / sidebar-ia-draft / roadmap / deployment
 tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
@@ -127,7 +133,8 @@ public/
 src/
   app/                  # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
-    docs/               # DocsVersionSwitcher（OS 版本切换）
+    docs/               # DocsVersionSwitcher、FigmaJumpButton
+    home/               # Landing：HomeHero、PillNav、HalftoneBloom
     mdx/                # 自定义 MDX 组件（优先在此扩展）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
@@ -152,13 +159,17 @@ package-lock.json       # npm 锁文件
 
 站点导航由 `content/docs/**/meta.json` 控制。根级 `content/docs/meta.json` 注册 **OS 版本**（`os4` / `os5`）；各版本下为：
 
+各版本内一级目录：
+
 ```text
-Foundations → Components → Patterns → Resources
+通用设计标准 → 控件与组件 → 人机交互标准 → 系统特性与能力标准 → 多端设备标准 → 应用最佳实践标准
 ```
+
+（路径：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`）
 
 - **默认版本**：`/docs` → `/docs/os4`（`next.config.mjs` 重定向）
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
-- **旧路径兼容**：`/docs/foundations/...` 等永久重定向到 `/docs/os4/...`
+- **旧路径兼容**：`/docs/foundations/...` 等永久重定向到新 IA（见 `next.config.mjs`）
 - **OS5**：侧栏可见但禁用；`/docs/os5` 暂重定向到 OS4，待内容发布后移除
 
 新增页面时 **必须**：
@@ -223,7 +234,8 @@ Foundations → Components → Patterns → Resources
 - 排版与布局：`global.css` 中紧凑 typography、sidebar 贴左 + 内容居中 grid
 - Logo：`src/components/HyperOSLogo.tsx` + `public/logo/`
 - 业务 Design Token：`tokens/tokens.json`（HyperOS 设计规范）
-- 站点名、版本与 nav：[src/lib/shared.ts](src/lib/shared.ts)（`docsVersions`、`defaultDocsRoute`）、[src/lib/layout.shared.tsx](src/lib/layout.shared.tsx)
+- 站点名、版本与 nav：[src/lib/shared.ts](src/lib/shared.ts)（`docsVersions`、`defaultDocsRoute`、`defaultFigmaUrl`）、[src/lib/layout.shared.tsx](src/lib/layout.shared.tsx)
+- 文档页操作栏「跳转 Figma」：[src/components/docs/FigmaJumpButton.tsx](src/components/docs/FigmaJumpButton.tsx)（优先页级 `figmaFileKey` / `figmaPrototypeUrl`，否则 `defaultFigmaUrl`）
 
 文档站 chrome token 与业务 Design Token **不要混用**。
 
@@ -236,7 +248,7 @@ Foundations → Components → Patterns → Resources
 
 - Embed API：https://developers.figma.com/docs/embeds/embed-figma-file/
 - 无 `fileKey` 时组件显示占位提示（预期行为）
-- 配置说明页：[content/docs/os4/resources/figma-library.mdx](content/docs/os4/resources/figma-library.mdx)
+- 配置说明页：暂挂 [应用最佳实践标准](content/docs/os4/best-practices/index.mdx)（原 `resources/figma-library` 已重定向）
 - Code Connect（Dev Mode）尚未在本仓实现，计划在 Phase 3 试点
 
 ## 代码风格
@@ -277,5 +289,6 @@ Foundations → Components → Patterns → Resources
 - [docs/v1/deployment.md](docs/v1/deployment.md) — MiFlow / Matrix 部署与卡点
 - [docs/v1/technical-design.md](docs/v1/technical-design.md) — V1 技术方案
 - [docs/v1/information-architecture.md](docs/v1/information-architecture.md) — 站点 IA
+- [docs/v1/sidebar-ia-draft.md](docs/v1/sidebar-ia-draft.md) — 侧栏目录对照（全景图）
 - [docs/v1/roadmap.md](docs/v1/roadmap.md) — 实施进度
 - [Fumadocs 官方文档](https://www.fumadocs.dev)

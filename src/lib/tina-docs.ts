@@ -5,10 +5,14 @@ const docVersions: DocsVersionId[] = ['os4', 'os5'];
 
 const sectionMatchers = [
   { suffix: 'Overview', match: (path: string) => path === 'index.mdx' },
-  { suffix: 'Foundations', match: (path: string) => path.startsWith('foundations/') },
+  { suffix: 'General', match: (path: string) => path.startsWith('general/') },
   {
     suffix: 'ComponentsOverview',
     match: (path: string) => path === 'components/index.mdx',
+  },
+  {
+    suffix: 'ComponentsNavigation',
+    match: (path: string) => path.startsWith('components/navigation/'),
   },
   {
     suffix: 'ComponentsActions',
@@ -19,19 +23,17 @@ const sectionMatchers = [
     match: (path: string) => path.startsWith('components/inputs/'),
   },
   {
-    suffix: 'ComponentsNavigation',
-    match: (path: string) => path.startsWith('components/navigation/'),
-  },
-  {
-    suffix: 'ComponentsFeedback',
-    match: (path: string) => path.startsWith('components/feedback/'),
+    suffix: 'ComponentsContainers',
+    match: (path: string) => path.startsWith('components/containers/'),
   },
   {
     suffix: 'ComponentsDisplay',
     match: (path: string) => path.startsWith('components/display/'),
   },
-  { suffix: 'Patterns', match: (path: string) => path.startsWith('patterns/') },
-  { suffix: 'Resources', match: (path: string) => path.startsWith('resources/') },
+  { suffix: 'Interaction', match: (path: string) => path.startsWith('interaction/') },
+  { suffix: 'System', match: (path: string) => path.startsWith('system/') },
+  { suffix: 'MultiDevice', match: (path: string) => path.startsWith('multi-device/') },
+  { suffix: 'BestPractices', match: (path: string) => path.startsWith('best-practices/') },
 ] as const;
 
 export const TINA_DOC_COLLECTIONS = docVersions.flatMap((version) =>

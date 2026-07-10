@@ -27,7 +27,7 @@ export function HomeHero() {
           <Reveal index={1}>HyperOS</Reveal>{' '}
           <Reveal index={2}>
             <Link
-              href={`${defaultDocsRoute}/foundations/colors`}
+              href={`${defaultDocsRoute}/general/design-token`}
               className="home-link inline"
             >
               <Palette

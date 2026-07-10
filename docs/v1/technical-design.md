@@ -242,7 +242,13 @@ hyperos-design-system/
 ├── content/docs/           # MDX 文档（网站内容源）
 │   ├── meta.json           # 根级 os4 / os5 版本 Tab
 │   ├── os4/                # HyperOS 4（当前默认）
-│   └── os5/                # HyperOS 5（占位）
+│   │   ├── general/        # 通用设计标准
+│   │   ├── components/     # 控件与组件
+│   │   ├── interaction/    # 人机交互标准
+│   │   ├── system/         # 系统特性与能力标准
+│   │   ├── multi-device/    # 多端设备标准
+│   │   └── best-practices/ # 应用最佳实践标准
+│   └── os5/                # HyperOS 5（占位；结构同 os4）
 ├── tokens/tokens.json      # W3C DTCG Design Tokens
 ├── tina/                   # TinaCMS schema（按 os4/os5 × 分组 collections）
 ├── .env.example            # TinaCMS 本地模式环境变量模板
@@ -253,7 +259,8 @@ hyperos-design-system/
 ├── src/
 │   ├── app/                # Next.js App Router（docs、admin、api/tina、search、llms、og）
 │   ├── components/
-│   │   ├── docs/           # DocsVersionSwitcher
+│   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton
+│   │   ├── home/           # Landing：HomeHero、PillNav、HalftoneBloom
 │   │   ├── mdx/            # FigmaEmbed、TokenTable、PlatformTabs、PlatformCodeBlock 等
 │   │   ├── tina/           # Tina Visual Editing
 │   │   └── HyperOSLogo.tsx
@@ -262,7 +269,7 @@ hyperos-design-system/
 ├── next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 ├── proxy.ts                # Markdown 内容协商
 ├── .npmrc                  # legacy-peer-deps
-├── docs/                   # 工程设计文档（本目录；含 v1/deployment.md）
+├── docs/                   # 工程设计文档（本目录；含 v1/deployment.md、sidebar-ia-draft.md）
 ├── AGENTS.md               # Agent 工作指引（精简；部署细节见 deployment.md）
 ├── CLAUDE.md               # 指向 AGENTS.md
 ├── Dockerfile              # 生产镜像（deps → builder → runner；MiFlow 构建）
@@ -322,12 +329,12 @@ export default defineConfig({ mdxOptions: {} });
 
 | 类型 | 路径示例 | 核心内容 |
 |------|----------|----------|
-| Foundation | `/docs/os4/foundations/colors` | 原则说明 + TokenTable |
-| Component | `/docs/os4/components/actions/button` | FigmaEmbed + Token + PlatformTabs + Do/Don't |
-| Pattern | `/docs/os4/patterns/settings-page` | 页面级 Figma embed + 用法说明 |
-| Resource | `/docs/os4/resources/figma-library` | Figma 库链接、变更日志 |
+| 通用设计 | `/docs/os4/general/design-token` | 原则说明 + TokenTable |
+| 组件 | `/docs/os4/components/actions/button` | FigmaEmbed + Token + PlatformTabs + Do/Don't |
+| 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
+| 最佳实践 | `/docs/os4/best-practices` | 应用层实践入口（原 Resources 收口） |
 
-> 旧路径 `/docs/foundations/...` 等永久 301 到 `/docs/os4/...`；`/docs` 默认进入 OS4。
+> 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。
 
 ### 5.3 组件文档页模板
 
@@ -364,6 +371,7 @@ export default defineConfig({ mdxOptions: {} });
 | `StatusBadge` | stable / beta / deprecated | P1 ✅ |
 | `DosDonts` | Do/Don't 双栏布局 | P1 ✅ |
 | `DocsVersionSwitcher` | 侧边栏 OS 版本切换（`src/components/docs/`；站点 chrome，非 MDX block） | P1 ✅ |
+| `FigmaJumpButton` | 文档页操作栏「跳转 Figma」（页级 frontmatter 或 `defaultFigmaUrl`） | P1 ✅ |
 
 ### 6.2 MDX 注册方式
 

@@ -42,9 +42,15 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 ```text
 content/docs/        # 网站 MDX 文档（对外）
   os4/               # HyperOS 4 规范（当前默认，/docs → /docs/os4）
-  os5/               # HyperOS 5 占位（侧栏可见，内容未发布）
+    general/         # 通用设计标准
+    components/      # 控件与组件
+    interaction/     # 人机交互标准
+    system/          # 系统特性与能力标准
+    multi-device/     # 多端设备标准
+    best-practices/  # 应用最佳实践标准
+  os5/               # HyperOS 5 占位（侧栏可见，内容未发布；结构同 os4）
 docs/                # 工程设计文档（对内，见 docs/index.md）
-  v1/deployment.md   # MiFlow / Matrix 部署指南
+  v1/                # technical-design / IA / sidebar-ia-draft / roadmap / deployment
 tokens/tokens.json   # Design Tokens（W3C DTCG）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
@@ -52,7 +58,8 @@ tina/                # TinaCMS schema 与 block 模板
 src/
   app/               # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
-    docs/            # DocsVersionSwitcher（OS 版本切换）
+    docs/            # DocsVersionSwitcher、FigmaJumpButton
+    home/            # Landing：HomeHero、PillNav、HalftoneBloom
     mdx/             # 自定义 MDX 组件
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
@@ -79,7 +86,7 @@ CLAUDE.md            # 指向 AGENTS.md
 
 参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx)
 
-> `/docs` 默认进入 OS4；旧路径如 `/docs/components/...` 会 301 重定向到 `/docs/os4/components/...`（见 `next.config.mjs`）。
+> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。
 
 ### Figma Embed 示例
 
@@ -104,4 +111,5 @@ CLAUDE.md            # 指向 AGENTS.md
 | [docs/v1/deployment.md](docs/v1/deployment.md) | MiFlow / Matrix 部署与卡点 |
 | [docs/v1/technical-design.md](docs/v1/technical-design.md) | V1 技术方案 |
 | [docs/v1/information-architecture.md](docs/v1/information-architecture.md) | 站点 IA |
+| [docs/v1/sidebar-ia-draft.md](docs/v1/sidebar-ia-draft.md) | 侧栏目录对照（全景图） |
 | [docs/v1/roadmap.md](docs/v1/roadmap.md) | 实施进度 |

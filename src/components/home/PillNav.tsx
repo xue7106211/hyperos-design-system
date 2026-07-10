@@ -5,9 +5,9 @@ import { defaultDocsRoute } from '@/lib/shared';
 
 const links = [
   { href: defaultDocsRoute, label: '文档' },
-  { href: `${defaultDocsRoute}/foundations/colors`, label: '色彩' },
+  { href: `${defaultDocsRoute}/general/design-token`, label: 'Token' },
   { href: `${defaultDocsRoute}/components/actions/button`, label: '组件' },
-  { href: `${defaultDocsRoute}/resources/figma-library`, label: 'Figma' },
+  { href: `${defaultDocsRoute}/best-practices`, label: '实践' },
 ] as const;
 
 export function PillNav({ className }: { className?: string }) {

@@ -31,3 +31,41 @@ export const gitConfig = {
 };
 
 export const gitRepoUrl = `${gitConfig.host}/${gitConfig.user}/${gitConfig.repo}`;
+
+/** 文档站默认 Figma 组件库（无页级 figmaFileKey 时的「跳转 Figma」回退） */
+export const defaultFigmaUrl =
+  'https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?m=auto&node-id=78009-160479&t=T6yLwmMb0OkdPfNK-1';
+
+export const defaultFigmaLibrary = {
+  fileKey: '7PVSm4yEbknNLFaqauI4EM',
+  fileName: 'Xiaomi-Hyper-OS4-UI-Kit',
+  nodeId: '78009-160479',
+} as const;
+
+export function buildFigmaDesignUrl(options: {
+  fileKey: string;
+  fileName?: string;
+  nodeId?: string;
+}): string {
+  const name = options.fileName ?? 'design';
+  const url = new URL(`https://www.figma.com/design/${options.fileKey}/${name}`);
+  if (options.nodeId) {
+    url.searchParams.set('node-id', options.nodeId.replaceAll(':', '-'));
+  }
+  return url.toString();
+}
+
+export function resolvePageFigmaUrl(page: {
+  figmaFileKey?: string;
+  figmaNodeId?: string;
+  figmaPrototypeUrl?: string;
+}): string {
+  if (page.figmaPrototypeUrl) return page.figmaPrototypeUrl;
+  if (page.figmaFileKey) {
+    return buildFigmaDesignUrl({
+      fileKey: page.figmaFileKey,
+      nodeId: page.figmaNodeId,
+    });
+  }
+  return defaultFigmaUrl;
+}

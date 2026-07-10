@@ -1,0 +1,19 @@
+{
+  "title": "系统特性与能力标准",
+  "pages": [
+    "index",
+    "search",
+    "create",
+    "edit-mode",
+    "scroll-view",
+    "picker",
+    "share",
+    "loading-refresh",
+    "info-prompts",
+    "system-experience",
+    "info-display",
+    "permissions",
+    "app-update",
+    "box-selection"
+  ]
+}

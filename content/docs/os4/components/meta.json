@@ -1,4 +1,4 @@
 {
-  "title": "Components",
-  "pages": ["index", "actions", "inputs", "navigation", "feedback", "display"]
+  "title": "控件与组件",
+  "pages": ["index", "navigation", "actions", "inputs", "containers", "display"]
 }

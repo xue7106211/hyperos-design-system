@@ -1,4 +1,15 @@
 {
-  "title": "Navigation",
-  "pages": ["top-app-bar", "bottom-nav", "tabs"]
+  "title": "导航搜索",
+  "pages": [
+    "top-app-bar",
+    "segmented-button",
+    "tabs",
+    "search-bar",
+    "side-navigation",
+    "bottom-navigation",
+    "bottom-toolbar",
+    "page-indicator",
+    "index-bar",
+    "scrollbar"
+  ]
 }

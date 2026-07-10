@@ -256,23 +256,37 @@ var docVersions = [
 ];
 var docSections = [
   { key: "Overview", label: "\u6982\u89C8", include: "index" },
-  { key: "Foundations", label: "Foundations", include: "foundations/**/*" },
-  { key: "ComponentsOverview", label: "Components \xB7 \u6982\u89C8", include: "components/index" },
-  { key: "ComponentsActions", label: "Components \xB7 Actions", include: "components/actions/**/*" },
-  { key: "ComponentsInputs", label: "Components \xB7 Inputs", include: "components/inputs/**/*" },
+  { key: "General", label: "\u901A\u7528\u8BBE\u8BA1\u6807\u51C6", include: "general/**/*" },
+  { key: "ComponentsOverview", label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u6982\u89C8", include: "components/index" },
   {
     key: "ComponentsNavigation",
-    label: "Components \xB7 Navigation",
+    label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u5BFC\u822A\u641C\u7D22",
     include: "components/navigation/**/*"
   },
   {
-    key: "ComponentsFeedback",
-    label: "Components \xB7 Feedback",
-    include: "components/feedback/**/*"
+    key: "ComponentsActions",
+    label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u83DC\u5355\u548C\u64CD\u4F5C",
+    include: "components/actions/**/*"
   },
-  { key: "ComponentsDisplay", label: "Components \xB7 Display", include: "components/display/**/*" },
-  { key: "Patterns", label: "Patterns", include: "patterns/**/*" },
-  { key: "Resources", label: "Resources", include: "resources/**/*" }
+  {
+    key: "ComponentsInputs",
+    label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u9009\u62E9\u548C\u8F93\u5165",
+    include: "components/inputs/**/*"
+  },
+  {
+    key: "ComponentsContainers",
+    label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u5BB9\u5668\u7C7B",
+    include: "components/containers/**/*"
+  },
+  {
+    key: "ComponentsDisplay",
+    label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u5C55\u793A\u7C7B",
+    include: "components/display/**/*"
+  },
+  { key: "Interaction", label: "\u4EBA\u673A\u4EA4\u4E92\u6807\u51C6", include: "interaction/**/*" },
+  { key: "System", label: "\u7CFB\u7EDF\u7279\u6027\u4E0E\u80FD\u529B\u6807\u51C6", include: "system/**/*" },
+  { key: "MultiDevice", label: "\u591A\u7AEF\u8BBE\u5907\u6807\u51C6", include: "multi-device/**/*" },
+  { key: "BestPractices", label: "\u5E94\u7528\u6700\u4F73\u5B9E\u8DF5\u6807\u51C6", include: "best-practices/**/*" }
 ];
 var config_default = defineConfig({
   contentApiUrlOverride: "/api/tina/gql",

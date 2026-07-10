@@ -2,5 +2,13 @@
   "title": "HyperOS 4",
   "description": "OS4 设计规范与组件文档",
   "root": true,
-  "pages": ["index", "foundations", "components", "patterns", "resources"]
+  "pages": [
+    "index",
+    "general",
+    "components",
+    "interaction",
+    "system",
+    "multi-device",
+    "best-practices"
+  ]
 }

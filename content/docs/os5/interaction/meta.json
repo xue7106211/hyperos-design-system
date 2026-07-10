@@ -1,0 +1,17 @@
+{
+  "title": "人机交互标准",
+  "pages": [
+    "index",
+    "hardware-buttons",
+    "touch-gestures",
+    "spatial-gestures",
+    "focus-selection",
+    "cursor",
+    "keyboard",
+    "mouse",
+    "trackpad",
+    "stylus",
+    "crown",
+    "interaction-unification"
+  ]
+}

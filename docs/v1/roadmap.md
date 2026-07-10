@@ -17,6 +17,8 @@
 - [x] TinaCMS `/admin` 本地模式 + 自定义 MDX block（FigmaEmbed、TokenTable、DosDonts、PlatformCodeBlock）
 - [x] OS 版本分目录（`content/docs/os4`、`os5`）+ 侧边栏 `DocsVersionSwitcher` + 旧路径重定向
 - [x] Docker / MiFlow / Matrix 部署文档（[deployment.md](./deployment.md)；正式环境当前需 Matrix 手动发 `prod-*`）
+- [x] 按设计系统全景图重构侧栏 IA（`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`；对照 [sidebar-ia-draft.md](./sidebar-ia-draft.md)）
+- [x] 文档页操作栏「跳转 Figma」（`FigmaJumpButton`；默认库 URL 见 `src/lib/shared.ts`）
 
 ## 下一步
 
@@ -33,5 +35,6 @@
 - [部署指南：MiFlow / Matrix](./deployment.md)
 - [技术设计方案](./technical-design.md)
 - [站点信息架构](./information-architecture.md)
+- [侧栏目录对照（全景图）](./sidebar-ia-draft.md)
 - [工程设计文档索引](../index.md)
 - [AGENTS.md](../../AGENTS.md) · [CLAUDE.md](../../CLAUDE.md)

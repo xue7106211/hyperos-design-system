@@ -1,8 +1,9 @@
 import { TinaDocsPageContent } from '@/components/tina/TinaDocsPageContent';
+import { FigmaJumpButton } from '@/components/docs/FigmaJumpButton';
 import { getMDXComponents } from '@/components/mdx';
 import { getPageImage, getPageMarkdownUrl, source } from '@/lib/source';
 import { fetchTinaDoc } from '@/lib/tina-docs';
-import { gitConfig, gitRepoUrl } from '@/lib/shared';
+import { gitConfig, gitRepoUrl, resolvePageFigmaUrl } from '@/lib/shared';
 import {
   DocsPage,
   MarkdownCopyButton,
@@ -19,6 +20,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 
   const MDX = page.data.body;
   const markdownUrl = getPageMarkdownUrl(page).url;
+  const figmaUrl = resolvePageFigmaUrl(page.data);
   const tinaPayload =
     process.env.TINA_PUBLIC_IS_LOCAL === 'true'
       ? await fetchTinaDoc(page.path)
@@ -31,6 +33,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
         markdownUrl={markdownUrl}
         githubUrl={`${gitRepoUrl}/-/blob/${gitConfig.branch}/content/docs/${page.path}`}
       />
+      <FigmaJumpButton href={figmaUrl} className="ms-auto" />
     </div>
   );
 

@@ -19,8 +19,8 @@ export const Docsos4OverviewPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4FoundationsPartsFragmentDoc = gql`
-    fragment Docsos4FoundationsParts on Docsos4Foundations {
+export const Docsos4GeneralPartsFragmentDoc = gql`
+    fragment Docsos4GeneralParts on Docsos4General {
   __typename
   title
   description
@@ -35,6 +35,20 @@ export const Docsos4FoundationsPartsFragmentDoc = gql`
     `;
 export const Docsos4ComponentsOverviewPartsFragmentDoc = gql`
     fragment Docsos4ComponentsOverviewParts on Docsos4ComponentsOverview {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos4ComponentsNavigationPartsFragmentDoc = gql`
+    fragment Docsos4ComponentsNavigationParts on Docsos4ComponentsNavigation {
   __typename
   title
   description
@@ -75,22 +89,8 @@ export const Docsos4ComponentsInputsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4ComponentsNavigationPartsFragmentDoc = gql`
-    fragment Docsos4ComponentsNavigationParts on Docsos4ComponentsNavigation {
-  __typename
-  title
-  description
-  status
-  platforms
-  figmaFileKey
-  figmaNodeId
-  figmaPrototypeUrl
-  tokenGroups
-  body
-}
-    `;
-export const Docsos4ComponentsFeedbackPartsFragmentDoc = gql`
-    fragment Docsos4ComponentsFeedbackParts on Docsos4ComponentsFeedback {
+export const Docsos4ComponentsContainersPartsFragmentDoc = gql`
+    fragment Docsos4ComponentsContainersParts on Docsos4ComponentsContainers {
   __typename
   title
   description
@@ -117,8 +117,8 @@ export const Docsos4ComponentsDisplayPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4PatternsPartsFragmentDoc = gql`
-    fragment Docsos4PatternsParts on Docsos4Patterns {
+export const Docsos4InteractionPartsFragmentDoc = gql`
+    fragment Docsos4InteractionParts on Docsos4Interaction {
   __typename
   title
   description
@@ -131,8 +131,36 @@ export const Docsos4PatternsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4ResourcesPartsFragmentDoc = gql`
-    fragment Docsos4ResourcesParts on Docsos4Resources {
+export const Docsos4SystemPartsFragmentDoc = gql`
+    fragment Docsos4SystemParts on Docsos4System {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos4MultiDevicePartsFragmentDoc = gql`
+    fragment Docsos4MultiDeviceParts on Docsos4MultiDevice {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos4BestPracticesPartsFragmentDoc = gql`
+    fragment Docsos4BestPracticesParts on Docsos4BestPractices {
   __typename
   title
   description
@@ -159,8 +187,8 @@ export const Docsos5OverviewPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5FoundationsPartsFragmentDoc = gql`
-    fragment Docsos5FoundationsParts on Docsos5Foundations {
+export const Docsos5GeneralPartsFragmentDoc = gql`
+    fragment Docsos5GeneralParts on Docsos5General {
   __typename
   title
   description
@@ -175,6 +203,20 @@ export const Docsos5FoundationsPartsFragmentDoc = gql`
     `;
 export const Docsos5ComponentsOverviewPartsFragmentDoc = gql`
     fragment Docsos5ComponentsOverviewParts on Docsos5ComponentsOverview {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos5ComponentsNavigationPartsFragmentDoc = gql`
+    fragment Docsos5ComponentsNavigationParts on Docsos5ComponentsNavigation {
   __typename
   title
   description
@@ -215,22 +257,8 @@ export const Docsos5ComponentsInputsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5ComponentsNavigationPartsFragmentDoc = gql`
-    fragment Docsos5ComponentsNavigationParts on Docsos5ComponentsNavigation {
-  __typename
-  title
-  description
-  status
-  platforms
-  figmaFileKey
-  figmaNodeId
-  figmaPrototypeUrl
-  tokenGroups
-  body
-}
-    `;
-export const Docsos5ComponentsFeedbackPartsFragmentDoc = gql`
-    fragment Docsos5ComponentsFeedbackParts on Docsos5ComponentsFeedback {
+export const Docsos5ComponentsContainersPartsFragmentDoc = gql`
+    fragment Docsos5ComponentsContainersParts on Docsos5ComponentsContainers {
   __typename
   title
   description
@@ -257,8 +285,8 @@ export const Docsos5ComponentsDisplayPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5PatternsPartsFragmentDoc = gql`
-    fragment Docsos5PatternsParts on Docsos5Patterns {
+export const Docsos5InteractionPartsFragmentDoc = gql`
+    fragment Docsos5InteractionParts on Docsos5Interaction {
   __typename
   title
   description
@@ -271,8 +299,36 @@ export const Docsos5PatternsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5ResourcesPartsFragmentDoc = gql`
-    fragment Docsos5ResourcesParts on Docsos5Resources {
+export const Docsos5SystemPartsFragmentDoc = gql`
+    fragment Docsos5SystemParts on Docsos5System {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos5MultiDevicePartsFragmentDoc = gql`
+    fragment Docsos5MultiDeviceParts on Docsos5MultiDevice {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos5BestPracticesPartsFragmentDoc = gql`
+    fragment Docsos5BestPracticesParts on Docsos5BestPractices {
   __typename
   title
   description
@@ -342,9 +398,9 @@ export const Docsos4OverviewConnectionDocument = gql`
   }
 }
     ${Docsos4OverviewPartsFragmentDoc}`;
-export const Docsos4FoundationsDocument = gql`
-    query docsos4Foundations($relativePath: String!) {
-  docsos4Foundations(relativePath: $relativePath) {
+export const Docsos4GeneralDocument = gql`
+    query docsos4General($relativePath: String!) {
+  docsos4General(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -357,13 +413,13 @@ export const Docsos4FoundationsDocument = gql`
       }
       id
     }
-    ...Docsos4FoundationsParts
+    ...Docsos4GeneralParts
   }
 }
-    ${Docsos4FoundationsPartsFragmentDoc}`;
-export const Docsos4FoundationsConnectionDocument = gql`
-    query docsos4FoundationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4FoundationsFilter) {
-  docsos4FoundationsConnection(
+    ${Docsos4GeneralPartsFragmentDoc}`;
+export const Docsos4GeneralConnectionDocument = gql`
+    query docsos4GeneralConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4GeneralFilter) {
+  docsos4GeneralConnection(
     before: $before
     after: $after
     first: $first
@@ -393,12 +449,12 @@ export const Docsos4FoundationsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4FoundationsParts
+        ...Docsos4GeneralParts
       }
     }
   }
 }
-    ${Docsos4FoundationsPartsFragmentDoc}`;
+    ${Docsos4GeneralPartsFragmentDoc}`;
 export const Docsos4ComponentsOverviewDocument = gql`
     query docsos4ComponentsOverview($relativePath: String!) {
   docsos4ComponentsOverview(relativePath: $relativePath) {
@@ -456,6 +512,63 @@ export const Docsos4ComponentsOverviewConnectionDocument = gql`
   }
 }
     ${Docsos4ComponentsOverviewPartsFragmentDoc}`;
+export const Docsos4ComponentsNavigationDocument = gql`
+    query docsos4ComponentsNavigation($relativePath: String!) {
+  docsos4ComponentsNavigation(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4ComponentsNavigationParts
+  }
+}
+    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
+export const Docsos4ComponentsNavigationConnectionDocument = gql`
+    query docsos4ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsNavigationFilter) {
+  docsos4ComponentsNavigationConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4ComponentsNavigationParts
+      }
+    }
+  }
+}
+    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
 export const Docsos4ComponentsActionsDocument = gql`
     query docsos4ComponentsActions($relativePath: String!) {
   docsos4ComponentsActions(relativePath: $relativePath) {
@@ -570,9 +683,9 @@ export const Docsos4ComponentsInputsConnectionDocument = gql`
   }
 }
     ${Docsos4ComponentsInputsPartsFragmentDoc}`;
-export const Docsos4ComponentsNavigationDocument = gql`
-    query docsos4ComponentsNavigation($relativePath: String!) {
-  docsos4ComponentsNavigation(relativePath: $relativePath) {
+export const Docsos4ComponentsContainersDocument = gql`
+    query docsos4ComponentsContainers($relativePath: String!) {
+  docsos4ComponentsContainers(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -585,13 +698,13 @@ export const Docsos4ComponentsNavigationDocument = gql`
       }
       id
     }
-    ...Docsos4ComponentsNavigationParts
+    ...Docsos4ComponentsContainersParts
   }
 }
-    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos4ComponentsNavigationConnectionDocument = gql`
-    query docsos4ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsNavigationFilter) {
-  docsos4ComponentsNavigationConnection(
+    ${Docsos4ComponentsContainersPartsFragmentDoc}`;
+export const Docsos4ComponentsContainersConnectionDocument = gql`
+    query docsos4ComponentsContainersConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsContainersFilter) {
+  docsos4ComponentsContainersConnection(
     before: $before
     after: $after
     first: $first
@@ -621,69 +734,12 @@ export const Docsos4ComponentsNavigationConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4ComponentsNavigationParts
+        ...Docsos4ComponentsContainersParts
       }
     }
   }
 }
-    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos4ComponentsFeedbackDocument = gql`
-    query docsos4ComponentsFeedback($relativePath: String!) {
-  docsos4ComponentsFeedback(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Docsos4ComponentsFeedbackParts
-  }
-}
-    ${Docsos4ComponentsFeedbackPartsFragmentDoc}`;
-export const Docsos4ComponentsFeedbackConnectionDocument = gql`
-    query docsos4ComponentsFeedbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsFeedbackFilter) {
-  docsos4ComponentsFeedbackConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Docsos4ComponentsFeedbackParts
-      }
-    }
-  }
-}
-    ${Docsos4ComponentsFeedbackPartsFragmentDoc}`;
+    ${Docsos4ComponentsContainersPartsFragmentDoc}`;
 export const Docsos4ComponentsDisplayDocument = gql`
     query docsos4ComponentsDisplay($relativePath: String!) {
   docsos4ComponentsDisplay(relativePath: $relativePath) {
@@ -741,9 +797,9 @@ export const Docsos4ComponentsDisplayConnectionDocument = gql`
   }
 }
     ${Docsos4ComponentsDisplayPartsFragmentDoc}`;
-export const Docsos4PatternsDocument = gql`
-    query docsos4Patterns($relativePath: String!) {
-  docsos4Patterns(relativePath: $relativePath) {
+export const Docsos4InteractionDocument = gql`
+    query docsos4Interaction($relativePath: String!) {
+  docsos4Interaction(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -756,13 +812,13 @@ export const Docsos4PatternsDocument = gql`
       }
       id
     }
-    ...Docsos4PatternsParts
+    ...Docsos4InteractionParts
   }
 }
-    ${Docsos4PatternsPartsFragmentDoc}`;
-export const Docsos4PatternsConnectionDocument = gql`
-    query docsos4PatternsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4PatternsFilter) {
-  docsos4PatternsConnection(
+    ${Docsos4InteractionPartsFragmentDoc}`;
+export const Docsos4InteractionConnectionDocument = gql`
+    query docsos4InteractionConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4InteractionFilter) {
+  docsos4InteractionConnection(
     before: $before
     after: $after
     first: $first
@@ -792,15 +848,15 @@ export const Docsos4PatternsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4PatternsParts
+        ...Docsos4InteractionParts
       }
     }
   }
 }
-    ${Docsos4PatternsPartsFragmentDoc}`;
-export const Docsos4ResourcesDocument = gql`
-    query docsos4Resources($relativePath: String!) {
-  docsos4Resources(relativePath: $relativePath) {
+    ${Docsos4InteractionPartsFragmentDoc}`;
+export const Docsos4SystemDocument = gql`
+    query docsos4System($relativePath: String!) {
+  docsos4System(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -813,13 +869,13 @@ export const Docsos4ResourcesDocument = gql`
       }
       id
     }
-    ...Docsos4ResourcesParts
+    ...Docsos4SystemParts
   }
 }
-    ${Docsos4ResourcesPartsFragmentDoc}`;
-export const Docsos4ResourcesConnectionDocument = gql`
-    query docsos4ResourcesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ResourcesFilter) {
-  docsos4ResourcesConnection(
+    ${Docsos4SystemPartsFragmentDoc}`;
+export const Docsos4SystemConnectionDocument = gql`
+    query docsos4SystemConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4SystemFilter) {
+  docsos4SystemConnection(
     before: $before
     after: $after
     first: $first
@@ -849,12 +905,126 @@ export const Docsos4ResourcesConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4ResourcesParts
+        ...Docsos4SystemParts
       }
     }
   }
 }
-    ${Docsos4ResourcesPartsFragmentDoc}`;
+    ${Docsos4SystemPartsFragmentDoc}`;
+export const Docsos4MultiDeviceDocument = gql`
+    query docsos4MultiDevice($relativePath: String!) {
+  docsos4MultiDevice(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4MultiDeviceParts
+  }
+}
+    ${Docsos4MultiDevicePartsFragmentDoc}`;
+export const Docsos4MultiDeviceConnectionDocument = gql`
+    query docsos4MultiDeviceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4MultiDeviceFilter) {
+  docsos4MultiDeviceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4MultiDeviceParts
+      }
+    }
+  }
+}
+    ${Docsos4MultiDevicePartsFragmentDoc}`;
+export const Docsos4BestPracticesDocument = gql`
+    query docsos4BestPractices($relativePath: String!) {
+  docsos4BestPractices(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4BestPracticesParts
+  }
+}
+    ${Docsos4BestPracticesPartsFragmentDoc}`;
+export const Docsos4BestPracticesConnectionDocument = gql`
+    query docsos4BestPracticesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4BestPracticesFilter) {
+  docsos4BestPracticesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4BestPracticesParts
+      }
+    }
+  }
+}
+    ${Docsos4BestPracticesPartsFragmentDoc}`;
 export const Docsos5OverviewDocument = gql`
     query docsos5Overview($relativePath: String!) {
   docsos5Overview(relativePath: $relativePath) {
@@ -912,9 +1082,9 @@ export const Docsos5OverviewConnectionDocument = gql`
   }
 }
     ${Docsos5OverviewPartsFragmentDoc}`;
-export const Docsos5FoundationsDocument = gql`
-    query docsos5Foundations($relativePath: String!) {
-  docsos5Foundations(relativePath: $relativePath) {
+export const Docsos5GeneralDocument = gql`
+    query docsos5General($relativePath: String!) {
+  docsos5General(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -927,13 +1097,13 @@ export const Docsos5FoundationsDocument = gql`
       }
       id
     }
-    ...Docsos5FoundationsParts
+    ...Docsos5GeneralParts
   }
 }
-    ${Docsos5FoundationsPartsFragmentDoc}`;
-export const Docsos5FoundationsConnectionDocument = gql`
-    query docsos5FoundationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5FoundationsFilter) {
-  docsos5FoundationsConnection(
+    ${Docsos5GeneralPartsFragmentDoc}`;
+export const Docsos5GeneralConnectionDocument = gql`
+    query docsos5GeneralConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5GeneralFilter) {
+  docsos5GeneralConnection(
     before: $before
     after: $after
     first: $first
@@ -963,12 +1133,12 @@ export const Docsos5FoundationsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5FoundationsParts
+        ...Docsos5GeneralParts
       }
     }
   }
 }
-    ${Docsos5FoundationsPartsFragmentDoc}`;
+    ${Docsos5GeneralPartsFragmentDoc}`;
 export const Docsos5ComponentsOverviewDocument = gql`
     query docsos5ComponentsOverview($relativePath: String!) {
   docsos5ComponentsOverview(relativePath: $relativePath) {
@@ -1026,6 +1196,63 @@ export const Docsos5ComponentsOverviewConnectionDocument = gql`
   }
 }
     ${Docsos5ComponentsOverviewPartsFragmentDoc}`;
+export const Docsos5ComponentsNavigationDocument = gql`
+    query docsos5ComponentsNavigation($relativePath: String!) {
+  docsos5ComponentsNavigation(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5ComponentsNavigationParts
+  }
+}
+    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
+export const Docsos5ComponentsNavigationConnectionDocument = gql`
+    query docsos5ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsNavigationFilter) {
+  docsos5ComponentsNavigationConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5ComponentsNavigationParts
+      }
+    }
+  }
+}
+    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
 export const Docsos5ComponentsActionsDocument = gql`
     query docsos5ComponentsActions($relativePath: String!) {
   docsos5ComponentsActions(relativePath: $relativePath) {
@@ -1140,9 +1367,9 @@ export const Docsos5ComponentsInputsConnectionDocument = gql`
   }
 }
     ${Docsos5ComponentsInputsPartsFragmentDoc}`;
-export const Docsos5ComponentsNavigationDocument = gql`
-    query docsos5ComponentsNavigation($relativePath: String!) {
-  docsos5ComponentsNavigation(relativePath: $relativePath) {
+export const Docsos5ComponentsContainersDocument = gql`
+    query docsos5ComponentsContainers($relativePath: String!) {
+  docsos5ComponentsContainers(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1155,13 +1382,13 @@ export const Docsos5ComponentsNavigationDocument = gql`
       }
       id
     }
-    ...Docsos5ComponentsNavigationParts
+    ...Docsos5ComponentsContainersParts
   }
 }
-    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos5ComponentsNavigationConnectionDocument = gql`
-    query docsos5ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsNavigationFilter) {
-  docsos5ComponentsNavigationConnection(
+    ${Docsos5ComponentsContainersPartsFragmentDoc}`;
+export const Docsos5ComponentsContainersConnectionDocument = gql`
+    query docsos5ComponentsContainersConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsContainersFilter) {
+  docsos5ComponentsContainersConnection(
     before: $before
     after: $after
     first: $first
@@ -1191,69 +1418,12 @@ export const Docsos5ComponentsNavigationConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5ComponentsNavigationParts
+        ...Docsos5ComponentsContainersParts
       }
     }
   }
 }
-    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos5ComponentsFeedbackDocument = gql`
-    query docsos5ComponentsFeedback($relativePath: String!) {
-  docsos5ComponentsFeedback(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Docsos5ComponentsFeedbackParts
-  }
-}
-    ${Docsos5ComponentsFeedbackPartsFragmentDoc}`;
-export const Docsos5ComponentsFeedbackConnectionDocument = gql`
-    query docsos5ComponentsFeedbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsFeedbackFilter) {
-  docsos5ComponentsFeedbackConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Docsos5ComponentsFeedbackParts
-      }
-    }
-  }
-}
-    ${Docsos5ComponentsFeedbackPartsFragmentDoc}`;
+    ${Docsos5ComponentsContainersPartsFragmentDoc}`;
 export const Docsos5ComponentsDisplayDocument = gql`
     query docsos5ComponentsDisplay($relativePath: String!) {
   docsos5ComponentsDisplay(relativePath: $relativePath) {
@@ -1311,9 +1481,9 @@ export const Docsos5ComponentsDisplayConnectionDocument = gql`
   }
 }
     ${Docsos5ComponentsDisplayPartsFragmentDoc}`;
-export const Docsos5PatternsDocument = gql`
-    query docsos5Patterns($relativePath: String!) {
-  docsos5Patterns(relativePath: $relativePath) {
+export const Docsos5InteractionDocument = gql`
+    query docsos5Interaction($relativePath: String!) {
+  docsos5Interaction(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1326,13 +1496,13 @@ export const Docsos5PatternsDocument = gql`
       }
       id
     }
-    ...Docsos5PatternsParts
+    ...Docsos5InteractionParts
   }
 }
-    ${Docsos5PatternsPartsFragmentDoc}`;
-export const Docsos5PatternsConnectionDocument = gql`
-    query docsos5PatternsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5PatternsFilter) {
-  docsos5PatternsConnection(
+    ${Docsos5InteractionPartsFragmentDoc}`;
+export const Docsos5InteractionConnectionDocument = gql`
+    query docsos5InteractionConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5InteractionFilter) {
+  docsos5InteractionConnection(
     before: $before
     after: $after
     first: $first
@@ -1362,15 +1532,15 @@ export const Docsos5PatternsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5PatternsParts
+        ...Docsos5InteractionParts
       }
     }
   }
 }
-    ${Docsos5PatternsPartsFragmentDoc}`;
-export const Docsos5ResourcesDocument = gql`
-    query docsos5Resources($relativePath: String!) {
-  docsos5Resources(relativePath: $relativePath) {
+    ${Docsos5InteractionPartsFragmentDoc}`;
+export const Docsos5SystemDocument = gql`
+    query docsos5System($relativePath: String!) {
+  docsos5System(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1383,13 +1553,13 @@ export const Docsos5ResourcesDocument = gql`
       }
       id
     }
-    ...Docsos5ResourcesParts
+    ...Docsos5SystemParts
   }
 }
-    ${Docsos5ResourcesPartsFragmentDoc}`;
-export const Docsos5ResourcesConnectionDocument = gql`
-    query docsos5ResourcesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ResourcesFilter) {
-  docsos5ResourcesConnection(
+    ${Docsos5SystemPartsFragmentDoc}`;
+export const Docsos5SystemConnectionDocument = gql`
+    query docsos5SystemConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5SystemFilter) {
+  docsos5SystemConnection(
     before: $before
     after: $after
     first: $first
@@ -1419,12 +1589,126 @@ export const Docsos5ResourcesConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5ResourcesParts
+        ...Docsos5SystemParts
       }
     }
   }
 }
-    ${Docsos5ResourcesPartsFragmentDoc}`;
+    ${Docsos5SystemPartsFragmentDoc}`;
+export const Docsos5MultiDeviceDocument = gql`
+    query docsos5MultiDevice($relativePath: String!) {
+  docsos5MultiDevice(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5MultiDeviceParts
+  }
+}
+    ${Docsos5MultiDevicePartsFragmentDoc}`;
+export const Docsos5MultiDeviceConnectionDocument = gql`
+    query docsos5MultiDeviceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5MultiDeviceFilter) {
+  docsos5MultiDeviceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5MultiDeviceParts
+      }
+    }
+  }
+}
+    ${Docsos5MultiDevicePartsFragmentDoc}`;
+export const Docsos5BestPracticesDocument = gql`
+    query docsos5BestPractices($relativePath: String!) {
+  docsos5BestPractices(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5BestPracticesParts
+  }
+}
+    ${Docsos5BestPracticesPartsFragmentDoc}`;
+export const Docsos5BestPracticesConnectionDocument = gql`
+    query docsos5BestPracticesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5BestPracticesFilter) {
+  docsos5BestPracticesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5BestPracticesParts
+      }
+    }
+  }
+}
+    ${Docsos5BestPracticesPartsFragmentDoc}`;
 export function getSdk(requester) {
   return {
     docsos4Overview(variables, options) {
@@ -1433,17 +1717,23 @@ export function getSdk(requester) {
     docsos4OverviewConnection(variables, options) {
       return requester(Docsos4OverviewConnectionDocument, variables, options);
     },
-    docsos4Foundations(variables, options) {
-      return requester(Docsos4FoundationsDocument, variables, options);
+    docsos4General(variables, options) {
+      return requester(Docsos4GeneralDocument, variables, options);
     },
-    docsos4FoundationsConnection(variables, options) {
-      return requester(Docsos4FoundationsConnectionDocument, variables, options);
+    docsos4GeneralConnection(variables, options) {
+      return requester(Docsos4GeneralConnectionDocument, variables, options);
     },
     docsos4ComponentsOverview(variables, options) {
       return requester(Docsos4ComponentsOverviewDocument, variables, options);
     },
     docsos4ComponentsOverviewConnection(variables, options) {
       return requester(Docsos4ComponentsOverviewConnectionDocument, variables, options);
+    },
+    docsos4ComponentsNavigation(variables, options) {
+      return requester(Docsos4ComponentsNavigationDocument, variables, options);
+    },
+    docsos4ComponentsNavigationConnection(variables, options) {
+      return requester(Docsos4ComponentsNavigationConnectionDocument, variables, options);
     },
     docsos4ComponentsActions(variables, options) {
       return requester(Docsos4ComponentsActionsDocument, variables, options);
@@ -1457,17 +1747,11 @@ export function getSdk(requester) {
     docsos4ComponentsInputsConnection(variables, options) {
       return requester(Docsos4ComponentsInputsConnectionDocument, variables, options);
     },
-    docsos4ComponentsNavigation(variables, options) {
-      return requester(Docsos4ComponentsNavigationDocument, variables, options);
+    docsos4ComponentsContainers(variables, options) {
+      return requester(Docsos4ComponentsContainersDocument, variables, options);
     },
-    docsos4ComponentsNavigationConnection(variables, options) {
-      return requester(Docsos4ComponentsNavigationConnectionDocument, variables, options);
-    },
-    docsos4ComponentsFeedback(variables, options) {
-      return requester(Docsos4ComponentsFeedbackDocument, variables, options);
-    },
-    docsos4ComponentsFeedbackConnection(variables, options) {
-      return requester(Docsos4ComponentsFeedbackConnectionDocument, variables, options);
+    docsos4ComponentsContainersConnection(variables, options) {
+      return requester(Docsos4ComponentsContainersConnectionDocument, variables, options);
     },
     docsos4ComponentsDisplay(variables, options) {
       return requester(Docsos4ComponentsDisplayDocument, variables, options);
@@ -1475,17 +1759,29 @@ export function getSdk(requester) {
     docsos4ComponentsDisplayConnection(variables, options) {
       return requester(Docsos4ComponentsDisplayConnectionDocument, variables, options);
     },
-    docsos4Patterns(variables, options) {
-      return requester(Docsos4PatternsDocument, variables, options);
+    docsos4Interaction(variables, options) {
+      return requester(Docsos4InteractionDocument, variables, options);
     },
-    docsos4PatternsConnection(variables, options) {
-      return requester(Docsos4PatternsConnectionDocument, variables, options);
+    docsos4InteractionConnection(variables, options) {
+      return requester(Docsos4InteractionConnectionDocument, variables, options);
     },
-    docsos4Resources(variables, options) {
-      return requester(Docsos4ResourcesDocument, variables, options);
+    docsos4System(variables, options) {
+      return requester(Docsos4SystemDocument, variables, options);
     },
-    docsos4ResourcesConnection(variables, options) {
-      return requester(Docsos4ResourcesConnectionDocument, variables, options);
+    docsos4SystemConnection(variables, options) {
+      return requester(Docsos4SystemConnectionDocument, variables, options);
+    },
+    docsos4MultiDevice(variables, options) {
+      return requester(Docsos4MultiDeviceDocument, variables, options);
+    },
+    docsos4MultiDeviceConnection(variables, options) {
+      return requester(Docsos4MultiDeviceConnectionDocument, variables, options);
+    },
+    docsos4BestPractices(variables, options) {
+      return requester(Docsos4BestPracticesDocument, variables, options);
+    },
+    docsos4BestPracticesConnection(variables, options) {
+      return requester(Docsos4BestPracticesConnectionDocument, variables, options);
     },
     docsos5Overview(variables, options) {
       return requester(Docsos5OverviewDocument, variables, options);
@@ -1493,17 +1789,23 @@ export function getSdk(requester) {
     docsos5OverviewConnection(variables, options) {
       return requester(Docsos5OverviewConnectionDocument, variables, options);
     },
-    docsos5Foundations(variables, options) {
-      return requester(Docsos5FoundationsDocument, variables, options);
+    docsos5General(variables, options) {
+      return requester(Docsos5GeneralDocument, variables, options);
     },
-    docsos5FoundationsConnection(variables, options) {
-      return requester(Docsos5FoundationsConnectionDocument, variables, options);
+    docsos5GeneralConnection(variables, options) {
+      return requester(Docsos5GeneralConnectionDocument, variables, options);
     },
     docsos5ComponentsOverview(variables, options) {
       return requester(Docsos5ComponentsOverviewDocument, variables, options);
     },
     docsos5ComponentsOverviewConnection(variables, options) {
       return requester(Docsos5ComponentsOverviewConnectionDocument, variables, options);
+    },
+    docsos5ComponentsNavigation(variables, options) {
+      return requester(Docsos5ComponentsNavigationDocument, variables, options);
+    },
+    docsos5ComponentsNavigationConnection(variables, options) {
+      return requester(Docsos5ComponentsNavigationConnectionDocument, variables, options);
     },
     docsos5ComponentsActions(variables, options) {
       return requester(Docsos5ComponentsActionsDocument, variables, options);
@@ -1517,17 +1819,11 @@ export function getSdk(requester) {
     docsos5ComponentsInputsConnection(variables, options) {
       return requester(Docsos5ComponentsInputsConnectionDocument, variables, options);
     },
-    docsos5ComponentsNavigation(variables, options) {
-      return requester(Docsos5ComponentsNavigationDocument, variables, options);
+    docsos5ComponentsContainers(variables, options) {
+      return requester(Docsos5ComponentsContainersDocument, variables, options);
     },
-    docsos5ComponentsNavigationConnection(variables, options) {
-      return requester(Docsos5ComponentsNavigationConnectionDocument, variables, options);
-    },
-    docsos5ComponentsFeedback(variables, options) {
-      return requester(Docsos5ComponentsFeedbackDocument, variables, options);
-    },
-    docsos5ComponentsFeedbackConnection(variables, options) {
-      return requester(Docsos5ComponentsFeedbackConnectionDocument, variables, options);
+    docsos5ComponentsContainersConnection(variables, options) {
+      return requester(Docsos5ComponentsContainersConnectionDocument, variables, options);
     },
     docsos5ComponentsDisplay(variables, options) {
       return requester(Docsos5ComponentsDisplayDocument, variables, options);
@@ -1535,17 +1831,29 @@ export function getSdk(requester) {
     docsos5ComponentsDisplayConnection(variables, options) {
       return requester(Docsos5ComponentsDisplayConnectionDocument, variables, options);
     },
-    docsos5Patterns(variables, options) {
-      return requester(Docsos5PatternsDocument, variables, options);
+    docsos5Interaction(variables, options) {
+      return requester(Docsos5InteractionDocument, variables, options);
     },
-    docsos5PatternsConnection(variables, options) {
-      return requester(Docsos5PatternsConnectionDocument, variables, options);
+    docsos5InteractionConnection(variables, options) {
+      return requester(Docsos5InteractionConnectionDocument, variables, options);
     },
-    docsos5Resources(variables, options) {
-      return requester(Docsos5ResourcesDocument, variables, options);
+    docsos5System(variables, options) {
+      return requester(Docsos5SystemDocument, variables, options);
     },
-    docsos5ResourcesConnection(variables, options) {
-      return requester(Docsos5ResourcesConnectionDocument, variables, options);
+    docsos5SystemConnection(variables, options) {
+      return requester(Docsos5SystemConnectionDocument, variables, options);
+    },
+    docsos5MultiDevice(variables, options) {
+      return requester(Docsos5MultiDeviceDocument, variables, options);
+    },
+    docsos5MultiDeviceConnection(variables, options) {
+      return requester(Docsos5MultiDeviceConnectionDocument, variables, options);
+    },
+    docsos5BestPractices(variables, options) {
+      return requester(Docsos5BestPracticesDocument, variables, options);
+    },
+    docsos5BestPracticesConnection(variables, options) {
+      return requester(Docsos5BestPracticesConnectionDocument, variables, options);
     }
   };
 }

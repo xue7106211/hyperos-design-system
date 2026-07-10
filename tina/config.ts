@@ -16,23 +16,37 @@ const docVersions = [
 
 const docSections = [
   { key: 'Overview', label: '概览', include: 'index' },
-  { key: 'Foundations', label: 'Foundations', include: 'foundations/**/*' },
-  { key: 'ComponentsOverview', label: 'Components · 概览', include: 'components/index' },
-  { key: 'ComponentsActions', label: 'Components · Actions', include: 'components/actions/**/*' },
-  { key: 'ComponentsInputs', label: 'Components · Inputs', include: 'components/inputs/**/*' },
+  { key: 'General', label: '通用设计标准', include: 'general/**/*' },
+  { key: 'ComponentsOverview', label: '控件与组件 · 概览', include: 'components/index' },
   {
     key: 'ComponentsNavigation',
-    label: 'Components · Navigation',
+    label: '控件与组件 · 导航搜索',
     include: 'components/navigation/**/*',
   },
   {
-    key: 'ComponentsFeedback',
-    label: 'Components · Feedback',
-    include: 'components/feedback/**/*',
+    key: 'ComponentsActions',
+    label: '控件与组件 · 菜单和操作',
+    include: 'components/actions/**/*',
   },
-  { key: 'ComponentsDisplay', label: 'Components · Display', include: 'components/display/**/*' },
-  { key: 'Patterns', label: 'Patterns', include: 'patterns/**/*' },
-  { key: 'Resources', label: 'Resources', include: 'resources/**/*' },
+  {
+    key: 'ComponentsInputs',
+    label: '控件与组件 · 选择和输入',
+    include: 'components/inputs/**/*',
+  },
+  {
+    key: 'ComponentsContainers',
+    label: '控件与组件 · 容器类',
+    include: 'components/containers/**/*',
+  },
+  {
+    key: 'ComponentsDisplay',
+    label: '控件与组件 · 展示类',
+    include: 'components/display/**/*',
+  },
+  { key: 'Interaction', label: '人机交互标准', include: 'interaction/**/*' },
+  { key: 'System', label: '系统特性与能力标准', include: 'system/**/*' },
+  { key: 'MultiDevice', label: '多端设备标准', include: 'multi-device/**/*' },
+  { key: 'BestPractices', label: '应用最佳实践标准', include: 'best-practices/**/*' },
 ] as const;
 
 // Tina match globs resolve to `content/docs/<include>.<format>`.

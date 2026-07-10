@@ -53,8 +53,8 @@ query docsos4OverviewConnection($before: String, $after: String, $first: Float, 
   }
 }
 
-query docsos4Foundations($relativePath: String!) {
-  docsos4Foundations(relativePath: $relativePath) {
+query docsos4General($relativePath: String!) {
+  docsos4General(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -67,12 +67,12 @@ query docsos4Foundations($relativePath: String!) {
       }
       id
     }
-    ...Docsos4FoundationsParts
+    ...Docsos4GeneralParts
   }
 }
 
-query docsos4FoundationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4FoundationsFilter) {
-  docsos4FoundationsConnection(
+query docsos4GeneralConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4GeneralFilter) {
+  docsos4GeneralConnection(
     before: $before
     after: $after
     first: $first
@@ -102,7 +102,7 @@ query docsos4FoundationsConnection($before: String, $after: String, $first: Floa
           }
           id
         }
-        ...Docsos4FoundationsParts
+        ...Docsos4GeneralParts
       }
     }
   }
@@ -158,6 +158,61 @@ query docsos4ComponentsOverviewConnection($before: String, $after: String, $firs
           id
         }
         ...Docsos4ComponentsOverviewParts
+      }
+    }
+  }
+}
+
+query docsos4ComponentsNavigation($relativePath: String!) {
+  docsos4ComponentsNavigation(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4ComponentsNavigationParts
+  }
+}
+
+query docsos4ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsNavigationFilter) {
+  docsos4ComponentsNavigationConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4ComponentsNavigationParts
       }
     }
   }
@@ -273,8 +328,8 @@ query docsos4ComponentsInputsConnection($before: String, $after: String, $first:
   }
 }
 
-query docsos4ComponentsNavigation($relativePath: String!) {
-  docsos4ComponentsNavigation(relativePath: $relativePath) {
+query docsos4ComponentsContainers($relativePath: String!) {
+  docsos4ComponentsContainers(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -287,12 +342,12 @@ query docsos4ComponentsNavigation($relativePath: String!) {
       }
       id
     }
-    ...Docsos4ComponentsNavigationParts
+    ...Docsos4ComponentsContainersParts
   }
 }
 
-query docsos4ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsNavigationFilter) {
-  docsos4ComponentsNavigationConnection(
+query docsos4ComponentsContainersConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsContainersFilter) {
+  docsos4ComponentsContainersConnection(
     before: $before
     after: $after
     first: $first
@@ -322,62 +377,7 @@ query docsos4ComponentsNavigationConnection($before: String, $after: String, $fi
           }
           id
         }
-        ...Docsos4ComponentsNavigationParts
-      }
-    }
-  }
-}
-
-query docsos4ComponentsFeedback($relativePath: String!) {
-  docsos4ComponentsFeedback(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Docsos4ComponentsFeedbackParts
-  }
-}
-
-query docsos4ComponentsFeedbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsFeedbackFilter) {
-  docsos4ComponentsFeedbackConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Docsos4ComponentsFeedbackParts
+        ...Docsos4ComponentsContainersParts
       }
     }
   }
@@ -438,8 +438,8 @@ query docsos4ComponentsDisplayConnection($before: String, $after: String, $first
   }
 }
 
-query docsos4Patterns($relativePath: String!) {
-  docsos4Patterns(relativePath: $relativePath) {
+query docsos4Interaction($relativePath: String!) {
+  docsos4Interaction(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -452,12 +452,12 @@ query docsos4Patterns($relativePath: String!) {
       }
       id
     }
-    ...Docsos4PatternsParts
+    ...Docsos4InteractionParts
   }
 }
 
-query docsos4PatternsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4PatternsFilter) {
-  docsos4PatternsConnection(
+query docsos4InteractionConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4InteractionFilter) {
+  docsos4InteractionConnection(
     before: $before
     after: $after
     first: $first
@@ -487,14 +487,14 @@ query docsos4PatternsConnection($before: String, $after: String, $first: Float, 
           }
           id
         }
-        ...Docsos4PatternsParts
+        ...Docsos4InteractionParts
       }
     }
   }
 }
 
-query docsos4Resources($relativePath: String!) {
-  docsos4Resources(relativePath: $relativePath) {
+query docsos4System($relativePath: String!) {
+  docsos4System(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -507,12 +507,12 @@ query docsos4Resources($relativePath: String!) {
       }
       id
     }
-    ...Docsos4ResourcesParts
+    ...Docsos4SystemParts
   }
 }
 
-query docsos4ResourcesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ResourcesFilter) {
-  docsos4ResourcesConnection(
+query docsos4SystemConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4SystemFilter) {
+  docsos4SystemConnection(
     before: $before
     after: $after
     first: $first
@@ -542,7 +542,117 @@ query docsos4ResourcesConnection($before: String, $after: String, $first: Float,
           }
           id
         }
-        ...Docsos4ResourcesParts
+        ...Docsos4SystemParts
+      }
+    }
+  }
+}
+
+query docsos4MultiDevice($relativePath: String!) {
+  docsos4MultiDevice(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4MultiDeviceParts
+  }
+}
+
+query docsos4MultiDeviceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4MultiDeviceFilter) {
+  docsos4MultiDeviceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4MultiDeviceParts
+      }
+    }
+  }
+}
+
+query docsos4BestPractices($relativePath: String!) {
+  docsos4BestPractices(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4BestPracticesParts
+  }
+}
+
+query docsos4BestPracticesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4BestPracticesFilter) {
+  docsos4BestPracticesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4BestPracticesParts
       }
     }
   }
@@ -603,8 +713,8 @@ query docsos5OverviewConnection($before: String, $after: String, $first: Float, 
   }
 }
 
-query docsos5Foundations($relativePath: String!) {
-  docsos5Foundations(relativePath: $relativePath) {
+query docsos5General($relativePath: String!) {
+  docsos5General(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -617,12 +727,12 @@ query docsos5Foundations($relativePath: String!) {
       }
       id
     }
-    ...Docsos5FoundationsParts
+    ...Docsos5GeneralParts
   }
 }
 
-query docsos5FoundationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5FoundationsFilter) {
-  docsos5FoundationsConnection(
+query docsos5GeneralConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5GeneralFilter) {
+  docsos5GeneralConnection(
     before: $before
     after: $after
     first: $first
@@ -652,7 +762,7 @@ query docsos5FoundationsConnection($before: String, $after: String, $first: Floa
           }
           id
         }
-        ...Docsos5FoundationsParts
+        ...Docsos5GeneralParts
       }
     }
   }
@@ -708,6 +818,61 @@ query docsos5ComponentsOverviewConnection($before: String, $after: String, $firs
           id
         }
         ...Docsos5ComponentsOverviewParts
+      }
+    }
+  }
+}
+
+query docsos5ComponentsNavigation($relativePath: String!) {
+  docsos5ComponentsNavigation(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5ComponentsNavigationParts
+  }
+}
+
+query docsos5ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsNavigationFilter) {
+  docsos5ComponentsNavigationConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5ComponentsNavigationParts
       }
     }
   }
@@ -823,8 +988,8 @@ query docsos5ComponentsInputsConnection($before: String, $after: String, $first:
   }
 }
 
-query docsos5ComponentsNavigation($relativePath: String!) {
-  docsos5ComponentsNavigation(relativePath: $relativePath) {
+query docsos5ComponentsContainers($relativePath: String!) {
+  docsos5ComponentsContainers(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -837,12 +1002,12 @@ query docsos5ComponentsNavigation($relativePath: String!) {
       }
       id
     }
-    ...Docsos5ComponentsNavigationParts
+    ...Docsos5ComponentsContainersParts
   }
 }
 
-query docsos5ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsNavigationFilter) {
-  docsos5ComponentsNavigationConnection(
+query docsos5ComponentsContainersConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsContainersFilter) {
+  docsos5ComponentsContainersConnection(
     before: $before
     after: $after
     first: $first
@@ -872,62 +1037,7 @@ query docsos5ComponentsNavigationConnection($before: String, $after: String, $fi
           }
           id
         }
-        ...Docsos5ComponentsNavigationParts
-      }
-    }
-  }
-}
-
-query docsos5ComponentsFeedback($relativePath: String!) {
-  docsos5ComponentsFeedback(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Docsos5ComponentsFeedbackParts
-  }
-}
-
-query docsos5ComponentsFeedbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsFeedbackFilter) {
-  docsos5ComponentsFeedbackConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Docsos5ComponentsFeedbackParts
+        ...Docsos5ComponentsContainersParts
       }
     }
   }
@@ -988,8 +1098,8 @@ query docsos5ComponentsDisplayConnection($before: String, $after: String, $first
   }
 }
 
-query docsos5Patterns($relativePath: String!) {
-  docsos5Patterns(relativePath: $relativePath) {
+query docsos5Interaction($relativePath: String!) {
+  docsos5Interaction(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1002,12 +1112,12 @@ query docsos5Patterns($relativePath: String!) {
       }
       id
     }
-    ...Docsos5PatternsParts
+    ...Docsos5InteractionParts
   }
 }
 
-query docsos5PatternsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5PatternsFilter) {
-  docsos5PatternsConnection(
+query docsos5InteractionConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5InteractionFilter) {
+  docsos5InteractionConnection(
     before: $before
     after: $after
     first: $first
@@ -1037,14 +1147,14 @@ query docsos5PatternsConnection($before: String, $after: String, $first: Float, 
           }
           id
         }
-        ...Docsos5PatternsParts
+        ...Docsos5InteractionParts
       }
     }
   }
 }
 
-query docsos5Resources($relativePath: String!) {
-  docsos5Resources(relativePath: $relativePath) {
+query docsos5System($relativePath: String!) {
+  docsos5System(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1057,12 +1167,12 @@ query docsos5Resources($relativePath: String!) {
       }
       id
     }
-    ...Docsos5ResourcesParts
+    ...Docsos5SystemParts
   }
 }
 
-query docsos5ResourcesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ResourcesFilter) {
-  docsos5ResourcesConnection(
+query docsos5SystemConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5SystemFilter) {
+  docsos5SystemConnection(
     before: $before
     after: $after
     first: $first
@@ -1092,7 +1202,117 @@ query docsos5ResourcesConnection($before: String, $after: String, $first: Float,
           }
           id
         }
-        ...Docsos5ResourcesParts
+        ...Docsos5SystemParts
+      }
+    }
+  }
+}
+
+query docsos5MultiDevice($relativePath: String!) {
+  docsos5MultiDevice(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5MultiDeviceParts
+  }
+}
+
+query docsos5MultiDeviceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5MultiDeviceFilter) {
+  docsos5MultiDeviceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5MultiDeviceParts
+      }
+    }
+  }
+}
+
+query docsos5BestPractices($relativePath: String!) {
+  docsos5BestPractices(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5BestPracticesParts
+  }
+}
+
+query docsos5BestPracticesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5BestPracticesFilter) {
+  docsos5BestPracticesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5BestPracticesParts
       }
     }
   }

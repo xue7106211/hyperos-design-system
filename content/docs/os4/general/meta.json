@@ -1,0 +1,14 @@
+{
+  "title": "通用设计标准",
+  "pages": [
+    "index",
+    "overview",
+    "philosophy",
+    "principles",
+    "design-token",
+    "layout",
+    "motion",
+    "copywriting",
+    "inclusive"
+  ]
+}

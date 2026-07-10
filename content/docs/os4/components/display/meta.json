@@ -1,4 +1,9 @@
 {
-  "title": "Display",
-  "pages": ["list", "card", "chip"]
+  "title": "展示类",
+  "pages": [
+    "list",
+    "card",
+    "badge",
+    "empty-state"
+  ]
 }

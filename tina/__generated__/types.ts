@@ -84,44 +84,52 @@ export type Query = {
   document: DocumentNode;
   docsos4Overview: Docsos4Overview;
   docsos4OverviewConnection: Docsos4OverviewConnection;
-  docsos4Foundations: Docsos4Foundations;
-  docsos4FoundationsConnection: Docsos4FoundationsConnection;
+  docsos4General: Docsos4General;
+  docsos4GeneralConnection: Docsos4GeneralConnection;
   docsos4ComponentsOverview: Docsos4ComponentsOverview;
   docsos4ComponentsOverviewConnection: Docsos4ComponentsOverviewConnection;
+  docsos4ComponentsNavigation: Docsos4ComponentsNavigation;
+  docsos4ComponentsNavigationConnection: Docsos4ComponentsNavigationConnection;
   docsos4ComponentsActions: Docsos4ComponentsActions;
   docsos4ComponentsActionsConnection: Docsos4ComponentsActionsConnection;
   docsos4ComponentsInputs: Docsos4ComponentsInputs;
   docsos4ComponentsInputsConnection: Docsos4ComponentsInputsConnection;
-  docsos4ComponentsNavigation: Docsos4ComponentsNavigation;
-  docsos4ComponentsNavigationConnection: Docsos4ComponentsNavigationConnection;
-  docsos4ComponentsFeedback: Docsos4ComponentsFeedback;
-  docsos4ComponentsFeedbackConnection: Docsos4ComponentsFeedbackConnection;
+  docsos4ComponentsContainers: Docsos4ComponentsContainers;
+  docsos4ComponentsContainersConnection: Docsos4ComponentsContainersConnection;
   docsos4ComponentsDisplay: Docsos4ComponentsDisplay;
   docsos4ComponentsDisplayConnection: Docsos4ComponentsDisplayConnection;
-  docsos4Patterns: Docsos4Patterns;
-  docsos4PatternsConnection: Docsos4PatternsConnection;
-  docsos4Resources: Docsos4Resources;
-  docsos4ResourcesConnection: Docsos4ResourcesConnection;
+  docsos4Interaction: Docsos4Interaction;
+  docsos4InteractionConnection: Docsos4InteractionConnection;
+  docsos4System: Docsos4System;
+  docsos4SystemConnection: Docsos4SystemConnection;
+  docsos4MultiDevice: Docsos4MultiDevice;
+  docsos4MultiDeviceConnection: Docsos4MultiDeviceConnection;
+  docsos4BestPractices: Docsos4BestPractices;
+  docsos4BestPracticesConnection: Docsos4BestPracticesConnection;
   docsos5Overview: Docsos5Overview;
   docsos5OverviewConnection: Docsos5OverviewConnection;
-  docsos5Foundations: Docsos5Foundations;
-  docsos5FoundationsConnection: Docsos5FoundationsConnection;
+  docsos5General: Docsos5General;
+  docsos5GeneralConnection: Docsos5GeneralConnection;
   docsos5ComponentsOverview: Docsos5ComponentsOverview;
   docsos5ComponentsOverviewConnection: Docsos5ComponentsOverviewConnection;
+  docsos5ComponentsNavigation: Docsos5ComponentsNavigation;
+  docsos5ComponentsNavigationConnection: Docsos5ComponentsNavigationConnection;
   docsos5ComponentsActions: Docsos5ComponentsActions;
   docsos5ComponentsActionsConnection: Docsos5ComponentsActionsConnection;
   docsos5ComponentsInputs: Docsos5ComponentsInputs;
   docsos5ComponentsInputsConnection: Docsos5ComponentsInputsConnection;
-  docsos5ComponentsNavigation: Docsos5ComponentsNavigation;
-  docsos5ComponentsNavigationConnection: Docsos5ComponentsNavigationConnection;
-  docsos5ComponentsFeedback: Docsos5ComponentsFeedback;
-  docsos5ComponentsFeedbackConnection: Docsos5ComponentsFeedbackConnection;
+  docsos5ComponentsContainers: Docsos5ComponentsContainers;
+  docsos5ComponentsContainersConnection: Docsos5ComponentsContainersConnection;
   docsos5ComponentsDisplay: Docsos5ComponentsDisplay;
   docsos5ComponentsDisplayConnection: Docsos5ComponentsDisplayConnection;
-  docsos5Patterns: Docsos5Patterns;
-  docsos5PatternsConnection: Docsos5PatternsConnection;
-  docsos5Resources: Docsos5Resources;
-  docsos5ResourcesConnection: Docsos5ResourcesConnection;
+  docsos5Interaction: Docsos5Interaction;
+  docsos5InteractionConnection: Docsos5InteractionConnection;
+  docsos5System: Docsos5System;
+  docsos5SystemConnection: Docsos5SystemConnection;
+  docsos5MultiDevice: Docsos5MultiDevice;
+  docsos5MultiDeviceConnection: Docsos5MultiDeviceConnection;
+  docsos5BestPractices: Docsos5BestPractices;
+  docsos5BestPracticesConnection: Docsos5BestPracticesConnection;
 };
 
 
@@ -161,18 +169,18 @@ export type QueryDocsos4OverviewConnectionArgs = {
 };
 
 
-export type QueryDocsos4FoundationsArgs = {
+export type QueryDocsos4GeneralArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos4FoundationsConnectionArgs = {
+export type QueryDocsos4GeneralConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4FoundationsFilter>;
+  filter?: InputMaybe<Docsos4GeneralFilter>;
 };
 
 
@@ -188,6 +196,21 @@ export type QueryDocsos4ComponentsOverviewConnectionArgs = {
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<Docsos4ComponentsOverviewFilter>;
+};
+
+
+export type QueryDocsos4ComponentsNavigationArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDocsos4ComponentsNavigationConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos4ComponentsNavigationFilter>;
 };
 
 
@@ -221,33 +244,18 @@ export type QueryDocsos4ComponentsInputsConnectionArgs = {
 };
 
 
-export type QueryDocsos4ComponentsNavigationArgs = {
+export type QueryDocsos4ComponentsContainersArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos4ComponentsNavigationConnectionArgs = {
+export type QueryDocsos4ComponentsContainersConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4ComponentsNavigationFilter>;
-};
-
-
-export type QueryDocsos4ComponentsFeedbackArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryDocsos4ComponentsFeedbackConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4ComponentsFeedbackFilter>;
+  filter?: InputMaybe<Docsos4ComponentsContainersFilter>;
 };
 
 
@@ -266,33 +274,63 @@ export type QueryDocsos4ComponentsDisplayConnectionArgs = {
 };
 
 
-export type QueryDocsos4PatternsArgs = {
+export type QueryDocsos4InteractionArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos4PatternsConnectionArgs = {
+export type QueryDocsos4InteractionConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4PatternsFilter>;
+  filter?: InputMaybe<Docsos4InteractionFilter>;
 };
 
 
-export type QueryDocsos4ResourcesArgs = {
+export type QueryDocsos4SystemArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos4ResourcesConnectionArgs = {
+export type QueryDocsos4SystemConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4ResourcesFilter>;
+  filter?: InputMaybe<Docsos4SystemFilter>;
+};
+
+
+export type QueryDocsos4MultiDeviceArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDocsos4MultiDeviceConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos4MultiDeviceFilter>;
+};
+
+
+export type QueryDocsos4BestPracticesArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDocsos4BestPracticesConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos4BestPracticesFilter>;
 };
 
 
@@ -311,18 +349,18 @@ export type QueryDocsos5OverviewConnectionArgs = {
 };
 
 
-export type QueryDocsos5FoundationsArgs = {
+export type QueryDocsos5GeneralArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos5FoundationsConnectionArgs = {
+export type QueryDocsos5GeneralConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5FoundationsFilter>;
+  filter?: InputMaybe<Docsos5GeneralFilter>;
 };
 
 
@@ -338,6 +376,21 @@ export type QueryDocsos5ComponentsOverviewConnectionArgs = {
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<Docsos5ComponentsOverviewFilter>;
+};
+
+
+export type QueryDocsos5ComponentsNavigationArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDocsos5ComponentsNavigationConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos5ComponentsNavigationFilter>;
 };
 
 
@@ -371,33 +424,18 @@ export type QueryDocsos5ComponentsInputsConnectionArgs = {
 };
 
 
-export type QueryDocsos5ComponentsNavigationArgs = {
+export type QueryDocsos5ComponentsContainersArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos5ComponentsNavigationConnectionArgs = {
+export type QueryDocsos5ComponentsContainersConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5ComponentsNavigationFilter>;
-};
-
-
-export type QueryDocsos5ComponentsFeedbackArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryDocsos5ComponentsFeedbackConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5ComponentsFeedbackFilter>;
+  filter?: InputMaybe<Docsos5ComponentsContainersFilter>;
 };
 
 
@@ -416,56 +454,90 @@ export type QueryDocsos5ComponentsDisplayConnectionArgs = {
 };
 
 
-export type QueryDocsos5PatternsArgs = {
+export type QueryDocsos5InteractionArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos5PatternsConnectionArgs = {
+export type QueryDocsos5InteractionConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5PatternsFilter>;
+  filter?: InputMaybe<Docsos5InteractionFilter>;
 };
 
 
-export type QueryDocsos5ResourcesArgs = {
+export type QueryDocsos5SystemArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryDocsos5ResourcesConnectionArgs = {
+export type QueryDocsos5SystemConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5ResourcesFilter>;
+  filter?: InputMaybe<Docsos5SystemFilter>;
+};
+
+
+export type QueryDocsos5MultiDeviceArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDocsos5MultiDeviceConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos5MultiDeviceFilter>;
+};
+
+
+export type QueryDocsos5BestPracticesArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDocsos5BestPracticesConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos5BestPracticesFilter>;
 };
 
 export type DocumentFilter = {
   docsos4Overview?: InputMaybe<Docsos4OverviewFilter>;
-  docsos4Foundations?: InputMaybe<Docsos4FoundationsFilter>;
+  docsos4General?: InputMaybe<Docsos4GeneralFilter>;
   docsos4ComponentsOverview?: InputMaybe<Docsos4ComponentsOverviewFilter>;
+  docsos4ComponentsNavigation?: InputMaybe<Docsos4ComponentsNavigationFilter>;
   docsos4ComponentsActions?: InputMaybe<Docsos4ComponentsActionsFilter>;
   docsos4ComponentsInputs?: InputMaybe<Docsos4ComponentsInputsFilter>;
-  docsos4ComponentsNavigation?: InputMaybe<Docsos4ComponentsNavigationFilter>;
-  docsos4ComponentsFeedback?: InputMaybe<Docsos4ComponentsFeedbackFilter>;
+  docsos4ComponentsContainers?: InputMaybe<Docsos4ComponentsContainersFilter>;
   docsos4ComponentsDisplay?: InputMaybe<Docsos4ComponentsDisplayFilter>;
-  docsos4Patterns?: InputMaybe<Docsos4PatternsFilter>;
-  docsos4Resources?: InputMaybe<Docsos4ResourcesFilter>;
+  docsos4Interaction?: InputMaybe<Docsos4InteractionFilter>;
+  docsos4System?: InputMaybe<Docsos4SystemFilter>;
+  docsos4MultiDevice?: InputMaybe<Docsos4MultiDeviceFilter>;
+  docsos4BestPractices?: InputMaybe<Docsos4BestPracticesFilter>;
   docsos5Overview?: InputMaybe<Docsos5OverviewFilter>;
-  docsos5Foundations?: InputMaybe<Docsos5FoundationsFilter>;
+  docsos5General?: InputMaybe<Docsos5GeneralFilter>;
   docsos5ComponentsOverview?: InputMaybe<Docsos5ComponentsOverviewFilter>;
+  docsos5ComponentsNavigation?: InputMaybe<Docsos5ComponentsNavigationFilter>;
   docsos5ComponentsActions?: InputMaybe<Docsos5ComponentsActionsFilter>;
   docsos5ComponentsInputs?: InputMaybe<Docsos5ComponentsInputsFilter>;
-  docsos5ComponentsNavigation?: InputMaybe<Docsos5ComponentsNavigationFilter>;
-  docsos5ComponentsFeedback?: InputMaybe<Docsos5ComponentsFeedbackFilter>;
+  docsos5ComponentsContainers?: InputMaybe<Docsos5ComponentsContainersFilter>;
   docsos5ComponentsDisplay?: InputMaybe<Docsos5ComponentsDisplayFilter>;
-  docsos5Patterns?: InputMaybe<Docsos5PatternsFilter>;
-  docsos5Resources?: InputMaybe<Docsos5ResourcesFilter>;
+  docsos5Interaction?: InputMaybe<Docsos5InteractionFilter>;
+  docsos5System?: InputMaybe<Docsos5SystemFilter>;
+  docsos5MultiDevice?: InputMaybe<Docsos5MultiDeviceFilter>;
+  docsos5BestPractices?: InputMaybe<Docsos5BestPracticesFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -505,7 +577,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Docsos4Overview | Docsos4Foundations | Docsos4ComponentsOverview | Docsos4ComponentsActions | Docsos4ComponentsInputs | Docsos4ComponentsNavigation | Docsos4ComponentsFeedback | Docsos4ComponentsDisplay | Docsos4Patterns | Docsos4Resources | Docsos5Overview | Docsos5Foundations | Docsos5ComponentsOverview | Docsos5ComponentsActions | Docsos5ComponentsInputs | Docsos5ComponentsNavigation | Docsos5ComponentsFeedback | Docsos5ComponentsDisplay | Docsos5Patterns | Docsos5Resources | Folder;
+export type DocumentNode = Docsos4Overview | Docsos4General | Docsos4ComponentsOverview | Docsos4ComponentsNavigation | Docsos4ComponentsActions | Docsos4ComponentsInputs | Docsos4ComponentsContainers | Docsos4ComponentsDisplay | Docsos4Interaction | Docsos4System | Docsos4MultiDevice | Docsos4BestPractices | Docsos5Overview | Docsos5General | Docsos5ComponentsOverview | Docsos5ComponentsNavigation | Docsos5ComponentsActions | Docsos5ComponentsInputs | Docsos5ComponentsContainers | Docsos5ComponentsDisplay | Docsos5Interaction | Docsos5System | Docsos5MultiDevice | Docsos5BestPractices | Folder;
 
 export type Docsos4Overview = Node & Document & {
   __typename?: 'Docsos4Overview';
@@ -611,8 +683,8 @@ export type Docsos4OverviewConnection = Connection & {
   edges?: Maybe<Array<Maybe<Docsos4OverviewConnectionEdges>>>;
 };
 
-export type Docsos4Foundations = Node & Document & {
-  __typename?: 'Docsos4Foundations';
+export type Docsos4General = Node & Document & {
+  __typename?: 'Docsos4General';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -627,11 +699,11 @@ export type Docsos4Foundations = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos4FoundationsBodyStatusBadgeFilter = {
+export type Docsos4GeneralBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4FoundationsBodyFigmaEmbedFilter = {
+export type Docsos4GeneralBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -639,41 +711,41 @@ export type Docsos4FoundationsBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4FoundationsBodyFigmaPrototypeEmbedFilter = {
+export type Docsos4GeneralBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos4FoundationsBodyTokenTableFilter = {
+export type Docsos4GeneralBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4FoundationsBodyDosDontsFilter = {
+export type Docsos4GeneralBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4FoundationsBodyPlatformCodeBlockFilter = {
+export type Docsos4GeneralBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4FoundationsBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos4FoundationsBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos4FoundationsBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos4FoundationsBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos4FoundationsBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos4FoundationsBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos4FoundationsBodyPlatformCodeBlockFilter>;
+export type Docsos4GeneralBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos4GeneralBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos4GeneralBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos4GeneralBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos4GeneralBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos4GeneralBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos4GeneralBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos4FoundationsFilter = {
+export type Docsos4GeneralFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -682,20 +754,20 @@ export type Docsos4FoundationsFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos4FoundationsBodyFilter>;
+  body?: InputMaybe<Docsos4GeneralBodyFilter>;
 };
 
-export type Docsos4FoundationsConnectionEdges = {
-  __typename?: 'Docsos4FoundationsConnectionEdges';
+export type Docsos4GeneralConnectionEdges = {
+  __typename?: 'Docsos4GeneralConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos4Foundations>;
+  node?: Maybe<Docsos4General>;
 };
 
-export type Docsos4FoundationsConnection = Connection & {
-  __typename?: 'Docsos4FoundationsConnection';
+export type Docsos4GeneralConnection = Connection & {
+  __typename?: 'Docsos4GeneralConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos4FoundationsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos4GeneralConnectionEdges>>>;
 };
 
 export type Docsos4ComponentsOverview = Node & Document & {
@@ -783,6 +855,93 @@ export type Docsos4ComponentsOverviewConnection = Connection & {
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<Docsos4ComponentsOverviewConnectionEdges>>>;
+};
+
+export type Docsos4ComponentsNavigation = Node & Document & {
+  __typename?: 'Docsos4ComponentsNavigation';
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  figmaFileKey?: Maybe<Scalars['String']['output']>;
+  figmaNodeId?: Maybe<Scalars['String']['output']>;
+  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
+  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Docsos4ComponentsNavigationBodyStatusBadgeFilter = {
+  status?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4ComponentsNavigationBodyFigmaEmbedFilter = {
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  mode?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+  theme?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter = {
+  url?: InputMaybe<StringFilter>;
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+};
+
+export type Docsos4ComponentsNavigationBodyTokenTableFilter = {
+  groups?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4ComponentsNavigationBodyDosDontsFilter = {
+  doTitle?: InputMaybe<StringFilter>;
+  dontTitle?: InputMaybe<StringFilter>;
+  doContent?: InputMaybe<StringFilter>;
+  dontContent?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter = {
+  androidTitle?: InputMaybe<StringFilter>;
+  androidCode?: InputMaybe<StringFilter>;
+  iosTitle?: InputMaybe<StringFilter>;
+  iosCode?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4ComponentsNavigationBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos4ComponentsNavigationBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos4ComponentsNavigationBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos4ComponentsNavigationBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos4ComponentsNavigationBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter>;
+};
+
+export type Docsos4ComponentsNavigationFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  platforms?: InputMaybe<StringFilter>;
+  figmaFileKey?: InputMaybe<StringFilter>;
+  figmaNodeId?: InputMaybe<StringFilter>;
+  figmaPrototypeUrl?: InputMaybe<StringFilter>;
+  tokenGroups?: InputMaybe<StringFilter>;
+  body?: InputMaybe<Docsos4ComponentsNavigationBodyFilter>;
+};
+
+export type Docsos4ComponentsNavigationConnectionEdges = {
+  __typename?: 'Docsos4ComponentsNavigationConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Docsos4ComponentsNavigation>;
+};
+
+export type Docsos4ComponentsNavigationConnection = Connection & {
+  __typename?: 'Docsos4ComponentsNavigationConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Docsos4ComponentsNavigationConnectionEdges>>>;
 };
 
 export type Docsos4ComponentsActions = Node & Document & {
@@ -959,8 +1118,8 @@ export type Docsos4ComponentsInputsConnection = Connection & {
   edges?: Maybe<Array<Maybe<Docsos4ComponentsInputsConnectionEdges>>>;
 };
 
-export type Docsos4ComponentsNavigation = Node & Document & {
-  __typename?: 'Docsos4ComponentsNavigation';
+export type Docsos4ComponentsContainers = Node & Document & {
+  __typename?: 'Docsos4ComponentsContainers';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -975,11 +1134,11 @@ export type Docsos4ComponentsNavigation = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos4ComponentsNavigationBodyStatusBadgeFilter = {
+export type Docsos4ComponentsContainersBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ComponentsNavigationBodyFigmaEmbedFilter = {
+export type Docsos4ComponentsContainersBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -987,41 +1146,41 @@ export type Docsos4ComponentsNavigationBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter = {
+export type Docsos4ComponentsContainersBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos4ComponentsNavigationBodyTokenTableFilter = {
+export type Docsos4ComponentsContainersBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ComponentsNavigationBodyDosDontsFilter = {
+export type Docsos4ComponentsContainersBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter = {
+export type Docsos4ComponentsContainersBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ComponentsNavigationBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos4ComponentsNavigationBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos4ComponentsNavigationBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos4ComponentsNavigationBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos4ComponentsNavigationBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter>;
+export type Docsos4ComponentsContainersBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos4ComponentsContainersBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos4ComponentsContainersBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsContainersBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos4ComponentsContainersBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos4ComponentsContainersBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos4ComponentsContainersBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos4ComponentsNavigationFilter = {
+export type Docsos4ComponentsContainersFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -1030,107 +1189,20 @@ export type Docsos4ComponentsNavigationFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos4ComponentsNavigationBodyFilter>;
+  body?: InputMaybe<Docsos4ComponentsContainersBodyFilter>;
 };
 
-export type Docsos4ComponentsNavigationConnectionEdges = {
-  __typename?: 'Docsos4ComponentsNavigationConnectionEdges';
+export type Docsos4ComponentsContainersConnectionEdges = {
+  __typename?: 'Docsos4ComponentsContainersConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos4ComponentsNavigation>;
+  node?: Maybe<Docsos4ComponentsContainers>;
 };
 
-export type Docsos4ComponentsNavigationConnection = Connection & {
-  __typename?: 'Docsos4ComponentsNavigationConnection';
+export type Docsos4ComponentsContainersConnection = Connection & {
+  __typename?: 'Docsos4ComponentsContainersConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos4ComponentsNavigationConnectionEdges>>>;
-};
-
-export type Docsos4ComponentsFeedback = Node & Document & {
-  __typename?: 'Docsos4ComponentsFeedback';
-  title: Scalars['String']['output'];
-  description?: Maybe<Scalars['String']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  figmaFileKey?: Maybe<Scalars['String']['output']>;
-  figmaNodeId?: Maybe<Scalars['String']['output']>;
-  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
-  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  body?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Docsos4ComponentsFeedbackBodyStatusBadgeFilter = {
-  status?: InputMaybe<StringFilter>;
-};
-
-export type Docsos4ComponentsFeedbackBodyFigmaEmbedFilter = {
-  fileKey?: InputMaybe<StringFilter>;
-  nodeId?: InputMaybe<StringFilter>;
-  mode?: InputMaybe<StringFilter>;
-  height?: InputMaybe<NumberFilter>;
-  theme?: InputMaybe<StringFilter>;
-};
-
-export type Docsos4ComponentsFeedbackBodyFigmaPrototypeEmbedFilter = {
-  url?: InputMaybe<StringFilter>;
-  fileKey?: InputMaybe<StringFilter>;
-  nodeId?: InputMaybe<StringFilter>;
-  height?: InputMaybe<NumberFilter>;
-};
-
-export type Docsos4ComponentsFeedbackBodyTokenTableFilter = {
-  groups?: InputMaybe<StringFilter>;
-};
-
-export type Docsos4ComponentsFeedbackBodyDosDontsFilter = {
-  doTitle?: InputMaybe<StringFilter>;
-  dontTitle?: InputMaybe<StringFilter>;
-  doContent?: InputMaybe<StringFilter>;
-  dontContent?: InputMaybe<StringFilter>;
-};
-
-export type Docsos4ComponentsFeedbackBodyPlatformCodeBlockFilter = {
-  androidTitle?: InputMaybe<StringFilter>;
-  androidCode?: InputMaybe<StringFilter>;
-  iosTitle?: InputMaybe<StringFilter>;
-  iosCode?: InputMaybe<StringFilter>;
-};
-
-export type Docsos4ComponentsFeedbackBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos4ComponentsFeedbackBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos4ComponentsFeedbackBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsFeedbackBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos4ComponentsFeedbackBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos4ComponentsFeedbackBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos4ComponentsFeedbackBodyPlatformCodeBlockFilter>;
-};
-
-export type Docsos4ComponentsFeedbackFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  status?: InputMaybe<StringFilter>;
-  platforms?: InputMaybe<StringFilter>;
-  figmaFileKey?: InputMaybe<StringFilter>;
-  figmaNodeId?: InputMaybe<StringFilter>;
-  figmaPrototypeUrl?: InputMaybe<StringFilter>;
-  tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos4ComponentsFeedbackBodyFilter>;
-};
-
-export type Docsos4ComponentsFeedbackConnectionEdges = {
-  __typename?: 'Docsos4ComponentsFeedbackConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos4ComponentsFeedback>;
-};
-
-export type Docsos4ComponentsFeedbackConnection = Connection & {
-  __typename?: 'Docsos4ComponentsFeedbackConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos4ComponentsFeedbackConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos4ComponentsContainersConnectionEdges>>>;
 };
 
 export type Docsos4ComponentsDisplay = Node & Document & {
@@ -1220,8 +1292,8 @@ export type Docsos4ComponentsDisplayConnection = Connection & {
   edges?: Maybe<Array<Maybe<Docsos4ComponentsDisplayConnectionEdges>>>;
 };
 
-export type Docsos4Patterns = Node & Document & {
-  __typename?: 'Docsos4Patterns';
+export type Docsos4Interaction = Node & Document & {
+  __typename?: 'Docsos4Interaction';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -1236,11 +1308,11 @@ export type Docsos4Patterns = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos4PatternsBodyStatusBadgeFilter = {
+export type Docsos4InteractionBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4PatternsBodyFigmaEmbedFilter = {
+export type Docsos4InteractionBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -1248,41 +1320,41 @@ export type Docsos4PatternsBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4PatternsBodyFigmaPrototypeEmbedFilter = {
+export type Docsos4InteractionBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos4PatternsBodyTokenTableFilter = {
+export type Docsos4InteractionBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4PatternsBodyDosDontsFilter = {
+export type Docsos4InteractionBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4PatternsBodyPlatformCodeBlockFilter = {
+export type Docsos4InteractionBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4PatternsBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos4PatternsBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos4PatternsBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos4PatternsBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos4PatternsBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos4PatternsBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos4PatternsBodyPlatformCodeBlockFilter>;
+export type Docsos4InteractionBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos4InteractionBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos4InteractionBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos4InteractionBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos4InteractionBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos4InteractionBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos4InteractionBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos4PatternsFilter = {
+export type Docsos4InteractionFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -1291,24 +1363,24 @@ export type Docsos4PatternsFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos4PatternsBodyFilter>;
+  body?: InputMaybe<Docsos4InteractionBodyFilter>;
 };
 
-export type Docsos4PatternsConnectionEdges = {
-  __typename?: 'Docsos4PatternsConnectionEdges';
+export type Docsos4InteractionConnectionEdges = {
+  __typename?: 'Docsos4InteractionConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos4Patterns>;
+  node?: Maybe<Docsos4Interaction>;
 };
 
-export type Docsos4PatternsConnection = Connection & {
-  __typename?: 'Docsos4PatternsConnection';
+export type Docsos4InteractionConnection = Connection & {
+  __typename?: 'Docsos4InteractionConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos4PatternsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos4InteractionConnectionEdges>>>;
 };
 
-export type Docsos4Resources = Node & Document & {
-  __typename?: 'Docsos4Resources';
+export type Docsos4System = Node & Document & {
+  __typename?: 'Docsos4System';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -1323,11 +1395,11 @@ export type Docsos4Resources = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos4ResourcesBodyStatusBadgeFilter = {
+export type Docsos4SystemBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ResourcesBodyFigmaEmbedFilter = {
+export type Docsos4SystemBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -1335,41 +1407,41 @@ export type Docsos4ResourcesBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ResourcesBodyFigmaPrototypeEmbedFilter = {
+export type Docsos4SystemBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos4ResourcesBodyTokenTableFilter = {
+export type Docsos4SystemBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ResourcesBodyDosDontsFilter = {
+export type Docsos4SystemBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ResourcesBodyPlatformCodeBlockFilter = {
+export type Docsos4SystemBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos4ResourcesBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos4ResourcesBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos4ResourcesBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos4ResourcesBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos4ResourcesBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos4ResourcesBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos4ResourcesBodyPlatformCodeBlockFilter>;
+export type Docsos4SystemBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos4SystemBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos4SystemBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos4SystemBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos4SystemBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos4SystemBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos4SystemBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos4ResourcesFilter = {
+export type Docsos4SystemFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -1378,20 +1450,194 @@ export type Docsos4ResourcesFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos4ResourcesBodyFilter>;
+  body?: InputMaybe<Docsos4SystemBodyFilter>;
 };
 
-export type Docsos4ResourcesConnectionEdges = {
-  __typename?: 'Docsos4ResourcesConnectionEdges';
+export type Docsos4SystemConnectionEdges = {
+  __typename?: 'Docsos4SystemConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos4Resources>;
+  node?: Maybe<Docsos4System>;
 };
 
-export type Docsos4ResourcesConnection = Connection & {
-  __typename?: 'Docsos4ResourcesConnection';
+export type Docsos4SystemConnection = Connection & {
+  __typename?: 'Docsos4SystemConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos4ResourcesConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos4SystemConnectionEdges>>>;
+};
+
+export type Docsos4MultiDevice = Node & Document & {
+  __typename?: 'Docsos4MultiDevice';
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  figmaFileKey?: Maybe<Scalars['String']['output']>;
+  figmaNodeId?: Maybe<Scalars['String']['output']>;
+  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
+  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Docsos4MultiDeviceBodyStatusBadgeFilter = {
+  status?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4MultiDeviceBodyFigmaEmbedFilter = {
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  mode?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+  theme?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4MultiDeviceBodyFigmaPrototypeEmbedFilter = {
+  url?: InputMaybe<StringFilter>;
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+};
+
+export type Docsos4MultiDeviceBodyTokenTableFilter = {
+  groups?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4MultiDeviceBodyDosDontsFilter = {
+  doTitle?: InputMaybe<StringFilter>;
+  dontTitle?: InputMaybe<StringFilter>;
+  doContent?: InputMaybe<StringFilter>;
+  dontContent?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4MultiDeviceBodyPlatformCodeBlockFilter = {
+  androidTitle?: InputMaybe<StringFilter>;
+  androidCode?: InputMaybe<StringFilter>;
+  iosTitle?: InputMaybe<StringFilter>;
+  iosCode?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4MultiDeviceBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos4MultiDeviceBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos4MultiDeviceBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos4MultiDeviceBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos4MultiDeviceBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos4MultiDeviceBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos4MultiDeviceBodyPlatformCodeBlockFilter>;
+};
+
+export type Docsos4MultiDeviceFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  platforms?: InputMaybe<StringFilter>;
+  figmaFileKey?: InputMaybe<StringFilter>;
+  figmaNodeId?: InputMaybe<StringFilter>;
+  figmaPrototypeUrl?: InputMaybe<StringFilter>;
+  tokenGroups?: InputMaybe<StringFilter>;
+  body?: InputMaybe<Docsos4MultiDeviceBodyFilter>;
+};
+
+export type Docsos4MultiDeviceConnectionEdges = {
+  __typename?: 'Docsos4MultiDeviceConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Docsos4MultiDevice>;
+};
+
+export type Docsos4MultiDeviceConnection = Connection & {
+  __typename?: 'Docsos4MultiDeviceConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Docsos4MultiDeviceConnectionEdges>>>;
+};
+
+export type Docsos4BestPractices = Node & Document & {
+  __typename?: 'Docsos4BestPractices';
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  figmaFileKey?: Maybe<Scalars['String']['output']>;
+  figmaNodeId?: Maybe<Scalars['String']['output']>;
+  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
+  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Docsos4BestPracticesBodyStatusBadgeFilter = {
+  status?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4BestPracticesBodyFigmaEmbedFilter = {
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  mode?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+  theme?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4BestPracticesBodyFigmaPrototypeEmbedFilter = {
+  url?: InputMaybe<StringFilter>;
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+};
+
+export type Docsos4BestPracticesBodyTokenTableFilter = {
+  groups?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4BestPracticesBodyDosDontsFilter = {
+  doTitle?: InputMaybe<StringFilter>;
+  dontTitle?: InputMaybe<StringFilter>;
+  doContent?: InputMaybe<StringFilter>;
+  dontContent?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4BestPracticesBodyPlatformCodeBlockFilter = {
+  androidTitle?: InputMaybe<StringFilter>;
+  androidCode?: InputMaybe<StringFilter>;
+  iosTitle?: InputMaybe<StringFilter>;
+  iosCode?: InputMaybe<StringFilter>;
+};
+
+export type Docsos4BestPracticesBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos4BestPracticesBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos4BestPracticesBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos4BestPracticesBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos4BestPracticesBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos4BestPracticesBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos4BestPracticesBodyPlatformCodeBlockFilter>;
+};
+
+export type Docsos4BestPracticesFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  platforms?: InputMaybe<StringFilter>;
+  figmaFileKey?: InputMaybe<StringFilter>;
+  figmaNodeId?: InputMaybe<StringFilter>;
+  figmaPrototypeUrl?: InputMaybe<StringFilter>;
+  tokenGroups?: InputMaybe<StringFilter>;
+  body?: InputMaybe<Docsos4BestPracticesBodyFilter>;
+};
+
+export type Docsos4BestPracticesConnectionEdges = {
+  __typename?: 'Docsos4BestPracticesConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Docsos4BestPractices>;
+};
+
+export type Docsos4BestPracticesConnection = Connection & {
+  __typename?: 'Docsos4BestPracticesConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Docsos4BestPracticesConnectionEdges>>>;
 };
 
 export type Docsos5Overview = Node & Document & {
@@ -1481,8 +1727,8 @@ export type Docsos5OverviewConnection = Connection & {
   edges?: Maybe<Array<Maybe<Docsos5OverviewConnectionEdges>>>;
 };
 
-export type Docsos5Foundations = Node & Document & {
-  __typename?: 'Docsos5Foundations';
+export type Docsos5General = Node & Document & {
+  __typename?: 'Docsos5General';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -1497,11 +1743,11 @@ export type Docsos5Foundations = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos5FoundationsBodyStatusBadgeFilter = {
+export type Docsos5GeneralBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5FoundationsBodyFigmaEmbedFilter = {
+export type Docsos5GeneralBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -1509,41 +1755,41 @@ export type Docsos5FoundationsBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5FoundationsBodyFigmaPrototypeEmbedFilter = {
+export type Docsos5GeneralBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos5FoundationsBodyTokenTableFilter = {
+export type Docsos5GeneralBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5FoundationsBodyDosDontsFilter = {
+export type Docsos5GeneralBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5FoundationsBodyPlatformCodeBlockFilter = {
+export type Docsos5GeneralBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5FoundationsBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos5FoundationsBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos5FoundationsBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos5FoundationsBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos5FoundationsBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos5FoundationsBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos5FoundationsBodyPlatformCodeBlockFilter>;
+export type Docsos5GeneralBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos5GeneralBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos5GeneralBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos5GeneralBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos5GeneralBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos5GeneralBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos5GeneralBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos5FoundationsFilter = {
+export type Docsos5GeneralFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -1552,20 +1798,20 @@ export type Docsos5FoundationsFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos5FoundationsBodyFilter>;
+  body?: InputMaybe<Docsos5GeneralBodyFilter>;
 };
 
-export type Docsos5FoundationsConnectionEdges = {
-  __typename?: 'Docsos5FoundationsConnectionEdges';
+export type Docsos5GeneralConnectionEdges = {
+  __typename?: 'Docsos5GeneralConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos5Foundations>;
+  node?: Maybe<Docsos5General>;
 };
 
-export type Docsos5FoundationsConnection = Connection & {
-  __typename?: 'Docsos5FoundationsConnection';
+export type Docsos5GeneralConnection = Connection & {
+  __typename?: 'Docsos5GeneralConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos5FoundationsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos5GeneralConnectionEdges>>>;
 };
 
 export type Docsos5ComponentsOverview = Node & Document & {
@@ -1653,6 +1899,93 @@ export type Docsos5ComponentsOverviewConnection = Connection & {
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<Docsos5ComponentsOverviewConnectionEdges>>>;
+};
+
+export type Docsos5ComponentsNavigation = Node & Document & {
+  __typename?: 'Docsos5ComponentsNavigation';
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  figmaFileKey?: Maybe<Scalars['String']['output']>;
+  figmaNodeId?: Maybe<Scalars['String']['output']>;
+  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
+  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Docsos5ComponentsNavigationBodyStatusBadgeFilter = {
+  status?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5ComponentsNavigationBodyFigmaEmbedFilter = {
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  mode?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+  theme?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter = {
+  url?: InputMaybe<StringFilter>;
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+};
+
+export type Docsos5ComponentsNavigationBodyTokenTableFilter = {
+  groups?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5ComponentsNavigationBodyDosDontsFilter = {
+  doTitle?: InputMaybe<StringFilter>;
+  dontTitle?: InputMaybe<StringFilter>;
+  doContent?: InputMaybe<StringFilter>;
+  dontContent?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter = {
+  androidTitle?: InputMaybe<StringFilter>;
+  androidCode?: InputMaybe<StringFilter>;
+  iosTitle?: InputMaybe<StringFilter>;
+  iosCode?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5ComponentsNavigationBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos5ComponentsNavigationBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos5ComponentsNavigationBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos5ComponentsNavigationBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos5ComponentsNavigationBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter>;
+};
+
+export type Docsos5ComponentsNavigationFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  platforms?: InputMaybe<StringFilter>;
+  figmaFileKey?: InputMaybe<StringFilter>;
+  figmaNodeId?: InputMaybe<StringFilter>;
+  figmaPrototypeUrl?: InputMaybe<StringFilter>;
+  tokenGroups?: InputMaybe<StringFilter>;
+  body?: InputMaybe<Docsos5ComponentsNavigationBodyFilter>;
+};
+
+export type Docsos5ComponentsNavigationConnectionEdges = {
+  __typename?: 'Docsos5ComponentsNavigationConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Docsos5ComponentsNavigation>;
+};
+
+export type Docsos5ComponentsNavigationConnection = Connection & {
+  __typename?: 'Docsos5ComponentsNavigationConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Docsos5ComponentsNavigationConnectionEdges>>>;
 };
 
 export type Docsos5ComponentsActions = Node & Document & {
@@ -1829,8 +2162,8 @@ export type Docsos5ComponentsInputsConnection = Connection & {
   edges?: Maybe<Array<Maybe<Docsos5ComponentsInputsConnectionEdges>>>;
 };
 
-export type Docsos5ComponentsNavigation = Node & Document & {
-  __typename?: 'Docsos5ComponentsNavigation';
+export type Docsos5ComponentsContainers = Node & Document & {
+  __typename?: 'Docsos5ComponentsContainers';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -1845,11 +2178,11 @@ export type Docsos5ComponentsNavigation = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos5ComponentsNavigationBodyStatusBadgeFilter = {
+export type Docsos5ComponentsContainersBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ComponentsNavigationBodyFigmaEmbedFilter = {
+export type Docsos5ComponentsContainersBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -1857,41 +2190,41 @@ export type Docsos5ComponentsNavigationBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter = {
+export type Docsos5ComponentsContainersBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos5ComponentsNavigationBodyTokenTableFilter = {
+export type Docsos5ComponentsContainersBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ComponentsNavigationBodyDosDontsFilter = {
+export type Docsos5ComponentsContainersBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter = {
+export type Docsos5ComponentsContainersBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ComponentsNavigationBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos5ComponentsNavigationBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos5ComponentsNavigationBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos5ComponentsNavigationBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos5ComponentsNavigationBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter>;
+export type Docsos5ComponentsContainersBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos5ComponentsContainersBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos5ComponentsContainersBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsContainersBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos5ComponentsContainersBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos5ComponentsContainersBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos5ComponentsContainersBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos5ComponentsNavigationFilter = {
+export type Docsos5ComponentsContainersFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -1900,107 +2233,20 @@ export type Docsos5ComponentsNavigationFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos5ComponentsNavigationBodyFilter>;
+  body?: InputMaybe<Docsos5ComponentsContainersBodyFilter>;
 };
 
-export type Docsos5ComponentsNavigationConnectionEdges = {
-  __typename?: 'Docsos5ComponentsNavigationConnectionEdges';
+export type Docsos5ComponentsContainersConnectionEdges = {
+  __typename?: 'Docsos5ComponentsContainersConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos5ComponentsNavigation>;
+  node?: Maybe<Docsos5ComponentsContainers>;
 };
 
-export type Docsos5ComponentsNavigationConnection = Connection & {
-  __typename?: 'Docsos5ComponentsNavigationConnection';
+export type Docsos5ComponentsContainersConnection = Connection & {
+  __typename?: 'Docsos5ComponentsContainersConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos5ComponentsNavigationConnectionEdges>>>;
-};
-
-export type Docsos5ComponentsFeedback = Node & Document & {
-  __typename?: 'Docsos5ComponentsFeedback';
-  title: Scalars['String']['output'];
-  description?: Maybe<Scalars['String']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  figmaFileKey?: Maybe<Scalars['String']['output']>;
-  figmaNodeId?: Maybe<Scalars['String']['output']>;
-  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
-  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  body?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Docsos5ComponentsFeedbackBodyStatusBadgeFilter = {
-  status?: InputMaybe<StringFilter>;
-};
-
-export type Docsos5ComponentsFeedbackBodyFigmaEmbedFilter = {
-  fileKey?: InputMaybe<StringFilter>;
-  nodeId?: InputMaybe<StringFilter>;
-  mode?: InputMaybe<StringFilter>;
-  height?: InputMaybe<NumberFilter>;
-  theme?: InputMaybe<StringFilter>;
-};
-
-export type Docsos5ComponentsFeedbackBodyFigmaPrototypeEmbedFilter = {
-  url?: InputMaybe<StringFilter>;
-  fileKey?: InputMaybe<StringFilter>;
-  nodeId?: InputMaybe<StringFilter>;
-  height?: InputMaybe<NumberFilter>;
-};
-
-export type Docsos5ComponentsFeedbackBodyTokenTableFilter = {
-  groups?: InputMaybe<StringFilter>;
-};
-
-export type Docsos5ComponentsFeedbackBodyDosDontsFilter = {
-  doTitle?: InputMaybe<StringFilter>;
-  dontTitle?: InputMaybe<StringFilter>;
-  doContent?: InputMaybe<StringFilter>;
-  dontContent?: InputMaybe<StringFilter>;
-};
-
-export type Docsos5ComponentsFeedbackBodyPlatformCodeBlockFilter = {
-  androidTitle?: InputMaybe<StringFilter>;
-  androidCode?: InputMaybe<StringFilter>;
-  iosTitle?: InputMaybe<StringFilter>;
-  iosCode?: InputMaybe<StringFilter>;
-};
-
-export type Docsos5ComponentsFeedbackBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos5ComponentsFeedbackBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos5ComponentsFeedbackBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsFeedbackBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos5ComponentsFeedbackBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos5ComponentsFeedbackBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos5ComponentsFeedbackBodyPlatformCodeBlockFilter>;
-};
-
-export type Docsos5ComponentsFeedbackFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  status?: InputMaybe<StringFilter>;
-  platforms?: InputMaybe<StringFilter>;
-  figmaFileKey?: InputMaybe<StringFilter>;
-  figmaNodeId?: InputMaybe<StringFilter>;
-  figmaPrototypeUrl?: InputMaybe<StringFilter>;
-  tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos5ComponentsFeedbackBodyFilter>;
-};
-
-export type Docsos5ComponentsFeedbackConnectionEdges = {
-  __typename?: 'Docsos5ComponentsFeedbackConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos5ComponentsFeedback>;
-};
-
-export type Docsos5ComponentsFeedbackConnection = Connection & {
-  __typename?: 'Docsos5ComponentsFeedbackConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos5ComponentsFeedbackConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos5ComponentsContainersConnectionEdges>>>;
 };
 
 export type Docsos5ComponentsDisplay = Node & Document & {
@@ -2090,8 +2336,8 @@ export type Docsos5ComponentsDisplayConnection = Connection & {
   edges?: Maybe<Array<Maybe<Docsos5ComponentsDisplayConnectionEdges>>>;
 };
 
-export type Docsos5Patterns = Node & Document & {
-  __typename?: 'Docsos5Patterns';
+export type Docsos5Interaction = Node & Document & {
+  __typename?: 'Docsos5Interaction';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -2106,11 +2352,11 @@ export type Docsos5Patterns = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos5PatternsBodyStatusBadgeFilter = {
+export type Docsos5InteractionBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5PatternsBodyFigmaEmbedFilter = {
+export type Docsos5InteractionBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -2118,41 +2364,41 @@ export type Docsos5PatternsBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5PatternsBodyFigmaPrototypeEmbedFilter = {
+export type Docsos5InteractionBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos5PatternsBodyTokenTableFilter = {
+export type Docsos5InteractionBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5PatternsBodyDosDontsFilter = {
+export type Docsos5InteractionBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5PatternsBodyPlatformCodeBlockFilter = {
+export type Docsos5InteractionBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5PatternsBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos5PatternsBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos5PatternsBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos5PatternsBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos5PatternsBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos5PatternsBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos5PatternsBodyPlatformCodeBlockFilter>;
+export type Docsos5InteractionBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos5InteractionBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos5InteractionBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos5InteractionBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos5InteractionBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos5InteractionBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos5InteractionBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos5PatternsFilter = {
+export type Docsos5InteractionFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -2161,24 +2407,24 @@ export type Docsos5PatternsFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos5PatternsBodyFilter>;
+  body?: InputMaybe<Docsos5InteractionBodyFilter>;
 };
 
-export type Docsos5PatternsConnectionEdges = {
-  __typename?: 'Docsos5PatternsConnectionEdges';
+export type Docsos5InteractionConnectionEdges = {
+  __typename?: 'Docsos5InteractionConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos5Patterns>;
+  node?: Maybe<Docsos5Interaction>;
 };
 
-export type Docsos5PatternsConnection = Connection & {
-  __typename?: 'Docsos5PatternsConnection';
+export type Docsos5InteractionConnection = Connection & {
+  __typename?: 'Docsos5InteractionConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos5PatternsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos5InteractionConnectionEdges>>>;
 };
 
-export type Docsos5Resources = Node & Document & {
-  __typename?: 'Docsos5Resources';
+export type Docsos5System = Node & Document & {
+  __typename?: 'Docsos5System';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -2193,11 +2439,11 @@ export type Docsos5Resources = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Docsos5ResourcesBodyStatusBadgeFilter = {
+export type Docsos5SystemBodyStatusBadgeFilter = {
   status?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ResourcesBodyFigmaEmbedFilter = {
+export type Docsos5SystemBodyFigmaEmbedFilter = {
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   mode?: InputMaybe<StringFilter>;
@@ -2205,41 +2451,41 @@ export type Docsos5ResourcesBodyFigmaEmbedFilter = {
   theme?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ResourcesBodyFigmaPrototypeEmbedFilter = {
+export type Docsos5SystemBodyFigmaPrototypeEmbedFilter = {
   url?: InputMaybe<StringFilter>;
   fileKey?: InputMaybe<StringFilter>;
   nodeId?: InputMaybe<StringFilter>;
   height?: InputMaybe<NumberFilter>;
 };
 
-export type Docsos5ResourcesBodyTokenTableFilter = {
+export type Docsos5SystemBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ResourcesBodyDosDontsFilter = {
+export type Docsos5SystemBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
   doContent?: InputMaybe<StringFilter>;
   dontContent?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ResourcesBodyPlatformCodeBlockFilter = {
+export type Docsos5SystemBodyPlatformCodeBlockFilter = {
   androidTitle?: InputMaybe<StringFilter>;
   androidCode?: InputMaybe<StringFilter>;
   iosTitle?: InputMaybe<StringFilter>;
   iosCode?: InputMaybe<StringFilter>;
 };
 
-export type Docsos5ResourcesBodyFilter = {
-  StatusBadge?: InputMaybe<Docsos5ResourcesBodyStatusBadgeFilter>;
-  FigmaEmbed?: InputMaybe<Docsos5ResourcesBodyFigmaEmbedFilter>;
-  FigmaPrototypeEmbed?: InputMaybe<Docsos5ResourcesBodyFigmaPrototypeEmbedFilter>;
-  TokenTable?: InputMaybe<Docsos5ResourcesBodyTokenTableFilter>;
-  DosDonts?: InputMaybe<Docsos5ResourcesBodyDosDontsFilter>;
-  PlatformCodeBlock?: InputMaybe<Docsos5ResourcesBodyPlatformCodeBlockFilter>;
+export type Docsos5SystemBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos5SystemBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos5SystemBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos5SystemBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos5SystemBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos5SystemBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos5SystemBodyPlatformCodeBlockFilter>;
 };
 
-export type Docsos5ResourcesFilter = {
+export type Docsos5SystemFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
@@ -2248,20 +2494,194 @@ export type Docsos5ResourcesFilter = {
   figmaNodeId?: InputMaybe<StringFilter>;
   figmaPrototypeUrl?: InputMaybe<StringFilter>;
   tokenGroups?: InputMaybe<StringFilter>;
-  body?: InputMaybe<Docsos5ResourcesBodyFilter>;
+  body?: InputMaybe<Docsos5SystemBodyFilter>;
 };
 
-export type Docsos5ResourcesConnectionEdges = {
-  __typename?: 'Docsos5ResourcesConnectionEdges';
+export type Docsos5SystemConnectionEdges = {
+  __typename?: 'Docsos5SystemConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Docsos5Resources>;
+  node?: Maybe<Docsos5System>;
 };
 
-export type Docsos5ResourcesConnection = Connection & {
-  __typename?: 'Docsos5ResourcesConnection';
+export type Docsos5SystemConnection = Connection & {
+  __typename?: 'Docsos5SystemConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Docsos5ResourcesConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<Docsos5SystemConnectionEdges>>>;
+};
+
+export type Docsos5MultiDevice = Node & Document & {
+  __typename?: 'Docsos5MultiDevice';
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  figmaFileKey?: Maybe<Scalars['String']['output']>;
+  figmaNodeId?: Maybe<Scalars['String']['output']>;
+  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
+  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Docsos5MultiDeviceBodyStatusBadgeFilter = {
+  status?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5MultiDeviceBodyFigmaEmbedFilter = {
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  mode?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+  theme?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5MultiDeviceBodyFigmaPrototypeEmbedFilter = {
+  url?: InputMaybe<StringFilter>;
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+};
+
+export type Docsos5MultiDeviceBodyTokenTableFilter = {
+  groups?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5MultiDeviceBodyDosDontsFilter = {
+  doTitle?: InputMaybe<StringFilter>;
+  dontTitle?: InputMaybe<StringFilter>;
+  doContent?: InputMaybe<StringFilter>;
+  dontContent?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5MultiDeviceBodyPlatformCodeBlockFilter = {
+  androidTitle?: InputMaybe<StringFilter>;
+  androidCode?: InputMaybe<StringFilter>;
+  iosTitle?: InputMaybe<StringFilter>;
+  iosCode?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5MultiDeviceBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos5MultiDeviceBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos5MultiDeviceBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos5MultiDeviceBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos5MultiDeviceBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos5MultiDeviceBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos5MultiDeviceBodyPlatformCodeBlockFilter>;
+};
+
+export type Docsos5MultiDeviceFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  platforms?: InputMaybe<StringFilter>;
+  figmaFileKey?: InputMaybe<StringFilter>;
+  figmaNodeId?: InputMaybe<StringFilter>;
+  figmaPrototypeUrl?: InputMaybe<StringFilter>;
+  tokenGroups?: InputMaybe<StringFilter>;
+  body?: InputMaybe<Docsos5MultiDeviceBodyFilter>;
+};
+
+export type Docsos5MultiDeviceConnectionEdges = {
+  __typename?: 'Docsos5MultiDeviceConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Docsos5MultiDevice>;
+};
+
+export type Docsos5MultiDeviceConnection = Connection & {
+  __typename?: 'Docsos5MultiDeviceConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Docsos5MultiDeviceConnectionEdges>>>;
+};
+
+export type Docsos5BestPractices = Node & Document & {
+  __typename?: 'Docsos5BestPractices';
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  platforms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  figmaFileKey?: Maybe<Scalars['String']['output']>;
+  figmaNodeId?: Maybe<Scalars['String']['output']>;
+  figmaPrototypeUrl?: Maybe<Scalars['String']['output']>;
+  tokenGroups?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Docsos5BestPracticesBodyStatusBadgeFilter = {
+  status?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5BestPracticesBodyFigmaEmbedFilter = {
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  mode?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+  theme?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5BestPracticesBodyFigmaPrototypeEmbedFilter = {
+  url?: InputMaybe<StringFilter>;
+  fileKey?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+};
+
+export type Docsos5BestPracticesBodyTokenTableFilter = {
+  groups?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5BestPracticesBodyDosDontsFilter = {
+  doTitle?: InputMaybe<StringFilter>;
+  dontTitle?: InputMaybe<StringFilter>;
+  doContent?: InputMaybe<StringFilter>;
+  dontContent?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5BestPracticesBodyPlatformCodeBlockFilter = {
+  androidTitle?: InputMaybe<StringFilter>;
+  androidCode?: InputMaybe<StringFilter>;
+  iosTitle?: InputMaybe<StringFilter>;
+  iosCode?: InputMaybe<StringFilter>;
+};
+
+export type Docsos5BestPracticesBodyFilter = {
+  StatusBadge?: InputMaybe<Docsos5BestPracticesBodyStatusBadgeFilter>;
+  FigmaEmbed?: InputMaybe<Docsos5BestPracticesBodyFigmaEmbedFilter>;
+  FigmaPrototypeEmbed?: InputMaybe<Docsos5BestPracticesBodyFigmaPrototypeEmbedFilter>;
+  TokenTable?: InputMaybe<Docsos5BestPracticesBodyTokenTableFilter>;
+  DosDonts?: InputMaybe<Docsos5BestPracticesBodyDosDontsFilter>;
+  PlatformCodeBlock?: InputMaybe<Docsos5BestPracticesBodyPlatformCodeBlockFilter>;
+};
+
+export type Docsos5BestPracticesFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  platforms?: InputMaybe<StringFilter>;
+  figmaFileKey?: InputMaybe<StringFilter>;
+  figmaNodeId?: InputMaybe<StringFilter>;
+  figmaPrototypeUrl?: InputMaybe<StringFilter>;
+  tokenGroups?: InputMaybe<StringFilter>;
+  body?: InputMaybe<Docsos5BestPracticesBodyFilter>;
+};
+
+export type Docsos5BestPracticesConnectionEdges = {
+  __typename?: 'Docsos5BestPracticesConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Docsos5BestPractices>;
+};
+
+export type Docsos5BestPracticesConnection = Connection & {
+  __typename?: 'Docsos5BestPracticesConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Docsos5BestPracticesConnectionEdges>>>;
 };
 
 export type Mutation = {
@@ -2273,44 +2693,52 @@ export type Mutation = {
   createFolder: DocumentNode;
   updateDocsos4Overview: Docsos4Overview;
   createDocsos4Overview: Docsos4Overview;
-  updateDocsos4Foundations: Docsos4Foundations;
-  createDocsos4Foundations: Docsos4Foundations;
+  updateDocsos4General: Docsos4General;
+  createDocsos4General: Docsos4General;
   updateDocsos4ComponentsOverview: Docsos4ComponentsOverview;
   createDocsos4ComponentsOverview: Docsos4ComponentsOverview;
+  updateDocsos4ComponentsNavigation: Docsos4ComponentsNavigation;
+  createDocsos4ComponentsNavigation: Docsos4ComponentsNavigation;
   updateDocsos4ComponentsActions: Docsos4ComponentsActions;
   createDocsos4ComponentsActions: Docsos4ComponentsActions;
   updateDocsos4ComponentsInputs: Docsos4ComponentsInputs;
   createDocsos4ComponentsInputs: Docsos4ComponentsInputs;
-  updateDocsos4ComponentsNavigation: Docsos4ComponentsNavigation;
-  createDocsos4ComponentsNavigation: Docsos4ComponentsNavigation;
-  updateDocsos4ComponentsFeedback: Docsos4ComponentsFeedback;
-  createDocsos4ComponentsFeedback: Docsos4ComponentsFeedback;
+  updateDocsos4ComponentsContainers: Docsos4ComponentsContainers;
+  createDocsos4ComponentsContainers: Docsos4ComponentsContainers;
   updateDocsos4ComponentsDisplay: Docsos4ComponentsDisplay;
   createDocsos4ComponentsDisplay: Docsos4ComponentsDisplay;
-  updateDocsos4Patterns: Docsos4Patterns;
-  createDocsos4Patterns: Docsos4Patterns;
-  updateDocsos4Resources: Docsos4Resources;
-  createDocsos4Resources: Docsos4Resources;
+  updateDocsos4Interaction: Docsos4Interaction;
+  createDocsos4Interaction: Docsos4Interaction;
+  updateDocsos4System: Docsos4System;
+  createDocsos4System: Docsos4System;
+  updateDocsos4MultiDevice: Docsos4MultiDevice;
+  createDocsos4MultiDevice: Docsos4MultiDevice;
+  updateDocsos4BestPractices: Docsos4BestPractices;
+  createDocsos4BestPractices: Docsos4BestPractices;
   updateDocsos5Overview: Docsos5Overview;
   createDocsos5Overview: Docsos5Overview;
-  updateDocsos5Foundations: Docsos5Foundations;
-  createDocsos5Foundations: Docsos5Foundations;
+  updateDocsos5General: Docsos5General;
+  createDocsos5General: Docsos5General;
   updateDocsos5ComponentsOverview: Docsos5ComponentsOverview;
   createDocsos5ComponentsOverview: Docsos5ComponentsOverview;
+  updateDocsos5ComponentsNavigation: Docsos5ComponentsNavigation;
+  createDocsos5ComponentsNavigation: Docsos5ComponentsNavigation;
   updateDocsos5ComponentsActions: Docsos5ComponentsActions;
   createDocsos5ComponentsActions: Docsos5ComponentsActions;
   updateDocsos5ComponentsInputs: Docsos5ComponentsInputs;
   createDocsos5ComponentsInputs: Docsos5ComponentsInputs;
-  updateDocsos5ComponentsNavigation: Docsos5ComponentsNavigation;
-  createDocsos5ComponentsNavigation: Docsos5ComponentsNavigation;
-  updateDocsos5ComponentsFeedback: Docsos5ComponentsFeedback;
-  createDocsos5ComponentsFeedback: Docsos5ComponentsFeedback;
+  updateDocsos5ComponentsContainers: Docsos5ComponentsContainers;
+  createDocsos5ComponentsContainers: Docsos5ComponentsContainers;
   updateDocsos5ComponentsDisplay: Docsos5ComponentsDisplay;
   createDocsos5ComponentsDisplay: Docsos5ComponentsDisplay;
-  updateDocsos5Patterns: Docsos5Patterns;
-  createDocsos5Patterns: Docsos5Patterns;
-  updateDocsos5Resources: Docsos5Resources;
-  createDocsos5Resources: Docsos5Resources;
+  updateDocsos5Interaction: Docsos5Interaction;
+  createDocsos5Interaction: Docsos5Interaction;
+  updateDocsos5System: Docsos5System;
+  createDocsos5System: Docsos5System;
+  updateDocsos5MultiDevice: Docsos5MultiDevice;
+  createDocsos5MultiDevice: Docsos5MultiDevice;
+  updateDocsos5BestPractices: Docsos5BestPractices;
+  createDocsos5BestPractices: Docsos5BestPractices;
 };
 
 
@@ -2359,15 +2787,15 @@ export type MutationCreateDocsos4OverviewArgs = {
 };
 
 
-export type MutationUpdateDocsos4FoundationsArgs = {
+export type MutationUpdateDocsos4GeneralArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4FoundationsMutation;
+  params: Docsos4GeneralMutation;
 };
 
 
-export type MutationCreateDocsos4FoundationsArgs = {
+export type MutationCreateDocsos4GeneralArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4FoundationsMutation;
+  params: Docsos4GeneralMutation;
 };
 
 
@@ -2380,6 +2808,18 @@ export type MutationUpdateDocsos4ComponentsOverviewArgs = {
 export type MutationCreateDocsos4ComponentsOverviewArgs = {
   relativePath: Scalars['String']['input'];
   params: Docsos4ComponentsOverviewMutation;
+};
+
+
+export type MutationUpdateDocsos4ComponentsNavigationArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos4ComponentsNavigationMutation;
+};
+
+
+export type MutationCreateDocsos4ComponentsNavigationArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos4ComponentsNavigationMutation;
 };
 
 
@@ -2407,27 +2847,15 @@ export type MutationCreateDocsos4ComponentsInputsArgs = {
 };
 
 
-export type MutationUpdateDocsos4ComponentsNavigationArgs = {
+export type MutationUpdateDocsos4ComponentsContainersArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4ComponentsNavigationMutation;
+  params: Docsos4ComponentsContainersMutation;
 };
 
 
-export type MutationCreateDocsos4ComponentsNavigationArgs = {
+export type MutationCreateDocsos4ComponentsContainersArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4ComponentsNavigationMutation;
-};
-
-
-export type MutationUpdateDocsos4ComponentsFeedbackArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Docsos4ComponentsFeedbackMutation;
-};
-
-
-export type MutationCreateDocsos4ComponentsFeedbackArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Docsos4ComponentsFeedbackMutation;
+  params: Docsos4ComponentsContainersMutation;
 };
 
 
@@ -2443,27 +2871,51 @@ export type MutationCreateDocsos4ComponentsDisplayArgs = {
 };
 
 
-export type MutationUpdateDocsos4PatternsArgs = {
+export type MutationUpdateDocsos4InteractionArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4PatternsMutation;
+  params: Docsos4InteractionMutation;
 };
 
 
-export type MutationCreateDocsos4PatternsArgs = {
+export type MutationCreateDocsos4InteractionArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4PatternsMutation;
+  params: Docsos4InteractionMutation;
 };
 
 
-export type MutationUpdateDocsos4ResourcesArgs = {
+export type MutationUpdateDocsos4SystemArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4ResourcesMutation;
+  params: Docsos4SystemMutation;
 };
 
 
-export type MutationCreateDocsos4ResourcesArgs = {
+export type MutationCreateDocsos4SystemArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos4ResourcesMutation;
+  params: Docsos4SystemMutation;
+};
+
+
+export type MutationUpdateDocsos4MultiDeviceArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos4MultiDeviceMutation;
+};
+
+
+export type MutationCreateDocsos4MultiDeviceArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos4MultiDeviceMutation;
+};
+
+
+export type MutationUpdateDocsos4BestPracticesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos4BestPracticesMutation;
+};
+
+
+export type MutationCreateDocsos4BestPracticesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos4BestPracticesMutation;
 };
 
 
@@ -2479,15 +2931,15 @@ export type MutationCreateDocsos5OverviewArgs = {
 };
 
 
-export type MutationUpdateDocsos5FoundationsArgs = {
+export type MutationUpdateDocsos5GeneralArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5FoundationsMutation;
+  params: Docsos5GeneralMutation;
 };
 
 
-export type MutationCreateDocsos5FoundationsArgs = {
+export type MutationCreateDocsos5GeneralArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5FoundationsMutation;
+  params: Docsos5GeneralMutation;
 };
 
 
@@ -2500,6 +2952,18 @@ export type MutationUpdateDocsos5ComponentsOverviewArgs = {
 export type MutationCreateDocsos5ComponentsOverviewArgs = {
   relativePath: Scalars['String']['input'];
   params: Docsos5ComponentsOverviewMutation;
+};
+
+
+export type MutationUpdateDocsos5ComponentsNavigationArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos5ComponentsNavigationMutation;
+};
+
+
+export type MutationCreateDocsos5ComponentsNavigationArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos5ComponentsNavigationMutation;
 };
 
 
@@ -2527,27 +2991,15 @@ export type MutationCreateDocsos5ComponentsInputsArgs = {
 };
 
 
-export type MutationUpdateDocsos5ComponentsNavigationArgs = {
+export type MutationUpdateDocsos5ComponentsContainersArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5ComponentsNavigationMutation;
+  params: Docsos5ComponentsContainersMutation;
 };
 
 
-export type MutationCreateDocsos5ComponentsNavigationArgs = {
+export type MutationCreateDocsos5ComponentsContainersArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5ComponentsNavigationMutation;
-};
-
-
-export type MutationUpdateDocsos5ComponentsFeedbackArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Docsos5ComponentsFeedbackMutation;
-};
-
-
-export type MutationCreateDocsos5ComponentsFeedbackArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Docsos5ComponentsFeedbackMutation;
+  params: Docsos5ComponentsContainersMutation;
 };
 
 
@@ -2563,74 +3015,106 @@ export type MutationCreateDocsos5ComponentsDisplayArgs = {
 };
 
 
-export type MutationUpdateDocsos5PatternsArgs = {
+export type MutationUpdateDocsos5InteractionArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5PatternsMutation;
+  params: Docsos5InteractionMutation;
 };
 
 
-export type MutationCreateDocsos5PatternsArgs = {
+export type MutationCreateDocsos5InteractionArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5PatternsMutation;
+  params: Docsos5InteractionMutation;
 };
 
 
-export type MutationUpdateDocsos5ResourcesArgs = {
+export type MutationUpdateDocsos5SystemArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5ResourcesMutation;
+  params: Docsos5SystemMutation;
 };
 
 
-export type MutationCreateDocsos5ResourcesArgs = {
+export type MutationCreateDocsos5SystemArgs = {
   relativePath: Scalars['String']['input'];
-  params: Docsos5ResourcesMutation;
+  params: Docsos5SystemMutation;
+};
+
+
+export type MutationUpdateDocsos5MultiDeviceArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos5MultiDeviceMutation;
+};
+
+
+export type MutationCreateDocsos5MultiDeviceArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos5MultiDeviceMutation;
+};
+
+
+export type MutationUpdateDocsos5BestPracticesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos5BestPracticesMutation;
+};
+
+
+export type MutationCreateDocsos5BestPracticesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Docsos5BestPracticesMutation;
 };
 
 export type DocumentUpdateMutation = {
   docsos4Overview?: InputMaybe<Docsos4OverviewMutation>;
-  docsos4Foundations?: InputMaybe<Docsos4FoundationsMutation>;
+  docsos4General?: InputMaybe<Docsos4GeneralMutation>;
   docsos4ComponentsOverview?: InputMaybe<Docsos4ComponentsOverviewMutation>;
+  docsos4ComponentsNavigation?: InputMaybe<Docsos4ComponentsNavigationMutation>;
   docsos4ComponentsActions?: InputMaybe<Docsos4ComponentsActionsMutation>;
   docsos4ComponentsInputs?: InputMaybe<Docsos4ComponentsInputsMutation>;
-  docsos4ComponentsNavigation?: InputMaybe<Docsos4ComponentsNavigationMutation>;
-  docsos4ComponentsFeedback?: InputMaybe<Docsos4ComponentsFeedbackMutation>;
+  docsos4ComponentsContainers?: InputMaybe<Docsos4ComponentsContainersMutation>;
   docsos4ComponentsDisplay?: InputMaybe<Docsos4ComponentsDisplayMutation>;
-  docsos4Patterns?: InputMaybe<Docsos4PatternsMutation>;
-  docsos4Resources?: InputMaybe<Docsos4ResourcesMutation>;
+  docsos4Interaction?: InputMaybe<Docsos4InteractionMutation>;
+  docsos4System?: InputMaybe<Docsos4SystemMutation>;
+  docsos4MultiDevice?: InputMaybe<Docsos4MultiDeviceMutation>;
+  docsos4BestPractices?: InputMaybe<Docsos4BestPracticesMutation>;
   docsos5Overview?: InputMaybe<Docsos5OverviewMutation>;
-  docsos5Foundations?: InputMaybe<Docsos5FoundationsMutation>;
+  docsos5General?: InputMaybe<Docsos5GeneralMutation>;
   docsos5ComponentsOverview?: InputMaybe<Docsos5ComponentsOverviewMutation>;
+  docsos5ComponentsNavigation?: InputMaybe<Docsos5ComponentsNavigationMutation>;
   docsos5ComponentsActions?: InputMaybe<Docsos5ComponentsActionsMutation>;
   docsos5ComponentsInputs?: InputMaybe<Docsos5ComponentsInputsMutation>;
-  docsos5ComponentsNavigation?: InputMaybe<Docsos5ComponentsNavigationMutation>;
-  docsos5ComponentsFeedback?: InputMaybe<Docsos5ComponentsFeedbackMutation>;
+  docsos5ComponentsContainers?: InputMaybe<Docsos5ComponentsContainersMutation>;
   docsos5ComponentsDisplay?: InputMaybe<Docsos5ComponentsDisplayMutation>;
-  docsos5Patterns?: InputMaybe<Docsos5PatternsMutation>;
-  docsos5Resources?: InputMaybe<Docsos5ResourcesMutation>;
+  docsos5Interaction?: InputMaybe<Docsos5InteractionMutation>;
+  docsos5System?: InputMaybe<Docsos5SystemMutation>;
+  docsos5MultiDevice?: InputMaybe<Docsos5MultiDeviceMutation>;
+  docsos5BestPractices?: InputMaybe<Docsos5BestPracticesMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   docsos4Overview?: InputMaybe<Docsos4OverviewMutation>;
-  docsos4Foundations?: InputMaybe<Docsos4FoundationsMutation>;
+  docsos4General?: InputMaybe<Docsos4GeneralMutation>;
   docsos4ComponentsOverview?: InputMaybe<Docsos4ComponentsOverviewMutation>;
+  docsos4ComponentsNavigation?: InputMaybe<Docsos4ComponentsNavigationMutation>;
   docsos4ComponentsActions?: InputMaybe<Docsos4ComponentsActionsMutation>;
   docsos4ComponentsInputs?: InputMaybe<Docsos4ComponentsInputsMutation>;
-  docsos4ComponentsNavigation?: InputMaybe<Docsos4ComponentsNavigationMutation>;
-  docsos4ComponentsFeedback?: InputMaybe<Docsos4ComponentsFeedbackMutation>;
+  docsos4ComponentsContainers?: InputMaybe<Docsos4ComponentsContainersMutation>;
   docsos4ComponentsDisplay?: InputMaybe<Docsos4ComponentsDisplayMutation>;
-  docsos4Patterns?: InputMaybe<Docsos4PatternsMutation>;
-  docsos4Resources?: InputMaybe<Docsos4ResourcesMutation>;
+  docsos4Interaction?: InputMaybe<Docsos4InteractionMutation>;
+  docsos4System?: InputMaybe<Docsos4SystemMutation>;
+  docsos4MultiDevice?: InputMaybe<Docsos4MultiDeviceMutation>;
+  docsos4BestPractices?: InputMaybe<Docsos4BestPracticesMutation>;
   docsos5Overview?: InputMaybe<Docsos5OverviewMutation>;
-  docsos5Foundations?: InputMaybe<Docsos5FoundationsMutation>;
+  docsos5General?: InputMaybe<Docsos5GeneralMutation>;
   docsos5ComponentsOverview?: InputMaybe<Docsos5ComponentsOverviewMutation>;
+  docsos5ComponentsNavigation?: InputMaybe<Docsos5ComponentsNavigationMutation>;
   docsos5ComponentsActions?: InputMaybe<Docsos5ComponentsActionsMutation>;
   docsos5ComponentsInputs?: InputMaybe<Docsos5ComponentsInputsMutation>;
-  docsos5ComponentsNavigation?: InputMaybe<Docsos5ComponentsNavigationMutation>;
-  docsos5ComponentsFeedback?: InputMaybe<Docsos5ComponentsFeedbackMutation>;
+  docsos5ComponentsContainers?: InputMaybe<Docsos5ComponentsContainersMutation>;
   docsos5ComponentsDisplay?: InputMaybe<Docsos5ComponentsDisplayMutation>;
-  docsos5Patterns?: InputMaybe<Docsos5PatternsMutation>;
-  docsos5Resources?: InputMaybe<Docsos5ResourcesMutation>;
+  docsos5Interaction?: InputMaybe<Docsos5InteractionMutation>;
+  docsos5System?: InputMaybe<Docsos5SystemMutation>;
+  docsos5MultiDevice?: InputMaybe<Docsos5MultiDeviceMutation>;
+  docsos5BestPractices?: InputMaybe<Docsos5BestPracticesMutation>;
 };
 
 export type Docsos4OverviewMutation = {
@@ -2645,7 +3129,7 @@ export type Docsos4OverviewMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos4FoundationsMutation = {
+export type Docsos4GeneralMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2658,6 +3142,18 @@ export type Docsos4FoundationsMutation = {
 };
 
 export type Docsos4ComponentsOverviewMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
+  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
+  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
+  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Docsos4ComponentsNavigationMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2693,19 +3189,7 @@ export type Docsos4ComponentsInputsMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos4ComponentsNavigationMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
-  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
-  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
-  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type Docsos4ComponentsFeedbackMutation = {
+export type Docsos4ComponentsContainersMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2729,7 +3213,7 @@ export type Docsos4ComponentsDisplayMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos4PatternsMutation = {
+export type Docsos4InteractionMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2741,7 +3225,31 @@ export type Docsos4PatternsMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos4ResourcesMutation = {
+export type Docsos4SystemMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
+  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
+  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
+  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Docsos4MultiDeviceMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
+  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
+  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
+  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Docsos4BestPracticesMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2765,7 +3273,7 @@ export type Docsos5OverviewMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos5FoundationsMutation = {
+export type Docsos5GeneralMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2778,6 +3286,18 @@ export type Docsos5FoundationsMutation = {
 };
 
 export type Docsos5ComponentsOverviewMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
+  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
+  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
+  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Docsos5ComponentsNavigationMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2813,19 +3333,7 @@ export type Docsos5ComponentsInputsMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos5ComponentsNavigationMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
-  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
-  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
-  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type Docsos5ComponentsFeedbackMutation = {
+export type Docsos5ComponentsContainersMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2849,7 +3357,7 @@ export type Docsos5ComponentsDisplayMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos5PatternsMutation = {
+export type Docsos5InteractionMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2861,7 +3369,31 @@ export type Docsos5PatternsMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Docsos5ResourcesMutation = {
+export type Docsos5SystemMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
+  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
+  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
+  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Docsos5MultiDeviceMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  platforms?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  figmaFileKey?: InputMaybe<Scalars['String']['input']>;
+  figmaNodeId?: InputMaybe<Scalars['String']['input']>;
+  figmaPrototypeUrl?: InputMaybe<Scalars['String']['input']>;
+  tokenGroups?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Docsos5BestPracticesMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -2875,43 +3407,51 @@ export type Docsos5ResourcesMutation = {
 
 export type Docsos4OverviewPartsFragment = { __typename: 'Docsos4Overview', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos4FoundationsPartsFragment = { __typename: 'Docsos4Foundations', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos4GeneralPartsFragment = { __typename: 'Docsos4General', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos4ComponentsOverviewPartsFragment = { __typename: 'Docsos4ComponentsOverview', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+
+export type Docsos4ComponentsNavigationPartsFragment = { __typename: 'Docsos4ComponentsNavigation', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos4ComponentsActionsPartsFragment = { __typename: 'Docsos4ComponentsActions', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos4ComponentsInputsPartsFragment = { __typename: 'Docsos4ComponentsInputs', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos4ComponentsNavigationPartsFragment = { __typename: 'Docsos4ComponentsNavigation', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
-
-export type Docsos4ComponentsFeedbackPartsFragment = { __typename: 'Docsos4ComponentsFeedback', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos4ComponentsContainersPartsFragment = { __typename: 'Docsos4ComponentsContainers', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos4ComponentsDisplayPartsFragment = { __typename: 'Docsos4ComponentsDisplay', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos4PatternsPartsFragment = { __typename: 'Docsos4Patterns', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos4InteractionPartsFragment = { __typename: 'Docsos4Interaction', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos4ResourcesPartsFragment = { __typename: 'Docsos4Resources', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos4SystemPartsFragment = { __typename: 'Docsos4System', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+
+export type Docsos4MultiDevicePartsFragment = { __typename: 'Docsos4MultiDevice', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+
+export type Docsos4BestPracticesPartsFragment = { __typename: 'Docsos4BestPractices', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos5OverviewPartsFragment = { __typename: 'Docsos5Overview', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos5FoundationsPartsFragment = { __typename: 'Docsos5Foundations', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos5GeneralPartsFragment = { __typename: 'Docsos5General', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos5ComponentsOverviewPartsFragment = { __typename: 'Docsos5ComponentsOverview', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+
+export type Docsos5ComponentsNavigationPartsFragment = { __typename: 'Docsos5ComponentsNavigation', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos5ComponentsActionsPartsFragment = { __typename: 'Docsos5ComponentsActions', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos5ComponentsInputsPartsFragment = { __typename: 'Docsos5ComponentsInputs', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos5ComponentsNavigationPartsFragment = { __typename: 'Docsos5ComponentsNavigation', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
-
-export type Docsos5ComponentsFeedbackPartsFragment = { __typename: 'Docsos5ComponentsFeedback', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos5ComponentsContainersPartsFragment = { __typename: 'Docsos5ComponentsContainers', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos5ComponentsDisplayPartsFragment = { __typename: 'Docsos5ComponentsDisplay', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos5PatternsPartsFragment = { __typename: 'Docsos5Patterns', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos5InteractionPartsFragment = { __typename: 'Docsos5Interaction', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
-export type Docsos5ResourcesPartsFragment = { __typename: 'Docsos5Resources', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+export type Docsos5SystemPartsFragment = { __typename: 'Docsos5System', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+
+export type Docsos5MultiDevicePartsFragment = { __typename: 'Docsos5MultiDevice', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
+
+export type Docsos5BestPracticesPartsFragment = { __typename: 'Docsos5BestPractices', title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null };
 
 export type Docsos4OverviewQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -2932,24 +3472,24 @@ export type Docsos4OverviewConnectionQueryVariables = Exact<{
 
 export type Docsos4OverviewConnectionQuery = { __typename?: 'Query', docsos4OverviewConnection: { __typename?: 'Docsos4OverviewConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4OverviewConnectionEdges', cursor: string, node?: { __typename: 'Docsos4Overview', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos4FoundationsQueryVariables = Exact<{
+export type Docsos4GeneralQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos4FoundationsQuery = { __typename?: 'Query', docsos4Foundations: { __typename: 'Docsos4Foundations', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos4GeneralQuery = { __typename?: 'Query', docsos4General: { __typename: 'Docsos4General', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos4FoundationsConnectionQueryVariables = Exact<{
+export type Docsos4GeneralConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4FoundationsFilter>;
+  filter?: InputMaybe<Docsos4GeneralFilter>;
 }>;
 
 
-export type Docsos4FoundationsConnectionQuery = { __typename?: 'Query', docsos4FoundationsConnection: { __typename?: 'Docsos4FoundationsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4FoundationsConnectionEdges', cursor: string, node?: { __typename: 'Docsos4Foundations', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos4GeneralConnectionQuery = { __typename?: 'Query', docsos4GeneralConnection: { __typename?: 'Docsos4GeneralConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4GeneralConnectionEdges', cursor: string, node?: { __typename: 'Docsos4General', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type Docsos4ComponentsOverviewQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -2969,6 +3509,25 @@ export type Docsos4ComponentsOverviewConnectionQueryVariables = Exact<{
 
 
 export type Docsos4ComponentsOverviewConnectionQuery = { __typename?: 'Query', docsos4ComponentsOverviewConnection: { __typename?: 'Docsos4ComponentsOverviewConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ComponentsOverviewConnectionEdges', cursor: string, node?: { __typename: 'Docsos4ComponentsOverview', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type Docsos4ComponentsNavigationQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Docsos4ComponentsNavigationQuery = { __typename?: 'Query', docsos4ComponentsNavigation: { __typename: 'Docsos4ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type Docsos4ComponentsNavigationConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos4ComponentsNavigationFilter>;
+}>;
+
+
+export type Docsos4ComponentsNavigationConnectionQuery = { __typename?: 'Query', docsos4ComponentsNavigationConnection: { __typename?: 'Docsos4ComponentsNavigationConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ComponentsNavigationConnectionEdges', cursor: string, node?: { __typename: 'Docsos4ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type Docsos4ComponentsActionsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -3008,43 +3567,24 @@ export type Docsos4ComponentsInputsConnectionQueryVariables = Exact<{
 
 export type Docsos4ComponentsInputsConnectionQuery = { __typename?: 'Query', docsos4ComponentsInputsConnection: { __typename?: 'Docsos4ComponentsInputsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ComponentsInputsConnectionEdges', cursor: string, node?: { __typename: 'Docsos4ComponentsInputs', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos4ComponentsNavigationQueryVariables = Exact<{
+export type Docsos4ComponentsContainersQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos4ComponentsNavigationQuery = { __typename?: 'Query', docsos4ComponentsNavigation: { __typename: 'Docsos4ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos4ComponentsContainersQuery = { __typename?: 'Query', docsos4ComponentsContainers: { __typename: 'Docsos4ComponentsContainers', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos4ComponentsNavigationConnectionQueryVariables = Exact<{
+export type Docsos4ComponentsContainersConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4ComponentsNavigationFilter>;
+  filter?: InputMaybe<Docsos4ComponentsContainersFilter>;
 }>;
 
 
-export type Docsos4ComponentsNavigationConnectionQuery = { __typename?: 'Query', docsos4ComponentsNavigationConnection: { __typename?: 'Docsos4ComponentsNavigationConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ComponentsNavigationConnectionEdges', cursor: string, node?: { __typename: 'Docsos4ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Docsos4ComponentsFeedbackQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Docsos4ComponentsFeedbackQuery = { __typename?: 'Query', docsos4ComponentsFeedback: { __typename: 'Docsos4ComponentsFeedback', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Docsos4ComponentsFeedbackConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4ComponentsFeedbackFilter>;
-}>;
-
-
-export type Docsos4ComponentsFeedbackConnectionQuery = { __typename?: 'Query', docsos4ComponentsFeedbackConnection: { __typename?: 'Docsos4ComponentsFeedbackConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ComponentsFeedbackConnectionEdges', cursor: string, node?: { __typename: 'Docsos4ComponentsFeedback', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos4ComponentsContainersConnectionQuery = { __typename?: 'Query', docsos4ComponentsContainersConnection: { __typename?: 'Docsos4ComponentsContainersConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ComponentsContainersConnectionEdges', cursor: string, node?: { __typename: 'Docsos4ComponentsContainers', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type Docsos4ComponentsDisplayQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -3065,43 +3605,81 @@ export type Docsos4ComponentsDisplayConnectionQueryVariables = Exact<{
 
 export type Docsos4ComponentsDisplayConnectionQuery = { __typename?: 'Query', docsos4ComponentsDisplayConnection: { __typename?: 'Docsos4ComponentsDisplayConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ComponentsDisplayConnectionEdges', cursor: string, node?: { __typename: 'Docsos4ComponentsDisplay', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos4PatternsQueryVariables = Exact<{
+export type Docsos4InteractionQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos4PatternsQuery = { __typename?: 'Query', docsos4Patterns: { __typename: 'Docsos4Patterns', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos4InteractionQuery = { __typename?: 'Query', docsos4Interaction: { __typename: 'Docsos4Interaction', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos4PatternsConnectionQueryVariables = Exact<{
+export type Docsos4InteractionConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4PatternsFilter>;
+  filter?: InputMaybe<Docsos4InteractionFilter>;
 }>;
 
 
-export type Docsos4PatternsConnectionQuery = { __typename?: 'Query', docsos4PatternsConnection: { __typename?: 'Docsos4PatternsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4PatternsConnectionEdges', cursor: string, node?: { __typename: 'Docsos4Patterns', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos4InteractionConnectionQuery = { __typename?: 'Query', docsos4InteractionConnection: { __typename?: 'Docsos4InteractionConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4InteractionConnectionEdges', cursor: string, node?: { __typename: 'Docsos4Interaction', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos4ResourcesQueryVariables = Exact<{
+export type Docsos4SystemQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos4ResourcesQuery = { __typename?: 'Query', docsos4Resources: { __typename: 'Docsos4Resources', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos4SystemQuery = { __typename?: 'Query', docsos4System: { __typename: 'Docsos4System', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos4ResourcesConnectionQueryVariables = Exact<{
+export type Docsos4SystemConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos4ResourcesFilter>;
+  filter?: InputMaybe<Docsos4SystemFilter>;
 }>;
 
 
-export type Docsos4ResourcesConnectionQuery = { __typename?: 'Query', docsos4ResourcesConnection: { __typename?: 'Docsos4ResourcesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4ResourcesConnectionEdges', cursor: string, node?: { __typename: 'Docsos4Resources', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos4SystemConnectionQuery = { __typename?: 'Query', docsos4SystemConnection: { __typename?: 'Docsos4SystemConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4SystemConnectionEdges', cursor: string, node?: { __typename: 'Docsos4System', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type Docsos4MultiDeviceQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Docsos4MultiDeviceQuery = { __typename?: 'Query', docsos4MultiDevice: { __typename: 'Docsos4MultiDevice', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type Docsos4MultiDeviceConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos4MultiDeviceFilter>;
+}>;
+
+
+export type Docsos4MultiDeviceConnectionQuery = { __typename?: 'Query', docsos4MultiDeviceConnection: { __typename?: 'Docsos4MultiDeviceConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4MultiDeviceConnectionEdges', cursor: string, node?: { __typename: 'Docsos4MultiDevice', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type Docsos4BestPracticesQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Docsos4BestPracticesQuery = { __typename?: 'Query', docsos4BestPractices: { __typename: 'Docsos4BestPractices', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type Docsos4BestPracticesConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos4BestPracticesFilter>;
+}>;
+
+
+export type Docsos4BestPracticesConnectionQuery = { __typename?: 'Query', docsos4BestPracticesConnection: { __typename?: 'Docsos4BestPracticesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos4BestPracticesConnectionEdges', cursor: string, node?: { __typename: 'Docsos4BestPractices', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type Docsos5OverviewQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -3122,24 +3700,24 @@ export type Docsos5OverviewConnectionQueryVariables = Exact<{
 
 export type Docsos5OverviewConnectionQuery = { __typename?: 'Query', docsos5OverviewConnection: { __typename?: 'Docsos5OverviewConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5OverviewConnectionEdges', cursor: string, node?: { __typename: 'Docsos5Overview', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos5FoundationsQueryVariables = Exact<{
+export type Docsos5GeneralQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos5FoundationsQuery = { __typename?: 'Query', docsos5Foundations: { __typename: 'Docsos5Foundations', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos5GeneralQuery = { __typename?: 'Query', docsos5General: { __typename: 'Docsos5General', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos5FoundationsConnectionQueryVariables = Exact<{
+export type Docsos5GeneralConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5FoundationsFilter>;
+  filter?: InputMaybe<Docsos5GeneralFilter>;
 }>;
 
 
-export type Docsos5FoundationsConnectionQuery = { __typename?: 'Query', docsos5FoundationsConnection: { __typename?: 'Docsos5FoundationsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5FoundationsConnectionEdges', cursor: string, node?: { __typename: 'Docsos5Foundations', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos5GeneralConnectionQuery = { __typename?: 'Query', docsos5GeneralConnection: { __typename?: 'Docsos5GeneralConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5GeneralConnectionEdges', cursor: string, node?: { __typename: 'Docsos5General', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type Docsos5ComponentsOverviewQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -3159,6 +3737,25 @@ export type Docsos5ComponentsOverviewConnectionQueryVariables = Exact<{
 
 
 export type Docsos5ComponentsOverviewConnectionQuery = { __typename?: 'Query', docsos5ComponentsOverviewConnection: { __typename?: 'Docsos5ComponentsOverviewConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ComponentsOverviewConnectionEdges', cursor: string, node?: { __typename: 'Docsos5ComponentsOverview', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type Docsos5ComponentsNavigationQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Docsos5ComponentsNavigationQuery = { __typename?: 'Query', docsos5ComponentsNavigation: { __typename: 'Docsos5ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type Docsos5ComponentsNavigationConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos5ComponentsNavigationFilter>;
+}>;
+
+
+export type Docsos5ComponentsNavigationConnectionQuery = { __typename?: 'Query', docsos5ComponentsNavigationConnection: { __typename?: 'Docsos5ComponentsNavigationConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ComponentsNavigationConnectionEdges', cursor: string, node?: { __typename: 'Docsos5ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type Docsos5ComponentsActionsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -3198,43 +3795,24 @@ export type Docsos5ComponentsInputsConnectionQueryVariables = Exact<{
 
 export type Docsos5ComponentsInputsConnectionQuery = { __typename?: 'Query', docsos5ComponentsInputsConnection: { __typename?: 'Docsos5ComponentsInputsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ComponentsInputsConnectionEdges', cursor: string, node?: { __typename: 'Docsos5ComponentsInputs', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos5ComponentsNavigationQueryVariables = Exact<{
+export type Docsos5ComponentsContainersQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos5ComponentsNavigationQuery = { __typename?: 'Query', docsos5ComponentsNavigation: { __typename: 'Docsos5ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos5ComponentsContainersQuery = { __typename?: 'Query', docsos5ComponentsContainers: { __typename: 'Docsos5ComponentsContainers', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos5ComponentsNavigationConnectionQueryVariables = Exact<{
+export type Docsos5ComponentsContainersConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5ComponentsNavigationFilter>;
+  filter?: InputMaybe<Docsos5ComponentsContainersFilter>;
 }>;
 
 
-export type Docsos5ComponentsNavigationConnectionQuery = { __typename?: 'Query', docsos5ComponentsNavigationConnection: { __typename?: 'Docsos5ComponentsNavigationConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ComponentsNavigationConnectionEdges', cursor: string, node?: { __typename: 'Docsos5ComponentsNavigation', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Docsos5ComponentsFeedbackQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Docsos5ComponentsFeedbackQuery = { __typename?: 'Query', docsos5ComponentsFeedback: { __typename: 'Docsos5ComponentsFeedback', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Docsos5ComponentsFeedbackConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5ComponentsFeedbackFilter>;
-}>;
-
-
-export type Docsos5ComponentsFeedbackConnectionQuery = { __typename?: 'Query', docsos5ComponentsFeedbackConnection: { __typename?: 'Docsos5ComponentsFeedbackConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ComponentsFeedbackConnectionEdges', cursor: string, node?: { __typename: 'Docsos5ComponentsFeedback', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos5ComponentsContainersConnectionQuery = { __typename?: 'Query', docsos5ComponentsContainersConnection: { __typename?: 'Docsos5ComponentsContainersConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ComponentsContainersConnectionEdges', cursor: string, node?: { __typename: 'Docsos5ComponentsContainers', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type Docsos5ComponentsDisplayQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -3255,43 +3833,81 @@ export type Docsos5ComponentsDisplayConnectionQueryVariables = Exact<{
 
 export type Docsos5ComponentsDisplayConnectionQuery = { __typename?: 'Query', docsos5ComponentsDisplayConnection: { __typename?: 'Docsos5ComponentsDisplayConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ComponentsDisplayConnectionEdges', cursor: string, node?: { __typename: 'Docsos5ComponentsDisplay', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos5PatternsQueryVariables = Exact<{
+export type Docsos5InteractionQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos5PatternsQuery = { __typename?: 'Query', docsos5Patterns: { __typename: 'Docsos5Patterns', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos5InteractionQuery = { __typename?: 'Query', docsos5Interaction: { __typename: 'Docsos5Interaction', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos5PatternsConnectionQueryVariables = Exact<{
+export type Docsos5InteractionConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5PatternsFilter>;
+  filter?: InputMaybe<Docsos5InteractionFilter>;
 }>;
 
 
-export type Docsos5PatternsConnectionQuery = { __typename?: 'Query', docsos5PatternsConnection: { __typename?: 'Docsos5PatternsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5PatternsConnectionEdges', cursor: string, node?: { __typename: 'Docsos5Patterns', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos5InteractionConnectionQuery = { __typename?: 'Query', docsos5InteractionConnection: { __typename?: 'Docsos5InteractionConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5InteractionConnectionEdges', cursor: string, node?: { __typename: 'Docsos5Interaction', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type Docsos5ResourcesQueryVariables = Exact<{
+export type Docsos5SystemQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Docsos5ResourcesQuery = { __typename?: 'Query', docsos5Resources: { __typename: 'Docsos5Resources', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type Docsos5SystemQuery = { __typename?: 'Query', docsos5System: { __typename: 'Docsos5System', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Docsos5ResourcesConnectionQueryVariables = Exact<{
+export type Docsos5SystemConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Docsos5ResourcesFilter>;
+  filter?: InputMaybe<Docsos5SystemFilter>;
 }>;
 
 
-export type Docsos5ResourcesConnectionQuery = { __typename?: 'Query', docsos5ResourcesConnection: { __typename?: 'Docsos5ResourcesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5ResourcesConnectionEdges', cursor: string, node?: { __typename: 'Docsos5Resources', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type Docsos5SystemConnectionQuery = { __typename?: 'Query', docsos5SystemConnection: { __typename?: 'Docsos5SystemConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5SystemConnectionEdges', cursor: string, node?: { __typename: 'Docsos5System', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type Docsos5MultiDeviceQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Docsos5MultiDeviceQuery = { __typename?: 'Query', docsos5MultiDevice: { __typename: 'Docsos5MultiDevice', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type Docsos5MultiDeviceConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos5MultiDeviceFilter>;
+}>;
+
+
+export type Docsos5MultiDeviceConnectionQuery = { __typename?: 'Query', docsos5MultiDeviceConnection: { __typename?: 'Docsos5MultiDeviceConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5MultiDeviceConnectionEdges', cursor: string, node?: { __typename: 'Docsos5MultiDevice', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type Docsos5BestPracticesQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Docsos5BestPracticesQuery = { __typename?: 'Query', docsos5BestPractices: { __typename: 'Docsos5BestPractices', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type Docsos5BestPracticesConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Docsos5BestPracticesFilter>;
+}>;
+
+
+export type Docsos5BestPracticesConnectionQuery = { __typename?: 'Query', docsos5BestPracticesConnection: { __typename?: 'Docsos5BestPracticesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Docsos5BestPracticesConnectionEdges', cursor: string, node?: { __typename: 'Docsos5BestPractices', id: string, title: string, description?: string | null, status?: string | null, platforms?: Array<string | null> | null, figmaFileKey?: string | null, figmaNodeId?: string | null, figmaPrototypeUrl?: string | null, tokenGroups?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const Docsos4OverviewPartsFragmentDoc = gql`
     fragment Docsos4OverviewParts on Docsos4Overview {
@@ -3307,8 +3923,8 @@ export const Docsos4OverviewPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4FoundationsPartsFragmentDoc = gql`
-    fragment Docsos4FoundationsParts on Docsos4Foundations {
+export const Docsos4GeneralPartsFragmentDoc = gql`
+    fragment Docsos4GeneralParts on Docsos4General {
   __typename
   title
   description
@@ -3323,6 +3939,20 @@ export const Docsos4FoundationsPartsFragmentDoc = gql`
     `;
 export const Docsos4ComponentsOverviewPartsFragmentDoc = gql`
     fragment Docsos4ComponentsOverviewParts on Docsos4ComponentsOverview {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos4ComponentsNavigationPartsFragmentDoc = gql`
+    fragment Docsos4ComponentsNavigationParts on Docsos4ComponentsNavigation {
   __typename
   title
   description
@@ -3363,22 +3993,8 @@ export const Docsos4ComponentsInputsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4ComponentsNavigationPartsFragmentDoc = gql`
-    fragment Docsos4ComponentsNavigationParts on Docsos4ComponentsNavigation {
-  __typename
-  title
-  description
-  status
-  platforms
-  figmaFileKey
-  figmaNodeId
-  figmaPrototypeUrl
-  tokenGroups
-  body
-}
-    `;
-export const Docsos4ComponentsFeedbackPartsFragmentDoc = gql`
-    fragment Docsos4ComponentsFeedbackParts on Docsos4ComponentsFeedback {
+export const Docsos4ComponentsContainersPartsFragmentDoc = gql`
+    fragment Docsos4ComponentsContainersParts on Docsos4ComponentsContainers {
   __typename
   title
   description
@@ -3405,8 +4021,8 @@ export const Docsos4ComponentsDisplayPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4PatternsPartsFragmentDoc = gql`
-    fragment Docsos4PatternsParts on Docsos4Patterns {
+export const Docsos4InteractionPartsFragmentDoc = gql`
+    fragment Docsos4InteractionParts on Docsos4Interaction {
   __typename
   title
   description
@@ -3419,8 +4035,36 @@ export const Docsos4PatternsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos4ResourcesPartsFragmentDoc = gql`
-    fragment Docsos4ResourcesParts on Docsos4Resources {
+export const Docsos4SystemPartsFragmentDoc = gql`
+    fragment Docsos4SystemParts on Docsos4System {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos4MultiDevicePartsFragmentDoc = gql`
+    fragment Docsos4MultiDeviceParts on Docsos4MultiDevice {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos4BestPracticesPartsFragmentDoc = gql`
+    fragment Docsos4BestPracticesParts on Docsos4BestPractices {
   __typename
   title
   description
@@ -3447,8 +4091,8 @@ export const Docsos5OverviewPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5FoundationsPartsFragmentDoc = gql`
-    fragment Docsos5FoundationsParts on Docsos5Foundations {
+export const Docsos5GeneralPartsFragmentDoc = gql`
+    fragment Docsos5GeneralParts on Docsos5General {
   __typename
   title
   description
@@ -3463,6 +4107,20 @@ export const Docsos5FoundationsPartsFragmentDoc = gql`
     `;
 export const Docsos5ComponentsOverviewPartsFragmentDoc = gql`
     fragment Docsos5ComponentsOverviewParts on Docsos5ComponentsOverview {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos5ComponentsNavigationPartsFragmentDoc = gql`
+    fragment Docsos5ComponentsNavigationParts on Docsos5ComponentsNavigation {
   __typename
   title
   description
@@ -3503,22 +4161,8 @@ export const Docsos5ComponentsInputsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5ComponentsNavigationPartsFragmentDoc = gql`
-    fragment Docsos5ComponentsNavigationParts on Docsos5ComponentsNavigation {
-  __typename
-  title
-  description
-  status
-  platforms
-  figmaFileKey
-  figmaNodeId
-  figmaPrototypeUrl
-  tokenGroups
-  body
-}
-    `;
-export const Docsos5ComponentsFeedbackPartsFragmentDoc = gql`
-    fragment Docsos5ComponentsFeedbackParts on Docsos5ComponentsFeedback {
+export const Docsos5ComponentsContainersPartsFragmentDoc = gql`
+    fragment Docsos5ComponentsContainersParts on Docsos5ComponentsContainers {
   __typename
   title
   description
@@ -3545,8 +4189,8 @@ export const Docsos5ComponentsDisplayPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5PatternsPartsFragmentDoc = gql`
-    fragment Docsos5PatternsParts on Docsos5Patterns {
+export const Docsos5InteractionPartsFragmentDoc = gql`
+    fragment Docsos5InteractionParts on Docsos5Interaction {
   __typename
   title
   description
@@ -3559,8 +4203,36 @@ export const Docsos5PatternsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Docsos5ResourcesPartsFragmentDoc = gql`
-    fragment Docsos5ResourcesParts on Docsos5Resources {
+export const Docsos5SystemPartsFragmentDoc = gql`
+    fragment Docsos5SystemParts on Docsos5System {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos5MultiDevicePartsFragmentDoc = gql`
+    fragment Docsos5MultiDeviceParts on Docsos5MultiDevice {
+  __typename
+  title
+  description
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+    `;
+export const Docsos5BestPracticesPartsFragmentDoc = gql`
+    fragment Docsos5BestPracticesParts on Docsos5BestPractices {
   __typename
   title
   description
@@ -3630,9 +4302,9 @@ export const Docsos4OverviewConnectionDocument = gql`
   }
 }
     ${Docsos4OverviewPartsFragmentDoc}`;
-export const Docsos4FoundationsDocument = gql`
-    query docsos4Foundations($relativePath: String!) {
-  docsos4Foundations(relativePath: $relativePath) {
+export const Docsos4GeneralDocument = gql`
+    query docsos4General($relativePath: String!) {
+  docsos4General(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -3645,13 +4317,13 @@ export const Docsos4FoundationsDocument = gql`
       }
       id
     }
-    ...Docsos4FoundationsParts
+    ...Docsos4GeneralParts
   }
 }
-    ${Docsos4FoundationsPartsFragmentDoc}`;
-export const Docsos4FoundationsConnectionDocument = gql`
-    query docsos4FoundationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4FoundationsFilter) {
-  docsos4FoundationsConnection(
+    ${Docsos4GeneralPartsFragmentDoc}`;
+export const Docsos4GeneralConnectionDocument = gql`
+    query docsos4GeneralConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4GeneralFilter) {
+  docsos4GeneralConnection(
     before: $before
     after: $after
     first: $first
@@ -3681,12 +4353,12 @@ export const Docsos4FoundationsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4FoundationsParts
+        ...Docsos4GeneralParts
       }
     }
   }
 }
-    ${Docsos4FoundationsPartsFragmentDoc}`;
+    ${Docsos4GeneralPartsFragmentDoc}`;
 export const Docsos4ComponentsOverviewDocument = gql`
     query docsos4ComponentsOverview($relativePath: String!) {
   docsos4ComponentsOverview(relativePath: $relativePath) {
@@ -3744,6 +4416,63 @@ export const Docsos4ComponentsOverviewConnectionDocument = gql`
   }
 }
     ${Docsos4ComponentsOverviewPartsFragmentDoc}`;
+export const Docsos4ComponentsNavigationDocument = gql`
+    query docsos4ComponentsNavigation($relativePath: String!) {
+  docsos4ComponentsNavigation(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4ComponentsNavigationParts
+  }
+}
+    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
+export const Docsos4ComponentsNavigationConnectionDocument = gql`
+    query docsos4ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsNavigationFilter) {
+  docsos4ComponentsNavigationConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4ComponentsNavigationParts
+      }
+    }
+  }
+}
+    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
 export const Docsos4ComponentsActionsDocument = gql`
     query docsos4ComponentsActions($relativePath: String!) {
   docsos4ComponentsActions(relativePath: $relativePath) {
@@ -3858,9 +4587,9 @@ export const Docsos4ComponentsInputsConnectionDocument = gql`
   }
 }
     ${Docsos4ComponentsInputsPartsFragmentDoc}`;
-export const Docsos4ComponentsNavigationDocument = gql`
-    query docsos4ComponentsNavigation($relativePath: String!) {
-  docsos4ComponentsNavigation(relativePath: $relativePath) {
+export const Docsos4ComponentsContainersDocument = gql`
+    query docsos4ComponentsContainers($relativePath: String!) {
+  docsos4ComponentsContainers(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -3873,13 +4602,13 @@ export const Docsos4ComponentsNavigationDocument = gql`
       }
       id
     }
-    ...Docsos4ComponentsNavigationParts
+    ...Docsos4ComponentsContainersParts
   }
 }
-    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos4ComponentsNavigationConnectionDocument = gql`
-    query docsos4ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsNavigationFilter) {
-  docsos4ComponentsNavigationConnection(
+    ${Docsos4ComponentsContainersPartsFragmentDoc}`;
+export const Docsos4ComponentsContainersConnectionDocument = gql`
+    query docsos4ComponentsContainersConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsContainersFilter) {
+  docsos4ComponentsContainersConnection(
     before: $before
     after: $after
     first: $first
@@ -3909,69 +4638,12 @@ export const Docsos4ComponentsNavigationConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4ComponentsNavigationParts
+        ...Docsos4ComponentsContainersParts
       }
     }
   }
 }
-    ${Docsos4ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos4ComponentsFeedbackDocument = gql`
-    query docsos4ComponentsFeedback($relativePath: String!) {
-  docsos4ComponentsFeedback(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Docsos4ComponentsFeedbackParts
-  }
-}
-    ${Docsos4ComponentsFeedbackPartsFragmentDoc}`;
-export const Docsos4ComponentsFeedbackConnectionDocument = gql`
-    query docsos4ComponentsFeedbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ComponentsFeedbackFilter) {
-  docsos4ComponentsFeedbackConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Docsos4ComponentsFeedbackParts
-      }
-    }
-  }
-}
-    ${Docsos4ComponentsFeedbackPartsFragmentDoc}`;
+    ${Docsos4ComponentsContainersPartsFragmentDoc}`;
 export const Docsos4ComponentsDisplayDocument = gql`
     query docsos4ComponentsDisplay($relativePath: String!) {
   docsos4ComponentsDisplay(relativePath: $relativePath) {
@@ -4029,9 +4701,9 @@ export const Docsos4ComponentsDisplayConnectionDocument = gql`
   }
 }
     ${Docsos4ComponentsDisplayPartsFragmentDoc}`;
-export const Docsos4PatternsDocument = gql`
-    query docsos4Patterns($relativePath: String!) {
-  docsos4Patterns(relativePath: $relativePath) {
+export const Docsos4InteractionDocument = gql`
+    query docsos4Interaction($relativePath: String!) {
+  docsos4Interaction(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -4044,13 +4716,13 @@ export const Docsos4PatternsDocument = gql`
       }
       id
     }
-    ...Docsos4PatternsParts
+    ...Docsos4InteractionParts
   }
 }
-    ${Docsos4PatternsPartsFragmentDoc}`;
-export const Docsos4PatternsConnectionDocument = gql`
-    query docsos4PatternsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4PatternsFilter) {
-  docsos4PatternsConnection(
+    ${Docsos4InteractionPartsFragmentDoc}`;
+export const Docsos4InteractionConnectionDocument = gql`
+    query docsos4InteractionConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4InteractionFilter) {
+  docsos4InteractionConnection(
     before: $before
     after: $after
     first: $first
@@ -4080,15 +4752,15 @@ export const Docsos4PatternsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4PatternsParts
+        ...Docsos4InteractionParts
       }
     }
   }
 }
-    ${Docsos4PatternsPartsFragmentDoc}`;
-export const Docsos4ResourcesDocument = gql`
-    query docsos4Resources($relativePath: String!) {
-  docsos4Resources(relativePath: $relativePath) {
+    ${Docsos4InteractionPartsFragmentDoc}`;
+export const Docsos4SystemDocument = gql`
+    query docsos4System($relativePath: String!) {
+  docsos4System(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -4101,13 +4773,13 @@ export const Docsos4ResourcesDocument = gql`
       }
       id
     }
-    ...Docsos4ResourcesParts
+    ...Docsos4SystemParts
   }
 }
-    ${Docsos4ResourcesPartsFragmentDoc}`;
-export const Docsos4ResourcesConnectionDocument = gql`
-    query docsos4ResourcesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4ResourcesFilter) {
-  docsos4ResourcesConnection(
+    ${Docsos4SystemPartsFragmentDoc}`;
+export const Docsos4SystemConnectionDocument = gql`
+    query docsos4SystemConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4SystemFilter) {
+  docsos4SystemConnection(
     before: $before
     after: $after
     first: $first
@@ -4137,12 +4809,126 @@ export const Docsos4ResourcesConnectionDocument = gql`
           }
           id
         }
-        ...Docsos4ResourcesParts
+        ...Docsos4SystemParts
       }
     }
   }
 }
-    ${Docsos4ResourcesPartsFragmentDoc}`;
+    ${Docsos4SystemPartsFragmentDoc}`;
+export const Docsos4MultiDeviceDocument = gql`
+    query docsos4MultiDevice($relativePath: String!) {
+  docsos4MultiDevice(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4MultiDeviceParts
+  }
+}
+    ${Docsos4MultiDevicePartsFragmentDoc}`;
+export const Docsos4MultiDeviceConnectionDocument = gql`
+    query docsos4MultiDeviceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4MultiDeviceFilter) {
+  docsos4MultiDeviceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4MultiDeviceParts
+      }
+    }
+  }
+}
+    ${Docsos4MultiDevicePartsFragmentDoc}`;
+export const Docsos4BestPracticesDocument = gql`
+    query docsos4BestPractices($relativePath: String!) {
+  docsos4BestPractices(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos4BestPracticesParts
+  }
+}
+    ${Docsos4BestPracticesPartsFragmentDoc}`;
+export const Docsos4BestPracticesConnectionDocument = gql`
+    query docsos4BestPracticesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos4BestPracticesFilter) {
+  docsos4BestPracticesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos4BestPracticesParts
+      }
+    }
+  }
+}
+    ${Docsos4BestPracticesPartsFragmentDoc}`;
 export const Docsos5OverviewDocument = gql`
     query docsos5Overview($relativePath: String!) {
   docsos5Overview(relativePath: $relativePath) {
@@ -4200,9 +4986,9 @@ export const Docsos5OverviewConnectionDocument = gql`
   }
 }
     ${Docsos5OverviewPartsFragmentDoc}`;
-export const Docsos5FoundationsDocument = gql`
-    query docsos5Foundations($relativePath: String!) {
-  docsos5Foundations(relativePath: $relativePath) {
+export const Docsos5GeneralDocument = gql`
+    query docsos5General($relativePath: String!) {
+  docsos5General(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -4215,13 +5001,13 @@ export const Docsos5FoundationsDocument = gql`
       }
       id
     }
-    ...Docsos5FoundationsParts
+    ...Docsos5GeneralParts
   }
 }
-    ${Docsos5FoundationsPartsFragmentDoc}`;
-export const Docsos5FoundationsConnectionDocument = gql`
-    query docsos5FoundationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5FoundationsFilter) {
-  docsos5FoundationsConnection(
+    ${Docsos5GeneralPartsFragmentDoc}`;
+export const Docsos5GeneralConnectionDocument = gql`
+    query docsos5GeneralConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5GeneralFilter) {
+  docsos5GeneralConnection(
     before: $before
     after: $after
     first: $first
@@ -4251,12 +5037,12 @@ export const Docsos5FoundationsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5FoundationsParts
+        ...Docsos5GeneralParts
       }
     }
   }
 }
-    ${Docsos5FoundationsPartsFragmentDoc}`;
+    ${Docsos5GeneralPartsFragmentDoc}`;
 export const Docsos5ComponentsOverviewDocument = gql`
     query docsos5ComponentsOverview($relativePath: String!) {
   docsos5ComponentsOverview(relativePath: $relativePath) {
@@ -4314,6 +5100,63 @@ export const Docsos5ComponentsOverviewConnectionDocument = gql`
   }
 }
     ${Docsos5ComponentsOverviewPartsFragmentDoc}`;
+export const Docsos5ComponentsNavigationDocument = gql`
+    query docsos5ComponentsNavigation($relativePath: String!) {
+  docsos5ComponentsNavigation(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5ComponentsNavigationParts
+  }
+}
+    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
+export const Docsos5ComponentsNavigationConnectionDocument = gql`
+    query docsos5ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsNavigationFilter) {
+  docsos5ComponentsNavigationConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5ComponentsNavigationParts
+      }
+    }
+  }
+}
+    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
 export const Docsos5ComponentsActionsDocument = gql`
     query docsos5ComponentsActions($relativePath: String!) {
   docsos5ComponentsActions(relativePath: $relativePath) {
@@ -4428,9 +5271,9 @@ export const Docsos5ComponentsInputsConnectionDocument = gql`
   }
 }
     ${Docsos5ComponentsInputsPartsFragmentDoc}`;
-export const Docsos5ComponentsNavigationDocument = gql`
-    query docsos5ComponentsNavigation($relativePath: String!) {
-  docsos5ComponentsNavigation(relativePath: $relativePath) {
+export const Docsos5ComponentsContainersDocument = gql`
+    query docsos5ComponentsContainers($relativePath: String!) {
+  docsos5ComponentsContainers(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -4443,13 +5286,13 @@ export const Docsos5ComponentsNavigationDocument = gql`
       }
       id
     }
-    ...Docsos5ComponentsNavigationParts
+    ...Docsos5ComponentsContainersParts
   }
 }
-    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos5ComponentsNavigationConnectionDocument = gql`
-    query docsos5ComponentsNavigationConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsNavigationFilter) {
-  docsos5ComponentsNavigationConnection(
+    ${Docsos5ComponentsContainersPartsFragmentDoc}`;
+export const Docsos5ComponentsContainersConnectionDocument = gql`
+    query docsos5ComponentsContainersConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsContainersFilter) {
+  docsos5ComponentsContainersConnection(
     before: $before
     after: $after
     first: $first
@@ -4479,69 +5322,12 @@ export const Docsos5ComponentsNavigationConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5ComponentsNavigationParts
+        ...Docsos5ComponentsContainersParts
       }
     }
   }
 }
-    ${Docsos5ComponentsNavigationPartsFragmentDoc}`;
-export const Docsos5ComponentsFeedbackDocument = gql`
-    query docsos5ComponentsFeedback($relativePath: String!) {
-  docsos5ComponentsFeedback(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Docsos5ComponentsFeedbackParts
-  }
-}
-    ${Docsos5ComponentsFeedbackPartsFragmentDoc}`;
-export const Docsos5ComponentsFeedbackConnectionDocument = gql`
-    query docsos5ComponentsFeedbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ComponentsFeedbackFilter) {
-  docsos5ComponentsFeedbackConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Docsos5ComponentsFeedbackParts
-      }
-    }
-  }
-}
-    ${Docsos5ComponentsFeedbackPartsFragmentDoc}`;
+    ${Docsos5ComponentsContainersPartsFragmentDoc}`;
 export const Docsos5ComponentsDisplayDocument = gql`
     query docsos5ComponentsDisplay($relativePath: String!) {
   docsos5ComponentsDisplay(relativePath: $relativePath) {
@@ -4599,9 +5385,9 @@ export const Docsos5ComponentsDisplayConnectionDocument = gql`
   }
 }
     ${Docsos5ComponentsDisplayPartsFragmentDoc}`;
-export const Docsos5PatternsDocument = gql`
-    query docsos5Patterns($relativePath: String!) {
-  docsos5Patterns(relativePath: $relativePath) {
+export const Docsos5InteractionDocument = gql`
+    query docsos5Interaction($relativePath: String!) {
+  docsos5Interaction(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -4614,13 +5400,13 @@ export const Docsos5PatternsDocument = gql`
       }
       id
     }
-    ...Docsos5PatternsParts
+    ...Docsos5InteractionParts
   }
 }
-    ${Docsos5PatternsPartsFragmentDoc}`;
-export const Docsos5PatternsConnectionDocument = gql`
-    query docsos5PatternsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5PatternsFilter) {
-  docsos5PatternsConnection(
+    ${Docsos5InteractionPartsFragmentDoc}`;
+export const Docsos5InteractionConnectionDocument = gql`
+    query docsos5InteractionConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5InteractionFilter) {
+  docsos5InteractionConnection(
     before: $before
     after: $after
     first: $first
@@ -4650,15 +5436,15 @@ export const Docsos5PatternsConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5PatternsParts
+        ...Docsos5InteractionParts
       }
     }
   }
 }
-    ${Docsos5PatternsPartsFragmentDoc}`;
-export const Docsos5ResourcesDocument = gql`
-    query docsos5Resources($relativePath: String!) {
-  docsos5Resources(relativePath: $relativePath) {
+    ${Docsos5InteractionPartsFragmentDoc}`;
+export const Docsos5SystemDocument = gql`
+    query docsos5System($relativePath: String!) {
+  docsos5System(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -4671,13 +5457,13 @@ export const Docsos5ResourcesDocument = gql`
       }
       id
     }
-    ...Docsos5ResourcesParts
+    ...Docsos5SystemParts
   }
 }
-    ${Docsos5ResourcesPartsFragmentDoc}`;
-export const Docsos5ResourcesConnectionDocument = gql`
-    query docsos5ResourcesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5ResourcesFilter) {
-  docsos5ResourcesConnection(
+    ${Docsos5SystemPartsFragmentDoc}`;
+export const Docsos5SystemConnectionDocument = gql`
+    query docsos5SystemConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5SystemFilter) {
+  docsos5SystemConnection(
     before: $before
     after: $after
     first: $first
@@ -4707,12 +5493,126 @@ export const Docsos5ResourcesConnectionDocument = gql`
           }
           id
         }
-        ...Docsos5ResourcesParts
+        ...Docsos5SystemParts
       }
     }
   }
 }
-    ${Docsos5ResourcesPartsFragmentDoc}`;
+    ${Docsos5SystemPartsFragmentDoc}`;
+export const Docsos5MultiDeviceDocument = gql`
+    query docsos5MultiDevice($relativePath: String!) {
+  docsos5MultiDevice(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5MultiDeviceParts
+  }
+}
+    ${Docsos5MultiDevicePartsFragmentDoc}`;
+export const Docsos5MultiDeviceConnectionDocument = gql`
+    query docsos5MultiDeviceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5MultiDeviceFilter) {
+  docsos5MultiDeviceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5MultiDeviceParts
+      }
+    }
+  }
+}
+    ${Docsos5MultiDevicePartsFragmentDoc}`;
+export const Docsos5BestPracticesDocument = gql`
+    query docsos5BestPractices($relativePath: String!) {
+  docsos5BestPractices(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Docsos5BestPracticesParts
+  }
+}
+    ${Docsos5BestPracticesPartsFragmentDoc}`;
+export const Docsos5BestPracticesConnectionDocument = gql`
+    query docsos5BestPracticesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Docsos5BestPracticesFilter) {
+  docsos5BestPracticesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Docsos5BestPracticesParts
+      }
+    }
+  }
+}
+    ${Docsos5BestPracticesPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -4722,17 +5622,23 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     docsos4OverviewConnection(variables?: Docsos4OverviewConnectionQueryVariables, options?: C): Promise<{data: Docsos4OverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4OverviewConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos4OverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4OverviewConnectionQueryVariables, query: string}, Docsos4OverviewConnectionQueryVariables>(Docsos4OverviewConnectionDocument, variables, options);
       },
-    docsos4Foundations(variables: Docsos4FoundationsQueryVariables, options?: C): Promise<{data: Docsos4FoundationsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4FoundationsQueryVariables, query: string}> {
-        return requester<{data: Docsos4FoundationsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4FoundationsQueryVariables, query: string}, Docsos4FoundationsQueryVariables>(Docsos4FoundationsDocument, variables, options);
+    docsos4General(variables: Docsos4GeneralQueryVariables, options?: C): Promise<{data: Docsos4GeneralQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4GeneralQueryVariables, query: string}> {
+        return requester<{data: Docsos4GeneralQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4GeneralQueryVariables, query: string}, Docsos4GeneralQueryVariables>(Docsos4GeneralDocument, variables, options);
       },
-    docsos4FoundationsConnection(variables?: Docsos4FoundationsConnectionQueryVariables, options?: C): Promise<{data: Docsos4FoundationsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4FoundationsConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos4FoundationsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4FoundationsConnectionQueryVariables, query: string}, Docsos4FoundationsConnectionQueryVariables>(Docsos4FoundationsConnectionDocument, variables, options);
+    docsos4GeneralConnection(variables?: Docsos4GeneralConnectionQueryVariables, options?: C): Promise<{data: Docsos4GeneralConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4GeneralConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos4GeneralConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4GeneralConnectionQueryVariables, query: string}, Docsos4GeneralConnectionQueryVariables>(Docsos4GeneralConnectionDocument, variables, options);
       },
     docsos4ComponentsOverview(variables: Docsos4ComponentsOverviewQueryVariables, options?: C): Promise<{data: Docsos4ComponentsOverviewQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsOverviewQueryVariables, query: string}> {
         return requester<{data: Docsos4ComponentsOverviewQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsOverviewQueryVariables, query: string}, Docsos4ComponentsOverviewQueryVariables>(Docsos4ComponentsOverviewDocument, variables, options);
       },
     docsos4ComponentsOverviewConnection(variables?: Docsos4ComponentsOverviewConnectionQueryVariables, options?: C): Promise<{data: Docsos4ComponentsOverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsOverviewConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos4ComponentsOverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsOverviewConnectionQueryVariables, query: string}, Docsos4ComponentsOverviewConnectionQueryVariables>(Docsos4ComponentsOverviewConnectionDocument, variables, options);
+      },
+    docsos4ComponentsNavigation(variables: Docsos4ComponentsNavigationQueryVariables, options?: C): Promise<{data: Docsos4ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationQueryVariables, query: string}> {
+        return requester<{data: Docsos4ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationQueryVariables, query: string}, Docsos4ComponentsNavigationQueryVariables>(Docsos4ComponentsNavigationDocument, variables, options);
+      },
+    docsos4ComponentsNavigationConnection(variables?: Docsos4ComponentsNavigationConnectionQueryVariables, options?: C): Promise<{data: Docsos4ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos4ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationConnectionQueryVariables, query: string}, Docsos4ComponentsNavigationConnectionQueryVariables>(Docsos4ComponentsNavigationConnectionDocument, variables, options);
       },
     docsos4ComponentsActions(variables: Docsos4ComponentsActionsQueryVariables, options?: C): Promise<{data: Docsos4ComponentsActionsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsActionsQueryVariables, query: string}> {
         return requester<{data: Docsos4ComponentsActionsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsActionsQueryVariables, query: string}, Docsos4ComponentsActionsQueryVariables>(Docsos4ComponentsActionsDocument, variables, options);
@@ -4746,17 +5652,11 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     docsos4ComponentsInputsConnection(variables?: Docsos4ComponentsInputsConnectionQueryVariables, options?: C): Promise<{data: Docsos4ComponentsInputsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsInputsConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos4ComponentsInputsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsInputsConnectionQueryVariables, query: string}, Docsos4ComponentsInputsConnectionQueryVariables>(Docsos4ComponentsInputsConnectionDocument, variables, options);
       },
-    docsos4ComponentsNavigation(variables: Docsos4ComponentsNavigationQueryVariables, options?: C): Promise<{data: Docsos4ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationQueryVariables, query: string}> {
-        return requester<{data: Docsos4ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationQueryVariables, query: string}, Docsos4ComponentsNavigationQueryVariables>(Docsos4ComponentsNavigationDocument, variables, options);
+    docsos4ComponentsContainers(variables: Docsos4ComponentsContainersQueryVariables, options?: C): Promise<{data: Docsos4ComponentsContainersQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsContainersQueryVariables, query: string}> {
+        return requester<{data: Docsos4ComponentsContainersQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsContainersQueryVariables, query: string}, Docsos4ComponentsContainersQueryVariables>(Docsos4ComponentsContainersDocument, variables, options);
       },
-    docsos4ComponentsNavigationConnection(variables?: Docsos4ComponentsNavigationConnectionQueryVariables, options?: C): Promise<{data: Docsos4ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos4ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsNavigationConnectionQueryVariables, query: string}, Docsos4ComponentsNavigationConnectionQueryVariables>(Docsos4ComponentsNavigationConnectionDocument, variables, options);
-      },
-    docsos4ComponentsFeedback(variables: Docsos4ComponentsFeedbackQueryVariables, options?: C): Promise<{data: Docsos4ComponentsFeedbackQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsFeedbackQueryVariables, query: string}> {
-        return requester<{data: Docsos4ComponentsFeedbackQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsFeedbackQueryVariables, query: string}, Docsos4ComponentsFeedbackQueryVariables>(Docsos4ComponentsFeedbackDocument, variables, options);
-      },
-    docsos4ComponentsFeedbackConnection(variables?: Docsos4ComponentsFeedbackConnectionQueryVariables, options?: C): Promise<{data: Docsos4ComponentsFeedbackConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsFeedbackConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos4ComponentsFeedbackConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsFeedbackConnectionQueryVariables, query: string}, Docsos4ComponentsFeedbackConnectionQueryVariables>(Docsos4ComponentsFeedbackConnectionDocument, variables, options);
+    docsos4ComponentsContainersConnection(variables?: Docsos4ComponentsContainersConnectionQueryVariables, options?: C): Promise<{data: Docsos4ComponentsContainersConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsContainersConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos4ComponentsContainersConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsContainersConnectionQueryVariables, query: string}, Docsos4ComponentsContainersConnectionQueryVariables>(Docsos4ComponentsContainersConnectionDocument, variables, options);
       },
     docsos4ComponentsDisplay(variables: Docsos4ComponentsDisplayQueryVariables, options?: C): Promise<{data: Docsos4ComponentsDisplayQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsDisplayQueryVariables, query: string}> {
         return requester<{data: Docsos4ComponentsDisplayQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsDisplayQueryVariables, query: string}, Docsos4ComponentsDisplayQueryVariables>(Docsos4ComponentsDisplayDocument, variables, options);
@@ -4764,17 +5664,29 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     docsos4ComponentsDisplayConnection(variables?: Docsos4ComponentsDisplayConnectionQueryVariables, options?: C): Promise<{data: Docsos4ComponentsDisplayConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsDisplayConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos4ComponentsDisplayConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ComponentsDisplayConnectionQueryVariables, query: string}, Docsos4ComponentsDisplayConnectionQueryVariables>(Docsos4ComponentsDisplayConnectionDocument, variables, options);
       },
-    docsos4Patterns(variables: Docsos4PatternsQueryVariables, options?: C): Promise<{data: Docsos4PatternsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4PatternsQueryVariables, query: string}> {
-        return requester<{data: Docsos4PatternsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4PatternsQueryVariables, query: string}, Docsos4PatternsQueryVariables>(Docsos4PatternsDocument, variables, options);
+    docsos4Interaction(variables: Docsos4InteractionQueryVariables, options?: C): Promise<{data: Docsos4InteractionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4InteractionQueryVariables, query: string}> {
+        return requester<{data: Docsos4InteractionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4InteractionQueryVariables, query: string}, Docsos4InteractionQueryVariables>(Docsos4InteractionDocument, variables, options);
       },
-    docsos4PatternsConnection(variables?: Docsos4PatternsConnectionQueryVariables, options?: C): Promise<{data: Docsos4PatternsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4PatternsConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos4PatternsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4PatternsConnectionQueryVariables, query: string}, Docsos4PatternsConnectionQueryVariables>(Docsos4PatternsConnectionDocument, variables, options);
+    docsos4InteractionConnection(variables?: Docsos4InteractionConnectionQueryVariables, options?: C): Promise<{data: Docsos4InteractionConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4InteractionConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos4InteractionConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4InteractionConnectionQueryVariables, query: string}, Docsos4InteractionConnectionQueryVariables>(Docsos4InteractionConnectionDocument, variables, options);
       },
-    docsos4Resources(variables: Docsos4ResourcesQueryVariables, options?: C): Promise<{data: Docsos4ResourcesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ResourcesQueryVariables, query: string}> {
-        return requester<{data: Docsos4ResourcesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ResourcesQueryVariables, query: string}, Docsos4ResourcesQueryVariables>(Docsos4ResourcesDocument, variables, options);
+    docsos4System(variables: Docsos4SystemQueryVariables, options?: C): Promise<{data: Docsos4SystemQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4SystemQueryVariables, query: string}> {
+        return requester<{data: Docsos4SystemQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4SystemQueryVariables, query: string}, Docsos4SystemQueryVariables>(Docsos4SystemDocument, variables, options);
       },
-    docsos4ResourcesConnection(variables?: Docsos4ResourcesConnectionQueryVariables, options?: C): Promise<{data: Docsos4ResourcesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ResourcesConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos4ResourcesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4ResourcesConnectionQueryVariables, query: string}, Docsos4ResourcesConnectionQueryVariables>(Docsos4ResourcesConnectionDocument, variables, options);
+    docsos4SystemConnection(variables?: Docsos4SystemConnectionQueryVariables, options?: C): Promise<{data: Docsos4SystemConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4SystemConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos4SystemConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4SystemConnectionQueryVariables, query: string}, Docsos4SystemConnectionQueryVariables>(Docsos4SystemConnectionDocument, variables, options);
+      },
+    docsos4MultiDevice(variables: Docsos4MultiDeviceQueryVariables, options?: C): Promise<{data: Docsos4MultiDeviceQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4MultiDeviceQueryVariables, query: string}> {
+        return requester<{data: Docsos4MultiDeviceQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4MultiDeviceQueryVariables, query: string}, Docsos4MultiDeviceQueryVariables>(Docsos4MultiDeviceDocument, variables, options);
+      },
+    docsos4MultiDeviceConnection(variables?: Docsos4MultiDeviceConnectionQueryVariables, options?: C): Promise<{data: Docsos4MultiDeviceConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4MultiDeviceConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos4MultiDeviceConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4MultiDeviceConnectionQueryVariables, query: string}, Docsos4MultiDeviceConnectionQueryVariables>(Docsos4MultiDeviceConnectionDocument, variables, options);
+      },
+    docsos4BestPractices(variables: Docsos4BestPracticesQueryVariables, options?: C): Promise<{data: Docsos4BestPracticesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4BestPracticesQueryVariables, query: string}> {
+        return requester<{data: Docsos4BestPracticesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4BestPracticesQueryVariables, query: string}, Docsos4BestPracticesQueryVariables>(Docsos4BestPracticesDocument, variables, options);
+      },
+    docsos4BestPracticesConnection(variables?: Docsos4BestPracticesConnectionQueryVariables, options?: C): Promise<{data: Docsos4BestPracticesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4BestPracticesConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos4BestPracticesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos4BestPracticesConnectionQueryVariables, query: string}, Docsos4BestPracticesConnectionQueryVariables>(Docsos4BestPracticesConnectionDocument, variables, options);
       },
     docsos5Overview(variables: Docsos5OverviewQueryVariables, options?: C): Promise<{data: Docsos5OverviewQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5OverviewQueryVariables, query: string}> {
         return requester<{data: Docsos5OverviewQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5OverviewQueryVariables, query: string}, Docsos5OverviewQueryVariables>(Docsos5OverviewDocument, variables, options);
@@ -4782,17 +5694,23 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     docsos5OverviewConnection(variables?: Docsos5OverviewConnectionQueryVariables, options?: C): Promise<{data: Docsos5OverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5OverviewConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos5OverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5OverviewConnectionQueryVariables, query: string}, Docsos5OverviewConnectionQueryVariables>(Docsos5OverviewConnectionDocument, variables, options);
       },
-    docsos5Foundations(variables: Docsos5FoundationsQueryVariables, options?: C): Promise<{data: Docsos5FoundationsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5FoundationsQueryVariables, query: string}> {
-        return requester<{data: Docsos5FoundationsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5FoundationsQueryVariables, query: string}, Docsos5FoundationsQueryVariables>(Docsos5FoundationsDocument, variables, options);
+    docsos5General(variables: Docsos5GeneralQueryVariables, options?: C): Promise<{data: Docsos5GeneralQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5GeneralQueryVariables, query: string}> {
+        return requester<{data: Docsos5GeneralQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5GeneralQueryVariables, query: string}, Docsos5GeneralQueryVariables>(Docsos5GeneralDocument, variables, options);
       },
-    docsos5FoundationsConnection(variables?: Docsos5FoundationsConnectionQueryVariables, options?: C): Promise<{data: Docsos5FoundationsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5FoundationsConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos5FoundationsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5FoundationsConnectionQueryVariables, query: string}, Docsos5FoundationsConnectionQueryVariables>(Docsos5FoundationsConnectionDocument, variables, options);
+    docsos5GeneralConnection(variables?: Docsos5GeneralConnectionQueryVariables, options?: C): Promise<{data: Docsos5GeneralConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5GeneralConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos5GeneralConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5GeneralConnectionQueryVariables, query: string}, Docsos5GeneralConnectionQueryVariables>(Docsos5GeneralConnectionDocument, variables, options);
       },
     docsos5ComponentsOverview(variables: Docsos5ComponentsOverviewQueryVariables, options?: C): Promise<{data: Docsos5ComponentsOverviewQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsOverviewQueryVariables, query: string}> {
         return requester<{data: Docsos5ComponentsOverviewQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsOverviewQueryVariables, query: string}, Docsos5ComponentsOverviewQueryVariables>(Docsos5ComponentsOverviewDocument, variables, options);
       },
     docsos5ComponentsOverviewConnection(variables?: Docsos5ComponentsOverviewConnectionQueryVariables, options?: C): Promise<{data: Docsos5ComponentsOverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsOverviewConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos5ComponentsOverviewConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsOverviewConnectionQueryVariables, query: string}, Docsos5ComponentsOverviewConnectionQueryVariables>(Docsos5ComponentsOverviewConnectionDocument, variables, options);
+      },
+    docsos5ComponentsNavigation(variables: Docsos5ComponentsNavigationQueryVariables, options?: C): Promise<{data: Docsos5ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationQueryVariables, query: string}> {
+        return requester<{data: Docsos5ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationQueryVariables, query: string}, Docsos5ComponentsNavigationQueryVariables>(Docsos5ComponentsNavigationDocument, variables, options);
+      },
+    docsos5ComponentsNavigationConnection(variables?: Docsos5ComponentsNavigationConnectionQueryVariables, options?: C): Promise<{data: Docsos5ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos5ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationConnectionQueryVariables, query: string}, Docsos5ComponentsNavigationConnectionQueryVariables>(Docsos5ComponentsNavigationConnectionDocument, variables, options);
       },
     docsos5ComponentsActions(variables: Docsos5ComponentsActionsQueryVariables, options?: C): Promise<{data: Docsos5ComponentsActionsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsActionsQueryVariables, query: string}> {
         return requester<{data: Docsos5ComponentsActionsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsActionsQueryVariables, query: string}, Docsos5ComponentsActionsQueryVariables>(Docsos5ComponentsActionsDocument, variables, options);
@@ -4806,17 +5724,11 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     docsos5ComponentsInputsConnection(variables?: Docsos5ComponentsInputsConnectionQueryVariables, options?: C): Promise<{data: Docsos5ComponentsInputsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsInputsConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos5ComponentsInputsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsInputsConnectionQueryVariables, query: string}, Docsos5ComponentsInputsConnectionQueryVariables>(Docsos5ComponentsInputsConnectionDocument, variables, options);
       },
-    docsos5ComponentsNavigation(variables: Docsos5ComponentsNavigationQueryVariables, options?: C): Promise<{data: Docsos5ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationQueryVariables, query: string}> {
-        return requester<{data: Docsos5ComponentsNavigationQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationQueryVariables, query: string}, Docsos5ComponentsNavigationQueryVariables>(Docsos5ComponentsNavigationDocument, variables, options);
+    docsos5ComponentsContainers(variables: Docsos5ComponentsContainersQueryVariables, options?: C): Promise<{data: Docsos5ComponentsContainersQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsContainersQueryVariables, query: string}> {
+        return requester<{data: Docsos5ComponentsContainersQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsContainersQueryVariables, query: string}, Docsos5ComponentsContainersQueryVariables>(Docsos5ComponentsContainersDocument, variables, options);
       },
-    docsos5ComponentsNavigationConnection(variables?: Docsos5ComponentsNavigationConnectionQueryVariables, options?: C): Promise<{data: Docsos5ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos5ComponentsNavigationConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsNavigationConnectionQueryVariables, query: string}, Docsos5ComponentsNavigationConnectionQueryVariables>(Docsos5ComponentsNavigationConnectionDocument, variables, options);
-      },
-    docsos5ComponentsFeedback(variables: Docsos5ComponentsFeedbackQueryVariables, options?: C): Promise<{data: Docsos5ComponentsFeedbackQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsFeedbackQueryVariables, query: string}> {
-        return requester<{data: Docsos5ComponentsFeedbackQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsFeedbackQueryVariables, query: string}, Docsos5ComponentsFeedbackQueryVariables>(Docsos5ComponentsFeedbackDocument, variables, options);
-      },
-    docsos5ComponentsFeedbackConnection(variables?: Docsos5ComponentsFeedbackConnectionQueryVariables, options?: C): Promise<{data: Docsos5ComponentsFeedbackConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsFeedbackConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos5ComponentsFeedbackConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsFeedbackConnectionQueryVariables, query: string}, Docsos5ComponentsFeedbackConnectionQueryVariables>(Docsos5ComponentsFeedbackConnectionDocument, variables, options);
+    docsos5ComponentsContainersConnection(variables?: Docsos5ComponentsContainersConnectionQueryVariables, options?: C): Promise<{data: Docsos5ComponentsContainersConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsContainersConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos5ComponentsContainersConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsContainersConnectionQueryVariables, query: string}, Docsos5ComponentsContainersConnectionQueryVariables>(Docsos5ComponentsContainersConnectionDocument, variables, options);
       },
     docsos5ComponentsDisplay(variables: Docsos5ComponentsDisplayQueryVariables, options?: C): Promise<{data: Docsos5ComponentsDisplayQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsDisplayQueryVariables, query: string}> {
         return requester<{data: Docsos5ComponentsDisplayQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsDisplayQueryVariables, query: string}, Docsos5ComponentsDisplayQueryVariables>(Docsos5ComponentsDisplayDocument, variables, options);
@@ -4824,17 +5736,29 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     docsos5ComponentsDisplayConnection(variables?: Docsos5ComponentsDisplayConnectionQueryVariables, options?: C): Promise<{data: Docsos5ComponentsDisplayConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsDisplayConnectionQueryVariables, query: string}> {
         return requester<{data: Docsos5ComponentsDisplayConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ComponentsDisplayConnectionQueryVariables, query: string}, Docsos5ComponentsDisplayConnectionQueryVariables>(Docsos5ComponentsDisplayConnectionDocument, variables, options);
       },
-    docsos5Patterns(variables: Docsos5PatternsQueryVariables, options?: C): Promise<{data: Docsos5PatternsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5PatternsQueryVariables, query: string}> {
-        return requester<{data: Docsos5PatternsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5PatternsQueryVariables, query: string}, Docsos5PatternsQueryVariables>(Docsos5PatternsDocument, variables, options);
+    docsos5Interaction(variables: Docsos5InteractionQueryVariables, options?: C): Promise<{data: Docsos5InteractionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5InteractionQueryVariables, query: string}> {
+        return requester<{data: Docsos5InteractionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5InteractionQueryVariables, query: string}, Docsos5InteractionQueryVariables>(Docsos5InteractionDocument, variables, options);
       },
-    docsos5PatternsConnection(variables?: Docsos5PatternsConnectionQueryVariables, options?: C): Promise<{data: Docsos5PatternsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5PatternsConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos5PatternsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5PatternsConnectionQueryVariables, query: string}, Docsos5PatternsConnectionQueryVariables>(Docsos5PatternsConnectionDocument, variables, options);
+    docsos5InteractionConnection(variables?: Docsos5InteractionConnectionQueryVariables, options?: C): Promise<{data: Docsos5InteractionConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5InteractionConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos5InteractionConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5InteractionConnectionQueryVariables, query: string}, Docsos5InteractionConnectionQueryVariables>(Docsos5InteractionConnectionDocument, variables, options);
       },
-    docsos5Resources(variables: Docsos5ResourcesQueryVariables, options?: C): Promise<{data: Docsos5ResourcesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ResourcesQueryVariables, query: string}> {
-        return requester<{data: Docsos5ResourcesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ResourcesQueryVariables, query: string}, Docsos5ResourcesQueryVariables>(Docsos5ResourcesDocument, variables, options);
+    docsos5System(variables: Docsos5SystemQueryVariables, options?: C): Promise<{data: Docsos5SystemQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5SystemQueryVariables, query: string}> {
+        return requester<{data: Docsos5SystemQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5SystemQueryVariables, query: string}, Docsos5SystemQueryVariables>(Docsos5SystemDocument, variables, options);
       },
-    docsos5ResourcesConnection(variables?: Docsos5ResourcesConnectionQueryVariables, options?: C): Promise<{data: Docsos5ResourcesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ResourcesConnectionQueryVariables, query: string}> {
-        return requester<{data: Docsos5ResourcesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5ResourcesConnectionQueryVariables, query: string}, Docsos5ResourcesConnectionQueryVariables>(Docsos5ResourcesConnectionDocument, variables, options);
+    docsos5SystemConnection(variables?: Docsos5SystemConnectionQueryVariables, options?: C): Promise<{data: Docsos5SystemConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5SystemConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos5SystemConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5SystemConnectionQueryVariables, query: string}, Docsos5SystemConnectionQueryVariables>(Docsos5SystemConnectionDocument, variables, options);
+      },
+    docsos5MultiDevice(variables: Docsos5MultiDeviceQueryVariables, options?: C): Promise<{data: Docsos5MultiDeviceQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5MultiDeviceQueryVariables, query: string}> {
+        return requester<{data: Docsos5MultiDeviceQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5MultiDeviceQueryVariables, query: string}, Docsos5MultiDeviceQueryVariables>(Docsos5MultiDeviceDocument, variables, options);
+      },
+    docsos5MultiDeviceConnection(variables?: Docsos5MultiDeviceConnectionQueryVariables, options?: C): Promise<{data: Docsos5MultiDeviceConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5MultiDeviceConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos5MultiDeviceConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5MultiDeviceConnectionQueryVariables, query: string}, Docsos5MultiDeviceConnectionQueryVariables>(Docsos5MultiDeviceConnectionDocument, variables, options);
+      },
+    docsos5BestPractices(variables: Docsos5BestPracticesQueryVariables, options?: C): Promise<{data: Docsos5BestPracticesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5BestPracticesQueryVariables, query: string}> {
+        return requester<{data: Docsos5BestPracticesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5BestPracticesQueryVariables, query: string}, Docsos5BestPracticesQueryVariables>(Docsos5BestPracticesDocument, variables, options);
+      },
+    docsos5BestPracticesConnection(variables?: Docsos5BestPracticesConnectionQueryVariables, options?: C): Promise<{data: Docsos5BestPracticesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5BestPracticesConnectionQueryVariables, query: string}> {
+        return requester<{data: Docsos5BestPracticesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Docsos5BestPracticesConnectionQueryVariables, query: string}, Docsos5BestPracticesConnectionQueryVariables>(Docsos5BestPracticesConnectionDocument, variables, options);
       }
     };
   }

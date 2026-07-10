@@ -2,5 +2,13 @@
   "title": "HyperOS 5",
   "description": "内容暂未发布，敬请期待",
   "root": true,
-  "pages": ["index", "foundations", "components", "patterns", "resources"]
+  "pages": [
+    "index",
+    "general",
+    "components",
+    "interaction",
+    "system",
+    "multi-device",
+    "best-practices"
+  ]
 }

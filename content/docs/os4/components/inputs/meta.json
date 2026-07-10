@@ -1,4 +1,12 @@
 {
-  "title": "Inputs",
-  "pages": ["text-field", "switch", "checkbox", "slider"]
+  "title": "选择和输入",
+  "pages": [
+    "switch",
+    "radio",
+    "checkbox",
+    "text-field",
+    "date-time-picker",
+    "slider",
+    "image-picker"
+  ]
 }
