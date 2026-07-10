@@ -14,7 +14,7 @@
 
 ## 必读约束
 
-修改前请遵守以下边界（详见 [docs/v1/technical-design.md](docs/v1/technical-design.md)）：
+修改前请遵守以下边界（详见 [docs/technical-design.md](docs/technical-design.md)）：
 
 | 要做 | 不要做 |
 |------|--------|
@@ -37,7 +37,7 @@ npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
 
-> **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。部署详解见 [docs/v1/deployment.md](docs/v1/deployment.md)。
+> **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。部署详解见 [docs/deployment.md](docs/deployment.md)。
 
 ## Git 与发布（Agent 必读）
 
@@ -54,7 +54,7 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 - 拉取只用 `git pull gitlab main`，不要双远程交叉 rebase
 - push：`git push gitlab <branch>` + `git push origin <branch>`
 - **不要**把「流水线运行完成」当成站点已更新；以 Matrix 实例 Tag / Running 为准
-- 完整流程、MiFlow/Matrix 职责、卡点排查 → [docs/v1/deployment.md](docs/v1/deployment.md)
+- 完整流程、MiFlow/Matrix 职责、卡点排查 → [docs/deployment.md](docs/deployment.md)
 
 ### Commit 信息（Agent 必读）
 
@@ -101,7 +101,7 @@ npm run dev            # dev server 会自动重新生成
 
 - 生产镜像：根目录 `Dockerfile`；**只跑 `npx next build`**，读已提交的 `tina/__generated__/`
 - 改 `tina/config.ts` / `tina/schema/**` 后必须同步 `tina/__generated__/` 再提交
-- 用户问部署 / 环境不一致 / MiFlow·Matrix 时：读 [docs/v1/deployment.md](docs/v1/deployment.md)，不要在本文件展开长教程
+- 用户问部署 / 环境不一致 / MiFlow·Matrix 时：读 [docs/deployment.md](docs/deployment.md)，不要在本文件展开长教程
 - 用户要求「上正式」时：提醒 **push main ≠ 正式站已更新**；需 Matrix 发 `prod-*`（除非流水线已补「发布prod」）
 
 ## 目录结构
@@ -117,8 +117,14 @@ content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
     multi-device/        # 多端设备标准
     best-practices/     # 应用最佳实践标准
   os5/                  # HyperOS 5（占位，侧栏禁用跳转；结构同 os4）
-docs/                   # 工程设计文档（技术方案、IA、路线图、部署）
-docs/v1/                # technical-design / IA / sidebar-ia-draft / roadmap / deployment
+docs/                   # 工程设计文档（见 docs/index.md）
+  index.md
+  deployment.md
+  technical-design.md
+  information-architecture.md
+  sidebar-ia.md
+  roadmap.md
+  maintainers.md
 tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
@@ -133,18 +139,18 @@ public/
 src/
   app/                  # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
-    docs/               # DocsVersionSwitcher、FigmaJumpButton
+    docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/               # Landing：HomeHero、PillNav、HalftoneBloom
     mdx/                # 自定义 MDX 组件（优先在此扩展）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source、layout、shared、tina-docs、docs-version-tabs、cn
+  lib/                  # source、layout、shared、tina-docs、docs-version-tabs、git-file-mtime、cn
 source.config.ts        # MDX frontmatter Zod schema
 next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts                # Markdown 内容协商（.md / Accept 重写）
-Dockerfile              # 生产镜像（deps → builder → runner；MiFlow 构建）
+Dockerfile              # 生产镜像（deps → builder → runner；MiFlow 构建；builder 保留 .git）
 .npmrc                  # legacy-peer-deps（TinaCMS 依赖兼容）
-AGENTS.md               # 本文件（Agent 指引；部署细节见 docs/v1/deployment.md）
+AGENTS.md               # 本文件（Agent 指引；部署细节见 docs/deployment.md）
 CLAUDE.md               # 指向本文件
 package-lock.json       # npm 锁文件
 ```
@@ -178,7 +184,7 @@ package-lock.json       # npm 锁文件
 2. 更新同级或父级 `meta.json` 的 `pages` 数组
 3. 运行 `npm run build` 验证无 404 / MDX 错误
 
-完整 IA 见 [docs/v1/information-architecture.md](docs/v1/information-architecture.md)。
+完整 IA 见 [docs/information-architecture.md](docs/information-architecture.md)。
 
 ## 新增组件文档页
 
@@ -186,13 +192,15 @@ package-lock.json       # npm 锁文件
 
 推荐页面结构：
 
-1. frontmatter（`title`、`description`、`status`、`platforms`、`tokenGroups`）
+1. frontmatter（`title`、`description`、`status`、`platforms`、`tokenGroups`、`maintainer` 等）
 2. `<StatusBadge />` + 简介
 3. `<FigmaEmbed fileKey="..." nodeId="..." />`（Dev Mode 标注：加 `mode="dev"`）
 4. （可选）`<FigmaPrototypeEmbed />` 用于移动端交互演示
 5. `<TokenTable groups={[...]} />`
 6. `<PlatformTabs>` + `<PlatformTab platform="android|ios">` 静态代码
 7. `<DosDonts />` 用法说明
+
+文档页顶栏（标题 / 描述下方操作区）由布局自动展示 **更新时间**（该 MDX 的 git 最后提交日）与 **维护人**（frontmatter；缺省「HyperOS 设计系统团队」）。有 `maintainerOpenId` 时可点击维护人，经飞书 AppLink 打开单聊。
 
 ### Frontmatter 字段
 
@@ -202,6 +210,8 @@ package-lock.json       # npm 锁文件
 - `platforms`: `android` | `ios` | `pad`
 - `figmaFileKey`, `figmaNodeId`, `figmaPrototypeUrl`
 - `tokenGroups`: TokenTable 过滤前缀，如 `["color.action"]`
+- `maintainer`: 维护人显示名（可选）
+- `maintainerOpenId`: 飞书 `open_id`（`ou_` 前缀；可选，有值则可点开会话）
 
 ## 自定义 MDX 组件
 
@@ -236,6 +246,7 @@ package-lock.json       # npm 锁文件
 - 业务 Design Token：`tokens/tokens.json`（HyperOS 设计规范）
 - 站点名、版本与 nav：[src/lib/shared.ts](src/lib/shared.ts)（`docsVersions`、`defaultDocsRoute`、`defaultFigmaUrl`）、[src/lib/layout.shared.tsx](src/lib/layout.shared.tsx)
 - 文档页操作栏「跳转 Figma」：[src/components/docs/FigmaJumpButton.tsx](src/components/docs/FigmaJumpButton.tsx)（优先页级 `figmaFileKey` / `figmaPrototypeUrl`，否则 `defaultFigmaUrl`）
+- 文档页元信息（更新时间 / 维护人）：[src/components/docs/DocMeta.tsx](src/components/docs/DocMeta.tsx)；更新时间见 [src/lib/git-file-mtime.ts](src/lib/git-file-mtime.ts)
 
 文档站 chrome token 与业务 Design Token **不要混用**。
 
@@ -265,7 +276,7 @@ package-lock.json       # npm 锁文件
 
 - [ ] `npm run build` 成功（含 `tinacms build`）
 - [ ] 新页面已在 `meta.json` 注册
-- [ ] 未破坏 `docs/v1/` 工程设计文档
+- [ ] 未破坏 `docs/` 工程设计文档
 - [ ] 未添加 Storybook / Web 组件 playground
 - [ ] Figma embed 使用占位或有效 `fileKey`
 - [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
@@ -279,16 +290,17 @@ package-lock.json       # npm 锁文件
 - **Phase 2（进行中）**：TinaCMS `/admin` 已接入本地模式；待补 TinaCloud / 自托管鉴权与生产 Git 同步
 - **Phase 3**：Tokens Studio + Style Dictionary CI、Figma Code Connect
 
-当前状态见 [docs/v1/roadmap.md](docs/v1/roadmap.md)。
+当前状态见 [docs/roadmap.md](docs/roadmap.md)。
 
 ## 相关文档
 
 - [README.md](README.md) — 快速上手
 - [CLAUDE.md](CLAUDE.md) — Claude 入口（指向本文件）
 - [docs/index.md](docs/index.md) — 工程设计文档索引
-- [docs/v1/deployment.md](docs/v1/deployment.md) — MiFlow / Matrix 部署与卡点
-- [docs/v1/technical-design.md](docs/v1/technical-design.md) — V1 技术方案
-- [docs/v1/information-architecture.md](docs/v1/information-architecture.md) — 站点 IA
-- [docs/v1/sidebar-ia-draft.md](docs/v1/sidebar-ia-draft.md) — 侧栏目录对照（全景图）
-- [docs/v1/roadmap.md](docs/v1/roadmap.md) — 实施进度
+- [docs/deployment.md](docs/deployment.md) — MiFlow / Matrix 部署与卡点
+- [docs/technical-design.md](docs/technical-design.md) — 技术方案
+- [docs/information-architecture.md](docs/information-architecture.md) — 站点 IA
+- [docs/sidebar-ia.md](docs/sidebar-ia.md) — 侧栏目录对照（全景图）
+- [docs/roadmap.md](docs/roadmap.md) — 实施进度
+- [docs/maintainers.md](docs/maintainers.md) — 维护人飞书 open_id 备忘
 - [Fumadocs 官方文档](https://www.fumadocs.dev)

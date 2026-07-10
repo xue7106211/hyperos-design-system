@@ -1,6 +1,6 @@
-# Docs 侧边栏目录草案（基于设计系统全景图）
+# Docs 侧边栏目录对照（基于设计系统全景图）
 
-> **状态**：已落地到 `content/docs/`（2026-07-10）；本文件保留为侧栏对照源  
+> **状态**：已落地到 `content/docs/`（2026-07-10）；本文件为侧栏对照源  
 > **日期**：2026-07-10  
 > **来源**：HyperOS 设计系统全景图（经人工优化）  
 > **约束**：
@@ -16,7 +16,6 @@
 HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 ├── 通用设计标准
 │   ├── Index                    # 模块总览
-│   ├── 通用设计总览
 │   ├── 设计理念
 │   ├── 设计原则
 │   ├── Design Token
@@ -102,7 +101,6 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 - HyperOS 4 Design System（站点 Index，保留）
 - 通用设计标准
   - Index（模块总览）
-  - 通用设计总览
   - 设计理念
   - 设计原则
   - Design Token
@@ -213,7 +211,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 确认后的版本已用于：
 
 1. 更新 `content/docs/os4/**/meta.json` 与目录（已落地）
-2. 同步 `docs/v1/information-architecture.md`
+2. 同步 `docs/information-architecture.md`
 3. 处理旧路径重定向与 Tina collections
 
 后续改侧栏请同步本文件与 `content/docs/os4/**/meta.json`。

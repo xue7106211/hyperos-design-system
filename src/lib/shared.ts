@@ -3,6 +3,16 @@ export const appShortTitle = 'HyperOS 设计系统';
 export const appDescription =
   'Xiaomi HyperOS设计规范自2014年开始不断成长迭代，希望能够为小米旗下的各个软/硬件，提供一套由一代代设计师不断磨砺后，经得起推敲的设计资产';
 
+/** 文档页「维护人」缺省值 */
+export const defaultDocMaintainer = 'HyperOS 设计系统团队';
+
+/** 飞书 AppLink：打开与指定 open_id 用户的单聊 */
+export function buildFeishuChatApplink(openId: string): string {
+  const url = new URL('https://applink.feishu.cn/client/chat/open');
+  url.searchParams.set('openId', openId);
+  return url.toString();
+}
+
 export const docsRoute = '/docs';
 export const docsImageRoute = '/og/docs';
 export const docsContentRoute = '/llms.mdx/docs';

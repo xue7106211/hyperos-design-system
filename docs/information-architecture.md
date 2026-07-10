@@ -1,8 +1,8 @@
 # HyperOS Design System 文档站 — V1 信息架构
 
-> **版本**：V1.2  
+> **版本**：V1.3  
 > **日期**：2026-07-10  
-> **关联**：[技术设计方案](./technical-design.md) · [侧栏草案](./sidebar-ia-draft.md)
+> **关联**：[技术设计方案](./technical-design.md) · [侧栏对照](./sidebar-ia.md)
 
 ---
 
@@ -42,7 +42,6 @@
     │
     ├── general/                           # 通用设计标准
     │   ├── index
-    │   ├── overview                       # 通用设计总览
     │   ├── philosophy                     # 设计理念
     │   ├── principles                     # 设计原则
     │   ├── design-token                   # Design Token
@@ -67,7 +66,7 @@
     └── best-practices/                    # 应用最佳实践标准（暂仅 index）
 ```
 
-完整叶子页清单见 [sidebar-ia-draft.md](./sidebar-ia-draft.md)。
+完整叶子页清单见 [sidebar-ia.md](./sidebar-ia.md)。
 
 ---
 
@@ -148,6 +147,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 | `/docs/os4/patterns/empty-states` | `/docs/os4/components/display/empty-state` |
 | `/docs/os4/resources/design-tokens` | `/docs/os4/general/design-token` |
 | `/docs/os4/resources/*` | `/docs/os4/best-practices` |
+| `/docs/os4/general/overview` | `/docs/os4/general`（已移除「通用设计总览」） |
 
 ---
 

@@ -2,6 +2,8 @@ fragment Docsos4OverviewParts on Docsos4Overview {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -15,6 +17,8 @@ fragment Docsos4GeneralParts on Docsos4General {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -28,6 +32,8 @@ fragment Docsos4ComponentsOverviewParts on Docsos4ComponentsOverview {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -41,6 +47,8 @@ fragment Docsos4ComponentsNavigationParts on Docsos4ComponentsNavigation {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -54,6 +62,8 @@ fragment Docsos4ComponentsActionsParts on Docsos4ComponentsActions {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -67,6 +77,8 @@ fragment Docsos4ComponentsInputsParts on Docsos4ComponentsInputs {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -80,6 +92,8 @@ fragment Docsos4ComponentsContainersParts on Docsos4ComponentsContainers {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -93,6 +107,8 @@ fragment Docsos4ComponentsDisplayParts on Docsos4ComponentsDisplay {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -106,6 +122,8 @@ fragment Docsos4InteractionParts on Docsos4Interaction {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -119,6 +137,8 @@ fragment Docsos4SystemParts on Docsos4System {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -132,6 +152,8 @@ fragment Docsos4MultiDeviceParts on Docsos4MultiDevice {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -145,6 +167,8 @@ fragment Docsos4BestPracticesParts on Docsos4BestPractices {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -158,6 +182,8 @@ fragment Docsos5OverviewParts on Docsos5Overview {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -171,6 +197,8 @@ fragment Docsos5GeneralParts on Docsos5General {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -184,6 +212,8 @@ fragment Docsos5ComponentsOverviewParts on Docsos5ComponentsOverview {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -197,6 +227,8 @@ fragment Docsos5ComponentsNavigationParts on Docsos5ComponentsNavigation {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -210,6 +242,8 @@ fragment Docsos5ComponentsActionsParts on Docsos5ComponentsActions {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -223,6 +257,8 @@ fragment Docsos5ComponentsInputsParts on Docsos5ComponentsInputs {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -236,6 +272,8 @@ fragment Docsos5ComponentsContainersParts on Docsos5ComponentsContainers {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -249,6 +287,8 @@ fragment Docsos5ComponentsDisplayParts on Docsos5ComponentsDisplay {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -262,6 +302,8 @@ fragment Docsos5InteractionParts on Docsos5Interaction {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -275,6 +317,8 @@ fragment Docsos5SystemParts on Docsos5System {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -288,6 +332,8 @@ fragment Docsos5MultiDeviceParts on Docsos5MultiDevice {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -301,6 +347,8 @@ fragment Docsos5BestPracticesParts on Docsos5BestPractices {
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey

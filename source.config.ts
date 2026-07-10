@@ -12,6 +12,8 @@ export const docs = defineDocs({
       figmaNodeId: z.string().optional(),
       figmaPrototypeUrl: z.string().url().optional(),
       tokenGroups: z.array(z.string()).optional(),
+      maintainer: z.string().optional(),
+      maintainerOpenId: z.string().optional(),
     }),
     postprocess: {
       includeProcessedMarkdown: true,

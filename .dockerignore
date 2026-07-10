@@ -23,7 +23,7 @@ public/uploads
 !.env.example
 
 # VCS / IDE
-.git
+# 保留 .git：builder 阶段用 git log 解析文档「更新时间」
 .gitignore
 .gitattributes
 .idea

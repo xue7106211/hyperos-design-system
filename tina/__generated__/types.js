@@ -10,6 +10,8 @@ export const Docsos4OverviewPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -24,6 +26,8 @@ export const Docsos4GeneralPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -38,6 +42,8 @@ export const Docsos4ComponentsOverviewPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -52,6 +58,8 @@ export const Docsos4ComponentsNavigationPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -66,6 +74,8 @@ export const Docsos4ComponentsActionsPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -80,6 +90,8 @@ export const Docsos4ComponentsInputsPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -94,6 +106,8 @@ export const Docsos4ComponentsContainersPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -108,6 +122,8 @@ export const Docsos4ComponentsDisplayPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -122,6 +138,8 @@ export const Docsos4InteractionPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -136,6 +154,8 @@ export const Docsos4SystemPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -150,6 +170,8 @@ export const Docsos4MultiDevicePartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -164,6 +186,8 @@ export const Docsos4BestPracticesPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -178,6 +202,8 @@ export const Docsos5OverviewPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -192,6 +218,8 @@ export const Docsos5GeneralPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -206,6 +234,8 @@ export const Docsos5ComponentsOverviewPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -220,6 +250,8 @@ export const Docsos5ComponentsNavigationPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -234,6 +266,8 @@ export const Docsos5ComponentsActionsPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -248,6 +282,8 @@ export const Docsos5ComponentsInputsPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -262,6 +298,8 @@ export const Docsos5ComponentsContainersPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -276,6 +314,8 @@ export const Docsos5ComponentsDisplayPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -290,6 +330,8 @@ export const Docsos5InteractionPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -304,6 +346,8 @@ export const Docsos5SystemPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -318,6 +362,8 @@ export const Docsos5MultiDevicePartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey
@@ -332,6 +378,8 @@ export const Docsos5BestPracticesPartsFragmentDoc = gql`
   __typename
   title
   description
+  maintainer
+  maintainerOpenId
   status
   platforms
   figmaFileKey

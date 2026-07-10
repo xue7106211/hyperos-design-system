@@ -35,7 +35,7 @@ npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 ```
 
-生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/v1/deployment.md](docs/v1/deployment.md)；镜像定义见根目录 `Dockerfile`。
+生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/deployment.md](docs/deployment.md)；镜像定义见根目录 `Dockerfile`。
 
 ## 目录结构
 
@@ -50,7 +50,13 @@ content/docs/        # 网站 MDX 文档（对外）
     best-practices/  # 应用最佳实践标准
   os5/               # HyperOS 5 占位（侧栏可见，内容未发布；结构同 os4）
 docs/                # 工程设计文档（对内，见 docs/index.md）
-  v1/                # technical-design / IA / sidebar-ia-draft / roadmap / deployment
+  index.md
+  deployment.md
+  technical-design.md
+  information-architecture.md
+  sidebar-ia.md
+  roadmap.md
+  maintainers.md
 tokens/tokens.json   # Design Tokens（W3C DTCG）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
@@ -58,12 +64,12 @@ tina/                # TinaCMS schema 与 block 模板
 src/
   app/               # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
-    docs/            # DocsVersionSwitcher、FigmaJumpButton
+    docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
     mdx/             # 自定义 MDX 组件
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、shared、tina-docs、docs-version-tabs、cn
+  lib/               # source、layout、shared、tina-docs、docs-version-tabs、git-file-mtime、cn
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
@@ -72,7 +78,7 @@ source.config.ts     # MDX frontmatter schema
 next.config.mjs      # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts             # Markdown 内容协商
 .npmrc               # legacy-peer-deps（TinaCMS 依赖兼容）
-Dockerfile           # 生产镜像（MiFlow 构建 / Matrix 运行）
+Dockerfile           # 生产镜像（MiFlow 构建 / Matrix 运行；builder 保留 .git）
 package-lock.json    # npm 锁文件
 AGENTS.md            # Agent / 协作者指引（权威，保持精简）
 CLAUDE.md            # 指向 AGENTS.md
@@ -108,8 +114,9 @@ CLAUDE.md            # 指向 AGENTS.md
 | [AGENTS.md](AGENTS.md) | Agent 工作约定与验证清单（权威，精简） |
 | [CLAUDE.md](CLAUDE.md) | Claude 入口，指向 AGENTS.md |
 | [docs/index.md](docs/index.md) | 工程设计文档索引 |
-| [docs/v1/deployment.md](docs/v1/deployment.md) | MiFlow / Matrix 部署与卡点 |
-| [docs/v1/technical-design.md](docs/v1/technical-design.md) | V1 技术方案 |
-| [docs/v1/information-architecture.md](docs/v1/information-architecture.md) | 站点 IA |
-| [docs/v1/sidebar-ia-draft.md](docs/v1/sidebar-ia-draft.md) | 侧栏目录对照（全景图） |
-| [docs/v1/roadmap.md](docs/v1/roadmap.md) | 实施进度 |
+| [docs/deployment.md](docs/deployment.md) | MiFlow / Matrix 部署与卡点 |
+| [docs/technical-design.md](docs/technical-design.md) | 技术方案 |
+| [docs/information-architecture.md](docs/information-architecture.md) | 站点 IA |
+| [docs/sidebar-ia.md](docs/sidebar-ia.md) | 侧栏目录对照（全景图） |
+| [docs/roadmap.md](docs/roadmap.md) | 实施进度 |
+| [docs/maintainers.md](docs/maintainers.md) | 维护人飞书 open_id 备忘 |

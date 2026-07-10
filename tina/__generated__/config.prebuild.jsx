@@ -181,6 +181,18 @@ var docFrontmatterFields = [
   },
   {
     type: "string",
+    name: "maintainer",
+    label: "\u7EF4\u62A4\u4EBA",
+    description: "\u7F3A\u7701\u5C55\u793A\u4E3A\u300CHyperOS \u8BBE\u8BA1\u7CFB\u7EDF\u56E2\u961F\u300D"
+  },
+  {
+    type: "string",
+    name: "maintainerOpenId",
+    label: "\u7EF4\u62A4\u4EBA\u98DE\u4E66 Open ID",
+    description: "\u586B\u5199\u540E\u70B9\u51FB\u7EF4\u62A4\u4EBA\u4F1A\u901A\u8FC7 AppLink \u6253\u5F00\u98DE\u4E66\u5355\u804A\uFF08ou_ \u5F00\u5934\uFF09\u3002\u56E2\u961F\u540D\u7B49\u975E\u4E2A\u4EBA\u7EF4\u62A4\u4EBA\u8BF7\u7559\u7A7A\u3002"
+  },
+  {
+    type: "string",
     name: "status",
     label: "\u72B6\u6001",
     options: [

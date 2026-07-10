@@ -64,6 +64,11 @@ const config = {
         permanent: true,
       },
       {
+        source: '/docs/os4/general/overview',
+        destination: '/docs/os4/general',
+        permanent: true,
+      },
+      {
         source: '/docs/os4/foundations/principles',
         destination: '/docs/os4/general/principles',
         permanent: true,

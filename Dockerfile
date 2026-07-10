@@ -39,6 +39,7 @@ RUN npm ci --ignore-scripts
 # 4. tina/__generated__/ 已提交到仓库，next build 需要的 client/types 无需重新生成
 # 5. SSG 时 page.tsx 里 TINA_PUBLIC_IS_LOCAL !== 'true' → fetchTinaDoc 返回 null，
 #    走 fumadocs-mdx 静态渲染 fallback，完全不碰 tina 数据层
+# 6. 构建上下文保留 .git，供 page 用 git log 解析文档「更新时间」
 FROM ${BASE_IMAGE} AS builder
 ARG NPM_REGISTRY
 

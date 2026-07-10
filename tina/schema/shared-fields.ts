@@ -17,6 +17,19 @@ export const docFrontmatterFields: TinaField[] = [
   },
   {
     type: 'string',
+    name: 'maintainer',
+    label: '维护人',
+    description: '缺省展示为「HyperOS 设计系统团队」',
+  },
+  {
+    type: 'string',
+    name: 'maintainerOpenId',
+    label: '维护人飞书 Open ID',
+    description:
+      '填写后点击维护人会通过 AppLink 打开飞书单聊（ou_ 开头）。团队名等非个人维护人请留空。',
+  },
+  {
+    type: 'string',
     name: 'status',
     label: '状态',
     options: [

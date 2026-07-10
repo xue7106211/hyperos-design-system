@@ -9,11 +9,13 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { TinaMarkdown, type TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import { tinaField, useTina } from 'tinacms/dist/react';
 
+import { DocMeta } from '@/components/docs/DocMeta';
 import {
   getDocumentFromPayload,
   type TinaDocPayload,
 } from '@/lib/tina-docs';
 import { fetchTinaDocClient } from '@/lib/tina-docs-client';
+import { defaultDocMaintainer } from '@/lib/shared';
 import { getTinaMarkdownComponents } from './tina-markdown-components';
 
 type TinaDocsPageContentProps = {
@@ -21,9 +23,84 @@ type TinaDocsPageContentProps = {
   initialPayload: TinaDocPayload | null;
   fallbackTitle: string;
   fallbackDescription?: string;
+  fallbackMaintainer?: string;
+  fallbackMaintainerOpenId?: string;
+  updatedAt: string;
   fallbackBody: ReactNode;
   actions?: ReactNode;
+  figmaAction?: ReactNode;
 };
+
+function resolveMaintainer(value: unknown, fallback?: string): string {
+  if (typeof value === 'string' && value.trim()) return value.trim();
+  if (fallback?.trim()) return fallback.trim();
+  return defaultDocMaintainer;
+}
+
+function resolveOpenId(value: unknown, fallback?: string): string | undefined {
+  if (typeof value === 'string' && value.trim()) return value.trim();
+  if (fallback?.trim()) return fallback.trim();
+  return undefined;
+}
+
+function DocHeader({
+  title,
+  description,
+  updatedAt,
+  maintainer,
+  maintainerOpenId,
+  maintainerField,
+  actions,
+  figmaAction,
+  titleField,
+  descriptionField,
+}: {
+  title: string;
+  description?: string;
+  updatedAt: string;
+  maintainer: string;
+  maintainerOpenId?: string;
+  maintainerField?: string | null;
+  actions?: ReactNode;
+  figmaAction?: ReactNode;
+  titleField?: string | null;
+  descriptionField?: string | null;
+}) {
+  return (
+    <>
+      <DocsTitle
+        className="text-2xl font-semibold tracking-tight"
+        data-tina-field={titleField ?? undefined}
+      >
+        {title}
+      </DocsTitle>
+      {description ? (
+        <DocsDescription
+          className="mb-0 text-[15px] leading-relaxed sm:text-base"
+          data-tina-field={descriptionField ?? undefined}
+        >
+          {description}
+        </DocsDescription>
+      ) : null}
+      <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 border-b pb-6">
+        {actions}
+        <span
+          aria-hidden
+          className="mx-0.5 select-none text-sm text-fd-muted-foreground/50"
+        >
+          ·
+        </span>
+        <DocMeta
+          updatedAt={updatedAt}
+          maintainer={maintainer}
+          maintainerOpenId={maintainerOpenId}
+          maintainerField={maintainerField ?? undefined}
+        />
+        {figmaAction ? <div className="ms-auto">{figmaAction}</div> : null}
+      </div>
+    </>
+  );
+}
 
 function useTinaPayload(pagePath: string, initialPayload: TinaDocPayload | null) {
   const [payload, setPayload] = useState(initialPayload);
@@ -49,14 +126,22 @@ function TinaEditableContent({
   payload,
   fallbackTitle,
   fallbackDescription,
+  fallbackMaintainer,
+  fallbackMaintainerOpenId,
+  updatedAt,
   fallbackBody,
   actions,
+  figmaAction,
 }: {
   payload: TinaDocPayload;
   fallbackTitle: string;
   fallbackDescription?: string;
+  fallbackMaintainer?: string;
+  fallbackMaintainerOpenId?: string;
+  updatedAt: string;
   fallbackBody: ReactNode;
   actions?: ReactNode;
+  figmaAction?: ReactNode;
 }) {
   const { data } = useTina({
     query: payload.query,
@@ -79,13 +164,15 @@ function TinaEditableContent({
   if (!doc) {
     return (
       <>
-        <DocsTitle className="text-2xl font-semibold tracking-tight">{fallbackTitle}</DocsTitle>
-        {fallbackDescription ? (
-          <DocsDescription className="mb-0 text-[15px] leading-relaxed sm:text-base">
-            {fallbackDescription}
-          </DocsDescription>
-        ) : null}
-        {actions}
+        <DocHeader
+          title={fallbackTitle}
+          description={fallbackDescription}
+          updatedAt={updatedAt}
+          maintainer={resolveMaintainer(undefined, fallbackMaintainer)}
+          maintainerOpenId={resolveOpenId(undefined, fallbackMaintainerOpenId)}
+          actions={actions}
+          figmaAction={figmaAction}
+        />
         <DocsBody>{fallbackBody}</DocsBody>
       </>
     );
@@ -93,24 +180,26 @@ function TinaEditableContent({
 
   const title = String(doc.title ?? fallbackTitle);
   const description = doc.description ? String(doc.description) : fallbackDescription;
+  const maintainer = resolveMaintainer(doc.maintainer, fallbackMaintainer);
+  const maintainerOpenId = resolveOpenId(
+    doc.maintainerOpenId,
+    fallbackMaintainerOpenId,
+  );
 
   return (
     <>
-      <DocsTitle
-        className="text-2xl font-semibold tracking-tight"
-        data-tina-field={tinaField(doc, 'title')}
-      >
-        {title}
-      </DocsTitle>
-      {description ? (
-        <DocsDescription
-          className="mb-0 text-[15px] leading-relaxed sm:text-base"
-          data-tina-field={tinaField(doc, 'description')}
-        >
-          {description}
-        </DocsDescription>
-      ) : null}
-      {actions}
+      <DocHeader
+        title={title}
+        description={description}
+        updatedAt={updatedAt}
+        maintainer={maintainer}
+        maintainerOpenId={maintainerOpenId}
+        titleField={tinaField(doc, 'title')}
+        descriptionField={tinaField(doc, 'description')}
+        maintainerField={tinaField(doc, 'maintainer')}
+        actions={actions}
+        figmaAction={figmaAction}
+      />
       <DocsBody data-tina-field={tinaField(doc, 'body')}>
         {doc.body ? (
           <TinaMarkdown
@@ -130,21 +219,27 @@ export function TinaDocsPageContent({
   initialPayload,
   fallbackTitle,
   fallbackDescription,
+  fallbackMaintainer,
+  fallbackMaintainerOpenId,
+  updatedAt,
   fallbackBody,
   actions,
+  figmaAction,
 }: TinaDocsPageContentProps) {
   const payload = useTinaPayload(pagePath, initialPayload);
 
   if (!payload) {
     return (
       <>
-        <DocsTitle className="text-2xl font-semibold tracking-tight">{fallbackTitle}</DocsTitle>
-        {fallbackDescription ? (
-          <DocsDescription className="mb-0 text-[15px] leading-relaxed sm:text-base">
-            {fallbackDescription}
-          </DocsDescription>
-        ) : null}
-        {actions}
+        <DocHeader
+          title={fallbackTitle}
+          description={fallbackDescription}
+          updatedAt={updatedAt}
+          maintainer={resolveMaintainer(undefined, fallbackMaintainer)}
+          maintainerOpenId={resolveOpenId(undefined, fallbackMaintainerOpenId)}
+          actions={actions}
+          figmaAction={figmaAction}
+        />
         <DocsBody>{fallbackBody}</DocsBody>
       </>
     );
@@ -155,8 +250,12 @@ export function TinaDocsPageContent({
       payload={payload}
       fallbackTitle={fallbackTitle}
       fallbackDescription={fallbackDescription}
+      fallbackMaintainer={fallbackMaintainer}
+      fallbackMaintainerOpenId={fallbackMaintainerOpenId}
+      updatedAt={updatedAt}
       fallbackBody={fallbackBody}
       actions={actions}
+      figmaAction={figmaAction}
     />
   );
 }
