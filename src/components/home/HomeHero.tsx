@@ -39,7 +39,7 @@ export function HomeHero() {
             </Link>
           </Reveal>
           <Reveal index={3}>，</Reveal>
-          <Reveal index={4}>并</Reveal>{' '}
+          <Reveal index={4}>并</Reveal>
           <Reveal index={5}>探索</Reveal>{' '}
           <Reveal index={6}>我们的</Reveal>{' '}
           <Reveal index={7}>
