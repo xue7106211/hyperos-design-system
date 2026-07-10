@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ThemeSwitch } from 'fumadocs-ui/layouts/shared/slots/theme-switch';
-import { HyperOSMark } from '@/components/home/HyperOSMark';
 import { cn } from '@/lib/cn';
 import { defaultDocsRoute } from '@/lib/shared';
 
@@ -26,13 +25,6 @@ export function PillNav({ className }: { className?: string }) {
           'bg-[var(--home-nav-bg)] shadow-[var(--home-nav-shadow)]',
         )}
       >
-        <Link
-          href="/"
-          aria-label="首页"
-          className="home-nav-mark flex size-9 items-center justify-center rounded-full transition-opacity duration-150 hover:opacity-70"
-        >
-          <HyperOSMark />
-        </Link>
         {links.map((link) => (
           <Link
             key={link.href}

@@ -1,7 +1,7 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { SiGitlab } from '@icons-pack/react-simple-icons';
 import { HyperOSLogo } from '@/components/HyperOSLogo';
-import { defaultDocsRoute, gitRepoUrl } from './shared';
+import { gitRepoUrl } from './shared';
 
 export function baseOptions(): BaseLayoutProps {
   return {
@@ -10,10 +10,6 @@ export function baseOptions(): BaseLayoutProps {
       url: '/',
     },
     links: [
-      {
-        text: '文档',
-        url: defaultDocsRoute,
-      },
       {
         type: 'icon',
         url: gitRepoUrl,

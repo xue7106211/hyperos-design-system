@@ -81,10 +81,6 @@ html {
   color: var(--home-fg-high);
 }
 
-.home-shell .home-nav-mark {
-  color: var(--home-fg-high);
-}
-
 html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;

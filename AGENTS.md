@@ -56,6 +56,17 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 - **不要**把「流水线运行完成」当成站点已更新；以 Matrix 实例 Tag / Running 为准
 - 完整流程、MiFlow/Matrix 职责、卡点排查 → [docs/v1/deployment.md](docs/v1/deployment.md)
 
+### Commit 信息（Agent 必读）
+
+- **一律使用中文**撰写 commit message（说明「为什么」改，而非罗列文件）
+- 推荐 Conventional Commits 前缀 + 中文主题，例如：
+  - `feat: 补充站点元数据与 favicon / OG 图`
+  - `fix: 修复首页开发服务器 500 错误`
+  - `docs: 更新 AGENTS 中的 Git 约定`
+  - `chore: 同步 tina/__generated__`
+- 类型前缀（`feat` / `fix` / `docs` / `chore` / `refactor` / `test` 等）可保留英文；**主题与正文必须用中文**
+- 不要写纯英文 commit（专有名词、路径、命令可保留英文）
+
 ### TinaCMS 后台
 
 - 本地开发：复制 `.env.example` 为 `.env`，运行 `npm run dev`
