@@ -151,6 +151,15 @@ html > body[data-scroll-locked] {
   margin-bottom: 0.875rem;
 }
 
+/* 覆盖上面更具体的 prose p 规则，恢复 fumadocs Callout / Tabs 等组件的 prose-no-margin */
+#nd-docs-layout .prose .prose-no-margin > :first-child {
+  margin-top: 0;
+}
+
+#nd-docs-layout .prose .prose-no-margin > :last-child {
+  margin-bottom: 0;
+}
+
 /* Compact TOC — prose on anchor links overrides text-sm otherwise */
 #nd-docs-layout #nd-toc #toc-title {
   font-size: 0.75rem;

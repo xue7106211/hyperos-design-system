@@ -3,6 +3,7 @@ import type { MDXComponents } from 'mdx/types';
 import { DosDonts } from './DosDonts';
 import { FigmaEmbed } from './FigmaEmbed';
 import { FigmaPrototypeEmbed } from './FigmaPrototypeEmbed';
+import { InlineTOC } from './InlineTOC';
 import { PlatformCodeBlock } from './PlatformCodeBlock';
 import { PlatformTab, PlatformTabs } from './PlatformTabs';
 import { StatusBadge } from './StatusBadge';
@@ -13,6 +14,7 @@ export function getMDXComponents(components?: MDXComponents) {
     ...defaultMdxComponents,
     FigmaEmbed,
     FigmaPrototypeEmbed,
+    InlineTOC,
     PlatformTabs,
     PlatformTab,
     PlatformCodeBlock,
