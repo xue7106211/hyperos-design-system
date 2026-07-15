@@ -56,6 +56,13 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 - **不要**把「流水线运行完成」当成站点已更新；以 Matrix 实例 Tag / Running 为准
 - 完整流程、MiFlow/Matrix 职责、卡点排查 → [docs/deployment.md](docs/deployment.md)
 
+### Commit 邮箱（Agent 必读）
+
+- **不要**改全局 / 仓库 `git config user.email`；提交时用单次覆盖：`git -c user.email="..." commit ...`
+- **GitLab**（主远程）：`xueyifei1@xiaomi.com`
+- **GitHub**：`allenxue.design@gmail.com`
+- 本仓双端 push 时同一 commit 只能有一个 author → **默认用 GitLab 邮箱** `xueyifei1@xiaomi.com`
+
 ### Commit 信息（Agent 必读）
 
 - **一律使用中文**撰写 commit message（说明「为什么」改，而非罗列文件）
