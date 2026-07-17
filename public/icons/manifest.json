@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-17T06:02:27.159Z",
+  "categories": [
+    {
+      "id": "action",
+      "label": "操作"
+    },
+    {
+      "id": "ai",
+      "label": "智能"
+    },
+    {
+      "id": "edit",
+      "label": "编辑"
+    },
+    {
+      "id": "location",
+      "label": "位置"
+    },
+    {
+      "id": "misc",
+      "label": "其他"
+    },
+    {
+      "id": "navigation",
+      "label": "导航"
+    },
+    {
+      "id": "system",
+      "label": "系统"
+    }
+  ],
+  "icons": [
+    {
+      "id": "action.download",
+      "name": "download",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/download.svg"
+    },
+    {
+      "id": "action.file_downloads",
+      "name": "file_downloads",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/file_downloads.svg"
+    },
+    {
+      "id": "action.import",
+      "name": "import",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/import.svg"
+    },
+    {
+      "id": "action.merge",
+      "name": "merge",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/merge.svg"
+    },
+    {
+      "id": "action.redo",
+      "name": "redo",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/redo.svg"
+    },
+    {
+      "id": "action.refresh",
+      "name": "refresh",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/refresh.svg"
+    },
+    {
+      "id": "action.remove",
+      "name": "remove",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/remove.svg"
+    },
+    {
+      "id": "action.replace",
+      "name": "replace",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/replace.svg"
+    },
+    {
+      "id": "action.reset",
+      "name": "reset",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/reset.svg"
+    },
+    {
+      "id": "action.rotate_left",
+      "name": "rotate_left",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/rotate_left.svg"
+    },
+    {
+      "id": "action.share",
+      "name": "share",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/share.svg"
+    },
+    {
+      "id": "action.sort",
+      "name": "sort",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/sort.svg"
+    },
+    {
+      "id": "action.undo",
+      "name": "undo",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/undo.svg"
+    },
+    {
+      "id": "action.update",
+      "name": "update",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/update.svg"
+    },
+    {
+      "id": "action.zoom_out",
+      "name": "zoom_out",
+      "category": "action",
+      "tags": [],
+      "path": "/icons/action/zoom_out.svg"
+    },
+    {
+      "id": "ai.ic-技能推荐",
+      "name": "ic-技能推荐",
+      "category": "ai",
+      "tags": [],
+      "path": "/icons/ai/ic-技能推荐.svg"
+    },
+    {
+      "id": "ai.ic-输入模块",
+      "name": "ic-输入模块",
+      "category": "ai",
+      "tags": [],
+      "path": "/icons/ai/ic-输入模块.svg",
+      "multicolor": true
+    },
+    {
+      "id": "edit.插入文本",
+      "name": "插入文本",
+      "category": "edit",
+      "tags": [],
+      "path": "/icons/edit/插入文本.svg"
+    },
+    {
+      "id": "edit.放大",
+      "name": "放大",
+      "category": "edit",
+      "tags": [],
+      "path": "/icons/edit/放大.svg"
+    },
+    {
+      "id": "edit.删除内容",
+      "name": "删除内容",
+      "category": "edit",
+      "tags": [],
+      "path": "/icons/edit/删除内容.svg"
+    },
+    {
+      "id": "edit.上滑",
+      "name": "上滑",
+      "category": "edit",
+      "tags": [],
+      "path": "/icons/edit/上滑.svg",
+      "multicolor": true
+    },
+    {
+      "id": "edit.缩小",
+      "name": "缩小",
+      "category": "edit",
+      "tags": [],
+      "path": "/icons/edit/缩小.svg"
+    },
+    {
+      "id": "location.到达地点",
+      "name": "到达地点",
+      "category": "location",
+      "tags": [],
+      "path": "/icons/location/到达地点.svg"
+    },
+    {
+      "id": "location.离开地点",
+      "name": "离开地点",
+      "category": "location",
+      "tags": [],
+      "path": "/icons/location/离开地点.svg"
+    },
+    {
+      "id": "misc.图标",
+      "name": "图标",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/图标.svg"
+    },
+    {
+      "id": "misc.图标-1",
+      "name": "图标-1",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/图标-1.svg"
+    },
+    {
+      "id": "misc.图标-2",
+      "name": "图标-2",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/图标-2.svg"
+    },
+    {
+      "id": "misc.图标-3",
+      "name": "图标-3",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/图标-3.svg"
+    },
+    {
+      "id": "misc.frame-2090060244",
+      "name": "frame-2090060244",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/frame-2090060244.svg"
+    },
+    {
+      "id": "misc.group-2090054316",
+      "name": "group-2090054316",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/group-2090054316.svg"
+    },
+    {
+      "id": "misc.group-2090054683",
+      "name": "group-2090054683",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/group-2090054683.svg"
+    },
+    {
+      "id": "misc.group-2090054911",
+      "name": "group-2090054911",
+      "category": "misc",
+      "tags": [],
+      "path": "/icons/misc/group-2090054911.svg"
+    },
+    {
+      "id": "navigation.back",
+      "name": "back",
+      "category": "navigation",
+      "tags": [],
+      "path": "/icons/navigation/back.svg"
+    },
+    {
+      "id": "navigation.chevron_backward",
+      "name": "chevron_backward",
+      "category": "navigation",
+      "tags": [],
+      "path": "/icons/navigation/chevron_backward.svg"
+    },
+    {
+      "id": "navigation.chevron_forward",
+      "name": "chevron_forward",
+      "category": "navigation",
+      "tags": [],
+      "path": "/icons/navigation/chevron_forward.svg"
+    },
+    {
+      "id": "navigation.forward",
+      "name": "forward",
+      "category": "navigation",
+      "tags": [],
+      "path": "/icons/navigation/forward.svg"
+    },
+    {
+      "id": "navigation.navbar-backicon",
+      "name": "navbar-backicon",
+      "category": "navigation",
+      "tags": [],
+      "path": "/icons/navigation/navbar-backicon.svg"
+    },
+    {
+      "id": "system.超级文件",
+      "name": "超级文件",
+      "category": "system",
+      "tags": [],
+      "path": "/icons/system/超级文件.svg"
+    },
+    {
+      "id": "system.超级文件-1",
+      "name": "超级文件-1",
+      "category": "system",
+      "tags": [],
+      "path": "/icons/system/超级文件-1.svg"
+    },
+    {
+      "id": "system.列表缓存状态",
+      "name": "列表缓存状态",
+      "category": "system",
+      "tags": [],
+      "path": "/icons/system/列表缓存状态.svg"
+    },
+    {
+      "id": "system.列表缓存状态-1",
+      "name": "列表缓存状态-1",
+      "category": "system",
+      "tags": [],
+      "path": "/icons/system/列表缓存状态-1.svg"
+    }
+  ]
+}

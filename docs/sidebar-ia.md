@@ -19,6 +19,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 │   ├── 设计理念
 │   ├── 设计原则
 │   ├── Design Token
+│   ├── 图标
 │   ├── 布局
 │   ├── 动效
 │   ├── 文案指南
@@ -185,7 +186,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 | 旧结构（os4） | 新结构（已落地） | 备注 |
 |-------------|-----------------|------|
 | Index：HyperOS 4 Design System | 保留 | 不改 title / 路由 |
-| Foundations | 通用设计标准（`general/`） | 总览 / 理念 / 原则 / Token / 布局 / 动效 / 文案 / 包容性 |
+| Foundations | 通用设计标准（`general/`） | 总览 / 理念 / 原则 / Token / 图标 / 布局 / 动效 / 文案 / 包容性 |
 | Components（actions / inputs / …） | 控件与组件（导航搜索 / 菜单和操作 / 选择和输入 / 容器类 / 展示类） | 分组与叶子页按本列表重划；中英对照见上 |
 | Patterns | 系统特性与能力标准 / 展示类空状态等 | 旧路径 301 到 `system` 或对应组件页 |
 | Resources | 应用最佳实践标准（`best-practices/`） | Figma 库等旧页暂重定向至模块 Index |

@@ -7,10 +7,11 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 移动端组件规范文档（无 Web 交互 demo）
 - Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
 - Design Token 表格展示（W3C DTCG）
+- 图标库预览（分类 / 搜索 / 深浅色 / 复制名称与 SVG）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
-- TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 代码 block
+- TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 图标 / 代码 block
 - OS 版本切换（HyperOS 4 / 5；侧边栏 `DocsVersionSwitcher`，当前默认 OS4）
 
 ## 开发
@@ -33,6 +34,8 @@ npm run build        # tinacms build + 生产构建
 npm run tina:build   # 只跑 tinacms build（改 tina schema 后刷新 __generated__）
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
+npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
+npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
 ```
 
 生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/deployment.md](docs/deployment.md)；镜像定义见根目录 `Dockerfile`。
@@ -42,7 +45,7 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 ```text
 content/docs/        # 网站 MDX 文档（对外）
   os4/               # HyperOS 4 规范（当前默认，/docs → /docs/os4）
-    general/         # 通用设计标准
+    general/         # 通用设计标准（含 icons 图标预览页）
     components/      # 控件与组件
     interaction/     # 人机交互标准
     system/          # 系统特性与能力标准
@@ -57,6 +60,10 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
   sidebar-ia.md
   roadmap.md
   maintainers.md
+icons/               # 图标源 SVG + manifest（见 icons/README.md）
+  svg/{category}/
+  manifest.json
+scripts/             # 仓库脚本（如 generate-icon-manifest.mjs）
 tokens/tokens.json   # Design Tokens（W3C DTCG）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
@@ -66,13 +73,14 @@ src/
   components/
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
-    mdx/             # 自定义 MDX 组件
+    mdx/             # 自定义 MDX 组件（含 IconGallery）
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、shared、tina-docs、docs-version-tabs、git-file-mtime、cn
+  lib/               # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
+  icons/             # 图标静态访问（由 icons:sync 生成，含 manifest.json）
   uploads/           # TinaCMS 媒体上传（本地模式）
 source.config.ts     # MDX frontmatter schema
 next.config.mjs      # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
@@ -88,11 +96,11 @@ CLAUDE.md            # 指向 AGENTS.md
 
 1. 在 `content/docs/os4/components/`（或对应 OS 版本目录）下创建 `.mdx` 文件
 2. 在对应目录的 `meta.json` 中注册页面
-3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<PlatformTabs />`、`<PlatformCodeBlock />` 等组件（亦可通过 `/admin` 插入 block）
+3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<IconGallery />`、`<PlatformTabs />`、`<PlatformCodeBlock />` 等组件（亦可通过 `/admin` 插入 block）
 
 参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx)
 
-> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。
+> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标旧路径 `/docs/os4/foundations/iconography` → `/docs/os4/general/icons`。
 
 ### Figma Embed 示例
 
@@ -107,6 +115,15 @@ CLAUDE.md            # 指向 AGENTS.md
 <TokenTable groups={["color.action", "spacing.button"]} />
 ```
 
+### 图标预览示例
+
+```mdx
+<IconGallery />
+<IconGallery categories={["navigation", "action"]} />
+```
+
+图标入库约定见 [icons/README.md](icons/README.md)；预览页：[`/docs/os4/general/icons`](content/docs/os4/general/icons.mdx)。
+
 ## 文档
 
 | 文档 | 说明 |
@@ -120,3 +137,4 @@ CLAUDE.md            # 指向 AGENTS.md
 | [docs/sidebar-ia.md](docs/sidebar-ia.md) | 侧栏目录对照（全景图） |
 | [docs/roadmap.md](docs/roadmap.md) | 实施进度 |
 | [docs/maintainers.md](docs/maintainers.md) | 维护人飞书 open_id 备忘 |
+| [icons/README.md](icons/README.md) | 图标 SVG 入库与 `icons:sync` 约定 |

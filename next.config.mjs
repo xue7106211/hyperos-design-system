@@ -32,6 +32,11 @@ const config = {
         permanent: true,
       },
       {
+        source: '/docs/foundations/iconography',
+        destination: '/docs/os4/general/icons',
+        permanent: true,
+      },
+      {
         source: '/docs/foundations/:path*',
         destination: '/docs/os4/general/:path*',
         permanent: true,
@@ -100,7 +105,7 @@ const config = {
       },
       {
         source: '/docs/os4/foundations/iconography',
-        destination: '/docs/os4/general/layout',
+        destination: '/docs/os4/general/icons',
         permanent: true,
       },
       {
