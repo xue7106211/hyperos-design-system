@@ -4,6 +4,7 @@ import type { ComponentType } from 'react';
 import { DosDonts } from '@/components/mdx/DosDonts';
 import { FigmaEmbed } from '@/components/mdx/FigmaEmbed';
 import { FigmaPrototypeEmbed } from '@/components/mdx/FigmaPrototypeEmbed';
+import { IconGallery } from '@/components/mdx/IconGallery';
 import { PlatformCodeBlock } from '@/components/mdx/PlatformCodeBlock';
 import { StatusBadge } from '@/components/mdx/StatusBadge';
 import { TokenTable } from '@/components/mdx/TokenTable';
@@ -33,6 +34,9 @@ export function getTinaMarkdownComponents(): TinaComponentMap {
       />
     ),
     TokenTable: (props) => <TokenTable groups={(props.groups as string[]) ?? []} />,
+    IconGallery: (props) => (
+      <IconGallery categories={(props.categories as string[]) ?? []} />
+    ),
     DosDonts: (props) => (
       <DosDonts
         doTitle={props.doTitle as string | undefined}

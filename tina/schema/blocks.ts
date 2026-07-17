@@ -101,6 +101,20 @@ export const tokenTableBlock: Template = {
   ],
 };
 
+export const iconGalleryBlock: Template = {
+  name: 'IconGallery',
+  label: '图标预览',
+  fields: [
+    {
+      type: 'string',
+      name: 'categories',
+      label: 'Categories',
+      description: '可选；留空显示全部分类。例如 navigation、action',
+      list: true,
+    },
+  ],
+};
+
 export const dosDontsBlock: Template = {
   name: 'DosDonts',
   label: '推荐 / 避免',
@@ -164,6 +178,7 @@ export const mdxBlockTemplates: Template[] = [
   figmaEmbedBlock,
   figmaPrototypeEmbedBlock,
   tokenTableBlock,
+  iconGalleryBlock,
   dosDontsBlock,
   platformCodeBlock,
 ];

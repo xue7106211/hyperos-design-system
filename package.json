@@ -9,7 +9,9 @@
     "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx",
     "tina:build": "tinacms build",
-    "tina:dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\""
+    "tina:dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "icons:sync": "node scripts/generate-icon-manifest.mjs",
+    "icons:import": "node scripts/generate-icon-manifest.mjs --import-from"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.11.1",

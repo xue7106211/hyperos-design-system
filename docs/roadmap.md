@@ -19,10 +19,12 @@
 - [x] Docker / MiFlow / Matrix 部署文档（[deployment.md](./deployment.md)；正式环境当前需 Matrix 手动发 `prod-*`）
 - [x] 按设计系统全景图重构侧栏 IA（`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`；对照 [sidebar-ia.md](./sidebar-ia.md)）
 - [x] 文档页操作栏「跳转 Figma」（`FigmaJumpButton`；默认库 URL 见 `src/lib/shared.ts`）
+- [x] 图标预览页（`general/icons`）+ `IconGallery` + `icons/` 资产管线（`icons:sync` / `icons:import`）
 
 ## 下一步
 
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
+- [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
 - [ ] MiFlow `main` 流水线补「发布prod」（与 staging 对称），减少手动发布
 - [ ] TinaCMS 生产鉴权（Auth.js / 内网 SSO）与 Git 同步
 - [ ] Phase 2：TinaCloud 或自托管 datalayer 部署
@@ -37,4 +39,5 @@
 - [站点信息架构](./information-architecture.md)
 - [侧栏目录对照（全景图）](./sidebar-ia.md)
 - [工程设计文档索引](./index.md)
+- [图标资产约定](../icons/README.md)
 - [AGENTS.md](../AGENTS.md) · [CLAUDE.md](../CLAUDE.md)

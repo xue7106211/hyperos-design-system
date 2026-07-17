@@ -637,6 +637,10 @@ export type Docsos4OverviewBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4OverviewBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4OverviewBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -656,6 +660,7 @@ export type Docsos4OverviewBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4OverviewBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4OverviewBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4OverviewBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4OverviewBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4OverviewBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4OverviewBodyPlatformCodeBlockFilter>;
 };
@@ -728,6 +733,10 @@ export type Docsos4GeneralBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4GeneralBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4GeneralBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -747,6 +756,7 @@ export type Docsos4GeneralBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4GeneralBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4GeneralBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4GeneralBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4GeneralBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4GeneralBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4GeneralBodyPlatformCodeBlockFilter>;
 };
@@ -819,6 +829,10 @@ export type Docsos4ComponentsOverviewBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4ComponentsOverviewBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4ComponentsOverviewBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -838,6 +852,7 @@ export type Docsos4ComponentsOverviewBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4ComponentsOverviewBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsOverviewBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4ComponentsOverviewBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4ComponentsOverviewBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4ComponentsOverviewBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4ComponentsOverviewBodyPlatformCodeBlockFilter>;
 };
@@ -910,6 +925,10 @@ export type Docsos4ComponentsNavigationBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4ComponentsNavigationBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4ComponentsNavigationBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -929,6 +948,7 @@ export type Docsos4ComponentsNavigationBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4ComponentsNavigationBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4ComponentsNavigationBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4ComponentsNavigationBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4ComponentsNavigationBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter>;
 };
@@ -1001,6 +1021,10 @@ export type Docsos4ComponentsActionsBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4ComponentsActionsBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4ComponentsActionsBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1020,6 +1044,7 @@ export type Docsos4ComponentsActionsBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4ComponentsActionsBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsActionsBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4ComponentsActionsBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4ComponentsActionsBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4ComponentsActionsBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4ComponentsActionsBodyPlatformCodeBlockFilter>;
 };
@@ -1092,6 +1117,10 @@ export type Docsos4ComponentsInputsBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4ComponentsInputsBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4ComponentsInputsBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1111,6 +1140,7 @@ export type Docsos4ComponentsInputsBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4ComponentsInputsBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsInputsBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4ComponentsInputsBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4ComponentsInputsBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4ComponentsInputsBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4ComponentsInputsBodyPlatformCodeBlockFilter>;
 };
@@ -1183,6 +1213,10 @@ export type Docsos4ComponentsContainersBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4ComponentsContainersBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4ComponentsContainersBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1202,6 +1236,7 @@ export type Docsos4ComponentsContainersBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4ComponentsContainersBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsContainersBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4ComponentsContainersBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4ComponentsContainersBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4ComponentsContainersBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4ComponentsContainersBodyPlatformCodeBlockFilter>;
 };
@@ -1274,6 +1309,10 @@ export type Docsos4ComponentsDisplayBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4ComponentsDisplayBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4ComponentsDisplayBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1293,6 +1332,7 @@ export type Docsos4ComponentsDisplayBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4ComponentsDisplayBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4ComponentsDisplayBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4ComponentsDisplayBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4ComponentsDisplayBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4ComponentsDisplayBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4ComponentsDisplayBodyPlatformCodeBlockFilter>;
 };
@@ -1365,6 +1405,10 @@ export type Docsos4InteractionBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4InteractionBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4InteractionBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1384,6 +1428,7 @@ export type Docsos4InteractionBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4InteractionBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4InteractionBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4InteractionBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4InteractionBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4InteractionBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4InteractionBodyPlatformCodeBlockFilter>;
 };
@@ -1456,6 +1501,10 @@ export type Docsos4SystemBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4SystemBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4SystemBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1475,6 +1524,7 @@ export type Docsos4SystemBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4SystemBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4SystemBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4SystemBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4SystemBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4SystemBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4SystemBodyPlatformCodeBlockFilter>;
 };
@@ -1547,6 +1597,10 @@ export type Docsos4MultiDeviceBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4MultiDeviceBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4MultiDeviceBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1566,6 +1620,7 @@ export type Docsos4MultiDeviceBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4MultiDeviceBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4MultiDeviceBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4MultiDeviceBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4MultiDeviceBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4MultiDeviceBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4MultiDeviceBodyPlatformCodeBlockFilter>;
 };
@@ -1638,6 +1693,10 @@ export type Docsos4BestPracticesBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos4BestPracticesBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos4BestPracticesBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1657,6 +1716,7 @@ export type Docsos4BestPracticesBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos4BestPracticesBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos4BestPracticesBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos4BestPracticesBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos4BestPracticesBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos4BestPracticesBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos4BestPracticesBodyPlatformCodeBlockFilter>;
 };
@@ -1729,6 +1789,10 @@ export type Docsos5OverviewBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5OverviewBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5OverviewBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1748,6 +1812,7 @@ export type Docsos5OverviewBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5OverviewBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5OverviewBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5OverviewBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5OverviewBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5OverviewBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5OverviewBodyPlatformCodeBlockFilter>;
 };
@@ -1820,6 +1885,10 @@ export type Docsos5GeneralBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5GeneralBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5GeneralBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1839,6 +1908,7 @@ export type Docsos5GeneralBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5GeneralBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5GeneralBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5GeneralBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5GeneralBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5GeneralBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5GeneralBodyPlatformCodeBlockFilter>;
 };
@@ -1911,6 +1981,10 @@ export type Docsos5ComponentsOverviewBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5ComponentsOverviewBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5ComponentsOverviewBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -1930,6 +2004,7 @@ export type Docsos5ComponentsOverviewBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5ComponentsOverviewBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsOverviewBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5ComponentsOverviewBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5ComponentsOverviewBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5ComponentsOverviewBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5ComponentsOverviewBodyPlatformCodeBlockFilter>;
 };
@@ -2002,6 +2077,10 @@ export type Docsos5ComponentsNavigationBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5ComponentsNavigationBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5ComponentsNavigationBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2021,6 +2100,7 @@ export type Docsos5ComponentsNavigationBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5ComponentsNavigationBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5ComponentsNavigationBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5ComponentsNavigationBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5ComponentsNavigationBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter>;
 };
@@ -2093,6 +2173,10 @@ export type Docsos5ComponentsActionsBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5ComponentsActionsBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5ComponentsActionsBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2112,6 +2196,7 @@ export type Docsos5ComponentsActionsBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5ComponentsActionsBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsActionsBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5ComponentsActionsBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5ComponentsActionsBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5ComponentsActionsBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5ComponentsActionsBodyPlatformCodeBlockFilter>;
 };
@@ -2184,6 +2269,10 @@ export type Docsos5ComponentsInputsBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5ComponentsInputsBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5ComponentsInputsBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2203,6 +2292,7 @@ export type Docsos5ComponentsInputsBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5ComponentsInputsBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsInputsBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5ComponentsInputsBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5ComponentsInputsBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5ComponentsInputsBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5ComponentsInputsBodyPlatformCodeBlockFilter>;
 };
@@ -2275,6 +2365,10 @@ export type Docsos5ComponentsContainersBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5ComponentsContainersBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5ComponentsContainersBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2294,6 +2388,7 @@ export type Docsos5ComponentsContainersBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5ComponentsContainersBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsContainersBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5ComponentsContainersBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5ComponentsContainersBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5ComponentsContainersBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5ComponentsContainersBodyPlatformCodeBlockFilter>;
 };
@@ -2366,6 +2461,10 @@ export type Docsos5ComponentsDisplayBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5ComponentsDisplayBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5ComponentsDisplayBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2385,6 +2484,7 @@ export type Docsos5ComponentsDisplayBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5ComponentsDisplayBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5ComponentsDisplayBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5ComponentsDisplayBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5ComponentsDisplayBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5ComponentsDisplayBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5ComponentsDisplayBodyPlatformCodeBlockFilter>;
 };
@@ -2457,6 +2557,10 @@ export type Docsos5InteractionBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5InteractionBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5InteractionBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2476,6 +2580,7 @@ export type Docsos5InteractionBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5InteractionBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5InteractionBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5InteractionBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5InteractionBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5InteractionBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5InteractionBodyPlatformCodeBlockFilter>;
 };
@@ -2548,6 +2653,10 @@ export type Docsos5SystemBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5SystemBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5SystemBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2567,6 +2676,7 @@ export type Docsos5SystemBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5SystemBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5SystemBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5SystemBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5SystemBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5SystemBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5SystemBodyPlatformCodeBlockFilter>;
 };
@@ -2639,6 +2749,10 @@ export type Docsos5MultiDeviceBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5MultiDeviceBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5MultiDeviceBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2658,6 +2772,7 @@ export type Docsos5MultiDeviceBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5MultiDeviceBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5MultiDeviceBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5MultiDeviceBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5MultiDeviceBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5MultiDeviceBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5MultiDeviceBodyPlatformCodeBlockFilter>;
 };
@@ -2730,6 +2845,10 @@ export type Docsos5BestPracticesBodyTokenTableFilter = {
   groups?: InputMaybe<StringFilter>;
 };
 
+export type Docsos5BestPracticesBodyIconGalleryFilter = {
+  categories?: InputMaybe<StringFilter>;
+};
+
 export type Docsos5BestPracticesBodyDosDontsFilter = {
   doTitle?: InputMaybe<StringFilter>;
   dontTitle?: InputMaybe<StringFilter>;
@@ -2749,6 +2868,7 @@ export type Docsos5BestPracticesBodyFilter = {
   FigmaEmbed?: InputMaybe<Docsos5BestPracticesBodyFigmaEmbedFilter>;
   FigmaPrototypeEmbed?: InputMaybe<Docsos5BestPracticesBodyFigmaPrototypeEmbedFilter>;
   TokenTable?: InputMaybe<Docsos5BestPracticesBodyTokenTableFilter>;
+  IconGallery?: InputMaybe<Docsos5BestPracticesBodyIconGalleryFilter>;
   DosDonts?: InputMaybe<Docsos5BestPracticesBodyDosDontsFilter>;
   PlatformCodeBlock?: InputMaybe<Docsos5BestPracticesBodyPlatformCodeBlockFilter>;
 };

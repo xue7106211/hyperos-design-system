@@ -45,6 +45,7 @@
     │   ├── philosophy                     # 设计理念
     │   ├── principles                     # 设计原则
     │   ├── design-token                   # Design Token
+    │   ├── icons                          # 图标预览
     │   ├── layout                         # 布局
     │   ├── motion                         # 动效
     │   ├── copywriting                    # 文案指南
@@ -82,6 +83,7 @@ Fumadocs MDX 按文件路径生成 URL。根级 `content/docs/meta.json` 注册 
 |----------|-----|
 | `content/docs/os4/index.mdx` | `/docs/os4` |
 | `content/docs/os4/general/design-token.mdx` | `/docs/os4/general/design-token` |
+| `content/docs/os4/general/icons.mdx` | `/docs/os4/general/icons` |
 | `content/docs/os4/components/actions/button.mdx` | `/docs/os4/components/actions/button` |
 
 **重定向**（`next.config.mjs`）：
@@ -117,6 +119,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 |------|----------|
 | 说明正文 | 默认 MDX |
 | Token 可视化 | `<TokenTable groups={[...]} />` |
+| 图标预览 | `<IconGallery />`（见 `/docs/os4/general/icons`） |
 | 可选 Figma 参考 | `<FigmaEmbed />` |
 
 ### 4.3 组件页
@@ -141,6 +144,8 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 | 旧路径 | 新路径 |
 |--------|--------|
 | `/docs/os4/foundations/colors` | `/docs/os4/general/design-token` |
+| `/docs/os4/foundations/iconography` | `/docs/os4/general/icons` |
+| `/docs/foundations/iconography` | `/docs/os4/general/icons` |
 | `/docs/os4/foundations/principles` | `/docs/os4/general/principles` |
 | `/docs/os4/components/feedback/dialog` | `/docs/os4/components/containers/dialog` |
 | `/docs/os4/components/navigation/bottom-nav` | `/docs/os4/components/navigation/bottom-navigation` |
@@ -157,6 +162,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 |---|------|--------|
 | 1 | `/docs/os4` | 站点 Index 与快速入口 |
 | 2 | `/docs/os4/general/design-token` | 验证 TokenTable |
-| 3 | `/docs/os4/components/actions/button` | 验证完整组件页模板 |
-| 4 | `/docs/os4/general` | 一级模块 Index |
-| 5 | `/docs/os4/components` | 组件总览 |
+| 3 | `/docs/os4/general/icons` | 验证 IconGallery |
+| 4 | `/docs/os4/components/actions/button` | 验证完整组件页模板 |
+| 5 | `/docs/os4/general` | 一级模块 Index |
+| 6 | `/docs/os4/components` | 组件总览 |

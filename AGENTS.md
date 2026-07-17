@@ -8,9 +8,9 @@
 
 - **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4 + TinaCMS（本地模式）
 - **目标用户**：设计、文档、客户端工程（Android / iOS）
-- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、Compose / SwiftUI 静态代码参考
+- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、Compose / SwiftUI 静态代码参考
 
-客户端组件 **源码在独立仓库** 维护；本仓只负责规范传播与 Figma / Token 连接。
+客户端组件 **源码在独立仓库** 维护；本仓只负责规范传播与 Figma / Token / 图标资产连接。
 
 ## 必读约束
 
@@ -18,10 +18,10 @@
 
 | 要做 | 不要做 |
 |------|--------|
-| 在 MDX 中写文档、嵌 Figma、展示 Token | 添加 Storybook 或 Web 可交互组件 demo |
+| 在 MDX 中写文档、嵌 Figma、展示 Token / 图标 | 添加 Storybook 或 Web 可交互组件 demo |
 | 用 `FigmaEmbed` / `FigmaPrototypeEmbed` 展示设计 | 引入 runnable React 组件库到文档页 |
 | 用 `PlatformTabs` 展示 Android / iOS **静态**代码 | 在本仓实现 Compose / SwiftUI 组件运行时 |
-| 编辑 `content/docs/` 与 `tokens/tokens.json` | 把工程设计文档写到 `content/docs/`（工程设计在 `docs/`） |
+| 编辑 `content/docs/`、`tokens/tokens.json`、`icons/` | 把工程设计文档写到 `content/docs/`（工程设计在 `docs/`） |
 | 保持改动最小、符合现有 IA | 擅自重构 Fumadocs 脚手架或引入无关依赖 |
 
 ## 常用命令
@@ -35,6 +35,8 @@ npm run build        # 本地全量构建（tinacms build + next build），改 
 npm run tina:build   # 只跑 tinacms build（刷新 tina/__generated__/）
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
+npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
+npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
 ```
 
 > **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。部署详解见 [docs/deployment.md](docs/deployment.md)。
@@ -79,7 +81,7 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 - 本地开发：复制 `.env.example` 为 `.env`，运行 `npm run dev`
 - 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/os4/`、`content/docs/os5/` 下的 MDX 规范
 - **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
-- 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`DosDonts`、`PlatformCodeBlock` 等
+- 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`IconGallery`、`DosDonts`、`PlatformCodeBlock` 等
 - 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
 - Collections 按 **OS 版本**（`os4` / `os5`）× 站点分组（通用设计 / 控件与组件 / …）展开；组件子目录使用 `**/*` glob 递归索引
 
@@ -103,6 +105,14 @@ npm run dev            # dev server 会自动重新生成
 然后 `git add tina/__generated__/` 一起提交。**忘记同步会导致 Matrix CI 类型检查失败或运行时行为异常**。
 
 只是新增 `content/docs/**` 下的 MDX 文档、改 UI 组件、动 Tailwind 等，不需要重新生成。
+
+增删改 `icons/svg/**` 后须跑 `npm run icons:sync`，并将 `icons/manifest.json` 与 `public/icons/` 一并提交（约定见 [icons/README.md](icons/README.md)）。
+
+### 图标资产（Agent 必读）
+
+- 源文件：`icons/svg/{category}/{name}.svg`；索引：`icons/manifest.json`；站点静态：`public/icons/`
+- 文档页：`/docs/os4/general/icons`（`<IconGallery />`）
+- 旧路径：`/docs/os4/foundations/iconography` → `/docs/os4/general/icons`
 
 ## 容器化（Agent 必读）
 
@@ -133,15 +143,20 @@ docs/                   # 工程设计文档（见 docs/index.md）
   roadmap.md
   maintainers.md
 tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
+icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
+  svg/{category}/
+  manifest.json
+scripts/                # 仓库脚本（generate-icon-manifest.mjs 等）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
-  schema/blocks.ts      # FigmaEmbed、TokenTable 等 MDX block
+  schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block
   database.ts           # 本地 filesystem datalayer
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
 .env.example            # TinaCMS 本地模式环境变量模板
 public/
   logo/                 # HyperOS Logo 静态资源
   home/                 # Landing 页静态图
+  icons/                # 图标静态访问（icons:sync 产物，含 manifest.json）
   uploads/              # TinaCMS 媒体上传（本地模式）
 src/
   app/                  # Next.js 路由（docs、admin、api/tina、search、llms、og）
@@ -151,7 +166,7 @@ src/
     mdx/                # 自定义 MDX 组件（优先在此扩展）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source、layout、shared、tina-docs、docs-version-tabs、git-file-mtime、cn
+  lib/                  # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
 source.config.ts        # MDX frontmatter Zod schema
 next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts                # Markdown 内容协商（.md / Accept 重写）
@@ -165,6 +180,7 @@ package-lock.json       # npm 锁文件
 **生成目录**：
 - `.source/`（`fumadocs-mdx` 生成）、`.next/`（Next.js 构建缓存）— gitignore，勿手改
 - `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见上面「TinaCMS schema 变更」节）；子目录 `.cache/` 仍 gitignore
+- `icons/manifest.json` 与 `public/icons/`（`icons:sync` 生成）— **已提交仓库**，改 `icons/svg/**` 后需一并更新
 
 **注意**：`docs/` ≠ `content/docs/`。前者是仓库内设计说明，后者是站点页面内容。
 
@@ -229,6 +245,7 @@ package-lock.json       # npm 锁文件
 | `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`；可选 `mode="dev"` 查看 Dev Mode 标注） |
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
 | `TokenTable` | 从 `tokens/tokens.json` 按 group 渲染表格 |
+| `IconGallery` | 图标库预览（分类 / 搜索 / 深浅色 / 复制名称与 SVG） |
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab（Client Component） |
 | `PlatformCodeBlock` | Tina CMS 友好的平台代码 block（扁平 android/ios 字段） |
 | `StatusBadge` | stable / beta / deprecated 标签 |
@@ -287,6 +304,7 @@ package-lock.json       # npm 锁文件
 - [ ] 未添加 Storybook / Web 组件 playground
 - [ ] Figma embed 使用占位或有效 `fileKey`
 - [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
+- [ ] 若改了 `icons/svg/**`，已跑 `icons:sync` 并提交 `icons/manifest.json` 与 `public/icons/`
 - [ ] 上测环境：`main` → `staging` 已 merge 并 push；Matrix staging 实例 Tag 已更新
 - [ ] 上正式：`main` 已 push 且 prod 镜像已构建；**Matrix `…-prod` 已发对应 `prod-*`**（勿仅凭流水线绿判断）
 
@@ -310,4 +328,5 @@ package-lock.json       # npm 锁文件
 - [docs/sidebar-ia.md](docs/sidebar-ia.md) — 侧栏目录对照（全景图）
 - [docs/roadmap.md](docs/roadmap.md) — 实施进度
 - [docs/maintainers.md](docs/maintainers.md) — 维护人飞书 open_id 备忘
+- [icons/README.md](icons/README.md) — 图标 SVG 入库与 sync 约定
 - [Fumadocs 官方文档](https://www.fumadocs.dev)

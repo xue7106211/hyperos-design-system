@@ -99,6 +99,19 @@ var tokenTableBlock = {
     }
   ]
 };
+var iconGalleryBlock = {
+  name: "IconGallery",
+  label: "\u56FE\u6807\u9884\u89C8",
+  fields: [
+    {
+      type: "string",
+      name: "categories",
+      label: "Categories",
+      description: "\u53EF\u9009\uFF1B\u7559\u7A7A\u663E\u793A\u5168\u90E8\u5206\u7C7B\u3002\u4F8B\u5982 navigation\u3001action",
+      list: true
+    }
+  ]
+};
 var dosDontsBlock = {
   name: "DosDonts",
   label: "\u63A8\u8350 / \u907F\u514D",
@@ -160,6 +173,7 @@ var mdxBlockTemplates = [
   figmaEmbedBlock,
   figmaPrototypeEmbedBlock,
   tokenTableBlock,
+  iconGalleryBlock,
   dosDontsBlock,
   platformCodeBlock
 ];

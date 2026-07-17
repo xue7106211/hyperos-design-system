@@ -213,6 +213,10 @@ input Docsos4OverviewBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4OverviewBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4OverviewBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -232,6 +236,7 @@ input Docsos4OverviewBodyFilter {
   FigmaEmbed: Docsos4OverviewBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4OverviewBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4OverviewBodyTokenTableFilter
+  IconGallery: Docsos4OverviewBodyIconGalleryFilter
   DosDonts: Docsos4OverviewBodyDosDontsFilter
   PlatformCodeBlock: Docsos4OverviewBodyPlatformCodeBlockFilter
 }
@@ -301,6 +306,10 @@ input Docsos4GeneralBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4GeneralBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4GeneralBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -320,6 +329,7 @@ input Docsos4GeneralBodyFilter {
   FigmaEmbed: Docsos4GeneralBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4GeneralBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4GeneralBodyTokenTableFilter
+  IconGallery: Docsos4GeneralBodyIconGalleryFilter
   DosDonts: Docsos4GeneralBodyDosDontsFilter
   PlatformCodeBlock: Docsos4GeneralBodyPlatformCodeBlockFilter
 }
@@ -389,6 +399,10 @@ input Docsos4ComponentsOverviewBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4ComponentsOverviewBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4ComponentsOverviewBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -408,6 +422,7 @@ input Docsos4ComponentsOverviewBodyFilter {
   FigmaEmbed: Docsos4ComponentsOverviewBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4ComponentsOverviewBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4ComponentsOverviewBodyTokenTableFilter
+  IconGallery: Docsos4ComponentsOverviewBodyIconGalleryFilter
   DosDonts: Docsos4ComponentsOverviewBodyDosDontsFilter
   PlatformCodeBlock: Docsos4ComponentsOverviewBodyPlatformCodeBlockFilter
 }
@@ -477,6 +492,10 @@ input Docsos4ComponentsNavigationBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4ComponentsNavigationBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4ComponentsNavigationBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -496,6 +515,7 @@ input Docsos4ComponentsNavigationBodyFilter {
   FigmaEmbed: Docsos4ComponentsNavigationBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4ComponentsNavigationBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4ComponentsNavigationBodyTokenTableFilter
+  IconGallery: Docsos4ComponentsNavigationBodyIconGalleryFilter
   DosDonts: Docsos4ComponentsNavigationBodyDosDontsFilter
   PlatformCodeBlock: Docsos4ComponentsNavigationBodyPlatformCodeBlockFilter
 }
@@ -565,6 +585,10 @@ input Docsos4ComponentsActionsBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4ComponentsActionsBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4ComponentsActionsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -584,6 +608,7 @@ input Docsos4ComponentsActionsBodyFilter {
   FigmaEmbed: Docsos4ComponentsActionsBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4ComponentsActionsBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4ComponentsActionsBodyTokenTableFilter
+  IconGallery: Docsos4ComponentsActionsBodyIconGalleryFilter
   DosDonts: Docsos4ComponentsActionsBodyDosDontsFilter
   PlatformCodeBlock: Docsos4ComponentsActionsBodyPlatformCodeBlockFilter
 }
@@ -653,6 +678,10 @@ input Docsos4ComponentsInputsBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4ComponentsInputsBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4ComponentsInputsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -672,6 +701,7 @@ input Docsos4ComponentsInputsBodyFilter {
   FigmaEmbed: Docsos4ComponentsInputsBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4ComponentsInputsBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4ComponentsInputsBodyTokenTableFilter
+  IconGallery: Docsos4ComponentsInputsBodyIconGalleryFilter
   DosDonts: Docsos4ComponentsInputsBodyDosDontsFilter
   PlatformCodeBlock: Docsos4ComponentsInputsBodyPlatformCodeBlockFilter
 }
@@ -741,6 +771,10 @@ input Docsos4ComponentsContainersBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4ComponentsContainersBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4ComponentsContainersBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -760,6 +794,7 @@ input Docsos4ComponentsContainersBodyFilter {
   FigmaEmbed: Docsos4ComponentsContainersBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4ComponentsContainersBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4ComponentsContainersBodyTokenTableFilter
+  IconGallery: Docsos4ComponentsContainersBodyIconGalleryFilter
   DosDonts: Docsos4ComponentsContainersBodyDosDontsFilter
   PlatformCodeBlock: Docsos4ComponentsContainersBodyPlatformCodeBlockFilter
 }
@@ -829,6 +864,10 @@ input Docsos4ComponentsDisplayBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4ComponentsDisplayBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4ComponentsDisplayBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -848,6 +887,7 @@ input Docsos4ComponentsDisplayBodyFilter {
   FigmaEmbed: Docsos4ComponentsDisplayBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4ComponentsDisplayBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4ComponentsDisplayBodyTokenTableFilter
+  IconGallery: Docsos4ComponentsDisplayBodyIconGalleryFilter
   DosDonts: Docsos4ComponentsDisplayBodyDosDontsFilter
   PlatformCodeBlock: Docsos4ComponentsDisplayBodyPlatformCodeBlockFilter
 }
@@ -917,6 +957,10 @@ input Docsos4InteractionBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4InteractionBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4InteractionBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -936,6 +980,7 @@ input Docsos4InteractionBodyFilter {
   FigmaEmbed: Docsos4InteractionBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4InteractionBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4InteractionBodyTokenTableFilter
+  IconGallery: Docsos4InteractionBodyIconGalleryFilter
   DosDonts: Docsos4InteractionBodyDosDontsFilter
   PlatformCodeBlock: Docsos4InteractionBodyPlatformCodeBlockFilter
 }
@@ -1005,6 +1050,10 @@ input Docsos4SystemBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4SystemBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4SystemBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1024,6 +1073,7 @@ input Docsos4SystemBodyFilter {
   FigmaEmbed: Docsos4SystemBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4SystemBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4SystemBodyTokenTableFilter
+  IconGallery: Docsos4SystemBodyIconGalleryFilter
   DosDonts: Docsos4SystemBodyDosDontsFilter
   PlatformCodeBlock: Docsos4SystemBodyPlatformCodeBlockFilter
 }
@@ -1093,6 +1143,10 @@ input Docsos4MultiDeviceBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4MultiDeviceBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4MultiDeviceBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1112,6 +1166,7 @@ input Docsos4MultiDeviceBodyFilter {
   FigmaEmbed: Docsos4MultiDeviceBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4MultiDeviceBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4MultiDeviceBodyTokenTableFilter
+  IconGallery: Docsos4MultiDeviceBodyIconGalleryFilter
   DosDonts: Docsos4MultiDeviceBodyDosDontsFilter
   PlatformCodeBlock: Docsos4MultiDeviceBodyPlatformCodeBlockFilter
 }
@@ -1181,6 +1236,10 @@ input Docsos4BestPracticesBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos4BestPracticesBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos4BestPracticesBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1200,6 +1259,7 @@ input Docsos4BestPracticesBodyFilter {
   FigmaEmbed: Docsos4BestPracticesBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos4BestPracticesBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos4BestPracticesBodyTokenTableFilter
+  IconGallery: Docsos4BestPracticesBodyIconGalleryFilter
   DosDonts: Docsos4BestPracticesBodyDosDontsFilter
   PlatformCodeBlock: Docsos4BestPracticesBodyPlatformCodeBlockFilter
 }
@@ -1269,6 +1329,10 @@ input Docsos5OverviewBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5OverviewBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5OverviewBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1288,6 +1352,7 @@ input Docsos5OverviewBodyFilter {
   FigmaEmbed: Docsos5OverviewBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5OverviewBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5OverviewBodyTokenTableFilter
+  IconGallery: Docsos5OverviewBodyIconGalleryFilter
   DosDonts: Docsos5OverviewBodyDosDontsFilter
   PlatformCodeBlock: Docsos5OverviewBodyPlatformCodeBlockFilter
 }
@@ -1357,6 +1422,10 @@ input Docsos5GeneralBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5GeneralBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5GeneralBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1376,6 +1445,7 @@ input Docsos5GeneralBodyFilter {
   FigmaEmbed: Docsos5GeneralBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5GeneralBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5GeneralBodyTokenTableFilter
+  IconGallery: Docsos5GeneralBodyIconGalleryFilter
   DosDonts: Docsos5GeneralBodyDosDontsFilter
   PlatformCodeBlock: Docsos5GeneralBodyPlatformCodeBlockFilter
 }
@@ -1445,6 +1515,10 @@ input Docsos5ComponentsOverviewBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5ComponentsOverviewBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5ComponentsOverviewBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1464,6 +1538,7 @@ input Docsos5ComponentsOverviewBodyFilter {
   FigmaEmbed: Docsos5ComponentsOverviewBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5ComponentsOverviewBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5ComponentsOverviewBodyTokenTableFilter
+  IconGallery: Docsos5ComponentsOverviewBodyIconGalleryFilter
   DosDonts: Docsos5ComponentsOverviewBodyDosDontsFilter
   PlatformCodeBlock: Docsos5ComponentsOverviewBodyPlatformCodeBlockFilter
 }
@@ -1533,6 +1608,10 @@ input Docsos5ComponentsNavigationBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5ComponentsNavigationBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5ComponentsNavigationBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1552,6 +1631,7 @@ input Docsos5ComponentsNavigationBodyFilter {
   FigmaEmbed: Docsos5ComponentsNavigationBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5ComponentsNavigationBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5ComponentsNavigationBodyTokenTableFilter
+  IconGallery: Docsos5ComponentsNavigationBodyIconGalleryFilter
   DosDonts: Docsos5ComponentsNavigationBodyDosDontsFilter
   PlatformCodeBlock: Docsos5ComponentsNavigationBodyPlatformCodeBlockFilter
 }
@@ -1621,6 +1701,10 @@ input Docsos5ComponentsActionsBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5ComponentsActionsBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5ComponentsActionsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1640,6 +1724,7 @@ input Docsos5ComponentsActionsBodyFilter {
   FigmaEmbed: Docsos5ComponentsActionsBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5ComponentsActionsBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5ComponentsActionsBodyTokenTableFilter
+  IconGallery: Docsos5ComponentsActionsBodyIconGalleryFilter
   DosDonts: Docsos5ComponentsActionsBodyDosDontsFilter
   PlatformCodeBlock: Docsos5ComponentsActionsBodyPlatformCodeBlockFilter
 }
@@ -1709,6 +1794,10 @@ input Docsos5ComponentsInputsBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5ComponentsInputsBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5ComponentsInputsBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1728,6 +1817,7 @@ input Docsos5ComponentsInputsBodyFilter {
   FigmaEmbed: Docsos5ComponentsInputsBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5ComponentsInputsBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5ComponentsInputsBodyTokenTableFilter
+  IconGallery: Docsos5ComponentsInputsBodyIconGalleryFilter
   DosDonts: Docsos5ComponentsInputsBodyDosDontsFilter
   PlatformCodeBlock: Docsos5ComponentsInputsBodyPlatformCodeBlockFilter
 }
@@ -1797,6 +1887,10 @@ input Docsos5ComponentsContainersBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5ComponentsContainersBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5ComponentsContainersBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1816,6 +1910,7 @@ input Docsos5ComponentsContainersBodyFilter {
   FigmaEmbed: Docsos5ComponentsContainersBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5ComponentsContainersBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5ComponentsContainersBodyTokenTableFilter
+  IconGallery: Docsos5ComponentsContainersBodyIconGalleryFilter
   DosDonts: Docsos5ComponentsContainersBodyDosDontsFilter
   PlatformCodeBlock: Docsos5ComponentsContainersBodyPlatformCodeBlockFilter
 }
@@ -1885,6 +1980,10 @@ input Docsos5ComponentsDisplayBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5ComponentsDisplayBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5ComponentsDisplayBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1904,6 +2003,7 @@ input Docsos5ComponentsDisplayBodyFilter {
   FigmaEmbed: Docsos5ComponentsDisplayBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5ComponentsDisplayBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5ComponentsDisplayBodyTokenTableFilter
+  IconGallery: Docsos5ComponentsDisplayBodyIconGalleryFilter
   DosDonts: Docsos5ComponentsDisplayBodyDosDontsFilter
   PlatformCodeBlock: Docsos5ComponentsDisplayBodyPlatformCodeBlockFilter
 }
@@ -1973,6 +2073,10 @@ input Docsos5InteractionBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5InteractionBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5InteractionBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -1992,6 +2096,7 @@ input Docsos5InteractionBodyFilter {
   FigmaEmbed: Docsos5InteractionBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5InteractionBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5InteractionBodyTokenTableFilter
+  IconGallery: Docsos5InteractionBodyIconGalleryFilter
   DosDonts: Docsos5InteractionBodyDosDontsFilter
   PlatformCodeBlock: Docsos5InteractionBodyPlatformCodeBlockFilter
 }
@@ -2061,6 +2166,10 @@ input Docsos5SystemBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5SystemBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5SystemBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -2080,6 +2189,7 @@ input Docsos5SystemBodyFilter {
   FigmaEmbed: Docsos5SystemBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5SystemBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5SystemBodyTokenTableFilter
+  IconGallery: Docsos5SystemBodyIconGalleryFilter
   DosDonts: Docsos5SystemBodyDosDontsFilter
   PlatformCodeBlock: Docsos5SystemBodyPlatformCodeBlockFilter
 }
@@ -2149,6 +2259,10 @@ input Docsos5MultiDeviceBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5MultiDeviceBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5MultiDeviceBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -2168,6 +2282,7 @@ input Docsos5MultiDeviceBodyFilter {
   FigmaEmbed: Docsos5MultiDeviceBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5MultiDeviceBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5MultiDeviceBodyTokenTableFilter
+  IconGallery: Docsos5MultiDeviceBodyIconGalleryFilter
   DosDonts: Docsos5MultiDeviceBodyDosDontsFilter
   PlatformCodeBlock: Docsos5MultiDeviceBodyPlatformCodeBlockFilter
 }
@@ -2237,6 +2352,10 @@ input Docsos5BestPracticesBodyTokenTableFilter {
   groups: StringFilter
 }
 
+input Docsos5BestPracticesBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
 input Docsos5BestPracticesBodyDosDontsFilter {
   doTitle: StringFilter
   dontTitle: StringFilter
@@ -2256,6 +2375,7 @@ input Docsos5BestPracticesBodyFilter {
   FigmaEmbed: Docsos5BestPracticesBodyFigmaEmbedFilter
   FigmaPrototypeEmbed: Docsos5BestPracticesBodyFigmaPrototypeEmbedFilter
   TokenTable: Docsos5BestPracticesBodyTokenTableFilter
+  IconGallery: Docsos5BestPracticesBodyIconGalleryFilter
   DosDonts: Docsos5BestPracticesBodyDosDontsFilter
   PlatformCodeBlock: Docsos5BestPracticesBodyPlatformCodeBlockFilter
 }
