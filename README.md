@@ -45,7 +45,8 @@ npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
 ```text
 content/docs/        # 网站 MDX 文档（对外）
   os4/               # HyperOS 4 规范（当前默认，/docs → /docs/os4）
-    general/         # 通用设计标准（含 icons 图标预览页）
+    icons.mdx        # 图标预览（一级入口）
+    general/         # 通用设计标准
     components/      # 控件与组件
     interaction/     # 人机交互标准
     system/          # 系统特性与能力标准
@@ -100,7 +101,7 @@ CLAUDE.md            # 指向 AGENTS.md
 
 参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx)
 
-> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标旧路径 `/docs/os4/foundations/iconography` → `/docs/os4/general/icons`。
+> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标页：`/docs/os4/icons`（旧路径 `foundations/iconography`、`general/icons` 会重定向至此）。
 
 ### Figma Embed 示例
 
@@ -122,7 +123,7 @@ CLAUDE.md            # 指向 AGENTS.md
 <IconGallery categories={["navigation", "action"]} />
 ```
 
-图标入库约定见 [icons/README.md](icons/README.md)；预览页：[`/docs/os4/general/icons`](content/docs/os4/general/icons.mdx)。
+图标入库约定见 [icons/README.md](icons/README.md)；预览页：[`/docs/os4/icons`](content/docs/os4/icons.mdx)。
 
 ## 文档
 

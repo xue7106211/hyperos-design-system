@@ -282,6 +282,7 @@ var docVersions = [
 ];
 var docSections = [
   { key: "Overview", label: "\u6982\u89C8", include: "index" },
+  { key: "Icons", label: "\u56FE\u6807", include: "icons" },
   { key: "General", label: "\u901A\u7528\u8BBE\u8BA1\u6807\u51C6", include: "general/**/*" },
   { key: "ComponentsOverview", label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u6982\u89C8", include: "components/index" },
   {

@@ -56,6 +56,8 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   docsos4Overview(relativePath: String): Docsos4Overview!
   docsos4OverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4OverviewFilter): Docsos4OverviewConnection!
+  docsos4Icons(relativePath: String): Docsos4Icons!
+  docsos4IconsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4IconsFilter): Docsos4IconsConnection!
   docsos4General(relativePath: String): Docsos4General!
   docsos4GeneralConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4GeneralFilter): Docsos4GeneralConnection!
   docsos4ComponentsOverview(relativePath: String): Docsos4ComponentsOverview!
@@ -80,6 +82,8 @@ type Query {
   docsos4BestPracticesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos4BestPracticesFilter): Docsos4BestPracticesConnection!
   docsos5Overview(relativePath: String): Docsos5Overview!
   docsos5OverviewConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5OverviewFilter): Docsos5OverviewConnection!
+  docsos5Icons(relativePath: String): Docsos5Icons!
+  docsos5IconsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5IconsFilter): Docsos5IconsConnection!
   docsos5General(relativePath: String): Docsos5General!
   docsos5GeneralConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Docsos5GeneralFilter): Docsos5GeneralConnection!
   docsos5ComponentsOverview(relativePath: String): Docsos5ComponentsOverview!
@@ -106,6 +110,7 @@ type Query {
 
 input DocumentFilter {
   docsos4Overview: Docsos4OverviewFilter
+  docsos4Icons: Docsos4IconsFilter
   docsos4General: Docsos4GeneralFilter
   docsos4ComponentsOverview: Docsos4ComponentsOverviewFilter
   docsos4ComponentsNavigation: Docsos4ComponentsNavigationFilter
@@ -118,6 +123,7 @@ input DocumentFilter {
   docsos4MultiDevice: Docsos4MultiDeviceFilter
   docsos4BestPractices: Docsos4BestPracticesFilter
   docsos5Overview: Docsos5OverviewFilter
+  docsos5Icons: Docsos5IconsFilter
   docsos5General: Docsos5GeneralFilter
   docsos5ComponentsOverview: Docsos5ComponentsOverviewFilter
   docsos5ComponentsNavigation: Docsos5ComponentsNavigationFilter
@@ -154,7 +160,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Docsos4Overview | Docsos4General | Docsos4ComponentsOverview | Docsos4ComponentsNavigation | Docsos4ComponentsActions | Docsos4ComponentsInputs | Docsos4ComponentsContainers | Docsos4ComponentsDisplay | Docsos4Interaction | Docsos4System | Docsos4MultiDevice | Docsos4BestPractices | Docsos5Overview | Docsos5General | Docsos5ComponentsOverview | Docsos5ComponentsNavigation | Docsos5ComponentsActions | Docsos5ComponentsInputs | Docsos5ComponentsContainers | Docsos5ComponentsDisplay | Docsos5Interaction | Docsos5System | Docsos5MultiDevice | Docsos5BestPractices | Folder
+union DocumentNode = Docsos4Overview | Docsos4Icons | Docsos4General | Docsos4ComponentsOverview | Docsos4ComponentsNavigation | Docsos4ComponentsActions | Docsos4ComponentsInputs | Docsos4ComponentsContainers | Docsos4ComponentsDisplay | Docsos4Interaction | Docsos4System | Docsos4MultiDevice | Docsos4BestPractices | Docsos5Overview | Docsos5Icons | Docsos5General | Docsos5ComponentsOverview | Docsos5ComponentsNavigation | Docsos5ComponentsActions | Docsos5ComponentsInputs | Docsos5ComponentsContainers | Docsos5ComponentsDisplay | Docsos5Interaction | Docsos5System | Docsos5MultiDevice | Docsos5BestPractices | Folder
 
 type Docsos4Overview implements Node & Document {
   title: String!
@@ -264,6 +270,99 @@ type Docsos4OverviewConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
   edges: [Docsos4OverviewConnectionEdges]
+}
+
+type Docsos4Icons implements Node & Document {
+  title: String!
+  description: String
+  maintainer: String
+  maintainerOpenId: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos4IconsBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos4IconsBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos4IconsBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos4IconsBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos4IconsBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
+input Docsos4IconsBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos4IconsBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos4IconsBodyFilter {
+  StatusBadge: Docsos4IconsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos4IconsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos4IconsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos4IconsBodyTokenTableFilter
+  IconGallery: Docsos4IconsBodyIconGalleryFilter
+  DosDonts: Docsos4IconsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos4IconsBodyPlatformCodeBlockFilter
+}
+
+input Docsos4IconsFilter {
+  title: StringFilter
+  description: StringFilter
+  maintainer: StringFilter
+  maintainerOpenId: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos4IconsBodyFilter
+}
+
+type Docsos4IconsConnectionEdges {
+  cursor: String!
+  node: Docsos4Icons
+}
+
+type Docsos4IconsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos4IconsConnectionEdges]
 }
 
 type Docsos4General implements Node & Document {
@@ -1382,6 +1481,99 @@ type Docsos5OverviewConnection implements Connection {
   edges: [Docsos5OverviewConnectionEdges]
 }
 
+type Docsos5Icons implements Node & Document {
+  title: String!
+  description: String
+  maintainer: String
+  maintainerOpenId: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Docsos5IconsBodyStatusBadgeFilter {
+  status: StringFilter
+}
+
+input Docsos5IconsBodyFigmaEmbedFilter {
+  fileKey: StringFilter
+  nodeId: StringFilter
+  mode: StringFilter
+  height: NumberFilter
+  theme: StringFilter
+}
+
+input Docsos5IconsBodyFigmaPrototypeEmbedFilter {
+  url: StringFilter
+  fileKey: StringFilter
+  nodeId: StringFilter
+  height: NumberFilter
+}
+
+input Docsos5IconsBodyTokenTableFilter {
+  groups: StringFilter
+}
+
+input Docsos5IconsBodyIconGalleryFilter {
+  categories: StringFilter
+}
+
+input Docsos5IconsBodyDosDontsFilter {
+  doTitle: StringFilter
+  dontTitle: StringFilter
+  doContent: StringFilter
+  dontContent: StringFilter
+}
+
+input Docsos5IconsBodyPlatformCodeBlockFilter {
+  androidTitle: StringFilter
+  androidCode: StringFilter
+  iosTitle: StringFilter
+  iosCode: StringFilter
+}
+
+input Docsos5IconsBodyFilter {
+  StatusBadge: Docsos5IconsBodyStatusBadgeFilter
+  FigmaEmbed: Docsos5IconsBodyFigmaEmbedFilter
+  FigmaPrototypeEmbed: Docsos5IconsBodyFigmaPrototypeEmbedFilter
+  TokenTable: Docsos5IconsBodyTokenTableFilter
+  IconGallery: Docsos5IconsBodyIconGalleryFilter
+  DosDonts: Docsos5IconsBodyDosDontsFilter
+  PlatformCodeBlock: Docsos5IconsBodyPlatformCodeBlockFilter
+}
+
+input Docsos5IconsFilter {
+  title: StringFilter
+  description: StringFilter
+  maintainer: StringFilter
+  maintainerOpenId: StringFilter
+  status: StringFilter
+  platforms: StringFilter
+  figmaFileKey: StringFilter
+  figmaNodeId: StringFilter
+  figmaPrototypeUrl: StringFilter
+  tokenGroups: StringFilter
+  body: Docsos5IconsBodyFilter
+}
+
+type Docsos5IconsConnectionEdges {
+  cursor: String!
+  node: Docsos5Icons
+}
+
+type Docsos5IconsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Docsos5IconsConnectionEdges]
+}
+
 type Docsos5General implements Node & Document {
   title: String!
   description: String
@@ -2413,6 +2605,8 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updateDocsos4Overview(relativePath: String!, params: Docsos4OverviewMutation!): Docsos4Overview!
   createDocsos4Overview(relativePath: String!, params: Docsos4OverviewMutation!): Docsos4Overview!
+  updateDocsos4Icons(relativePath: String!, params: Docsos4IconsMutation!): Docsos4Icons!
+  createDocsos4Icons(relativePath: String!, params: Docsos4IconsMutation!): Docsos4Icons!
   updateDocsos4General(relativePath: String!, params: Docsos4GeneralMutation!): Docsos4General!
   createDocsos4General(relativePath: String!, params: Docsos4GeneralMutation!): Docsos4General!
   updateDocsos4ComponentsOverview(relativePath: String!, params: Docsos4ComponentsOverviewMutation!): Docsos4ComponentsOverview!
@@ -2437,6 +2631,8 @@ type Mutation {
   createDocsos4BestPractices(relativePath: String!, params: Docsos4BestPracticesMutation!): Docsos4BestPractices!
   updateDocsos5Overview(relativePath: String!, params: Docsos5OverviewMutation!): Docsos5Overview!
   createDocsos5Overview(relativePath: String!, params: Docsos5OverviewMutation!): Docsos5Overview!
+  updateDocsos5Icons(relativePath: String!, params: Docsos5IconsMutation!): Docsos5Icons!
+  createDocsos5Icons(relativePath: String!, params: Docsos5IconsMutation!): Docsos5Icons!
   updateDocsos5General(relativePath: String!, params: Docsos5GeneralMutation!): Docsos5General!
   createDocsos5General(relativePath: String!, params: Docsos5GeneralMutation!): Docsos5General!
   updateDocsos5ComponentsOverview(relativePath: String!, params: Docsos5ComponentsOverviewMutation!): Docsos5ComponentsOverview!
@@ -2463,6 +2659,7 @@ type Mutation {
 
 input DocumentUpdateMutation {
   docsos4Overview: Docsos4OverviewMutation
+  docsos4Icons: Docsos4IconsMutation
   docsos4General: Docsos4GeneralMutation
   docsos4ComponentsOverview: Docsos4ComponentsOverviewMutation
   docsos4ComponentsNavigation: Docsos4ComponentsNavigationMutation
@@ -2475,6 +2672,7 @@ input DocumentUpdateMutation {
   docsos4MultiDevice: Docsos4MultiDeviceMutation
   docsos4BestPractices: Docsos4BestPracticesMutation
   docsos5Overview: Docsos5OverviewMutation
+  docsos5Icons: Docsos5IconsMutation
   docsos5General: Docsos5GeneralMutation
   docsos5ComponentsOverview: Docsos5ComponentsOverviewMutation
   docsos5ComponentsNavigation: Docsos5ComponentsNavigationMutation
@@ -2491,6 +2689,7 @@ input DocumentUpdateMutation {
 
 input DocumentMutation {
   docsos4Overview: Docsos4OverviewMutation
+  docsos4Icons: Docsos4IconsMutation
   docsos4General: Docsos4GeneralMutation
   docsos4ComponentsOverview: Docsos4ComponentsOverviewMutation
   docsos4ComponentsNavigation: Docsos4ComponentsNavigationMutation
@@ -2503,6 +2702,7 @@ input DocumentMutation {
   docsos4MultiDevice: Docsos4MultiDeviceMutation
   docsos4BestPractices: Docsos4BestPracticesMutation
   docsos5Overview: Docsos5OverviewMutation
+  docsos5Icons: Docsos5IconsMutation
   docsos5General: Docsos5GeneralMutation
   docsos5ComponentsOverview: Docsos5ComponentsOverviewMutation
   docsos5ComponentsNavigation: Docsos5ComponentsNavigationMutation
@@ -2517,6 +2717,20 @@ input DocumentMutation {
 }
 
 input Docsos4OverviewMutation {
+  title: String
+  description: String
+  maintainer: String
+  maintainerOpenId: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos4IconsMutation {
   title: String
   description: String
   maintainer: String
@@ -2685,6 +2899,20 @@ input Docsos4BestPracticesMutation {
 }
 
 input Docsos5OverviewMutation {
+  title: String
+  description: String
+  maintainer: String
+  maintainerOpenId: String
+  status: String
+  platforms: [String]
+  figmaFileKey: String
+  figmaNodeId: String
+  figmaPrototypeUrl: String
+  tokenGroups: [String]
+  body: JSON
+}
+
+input Docsos5IconsMutation {
   title: String
   description: String
   maintainer: String

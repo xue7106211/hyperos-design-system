@@ -22,13 +22,9 @@ export type IconManifest = {
   icons: IconEntry[];
 };
 
-let cached: IconManifest | null = null;
-
+/** Always read from disk so `icons:sync` is visible without restarting the server. */
 export function getIconManifest(): IconManifest {
-  if (cached) return cached;
-
   const path = join(process.cwd(), 'icons', 'manifest.json');
   const raw = readFileSync(path, 'utf8');
-  cached = JSON.parse(raw) as IconManifest;
-  return cached;
+  return JSON.parse(raw) as IconManifest;
 }

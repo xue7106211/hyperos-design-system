@@ -243,6 +243,7 @@ hyperos-design-system/
 ├── content/docs/           # MDX 文档（网站内容源）
 │   ├── meta.json           # 根级 os4 / os5 版本 Tab
 │   ├── os4/                # HyperOS 4（当前默认）
+│   │   ├── icons.mdx       # 图标预览（一级入口）
 │   │   ├── general/        # 通用设计标准
 │   │   ├── components/     # 控件与组件
 │   │   ├── interaction/    # 人机交互标准
@@ -339,7 +340,7 @@ export default defineConfig({ mdxOptions: {} });
 | 类型 | 路径示例 | 核心内容 |
 |------|----------|----------|
 | 通用设计 | `/docs/os4/general/design-token` | 原则说明 + TokenTable |
-| 图标 | `/docs/os4/general/icons` | IconGallery（分类 / 搜索 / 深浅色 / 复制） |
+| 图标 | `/docs/os4/icons` | IconGallery（分类 / 复制名称与 SVG） |
 | 组件 | `/docs/os4/components/actions/button` | FigmaEmbed + Token + PlatformTabs + Do/Don't |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 最佳实践 | `/docs/os4/best-practices` | 应用层实践入口（原 Resources 收口） |

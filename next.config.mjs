@@ -33,7 +33,17 @@ const config = {
       },
       {
         source: '/docs/foundations/iconography',
-        destination: '/docs/os4/general/icons',
+        destination: '/docs/os4/icons',
+        permanent: true,
+      },
+      {
+        source: '/docs/os4/general/icons',
+        destination: '/docs/os4/icons',
+        permanent: true,
+      },
+      {
+        source: '/docs/os5/general/icons',
+        destination: '/docs/os5/icons',
         permanent: true,
       },
       {
@@ -105,7 +115,7 @@ const config = {
       },
       {
         source: '/docs/os4/foundations/iconography',
-        destination: '/docs/os4/general/icons',
+        destination: '/docs/os4/icons',
         permanent: true,
       },
       {

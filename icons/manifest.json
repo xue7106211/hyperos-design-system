@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-17T06:02:27.159Z",
+  "generatedAt": "2026-07-17T06:33:06.584Z",
   "categories": [
     {
       "id": "action",
@@ -27,8 +27,16 @@
       "label": "导航"
     },
     {
+      "id": "people",
+      "label": "人"
+    },
+    {
       "id": "system",
       "label": "系统"
+    },
+    {
+      "id": "time",
+      "label": "时间"
     }
   ],
   "icons": [
@@ -294,6 +302,312 @@
       "path": "/icons/navigation/navbar-backicon.svg"
     },
     {
+      "id": "people.28",
+      "name": "28",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/28.svg"
+    },
+    {
+      "id": "people.帮助更多人获得地震信息",
+      "name": "帮助更多人获得地震信息",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/帮助更多人获得地震信息.svg"
+    },
+    {
+      "id": "people.参考人脸",
+      "name": "参考人脸",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/参考人脸.svg"
+    },
+    {
+      "id": "people.参考姿势",
+      "name": "参考姿势",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/参考姿势.svg"
+    },
+    {
+      "id": "people.称呼",
+      "name": "称呼",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/称呼.svg"
+    },
+    {
+      "id": "people.儿童空间",
+      "name": "儿童空间",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/儿童空间.svg"
+    },
+    {
+      "id": "people.共享",
+      "name": "共享",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/共享.svg"
+    },
+    {
+      "id": "people.拦截来电",
+      "name": "拦截来电",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/拦截来电.svg"
+    },
+    {
+      "id": "people.人物参考",
+      "name": "人物参考",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/人物参考.svg"
+    },
+    {
+      "id": "people.人像居中",
+      "name": "人像居中",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/人像居中.svg"
+    },
+    {
+      "id": "people.身份证",
+      "name": "身份证",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/身份证.svg"
+    },
+    {
+      "id": "people.身体传感器2",
+      "name": "身体传感器2",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/身体传感器2.svg"
+    },
+    {
+      "id": "people.图标",
+      "name": "图标",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/图标.svg"
+    },
+    {
+      "id": "people.图标-1",
+      "name": "图标-1",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/图标-1.svg"
+    },
+    {
+      "id": "people.图标-2",
+      "name": "图标-2",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/图标-2.svg"
+    },
+    {
+      "id": "people.系统触感",
+      "name": "系统触感",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/系统触感.svg"
+    },
+    {
+      "id": "people.线性图标",
+      "name": "线性图标",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/线性图标.svg"
+    },
+    {
+      "id": "people.一起听",
+      "name": "一起听",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/一起听.svg"
+    },
+    {
+      "id": "people.专注模式",
+      "name": "专注模式",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/专注模式.svg"
+    },
+    {
+      "id": "people.专注模式-1",
+      "name": "专注模式-1",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/专注模式-1.svg"
+    },
+    {
+      "id": "people.自拍",
+      "name": "自拍",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/自拍.svg"
+    },
+    {
+      "id": "people.blocklist",
+      "name": "blocklist",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/blocklist.svg"
+    },
+    {
+      "id": "people.component-72",
+      "name": "component-72",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/component-72.svg",
+      "multicolor": true
+    },
+    {
+      "id": "people.component-9",
+      "name": "component-9",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/component-9.svg"
+    },
+    {
+      "id": "people.contacts",
+      "name": "contacts",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/contacts.svg"
+    },
+    {
+      "id": "people.contacts_book",
+      "name": "contacts_book",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/contacts_book.svg"
+    },
+    {
+      "id": "people.contacts_circle",
+      "name": "contacts_circle",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/contacts_circle.svg"
+    },
+    {
+      "id": "people.frame-2090060244",
+      "name": "frame-2090060244",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/frame-2090060244.svg"
+    },
+    {
+      "id": "people.group-2090054691",
+      "name": "group-2090054691",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/group-2090054691.svg"
+    },
+    {
+      "id": "people.ic-垂域导航",
+      "name": "ic-垂域导航",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-垂域导航.svg"
+    },
+    {
+      "id": "people.ic-垂域导航-1",
+      "name": "ic-垂域导航-1",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-垂域导航-1.svg"
+    },
+    {
+      "id": "people.ic-耳机模式",
+      "name": "ic-耳机模式",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-耳机模式.svg"
+    },
+    {
+      "id": "people.ic-耳机模式-1",
+      "name": "ic-耳机模式-1",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-耳机模式-1.svg"
+    },
+    {
+      "id": "people.ic-耳机模式-2",
+      "name": "ic-耳机模式-2",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-耳机模式-2.svg",
+      "multicolor": true
+    },
+    {
+      "id": "people.ic-技能推荐",
+      "name": "ic-技能推荐",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-技能推荐.svg"
+    },
+    {
+      "id": "people.ic-主框架",
+      "name": "ic-主框架",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-主框架.svg"
+    },
+    {
+      "id": "people.ic-主框架-1",
+      "name": "ic-主框架-1",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/ic-主框架-1.svg"
+    },
+    {
+      "id": "people.icon",
+      "name": "icon",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/icon.svg",
+      "multicolor": true
+    },
+    {
+      "id": "people.icon-1",
+      "name": "icon-1",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/icon-1.svg",
+      "multicolor": true
+    },
+    {
+      "id": "people.icon-2",
+      "name": "icon-2",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/icon-2.svg",
+      "multicolor": true
+    },
+    {
+      "id": "people.remove_contact",
+      "name": "remove_contact",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/remove_contact.svg"
+    },
+    {
+      "id": "people.show",
+      "name": "show",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/show.svg"
+    },
+    {
+      "id": "people.show-1",
+      "name": "show-1",
+      "category": "people",
+      "tags": [],
+      "path": "/icons/people/show-1.svg"
+    },
+    {
       "id": "system.超级文件",
       "name": "超级文件",
       "category": "system",
@@ -320,6 +634,48 @@
       "category": "system",
       "tags": [],
       "path": "/icons/system/列表缓存状态-1.svg"
+    },
+    {
+      "id": "time.alarm",
+      "name": "alarm",
+      "category": "time",
+      "tags": [],
+      "path": "/icons/time/alarm.svg"
+    },
+    {
+      "id": "time.months",
+      "name": "months",
+      "category": "time",
+      "tags": [],
+      "path": "/icons/time/months.svg"
+    },
+    {
+      "id": "time.th_20",
+      "name": "th_20",
+      "category": "time",
+      "tags": [],
+      "path": "/icons/time/th_20.svg"
+    },
+    {
+      "id": "time.timer",
+      "name": "timer",
+      "category": "time",
+      "tags": [],
+      "path": "/icons/time/timer.svg"
+    },
+    {
+      "id": "time.weeks",
+      "name": "weeks",
+      "category": "time",
+      "tags": [],
+      "path": "/icons/time/weeks.svg"
+    },
+    {
+      "id": "time.years",
+      "name": "years",
+      "category": "time",
+      "tags": [],
+      "path": "/icons/time/years.svg"
     }
   ]
 }

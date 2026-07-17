@@ -1,9 +1,7 @@
 'use client';
 
-import { useDeferredValue, useEffect, useMemo, useState, useTransition } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { IconEntry, IconManifest } from '@/lib/icons';
-
-type PreviewTone = 'light' | 'dark';
 
 type IconGalleryProps = {
   /** Limit to these category ids; empty = all */
@@ -12,15 +10,7 @@ type IconGalleryProps = {
   manifest?: IconManifest;
 };
 
-function IconPreview({
-  icon,
-  tone,
-}: {
-  icon: IconEntry;
-  tone: PreviewTone;
-}) {
-  const fg = tone === 'light' ? '#111111' : '#F5F5F5';
-
+function IconPreview({ icon }: { icon: IconEntry }) {
   if (icon.multicolor) {
     return (
       <img
@@ -39,7 +29,7 @@ function IconPreview({
       aria-hidden
       className="size-7 shrink-0"
       style={{
-        backgroundColor: fg,
+        backgroundColor: '#111111',
         WebkitMaskImage: `url(${icon.path})`,
         maskImage: `url(${icon.path})`,
         WebkitMaskRepeat: 'no-repeat',
@@ -75,12 +65,8 @@ function GalleryBody({
   categories?: string[];
   manifest: IconManifest;
 }) {
-  const [query, setQuery] = useState('');
-  const deferredQuery = useDeferredValue(query);
   const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [tone, setTone] = useState<PreviewTone>('light');
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [, startTransition] = useTransition();
 
   const availableCategories = useMemo(() => {
     if (categoryFilter.length === 0) return manifest.categories;
@@ -89,7 +75,6 @@ function GalleryBody({
   }, [manifest.categories, categoryFilter]);
 
   const filtered = useMemo(() => {
-    const q = deferredQuery.trim().toLowerCase();
     return manifest.icons.filter((icon) => {
       if (categoryFilter.length > 0 && !categoryFilter.includes(icon.category)) {
         return false;
@@ -97,13 +82,9 @@ function GalleryBody({
       if (activeCategory !== 'all' && icon.category !== activeCategory) {
         return false;
       }
-      if (!q) return true;
-      const hay = [icon.id, icon.name, icon.category, ...(icon.tags ?? [])]
-        .join(' ')
-        .toLowerCase();
-      return hay.includes(q);
+      return true;
     });
-  }, [manifest.icons, deferredQuery, activeCategory, categoryFilter]);
+  }, [manifest.icons, activeCategory, categoryFilter]);
 
   const flashCopied = (key: string) => {
     setCopiedKey(key);
@@ -132,43 +113,6 @@ function GalleryBody({
 
   return (
     <div className="my-6 not-prose space-y-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="relative min-w-0 flex-1">
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => {
-              const value = e.target.value;
-              startTransition(() => setQuery(value));
-            }}
-            placeholder="搜索名称、ID 或标签…"
-            className="w-full rounded-lg border border-fd-border bg-fd-background px-3 py-2 text-sm outline-none ring-fd-primary focus:ring-2"
-            aria-label="搜索图标"
-          />
-        </div>
-        <div className="flex shrink-0 items-center gap-1 rounded-lg border border-fd-border bg-fd-muted/30 p-1">
-          {(
-            [
-              ['light', '浅色底'],
-              ['dark', '深色底'],
-            ] as const
-          ).map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              onClick={() => setTone(value)}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                tone === value
-                  ? 'bg-fd-background text-fd-foreground shadow-sm'
-                  : 'text-fd-muted-foreground hover:text-fd-foreground'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
@@ -197,19 +141,13 @@ function GalleryBody({
         ))}
       </div>
 
-      <p className="text-xs text-fd-muted-foreground">
-        共 {filtered.length} 个图标
-        {deferredQuery.trim() ? `（筛选自 ${manifest.icons.length}）` : null}
-      </p>
-
       {filtered.length === 0 ? (
         <div className="rounded-xl border border-dashed border-fd-border p-8 text-center text-sm text-fd-muted-foreground">
-          没有匹配的图标，试试其他关键词或分类。
+          没有匹配的图标，试试其他分类。
         </div>
       ) : (
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {filtered.map((icon) => {
-            const previewBg = tone === 'light' ? 'bg-white' : 'bg-neutral-900';
             const nameCopied = copiedKey === `${icon.id}:name`;
             const idCopied = copiedKey === `${icon.id}:id`;
             const svgCopied = copiedKey === `${icon.id}:svg`;
@@ -219,16 +157,16 @@ function GalleryBody({
                 key={icon.id}
                 className="flex flex-col overflow-hidden rounded-xl border border-fd-border"
               >
-                <div className={`flex h-24 items-center justify-center ${previewBg}`}>
-                  <IconPreview icon={icon} tone={tone} />
+                <div className="flex h-24 items-center justify-center bg-white">
+                  <IconPreview icon={icon} />
                 </div>
                 <div className="flex flex-1 flex-col gap-2 border-t border-fd-border bg-fd-card p-3">
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-medium" title={icon.name}>
+                    <p className="truncate text-xs font-normal" title={icon.name}>
                       {icon.name}
                     </p>
                     <p
-                      className="truncate font-mono text-[11px] text-fd-muted-foreground"
+                      className="truncate font-mono text-[10px] font-normal text-fd-muted-foreground"
                       title={icon.id}
                     >
                       {icon.id}
@@ -274,13 +212,10 @@ export function IconGallery({ categories, manifest: manifestProp }: IconGalleryP
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (manifestProp) {
-      setManifest(manifestProp);
-      return;
-    }
-
     let cancelled = false;
-    void fetch('/icons/manifest.json')
+
+    // Prefer live public manifest so `icons:sync` shows up without a full reload race.
+    void fetch(`/icons/manifest.json?t=${Date.now()}`)
       .then(async (res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json() as Promise<IconManifest>;
@@ -289,9 +224,12 @@ export function IconGallery({ categories, manifest: manifestProp }: IconGalleryP
         if (!cancelled) setManifest(data);
       })
       .catch((err: unknown) => {
-        if (!cancelled) {
-          setError(err instanceof Error ? err.message : '加载失败');
+        if (cancelled) return;
+        if (manifestProp) {
+          setManifest(manifestProp);
+          return;
         }
+        setError(err instanceof Error ? err.message : '加载失败');
       });
 
     return () => {

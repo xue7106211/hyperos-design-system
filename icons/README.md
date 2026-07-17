@@ -24,8 +24,14 @@ public/icons/                 # 同步产物，供站点静态访问（提交）
 # 从扁平导出目录导入（按文件名启发式分类）并生成 manifest
 npm run icons:import -- /path/to/exported-svgs
 
+# 指定分类导入（例如「时间」「人」文件夹）
+npm run icons:import -- /path/to/时间 --category time
+npm run icons:import -- /path/to/人 --category people
+
 # 仅根据 icons/svg 重新生成 manifest + public/icons
 npm run icons:sync
 ```
+
+> 仅支持 **SVG**。PNG 等栅格文件会被跳过，需先从 Figma 导出为 SVG。
 
 人工补充的 `tags` / `label`（categories）会在再次 sync 时保留（按 icon `id` 合并）。

@@ -16,6 +16,7 @@ const docVersions = [
 
 const docSections = [
   { key: 'Overview', label: '概览', include: 'index' },
+  { key: 'Icons', label: '图标', include: 'icons' },
   { key: 'General', label: '通用设计标准', include: 'general/**/*' },
   { key: 'ComponentsOverview', label: '控件与组件 · 概览', include: 'components/index' },
   {

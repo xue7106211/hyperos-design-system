@@ -111,8 +111,8 @@ npm run dev            # dev server 会自动重新生成
 ### 图标资产（Agent 必读）
 
 - 源文件：`icons/svg/{category}/{name}.svg`；索引：`icons/manifest.json`；站点静态：`public/icons/`
-- 文档页：`/docs/os4/general/icons`（`<IconGallery />`）
-- 旧路径：`/docs/os4/foundations/iconography` → `/docs/os4/general/icons`
+- 文档页：`/docs/os4/icons`（`<IconGallery />`）
+- 旧路径：`/docs/os4/foundations/iconography`、`/docs/os4/general/icons` → `/docs/os4/icons`
 
 ## 容器化（Agent 必读）
 

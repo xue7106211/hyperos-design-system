@@ -13,6 +13,21 @@ fragment Docsos4OverviewParts on Docsos4Overview {
   body
 }
 
+fragment Docsos4IconsParts on Docsos4Icons {
+  __typename
+  title
+  description
+  maintainer
+  maintainerOpenId
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
 fragment Docsos4GeneralParts on Docsos4General {
   __typename
   title
@@ -179,6 +194,21 @@ fragment Docsos4BestPracticesParts on Docsos4BestPractices {
 }
 
 fragment Docsos5OverviewParts on Docsos5Overview {
+  __typename
+  title
+  description
+  maintainer
+  maintainerOpenId
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5IconsParts on Docsos5Icons {
   __typename
   title
   description

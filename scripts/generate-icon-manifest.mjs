@@ -35,6 +35,8 @@ const CATEGORY_LABELS = {
   location: '位置',
   ai: '智能',
   system: '系统',
+  people: '人',
+  time: '时间',
   misc: '其他',
 };
 
@@ -58,6 +60,10 @@ function categorize(name) {
   if (/到达地点|离开地点/.test(name)) return 'location';
   if (/^IC-|技能推荐|输入模块/.test(name)) return 'ai';
   if (/超级文件|列表缓存/.test(name)) return 'system';
+  if (/^(alarm|timer|months|weeks|years|th_20)$/i.test(name) || /时间/.test(name)) {
+    return 'time';
+  }
+  if (/一起听|共享|人物|用户|people/i.test(name)) return 'people';
   return 'misc';
 }
 
@@ -91,10 +97,12 @@ function normalizeMonochromeSvg(svg) {
 }
 
 function parseArgs(argv) {
-  const out = { importFrom: null };
+  const out = { importFrom: null, category: null };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--import-from' && argv[i + 1]) {
       out.importFrom = argv[++i];
+    } else if (argv[i] === '--category' && argv[i + 1]) {
+      out.category = argv[++i];
     }
   }
   return out;
@@ -118,8 +126,8 @@ function listSvgFiles(dir) {
   return results;
 }
 
-/** @param {string} fromDir */
-function importFlatLibrary(fromDir) {
+/** @param {string} fromDir @param {string | null} forcedCategory */
+function importFlatLibrary(fromDir, forcedCategory = null) {
   if (!existsSync(fromDir)) {
     throw new Error(`Import source not found: ${fromDir}`);
   }
@@ -127,10 +135,21 @@ function importFlatLibrary(fromDir) {
   mkdirSync(SVG_ROOT, { recursive: true });
   const files = listSvgFiles(fromDir);
   let imported = 0;
+  let skippedNonSvg = 0;
+
+  for (const entry of readdirSync(fromDir)) {
+    const full = join(fromDir, entry);
+    if (!statSync(full).isFile()) continue;
+    const ext = extname(entry).toLowerCase();
+    if (ext && ext !== '.svg') {
+      skippedNonSvg++;
+      console.warn(`skip (not svg): ${entry}`);
+    }
+  }
 
   for (const file of files) {
     const base = basename(file, '.svg');
-    const category = categorize(base);
+    const category = forcedCategory || categorize(base);
     const slug = slugify(base);
     if (!slug) {
       console.warn(`skip (empty slug): ${file}`);
@@ -144,7 +163,11 @@ function importFlatLibrary(fromDir) {
     imported++;
   }
 
-  console.log(`Imported ${imported} SVG(s) from ${fromDir}`);
+  console.log(
+    `Imported ${imported} SVG(s) from ${fromDir}` +
+      (forcedCategory ? ` → category "${forcedCategory}"` : '') +
+      (skippedNonSvg ? ` (skipped ${skippedNonSvg} non-svg)` : ''),
+  );
 }
 
 function loadExistingManifest() {
@@ -246,7 +269,7 @@ function buildManifest() {
 function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.importFrom) {
-    importFlatLibrary(args.importFrom);
+    importFlatLibrary(args.importFrom, args.category);
   }
   buildManifest();
 }
