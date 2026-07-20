@@ -11,7 +11,8 @@
     "tina:build": "tinacms build",
     "tina:dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
     "icons:sync": "node scripts/generate-icon-manifest.mjs",
-    "icons:import": "node scripts/generate-icon-manifest.mjs --import-from"
+    "icons:import": "node scripts/generate-icon-manifest.mjs --import-from",
+    "tokens:import": "node scripts/import-os4-tokens.mjs"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.11.1",

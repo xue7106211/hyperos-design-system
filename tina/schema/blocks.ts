@@ -95,7 +95,8 @@ export const tokenTableBlock: Template = {
       type: 'string',
       name: 'groups',
       label: 'Token Groups',
-      description: '例如 color.action、spacing.button',
+      description:
+        '过滤前缀，例如 semantic.bg、component.navigation、reference.solid.white',
       list: true,
     },
   ],

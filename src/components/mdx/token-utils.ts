@@ -1,10 +1,37 @@
-import tokensData from '../../../tokens/tokens.json';
+import componentDark from '../../../tokens/component.dark.json';
+import componentLight from '../../../tokens/component.light.json';
+import referenceDark from '../../../tokens/reference.dark.json';
+import referenceLight from '../../../tokens/reference.light.json';
+import semanticDark from '../../../tokens/semantic.dark.json';
+import semanticLight from '../../../tokens/semantic.light.json';
+
+export type TokenMode = 'light' | 'dark';
+
+export type TokenLayer = 'reference' | 'semantic' | 'component';
 
 export type TokenEntry = {
+  /** Figma / MIUIX 原名（miuix_*），无层/分组前缀 */
   name: string;
+  /** 文档站过滤用路径，如 semantic.bg.layout.miuix_…；不用于展示 */
+  path: string;
   type?: string;
   value: string;
   description?: string;
+};
+
+type TokenTree = Record<string, unknown>;
+
+const catalogs: Record<TokenMode, Record<TokenLayer, TokenTree>> = {
+  light: {
+    reference: referenceLight as TokenTree,
+    semantic: semanticLight as TokenTree,
+    component: componentLight as TokenTree,
+  },
+  dark: {
+    reference: referenceDark as TokenTree,
+    semantic: semanticDark as TokenTree,
+    component: componentDark as TokenTree,
+  },
 };
 
 function isTokenObject(value: unknown): value is {
@@ -28,7 +55,8 @@ export function collectTokens(
 
     if (isTokenObject(value)) {
       results.push({
-        name: path,
+        name: key,
+        path,
         type: value.$type,
         value: String(value.$value ?? ''),
         description: value.$description,
@@ -44,19 +72,45 @@ export function collectTokens(
   return results;
 }
 
-export function getAllTokens(): TokenEntry[] {
-  return collectTokens(tokensData as Record<string, unknown>);
+export function getAllTokens(mode: TokenMode = 'light'): TokenEntry[] {
+  const layers = catalogs[mode];
+  const results: TokenEntry[] = [];
+
+  for (const layer of ['reference', 'semantic', 'component'] as TokenLayer[]) {
+    results.push(...collectTokens(layers[layer], layer));
+  }
+
+  return results;
 }
 
-export function filterTokensByGroups(groups: string[]): TokenEntry[] {
-  const all = getAllTokens();
+export function filterTokensByGroups(
+  groups: string[],
+  mode: TokenMode = 'light',
+): TokenEntry[] {
+  const all = getAllTokens(mode);
   if (groups.length === 0) return all;
 
   return all.filter((token) =>
-    groups.some((group) => token.name === group || token.name.startsWith(`${group}.`)),
+    groups.some(
+      (group) =>
+        token.name === group ||
+        token.path === group ||
+        token.path.startsWith(`${group}.`),
+    ),
   );
 }
 
 export function isColorToken(token: TokenEntry): boolean {
-  return token.type === 'color' || token.name.startsWith('color.');
+  if (token.type === 'color') return true;
+  const value = token.value.trim();
+  return (
+    value.startsWith('#') ||
+    value.startsWith('rgb') ||
+    value.startsWith('hsl')
+  );
+}
+
+export function isPaintValue(value: string): boolean {
+  const v = value.trim();
+  return v.startsWith('#') || v.startsWith('rgb') || v.startsWith('hsl');
 }

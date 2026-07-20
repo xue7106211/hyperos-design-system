@@ -65,7 +65,7 @@ icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
 scripts/             # 仓库脚本（如 generate-icon-manifest.mjs）
-tokens/tokens.json   # Design Tokens（W3C DTCG）
+tokens/                  # Design Tokens（reference / semantic / component × light / dark）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
 .env.example         # TinaCMS 本地模式环境变量模板
@@ -113,7 +113,7 @@ CLAUDE.md            # 指向 AGENTS.md
 ### Token 表示例
 
 ```mdx
-<TokenTable groups={["color.action", "spacing.button"]} />
+<TokenTable groups={["semantic.fill.brand", "component.navigation"]} />
 ```
 
 ### 图标预览示例

@@ -1,0 +1,518 @@
+{
+  "$name": "HyperOS OS4 Semantic Token (Dark)",
+  "$extensions": {
+    "hyperos.layer": "semantic",
+    "hyperos.mode": "dark",
+    "hyperos.source": "Figma Variables / Semantic Token"
+  },
+  "bg": {
+    "layout": {
+      "miuix_color_bg_layout_white_page": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "→ Reference Token: solid/black/miuix_black_solid_level_1000"
+      },
+      "miuix_color_bg_layout_grey_page": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "→ Reference Token: solid/black/miuix_black_solid_level_1000"
+      }
+    },
+    "floating": {
+      "miuix_color_bg_floating_white_page": {
+        "$type": "color",
+        "$value": "#242424",
+        "$description": "→ Reference Token: solid/white/miuix_white_solid_level_700"
+      },
+      "miuix_color_bg_floating_grey_page": {
+        "$type": "color",
+        "$value": "#242424",
+        "$description": "→ Reference Token: solid/white/miuix_white_solid_level_700"
+      }
+    },
+    "compoment": {
+      "miuix_color_bg_compoment": {
+        "$type": "color",
+        "$value": "#2C2C2C",
+        "$description": "→ Reference Token: solid/black/miuix_black_solid_level_800"
+      }
+    }
+  },
+  "text": {
+    "default": {
+      "miuix_color_text_primary_enable": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.95)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_950"
+      },
+      "miuix_color_text_secondary_enabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.8)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_800"
+      },
+      "miuix_color_text_tertiary_enabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.5)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_500"
+      },
+      "miuix_color_text_quaternary_enabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.4)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_400"
+      },
+      "miuix_color_text_octonary_enabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_300"
+      },
+      "miuix_color_text_primary_disabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_300"
+      },
+      "miuix_color_text_primary_pressed": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.5)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_500"
+      }
+    },
+    "brand": {
+      "miuix_color_text_brand_enable": {
+        "$type": "color",
+        "$value": "#3482FF",
+        "$description": "→ Reference Token: solid/blue/miuix_blue_solid_level_1000"
+      },
+      "miuix_color_text_brand_disabled": {
+        "$type": "color",
+        "$value": "rgba(52, 130, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/blue/miuix_blue_opacity_level_300"
+      }
+    },
+    "link": {
+      "miuix_color_text_link_enable": {
+        "$type": "color",
+        "$value": "#3482FF",
+        "$description": "→ Reference Token: solid/blue/miuix_blue_solid_level_1000"
+      },
+      "miuix_color_text_link_disabled": {
+        "$type": "color",
+        "$value": "rgba(52, 130, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/blue/miuix_blue_opacity_level_300"
+      }
+    },
+    "caution": {
+      "miuix_color_text_caution_enable": {
+        "$type": "color",
+        "$value": "#FF9F05",
+        "$description": "→ Reference Token: solid/apricot_orange/miuix_apricot_orange_solid_level_1000"
+      },
+      "miuix_color_text_caution_disable": {
+        "$type": "color",
+        "$value": "rgba(255, 159, 5, 0.3)",
+        "$description": "→ Reference Token: opacity/apricot/miuix_apricot_orange_opacity_level_300"
+      }
+    },
+    "warning": {
+      "miuix_color_text_warning_enable": {
+        "$type": "color",
+        "$value": "#FA382E",
+        "$description": "→ Reference Token: solid/red/miuix_red_solid_level_1000"
+      },
+      "miuix_color_text_warning_disabled": {
+        "$type": "color",
+        "$value": "rgba(250, 56, 46, 0.3)",
+        "$description": "→ Reference Token: opacity/red/miuix_red_opacity_level_300"
+      }
+    },
+    "success": {
+      "miuix_color_text_success_enable": {
+        "$type": "color",
+        "$value": "#1DCD3A",
+        "$description": "→ Reference Token: solid/green/miuix_green_solid_level_1000"
+      },
+      "miuix_color_text_success_disabled": {
+        "$type": "color",
+        "$value": "rgba(29, 205, 58, 0.3)",
+        "$description": "→ Reference Token: opacity/green/miuix_green_opacity_level_300"
+      }
+    },
+    "status": {
+      "miuix_color_text_status_hover": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.08)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_080"
+      },
+      "miuix_color_text_status_pressed": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.14)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_140"
+      },
+      "miuix_color_text_status_selected": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.12)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_120"
+      }
+    },
+    "static_white": {
+      "miuix_color_text_static_white_enabled": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "→ Reference Token: solid/white/miuix_white_solid_level_1000"
+      },
+      "miuix_color_text_static_white_disabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_300"
+      }
+    }
+  },
+  "fill": {
+    "default": {
+      "miuix_color_fill_primary_enable": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.08)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_080"
+      },
+      "miuix_color_fill_secondary_enabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.14)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_140"
+      },
+      "miuix_color_fill_tertiary_enabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.14)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_140"
+      },
+      "miuix_color_fill_quaternary_enabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.2)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_200"
+      },
+      "miuix_color_fill_primary_disabled": {
+        "$type": "color",
+        "$value": "#000000"
+      },
+      "miuix_color_fill_secondary_disabled": {
+        "$type": "color",
+        "$value": "#000000"
+      },
+      "miuix_color_fill_tertiary_disabled": {
+        "$type": "color",
+        "$value": "#000000"
+      },
+      "miuix_color_fill_quaternary_disabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.08)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_080"
+      }
+    },
+    "brand": {
+      "miuix_color_fill_brand_enable": {
+        "$type": "color",
+        "$value": "#3482FF",
+        "$description": "→ Reference Token: solid/blue/miuix_blue_solid_level_1000"
+      },
+      "miuix_color_fill_brand_disabled": {
+        "$type": "color",
+        "$value": "rgba(52, 130, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/blue/miuix_blue_opacity_level_300"
+      }
+    },
+    "caution": {
+      "miuix_color_fill_caution_enable": {
+        "$type": "color",
+        "$value": "#FFBB0F",
+        "$description": "→ Reference Token: solid/yellow/miuix_yellow_solid_level_1000"
+      },
+      "miuix_color_fill_caution_disabled": {
+        "$type": "color",
+        "$value": "rgba(255, 187, 15, 0.3)",
+        "$description": "→ Reference Token: opacity/yellow/miuix_yellow_opacity_level_300"
+      }
+    },
+    "warning": {
+      "miuix_color_fill_warning_enable": {
+        "$type": "color",
+        "$value": "#FA382E",
+        "$description": "→ Reference Token: solid/red/miuix_red_solid_level_1000"
+      },
+      "miuix_color_fill_warning_disabled": {
+        "$type": "color",
+        "$value": "rgba(250, 56, 46, 0.3)",
+        "$description": "→ Reference Token: opacity/red/miuix_red_opacity_level_300"
+      }
+    },
+    "success": {
+      "miuix_color_fill_success_enable": {
+        "$type": "color",
+        "$value": "#1DCD3A",
+        "$description": "→ Reference Token: solid/green/miuix_green_solid_level_1000"
+      },
+      "miuix_color_fill_success_disabled": {
+        "$type": "color",
+        "$value": "rgba(29, 205, 58, 0.3)",
+        "$description": "→ Reference Token: opacity/green/miuix_green_opacity_level_300"
+      }
+    },
+    "status": {
+      "miuix_color_fill_status_hover": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.08)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_080"
+      },
+      "miuix_color_fill_status_pressed": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.14)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_140"
+      },
+      "miuix_color_fill_status_selected": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.12)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_120"
+      }
+    },
+    "static_white": {
+      "miuix_color_fill_static_white_enabled": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "→ Reference Token: solid/white/miuix_white_solid_level_1000"
+      },
+      "miuix_color_fill_static_white_disabled": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_300"
+      }
+    }
+  },
+  "stroke": {
+    "border": {
+      "miuix_color_stroke_border_enable": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.3)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_300"
+      },
+      "miuix_color_stroke_border_disable": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.2)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_200"
+      }
+    },
+    "devider": {
+      "miuix_color_stroke_devider": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.2)",
+        "$description": "→ Reference Token: opacity/white/miuix_white_opacity_level_200"
+      }
+    }
+  },
+  "mask": {
+    "miuix_color_mask": {
+      "$type": "color",
+      "$value": "rgba(0, 0, 0, 0.6)",
+      "$description": "→ Reference Token: opacity/black/miuix_black_opacity_level_600"
+    }
+  },
+  "padding": {
+    "miuix_space_padding_none": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "→ Reference Token: number/space/miuix_space_0"
+    },
+    "miuix_space_padding_xs": {
+      "$type": "number",
+      "$value": 3,
+      "$description": "→ Reference Token: number/space/miuix_space_3"
+    },
+    "miuix_space_padding_sm": {
+      "$type": "number",
+      "$value": 4,
+      "$description": "→ Reference Token: number/space/miuix_space_4"
+    },
+    "miuix_space_padding_md": {
+      "$type": "number",
+      "$value": 6,
+      "$description": "→ Reference Token: number/space/miuix_space_6"
+    },
+    "miuix_space_padding_lg": {
+      "$type": "number",
+      "$value": 8,
+      "$description": "→ Reference Token: number/space/miuix_space_8"
+    },
+    "miuix_space_padding_xl": {
+      "$type": "number",
+      "$value": 12,
+      "$description": "→ Reference Token: number/space/miuix_space_12"
+    },
+    "miuix_space_padding_2xl": {
+      "$type": "number",
+      "$value": 16,
+      "$description": "→ Reference Token: number/space/miuix_space_16"
+    },
+    "miuix_space_padding_3xl": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "→ Reference Token: number/space/miuix_space_20"
+    },
+    "miuix_space_padding_4xl": {
+      "$type": "number",
+      "$value": 24,
+      "$description": "→ Reference Token: number/space/miuix_space_24"
+    },
+    "miuix_space_padding_5xl": {
+      "$type": "number",
+      "$value": 28,
+      "$description": "→ Reference Token: number/space/miuix_space_28"
+    },
+    "miuix_space_padding_6xl": {
+      "$type": "number",
+      "$value": 32,
+      "$description": "→ Reference Token: number/space/miuix_space_32"
+    },
+    "miuix_space_padding_7xl": {
+      "$type": "number",
+      "$value": 36,
+      "$description": "→ Reference Token: number/space/miuix_space_36"
+    }
+  },
+  "margin": {
+    "miuix_space_margin_none": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "→ Reference Token: number/space/miuix_space_0"
+    },
+    "miuix_space_margin_xs": {
+      "$type": "number",
+      "$value": 3,
+      "$description": "→ Reference Token: number/space/miuix_space_3"
+    },
+    "miuix_space_margin_sm": {
+      "$type": "number",
+      "$value": 4,
+      "$description": "→ Reference Token: number/space/miuix_space_4"
+    },
+    "miuix_space_margin_md": {
+      "$type": "number",
+      "$value": 8,
+      "$description": "→ Reference Token: number/space/miuix_space_8"
+    },
+    "miuix_space_margin_lg": {
+      "$type": "number",
+      "$value": 12,
+      "$description": "→ Reference Token: number/space/miuix_space_12"
+    },
+    "miuix_space_margin_xl": {
+      "$type": "number",
+      "$value": 16,
+      "$description": "→ Reference Token: number/space/miuix_space_16"
+    },
+    "miuix_space_margin_2xl": {
+      "$type": "number",
+      "$value": 24,
+      "$description": "→ Reference Token: number/space/miuix_space_24"
+    },
+    "miuix_space_margin_3xl": {
+      "$type": "number",
+      "$value": 28,
+      "$description": "→ Reference Token: number/space/miuix_space_28"
+    },
+    "miuix_space_margin_4xl": {
+      "$type": "number",
+      "$value": 32,
+      "$description": "→ Reference Token: number/space/miuix_space_32"
+    }
+  },
+  "gap": {
+    "miuix_space_gap_none": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "→ Reference Token: number/space/miuix_space_0"
+    },
+    "miuix_space_gap_xs": {
+      "$type": "number",
+      "$value": 3,
+      "$description": "→ Reference Token: number/space/miuix_space_3"
+    },
+    "miuix_space_gap_sm": {
+      "$type": "number",
+      "$value": 4,
+      "$description": "→ Reference Token: number/space/miuix_space_4"
+    },
+    "miuix_space_gap_mg": {
+      "$type": "number",
+      "$value": 6,
+      "$description": "→ Reference Token: number/space/miuix_space_6"
+    },
+    "miuix_space_gap_lg": {
+      "$type": "number",
+      "$value": 8,
+      "$description": "→ Reference Token: number/space/miuix_space_8"
+    },
+    "miuix_space_gap_xl": {
+      "$type": "number",
+      "$value": 12,
+      "$description": "→ Reference Token: number/space/miuix_space_12"
+    },
+    "miuix_space_gap_2xl": {
+      "$type": "number",
+      "$value": 16,
+      "$description": "→ Reference Token: number/space/miuix_space_16"
+    },
+    "miuix_space_gap_3xl": {
+      "$type": "number",
+      "$value": 24,
+      "$description": "→ Reference Token: number/space/miuix_space_24"
+    },
+    "miuix_space_gap_4xl": {
+      "$type": "number",
+      "$value": 28,
+      "$description": "→ Reference Token: number/space/miuix_space_28"
+    },
+    "miuix_space_gap_5xl": {
+      "$type": "number",
+      "$value": 32,
+      "$description": "→ Reference Token: number/space/miuix_space_32"
+    }
+  },
+  "radius": {
+    "miuix_raidus_shape_none": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "→ Reference Token: number/radius/miuix_radius_0"
+    },
+    "miuix_raidus_shape_xs": {
+      "$type": "number",
+      "$value": 8,
+      "$description": "→ Reference Token: number/radius/miuix_radius_8"
+    },
+    "miuix_raidus_shape_sm": {
+      "$type": "number",
+      "$value": 12,
+      "$description": "→ Reference Token: number/radius/miuix_radius_12"
+    },
+    "miuix_raidus_shape_md": {
+      "$type": "number",
+      "$value": 16,
+      "$description": "→ Reference Token: number/radius/miuix_radius_16"
+    },
+    "miuix_raidus_shape_lg": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "→ Reference Token: number/radius/miuix_radius_20"
+    },
+    "miuix_raidus_shape_xl": {
+      "$type": "number",
+      "$value": 24,
+      "$description": "→ Reference Token: number/radius/miuix_radius_24"
+    },
+    "miuix_raidus_shape_2xl": {
+      "$type": "number",
+      "$value": 36,
+      "$description": "→ Reference Token: number/radius/miuix_radius_36"
+    },
+    "miuix_raidus_shape_full": {
+      "$type": "number",
+      "$value": 999,
+      "$description": "→ Reference Token: number/radius/miuix_radius_999"
+    }
+  }
+}

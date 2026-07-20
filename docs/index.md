@@ -16,6 +16,7 @@
 | 实施进度与后续 Phase | [roadmap.md](./roadmap.md) |
 | 维护人飞书 open_id | [maintainers.md](./maintainers.md) |
 | 图标 SVG 入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
+| Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
 
 ## 文档目录
 
@@ -39,8 +40,9 @@
 | `content/docs/os4/icons.mdx` | 图标预览页（一级入口；`<IconGallery />`） |
 | `content/docs/os5/` | HyperOS 5 占位（侧栏可见，内容未发布） |
 | `icons/` | 图标源 SVG + `manifest.json`（见 [icons/README.md](../icons/README.md)） |
+| `tokens/` | Design Tokens：`reference|semantic|component` × `light|dark` |
 | `public/icons/` | 图标静态访问（`icons:sync` 产物） |
-| `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`） |
+| `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta` |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
 | `src/lib/icons.ts` | 图标 manifest 读取 |
@@ -52,6 +54,7 @@
 
 ## 变更摘要
 
+- **2026-07-20**：OS4 Token 真源入库（`tokens/{reference,semantic,component}.{light,dark}.json`）；TokenTable 支持 Light / Dark。
 - **2026-07-17**：图标预览（`IconGallery` + `icons/` 资产管线）；侧栏提升为 OS 一级入口 `/docs/os4/icons`。
 - **2026-07-10**：取消无语义的 `docs/v1/`，工程文档扁平到 `docs/`；`sidebar-ia-draft` → `sidebar-ia`，`user-id` → `maintainers`。
 - **2026-07-10**：文档页元信息（更新时间 / 维护人）；移除「通用设计总览」。

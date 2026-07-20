@@ -1,0 +1,2292 @@
+{
+  "$name": "HyperOS OS4 Reference Token (Dark)",
+  "$extensions": {
+    "hyperos.layer": "reference",
+    "hyperos.mode": "dark",
+    "hyperos.source": "Figma Variables / Reference Token"
+  },
+  "opacity": {
+    "red": {
+      "miuix_red_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.1)"
+      },
+      "miuix_red_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.2)"
+      },
+      "miuix_red_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.3)"
+      },
+      "miuix_red_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.4)"
+      },
+      "miuix_red_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.5)"
+      },
+      "miuix_red_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.6)"
+      },
+      "miuix_red_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.7)"
+      },
+      "miuix_red_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.8)"
+      },
+      "miuix_red_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(250, 66, 56, 0.9)"
+      }
+    },
+    "deep_orange": {
+      "miuix_deep_orange_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.1)"
+      },
+      "miuix_deep_orange_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.2)"
+      },
+      "miuix_deep_orange_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.3)"
+      },
+      "miuix_deep_orange_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.4)"
+      },
+      "miuix_deep_orange_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.5)"
+      },
+      "miuix_deep_orange_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.6)"
+      },
+      "miuix_deep_orange_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.7)"
+      },
+      "miuix_deep_orange_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.8)"
+      },
+      "miuix_deep_orange_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(255, 106, 5, 0.9)"
+      }
+    },
+    "orange": {
+      "miuix_orange_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.1)"
+      },
+      "miuix_orange_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.2)"
+      },
+      "miuix_orange_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.3)"
+      },
+      "miuix_orange_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.4)"
+      },
+      "miuix_orange_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.5)"
+      },
+      "miuix_orange_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.6)"
+      },
+      "miuix_orange_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.7)"
+      },
+      "miuix_orange_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.8)"
+      },
+      "miuix_orange_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(249, 122, 31, 0.9)"
+      }
+    },
+    "apricot": {
+      "miuix_apricot_orange_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.1)"
+      },
+      "miuix_apricot_orange_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.2)"
+      },
+      "miuix_apricot_orange_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.3)"
+      },
+      "miuix_apricot_orange_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.4)"
+      },
+      "miuix_apricot_orange_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.5)"
+      },
+      "miuix_apricot_orange_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.6)"
+      },
+      "miuix_apricot_orange_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.7)"
+      },
+      "miuix_apricot_orange_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.8)"
+      },
+      "miuix_apricot_orange_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(255, 163, 15, 0.9)"
+      }
+    },
+    "yellow": {
+      "miuix_yellow_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.1)"
+      },
+      "miuix_yellow_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.2)"
+      },
+      "miuix_yellow_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.3)"
+      },
+      "miuix_yellow_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.4)"
+      },
+      "miuix_yellow_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.5)"
+      },
+      "miuix_yellow_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.6)"
+      },
+      "miuix_yellow_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.7)"
+      },
+      "miuix_yellow_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.8)"
+      },
+      "miuix_yellow_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(255, 191, 15, 0.9)"
+      }
+    },
+    "lemon_yellow": {
+      "miuix_lemon_yellow_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.1)"
+      },
+      "miuix_lemon_yellow_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.2)"
+      },
+      "miuix_lemon_yellow_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.3)"
+      },
+      "miuix_lemon_yellow_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.4)"
+      },
+      "miuix_lemon_yellow_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.5)"
+      },
+      "miuix_lemon_yellow_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.6)"
+      },
+      "miuix_lemon_yellow_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.7)"
+      },
+      "miuix_lemon_yellow_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.8)"
+      },
+      "miuix_lemon_yellow_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(255, 221, 51, 0.9)"
+      }
+    },
+    "chartreuse": {
+      "miuix_chartreuse_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.1)"
+      },
+      "miuix_chartreuse_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.2)"
+      },
+      "miuix_chartreuse_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.3)"
+      },
+      "miuix_chartreuse_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.4)"
+      },
+      "miuix_chartreuse_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.5)"
+      },
+      "miuix_chartreuse_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.6)"
+      },
+      "miuix_chartreuse_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.7)"
+      },
+      "miuix_chartreuse_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.8)"
+      },
+      "miuix_chartreuse_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(159, 228, 33, 0.9)"
+      }
+    },
+    "green": {
+      "miuix_green_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.1)"
+      },
+      "miuix_green_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.2)"
+      },
+      "miuix_green_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.3)"
+      },
+      "miuix_green_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.4)"
+      },
+      "miuix_green_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.5)"
+      },
+      "miuix_green_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.6)"
+      },
+      "miuix_green_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.7)"
+      },
+      "miuix_green_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.8)"
+      },
+      "miuix_green_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(40, 210, 68, 0.9)"
+      }
+    },
+    "turquoise": {
+      "miuix_turquoise_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.1)"
+      },
+      "miuix_turquoise_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.2)"
+      },
+      "miuix_turquoise_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.3)"
+      },
+      "miuix_turquoise_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.4)"
+      },
+      "miuix_turquoise_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.5)"
+      },
+      "miuix_turquoise_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.6)"
+      },
+      "miuix_turquoise_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.7)"
+      },
+      "miuix_turquoise_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.8)"
+      },
+      "miuix_turquoise_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(17, 208, 151, 0.9)"
+      }
+    },
+    "cyan": {
+      "miuix_cyan_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.1)"
+      },
+      "miuix_cyan_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.2)"
+      },
+      "miuix_cyan_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.3)"
+      },
+      "miuix_cyan_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.4)"
+      },
+      "miuix_cyan_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.5)"
+      },
+      "miuix_cyan_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.6)"
+      },
+      "miuix_cyan_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.7)"
+      },
+      "miuix_cyan_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.8)"
+      },
+      "miuix_cyan_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(19, 205, 205, 0.9)"
+      }
+    },
+    "sky_blue": {
+      "miuix_sky_blue_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.1)"
+      },
+      "miuix_sky_blue_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.2)"
+      },
+      "miuix_sky_blue_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.3)"
+      },
+      "miuix_sky_blue_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.4)"
+      },
+      "miuix_sky_blue_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.5)"
+      },
+      "miuix_sky_blue_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.6)"
+      },
+      "miuix_sky_blue_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.7)"
+      },
+      "miuix_sky_blue_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.8)"
+      },
+      "miuix_sky_blue_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(54, 172, 252, 0.9)"
+      }
+    },
+    "blue": {
+      "miuix_blue_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.1)"
+      },
+      "miuix_blue_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.2)"
+      },
+      "miuix_blue_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.3)"
+      },
+      "miuix_blue_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.4)"
+      },
+      "miuix_blue_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.5)"
+      },
+      "miuix_blue_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.6)"
+      },
+      "miuix_blue_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.7)"
+      },
+      "miuix_blue_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.8)"
+      },
+      "miuix_blue_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(71, 136, 255, 0.9)"
+      }
+    },
+    "purple": {
+      "miuix_purple_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.1)"
+      },
+      "miuix_purple_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.2)"
+      },
+      "miuix_purple_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.3)"
+      },
+      "miuix_purple_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.4)"
+      },
+      "miuix_purple_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.5)"
+      },
+      "miuix_purple_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.6)"
+      },
+      "miuix_purple_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.7)"
+      },
+      "miuix_purple_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.8)"
+      },
+      "miuix_purple_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(131, 112, 255, 0.9)"
+      }
+    },
+    "violet": {
+      "miuix_violet_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.1)"
+      },
+      "miuix_violet_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.2)"
+      },
+      "miuix_violet_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.3)"
+      },
+      "miuix_violet_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.4)"
+      },
+      "miuix_violet_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.5)"
+      },
+      "miuix_violet_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.6)"
+      },
+      "miuix_violet_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.7)"
+      },
+      "miuix_violet_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.8)"
+      },
+      "miuix_violet_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(189, 87, 250, 0.9)"
+      }
+    },
+    "magenta": {
+      "miuix_magenta_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.1)"
+      },
+      "miuix_magenta_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.2)"
+      },
+      "miuix_magenta_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.3)"
+      },
+      "miuix_magenta_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.4)"
+      },
+      "miuix_magenta_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.5)"
+      },
+      "miuix_magenta_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.6)"
+      },
+      "miuix_magenta_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.7)"
+      },
+      "miuix_magenta_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.8)"
+      },
+      "miuix_magenta_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(238, 79, 159, 0.9)"
+      }
+    },
+    "grey": {
+      "miuix_grey_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.1)"
+      },
+      "miuix_grey_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.2)"
+      },
+      "miuix_grey_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.3)"
+      },
+      "miuix_grey_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.4)"
+      },
+      "miuix_grey_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.5)"
+      },
+      "miuix_grey_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.6)"
+      },
+      "miuix_grey_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.7)"
+      },
+      "miuix_grey_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.8)"
+      },
+      "miuix_grey_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(146, 161, 180, 0.9)"
+      }
+    },
+    "white": {
+      "miuix_white_opacity_level_030": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.03)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_040": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.04)",
+        "$description": "White 4% opacity"
+      },
+      "miuix_white_opacity_level_050": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.05)",
+        "$description": "White 5% opacity"
+      },
+      "miuix_white_opacity_level_060": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.06)",
+        "$description": "White 6% opacity"
+      },
+      "miuix_white_opacity_level_080": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.08)",
+        "$description": "White 8% opacity"
+      },
+      "miuix_white_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.1)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_120": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.12)",
+        "$description": "White 12% opacity"
+      },
+      "miuix_white_opacity_level_140": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.14)",
+        "$description": "White 14% opacity"
+      },
+      "miuix_white_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.2)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.3)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.4)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.5)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.6)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.7)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.8)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_830": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.83)",
+        "$description": "White 83% opacity"
+      },
+      "miuix_white_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.9)",
+        "$description": "White 3% opacity"
+      },
+      "miuix_white_opacity_level_950": {
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.95)",
+        "$description": "White 95% opacity"
+      }
+    },
+    "black": {
+      "miuix_black_opacity_level_030": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.03)",
+        "$description": "Black 3% opacity"
+      },
+      "miuix_black_opacity_level_040": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.04)",
+        "$description": "Black 4% opacity"
+      },
+      "miuix_black_opacity_level_050": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.05)",
+        "$description": "Black 5% opacity"
+      },
+      "miuix_black_opacity_level_060": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.06)",
+        "$description": "Black 6% opacity"
+      },
+      "miuix_black_opacity_level_080": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.08)",
+        "$description": "Black 8% opacity"
+      },
+      "miuix_black_opacity_level_100": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.1)",
+        "$description": "Black 12% opacity"
+      },
+      "miuix_black_opacity_level_120": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.12)",
+        "$description": "Black 12% opacity"
+      },
+      "miuix_black_opacity_level_140": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.14)",
+        "$description": "Black 14% opacity"
+      },
+      "miuix_black_opacity_level_200": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.2)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_300": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.3)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_400": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.4)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_500": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.5)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_600": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.6)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_700": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.7)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_800": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.8)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_830": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.83)",
+        "$description": "Black 83% opacity"
+      },
+      "miuix_black_opacity_level_900": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.9)",
+        "$description": "Black 95% opacity"
+      },
+      "miuix_black_opacity_level_950": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.95)",
+        "$description": "Black 95% opacity"
+      }
+    }
+  },
+  "solid": {
+    "red": {
+      "miuix_red_solid_level_1900": {
+        "$type": "color",
+        "$value": "#190706"
+      },
+      "miuix_red_solid_level_1800": {
+        "$type": "color",
+        "$value": "#320D0B"
+      },
+      "miuix_red_solid_level_1700": {
+        "$type": "color",
+        "$value": "#4B1411"
+      },
+      "miuix_red_solid_level_1600": {
+        "$type": "color",
+        "$value": "#641A16"
+      },
+      "miuix_red_solid_level_1500": {
+        "$type": "color",
+        "$value": "#7D211C"
+      },
+      "miuix_red_solid_level_1400": {
+        "$type": "color",
+        "$value": "#962822"
+      },
+      "miuix_red_solid_level_1300": {
+        "$type": "color",
+        "$value": "#AF2E27"
+      },
+      "miuix_red_solid_level_1200": {
+        "$type": "color",
+        "$value": "#C8352D"
+      },
+      "miuix_red_solid_level_1100": {
+        "$type": "color",
+        "$value": "#E13B32"
+      },
+      "miuix_red_solid_level_1000": {
+        "$type": "color",
+        "$value": "#FA4238"
+      },
+      "miuix_red_solid_level_900": {
+        "$type": "color",
+        "$value": "#FA554C"
+      },
+      "miuix_red_solid_level_800": {
+        "$type": "color",
+        "$value": "#FB6860"
+      },
+      "miuix_red_solid_level_700": {
+        "$type": "color",
+        "$value": "#FB7B74"
+      },
+      "miuix_red_solid_level_600": {
+        "$type": "color",
+        "$value": "#FC8E88"
+      },
+      "miuix_red_solid_level_500": {
+        "$type": "color",
+        "$value": "#FCA09B"
+      },
+      "miuix_red_solid_level_400": {
+        "$type": "color",
+        "$value": "#FDB3AF"
+      },
+      "miuix_red_solid_level_300": {
+        "$type": "color",
+        "$value": "#FDC6C3"
+      },
+      "miuix_red_solid_level_200": {
+        "$type": "color",
+        "$value": "#FED9D7"
+      },
+      "miuix_red_solid_level_100": {
+        "$type": "color",
+        "$value": "#FEECEB"
+      }
+    },
+    "deep_orange": {
+      "miuix_deep_orange_solid_level_1900": {
+        "$type": "color",
+        "$value": "#1A0B01"
+      },
+      "miuix_deep_orange_solid_level_1800": {
+        "$type": "color",
+        "$value": "#331501"
+      },
+      "miuix_deep_orange_solid_level_1700": {
+        "$type": "color",
+        "$value": "#4D2002"
+      },
+      "miuix_deep_orange_solid_level_1600": {
+        "$type": "color",
+        "$value": "#662A02"
+      },
+      "miuix_deep_orange_solid_level_1500": {
+        "$type": "color",
+        "$value": "#803503"
+      },
+      "miuix_deep_orange_solid_level_1400": {
+        "$type": "color",
+        "$value": "#994003"
+      },
+      "miuix_deep_orange_solid_level_1300": {
+        "$type": "color",
+        "$value": "#B24A04"
+      },
+      "miuix_deep_orange_solid_level_1200": {
+        "$type": "color",
+        "$value": "#CC5504"
+      },
+      "miuix_deep_orange_solid_level_1100": {
+        "$type": "color",
+        "$value": "#E55F05"
+      },
+      "miuix_deep_orange_solid_level_1000": {
+        "$type": "color",
+        "$value": "#FF6A05"
+      },
+      "miuix_deep_orange_solid_level_900": {
+        "$type": "color",
+        "$value": "#FF791E"
+      },
+      "miuix_deep_orange_solid_level_800": {
+        "$type": "color",
+        "$value": "#FF8837"
+      },
+      "miuix_deep_orange_solid_level_700": {
+        "$type": "color",
+        "$value": "#FF9750"
+      },
+      "miuix_deep_orange_solid_level_600": {
+        "$type": "color",
+        "$value": "#FFA669"
+      },
+      "miuix_deep_orange_solid_level_500": {
+        "$type": "color",
+        "$value": "#FFB482"
+      },
+      "miuix_deep_orange_solid_level_400": {
+        "$type": "color",
+        "$value": "#FFC39B"
+      },
+      "miuix_deep_orange_solid_level_300": {
+        "$type": "color",
+        "$value": "#FFD2B4"
+      },
+      "miuix_deep_orange_solid_level_200": {
+        "$type": "color",
+        "$value": "#FFE1CD"
+      },
+      "miuix_deep_orange_solid_level_100": {
+        "$type": "color",
+        "$value": "#FFF0E6"
+      }
+    },
+    "orange": {
+      "miuix_orange_solid_level_1900": {
+        "$type": "color",
+        "$value": "#190C03"
+      },
+      "miuix_orange_solid_level_1800": {
+        "$type": "color",
+        "$value": "#321806"
+      },
+      "miuix_orange_solid_level_1700": {
+        "$type": "color",
+        "$value": "#4B2509"
+      },
+      "miuix_orange_solid_level_1600": {
+        "$type": "color",
+        "$value": "#64310C"
+      },
+      "miuix_orange_solid_level_1500": {
+        "$type": "color",
+        "$value": "#7D3D10"
+      },
+      "miuix_orange_solid_level_1400": {
+        "$type": "color",
+        "$value": "#954913"
+      },
+      "miuix_orange_solid_level_1300": {
+        "$type": "color",
+        "$value": "#AE5516"
+      },
+      "miuix_orange_solid_level_1200": {
+        "$type": "color",
+        "$value": "#C76219"
+      },
+      "miuix_orange_solid_level_1100": {
+        "$type": "color",
+        "$value": "#E06E1C"
+      },
+      "miuix_orange_solid_level_1000": {
+        "$type": "color",
+        "$value": "#F97A1F"
+      },
+      "miuix_orange_solid_level_900": {
+        "$type": "color",
+        "$value": "#FA8735"
+      },
+      "miuix_orange_solid_level_800": {
+        "$type": "color",
+        "$value": "#FA954C"
+      },
+      "miuix_orange_solid_level_700": {
+        "$type": "color",
+        "$value": "#FBA262"
+      },
+      "miuix_orange_solid_level_600": {
+        "$type": "color",
+        "$value": "#FBAF79"
+      },
+      "miuix_orange_solid_level_500": {
+        "$type": "color",
+        "$value": "#FCBC8F"
+      },
+      "miuix_orange_solid_level_400": {
+        "$type": "color",
+        "$value": "#FDCAA5"
+      },
+      "miuix_orange_solid_level_300": {
+        "$type": "color",
+        "$value": "#FDD7BC"
+      },
+      "miuix_orange_solid_level_200": {
+        "$type": "color",
+        "$value": "#FEE4D2"
+      },
+      "miuix_orange_solid_level_100": {
+        "$type": "color",
+        "$value": "#FEF2E9"
+      }
+    },
+    "apricot_orange": {
+      "miuix_apricot_orange_solid_level_1900": {
+        "$type": "color",
+        "$value": "#1A1002"
+      },
+      "miuix_apricot_orange_solid_level_1800": {
+        "$type": "color",
+        "$value": "#332103"
+      },
+      "miuix_apricot_orange_solid_level_1700": {
+        "$type": "color",
+        "$value": "#4D3105"
+      },
+      "miuix_apricot_orange_solid_level_1600": {
+        "$type": "color",
+        "$value": "#664106"
+      },
+      "miuix_apricot_orange_solid_level_1500": {
+        "$type": "color",
+        "$value": "#805208"
+      },
+      "miuix_apricot_orange_solid_level_1400": {
+        "$type": "color",
+        "$value": "#996209"
+      },
+      "miuix_apricot_orange_solid_level_1300": {
+        "$type": "color",
+        "$value": "#B2720B"
+      },
+      "miuix_apricot_orange_solid_level_1200": {
+        "$type": "color",
+        "$value": "#CC820C"
+      },
+      "miuix_apricot_orange_solid_level_1100": {
+        "$type": "color",
+        "$value": "#E5930E"
+      },
+      "miuix_apricot_orange_solid_level_1000": {
+        "$type": "color",
+        "$value": "#FFA30F"
+      },
+      "miuix_apricot_orange_solid_level_900": {
+        "$type": "color",
+        "$value": "#FFAC27"
+      },
+      "miuix_apricot_orange_solid_level_800": {
+        "$type": "color",
+        "$value": "#FFB53F"
+      },
+      "miuix_apricot_orange_solid_level_700": {
+        "$type": "color",
+        "$value": "#FFBF57"
+      },
+      "miuix_apricot_orange_solid_level_600": {
+        "$type": "color",
+        "$value": "#FFC86F"
+      },
+      "miuix_apricot_orange_solid_level_500": {
+        "$type": "color",
+        "$value": "#FFD187"
+      },
+      "miuix_apricot_orange_solid_level_400": {
+        "$type": "color",
+        "$value": "#FFDA9F"
+      },
+      "miuix_apricot_orange_solid_level_300": {
+        "$type": "color",
+        "$value": "#FFE3B7"
+      },
+      "miuix_apricot_orange_solid_level_200": {
+        "$type": "color",
+        "$value": "#FFEDCF"
+      },
+      "miuix_apricot_orange_solid_level_100": {
+        "$type": "color",
+        "$value": "#FFF6E7"
+      }
+    },
+    "yellow": {
+      "miuix_yellow_solid_level_1900": {
+        "$type": "color",
+        "$value": "#1A1302"
+      },
+      "miuix_yellow_solid_level_1800": {
+        "$type": "color",
+        "$value": "#332603"
+      },
+      "miuix_yellow_solid_level_1700": {
+        "$type": "color",
+        "$value": "#4D3905"
+      },
+      "miuix_yellow_solid_level_1600": {
+        "$type": "color",
+        "$value": "#664C06"
+      },
+      "miuix_yellow_solid_level_1500": {
+        "$type": "color",
+        "$value": "#806008"
+      },
+      "miuix_yellow_solid_level_1400": {
+        "$type": "color",
+        "$value": "#997309"
+      },
+      "miuix_yellow_solid_level_1300": {
+        "$type": "color",
+        "$value": "#B2860B"
+      },
+      "miuix_yellow_solid_level_1200": {
+        "$type": "color",
+        "$value": "#CC990C"
+      },
+      "miuix_yellow_solid_level_1100": {
+        "$type": "color",
+        "$value": "#E5AC0E"
+      },
+      "miuix_yellow_solid_level_1000": {
+        "$type": "color",
+        "$value": "#FFBF0F"
+      },
+      "miuix_yellow_solid_level_900": {
+        "$type": "color",
+        "$value": "#FFC527"
+      },
+      "miuix_yellow_solid_level_800": {
+        "$type": "color",
+        "$value": "#FFCC3F"
+      },
+      "miuix_yellow_solid_level_700": {
+        "$type": "color",
+        "$value": "#FFD257"
+      },
+      "miuix_yellow_solid_level_600": {
+        "$type": "color",
+        "$value": "#FFD96F"
+      },
+      "miuix_yellow_solid_level_500": {
+        "$type": "color",
+        "$value": "#FFDF87"
+      },
+      "miuix_yellow_solid_level_400": {
+        "$type": "color",
+        "$value": "#FFE59F"
+      },
+      "miuix_yellow_solid_level_300": {
+        "$type": "color",
+        "$value": "#FFECB7"
+      },
+      "miuix_yellow_solid_level_200": {
+        "$type": "color",
+        "$value": "#FFF2CF"
+      },
+      "miuix_yellow_solid_level_100": {
+        "$type": "color",
+        "$value": "#FFF9E7"
+      }
+    },
+    "lemom_yellow": {
+      "miuix_lemon_yellow_solid_level_1900": {
+        "$type": "color",
+        "$value": "#1A1605"
+      },
+      "miuix_lemon_yellow_solid_level_1800": {
+        "$type": "color",
+        "$value": "#332C0A"
+      },
+      "miuix_lemon_yellow_solid_level_1700": {
+        "$type": "color",
+        "$value": "#4D420F"
+      },
+      "miuix_lemon_yellow_solid_level_1600": {
+        "$type": "color",
+        "$value": "#665814"
+      },
+      "miuix_lemon_yellow_solid_level_1500": {
+        "$type": "color",
+        "$value": "#806F1A"
+      },
+      "miuix_lemon_yellow_solid_level_1400": {
+        "$type": "color",
+        "$value": "#99851F"
+      },
+      "miuix_lemon_yellow_solid_level_1300": {
+        "$type": "color",
+        "$value": "#B29B24"
+      },
+      "miuix_lemon_yellow_solid_level_1200": {
+        "$type": "color",
+        "$value": "#CCB129"
+      },
+      "miuix_lemon_yellow_solid_level_1100": {
+        "$type": "color",
+        "$value": "#E5C72E"
+      },
+      "miuix_lemon_yellow_solid_level_1000": {
+        "$type": "color",
+        "$value": "#FFDD33"
+      },
+      "miuix_lemon_yellow_solid_level_900": {
+        "$type": "color",
+        "$value": "#FFE047"
+      },
+      "miuix_lemon_yellow_solid_level_800": {
+        "$type": "color",
+        "$value": "#FFE45C"
+      },
+      "miuix_lemon_yellow_solid_level_700": {
+        "$type": "color",
+        "$value": "#FFE770"
+      },
+      "miuix_lemon_yellow_solid_level_600": {
+        "$type": "color",
+        "$value": "#FFEB85"
+      },
+      "miuix_lemon_yellow_solid_level_500": {
+        "$type": "color",
+        "$value": "#FFEE99"
+      },
+      "miuix_lemon_yellow_solid_level_400": {
+        "$type": "color",
+        "$value": "#FFF1AD"
+      },
+      "miuix_lemon_yellow_solid_level_300": {
+        "$type": "color",
+        "$value": "#FFF5C2"
+      },
+      "miuix_lemon_yellow_solid_level_200": {
+        "$type": "color",
+        "$value": "#FFF8D6"
+      },
+      "miuix_lemon_yellow_solid_level_100": {
+        "$type": "color",
+        "$value": "#FFFCEB"
+      }
+    },
+    "chartreuse": {
+      "miuix_chartreuse_solid_level_1900": {
+        "$type": "color",
+        "$value": "#101703"
+      },
+      "miuix_chartreuse_solid_level_1800": {
+        "$type": "color",
+        "$value": "#202E07"
+      },
+      "miuix_chartreuse_solid_level_1700": {
+        "$type": "color",
+        "$value": "#30440A"
+      },
+      "miuix_chartreuse_solid_level_1600": {
+        "$type": "color",
+        "$value": "#405B0D"
+      },
+      "miuix_chartreuse_solid_level_1500": {
+        "$type": "color",
+        "$value": "#507211"
+      },
+      "miuix_chartreuse_solid_level_1400": {
+        "$type": "color",
+        "$value": "#5F8914"
+      },
+      "miuix_chartreuse_solid_level_1300": {
+        "$type": "color",
+        "$value": "#6FA017"
+      },
+      "miuix_chartreuse_solid_level_1200": {
+        "$type": "color",
+        "$value": "#7FB61A"
+      },
+      "miuix_chartreuse_solid_level_1100": {
+        "$type": "color",
+        "$value": "#8FCD1E"
+      },
+      "miuix_chartreuse_solid_level_1000": {
+        "$type": "color",
+        "$value": "#9FE421"
+      },
+      "miuix_chartreuse_solid_level_900": {
+        "$type": "color",
+        "$value": "#A9E737"
+      },
+      "miuix_chartreuse_solid_level_800": {
+        "$type": "color",
+        "$value": "#B2E94D"
+      },
+      "miuix_chartreuse_solid_level_700": {
+        "$type": "color",
+        "$value": "#BCEC64"
+      },
+      "miuix_chartreuse_solid_level_600": {
+        "$type": "color",
+        "$value": "#C5EF7A"
+      },
+      "miuix_chartreuse_solid_level_500": {
+        "$type": "color",
+        "$value": "#CFF190"
+      },
+      "miuix_chartreuse_solid_level_400": {
+        "$type": "color",
+        "$value": "#D9F4A6"
+      },
+      "miuix_chartreuse_solid_level_300": {
+        "$type": "color",
+        "$value": "#E2F7BC"
+      },
+      "miuix_chartreuse_solid_level_200": {
+        "$type": "color",
+        "$value": "#ECFAD3"
+      },
+      "miuix_chartreuse_solid_level_100": {
+        "$type": "color",
+        "$value": "#F5FCE9"
+      }
+    },
+    "green": {
+      "miuix_green_solid_level_1900": {
+        "$type": "color",
+        "$value": "#041507"
+      },
+      "miuix_green_solid_level_1800": {
+        "$type": "color",
+        "$value": "#082A0E"
+      },
+      "miuix_green_solid_level_1700": {
+        "$type": "color",
+        "$value": "#0C3F14"
+      },
+      "miuix_green_solid_level_1600": {
+        "$type": "color",
+        "$value": "#10541B"
+      },
+      "miuix_green_solid_level_1500": {
+        "$type": "color",
+        "$value": "#146922"
+      },
+      "miuix_green_solid_level_1400": {
+        "$type": "color",
+        "$value": "#187E29"
+      },
+      "miuix_green_solid_level_1300": {
+        "$type": "color",
+        "$value": "#1C9330"
+      },
+      "miuix_green_solid_level_1200": {
+        "$type": "color",
+        "$value": "#20A836"
+      },
+      "miuix_green_solid_level_1100": {
+        "$type": "color",
+        "$value": "#24BD3D"
+      },
+      "miuix_green_solid_level_1000": {
+        "$type": "color",
+        "$value": "#28D244"
+      },
+      "miuix_green_solid_level_900": {
+        "$type": "color",
+        "$value": "#3ED657"
+      },
+      "miuix_green_solid_level_800": {
+        "$type": "color",
+        "$value": "#53DB69"
+      },
+      "miuix_green_solid_level_700": {
+        "$type": "color",
+        "$value": "#69DF7C"
+      },
+      "miuix_green_solid_level_600": {
+        "$type": "color",
+        "$value": "#7EE48F"
+      },
+      "miuix_green_solid_level_500": {
+        "$type": "color",
+        "$value": "#93E8A1"
+      },
+      "miuix_green_solid_level_400": {
+        "$type": "color",
+        "$value": "#A9EDB4"
+      },
+      "miuix_green_solid_level_300": {
+        "$type": "color",
+        "$value": "#BEF1C7"
+      },
+      "miuix_green_solid_level_200": {
+        "$type": "color",
+        "$value": "#D4F6DA"
+      },
+      "miuix_green_solid_level_100": {
+        "$type": "color",
+        "$value": "#E9FAEC"
+      }
+    },
+    "turquoise": {
+      "miuix_turquoise_solid_level_1900": {
+        "$type": "color",
+        "$value": "#02150F"
+      },
+      "miuix_turquoise_solid_level_1800": {
+        "$type": "color",
+        "$value": "#032A1E"
+      },
+      "miuix_turquoise_solid_level_1700": {
+        "$type": "color",
+        "$value": "#053E2D"
+      },
+      "miuix_turquoise_solid_level_1600": {
+        "$type": "color",
+        "$value": "#07533C"
+      },
+      "miuix_turquoise_solid_level_1500": {
+        "$type": "color",
+        "$value": "#09684C"
+      },
+      "miuix_turquoise_solid_level_1400": {
+        "$type": "color",
+        "$value": "#0A7D5B"
+      },
+      "miuix_turquoise_solid_level_1300": {
+        "$type": "color",
+        "$value": "#0C926A"
+      },
+      "miuix_turquoise_solid_level_1200": {
+        "$type": "color",
+        "$value": "#0EA679"
+      },
+      "miuix_turquoise_solid_level_1100": {
+        "$type": "color",
+        "$value": "#0FBB88"
+      },
+      "miuix_turquoise_solid_level_1000": {
+        "$type": "color",
+        "$value": "#11D097"
+      },
+      "miuix_turquoise_solid_level_900": {
+        "$type": "color",
+        "$value": "#29D5A1"
+      },
+      "miuix_turquoise_solid_level_800": {
+        "$type": "color",
+        "$value": "#41D9AC"
+      },
+      "miuix_turquoise_solid_level_700": {
+        "$type": "color",
+        "$value": "#58DEB6"
+      },
+      "miuix_turquoise_solid_level_600": {
+        "$type": "color",
+        "$value": "#70E3C1"
+      },
+      "miuix_turquoise_solid_level_500": {
+        "$type": "color",
+        "$value": "#88E7CB"
+      },
+      "miuix_turquoise_solid_level_400": {
+        "$type": "color",
+        "$value": "#A0ECD5"
+      },
+      "miuix_turquoise_solid_level_300": {
+        "$type": "color",
+        "$value": "#B8F1E0"
+      },
+      "miuix_turquoise_solid_level_200": {
+        "$type": "color",
+        "$value": "#CFF6EA"
+      },
+      "miuix_turquoise_solid_level_100": {
+        "$type": "color",
+        "$value": "#E7FAF5"
+      }
+    },
+    "cyan": {
+      "miuix_cyan_solid_level_1900": {
+        "$type": "color",
+        "$value": "#021515"
+      },
+      "miuix_cyan_solid_level_1800": {
+        "$type": "color",
+        "$value": "#042929"
+      },
+      "miuix_cyan_solid_level_1700": {
+        "$type": "color",
+        "$value": "#063E3E"
+      },
+      "miuix_cyan_solid_level_1600": {
+        "$type": "color",
+        "$value": "#085252"
+      },
+      "miuix_cyan_solid_level_1500": {
+        "$type": "color",
+        "$value": "#0A6767"
+      },
+      "miuix_cyan_solid_level_1400": {
+        "$type": "color",
+        "$value": "#0B7B7B"
+      },
+      "miuix_cyan_solid_level_1300": {
+        "$type": "color",
+        "$value": "#0D8F8F"
+      },
+      "miuix_cyan_solid_level_1200": {
+        "$type": "color",
+        "$value": "#0FA4A4"
+      },
+      "miuix_cyan_solid_level_1100": {
+        "$type": "color",
+        "$value": "#11B8B8"
+      },
+      "miuix_cyan_solid_level_1000": {
+        "$type": "color",
+        "$value": "#13CDCD"
+      },
+      "miuix_cyan_solid_level_900": {
+        "$type": "color",
+        "$value": "#2BD2D2"
+      },
+      "miuix_cyan_solid_level_800": {
+        "$type": "color",
+        "$value": "#42D7D7"
+      },
+      "miuix_cyan_solid_level_700": {
+        "$type": "color",
+        "$value": "#5ADCDC"
+      },
+      "miuix_cyan_solid_level_600": {
+        "$type": "color",
+        "$value": "#71E1E1"
+      },
+      "miuix_cyan_solid_level_500": {
+        "$type": "color",
+        "$value": "#89E6E6"
+      },
+      "miuix_cyan_solid_level_400": {
+        "$type": "color",
+        "$value": "#A1EBEB"
+      },
+      "miuix_cyan_solid_level_300": {
+        "$type": "color",
+        "$value": "#B8F0F0"
+      },
+      "miuix_cyan_solid_level_200": {
+        "$type": "color",
+        "$value": "#D0F5F5"
+      },
+      "miuix_cyan_solid_level_100": {
+        "$type": "color",
+        "$value": "#E7FAFA"
+      }
+    },
+    "sky_blue": {
+      "miuix_sky_blue_solid_level_1900": {
+        "$type": "color",
+        "$value": "#051119"
+      },
+      "miuix_sky_blue_solid_level_1800": {
+        "$type": "color",
+        "$value": "#0B2232"
+      },
+      "miuix_sky_blue_solid_level_1700": {
+        "$type": "color",
+        "$value": "#10344C"
+      },
+      "miuix_sky_blue_solid_level_1600": {
+        "$type": "color",
+        "$value": "#164565"
+      },
+      "miuix_sky_blue_solid_level_1500": {
+        "$type": "color",
+        "$value": "#1B567E"
+      },
+      "miuix_sky_blue_solid_level_1400": {
+        "$type": "color",
+        "$value": "#206797"
+      },
+      "miuix_sky_blue_solid_level_1300": {
+        "$type": "color",
+        "$value": "#2678B0"
+      },
+      "miuix_sky_blue_solid_level_1200": {
+        "$type": "color",
+        "$value": "#2B8ACA"
+      },
+      "miuix_sky_blue_solid_level_1100": {
+        "$type": "color",
+        "$value": "#319BE3"
+      },
+      "miuix_sky_blue_solid_level_1000": {
+        "$type": "color",
+        "$value": "#36ACFC"
+      },
+      "miuix_sky_blue_solid_level_900": {
+        "$type": "color",
+        "$value": "#4AB4FC"
+      },
+      "miuix_sky_blue_solid_level_800": {
+        "$type": "color",
+        "$value": "#5EBDFD"
+      },
+      "miuix_sky_blue_solid_level_700": {
+        "$type": "color",
+        "$value": "#72C5FD"
+      },
+      "miuix_sky_blue_solid_level_600": {
+        "$type": "color",
+        "$value": "#86CDFD"
+      },
+      "miuix_sky_blue_solid_level_500": {
+        "$type": "color",
+        "$value": "#9AD5FD"
+      },
+      "miuix_sky_blue_solid_level_400": {
+        "$type": "color",
+        "$value": "#AFDEFE"
+      },
+      "miuix_sky_blue_solid_level_300": {
+        "$type": "color",
+        "$value": "#C3E6FE"
+      },
+      "miuix_sky_blue_solid_level_200": {
+        "$type": "color",
+        "$value": "#D7EEFE"
+      },
+      "miuix_sky_blue_solid_level_100": {
+        "$type": "color",
+        "$value": "#EBF7FF"
+      }
+    },
+    "blue": {
+      "miuix_blue_solid_level_1900": {
+        "$type": "color",
+        "$value": "#070E1A"
+      },
+      "miuix_blue_solid_level_1800": {
+        "$type": "color",
+        "$value": "#0E1B33"
+      },
+      "miuix_blue_solid_level_1700": {
+        "$type": "color",
+        "$value": "#15294D"
+      },
+      "miuix_blue_solid_level_1600": {
+        "$type": "color",
+        "$value": "#1C3666"
+      },
+      "miuix_blue_solid_level_1500": {
+        "$type": "color",
+        "$value": "#244480"
+      },
+      "miuix_blue_solid_level_1400": {
+        "$type": "color",
+        "$value": "#2B5299"
+      },
+      "miuix_blue_solid_level_1300": {
+        "$type": "color",
+        "$value": "#325FB2"
+      },
+      "miuix_blue_solid_level_1200": {
+        "$type": "color",
+        "$value": "#396DCC"
+      },
+      "miuix_blue_solid_level_1100": {
+        "$type": "color",
+        "$value": "#407AE5"
+      },
+      "miuix_blue_solid_level_1000": {
+        "$type": "color",
+        "$value": "#4788FF"
+      },
+      "miuix_blue_solid_level_900": {
+        "$type": "color",
+        "$value": "#5994FF"
+      },
+      "miuix_blue_solid_level_800": {
+        "$type": "color",
+        "$value": "#6CA0FF"
+      },
+      "miuix_blue_solid_level_700": {
+        "$type": "color",
+        "$value": "#7EACFF"
+      },
+      "miuix_blue_solid_level_600": {
+        "$type": "color",
+        "$value": "#91B8FF"
+      },
+      "miuix_blue_solid_level_500": {
+        "$type": "color",
+        "$value": "#A3C3FF"
+      },
+      "miuix_blue_solid_level_400": {
+        "$type": "color",
+        "$value": "#B5CFFF"
+      },
+      "miuix_blue_solid_level_300": {
+        "$type": "color",
+        "$value": "#C8DBFF"
+      },
+      "miuix_blue_solid_level_200": {
+        "$type": "color",
+        "$value": "#DAE7FF"
+      },
+      "miuix_blue_solid_level_100": {
+        "$type": "color",
+        "$value": "#EDF3FF"
+      }
+    },
+    "purple": {
+      "miuix_purple_solid_level_1900": {
+        "$type": "color",
+        "$value": "#0D0B1A"
+      },
+      "miuix_purple_solid_level_1800": {
+        "$type": "color",
+        "$value": "#1A1633"
+      },
+      "miuix_purple_solid_level_1700": {
+        "$type": "color",
+        "$value": "#27224D"
+      },
+      "miuix_purple_solid_level_1600": {
+        "$type": "color",
+        "$value": "#342D66"
+      },
+      "miuix_purple_solid_level_1500": {
+        "$type": "color",
+        "$value": "#423880"
+      },
+      "miuix_purple_solid_level_1400": {
+        "$type": "color",
+        "$value": "#4F4399"
+      },
+      "miuix_purple_solid_level_1300": {
+        "$type": "color",
+        "$value": "#5C4EB2"
+      },
+      "miuix_purple_solid_level_1200": {
+        "$type": "color",
+        "$value": "#695ACC"
+      },
+      "miuix_purple_solid_level_1100": {
+        "$type": "color",
+        "$value": "#7665E5"
+      },
+      "miuix_purple_solid_level_1000": {
+        "$type": "color",
+        "$value": "#8370FF"
+      },
+      "miuix_purple_solid_level_900": {
+        "$type": "color",
+        "$value": "#8F7EFF"
+      },
+      "miuix_purple_solid_level_800": {
+        "$type": "color",
+        "$value": "#9C8DFF"
+      },
+      "miuix_purple_solid_level_700": {
+        "$type": "color",
+        "$value": "#A89BFF"
+      },
+      "miuix_purple_solid_level_600": {
+        "$type": "color",
+        "$value": "#B5A9FF"
+      },
+      "miuix_purple_solid_level_500": {
+        "$type": "color",
+        "$value": "#C1B7FF"
+      },
+      "miuix_purple_solid_level_400": {
+        "$type": "color",
+        "$value": "#CDC6FF"
+      },
+      "miuix_purple_solid_level_300": {
+        "$type": "color",
+        "$value": "#DAD4FF"
+      },
+      "miuix_purple_solid_level_200": {
+        "$type": "color",
+        "$value": "#E6E2FF"
+      },
+      "miuix_purple_solid_level_100": {
+        "$type": "color",
+        "$value": "#F3F1FF"
+      }
+    },
+    "violet": {
+      "miuix_violet_solid_level_1900": {
+        "$type": "color",
+        "$value": "#130919"
+      },
+      "miuix_violet_solid_level_1800": {
+        "$type": "color",
+        "$value": "#261132"
+      },
+      "miuix_violet_solid_level_1700": {
+        "$type": "color",
+        "$value": "#391A4B"
+      },
+      "miuix_violet_solid_level_1600": {
+        "$type": "color",
+        "$value": "#4C2364"
+      },
+      "miuix_violet_solid_level_1500": {
+        "$type": "color",
+        "$value": "#5F2C7D"
+      },
+      "miuix_violet_solid_level_1400": {
+        "$type": "color",
+        "$value": "#713496"
+      },
+      "miuix_violet_solid_level_1300": {
+        "$type": "color",
+        "$value": "#843DAF"
+      },
+      "miuix_violet_solid_level_1200": {
+        "$type": "color",
+        "$value": "#9746C8"
+      },
+      "miuix_violet_solid_level_1100": {
+        "$type": "color",
+        "$value": "#AA4EE1"
+      },
+      "miuix_violet_solid_level_1000": {
+        "$type": "color",
+        "$value": "#BD57FA"
+      },
+      "miuix_violet_solid_level_900": {
+        "$type": "color",
+        "$value": "#C468FA"
+      },
+      "miuix_violet_solid_level_800": {
+        "$type": "color",
+        "$value": "#CA79FB"
+      },
+      "miuix_violet_solid_level_700": {
+        "$type": "color",
+        "$value": "#D189FB"
+      },
+      "miuix_violet_solid_level_600": {
+        "$type": "color",
+        "$value": "#D79AFC"
+      },
+      "miuix_violet_solid_level_500": {
+        "$type": "color",
+        "$value": "#DEABFC"
+      },
+      "miuix_violet_solid_level_400": {
+        "$type": "color",
+        "$value": "#E5BCFD"
+      },
+      "miuix_violet_solid_level_300": {
+        "$type": "color",
+        "$value": "#EBCDFD"
+      },
+      "miuix_violet_solid_level_200": {
+        "$type": "color",
+        "$value": "#F2DDFE"
+      },
+      "miuix_violet_solid_level_100": {
+        "$type": "color",
+        "$value": "#F8EEFE"
+      }
+    },
+    "magenta": {
+      "miuix_magenta_solid_level_1900": {
+        "$type": "color",
+        "$value": "#180810"
+      },
+      "miuix_magenta_solid_level_1800": {
+        "$type": "color",
+        "$value": "#301020"
+      },
+      "miuix_magenta_solid_level_1700": {
+        "$type": "color",
+        "$value": "#471830"
+      },
+      "miuix_magenta_solid_level_1600": {
+        "$type": "color",
+        "$value": "#5F2040"
+      },
+      "miuix_magenta_solid_level_1500": {
+        "$type": "color",
+        "$value": "#772850"
+      },
+      "miuix_magenta_solid_level_1400": {
+        "$type": "color",
+        "$value": "#8F2F5F"
+      },
+      "miuix_magenta_solid_level_1300": {
+        "$type": "color",
+        "$value": "#A7376F"
+      },
+      "miuix_magenta_solid_level_1200": {
+        "$type": "color",
+        "$value": "#BE3F7F"
+      },
+      "miuix_magenta_solid_level_1100": {
+        "$type": "color",
+        "$value": "#D6478F"
+      },
+      "miuix_magenta_solid_level_1000": {
+        "$type": "color",
+        "$value": "#EE4F9F"
+      },
+      "miuix_magenta_solid_level_900": {
+        "$type": "color",
+        "$value": "#F061A9"
+      },
+      "miuix_magenta_solid_level_800": {
+        "$type": "color",
+        "$value": "#F172B2"
+      },
+      "miuix_magenta_solid_level_700": {
+        "$type": "color",
+        "$value": "#F384BC"
+      },
+      "miuix_magenta_solid_level_600": {
+        "$type": "color",
+        "$value": "#F595C5"
+      },
+      "miuix_magenta_solid_level_500": {
+        "$type": "color",
+        "$value": "#F6A7CF"
+      },
+      "miuix_magenta_solid_level_400": {
+        "$type": "color",
+        "$value": "#F8B9D9"
+      },
+      "miuix_magenta_solid_level_300": {
+        "$type": "color",
+        "$value": "#FACAE2"
+      },
+      "miuix_magenta_solid_level_200": {
+        "$type": "color",
+        "$value": "#FCDCEC"
+      },
+      "miuix_magenta_solid_level_100": {
+        "$type": "color",
+        "$value": "#FDEDF5"
+      }
+    },
+    "white": {
+      "miuix_white_solid_level_100": {
+        "$type": "color",
+        "$value": "#080808",
+        "$description": "White solid - 3%"
+      },
+      "miuix_white_solid_level_200": {
+        "$type": "color",
+        "$value": "#0A0A0A",
+        "$description": "White solid - 4%"
+      },
+      "miuix_white_solid_level_300": {
+        "$type": "color",
+        "$value": "#0D0D0D",
+        "$description": "White solid - 5%"
+      },
+      "miuix_white_solid_level_400": {
+        "$type": "color",
+        "$value": "#101010",
+        "$description": "White solid - 6%"
+      },
+      "miuix_white_solid_level_500": {
+        "$type": "color",
+        "$value": "#141414",
+        "$description": "White solid - 8%"
+      },
+      "miuix_white_solid_level_600": {
+        "$type": "color",
+        "$value": "#1F1F1F",
+        "$description": "White solid - 12%"
+      },
+      "miuix_white_solid_level_700": {
+        "$type": "color",
+        "$value": "#242424",
+        "$description": "White solid - 14%"
+      },
+      "miuix_white_solid_level_800": {
+        "$type": "color",
+        "$value": "#D3D3D3",
+        "$description": "White solid - 83%"
+      },
+      "miuix_white_solid_level_900": {
+        "$type": "color",
+        "$value": "#F2F2F2",
+        "$description": "White solid - 95%"
+      },
+      "miuix_white_solid_level_1000": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      }
+    },
+    "black": {
+      "miuix_black_solid_level_100": {
+        "$type": "color",
+        "$value": "#F7F7F7",
+        "$description": "Black solid - 3%"
+      },
+      "miuix_black_solid_level_200": {
+        "$type": "color",
+        "$value": "#F5F5F5",
+        "$description": "Black solid - 4%"
+      },
+      "miuix_black_solid_level_300": {
+        "$type": "color",
+        "$value": "#F3F3F3",
+        "$description": "Black solid - 5%"
+      },
+      "miuix_black_solid_level_400": {
+        "$type": "color",
+        "$value": "#F0F0F0",
+        "$description": "Black solid - 6%"
+      },
+      "miuix_black_solid_level_500": {
+        "$type": "color",
+        "$value": "#EBEBEB",
+        "$description": "Black solid - 8%"
+      },
+      "miuix_black_solid_level_600": {
+        "$type": "color",
+        "$value": "#E0E0E0",
+        "$description": "Black solid - 12%"
+      },
+      "miuix_black_solid_level_700": {
+        "$type": "color",
+        "$value": "#DBDBDB",
+        "$description": "Black solid - 14%"
+      },
+      "miuix_black_solid_level_800": {
+        "$type": "color",
+        "$value": "#2C2C2C",
+        "$description": "Black solid - 83%"
+      },
+      "miuix_black_solid_level_900": {
+        "$type": "color",
+        "$value": "#0D0D0D",
+        "$description": "Black solid - 95%"
+      },
+      "miuix_black_solid_level_1000": {
+        "$type": "color",
+        "$value": "#000000"
+      }
+    },
+    "grey": {
+      "miuix_grey_solid_level_1900": {
+        "$type": "color",
+        "$value": "#0F1012"
+      },
+      "miuix_grey_solid_level_1800": {
+        "$type": "color",
+        "$value": "#1D2024"
+      },
+      "miuix_grey_solid_level_1700": {
+        "$type": "color",
+        "$value": "#2C3036"
+      },
+      "miuix_grey_solid_level_1600": {
+        "$type": "color",
+        "$value": "#3A4048"
+      },
+      "miuix_grey_solid_level_1500": {
+        "$type": "color",
+        "$value": "#49515A"
+      },
+      "miuix_grey_solid_level_1400": {
+        "$type": "color",
+        "$value": "#58616C"
+      },
+      "miuix_grey_solid_level_1300": {
+        "$type": "color",
+        "$value": "#66717E"
+      },
+      "miuix_grey_solid_level_1200": {
+        "$type": "color",
+        "$value": "#758190"
+      },
+      "miuix_grey_solid_level_1100": {
+        "$type": "color",
+        "$value": "#8391A2"
+      },
+      "miuix_grey_solid_level_1000": {
+        "$type": "color",
+        "$value": "#92A1B4"
+      },
+      "miuix_grey_solid_level_900": {
+        "$type": "color",
+        "$value": "#9DAABB"
+      },
+      "miuix_grey_solid_level_800": {
+        "$type": "color",
+        "$value": "#A8B4C3"
+      },
+      "miuix_grey_solid_level_700": {
+        "$type": "color",
+        "$value": "#B3BDCA"
+      },
+      "miuix_grey_solid_level_600": {
+        "$type": "color",
+        "$value": "#BEC7D2"
+      },
+      "miuix_grey_solid_level_500": {
+        "$type": "color",
+        "$value": "#C8D0D9"
+      },
+      "miuix_grey_solid_level_400": {
+        "$type": "color",
+        "$value": "#D3D9E1"
+      },
+      "miuix_grey_solid_level_300": {
+        "$type": "color",
+        "$value": "#DEE3E8"
+      },
+      "miuix_grey_solid_level_200": {
+        "$type": "color",
+        "$value": "#E9ECF0"
+      },
+      "miuix_grey_solid_level_100": {
+        "$type": "color",
+        "$value": "#F4F6F7"
+      }
+    }
+  },
+  "number": {
+    "space": {
+      "miuix_space_0": {
+        "$type": "number",
+        "$value": 0
+      },
+      "miuix_space_3": {
+        "$type": "number",
+        "$value": 3
+      },
+      "miuix_space_4": {
+        "$type": "number",
+        "$value": 4
+      },
+      "miuix_space_6": {
+        "$type": "number",
+        "$value": 6
+      },
+      "miuix_space_8": {
+        "$type": "number",
+        "$value": 8
+      },
+      "miuix_space_12": {
+        "$type": "number",
+        "$value": 12
+      },
+      "miuix_space_16": {
+        "$type": "number",
+        "$value": 16
+      },
+      "miuix_space_20": {
+        "$type": "number",
+        "$value": 20
+      },
+      "miuix_space_24": {
+        "$type": "number",
+        "$value": 24
+      },
+      "miuix_space_28": {
+        "$type": "number",
+        "$value": 28
+      },
+      "miuix_space_32": {
+        "$type": "number",
+        "$value": 32
+      },
+      "miuix_space_36": {
+        "$type": "number",
+        "$value": 36
+      },
+      "miuix_space_40": {
+        "$type": "number",
+        "$value": 40
+      },
+      "miuix_space_48": {
+        "$type": "number",
+        "$value": 48
+      },
+      "miuix_space_56": {
+        "$type": "number",
+        "$value": 56
+      },
+      "miuix_space_64": {
+        "$type": "number",
+        "$value": 64
+      },
+      "miuix_space_72": {
+        "$type": "number",
+        "$value": 72
+      },
+      "miuix_space_80": {
+        "$type": "number",
+        "$value": 80
+      },
+      "miuix_space_96": {
+        "$type": "number",
+        "$value": 96
+      },
+      "miuix_space_128": {
+        "$type": "number",
+        "$value": 128
+      }
+    },
+    "radius": {
+      "miuix_radius_0": {
+        "$type": "number",
+        "$value": 0
+      },
+      "miuix_radius_4": {
+        "$type": "number",
+        "$value": 4
+      },
+      "miuix_radius_8": {
+        "$type": "number",
+        "$value": 8
+      },
+      "miuix_radius_12": {
+        "$type": "number",
+        "$value": 12
+      },
+      "miuix_radius_16": {
+        "$type": "number",
+        "$value": 16
+      },
+      "miuix_radius_20": {
+        "$type": "number",
+        "$value": 20
+      },
+      "miuix_radius_24": {
+        "$type": "number",
+        "$value": 24
+      },
+      "miuix_radius_28": {
+        "$type": "number",
+        "$value": 28
+      },
+      "miuix_radius_32": {
+        "$type": "number",
+        "$value": 32
+      },
+      "miuix_radius_36": {
+        "$type": "number",
+        "$value": 36
+      },
+      "miuix_radius_40": {
+        "$type": "number",
+        "$value": 40
+      },
+      "miuix_radius_48": {
+        "$type": "number",
+        "$value": 48
+      },
+      "miuix_radius_999": {
+        "$type": "number",
+        "$value": 999
+      }
+    }
+  }
+}

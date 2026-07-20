@@ -1,53 +1,102 @@
 ---
 title: Design Token
-description: HyperOS Design Tokens 文件结构、命名约定与色彩体系
+description: HyperOS OS4 Design Tokens——Reference / Semantic / Component 分层与 Light / Dark 模式
+maintainer: 薛一飞
+maintainerOpenId: ou_cd8297ba73b43960fcbc8821d2c714fd
+figmaFileKey: "5gZYD8i6JqBvsaS7yvnO9c"
+figmaPrototypeUrl: "https://www.figma.com/design/5gZYD8i6JqBvsaS7yvnO9c/HyperOS4-Design-Token-Lib?view=variables&t=YmIZ4lVRO32tTrsx-11"
 ---
 
 ## 文件位置
 
-Design Tokens 以 **W3C DTCG** JSON 格式存放在仓库根目录：
+Design Tokens 以 **W3C DTCG** 风格 JSON 存放，按 **层 × 模式** 拆分：
 
 ```text
-tokens/tokens.json
+tokens/
+  reference.light.json
+  reference.dark.json
+  semantic.light.json
+  semantic.dark.json
+  component.light.json
+  component.dark.json
 ```
 
-## 命名约定
+重新导入（Figma Variables 导出目录）：
 
-```text
-{color|spacing|typography}.{semantic-group}.{property}
+```bash
+npm run tokens:import -- /path/to/OS4Token
 ```
 
-示例：
+## 分层约定
 
-- `color.action.primary-bg` — 主要操作按钮背景
-- `spacing.button.padding-x` — 按钮水平内边距
+| 层 | 前缀 | 用途 |
+|----|------|------|
+| **Reference** | `reference.*` | 原始色板（solid / opacity）与基础数值（space / radius） |
+| **Semantic** | `semantic.*` | 语义色与间距圆角（bg / text / fill / padding / …） |
+| **Component** | `component.*` | 组件级色值（navigation / input / toggles / …） |
+
+Token 名保留 Figma / MIUIX 原名（一律 `miuix_*`，**不加**层或分组前缀）。`TokenTable` 的 `groups` 仅用于筛选，不出现在名称列。
+
+示例 Token 名：
+
+- `miuix_color_bg_layout_white_page`
+- `miuix_comp_nav_color_fill_enabled`
+- `miuix_blue_solid_level_500`
+
+筛选示例：`groups={["semantic.bg"]}`、`groups={["component.navigation"]}`、`groups={["reference.solid.blue"]}`。
+
+界面优先使用 **Semantic**，组件实现优先 **Component**；Reference 仅作底表，避免在业务里直接绑死。
+
+## 主题模式
+
+同一 Token 路径在 Light / Dark 下可能取不同值。下方 `TokenTable` 支持 **Light / Dark** 切换预览。
+
+Typography（字体）Token 尚未纳入本仓库，待后续导出补充。
 
 ## 同步流程（规划）
 
 ```text
-Figma (Tokens Studio) → GitHub PR → tokens/tokens.json → 文档站 TokenTable
+Figma Variables → tokens:import → tokens/*.{light,dark}.json → 文档站 TokenTable
 ```
 
-Phase 3 将接入 Tokens Studio 与 Style Dictionary 自动构建。
+Phase 3 将接入 Tokens Studio / CI 自动同步。
 
-## 当前 Token 预览
+## Reference
 
-<TokenTable groups={["color", "spacing", "typography"]} />
+### 数值底表
 
-## 色彩体系
+<TokenTable groups={["reference.number"]} />
 
-HyperOS 色彩体系分为 **品牌色（Brand）**、**语义色（Action / Surface / Text）** 等层级。色彩 Token 采用 W3C DTCG 格式，存放在 `tokens/tokens.json`，可通过 Tokens Studio 从 Figma 同步。
+### Solid 色板（节选）
+
+完整色相较多，此处展示黑 / 白 / 灰 / 蓝；其余见 `reference.solid.*`。
+
+<TokenTable groups={["reference.solid.white", "reference.solid.black", "reference.solid.grey", "reference.solid.blue"]} />
+
+### Opacity 色板（节选）
+
+<TokenTable groups={["reference.opacity.black", "reference.opacity.white", "reference.opacity.blue"]} />
+
+## Semantic
+
+### 背景与文字
+
+<TokenTable groups={["semantic.bg", "semantic.text"]} />
+
+### Fill / Stroke / Mask
+
+<TokenTable groups={["semantic.fill", "semantic.stroke", "semantic.mask"]} />
+
+### 间距与圆角
+
+<TokenTable groups={["semantic.padding", "semantic.margin", "semantic.gap", "semantic.radius"]} />
+
+## Component
+
+<TokenTable groups={["component"]} />
 
 ## 使用原则
 
-- 界面中优先使用 **语义 Token**（如 `color.action.primary-bg`），而非直接引用原始色值
-- 暗色模式通过 Token 别名切换，避免硬编码 hex
+- 优先引用 **Semantic / Component**，而非 Reference 原始色阶
+- 暗色模式通过同名 Token 的 Dark 值切换，避免业务硬编码 hex
 - 确保文本与背景对比度满足 WCAG AA
-
-## 色彩 Token
-
-<TokenTable groups={["color.brand", "color.action", "color.surface", "color.text"]} />
-
-## 间距 Token（相关）
-
-<TokenTable groups={["spacing.scale"]} />

@@ -94,7 +94,7 @@ var tokenTableBlock = {
       type: "string",
       name: "groups",
       label: "Token Groups",
-      description: "\u4F8B\u5982 color.action\u3001spacing.button",
+      description: "\u8FC7\u6EE4\u524D\u7F00\uFF0C\u4F8B\u5982 semantic.bg\u3001component.navigation\u3001reference.solid.white",
       list: true
     }
   ]

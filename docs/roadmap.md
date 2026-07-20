@@ -10,7 +10,7 @@
 - [x] 自定义 MDX 组件（FigmaEmbed、FigmaPrototypeEmbed、TokenTable、PlatformTabs、StatusBadge、DosDonts）
 - [x] FigmaEmbed Dev Mode（`mode="dev"`）与 Button 完整规范页
 - [x] 完整 IA 骨架 + MVP 示范页
-- [x] 示例 `tokens/tokens.json`
+- [x] OS4 Design Tokens 真源入库（Reference / Semantic / Component × Light / Dark）+ TokenTable 模式切换
 - [x] 紧凑排版、sidebar 贴左 + 内容居中布局
 - [x] 全文搜索、明暗主题、LLM 导出（`llms.txt` / `llms-full.txt`）
 - [x] `AGENTS.md`、`CLAUDE.md` 与工程设计文档索引
@@ -28,7 +28,7 @@
 - [ ] MiFlow `main` 流水线补「发布prod」（与 staging 对称），减少手动发布
 - [ ] TinaCMS 生产鉴权（Auth.js / 内网 SSO）与 Git 同步
 - [ ] Phase 2：TinaCloud 或自托管 datalayer 部署
-- [ ] Phase 3：Tokens Studio → GitHub 自动同步
+- [ ] Phase 3：Tokens Studio → Git 自动同步；补充 Typography Token
 - [ ] Figma Code Connect（Compose / SwiftUI）试点
 - [ ] 已有规范文本批量导入
 

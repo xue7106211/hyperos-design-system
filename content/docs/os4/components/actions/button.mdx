@@ -5,7 +5,7 @@ status: stable
 platforms: [android, ios, pad]
 figmaFileKey: "7PVSm4yEbknNLFaqauI4EM"
 figmaNodeId: "5580-1384"
-tokenGroups: ["color.action", "spacing.button", "typography.button"]
+tokenGroups: ["semantic.fill", "semantic.text", "semantic.padding", "semantic.radius"]
 ---
 
 <StatusBadge status="stable" />
@@ -196,7 +196,9 @@ FAB 让用户快速触达最需要的操作，避免额外的思考和查找；*
 
 ## Design Tokens
 
-<TokenTable groups={["color.action", "spacing.button", "typography.button"]} />
+当前导出尚未包含独立的 Button Component Token；以下展示与按钮样式相关的 Semantic Token（Typography 待补充）。
+
+<TokenTable groups={["semantic.fill.brand", "semantic.text.brand", "semantic.padding", "semantic.radius"]} />
 
 ## 平台实现参考
 

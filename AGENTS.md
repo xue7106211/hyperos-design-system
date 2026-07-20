@@ -21,7 +21,7 @@
 | 在 MDX 中写文档、嵌 Figma、展示 Token / 图标 | 添加 Storybook 或 Web 可交互组件 demo |
 | 用 `FigmaEmbed` / `FigmaPrototypeEmbed` 展示设计 | 引入 runnable React 组件库到文档页 |
 | 用 `PlatformTabs` 展示 Android / iOS **静态**代码 | 在本仓实现 Compose / SwiftUI 组件运行时 |
-| 编辑 `content/docs/`、`tokens/tokens.json`、`icons/` | 把工程设计文档写到 `content/docs/`（工程设计在 `docs/`） |
+| 编辑 `content/docs/`、`tokens/*.json`、`icons/` | 把工程设计文档写到 `content/docs/`（工程设计在 `docs/`） |
 | 保持改动最小、符合现有 IA | 擅自重构 Fumadocs 脚手架或引入无关依赖 |
 
 ## 常用命令
@@ -142,11 +142,11 @@ docs/                   # 工程设计文档（见 docs/index.md）
   sidebar-ia.md
   roadmap.md
   maintainers.md
-tokens/tokens.json      # W3C DTCG Design Tokens（TokenTable 读取）
+tokens/                 # Design Tokens（reference|semantic|component × light|dark）
 icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
   svg/{category}/
   manifest.json
-scripts/                # 仓库脚本（generate-icon-manifest.mjs 等）
+scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs 等）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
   schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block
@@ -232,7 +232,7 @@ package-lock.json       # npm 锁文件
 - `status`: `stable` | `beta` | `deprecated`
 - `platforms`: `android` | `ios` | `pad`
 - `figmaFileKey`, `figmaNodeId`, `figmaPrototypeUrl`
-- `tokenGroups`: TokenTable 过滤前缀，如 `["color.action"]`
+- `tokenGroups`: TokenTable 过滤前缀，如 `["semantic.fill", "component.navigation"]`
 - `maintainer`: 维护人显示名（可选）
 - `maintainerOpenId`: 飞书 `open_id`（`ou_` 前缀；可选，有值则可点开会话）
 
@@ -244,7 +244,7 @@ package-lock.json       # npm 锁文件
 |------|------|
 | `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`；可选 `mode="dev"` 查看 Dev Mode 标注） |
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
-| `TokenTable` | 从 `tokens/tokens.json` 按 group 渲染表格 |
+| `TokenTable` | 从 `tokens/*.{light,dark}.json` 按 group 渲染；支持 Light / Dark 切换 |
 | `IconGallery` | 图标库预览（分类 / 搜索 / 深浅色 / 复制名称与 SVG） |
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab（Client Component） |
 | `PlatformCodeBlock` | Tina CMS 友好的平台代码 block（扁平 android/ios 字段） |
@@ -255,9 +255,14 @@ package-lock.json       # npm 锁文件
 
 ## Design Tokens
 
-- 格式：**W3C DTCG** JSON，路径 `tokens/tokens.json`
-- 命名：`{category}.{semantic-group}.{property}`（如 `color.action.primary-bg`）
+- 格式：W3C DTCG 风格 JSON；**按层 × 模式** 存放：
+  - `tokens/reference.{light,dark}.json` — 色板与基础数值
+  - `tokens/semantic.{light,dark}.json` — 语义色 / 间距 / 圆角
+  - `tokens/component.{light,dark}.json` — 组件级 Token
+- 命名：保留 Figma / MIUIX 原名（`miuix_*`，展示时不加层/分组前缀）；`TokenTable` 的 `groups`（如 `semantic.bg`）仅作筛选
 - 解析逻辑：[src/components/mdx/token-utils.ts](src/components/mdx/token-utils.ts)
+- 重新导入：`npm run tokens:import -- /path/to/OS4Token`（见 [scripts/import-os4-tokens.mjs](scripts/import-os4-tokens.mjs)）
+- Typography 尚未入库；后续导出后补充
 - 后续计划：Tokens Studio → GitHub PR → 自动更新（Phase 3，尚未接入）
 
 不要硬编码色值到 MDX；文档中优先引用 Token 名或通过 `TokenTable` 展示。
@@ -267,7 +272,7 @@ package-lock.json       # npm 锁文件
 - 文档站 UI：Fumadocs 默认 `neutral.css` 主题（`src/app/global.css` 未覆盖 `--color-fd-*` 品牌色）
 - 排版与布局：`global.css` 中紧凑 typography、sidebar 贴左 + 内容居中 grid
 - Logo：`src/components/HyperOSLogo.tsx` + `public/logo/`
-- 业务 Design Token：`tokens/tokens.json`（HyperOS 设计规范）
+- 业务 Design Token：`tokens/*.{light,dark}.json`（HyperOS OS4；与文档站 chrome 分离）
 - 站点名、版本与 nav：[src/lib/shared.ts](src/lib/shared.ts)（`docsVersions`、`defaultDocsRoute`、`defaultFigmaUrl`）、[src/lib/layout.shared.tsx](src/lib/layout.shared.tsx)
 - 文档页操作栏「跳转 Figma」：[src/components/docs/FigmaJumpButton.tsx](src/components/docs/FigmaJumpButton.tsx)（优先页级 `figmaFileKey` / `figmaPrototypeUrl`，否则 `defaultFigmaUrl`）
 - 文档页元信息（更新时间 / 维护人）：[src/components/docs/DocMeta.tsx](src/components/docs/DocMeta.tsx)；更新时间见 [src/lib/git-file-mtime.ts](src/lib/git-file-mtime.ts)
