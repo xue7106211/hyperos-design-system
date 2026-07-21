@@ -6,7 +6,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 
 - 移动端组件规范文档（无 Web 交互 demo）
 - Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
-- Design Token 表格展示（W3C DTCG）
+- Design Token 表格展示（OS4 Reference / Semantic / Component × Light / Dark）
 - 图标库预览（分类 / 搜索 / 深浅色 / 复制名称与 SVG）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
@@ -36,6 +36,7 @@ npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
 npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
+npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/*.{light,dark}.json
 ```
 
 生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/deployment.md](docs/deployment.md)；镜像定义见根目录 `Dockerfile`。
@@ -45,13 +46,13 @@ npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
 ```text
 content/docs/        # 网站 MDX 文档（对外）
   os4/               # HyperOS 4 规范（当前默认，/docs → /docs/os4）
-    icons.mdx        # 图标预览（一级入口）
     general/         # 通用设计标准
     components/      # 控件与组件
     interaction/     # 人机交互标准
     system/          # 系统特性与能力标准
     multi-device/     # 多端设备标准
     best-practices/  # 应用最佳实践标准
+    resources/       # 资源（HyperOS 图标库等）
   os5/               # HyperOS 5 占位（侧栏可见，内容未发布；结构同 os4）
 docs/                # 工程设计文档（对内，见 docs/index.md）
   index.md
@@ -64,8 +65,8 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
 icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
-scripts/             # 仓库脚本（如 generate-icon-manifest.mjs）
-tokens/                  # Design Tokens（reference / semantic / component × light / dark）
+scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
+tokens/              # Design Tokens（reference / semantic / component × light / dark）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
 .env.example         # TinaCMS 本地模式环境变量模板
@@ -101,7 +102,7 @@ CLAUDE.md            # 指向 AGENTS.md
 
 参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx)
 
-> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标页：`/docs/os4/icons`（旧路径 `foundations/iconography`、`general/icons` 会重定向至此）。
+> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标页：`/docs/os4/resources/icons`（旧路径 `icons`、`foundations/iconography`、`general/icons` 会重定向至此）。
 
 ### Figma Embed 示例
 
@@ -123,7 +124,7 @@ CLAUDE.md            # 指向 AGENTS.md
 <IconGallery categories={["navigation", "action"]} />
 ```
 
-图标入库约定见 [icons/README.md](icons/README.md)；预览页：[`/docs/os4/icons`](content/docs/os4/icons.mdx)。
+图标入库约定见 [icons/README.md](icons/README.md)；预览页：[`/docs/os4/resources/icons`](content/docs/os4/resources/icons.mdx)。
 
 ## 文档
 

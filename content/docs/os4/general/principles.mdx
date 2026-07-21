@@ -1,20 +1,64 @@
 ---
 title: 设计原则
-description: HyperOS 设计系统核心设计原则
+description: HyperOS 设计原则定义与应用关系——层级、清晰、一致
 ---
 
-## 一致性
+## 设计原则定义
 
-同一语义在不同 App 与系统场景中保持一致的视觉与交互表达。
+<table>
+  <thead>
+    <tr>
+      <th className="whitespace-nowrap">设计原则</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="whitespace-nowrap font-medium">层级</td>
+      <td>信息与空间的分层组织，使界面结构更加合理。通过空间逻辑引导用户专注于内容，强化主次关系与导航的层次秩序。</td>
+    </tr>
+    <tr>
+      <td className="whitespace-nowrap font-medium">清晰</td>
+      <td>操作与信息表达的清晰性，使内容在不同环境与情境下始终保持易读与可感知。通过视觉、语义与反馈的透明传达，降低认知负担。</td>
+    </tr>
+    <tr>
+      <td className="whitespace-nowrap font-medium">一致</td>
+      <td>视觉与行为的统一性。在系统组件、交互逻辑、反馈机制及软硬件形态上保持协调，呈现稳定、可信、和谐的整体体验。</td>
+    </tr>
+  </tbody>
+</table>
 
-## 清晰
+## 设计原则应用关系
 
-移动端界面优先保证信息层级清晰，避免过度装饰影响可读性。
-
-## 可达
-
-组件与模式需满足无障碍要求，支持动态字体与对比度规范。
-
-## 工程对齐
-
-设计 Token 与 Figma 组件库是设计与工程的共同事实来源。
+<table>
+  <thead>
+    <tr>
+      <th className="whitespace-nowrap">设计原则</th>
+      <th className="whitespace-nowrap">执行原则</th>
+      <th>应用方向</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="whitespace-nowrap font-medium">层级</td>
+      <td>空间层次、信息顺序、焦点导引、空间分隔</td>
+      <td>
+        <strong>空间结构 / 布局体系</strong>：应用框架、层次组织、导航路径
+      </td>
+    </tr>
+    <tr>
+      <td className="whitespace-nowrap font-medium">清晰</td>
+      <td>视觉对比、信息区分、焦点清晰、反馈明确、语义清晰</td>
+      <td>
+        <strong>交互与反馈</strong>：操作控件、菜单行为、触觉与动效反馈
+      </td>
+    </tr>
+    <tr>
+      <td className="whitespace-nowrap font-medium">一致</td>
+      <td>视觉一致、交互一致、语义一致、软硬件协调</td>
+      <td>
+        <strong>系统与生态</strong>：系统组件、信息结构、软硬件形态协调
+      </td>
+    </tr>
+  </tbody>
+</table>

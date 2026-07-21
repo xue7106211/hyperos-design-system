@@ -35,3 +35,8 @@ npm run icons:sync
 > 仅支持 **SVG**。PNG 等栅格文件会被跳过，需先从 Figma 导出为 SVG。
 
 人工补充的 `tags` / `label`（categories）会在再次 sync 时保留（按 icon `id` 合并）。
+
+## 文档站预览
+
+- 页面：[`/docs/os4/resources/icons`](../content/docs/os4/resources/icons.mdx)（侧栏「资源」→ HyperOS 图标库）
+- 组件：`<IconGallery />`（可选 `categories` 过滤）

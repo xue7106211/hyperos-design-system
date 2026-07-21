@@ -16,7 +16,6 @@ const docVersions = [
 
 const docSections = [
   { key: 'Overview', label: '概览', include: 'index' },
-  { key: 'Icons', label: '图标', include: 'icons' },
   { key: 'General', label: '通用设计标准', include: 'general/**/*' },
   { key: 'ComponentsOverview', label: '控件与组件 · 概览', include: 'components/index' },
   {
@@ -48,6 +47,7 @@ const docSections = [
   { key: 'System', label: '系统特性与能力标准', include: 'system/**/*' },
   { key: 'MultiDevice', label: '多端设备标准', include: 'multi-device/**/*' },
   { key: 'BestPractices', label: '应用最佳实践标准', include: 'best-practices/**/*' },
+  { key: 'Resources', label: '资源', include: 'resources/**/*' },
 ] as const;
 
 // Tina match globs resolve to `content/docs/<include>.<format>`.

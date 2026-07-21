@@ -13,21 +13,6 @@ fragment Docsos4OverviewParts on Docsos4Overview {
   body
 }
 
-fragment Docsos4IconsParts on Docsos4Icons {
-  __typename
-  title
-  description
-  maintainer
-  maintainerOpenId
-  status
-  platforms
-  figmaFileKey
-  figmaNodeId
-  figmaPrototypeUrl
-  tokenGroups
-  body
-}
-
 fragment Docsos4GeneralParts on Docsos4General {
   __typename
   title
@@ -193,7 +178,7 @@ fragment Docsos4BestPracticesParts on Docsos4BestPractices {
   body
 }
 
-fragment Docsos5OverviewParts on Docsos5Overview {
+fragment Docsos4ResourcesParts on Docsos4Resources {
   __typename
   title
   description
@@ -208,7 +193,7 @@ fragment Docsos5OverviewParts on Docsos5Overview {
   body
 }
 
-fragment Docsos5IconsParts on Docsos5Icons {
+fragment Docsos5OverviewParts on Docsos5Overview {
   __typename
   title
   description
@@ -374,6 +359,21 @@ fragment Docsos5MultiDeviceParts on Docsos5MultiDevice {
 }
 
 fragment Docsos5BestPracticesParts on Docsos5BestPractices {
+  __typename
+  title
+  description
+  maintainer
+  maintainerOpenId
+  status
+  platforms
+  figmaFileKey
+  figmaNodeId
+  figmaPrototypeUrl
+  tokenGroups
+  body
+}
+
+fragment Docsos5ResourcesParts on Docsos5Resources {
   __typename
   title
   description

@@ -33,17 +33,27 @@ const config = {
       },
       {
         source: '/docs/foundations/iconography',
-        destination: '/docs/os4/icons',
+        destination: '/docs/os4/resources/icons',
         permanent: true,
       },
       {
         source: '/docs/os4/general/icons',
-        destination: '/docs/os4/icons',
+        destination: '/docs/os4/resources/icons',
         permanent: true,
       },
       {
         source: '/docs/os5/general/icons',
-        destination: '/docs/os5/icons',
+        destination: '/docs/os5/resources/icons',
+        permanent: true,
+      },
+      {
+        source: '/docs/os4/icons',
+        destination: '/docs/os4/resources/icons',
+        permanent: true,
+      },
+      {
+        source: '/docs/os5/icons',
+        destination: '/docs/os5/resources/icons',
         permanent: true,
       },
       {
@@ -115,7 +125,7 @@ const config = {
       },
       {
         source: '/docs/os4/foundations/iconography',
-        destination: '/docs/os4/icons',
+        destination: '/docs/os4/resources/icons',
         permanent: true,
       },
       {
@@ -178,19 +188,24 @@ const config = {
         permanent: true,
       },
 
-      // —— 旧 Resources → 最佳实践 / Token ——
-      {
-        source: '/docs/os4/resources',
-        destination: '/docs/os4/best-practices',
-        permanent: true,
-      },
+      // —— 旧 Resources 子页 → 新路径（勿再通配 /docs/os4/resources/*，会与现「资源」一级冲突）——
       {
         source: '/docs/os4/resources/design-tokens',
         destination: '/docs/os4/general/design-token',
         permanent: true,
       },
       {
-        source: '/docs/os4/resources/:path*',
+        source: '/docs/os4/resources/figma-library',
+        destination: '/docs/os4/best-practices',
+        permanent: true,
+      },
+      {
+        source: '/docs/os4/resources/changelog',
+        destination: '/docs/os4/best-practices',
+        permanent: true,
+      },
+      {
+        source: '/docs/os4/resources/migration',
         destination: '/docs/os4/best-practices',
         permanent: true,
       },

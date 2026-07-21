@@ -37,6 +37,7 @@ npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
 npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
 npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
+npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/*.{light,dark}.json
 ```
 
 > **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。部署详解见 [docs/deployment.md](docs/deployment.md)。
@@ -83,7 +84,7 @@ npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
 - **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`IconGallery`、`DosDonts`、`PlatformCodeBlock` 等
 - 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
-- Collections 按 **OS 版本**（`os4` / `os5`）× 站点分组（通用设计 / 控件与组件 / …）展开；组件子目录使用 `**/*` glob 递归索引
+- Collections 按 **OS 版本**（`os4` / `os5`）× 站点分组（概览 / 通用设计 / 控件与组件 / … / 资源）展开；组件子目录使用 `**/*` glob 递归索引
 
 ### TinaCMS schema 变更（重要）
 
@@ -108,11 +109,13 @@ npm run dev            # dev server 会自动重新生成
 
 增删改 `icons/svg/**` 后须跑 `npm run icons:sync`，并将 `icons/manifest.json` 与 `public/icons/` 一并提交（约定见 [icons/README.md](icons/README.md)）。
 
+从 Figma Variables 重新导出 OS4 Token 后须跑 `npm run tokens:import -- /path/to/OS4Token`，并将 `tokens/*.{light,dark}.json` 一并提交。
+
 ### 图标资产（Agent 必读）
 
 - 源文件：`icons/svg/{category}/{name}.svg`；索引：`icons/manifest.json`；站点静态：`public/icons/`
-- 文档页：`/docs/os4/icons`（`<IconGallery />`）
-- 旧路径：`/docs/os4/foundations/iconography`、`/docs/os4/general/icons` → `/docs/os4/icons`
+- 文档页：`/docs/os4/resources/icons`（`<IconGallery />`）
+- 旧路径：`/docs/os4/icons`、`/docs/os4/foundations/iconography`、`/docs/os4/general/icons` → `/docs/os4/resources/icons`
 
 ## 容器化（Agent 必读）
 
@@ -133,6 +136,7 @@ content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
     system/             # 系统特性与能力标准
     multi-device/        # 多端设备标准
     best-practices/     # 应用最佳实践标准
+    resources/          # 资源（HyperOS 图标库等）
   os5/                  # HyperOS 5（占位，侧栏禁用跳转；结构同 os4）
 docs/                   # 工程设计文档（见 docs/index.md）
   index.md
@@ -181,6 +185,7 @@ package-lock.json       # npm 锁文件
 - `.source/`（`fumadocs-mdx` 生成）、`.next/`（Next.js 构建缓存）— gitignore，勿手改
 - `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见上面「TinaCMS schema 变更」节）；子目录 `.cache/` 仍 gitignore
 - `icons/manifest.json` 与 `public/icons/`（`icons:sync` 生成）— **已提交仓库**，改 `icons/svg/**` 后需一并更新
+- `tokens/*.{light,dark}.json`（`tokens:import` 生成/更新）— **已提交仓库**，改 Token 真源后需一并更新
 
 **注意**：`docs/` ≠ `content/docs/`。前者是仓库内设计说明，后者是站点页面内容。
 
@@ -191,10 +196,10 @@ package-lock.json       # npm 锁文件
 各版本内一级目录：
 
 ```text
-通用设计标准 → 控件与组件 → 人机交互标准 → 系统特性与能力标准 → 多端设备标准 → 应用最佳实践标准
+通用设计标准 → 控件与组件 → 人机交互标准 → 系统特性与能力标准 → 多端设备标准 → 应用最佳实践标准 → 资源
 ```
 
-（路径：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`）
+（路径：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices` / `resources`）
 
 - **默认版本**：`/docs` → `/docs/os4`（`next.config.mjs` 重定向）
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
@@ -310,6 +315,7 @@ package-lock.json       # npm 锁文件
 - [ ] Figma embed 使用占位或有效 `fileKey`
 - [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
 - [ ] 若改了 `icons/svg/**`，已跑 `icons:sync` 并提交 `icons/manifest.json` 与 `public/icons/`
+- [ ] 若改了 Token 真源导出，已跑 `tokens:import` 并提交 `tokens/*.{light,dark}.json`
 - [ ] 上测环境：`main` → `staging` 已 merge 并 push；Matrix staging 实例 Tag 已更新
 - [ ] 上正式：`main` 已 push 且 prod 镜像已构建；**Matrix `…-prod` 已发对应 `prod-*`**（勿仅凭流水线绿判断）
 

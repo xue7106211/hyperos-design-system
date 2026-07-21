@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 信息架构
 
-> **版本**：V1.3  
-> **日期**：2026-07-10  
+> **版本**：V1.4  
+> **日期**：2026-07-21  
 > **关联**：[技术设计方案](./technical-design.md) · [侧栏对照](./sidebar-ia.md)
 
 ---
@@ -29,7 +29,8 @@
     │   ├── interaction/     # 人机交互标准
     │   ├── system/          # 系统特性与能力标准
     │   ├── multi-device/     # 多端设备标准
-    │   └── best-practices/  # 应用最佳实践标准
+    │   ├── best-practices/  # 应用最佳实践标准
+    │   └── resources/       # 资源（图标库等）
     └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
         └── （结构同 os4）
 ```
@@ -39,7 +40,6 @@
 ```text
 /docs/os4
     ├── index                              # HyperOS 4 Design System
-    ├── icons                              # 图标预览（一级入口）
     │
     ├── general/                           # 通用设计标准
     │   ├── index
@@ -64,7 +64,10 @@
     ├── interaction/                       # 人机交互标准
     ├── system/                            # 系统特性与能力标准
     ├── multi-device/                       # 多端设备标准（暂仅 index）
-    └── best-practices/                    # 应用最佳实践标准（暂仅 index）
+    ├── best-practices/                    # 应用最佳实践标准（暂仅 index）
+    └── resources/                         # 资源
+        ├── index
+        └── icons                          # HyperOS 图标库
 ```
 
 完整叶子页清单见 [sidebar-ia.md](./sidebar-ia.md)。
@@ -82,7 +85,7 @@ Fumadocs MDX 按文件路径生成 URL。根级 `content/docs/meta.json` 注册 
 | 文件路径 | URL |
 |----------|-----|
 | `content/docs/os4/index.mdx` | `/docs/os4` |
-| `content/docs/os4/icons.mdx` | `/docs/os4/icons` |
+| `content/docs/os4/resources/icons.mdx` | `/docs/os4/resources/icons` |
 | `content/docs/os4/general/design-token.mdx` | `/docs/os4/general/design-token` |
 | `content/docs/os4/components/actions/button.mdx` | `/docs/os4/components/actions/button` |
 
@@ -93,7 +96,9 @@ Fumadocs MDX 按文件路径生成 URL。根级 `content/docs/meta.json` 注册 
 | `/docs` | `/docs/os4`（临时） |
 | `/docs/os5`、`/docs/os5/*` | `/docs/os4`（临时，待 OS5 发布） |
 | `/docs/foundations/*` 等旧无前缀路径 | 映射到新 `os4` 对应页（永久 301） |
-| `/docs/os4/foundations/*`、`patterns/*`、`resources/*` | 映射到 `general` / `system` / `best-practices` 等 |
+| `/docs/os4/foundations/*`、`patterns/*` | 映射到 `general` / `system` 等 |
+| `/docs/os4/resources/design-tokens` 等**旧** Resources 子页 | Token / 最佳实践；**不含**现 `resources/icons` |
+| `/docs/os4/icons`、`general/icons`、`foundations/iconography` | `/docs/os4/resources/icons` |
 
 Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 
@@ -106,7 +111,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 | 区块 | 内容 |
 |------|------|
 | Hero | HyperOS DS 一句话定位 + CTA |
-| 快速入口 | Design Token · Button · 通用设计 · 控件与组件 |
+| 快速入口 | HyperOS 图标库 · Design Token · Button · 通用设计 · 控件与组件 |
 | 最近更新 | Changelog 摘要（V1 可静态） |
 
 侧边栏顶部 **DocsVersionSwitcher** 切换 HyperOS 4 / 5（OS5 当前禁用）。
@@ -119,7 +124,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 |------|----------|
 | 说明正文 | 默认 MDX |
 | Token 可视化 | `<TokenTable groups={[...]} />` |
-| 图标预览 | `<IconGallery />`（见 `/docs/os4/icons`） |
+| 图标预览 | `<IconGallery />`（见 `/docs/os4/resources/icons`） |
 | 可选 Figma 参考 | `<FigmaEmbed />` |
 
 ### 4.3 组件页
@@ -144,15 +149,16 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 | 旧路径 | 新路径 |
 |--------|--------|
 | `/docs/os4/foundations/colors` | `/docs/os4/general/design-token` |
-| `/docs/os4/foundations/iconography` | `/docs/os4/icons` |
-| `/docs/foundations/iconography` | `/docs/os4/icons` |
-| `/docs/os4/general/icons` | `/docs/os4/icons` |
+| `/docs/os4/foundations/iconography` | `/docs/os4/resources/icons` |
+| `/docs/foundations/iconography` | `/docs/os4/resources/icons` |
+| `/docs/os4/general/icons` | `/docs/os4/resources/icons` |
+| `/docs/os4/icons` | `/docs/os4/resources/icons` |
 | `/docs/os4/foundations/principles` | `/docs/os4/general/principles` |
 | `/docs/os4/components/feedback/dialog` | `/docs/os4/components/containers/dialog` |
 | `/docs/os4/components/navigation/bottom-nav` | `/docs/os4/components/navigation/bottom-navigation` |
 | `/docs/os4/patterns/empty-states` | `/docs/os4/components/display/empty-state` |
 | `/docs/os4/resources/design-tokens` | `/docs/os4/general/design-token` |
-| `/docs/os4/resources/*` | `/docs/os4/best-practices` |
+| `/docs/os4/resources/figma-library` 等旧子页 | `/docs/os4/best-practices` |
 | `/docs/os4/general/overview` | `/docs/os4/general`（已移除「通用设计总览」） |
 
 ---
@@ -163,7 +169,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 |---|------|--------|
 | 1 | `/docs/os4` | 站点 Index 与快速入口 |
 | 2 | `/docs/os4/general/design-token` | 验证 TokenTable |
-| 3 | `/docs/os4/icons` | 验证 IconGallery |
+| 3 | `/docs/os4/resources/icons` | 验证 IconGallery |
 | 4 | `/docs/os4/components/actions/button` | 验证完整组件页模板 |
 | 5 | `/docs/os4/general` | 一级模块 Index |
 | 6 | `/docs/os4/components` | 组件总览 |

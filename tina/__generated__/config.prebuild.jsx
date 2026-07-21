@@ -282,7 +282,6 @@ var docVersions = [
 ];
 var docSections = [
   { key: "Overview", label: "\u6982\u89C8", include: "index" },
-  { key: "Icons", label: "\u56FE\u6807", include: "icons" },
   { key: "General", label: "\u901A\u7528\u8BBE\u8BA1\u6807\u51C6", include: "general/**/*" },
   { key: "ComponentsOverview", label: "\u63A7\u4EF6\u4E0E\u7EC4\u4EF6 \xB7 \u6982\u89C8", include: "components/index" },
   {
@@ -313,7 +312,8 @@ var docSections = [
   { key: "Interaction", label: "\u4EBA\u673A\u4EA4\u4E92\u6807\u51C6", include: "interaction/**/*" },
   { key: "System", label: "\u7CFB\u7EDF\u7279\u6027\u4E0E\u80FD\u529B\u6807\u51C6", include: "system/**/*" },
   { key: "MultiDevice", label: "\u591A\u7AEF\u8BBE\u5907\u6807\u51C6", include: "multi-device/**/*" },
-  { key: "BestPractices", label: "\u5E94\u7528\u6700\u4F73\u5B9E\u8DF5\u6807\u51C6", include: "best-practices/**/*" }
+  { key: "BestPractices", label: "\u5E94\u7528\u6700\u4F73\u5B9E\u8DF5\u6807\u51C6", include: "best-practices/**/*" },
+  { key: "Resources", label: "\u8D44\u6E90", include: "resources/**/*" }
 ];
 var config_default = defineConfig({
   contentApiUrlOverride: "/api/tina/gql",

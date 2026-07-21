@@ -4,12 +4,12 @@
   "root": true,
   "pages": [
     "index",
-    "icons",
     "general",
     "components",
     "interaction",
     "system",
     "multi-device",
-    "best-practices"
+    "best-practices",
+    "resources"
   ]
 }

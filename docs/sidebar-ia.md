@@ -1,11 +1,11 @@
 # Docs 侧边栏目录对照（基于设计系统全景图）
 
-> **状态**：已落地到 `content/docs/`（2026-07-10）；本文件为侧栏对照源  
-> **日期**：2026-07-10  
+> **状态**：已落地到 `content/docs/`（2026-07-21 起含「资源」一级）；本文件为侧栏对照源  
+> **日期**：2026-07-21  
 > **来源**：HyperOS 设计系统全景图（经人工优化）  
 > **约束**：
 > - 保留现有站点 Index「HyperOS 4 Design System」
-> - **每个一级目录**（通用设计标准 / 控件与组件 / …）下必须有 `index` 作为该模块总览
+> - **每个一级目录**（通用设计标准 / 控件与组件 / … / 资源）下必须有 `index` 作为该模块总览
 > - 侧栏已按本列表落地；后续改动请同步 `content/docs/os4/**/meta.json`
 
 ---
@@ -14,7 +14,6 @@
 
 ```text
 HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
-├── 图标                         # 一级入口 /docs/os4/icons
 ├── 通用设计标准
 │   ├── Index                    # 模块总览
 │   ├── 设计理念
@@ -91,8 +90,11 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 │   └── 框选反馈
 ├── 多端设备标准
 │   └── Index                    # 模块总览（暂无下级页）
-└── 应用最佳实践标准
-    └── Index                    # 模块总览（暂无下级页）
+├── 应用最佳实践标准
+│   └── Index                    # 模块总览（暂无下级页）
+└── 资源
+    ├── Index                    # 模块总览
+    └── HyperOS 图标库           # /docs/os4/resources/icons
 ```
 
 ---
@@ -178,6 +180,9 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
   - Index（模块总览）
 - 应用最佳实践标准
   - Index（模块总览）
+- 资源
+  - Index（模块总览）
+  - HyperOS 图标库
 
 ---
 
@@ -187,13 +192,13 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 |-------------|-----------------|------|
 | Index：HyperOS 4 Design System | 保留 | 不改 title / 路由 |
 | Foundations | 通用设计标准（`general/`） | 总览 / 理念 / 原则 / Token / 布局 / 动效 / 文案 / 包容性 |
-| Icons | 图标（`icons.mdx`，OS 一级） | 图标库预览 |
+| Icons | 资源 → HyperOS 图标库（`resources/icons`） | 原 OS 一级入口已迁入「资源」 |
 | Components（actions / inputs / …） | 控件与组件（导航搜索 / 菜单和操作 / 选择和输入 / 容器类 / 展示类） | 分组与叶子页按本列表重划；中英对照见上 |
 | Patterns | 系统特性与能力标准 / 展示类空状态等 | 旧路径 301 到 `system` 或对应组件页 |
-| Resources | 应用最佳实践标准（`best-practices/`） | Figma 库等旧页暂重定向至模块 Index |
+| Resources | 应用最佳实践标准（`best-practices/`） | 旧 Resources 页暂重定向至 best-practices；现「资源」为新一级目录（图标库） |
 | （无） | 人机交互标准 | 新增一级 |
 | （无） | 多端设备标准 | 新增一级，暂仅 Index |
-
+| （无） | 资源 | 新增一级；含 HyperOS 图标库 |
 ---
 
 ## 英文命名备注（可改）
