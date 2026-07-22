@@ -93,11 +93,6 @@ function GalleryBody({
     }, 1500);
   };
 
-  const onCopyName = async (icon: IconEntry) => {
-    await copyText(icon.name);
-    flashCopied(`${icon.id}:name`);
-  };
-
   const onCopyId = async (icon: IconEntry) => {
     await copyText(icon.id);
     flashCopied(`${icon.id}:id`);
@@ -148,7 +143,6 @@ function GalleryBody({
       ) : (
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {filtered.map((icon) => {
-            const nameCopied = copiedKey === `${icon.id}:name`;
             const idCopied = copiedKey === `${icon.id}:id`;
             const svgCopied = copiedKey === `${icon.id}:svg`;
 
@@ -173,13 +167,6 @@ function GalleryBody({
                     </p>
                   </div>
                   <div className="mt-auto flex flex-wrap gap-1">
-                    <button
-                      type="button"
-                      onClick={() => void onCopyName(icon)}
-                      className="rounded-md border border-fd-border px-2 py-1 text-[11px] text-fd-muted-foreground hover:border-fd-foreground/30 hover:text-fd-foreground"
-                    >
-                      {nameCopied ? '已复制' : '名称'}
-                    </button>
                     <button
                       type="button"
                       onClick={() => void onCopyId(icon)}
