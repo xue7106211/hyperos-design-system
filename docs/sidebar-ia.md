@@ -53,7 +53,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 │   │   └── 图片选择器 Image Picker
 │   ├── 容器类
 │   │   ├── 对话框 Dialog
-│   │   ├── 抽屉/浮窗 Drawer / Floating Panel
+│   │   ├── 抽屉浮窗 Bottom Sheet
 │   │   └── 提示条 Snackbar
 │   └── 展示类
 │       ├── 列表 List
@@ -141,7 +141,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
     - 图片选择器 Image Picker
   - 容器类
     - 对话框 Dialog
-    - 抽屉/浮窗 Drawer / Floating Panel
+    - 抽屉浮窗 Bottom Sheet
     - 提示条 Snackbar
   - 展示类
     - 列表 List
@@ -210,7 +210,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 | 标题栏 | Top App Bar | 现有 `top-app-bar.mdx` |
 | 行动操作按钮 | Floating Action Button | 现有 `floating-action-button.mdx` |
 | 近手菜单 | Near-hand Menu | 暂无现页，可改为 Contextual Menu 等 |
-| 抽屉/浮窗 | Drawer / Floating Panel | 双形态并列，落地时可拆页 |
+| 抽屉浮窗 | Bottom Sheet | 含抽屉、浮窗、近手浮窗；落地页 `containers/drawer` |
 | 提示条 | Snackbar | 现有 `snackbar.mdx`；若含 Banner 可再拆 |
 | 索引 | Index Bar | 通讯录式字母索引常见名 |
 | 滑动选择器 | Slider | 现有 `slider.mdx`；若指 Picker 滚轮可改为 Number Picker |
