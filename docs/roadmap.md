@@ -21,6 +21,8 @@
 - [x] 文档页操作栏「跳转 Figma」（`FigmaJumpButton`；默认库 URL 见 `src/lib/shared.ts`）
 - [x] 侧栏「资源」一级目录；图标页 `/docs/os4/resources/icons`（HyperOS 图标库）
 - [x] 图标预览页 + `IconGallery` + `icons/` 资产管线（`icons:sync` / `icons:import`）
+- [x] 文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`；资产 `public/media/`）
+- [x] OS4「抽屉浮窗 Bottom Sheet」规范页（`containers/drawer`）
 
 ## 下一步
 

@@ -137,6 +137,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 | Token | `<TokenTable groups={frontmatter.tokenGroups} />` |
 | 平台代码 | `<PlatformTabs>` |
 | Do / Don't | `<DosDonts />` |
+| 规范配图 | Markdown `![alt](/media/...)`（`DocsImage` + Fancybox 同页画廊；文件在 `public/media/`） |
 
 ### 4.4 模块 Index
 

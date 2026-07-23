@@ -8,6 +8,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
 - Design Token 表格展示（OS4 Reference / Semantic / Component × Light / Dark）
 - 图标库预览（分类 / 搜索 / 深浅色 / 复制名称与 SVG）
+- 文档配图页内画廊（Fancybox；同页前后切换）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
@@ -75,7 +76,7 @@ src/
   components/
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
-    mdx/             # 自定义 MDX 组件（含 IconGallery）
+    mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、IconGallery 等）
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
   lib/               # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
@@ -83,7 +84,8 @@ public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
   icons/             # 图标静态访问（由 icons:sync 生成，含 manifest.json）
-  uploads/           # TinaCMS 媒体上传（本地模式）
+  media/             # 规范配图（已提交；MDX 用 /media/...）
+  uploads/           # TinaCMS 媒体上传（本地模式；gitignore）
 source.config.ts     # MDX frontmatter schema
 next.config.mjs      # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts             # Markdown 内容协商
@@ -99,8 +101,9 @@ CLAUDE.md            # 指向 AGENTS.md
 1. 在 `content/docs/os4/components/`（或对应 OS 版本目录）下创建 `.mdx` 文件
 2. 在对应目录的 `meta.json` 中注册页面
 3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<IconGallery />`、`<PlatformTabs />`、`<PlatformCodeBlock />` 等组件（亦可通过 `/admin` 插入 block）
+4. 规范配图放入 `public/media/...`，MDX 写 `![说明](/media/...)`（自动进入 Fancybox 画廊；勿用 `public/uploads/` 或 `public/docs/`）
 
-参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx)
+参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx) · 含多图示例：[containers/drawer.mdx](content/docs/os4/components/containers/drawer.mdx)
 
 > `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标页：`/docs/os4/resources/icons`（旧路径 `icons`、`foundations/iconography`、`general/icons` 会重定向至此）。
 

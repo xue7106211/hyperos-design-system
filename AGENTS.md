@@ -8,7 +8,7 @@
 
 - **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4 + TinaCMS（本地模式）
 - **目标用户**：设计、文档、客户端工程（Android / iOS）
-- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、Compose / SwiftUI 静态代码参考
+- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、文档配图页内画廊（Fancybox）、Compose / SwiftUI 静态代码参考
 
 客户端组件 **源码在独立仓库** 维护；本仓只负责规范传播与 Figma / Token / 图标资产连接。
 
@@ -111,6 +111,13 @@ npm run dev            # dev server 会自动重新生成
 
 从 Figma Variables 重新导出 OS4 Token 后须跑 `npm run tokens:import -- /path/to/OS4Token`，并将 `tokens/*.{light,dark}.json` 一并提交。
 
+### 文档配图（Agent 必读）
+
+- **入库路径**：规范配图放 `public/media/{os}/{...}/`（如 `public/media/os4/components/containers/drawer/`），MDX 用 `/media/...` 引用
+- **不要**写入 `public/uploads/`（gitignore，Tina 本地上传用）或 `public/docs/`（会与 `/docs/*` 路由冲突）
+- MDX 中的 `![alt](src)` 由 `DocsImage` 接管：`rounded-none` + Fancybox 同页画廊（`DocFancybox` 包在 docs 页外层）
+- 依赖：`@fancyapps/ui`（非商用 GPL；若正式商用需自行确认许可）
+
 ### 图标资产（Agent 必读）
 
 - 源文件：`icons/svg/{category}/{name}.svg`；索引：`icons/manifest.json`；站点静态：`public/icons/`
@@ -161,13 +168,14 @@ public/
   logo/                 # HyperOS Logo 静态资源
   home/                 # Landing 页静态图
   icons/                # 图标静态访问（icons:sync 产物，含 manifest.json）
-  uploads/              # TinaCMS 媒体上传（本地模式）
+  media/                # 规范配图（已提交；MDX 用 /media/...）
+  uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
   app/                  # Next.js 路由（docs、admin、api/tina、search、llms、og）
   components/
     docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/               # Landing：HomeHero、PillNav、HalftoneBloom
-    mdx/                # 自定义 MDX 组件（优先在此扩展）
+    mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
   lib/                  # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
@@ -247,6 +255,9 @@ package-lock.json       # npm 锁文件
 
 | 组件 | 用途 |
 |------|------|
+| `DocsImage` | 覆盖 MDX `img`：`rounded-none` + Fancybox 同页画廊触发器 |
+| `DocFancybox` | 文档页外层容器（`Fancybox.bind`；配置见 `DocFancybox.tsx`） |
+| `InlineTOC` | 文内目录（Fumadocs InlineTOC 包装） |
 | `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`；可选 `mode="dev"` 查看 Dev Mode 标注） |
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
 | `TokenTable` | 从 `tokens/*.{light,dark}.json` 按 group 渲染；支持 Light / Dark 切换 |
@@ -256,7 +267,7 @@ package-lock.json       # npm 锁文件
 | `StatusBadge` | stable / beta / deprecated 标签 |
 | `DosDonts` | Do / Don't 双栏 |
 
-新增 MDX 组件时：在 `src/components/mdx/` 实现并在 `index.tsx` 注册；Server / Client 边界与现有组件保持一致。
+新增 MDX 组件时：在 `src/components/mdx/` 实现并在 `index.tsx` 注册；Server / Client 边界与现有组件保持一致。`DocFancybox` 挂在 docs 页布局（`src/app/docs/[[...slug]]/page.tsx`），不必写入 MDX。
 
 ## Design Tokens
 
@@ -316,6 +327,7 @@ package-lock.json       # npm 锁文件
 - [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
 - [ ] 若改了 `icons/svg/**`，已跑 `icons:sync` 并提交 `icons/manifest.json` 与 `public/icons/`
 - [ ] 若改了 Token 真源导出，已跑 `tokens:import` 并提交 `tokens/*.{light,dark}.json`
+- [ ] 若新增规范配图，已放入 `public/media/`（勿用 `uploads/` / `public/docs/`）并随 MDX 一并提交
 - [ ] 上测环境：`main` → `staging` 已 merge 并 push；Matrix staging 实例 Tag 已更新
 - [ ] 上正式：`main` 已 push 且 prod 镜像已构建；**Matrix `…-prod` 已发对应 `prod-*`**（勿仅凭流水线绿判断）
 

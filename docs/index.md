@@ -17,6 +17,7 @@
 | 维护人飞书 open_id | [maintainers.md](./maintainers.md) |
 | 图标 SVG 入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
+| 规范配图入库 | `public/media/...` + MDX `/media/...`（Fancybox；见 AGENTS「文档配图」） |
 
 ## 文档目录
 
@@ -42,8 +43,10 @@
 | `icons/` | 图标源 SVG + `manifest.json`（见 [icons/README.md](../icons/README.md)） |
 | `tokens/` | Design Tokens：`reference|semantic|component` × `light|dark` |
 | `public/icons/` | 图标静态访问（`icons:sync` 产物） |
+| `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
 | `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta` |
+| `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `IconGallery` 等） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
 | `src/lib/icons.ts` | 图标 manifest 读取 |
 | `src/lib/shared.ts` | 站点常量、默认维护人、飞书 AppLink |
@@ -54,6 +57,7 @@
 
 ## 变更摘要
 
+- **2026-07-23**：文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`）；规范图入库 `public/media/`；OS4「抽屉浮窗」规范上线。
 - **2026-07-21**：侧栏「资源」一级目录；图标页迁至 `/docs/os4/resources/icons`，更名为 HyperOS 图标库；修正旧 `resources/*` 通配重定向冲突。
 - **2026-07-20**：OS4 Token 真源入库（`tokens/{reference,semantic,component}.{light,dark}.json`）；TokenTable 支持 Light / Dark。
 - **2026-07-17**：图标预览（`IconGallery` + `icons/` 资产管线）；侧栏曾为 OS 一级入口 `/docs/os4/icons`。
