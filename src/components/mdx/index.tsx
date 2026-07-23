@@ -1,7 +1,6 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
-import type { ComponentProps } from 'react';
-import { cn } from '@/lib/cn';
+import { DocsImage } from './DocsImage';
 import { DosDonts } from './DosDonts';
 import { FigmaEmbed } from './FigmaEmbed';
 import { FigmaPrototypeEmbed } from './FigmaPrototypeEmbed';
@@ -11,18 +10,6 @@ import { PlatformCodeBlock } from './PlatformCodeBlock';
 import { PlatformTab, PlatformTabs } from './PlatformTabs';
 import { StatusBadge } from './StatusBadge';
 import { TokenTable } from './TokenTable';
-
-const FumadocsImage = defaultMdxComponents.img;
-
-/** 规范配图常自带圆角；覆盖 Fumadocs 默认 rounded-lg，避免二次裁切 */
-function DocsImage(props: ComponentProps<typeof FumadocsImage>) {
-  return (
-    <FumadocsImage
-      {...props}
-      className={cn('rounded-none', props.className)}
-    />
-  );
-}
 
 export function getMDXComponents(components?: MDXComponents) {
   return {

@@ -1,5 +1,6 @@
 import { TinaDocsPageContent } from '@/components/tina/TinaDocsPageContent';
 import { FigmaJumpButton } from '@/components/docs/FigmaJumpButton';
+import { DocFancybox } from '@/components/mdx/DocFancybox';
 import { getMDXComponents } from '@/components/mdx';
 import { formatDocUpdatedAt, getDocUpdatedAt } from '@/lib/git-file-mtime';
 import { getPageImage, getPageMarkdownUrl, source } from '@/lib/source';
@@ -55,24 +56,26 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
-      <TinaDocsPageContent
-        pagePath={page.path}
-        initialPayload={tinaPayload}
-        fallbackTitle={page.data.title}
-        fallbackDescription={page.data.description}
-        fallbackMaintainer={maintainer}
-        fallbackMaintainerOpenId={maintainerOpenId}
-        updatedAt={updatedAt}
-        actions={actions}
-        figmaAction={figmaAction}
-        fallbackBody={
-          <MDX
-            components={getMDXComponents({
-              a: createRelativeLink(source, page),
-            })}
-          />
-        }
-      />
+      <DocFancybox>
+        <TinaDocsPageContent
+          pagePath={page.path}
+          initialPayload={tinaPayload}
+          fallbackTitle={page.data.title}
+          fallbackDescription={page.data.description}
+          fallbackMaintainer={maintainer}
+          fallbackMaintainerOpenId={maintainerOpenId}
+          updatedAt={updatedAt}
+          actions={actions}
+          figmaAction={figmaAction}
+          fallbackBody={
+            <MDX
+              components={getMDXComponents({
+                a: createRelativeLink(source, page),
+              })}
+            />
+          }
+        />
+      </DocFancybox>
     </DocsPage>
   );
 }
