@@ -1,3 +1,8 @@
+/**
+ * DocFancybox 在文档页外包一层 div，用 Fancybox 的 bind 监听子树里所有 [data-fancybox]；
+ * 真正带 data-fancybox="doc-gallery" 的是 DocsImage 包的那层 <a>
+ */
+
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
