@@ -8,6 +8,7 @@ import { IconGallery } from './IconGalleryServer';
 import { InlineTOC } from './InlineTOC';
 import { PlatformCodeBlock } from './PlatformCodeBlock';
 import { PlatformTab, PlatformTabs } from './PlatformTabs';
+import { SpecImageGrid } from './SpecImageGrid';
 import { StatusBadge } from './StatusBadge';
 import { TokenTable } from './TokenTable';
 
@@ -25,6 +26,7 @@ export function getMDXComponents(components?: MDXComponents) {
     TokenTable,
     StatusBadge,
     DosDonts,
+    SpecImageGrid,
     ...components,
   } satisfies MDXComponents;
 }

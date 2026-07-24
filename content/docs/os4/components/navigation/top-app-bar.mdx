@@ -1,12 +1,335 @@
 ---
-title: 标题栏 Top App Bar
-description: 页面顶部导航栏
-status: beta
-platforms: [android, ios]
+title: 标题栏 Action Bar
+description: 页面顶部标题栏——呈现界面名称与操作入口，覆盖一级/二级/编辑/抽屉浮窗标题及组合样式
+status: stable
+platforms: [android, ios, pad]
+maintainer: 吴晨
+maintainerOpenId: ou_2ffc54751262ccee1de1cb53442230f9
+figmaFileKey: "7PVSm4yEbknNLFaqauI4EM"
+figmaNodeId: "80637-9785"
 ---
 
-<StatusBadge status="beta" />
+## 概述
 
-Top App Bar 文档占位。
+标题栏（Action Bar）一般出现在页面顶部，用于呈现界面名称和操作入口，是对当前页面的内容、功能进行概括性的介绍和展示的组件。
 
-<FigmaEmbed />
+标题栏适用于手机、折叠屏、平板等 Xiaomi HyperOS 终端。Flip 外屏、车机、电视、穿戴等特殊终端如需使用标题栏，应先依据显示面积、观看距离和输入方式单独确认。
+
+### 核心原则
+
+| 原则 | 说明 |
+|------|------|
+| **简洁性** | 标题文案应尽量简洁易懂，并具有高度概括性，帮助用户快速理解当前页面的核心内容 |
+| **完整性** | 标题应在任何语境、任何状态下尽量让用户看全、看完整，并理解自己当前所在的位置 |
+| **层次关系** | 标题栏应体现当前页面在信息架构中的层级关系；二级及更深页面应提供明确的返回路径 |
+
+## 类型与结构
+
+### 类型
+
+标题栏从分类上分为一级页面标题、二级页面标题、编辑页面标题和抽屉/浮窗标题。
+
+| 类型 | 说明 |
+|------|------|
+| **一级页面标题** | 一级页面通常为各应用/模块入口的首层页面，帮助用户快速确定所在位置 |
+| **二级页面标题** | 二级页面通常为用户从首页/模块一级页面进入的下一级页面，为单一任务或更深、更具体的内容服务页面，帮助用户聚焦内容并不失所在位置 |
+| **编辑页面标题** | 编辑模式是承载以数据录入、内容修改等独立编辑任务的页面，详见[编辑模式](/docs/os4/system/edit-mode) |
+| **抽屉浮窗标题** | 抽屉浮窗是悬浮类控件，具体参考[抽屉浮窗 Bottom Sheet](/docs/os4/components/containers/drawer) |
+| **标题组合样式** | 标题栏通常可以和其他支持常驻顶部的导航控件一起组合使用，如[子页签 Tabs](/docs/os4/components/navigation/tabs)、[分段控制按钮 Segmented Control](/docs/os4/components/navigation/segmented-button)、[搜索框 Search Bar](/docs/os4/components/navigation/search-bar) 等 |
+
+### 结构
+
+#### 一级页面标题
+
+一级页面标题一般由主标题区和右侧操作区组成，在一级页面标题左侧不可出现返回按钮。
+
+##### 大标题
+
+一级页面大标题一般由左侧操作区、主标题区、副标题区和右侧操作区组成。
+
+![一级页面大标题结构](/media/os4/components/navigation/top-app-bar/structure-l1-large.png)
+
+| 元素 | 必需 | 说明 |
+|------|------|------|
+| 左侧操作区 | 可选 | 通常一级页面左侧无操作项；如特殊需要只能使用[图标库](https://www.figma.com/file/Lve3vAE4lPGFELFHF2kllv/Xiaomi-HyperOS-v0.8?type=design&node-id=1901-65137&mode=design&t=SMIHatmcotWtqGpf-0)中图标，不能使用文字 |
+| 主标题区 | 必选 | 仅支持单行展示，居左对齐，默认应展示当前页面标题 |
+| 副标题区 | 可选 | 仅支持单行展示，居左对齐，用于补充主标题；如可点击，样式上应有明确可点击预期 |
+| 右侧操作区 | 可选 | 操作顺序应从高优先级到低优先级从左向右排列；超出数量上限的低优先级操作应收纳进更多菜单 |
+
+##### 小标题
+
+一级页面小标题一般由左侧操作区、主标题区、副标题区、右侧操作区和渐变遮罩组成。
+
+![一级页面小标题结构](/media/os4/components/navigation/top-app-bar/structure-l1-small.png)
+
+| 元素 | 必需 | 说明 |
+|------|------|------|
+| 左侧操作区 | 可选 | 通常一级页面左侧无操作项；如特殊需要只能使用图标库中图标，不能使用文字 |
+| 主标题区 | 必选 | 仅支持单行展示，居中对齐，默认应展示当前页面标题 |
+| 副标题区 | 可选 | 仅支持单行展示，居中对齐，用于补充主标题；如可点击，样式上应有明确可点击预期 |
+| 右侧操作区 | 可选 | 操作顺序应从高优先级到低优先级从左向右排列；超出数量上限的低优先级操作应收纳进更多菜单 |
+| 渐变遮罩 | 可选 | 当进入小标题后继续下滑出现，用于弱化内容干扰并维持标题栏可读性 |
+
+#### 二级页面标题
+
+二级页面标题一般由左侧操作区、主标题区和右侧操作区组成。具体规则与一级页面标题一致。
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/navigation/top-app-bar/structure-l2-large.png',
+      alt: '二级页面大标题',
+      caption: '大标题',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/structure-l2-small.png',
+      alt: '二级页面小标题',
+      caption: '小标题',
+    },
+  ]}
+/>
+
+#### 编辑页面标题
+
+编辑页面标题一般由左侧操作区、主标题区和右侧操作区组成，一般使用左侧关闭、右侧确认的布局结构；在有多个操作项的编辑模式下，右侧使用全选按钮。
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/navigation/top-app-bar/structure-edit-confirm.png',
+      alt: '编辑确认模型',
+      caption: '编辑确认模型',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/structure-edit-select-all.png',
+      alt: '编辑全选模型',
+      caption: '编辑全选模型',
+    },
+  ]}
+/>
+
+| 元素 | 必需 | 说明 |
+|------|------|------|
+| 左侧操作区 | 必选 | 只能是「取消」「关闭」类功能，统一使用关闭 icon |
+| 主标题区 | 必选 | 仅支持单行展示，居中对齐，默认使用「请选择」文案 |
+| 副标题区 | 可选 | 仅支持单行展示，居中对齐，用于补充主标题；如可点击，样式上应有明确可点击预期 |
+| 右侧操作区 | 必选 | 编辑确认模型：右侧只能是「确定」icon 或文字按钮；编辑全选模型：右侧只能是「全选」icon |
+| 渐变遮罩 | 必选 | 当进入小标题后继续下滑出现，用于弱化内容干扰并维持标题栏可读性 |
+
+#### 抽屉浮窗标题
+
+抽屉浮窗标题一般由左侧操作区、主标题区和右侧操作区组成。具体规则与二级页面标题、编辑页面标题一致。
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/navigation/top-app-bar/structure-sheet-1.png',
+      alt: '抽屉浮窗标题结构',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/structure-sheet-2.png',
+      alt: '抽屉浮窗标题示例',
+    },
+  ]}
+/>
+
+#### 标题组合样式
+
+标题组合样式是标题栏与常驻顶部导航控件组合使用的标题形态，用于承载页面标题与同层级导航入口。
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/navigation/top-app-bar/combo-tabs.png',
+      alt: '子页签组合',
+      caption: '子页签',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/combo-segmented.png',
+      alt: '分段控制按钮组合',
+      caption: '分段控制按钮',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/combo-search.png',
+      alt: '搜索框组合',
+      caption: '搜索框',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/combo-banner.png',
+      alt: '提示条组合',
+      caption: '提示条',
+    },
+  ]}
+/>
+
+组合使用时，业务需要自行将标题栏的遮罩调整到可完整覆盖其他导航控件的高度，建议统一将遮罩在置顶控件下方额外延伸 20dp，使渐隐过渡更加自然。详细配置方式见 [ActionBar Style 渐隐过渡](https://mi.feishu.cn/wiki/FpiMwscROiILVuk64dzc8msynsd)。
+
+![遮罩延伸配置](/media/os4/components/navigation/top-app-bar/combo-mask-extend.png)
+
+## 交互与状态
+
+### 大小标题切换
+
+一级页面默认使用大标题态，上滑后进入小标题态；小标题态需要配合遮罩区的出现整体进入悬浮样式。在小标题栏态，遮罩区背景色会延伸至状态栏区域。
+
+| 状态 | 说明 |
+|------|------|
+| **大标题态** | 一级页面、二级页面在没有特殊要求时的默认形态，也用于用户手动上滑页面回到顶部时的页面形态；所有元素以平面状态呈现，支持多行显示，也支持副标题辅助描述 |
+| **小标题态** | 一级页面、二级页面、抽屉/浮窗容器标题和编辑页面标题的必选标题状态；用户在大标题态下滑浏览内容时触发的标题置顶状态。通常在小标题态继续下滑浏览时，所有可点击元素会配合顶部遮罩以悬浮状态呈现；仅支持单行显示，支持副标题辅助描述 |
+| **不切换场景** | 编辑模式标题栏不具备大小标题切换能力，始终使用小标题态；抽屉浮窗场景始终使用小标题态；组合使用时不具备大小标题切换能力；中标题不具备大小标题切换能力，主标题文案和辅助标题始终居左对齐 |
+
+### 悬浮状态
+
+大标题态时，标题栏控件浮在页面内容区之上，和页面共用背景色。
+
+进入小标题态继续上滑时，标题栏内容会滑入标题栏下方进入悬浮模式；此时 ActionBar 上的操作按钮获得圆形背景进入悬浮态，并出现渐变遮罩、阴影和浮起动画，用于保持标题主体信息随时清晰可见。当用户下滑回到顶部、内容不再被覆盖时，按钮自动恢复为普通透明状态。相关 miuix 配置请参考[标题栏悬浮效果](https://mi.feishu.cn/wiki/FpiMwscROiILVuk64dzc8msynsd)。
+
+![悬浮状态](/media/os4/components/navigation/top-app-bar/floating-state.png)
+
+#### 悬浮控件
+
+操作按钮悬浮态支持三种材质类型，根据不同机型进行适配：
+
+| 材质 | 说明 |
+|------|------|
+| **纯色背景（无材质）** | 单一颜色，默认为白色，用于中低端机型或用户手动关闭高级材质 |
+| **模糊混色背景** | 根据下方内容动态取色并模糊，用于高端机型或用户手动打开高级材质 |
+| **玻璃材质背景（OS4.0.1 计划支持）** | 具备更强的层次感与通透感，用于强调材质层次的页面 |
+
+#### 渐变遮罩
+
+##### 颜色渐变
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/navigation/top-app-bar/mask-color-1.png',
+      alt: '颜色渐变遮罩',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/mask-color-2.png',
+      alt: '颜色渐变遮罩示例',
+    },
+  ]}
+/>
+
+当进入悬浮模式后，标题栏遮罩的视觉体现需要与页面背景色相同。在非多彩页面可直接使用 miuix 默认的两款颜色渐变遮罩；当页面主题为多彩内容（图片、动态天气）时，单一颜色渐变遮罩无法实现美观的遮挡效果，可以通过 Canvas 的 `DST_IN` 混合模式，让内容自身在顶部区域渐隐。该模式与颜色遮罩互斥，具体参考 [ActionBar 内容渐隐效果（Content Fade Mode）设计文档](https://mi.feishu.cn/wiki/JgPwwhCJ2iLB3bkGt6qctA1jnwd)。
+
+| 页面 | 白色背景 | 灰色背景 | 多彩内容 |
+|------|----------|----------|----------|
+| **遮罩** | 白色渐变遮罩 | 灰色渐变遮罩 | 内容渐隐遮罩 |
+
+##### 渐变模糊
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/navigation/top-app-bar/mask-blur-1.png',
+      alt: '渐变模糊',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/mask-blur-2.png',
+      alt: '渐变模糊示例',
+    },
+  ]}
+/>
+
+渐变模糊可以让标题区内容得到更高的对比度区分，实现更高级的视觉效果，具体配置参考 [ActionBar 背景模糊配置](https://mi.feishu.cn/wiki/FpiMwscROiILVuk64dzc8msynsd)。
+
+渐变模糊与叠加特效仅在特定机型上支持，通常是高端、超旗舰机型（原始六级分层中默认开启高级材质的机型）。渐变模糊效果覆盖整个控件区域，并扩展至信号栏区域。具体参考 [MIUIX4.0 ActionBar 自定义模糊策略（BlurApplier）接入指南](https://mi.feishu.cn/wiki/Rnu4wieYtiBpa8kXyHZciBqlnah)。
+
+## 视觉规格
+
+### 色彩
+
+| 属性 | Token / 规则 |
+|------|--------------|
+| 标题主文本 | `{color.text.primary}` |
+| 副标题文本 | `{color.text.secondary}` |
+| 操作图标 | `{color.icon.primary}` |
+| 标题栏背景 | `{color.background.navigation}` 或材质 token |
+| 分隔 / 遮罩 | `{color.divider}` / `{color.overlay}` |
+| 悬浮按钮圆形背景 | 亮色主题白色，暗色主题深灰色 |
+| 悬浮阴影 | `ShadowToken.Regular` |
+| 非悬浮按钮背景 | 透明 |
+
+### 间距
+
+在任何设备，标题栏距离屏幕边距统一为 12dp。
+
+| 属性 | Token / 规则 |
+|------|--------------|
+| 距离屏幕边距 | `padding/miuix_space_padding_xl` |
+
+### 圆角
+
+当悬浮按钮进入悬浮态时使用圆形背景，应遵循同心圆效果；该圆形背景是按钮可读性的功能性容器，不应被替换为任意装饰形状。
+
+### 热区
+
+44dp × 44dp 作为最小热区标准。
+
+![热区](/media/os4/components/navigation/top-app-bar/hotspot.png)
+
+### 对齐方式
+
+| 分类 | 水平 | 垂直 |
+|------|------|------|
+| 对齐规则 | **无副标题**：所有内容元素整体居中对齐<br />![无副标题对齐](/media/os4/components/navigation/top-app-bar/align-no-subtitle.png)<br />**有副标题**：标题区整体在导航栏居中对齐，操作区位置不变<br />![有副标题对齐](/media/os4/components/navigation/top-app-bar/align-with-subtitle.png) | 标题在左侧操作区和右侧操作区之间居中对齐<br />![垂直对齐 1](/media/os4/components/navigation/top-app-bar/align-vertical-1.png)<br />![垂直对齐 2](/media/os4/components/navigation/top-app-bar/align-vertical-2.png)<br />![垂直对齐 3](/media/os4/components/navigation/top-app-bar/align-vertical-3.png) |
+
+## 多端设计指南
+
+![多端适配](/media/os4/components/navigation/top-app-bar/multi-device.png)
+
+- 标题栏随设备尺寸变化、[应用框架](https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?node-id=81822-51599)变化而动态响应，适配规则以拉伸充满整个容器为主，并符合标题栏边距尺寸要求
+- 在手机、Fold、Pad 上标题栏符合一级页面标题、二级页面标题、编辑页面标题等大小标题切换规则
+
+### 手机
+
+待补充。
+
+### Fold（Q18）
+
+#### 中标题（Q18 机型专属标题栏）
+
+中标题是 MIUIX4.0 ActionBar 针对 Q18 机型新增的标题展开状态，字号介于小标题和大标题之间，不具备大小标题切换的能力，主标题文案和辅助标题始终居左对齐，适合需要突出标题但不希望占用大标题纵向空间的页面。
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/navigation/top-app-bar/q18-outer.png',
+      alt: 'Q18 外屏中标题',
+      caption: 'Q18 外屏',
+    },
+    {
+      src: '/media/os4/components/navigation/top-app-bar/q18-inner.png',
+      alt: 'Q18 内屏中标题',
+      caption: 'Q18 内屏',
+    },
+  ]}
+/>
+
+| 元素 | 必需 | 说明 |
+|------|------|------|
+| 左侧操作区 | 可选 | 通常一级页面左侧无操作项；如特殊需要只能使用图标库中图标，不能使用文字 |
+| 主标题区 | 必选 | 仅支持单行展示，居左对齐，默认应展示当前页面标题 |
+| 副标题区 | 可选 | 仅支持单行展示，居左对齐，用于补充主标题；如可点击，样式上应有明确可点击预期 |
+| 右侧操作区 | 可选 | 操作顺序应从高优先级到低优先级从左向右排列；超出数量上限的低优先级操作应收纳进更多菜单 |
+| 渐变遮罩 | 必选 | 用户在置顶状态继续下滑出现，用于弱化内容干扰并维持标题栏可读性 |
+
+### Pad
+
+待补充。
+
+## 动效
+
+待补充与菜单联动效果。
+
+## 内容与文案
+
+- 标题应简洁、易读，与入口文案或功能名称保持一致
+- 标题不应包含不必要的标点符号
+- 标题应优先表达页面对象或任务，不应使用营销化、情绪化或临时活动文案
+- 副标题应作为辅助说明，避免重复主标题
+- 多语言场景应优先保证关键信息完整；长单词语言可结合断词、缩放、省略或布局扩展策略处理
+- 中文标题建议短词化；英文标题应避免使用过长复合词作为唯一识别信息

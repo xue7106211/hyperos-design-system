@@ -6,6 +6,7 @@ import { FigmaEmbed } from '@/components/mdx/FigmaEmbed';
 import { FigmaPrototypeEmbed } from '@/components/mdx/FigmaPrototypeEmbed';
 import { IconGallery } from '@/components/mdx/IconGallery';
 import { PlatformCodeBlock } from '@/components/mdx/PlatformCodeBlock';
+import { SpecImageGrid } from '@/components/mdx/SpecImageGrid';
 import { StatusBadge } from '@/components/mdx/StatusBadge';
 import { TokenTable } from '@/components/mdx/TokenTable';
 
@@ -43,6 +44,12 @@ export function getTinaMarkdownComponents(): TinaComponentMap {
         dontTitle={props.dontTitle as string | undefined}
         doContent={props.doContent as string | undefined}
         dontContent={props.dontContent as string | undefined}
+      />
+    ),
+    SpecImageGrid: (props) => (
+      <SpecImageGrid
+        items={(props.items as { src: string; alt: string; caption?: string }[]) ?? []}
+        cols={(props.cols as 2 | 3 | 4 | undefined) ?? 2}
       />
     ),
     PlatformCodeBlock: (props) => (

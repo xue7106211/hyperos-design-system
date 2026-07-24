@@ -28,7 +28,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 ├── 控件与组件
 │   ├── Index                    # 模块总览
 │   ├── 导航搜索
-│   │   ├── 标题栏 Top App Bar
+│   │   ├── 标题栏 Action Bar
 │   │   ├── 分段按钮 Segmented Button
 │   │   ├── 子页签 Tabs
 │   │   ├── 搜索栏 Search Bar
@@ -116,7 +116,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 - 控件与组件
   - Index（模块总览）
   - 导航搜索
-    - 标题栏 Top App Bar
+    - 标题栏 Action Bar
     - 分段按钮 Segmented Button
     - 子页签 Tabs
     - 搜索栏 Search Bar
@@ -207,7 +207,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 
 | 中文 | 英文（草案） | 依据 |
 |------|-------------|------|
-| 标题栏 | Top App Bar | 现有 `top-app-bar.mdx` |
+| 标题栏 | Action Bar | 现有 `top-app-bar.mdx` |
 | 行动操作按钮 | Floating Action Button | 现有 `floating-action-button.mdx` |
 | 近手菜单 | Near-hand Menu | 暂无现页，可改为 Contextual Menu 等 |
 | 抽屉浮窗 | Bottom Sheet | 含抽屉、浮窗、近手浮窗；落地页 `containers/drawer` |
