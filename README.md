@@ -26,7 +26,7 @@ npm run dev
 
 访问 [http://localhost:3000](http://localhost:3000) · CMS 后台 [http://localhost:3000/admin](http://localhost:3000/admin)
 
-复制 `.env.example` 为 `.env` 后启动（TinaCMS 本地模式需要 `TINA_PUBLIC_IS_LOCAL=true`）。
+`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`；`.env.example` 仅供自定义启动命令时参考。
 
 ## 构建与检查
 
@@ -76,7 +76,7 @@ src/
   components/
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
-    mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、IconGallery 等）
+    mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
   lib/               # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
@@ -100,7 +100,7 @@ CLAUDE.md            # 指向 AGENTS.md
 
 1. 在 `content/docs/os4/components/`（或对应 OS 版本目录）下创建 `.mdx` 文件
 2. 在对应目录的 `meta.json` 中注册页面
-3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<IconGallery />`、`<PlatformTabs />`、`<PlatformCodeBlock />` 等组件（亦可通过 `/admin` 插入 block）
+3. 使用 `<FigmaEmbed />`、`<TokenTable />`、`<IconGallery />`、`<SpecImageGrid />`、`<PlatformTabs />`、`<PlatformCodeBlock />` 等组件（亦可通过 `/admin` 插入已支持的 block）
 4. 规范配图放入 `public/media/...`，MDX 写 `![说明](/media/...)`（自动进入 Fancybox 画廊；勿用 `public/uploads/` 或 `public/docs/`）
 
 参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx) · 含多图示例：[containers/drawer.mdx](content/docs/os4/components/containers/drawer.mdx)

@@ -46,9 +46,10 @@
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
 | `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta` |
-| `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `IconGallery` 等） |
+| `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
 | `src/lib/icons.ts` | 图标 manifest 读取 |
+| `src/lib/search-tokenizer.ts` | Orama 中英文混合搜索分词（`Intl.Segmenter('zh-CN')`） |
 | `src/lib/shared.ts` | 站点常量、默认维护人、飞书 AppLink |
 | `source.config.ts` | MDX frontmatter schema |
 | `tina/` | TinaCMS schema 与已提交的 `__generated__/` |

@@ -1,7 +1,13 @@
+import { chineseSearchTokenizer } from '@/lib/search-tokenizer';
 import { source } from '@/lib/source';
 import { createFromSource } from 'fumadocs-core/search/server';
 
-export const { GET } = createFromSource(source, {
-  // https://docs.orama.com/docs/orama-js/supported-languages
-  language: 'english',
+const os4SearchSource = {
+  ...source,
+  getPages: () =>
+    source.getPages().filter((page) => page.slugs[0] === 'os4'),
+};
+
+export const { GET } = createFromSource(os4SearchSource, {
+  tokenizer: chineseSearchTokenizer,
 });

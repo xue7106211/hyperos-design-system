@@ -5,7 +5,7 @@
 
 本文说明 **MiFlow（DEVX 流水线）** 与 **Matrix（部署平台）** 的职责拆分、发布流程与常见卡点。网站对外 MDX 不在此目录（见 `content/docs/`）。
 
-本地常用命令（与 `package.json` 一致）：`npm install` · `npm run dev` · `npm run build`（含 `tinacms build`）· `npm run tina:build` · `npm run start` · `npm run types:check` · `npm run icons:sync` · `npm run tokens:import`。生产镜像构建不跑 `tinacms build`；图标资产以仓库内已提交的 `icons/manifest.json` 与 `public/icons/` 为准；规范配图以已提交的 `public/media/` 为准。
+本地常用命令（与 `package.json` 一致）：`npm install` · `npm run dev`（`npm run tina:dev` 为同一开发命令别名）· `npm run build`（含 `tinacms build`）· `npm run tina:build` · `npm run start` · `npm run types:check` · `npm run icons:sync` · `npm run icons:import -- /path/to/svgs` · `npm run tokens:import -- /path/to/OS4Token`。生产镜像构建不跑 `tinacms build`；图标资产以仓库内已提交的 `icons/manifest.json` 与 `public/icons/` 为准；规范配图以已提交的 `public/media/` 为准。
 
 ## 1. MiFlow vs Matrix
 

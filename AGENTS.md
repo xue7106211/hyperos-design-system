@@ -79,7 +79,7 @@ npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/
 
 ### TinaCMS 后台
 
-- 本地开发：复制 `.env.example` 为 `.env`，运行 `npm run dev`
+- 本地开发：运行 `npm run dev`（脚本已设置 `TINA_PUBLIC_IS_LOCAL=true`；`.env.example` 仅供自定义启动命令时参考）
 - 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/os4/`、`content/docs/os5/` 下的 MDX 规范
 - **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`IconGallery`、`DosDonts`、`PlatformCodeBlock` 等
@@ -175,7 +175,7 @@ src/
   components/
     docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/               # Landing：HomeHero、PillNav、HalftoneBloom
-    mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、IconGallery 等）
+    mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
   lib/                  # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
@@ -257,6 +257,7 @@ package-lock.json       # npm 锁文件
 |------|------|
 | `DocsImage` | 覆盖 MDX `img`：`rounded-none` + Fancybox 同页画廊触发器 |
 | `DocFancybox` | 文档页外层容器（`Fancybox.bind`；配置见 `DocFancybox.tsx`） |
+| `SpecImageGrid` | 多张规范配图的响应式并排网格；图片仍接入 Fancybox |
 | `InlineTOC` | 文内目录（Fumadocs InlineTOC 包装） |
 | `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`；可选 `mode="dev"` 查看 Dev Mode 标注） |
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
@@ -297,7 +298,7 @@ package-lock.json       # npm 锁文件
 
 ## 搜索与 AI 导出
 
-- 全文搜索：Orama（[src/app/api/search/route.ts](src/app/api/search/route.ts)）
+- 全文搜索：Orama（[src/app/api/search/route.ts](src/app/api/search/route.ts)）+ 中文 tokenizer（[src/lib/search-tokenizer.ts](src/lib/search-tokenizer.ts)）；OS5 发布前仅索引 OS4
 - LLM 导出：`/llms.txt`（索引）、`/llms-full.txt`（全文）、`/llms.mdx/docs/*`（单页 Markdown）
 
 ## Figma 集成
