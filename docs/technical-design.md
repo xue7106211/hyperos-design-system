@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 技术设计方案
 
-> **版本**：V1.2  
-> **日期**：2026-07-23  
+> **版本**：V1.3  
+> **日期**：2026-07-27  
 > **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token /「资源」IA / 文档配图 Fancybox 已落地；生产鉴权与 Token CI 规划中
 
 ---
@@ -268,16 +268,18 @@ hyperos-design-system/
 │   ├── home/               # Landing 页静态图
 │   ├── icons/              # 图标静态访问（icons:sync 产物）
 │   ├── media/              # 规范配图（已提交；MDX 用 /media/...）
+│   ├── resources/          # /resources 页卡片配图（已提交）
 │   └── uploads/            # TinaCMS 媒体上传（本地模式；gitignore）
 ├── src/
-│   ├── app/                # Next.js App Router（docs、admin、api/tina、search、llms、og）
+│   ├── app/                # Next.js App Router（docs、resources、admin、api/tina、search、llms、og）
 │   ├── components/
 │   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta
 │   │   ├── home/           # Landing：HomeHero、PillNav、HalftoneBloom
+│   │   ├── resources/      # /resources 设计资源中心
 │   │   ├── mdx/            # DocsImage、DocFancybox、SpecImageGrid、FigmaEmbed、TokenTable、IconGallery、PlatformTabs 等
 │   │   ├── tina/           # Tina Visual Editing
 │   │   └── HyperOSLogo.tsx
-│   └── lib/                # source、layout、shared、icons、docs-version-tabs、tina-docs、git-file-mtime、cn
+│   └── lib/                # source、layout、shared、resources、icons、docs-version-tabs、tina-docs、git-file-mtime、cn
 ├── source.config.ts        # frontmatter Zod schema
 ├── next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 ├── proxy.ts                # Markdown 内容协商
@@ -349,9 +351,10 @@ export default defineConfig({ mdxOptions: {} });
 | 组件 | `/docs/os4/components/actions/button` | FigmaEmbed + Token + PlatformTabs + Do/Don't |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 最佳实践 | `/docs/os4/best-practices` | 应用层实践入口 |
-| 资源 | `/docs/os4/resources` | HyperOS 图标库等资产 |
+| 资源（docs） | `/docs/os4/resources` | HyperOS 图标库等资产（侧栏） |
+| 设计资源中心 | `/resources` | 独立 hub：Figma / 插件 / Token / 字体 / Brand 入口（非 docs 侧栏） |
 
-> 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。
+> 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。`/resources` 与 docs「资源」分流：前者聚合站外资产与工具，后者承载规范内预览（如 IconGallery）。
 
 ### 5.3 组件文档页模板
 

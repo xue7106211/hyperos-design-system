@@ -7,6 +7,7 @@
 > - 保留现有站点 Index「HyperOS 4 Design System」
 > - **每个一级目录**（通用设计标准 / 控件与组件 / … / 资源）下必须有 `index` 作为该模块总览
 > - 侧栏已按本列表落地；后续改动请同步 `content/docs/os4/**/meta.json`
+> - Landing「设计资源」入口 `/resources` **不属于** docs 侧栏；见 [information-architecture.md](./information-architecture.md)
 
 ---
 

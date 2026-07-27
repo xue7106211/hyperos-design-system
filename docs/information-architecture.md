@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 信息架构
 
-> **版本**：V1.4  
-> **日期**：2026-07-21  
+> **版本**：V1.5  
+> **日期**：2026-07-27  
 > **关联**：[技术设计方案](./technical-design.md) · [侧栏对照](./sidebar-ia.md)
 
 ---
@@ -14,25 +14,33 @@
 - **人机交互独立**：硬件、手势、键鼠等输入方式单独成章。
 - **OS 版本分层**：HyperOS 4 / 5 作为顶层 Tab；各版本下复用同一套一级目录。
 - **一级目录必有 Index**：每个一级模块以 `index` 作为总览页。
+- **设计资源独立入口**：站外资产与插件聚合在 `/resources`（非 docs 侧栏），与规范文档分流。
 
 ---
 
 ## 2. 站点地图
 
 ```text
-/  (Landing)
-└── /docs                    # → 重定向 /docs/os4
-    ├── os4/                 # HyperOS 4（当前默认）
-    │   ├── index            # HyperOS 4 Design System
-    │   ├── general/         # 通用设计标准
-    │   ├── components/      # 控件与组件
-    │   ├── interaction/     # 人机交互标准
-    │   ├── system/          # 系统特性与能力标准
-    │   ├── multi-device/     # 多端设备标准
-    │   ├── best-practices/  # 应用最佳实践标准
-    │   └── resources/       # 资源（图标库等）
-    └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
-        └── （结构同 os4）
+/  (Landing；PillNav：设计指南 / 系统组件 / 设计资源)
+├── /docs                    # → 重定向 /docs/os4
+│   ├── os4/                 # HyperOS 4（当前默认）
+│   │   ├── index            # HyperOS 4 Design System
+│   │   ├── general/         # 通用设计标准
+│   │   ├── components/      # 控件与组件
+│   │   ├── interaction/     # 人机交互标准
+│   │   ├── system/          # 系统特性与能力标准
+│   │   ├── multi-device/     # 多端设备标准
+│   │   ├── best-practices/  # 应用最佳实践标准
+│   │   └── resources/       # 资源（图标库等；docs 侧栏）
+│   └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
+│       └── （结构同 os4）
+└── /resources               # 设计资源中心（独立 hub）
+    ├── #components          # Components（OS4 / OS3 / AI 等）
+    ├── #design-tools        # 设计工具（Figma 插件等）
+    ├── #design-token        # Design Token
+    ├── #fonts               # Fonts
+    ├── #icon                # Icon
+    └── #brand               # Brand
 ```
 
 `os4` 详细结构：

@@ -9,6 +9,7 @@
 | 快速上手、本地运行 | [README.md](../README.md) |
 | Agent / 协作者约定 | [AGENTS.md](../AGENTS.md)（[CLAUDE.md](../CLAUDE.md) 同指向） |
 | CMS 后台录入规范 | `npm run dev` → [http://localhost:3000/admin](http://localhost:3000/admin) |
+| 设计资源中心 `/resources` | Landing PillNav「设计资源」· 数据 `src/lib/resources.ts` · 组件 `src/components/resources/` · 适配笔记 [research/aiforui.dev/ADAPTATION.md](./research/aiforui.dev/ADAPTATION.md) |
 | 容器化 / MiFlow / Matrix 部署 | [deployment.md](./deployment.md) · 根目录 `Dockerfile` |
 | 技术选型与架构边界 | [technical-design.md](./technical-design.md) |
 | 站点目录与路由规划 | [information-architecture.md](./information-architecture.md) |
@@ -30,6 +31,7 @@
 | [roadmap.md](./roadmap.md) | Phase 进度与后续计划 |
 | [maintainers.md](./maintainers.md) | 文档页 `maintainerOpenId` 备忘 |
 | [icons/README.md](../icons/README.md) | 图标 SVG 入库与 `icons:sync` 约定 |
+| [research/aiforui.dev/ADAPTATION.md](./research/aiforui.dev/ADAPTATION.md) | `/resources` 视觉适配笔记（调研，非对外文档） |
 
 ## 路径对照
 
@@ -40,6 +42,10 @@
 | `content/docs/os4/` | HyperOS 4 规范（默认；一级：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices` / `resources`） |
 | `content/docs/os4/resources/icons.mdx` | HyperOS 图标库预览（`<IconGallery />`；属「资源」一级目录） |
 | `content/docs/os5/` | HyperOS 5 占位（侧栏可见，内容未发布） |
+| `src/app/resources/` | 设计资源中心路由（`/resources`；独立 hub，非 docs 侧栏） |
+| `src/components/resources/` | `/resources` 页组件（Catalog / FeatureCard / Tools / Topics 等） |
+| `src/lib/resources.ts` | `/resources` 文案、Catalog、专题数据与页内锚点 id |
+| `public/resources/` | `/resources` 卡片配图（已提交） |
 | `icons/` | 图标源 SVG + `manifest.json`（见 [icons/README.md](../icons/README.md)） |
 | `tokens/` | Design Tokens：`reference|semantic|component` × `light|dark` |
 | `public/icons/` | 图标静态访问（`icons:sync` 产物） |
@@ -49,6 +55,7 @@
 | `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
 | `src/lib/icons.ts` | 图标 manifest 读取 |
+| `src/lib/resources.ts` | 设计资源中心数据与锚点 |
 | `src/lib/search-tokenizer.ts` | Orama 中英文混合搜索分词（`Intl.Segmenter('zh-CN')`） |
 | `src/lib/shared.ts` | 站点常量、默认维护人、飞书 AppLink |
 | `source.config.ts` | MDX frontmatter schema |
@@ -58,6 +65,7 @@
 
 ## 变更摘要
 
+- **2026-07-27**：Landing 增加设计资源中心 `/resources`（Catalog 页内锚点、Components / Tools / Token / Fonts / Icon / Brand 分区）；调研笔记见 `docs/research/aiforui.dev/`。
 - **2026-07-23**：文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`）；规范图入库 `public/media/`；OS4「抽屉浮窗」规范上线。
 - **2026-07-21**：侧栏「资源」一级目录；图标页迁至 `/docs/os4/resources/icons`，更名为 HyperOS 图标库；修正旧 `resources/*` 通配重定向冲突。
 - **2026-07-20**：OS4 Token 真源入库（`tokens/{reference,semantic,component}.{light,dark}.json`）；TokenTable 支持 Light / Dark。

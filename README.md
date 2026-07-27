@@ -4,6 +4,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 
 ## 特性
 
+- 设计资源中心（`/resources`：Figma / Token / 插件 / 字体 / 图标 / Brand 入口；Landing PillNav「设计资源」）
 - 移动端组件规范文档（无 Web 交互 demo）
 - Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
 - Design Token 表格展示（OS4 Reference / Semantic / Component × Light / Dark）
@@ -63,6 +64,7 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
   sidebar-ia.md
   roadmap.md
   maintainers.md
+  research/          # 调研笔记（含 aiforui.dev → /resources）
 icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
@@ -72,19 +74,21 @@ tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
 .env.example         # TinaCMS 本地模式环境变量模板
 src/
-  app/               # Next.js 路由（docs、admin、api/tina、search、llms、og）
+  app/               # Next.js 路由（docs、resources、admin、api/tina、search、llms、og）
   components/
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
+    resources/       # /resources 设计资源中心组件
     mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
+  lib/               # source、layout、shared、resources、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
   icons/             # 图标静态访问（由 icons:sync 生成，含 manifest.json）
   media/             # 规范配图（已提交；MDX 用 /media/...）
+  resources/         # /resources 页卡片配图（已提交）
   uploads/           # TinaCMS 媒体上传（本地模式；gitignore）
 source.config.ts     # MDX frontmatter schema
 next.config.mjs      # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容

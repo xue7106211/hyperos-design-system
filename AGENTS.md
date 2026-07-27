@@ -8,7 +8,7 @@
 
 - **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4 + TinaCMS（本地模式）
 - **目标用户**：设计、文档、客户端工程（Android / iOS）
-- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、文档配图页内画廊（Fancybox）、Compose / SwiftUI 静态代码参考
+- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、文档配图页内画廊（Fancybox）、Compose / SwiftUI 静态代码参考、**设计资源中心**（`/resources`）
 
 客户端组件 **源码在独立仓库** 维护；本仓只负责规范传播与 Figma / Token / 图标资产连接。
 
@@ -153,6 +153,7 @@ docs/                   # 工程设计文档（见 docs/index.md）
   sidebar-ia.md
   roadmap.md
   maintainers.md
+  research/             # 调研笔记（如 aiforui.dev → /resources 适配）
 tokens/                 # Design Tokens（reference|semantic|component × light|dark）
 icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
   svg/{category}/
@@ -169,16 +170,19 @@ public/
   home/                 # Landing 页静态图
   icons/                # 图标静态访问（icons:sync 产物，含 manifest.json）
   media/                # 规范配图（已提交；MDX 用 /media/...）
+  resources/            # /resources 页卡片配图（已提交）
   uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
-  app/                  # Next.js 路由（docs、admin、api/tina、search、llms、og）
+  app/                  # Next.js 路由（docs、resources、admin、api/tina、search、llms、og）
+    resources/          # 设计资源中心（独立 hub，非 docs 侧栏）
   components/
     docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/               # Landing：HomeHero、PillNav、HalftoneBloom
+    resources/          # /resources：Hero、Catalog、FeatureCard、Tools、Topics 等
     mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source、layout、shared、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
+  lib/                  # source、layout、shared、resources、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
 source.config.ts        # MDX frontmatter Zod schema
 next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts                # Markdown 内容协商（.md / Accept 重写）
@@ -213,6 +217,7 @@ package-lock.json       # npm 锁文件
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
 - **旧路径兼容**：`/docs/foundations/...` 等永久重定向到新 IA（见 `next.config.mjs`）
 - **OS5**：侧栏可见但禁用；`/docs/os5` 暂重定向到 OS4，待内容发布后移除
+- **设计资源中心**：`/resources`（Landing `PillNav`「设计资源」）；独立 hub，内容数据在 `src/lib/resources.ts`，组件在 `src/components/resources/`；Catalog 设计类条目跳转页内锚点（`#components` / `#design-tools` / `#design-token` / `#fonts` / `#icon` / `#brand`）
 
 新增页面时 **必须**：
 

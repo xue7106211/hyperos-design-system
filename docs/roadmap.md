@@ -23,6 +23,7 @@
 - [x] 图标预览页 + `IconGallery` + `icons/` 资产管线（`icons:sync` / `icons:import`）
 - [x] 文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`；资产 `public/media/`）
 - [x] OS4「抽屉浮窗 Bottom Sheet」规范页（`containers/drawer`）
+- [x] 设计资源中心 `/resources`（Catalog 页内锚点 + Components / Tools / Token / Fonts / Icon / Brand；Landing PillNav「设计资源」）
 
 ## 下一步
 

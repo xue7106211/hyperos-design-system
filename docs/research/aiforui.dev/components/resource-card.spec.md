@@ -1,67 +1,50 @@
-# ResourceCard Specification
+# ResourcesFeatureCard Specification
 
 ## Overview
-- **Target file:** `src/components/resources/ResourceCard.tsx`
-- **Screenshot:** project cards region on aiforui (Sonner / Vaul)
-- **Interaction model:** click-driven (whole card or CTA is a link)
-- **Source pattern:** aiforui white `rounded-xl` project card + soft shadow
+- **Target file:** `src/components/resources/ResourcesFeatureCard.tsx`
+- **Also:** `ResourcesFeatureCardGrid`（同文件；布局 `hero` | `stack`）
+- **Used by:** `ResourcesFeatured`、`ResourcesTools`、`ResourcesTopics`
+- **Screenshot reference:** aiforui project cards region（Sonner / Vaul）— 视觉参考，DOM/类名已 HyperOS 化
+- **Interaction model:** 整卡链接（内部 `Link` 或外链 `a`）；`href === '#'` 时为待定态
 
-## DOM Structure
+## DOM Structure（概念）
 ```
-a.resource-card (external or internal)
-  div.resource-card-body
-    p.resource-card-eyebrow (optional group/version)
-    h3.resource-card-title
-    p.resource-card-desc
-  div.resource-card-footer
-    span.resource-card-cta-label (打开 Figma / Git / 下载…)
+a.resources-feature-card [--wide] [--media]
+  [.resources-feature-row-crosses]          # wide 卡底部分隔十字
+  [.resources-feature-divider-crosses]      # stack 非首卡横线十字
+  .resources-feature-preview
+    Image | .resources-feature-pill
+  .resources-feature-meta
+    .resources-feature-title
+    .resources-feature-desc
+    ArrowUpRight (hover)
 ```
 
-## Computed Styles (from aiforui project card)
+## Props（实现为准）
 
-### Card container
-- display: flex
-- flexDirection: column
-- justifyContent: space-between
-- backgroundColor: rgb(255, 255, 255)
-- borderRadius: 12px
-- padding: 24px (adapt; aiforui had asymmetric pt for demos)
-- minHeight: 180px (adapted; source demos were 300px for interactive preview)
-- boxShadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 2px 0 rgba(0,0,0,0.04)
-- width: 100%
-- textDecoration: none
-- color: inherit
-- transition: transform 0.2s ease, box-shadow 0.2s ease
+| Prop | 用途 |
+|------|------|
+| `title` / `description` / `href` | 双行 meta + 链接 |
+| `external` | 外链 |
+| `image` (+ width/height) | 配图 |
+| `pill` | 无图时占位文案 |
+| `wide` | Components 通栏首卡 |
+| `media` | 高度随图；宽卡默认倾向 media |
+| `dividerCrosses` | 堆叠卡顶部分隔十字 |
 
-### Title
-- fontSize: 16px–18px
-- fontWeight: 575
-- color: rgb(0, 0, 0)
-- letterSpacing: -0.02em
+## Styles（摘要）
 
-### Description
-- fontSize: 14px
-- lineHeight: 22px
-- color: rgb(64, 64, 64)
-- marginTop: 8px
-
-### CTA
-- fontSize: 14px
-- fontWeight: 500
-- color: rgb(0, 130, 251) (accent from aiforui CTA blue)
-
-## States & Behaviors
-
-### Hover
-- **Trigger:** pointer hover on card
-- **State A:** default shadow
-- **State B:** slightly stronger shadow; optional translateY(-1px)
-- **Transition:** 0.2s ease
+- 容器类：`resources-feature-card`（样式在 `resources.css`）
+- 描述色：`var(--color-gray-900)`
+- Hover：右上角 `ArrowUpRight`（ease-in-out）
+- 宽卡：full-bleed 图 + 底部分隔行十字
+- 非 media 半宽卡：固定预览高度（cover）
 
 ## Grid wrapper
-- classes pattern: `mt-6 flex w-full flex-col gap-8 md:grid md:grid-cols-2`
-- gap: 32px
+
+- `ResourcesFeatureCardGrid`：`hero`（宽首卡 + 半宽行）或 `stack`（单列堆叠）
+- 帧角十字由 grid / section 负责；stack 中部十字用高优先级规则隐藏，避免与 Catalog 冲突
 
 ## Responsive Behavior
-- Desktop: 2 columns, ~334px card width in 700px content
-- Mobile: single column stack, gap 32px
+- Desktop：hero 首行通栏，其后两列或 stack 单列（视 section）
+- Mobile：单列堆叠
