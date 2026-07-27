@@ -28,7 +28,7 @@ export const resourcesPage = {
   title: 'HyperOS Design Resources',
   /** Hero 副标题；同时供 metadata 使用 */
   description:
-    '不断更新的设计资源库，包含图标、色彩、文字等丰富的资源，并提供多种效率组件，帮助快速准确地设计 HyperOS 应用。',
+    '使用 HyperOS 官方设计模板、图标制作模板、色彩指南以及其他资源，快速精准地设计 App。',
   taughtByLabel: '维护团队',
   taughtByName: 'HyperOS 设计系统',
   taughtByHref: '/docs/os4',
@@ -231,7 +231,8 @@ export const resourcesTopics: TopicSection[] = [
   {
     id: 'fonts',
     title: 'Fonts',
-    description: '品牌与界面字体资源，保证多端排版一致。',
+    description:
+      '面向品牌与界面的字体资源，以 MiSans 统一多端排版与阅读体验。',
     items: [
       {
         name: 'MiSans',
@@ -263,7 +264,8 @@ export const resourcesTopics: TopicSection[] = [
   {
     id: 'brand',
     title: 'Brand',
-    description: '品牌标识与视觉规范。',
+    description:
+      '品牌标识、视觉规范与官方机模等资产，保证对外表达与产品呈现一致。',
     items: [
       {
         name: 'Brand Guidelines',
