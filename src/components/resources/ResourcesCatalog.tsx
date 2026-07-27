@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Library, Rocket } from 'lucide-react';
+import { Library } from 'lucide-react';
 import { ResourcesGridCrosses } from '@/components/resources/ResourcesGridCrosses';
 import { ResourcesSplitSection } from '@/components/resources/ResourcesSplitSection';
 import { resourcesCatalog } from '@/lib/resources';
@@ -16,6 +16,7 @@ function CatalogItemLink({
   external?: boolean;
 }) {
   const pending = !href || href === '#';
+  const isHash = href.startsWith('#') && href.length > 1;
   const body = (
     <>
       <p className="resources-skills-name">{name}</p>
@@ -25,6 +26,10 @@ function CatalogItemLink({
 
   if (pending) {
     return <div className="resources-skills-item">{body}</div>;
+  }
+
+  if (isHash) {
+    return <a href={href}>{body}</a>;
   }
 
   if (external) {
@@ -52,8 +57,7 @@ export function ResourcesCatalog() {
         <>
           <h2 className="resources-h2 resources-h2-tight">Catalog</h2>
           <p className="resources-paragraph">
-            按设计与工程分组。点击条目即可打开
-            Figma、文档或代码库。
+            按设计与工程分组。点击条目可跳转到页内对应资源区。
           </p>
         </>
       }

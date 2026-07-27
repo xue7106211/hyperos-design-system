@@ -28,6 +28,7 @@ export function ResourcesTopics() {
       {resourcesTopics.map((topic) => (
         <ResourcesSplitSection
           key={topic.id}
+          id={topic.id}
           className="resources-split-section--spaced"
           icon={topicIcons[topic.id]}
           copy={
@@ -38,7 +39,7 @@ export function ResourcesTopics() {
           }
         >
           <ResourcesFeatureCardGrid variant="stack">
-            {topic.items.map((item) => (
+            {topic.items.map((item, index) => (
               <ResourcesFeatureCard
                 key={item.name}
                 title={item.name}
@@ -49,6 +50,7 @@ export function ResourcesTopics() {
                 imageWidth={item.imageWidth}
                 imageHeight={item.imageHeight}
                 media={Boolean(item.image)}
+                dividerCrosses={index > 0}
               />
             ))}
           </ResourcesFeatureCardGrid>

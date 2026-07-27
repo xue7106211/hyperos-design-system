@@ -255,6 +255,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
+  scroll-margin-top: 5.5rem;
 }
 
 .resources-split-section--spaced {
@@ -721,12 +722,27 @@
     border-top: 1px solid var(--resources-guide);
   }
 
-  /* 单列工具卡：不要中线十字 */
-  .resources-feature-grid--tools .resources-grid-cross--mt,
-  .resources-feature-grid--tools .resources-grid-cross--mb,
-  .resources-feature-grid--tools .resources-grid-cross--ml,
-  .resources-feature-grid--tools .resources-grid-cross--mr,
-  .resources-feature-grid--tools .resources-grid-cross--mc {
+  /* 单列专题卡：压过 Catalog 的 non-cols mid crosses，只保留四角 */
+  .resources-feature-grid--tools.resources-grid-frame:not(
+      .resources-grid-frame--cols
+    )
+    .resources-grid-cross--mt,
+  .resources-feature-grid--tools.resources-grid-frame:not(
+      .resources-grid-frame--cols
+    )
+    .resources-grid-cross--mb,
+  .resources-feature-grid--tools.resources-grid-frame:not(
+      .resources-grid-frame--cols
+    )
+    .resources-grid-cross--ml,
+  .resources-feature-grid--tools.resources-grid-frame:not(
+      .resources-grid-frame--cols
+    )
+    .resources-grid-cross--mr,
+  .resources-feature-grid--tools.resources-grid-frame:not(
+      .resources-grid-frame--cols
+    )
+    .resources-grid-cross--mc {
     display: none;
   }
 
@@ -750,11 +766,40 @@
   height: 0;
 }
 
+.resources-feature-divider-crosses {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  height: 0;
+}
+
+.resources-feature-divider-crosses .resources-grid-cross {
+  display: none;
+}
+
 .resources-feature-row-crosses .resources-grid-cross {
   display: none;
 }
 
 @media (min-width: 768px) {
+  .resources-feature-divider-crosses .resources-grid-cross--edge-l,
+  .resources-feature-divider-crosses .resources-grid-cross--edge-r {
+    display: block;
+    top: calc(var(--resources-cross-size) / -2);
+  }
+
+  .resources-feature-divider-crosses .resources-grid-cross--edge-l {
+    left: calc(var(--resources-cross-size) / -2);
+  }
+
+  .resources-feature-divider-crosses .resources-grid-cross--edge-r {
+    right: calc(var(--resources-cross-size) / -2);
+    left: auto;
+  }
+
   .resources-feature-row-crosses .resources-grid-cross--row-l,
   .resources-feature-row-crosses .resources-grid-cross--row-c,
   .resources-feature-row-crosses .resources-grid-cross--row-r {

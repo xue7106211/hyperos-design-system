@@ -14,11 +14,21 @@ const osAiFigmaUrl =
 /** HyperOS Token Library */
 const hyperosTokenUrl = 'https://hyperostoken.netlify.app/';
 
+/** Brand Guidelines */
+const brandGuidelinesUrl = 'https://mdc.mi.com/resources/rule/19';
+
+/** MiSans / 字体资源 */
+const fontsUrl = 'https://mdc.mi.com/resources/fonts';
+
+/** HyperOS 图标库（Figma） */
+const iconsFigmaUrl =
+  'https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?node-id=40676-51245';
+
 export const resourcesPage = {
   title: 'HyperOS Design Resources',
   /** Hero 副标题；同时供 metadata 使用 */
   description:
-    '不断更新的设计资源库，包含图标、色彩、文字等丰富的资源，并提供多种效率组件，帮助快速准确地设计 HyperOS 应用',
+    '不断更新的设计资源库，包含图标、色彩、文字等丰富的资源，并提供多种效率组件，帮助快速准确地设计 HyperOS 应用。',
   taughtByLabel: '维护团队',
   taughtByName: 'HyperOS 设计系统',
   taughtByHref: '/docs/os4',
@@ -53,6 +63,16 @@ export type CatalogColumn = {
   items: CatalogItem[];
 };
 
+/** 资源页专题区锚点（Catalog 跳转目标） */
+export const resourcesSectionIds = {
+  components: 'components',
+  designTools: 'design-tools',
+  designToken: 'design-token',
+  fonts: 'fonts',
+  icon: 'icon',
+  brand: 'brand',
+} as const;
+
 export const resourcesCatalog: CatalogColumn[] = [
   {
     title: '设计 Design',
@@ -60,44 +80,32 @@ export const resourcesCatalog: CatalogColumn[] = [
       {
         name: '/ OS4 Figma Library /',
         description: 'HyperOS 4 设计组件库',
-        href: defaultFigmaUrl,
-        external: true,
+        href: `#${resourcesSectionIds.components}`,
       },
       {
         name: '/ Design Tools /',
         description: '设计插件、协作、效率工具',
-        href: TBD,
-        external: true,
+        href: `#${resourcesSectionIds.designTools}`,
       },
       {
         name: '/ Design Token /',
         description: '小米 HyperOS Figma Variables / Token',
-        href: hyperosTokenUrl,
-        external: true,
-      },
-      {
-        name: '/ Materials /',
-        description: '系统材质与玻璃效果',
-        href: TBD,
-        external: true,
+        href: `#${resourcesSectionIds.designToken}`,
       },
       {
         name: '/ Fonts /',
         description: '品牌与界面字体资源',
-        href: TBD,
-        external: true,
+        href: `#${resourcesSectionIds.fonts}`,
       },
       {
         name: '/ ICON /',
         description: '图标库预览与 SVG',
-        href: '/docs/os4/resources/icons',
-        external: false,
+        href: `#${resourcesSectionIds.icon}`,
       },
       {
         name: '/ Brand /',
         description: '品牌标识与视觉规范',
-        href: TBD,
-        external: true,
+        href: `#${resourcesSectionIds.brand}`,
       },
     ],
   },
@@ -121,7 +129,7 @@ export const resourcesCatalog: CatalogColumn[] = [
 ];
 
 const FONTS_PLACEHOLDER = '/resources/fonts-misans-card.jpg';
-const ICON_PLACEHOLDER = '/resources/icon-card.jpg';
+const ICON_PLACEHOLDER = '/resources/icon-library-card.jpg';
 const BRAND_PLACEHOLDER = '/resources/brand-hyperos-card.jpg';
 
 export const resourcesFeatured = [
@@ -214,8 +222,8 @@ export const resourcesTopics: TopicSection[] = [
       {
         name: 'Figma Token Plugin',
         description: 'Figma 内进行 Token 管理/替换的插件。',
-        href: TBD,
-        external: false,
+        href: 'https://www.figma.com/community/plugin/1626427765938063447',
+        external: true,
         image: '/resources/token-docs-card.jpg',
       },
     ],
@@ -227,8 +235,8 @@ export const resourcesTopics: TopicSection[] = [
     items: [
       {
         name: 'MiSans',
-        description: '品牌与界面字体资源（待补充下载）。',
-        href: TBD,
+        description: '小米界面字体资源。',
+        href: fontsUrl,
         external: true,
         image: FONTS_PLACEHOLDER,
         imageWidth: 1024,
@@ -238,14 +246,14 @@ export const resourcesTopics: TopicSection[] = [
   },
   {
     id: 'icon',
-    title: 'Icon',
-    description: '图标库预览、复制名称与 SVG。',
+    title: 'HyperOS Icon',
+    description: 'HyperOS Symbol 系统图标设计是一次重要的演进。它不仅具备了字体属性，还可以与系统字体无缝对接。',
     items: [
       {
         name: 'HyperOS 图标库',
         description: '分类浏览、复制名称与 SVG。',
-        href: '/docs/os4/resources/icons',
-        external: false,
+        href: iconsFigmaUrl,
+        external: true,
         image: ICON_PLACEHOLDER,
         imageWidth: 1024,
         imageHeight: 576,
@@ -259,10 +267,19 @@ export const resourcesTopics: TopicSection[] = [
     items: [
       {
         name: 'Brand Guidelines',
-        description: '品牌标识与视觉规范（待补充）。',
-        href: TBD,
+        description: '品牌标识与视觉规范。',
+        href: brandGuidelinesUrl,
         external: true,
         image: BRAND_PLACEHOLDER,
+        imageWidth: 1024,
+        imageHeight: 576,
+      },
+      {
+        name: 'Device Assets',
+        description: '小米官方机模和设备资源。',
+        href: TBD,
+        external: true,
+        image: '/resources/device-assets-card.jpg',
         imageWidth: 1024,
         imageHeight: 576,
       },

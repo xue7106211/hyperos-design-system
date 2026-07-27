@@ -21,6 +21,8 @@ export type ResourcesFeatureCardProps = {
    * 宽卡 / 专题卡通常为 true；半宽固定高预览为 false。
    */
   media?: boolean;
+  /** 卡顶横线与左右竖线交点十字（单列堆叠的非首卡） */
+  dividerCrosses?: boolean;
 };
 
 export function ResourcesFeatureCard({
@@ -34,6 +36,7 @@ export function ResourcesFeatureCard({
   pill,
   wide,
   media,
+  dividerCrosses,
 }: ResourcesFeatureCardProps) {
   const pending = !href || href === '#';
   const useMedia = Boolean(media ?? (wide && image));
@@ -52,6 +55,12 @@ export function ResourcesFeatureCard({
           <span className="resources-grid-cross resources-grid-cross--row-l" />
           <span className="resources-grid-cross resources-grid-cross--row-c" />
           <span className="resources-grid-cross resources-grid-cross--row-r" />
+        </div>
+      ) : null}
+      {dividerCrosses ? (
+        <div className="resources-feature-divider-crosses" aria-hidden>
+          <span className="resources-grid-cross resources-grid-cross--edge-l" />
+          <span className="resources-grid-cross resources-grid-cross--edge-r" />
         </div>
       ) : null}
       <div className="resources-feature-preview">

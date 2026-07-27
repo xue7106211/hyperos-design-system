@@ -4,11 +4,12 @@ import {
   ResourcesFeatureCardGrid,
 } from '@/components/resources/ResourcesFeatureCard';
 import { ResourcesSplitSection } from '@/components/resources/ResourcesSplitSection';
-import { resourcesTools } from '@/lib/resources';
+import { resourcesSectionIds, resourcesTools } from '@/lib/resources';
 
 export function ResourcesTools() {
   return (
     <ResourcesSplitSection
+      id={resourcesSectionIds.designTools}
       className="resources-split-section--spaced"
       icon={
         <Wrench
@@ -27,7 +28,7 @@ export function ResourcesTools() {
       }
     >
       <ResourcesFeatureCardGrid variant="stack">
-        {resourcesTools.map((item) => (
+        {resourcesTools.map((item, index) => (
           <ResourcesFeatureCard
             key={item.name}
             title={item.name}
@@ -38,6 +39,7 @@ export function ResourcesTools() {
             imageWidth={item.imageWidth}
             imageHeight={item.imageHeight}
             media={Boolean(item.image)}
+            dividerCrosses={index > 0}
           />
         ))}
       </ResourcesFeatureCardGrid>

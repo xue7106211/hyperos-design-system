@@ -4,11 +4,12 @@ import {
   ResourcesFeatureCardGrid,
 } from '@/components/resources/ResourcesFeatureCard';
 import { ResourcesSplitSection } from '@/components/resources/ResourcesSplitSection';
-import { resourcesFeatured } from '@/lib/resources';
+import { resourcesFeatured, resourcesSectionIds } from '@/lib/resources';
 
 export function ResourcesFeatured() {
   return (
     <ResourcesSplitSection
+      id={resourcesSectionIds.components}
       className="resources-split-section--spaced"
       icon={
         <Rocket
