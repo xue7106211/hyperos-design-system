@@ -34,6 +34,7 @@ export type CatalogItem = {
   description: string;
   href: string;
   external?: boolean;
+  updatedAt?: string;
 };
 
 export type CatalogColumn = {
@@ -43,58 +44,58 @@ export type CatalogColumn = {
 
 export const resourcesCatalog: CatalogColumn[] = [
   {
-    title: '设计',
+    title: '设计 Design',
     items: [
       {
-        name: '/os4-ui-kit',
+        name: '/ OS4 Figma Library /',
         description: 'HyperOS 4 设计组件库',
         href: defaultFigmaUrl,
         external: true,
       },
       {
-        name: '/os3-ui-kit',
+        name: '/ OS3 Figma Library /',
         description: 'HyperOS 3 历史版本组件库',
         href: TBD,
         external: true,
       },
       {
-        name: '/os4-legacy',
+        name: '/ OS4 AI Figma Library /',
         description: 'OS4 存量业务组件与样式',
         href: TBD,
         external: true,
       },
       {
-        name: '/design-tools',
-        description: '设计协作与效率工具',
+        name: '/ Design Tools /',
+        description: '设计插件、协作、效率工具',
         href: TBD,
         external: true,
       },
       {
-        name: '/design-token',
-        description: 'Figma Variables / Token 导出',
+        name: '/ Design Token /',
+        description: '小米 HyperOS Figma Variables / Token',
         href: TBD,
         external: true,
       },
       {
-        name: '/materials',
-        description: '系统材质与表面效果',
+        name: '/ Materials /',
+        description: '系统材质与玻璃效果',
         href: TBD,
         external: true,
       },
       {
-        name: '/fonts',
+        name: '/ Fonts /',
         description: '品牌与界面字体资源',
         href: TBD,
         external: true,
       },
       {
-        name: '/icons',
+        name: '/ ICON /',
         description: '图标库预览与 SVG',
         href: '/docs/os4/resources/icons',
         external: false,
       },
       {
-        name: '/brand',
+        name: '/ Brand /',
         description: '品牌标识与视觉规范',
         href: TBD,
         external: true,
@@ -102,16 +103,16 @@ export const resourcesCatalog: CatalogColumn[] = [
     ],
   },
   {
-    title: '工程',
+    title: '工程 Engineering',
     items: [
       {
-        name: '/miuix-flutter',
+        name: '{ MIUIX Flutter }',
         description: 'Flutter 端 MIUIX 组件库',
         href: TBD,
         external: true,
       },
       {
-        name: '/miuix-java',
+        name: '{ MIUIX Java }',
         description: 'Android / Java 端 MIUIX',
         href: TBD,
         external: true,

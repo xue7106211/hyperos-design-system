@@ -26,6 +26,7 @@
     0 1px 1px 0 rgba(255, 255, 255, 1) inset,
     0 2px 4px 0 rgba(0, 0, 0, 0.1);
   --home-accent: #0082fb;
+  --resources-hero-band-bg: #f9f9f8;
   position: relative;
   background-color: var(--color-gray-100);
   color: var(--color-gray-1200);
@@ -44,6 +45,7 @@
   height: 400px;
   justify-content: center;
   overflow: hidden;
+  background-color: var(--resources-hero-band-bg);
 }
 
 .resources-matrix-canvas {
@@ -83,6 +85,7 @@
     0 1px 1px 0 rgba(255, 255, 255, 0.15) inset,
     0 2px 4px 0 rgba(0, 0, 0, 0.5);
   --home-accent: #4194ff;
+  --resources-hero-band-bg: #191918;
   color-scheme: dark;
 }
 
@@ -99,7 +102,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   margin: 1.5rem auto 2rem;
   padding: 0 1rem 4rem;
   color: var(--color-gray-1200);
@@ -116,6 +119,25 @@
     margin-top: 5rem;
     margin-bottom: 3rem;
   }
+}
+
+/* Full-bleed gray band above the horizontal rule */
+.resources-hero-band {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+}
+
+.resources-hero-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+  background-color: var(--resources-hero-band-bg);
+  pointer-events: none;
 }
 
 /* Hero — reuse home-reveal from global.css */
@@ -176,52 +198,6 @@
   font-weight: 500;
 }
 
-.resources-avatar-stack {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-}
-
-.resources-avatar-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
-
-.resources-avatar {
-  position: relative;
-  width: 2.25rem;
-  height: 2.25rem;
-  margin-left: -0.55rem;
-  border-radius: 9999px;
-  border: 2px solid var(--color-gray-100);
-  background: var(--color-gray-300);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6875rem;
-  font-weight: 575;
-  color: var(--color-foreground-100);
-  line-height: 1;
-}
-
-.resources-avatar:first-child {
-  margin-left: 0;
-}
-
-.resources-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.dark .resources-avatar {
-  border-color: var(--color-gray-100);
-}
-
 /* Full-bleed horizontal rule (hero → content) */
 .resources-rule {
   --resources-guide: rgb(0 0 0 / 0.1);
@@ -262,14 +238,14 @@
 .resources-rule-cross--l {
   left: max(
     0.5rem,
-    calc(50% - min(480px, 50vw - 1rem) - var(--resources-cross-size) / 2)
+    calc(50% - min(500px, 50vw - 1rem) - var(--resources-cross-size) / 2)
   );
 }
 
 .resources-rule-cross--r {
   right: max(
     0.5rem,
-    calc(50% - min(480px, 50vw - 1rem) - var(--resources-cross-size) / 2)
+    calc(50% - min(500px, 50vw - 1rem) - var(--resources-cross-size) / 2)
   );
   left: auto;
 }
@@ -545,6 +521,7 @@
   font-size: 0.8125rem;
   font-weight: 575;
   color: var(--color-foreground-100);
+  background-color: var(--color-gray-200);
 }
 
 @media (min-width: 768px) {
@@ -571,7 +548,11 @@
 .resources-skills-list a,
 .resources-skills-list .resources-skills-item {
   position: relative;
-  display: block;
+  display: flex;
+  min-height: 4.625rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.625rem;
   padding: 0.875rem;
   text-decoration: none;
   color: inherit;
@@ -633,6 +614,16 @@
   font-size: 0.8125rem;
   line-height: 1.375rem;
   color: var(--color-foreground-200);
+}
+
+.resources-skills-updated {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1;
+  color: var(--color-gray-500);
+  align-self: flex-end;
+  text-align: right;
+  padding-top: 0.35rem;
 }
 
 /* Featured cards (right panel in split section) */

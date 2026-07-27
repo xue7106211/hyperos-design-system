@@ -50,14 +50,10 @@ export function ResourcesCatalog() {
       }
       copy={
         <>
-          <h2 className="resources-h2 resources-h2-tight">你会找到这些资源</h2>
+          <h2 className="resources-h2 resources-h2-tight">Catalog</h2>
           <p className="resources-paragraph">
             按设计与工程分组。点击条目即可打开
-            Figma、文档或代码库；标注待补充的条目我们正在补齐链接。
-          </p>
-          <p className="resources-paragraph">资源目录：</p>
-          <p className="resources-paragraph resources-split-note">
-            后续还会继续补充更多资产入口。
+            Figma、文档或代码库。
           </p>
         </>
       }

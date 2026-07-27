@@ -20,8 +20,10 @@ export default function ResourcesPage() {
       <MatrixRain />
       <PillNav />
       <main className="resources-layout-root">
-        <ResourceHero />
-        <ResourcesRule />
+        <section className="resources-hero-band">
+          <ResourceHero />
+          <ResourcesRule />
+        </section>
         <ResourcesCatalog />
         <ResourcesFeatured />
         <ResourcesFaq />

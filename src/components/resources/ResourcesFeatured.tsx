@@ -17,7 +17,7 @@ export function ResourcesFeatured() {
       }
       copy={
         <>
-          <h2 className="resources-h2 resources-h2-tight">先从这里开始</h2>
+          <h2 className="resources-h2 resources-h2-tight">Components</h2>
           <p className="resources-paragraph">
             四个高频入口：组件库、图标、Token 与工程组件，按需取用。
           </p>
