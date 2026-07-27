@@ -37,7 +37,7 @@ export function ResourcesTools() {
             image={item.image}
             imageWidth={item.imageWidth}
             imageHeight={item.imageHeight}
-            media={false}
+            media={Boolean(item.image)}
           />
         ))}
       </ResourcesFeatureCardGrid>

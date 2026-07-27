@@ -11,6 +11,9 @@ const os3FigmaUrl =
 const osAiFigmaUrl =
   'https://www.figma.com/design/FBvQ3xM5C62MgIcA1JHWIs/Xiaomi-Hyper-OS4-UI-Kit--Figma-UI-Kit-4.0-AI-%E6%B5%8B%E8%AF%95%E7%89%88?m=auto&t=a5Rq4JSlOnbmlrZY-6';
 
+/** HyperOS Token Library */
+const hyperosTokenUrl = 'https://hyperostoken.netlify.app/';
+
 export const resourcesPage = {
   title: 'HyperOS Design Resources',
   /** Hero 副标题；同时供 metadata 使用 */
@@ -69,7 +72,7 @@ export const resourcesCatalog: CatalogColumn[] = [
       {
         name: '/ Design Token /',
         description: '小米 HyperOS Figma Variables / Token',
-        href: TBD,
+        href: hyperosTokenUrl,
         external: true,
       },
       {
@@ -117,11 +120,9 @@ export const resourcesCatalog: CatalogColumn[] = [
   },
 ];
 
-const TOOLS_PLACEHOLDER = '/resources/tools-placeholder.png';
-const TOKEN_PLACEHOLDER = '/resources/token-placeholder.png';
-const FONTS_PLACEHOLDER = '/resources/fonts-card.jpg';
+const FONTS_PLACEHOLDER = '/resources/fonts-misans-card.jpg';
 const ICON_PLACEHOLDER = '/resources/icon-card.jpg';
-const BRAND_PLACEHOLDER = '/resources/brand-card.jpg';
+const BRAND_PLACEHOLDER = '/resources/brand-hyperos-card.jpg';
 
 export const resourcesFeatured = [
   {
@@ -167,25 +168,25 @@ export type ToolItem = {
 
 export const resourcesTools: ToolItem[] = [
   {
-    name: 'Figma 插件',
-    description: 'HyperOS 设计效率插件（待补充链接）。',
-    href: TBD,
+    name: 'Figma 材质插件',
+    description: 'HyperOS 设计效率插件。',
+    href: 'https://www.figma.com/community/plugin/1562763338973560719/hyperos4-material',
     external: true,
-    image: TOOLS_PLACEHOLDER,
+    image: '/resources/figma-plugin-card.jpg',
   },
   {
-    name: '协作与评审',
-    description: '设计协作、标注与评审相关工具。',
-    href: TBD,
+    name: 'Figma 图层语义化',
+    description: '快速针对 Figma 图层进行 AI 语义化。',
+    href: 'https://www.figma.com/community/plugin/1609411677451730178',
     external: true,
-    image: TOOLS_PLACEHOLDER,
+    image: '/resources/figma-semantics-card.jpg',
   },
   {
-    name: '效率组件',
-    description: '快速搭建界面的效率型资源与模板。',
-    href: TBD,
+    name: 'Figma Token 检查',
+    description: '快速检查 Figma 设计稿的规范性。',
+    href: 'https://www.figma.com/community/plugin/1626427765938063447',
     external: true,
-    image: TOOLS_PLACEHOLDER,
+    image: '/resources/figma-lint-card.jpg',
   },
 ];
 
@@ -204,18 +205,18 @@ export const resourcesTopics: TopicSection[] = [
     description: 'Figma Variables 与 Token 导出入口，统一色彩、间距与圆角。',
     items: [
       {
-        name: 'Figma Variables',
+        name: 'HyperOS Token Library',
         description: '小米 HyperOS Figma Variables / Token。',
-        href: TBD,
+        href: hyperosTokenUrl,
         external: true,
-        image: TOKEN_PLACEHOLDER,
+        image: '/resources/token-variables-card.jpg',
       },
       {
-        name: 'Token 文档',
-        description: '站内 TokenTable 与语义说明。',
+        name: 'Figma Token Plugin',
+        description: 'Figma 内进行 Token 管理/替换的插件。',
         href: TBD,
         external: false,
-        image: TOKEN_PLACEHOLDER,
+        image: '/resources/token-docs-card.jpg',
       },
     ],
   },
