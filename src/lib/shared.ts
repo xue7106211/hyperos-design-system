@@ -44,7 +44,7 @@ export const gitRepoUrl = `${gitConfig.host}/${gitConfig.user}/${gitConfig.repo}
 
 /** 文档站默认 Figma 组件库（无页级 figmaFileKey 时的「跳转 Figma」回退） */
 export const defaultFigmaUrl =
-  'https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?m=auto&node-id=78009-160479&t=T6yLwmMb0OkdPfNK-1';
+  'https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?m=auto&node-id=78009-160479&t=qOmpaErNEN80e8Tz-1';
 
 export const defaultFigmaLibrary = {
   fileKey: '7PVSm4yEbknNLFaqauI4EM',

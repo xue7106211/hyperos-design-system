@@ -3,6 +3,14 @@ import { defaultFigmaUrl } from '@/lib/shared';
 /** 链接待补全时用的占位 */
 const TBD = '#';
 
+/** HyperOS 3 / MIUIX 3.2 组件库 */
+const os3FigmaUrl =
+  'https://www.figma.com/design/rzAkMEjfZPGzSWwBICgFUt/MIUIX-3.2-%E7%BB%84%E4%BB%B6%E5%BA%93--6%E6%9C%884%E6%97%A5%E5%A4%87%E4%BB%BD-?node-id=30187-14500&t=mtG0Xeo0cRV2yQZs-11';
+
+/** HyperOS 4 AI 组件库（测试版） */
+const osAiFigmaUrl =
+  'https://www.figma.com/design/FBvQ3xM5C62MgIcA1JHWIs/Xiaomi-Hyper-OS4-UI-Kit--Figma-UI-Kit-4.0-AI-%E6%B5%8B%E8%AF%95%E7%89%88?m=auto&t=a5Rq4JSlOnbmlrZY-6';
+
 export const resourcesPage = {
   title: 'HyperOS Design Resources',
   /** Hero 副标题；同时供 metadata 使用 */
@@ -50,18 +58,6 @@ export const resourcesCatalog: CatalogColumn[] = [
         name: '/ OS4 Figma Library /',
         description: 'HyperOS 4 设计组件库',
         href: defaultFigmaUrl,
-        external: true,
-      },
-      {
-        name: '/ OS3 Figma Library /',
-        description: 'HyperOS 3 历史版本组件库',
-        href: TBD,
-        external: true,
-      },
-      {
-        name: '/ OS4 AI Figma Library /',
-        description: 'OS4 存量业务组件与样式',
-        href: TBD,
         external: true,
       },
       {
@@ -121,7 +117,6 @@ export const resourcesCatalog: CatalogColumn[] = [
   },
 ];
 
-const CARD_PLACEHOLDER = '/resources/card-placeholder.png';
 const TOOLS_PLACEHOLDER = '/resources/tools-placeholder.png';
 const TOKEN_PLACEHOLDER = '/resources/token-placeholder.png';
 const FONTS_PLACEHOLDER = '/resources/fonts-card.jpg';
@@ -131,31 +126,31 @@ const BRAND_PLACEHOLDER = '/resources/brand-card.jpg';
 export const resourcesFeatured = [
   {
     id: 'os4',
-    title: 'OS4 组件库',
-    description: '当前主线产品界面设计的 Figma UI Kit。',
+    title: 'HyperOS4 Component',
+    description: '当前主线产品界面设计的 Figma 组件库。',
     href: defaultFigmaUrl,
     external: true,
     pill: '打开 Figma',
     wide: true,
-    image: '/home/hyperos-ui-kit-4.png',
+    image: '/resources/os4-card.jpg',
   },
   {
-    id: 'tokens',
-    title: 'Design Token',
-    description: 'Figma Variables / Token 导出入口。',
-    href: TBD,
+    id: 'os3',
+    title: 'HyperOS3 Component',
+    description: '3.0 版本的 HyperOS 组件库。',
+    href: os3FigmaUrl,
     external: true,
-    pill: '打开 Token',
-    image: CARD_PLACEHOLDER,
+    pill: '打开 Figma',
+    image: '/resources/os3-card.jpg',
   },
   {
-    id: 'miuix',
-    title: 'MIUIX Flutter',
-    description: 'Flutter 端组件库，工程落地入口。',
-    href: TBD,
+    id: 'os-ai',
+    title: 'HyperOS AI Component',
+    description: 'HyperOS AI 版本探索组件库。',
+    href: osAiFigmaUrl,
     external: true,
-    pill: '打开仓库',
-    image: CARD_PLACEHOLDER,
+    pill: '打开 Figma',
+    image: '/resources/os-ai-card.jpg',
   },
 ] as const;
 

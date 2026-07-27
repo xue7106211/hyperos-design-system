@@ -1,7 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import { Wrench } from 'lucide-react';
-import { ResourcesGridCrosses } from '@/components/resources/ResourcesGridCrosses';
+import {
+  ResourcesFeatureCard,
+  ResourcesFeatureCardGrid,
+} from '@/components/resources/ResourcesFeatureCard';
 import { ResourcesSplitSection } from '@/components/resources/ResourcesSplitSection';
 import { resourcesTools } from '@/lib/resources';
 
@@ -25,62 +26,21 @@ export function ResourcesTools() {
         </>
       }
     >
-      <div className="resources-feature-grid resources-feature-grid--tools resources-grid-frame">
-        <ResourcesGridCrosses />
-        {resourcesTools.map((item) => {
-          const pending = !item.href || item.href === '#';
-          const className = 'resources-feature-card';
-          const inner = (
-            <>
-              <div className="resources-feature-preview">
-                {item.image ? (
-                  <Image
-                    className="resources-feature-image"
-                    src={item.image}
-                    alt={item.name}
-                    width={640}
-                    height={360}
-                    sizes="(min-width: 768px) 677px, 100vw"
-                  />
-                ) : null}
-              </div>
-              <p className="resources-feature-meta">
-                <span className="resources-feature-title">{item.name}</span>
-                {', '}
-                {item.description}
-              </p>
-            </>
-          );
-
-          if (pending) {
-            return (
-              <div key={item.name} className={className}>
-                {inner}
-              </div>
-            );
-          }
-
-          if (item.external) {
-            return (
-              <a
-                key={item.name}
-                className={className}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {inner}
-              </a>
-            );
-          }
-
-          return (
-            <Link key={item.name} className={className} href={item.href}>
-              {inner}
-            </Link>
-          );
-        })}
-      </div>
+      <ResourcesFeatureCardGrid variant="stack">
+        {resourcesTools.map((item) => (
+          <ResourcesFeatureCard
+            key={item.name}
+            title={item.name}
+            description={item.description}
+            href={item.href}
+            external={item.external}
+            image={item.image}
+            imageWidth={item.imageWidth}
+            imageHeight={item.imageHeight}
+            media={false}
+          />
+        ))}
+      </ResourcesFeatureCardGrid>
     </ResourcesSplitSection>
   );
 }

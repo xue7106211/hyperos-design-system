@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { PillNav } from '@/components/home/PillNav';
 import { MatrixRain } from '@/components/resources/MatrixRain';
 import { ResourceHero } from '@/components/resources/ResourceHero';
+import { ResourcesBackToTop } from '@/components/resources/ResourcesBackToTop';
 import { ResourcesCatalog } from '@/components/resources/ResourcesCatalog';
 import { ResourcesFeatured } from '@/components/resources/ResourcesFeatured';
 import { ResourcesFooter } from '@/components/resources/ResourcesFooter';
@@ -31,6 +32,7 @@ export default function ResourcesPage() {
         <ResourcesTopics />
         <ResourcesFooter />
       </main>
+      <ResourcesBackToTop />
     </>
   );
 }
