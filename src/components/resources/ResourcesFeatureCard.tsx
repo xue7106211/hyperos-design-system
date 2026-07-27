@@ -1,7 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { ResourcesGridCrosses } from '@/components/resources/ResourcesGridCrosses';
 
 export type ResourcesFeatureCardProps = {
@@ -131,6 +133,7 @@ export function ResourcesFeatureCardGrid({
   variant = 'stack',
   children,
 }: ResourcesFeatureCardGridProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const className = [
     'resources-feature-grid',
     'resources-grid-frame',
@@ -139,8 +142,37 @@ export function ResourcesFeatureCardGrid({
       : 'resources-feature-grid--tools',
   ].join(' ');
 
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (reduceMotion) return;
+
+    el.dataset.animate = '';
+
+    const reveal = () => {
+      el.dataset.revealed = '';
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        // 等一帧，确保先应用 data-animate 的隐藏态再播放入场
+        requestAnimationFrame(reveal);
+        io.disconnect();
+      },
+      { threshold: 0.14, rootMargin: '0px 0px -6% 0px' },
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className={className}>
+    <div ref={rootRef} className={className}>
       <ResourcesGridCrosses />
       {children}
     </div>

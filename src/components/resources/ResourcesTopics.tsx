@@ -1,4 +1,4 @@
-import { Aperture, Baseline, PaintBucket, Shapes } from 'lucide-react';
+import { Baseline, Gem, PaintBucket, Shapes } from 'lucide-react';
 import type { ReactNode } from 'react';
 import {
   ResourcesFeatureCard,
@@ -18,7 +18,7 @@ const topicIcons: Record<string, ReactNode> = {
     <Shapes className="resources-split-icon" aria-hidden strokeWidth={1.75} />
   ),
   brand: (
-    <Aperture className="resources-split-icon" aria-hidden strokeWidth={1.75} />
+    <Gem className="resources-split-icon" aria-hidden strokeWidth={1.75} />
   ),
 };
 

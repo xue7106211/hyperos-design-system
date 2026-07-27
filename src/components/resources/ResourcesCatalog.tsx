@@ -57,7 +57,7 @@ export function ResourcesCatalog() {
         <>
           <h2 className="resources-h2 resources-h2-tight">Catalog</h2>
           <p className="resources-paragraph">
-            按设计与工程分组。点击条目可跳转到页内对应资源区。
+            设计与工程资源目录，条目可跳转至页内对应分区。
           </p>
         </>
       }

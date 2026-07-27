@@ -1,4 +1,4 @@
-import { Rocket } from 'lucide-react';
+import { Component } from 'lucide-react';
 import {
   ResourcesFeatureCard,
   ResourcesFeatureCardGrid,
@@ -12,7 +12,7 @@ export function ResourcesFeatured() {
       id={resourcesSectionIds.components}
       className="resources-split-section--spaced"
       icon={
-        <Rocket
+        <Component
           className="resources-split-icon"
           aria-hidden
           strokeWidth={1.75}
@@ -22,7 +22,7 @@ export function ResourcesFeatured() {
         <>
           <h2 className="resources-h2 resources-h2-tight">Components</h2>
           <p className="resources-paragraph">
-            先从 OS4 组件库开始，再按需取用 Token 与工程组件。
+            面向界面设计的 Figma 组件库，覆盖 OS4 主线、OS3 与 AI 探索。
           </p>
         </>
       }

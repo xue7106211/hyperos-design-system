@@ -1,4 +1,4 @@
-import { Wrench } from 'lucide-react';
+import { Puzzle } from 'lucide-react';
 import {
   ResourcesFeatureCard,
   ResourcesFeatureCardGrid,
@@ -12,7 +12,7 @@ export function ResourcesTools() {
       id={resourcesSectionIds.designTools}
       className="resources-split-section--spaced"
       icon={
-        <Wrench
+        <Puzzle
           className="resources-split-icon"
           aria-hidden
           strokeWidth={1.75}
@@ -20,9 +20,10 @@ export function ResourcesTools() {
       }
       copy={
         <>
-          <h2 className="resources-h2 resources-h2-tight">设计工具</h2>
+          <h2 className="resources-h2 resources-h2-tight">Plugin & Tools</h2>
           <p className="resources-paragraph">
-            插件、协作与效率工具，辅助更快落地 HyperOS 界面。
+            面向 Figma 的效率插件，覆盖材质填充、图层语义化与 Token
+            规范性检查。
           </p>
         </>
       }

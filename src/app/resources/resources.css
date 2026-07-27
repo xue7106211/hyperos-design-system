@@ -668,6 +668,49 @@
   isolation: isolate;
 }
 
+/* Scroll 入场：仅在 JS 挂上 data-animate 后隐藏，无 JS 时卡片保持可见 */
+.resources-feature-grid[data-animate] > .resources-feature-card {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.resources-feature-grid[data-animate][data-revealed] > .resources-feature-card {
+  animation: resources-card-enter 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* 首子节点是十字装饰，卡片从 nth-child(2) 起 stagger 50ms */
+.resources-feature-grid[data-animate][data-revealed]
+  > .resources-feature-card:nth-child(2) {
+  animation-delay: 0ms;
+}
+.resources-feature-grid[data-animate][data-revealed]
+  > .resources-feature-card:nth-child(3) {
+  animation-delay: 50ms;
+}
+.resources-feature-grid[data-animate][data-revealed]
+  > .resources-feature-card:nth-child(4) {
+  animation-delay: 100ms;
+}
+.resources-feature-grid[data-animate][data-revealed]
+  > .resources-feature-card:nth-child(5) {
+  animation-delay: 150ms;
+}
+.resources-feature-grid[data-animate][data-revealed]
+  > .resources-feature-card:nth-child(6) {
+  animation-delay: 200ms;
+}
+
+@keyframes resources-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .resources-feature-card::before {
   content: '';
   position: absolute;
@@ -1018,6 +1061,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .resources-feature-grid[data-animate] > .resources-feature-card,
+  .resources-feature-grid[data-animate][data-revealed] > .resources-feature-card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
   .resources-feature-card,
   .resources-feature-arrow,
   .resources-back-to-top {
