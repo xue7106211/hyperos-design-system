@@ -3,10 +3,11 @@ import { PillNav } from '@/components/home/PillNav';
 import { MatrixRain } from '@/components/resources/MatrixRain';
 import { ResourceHero } from '@/components/resources/ResourceHero';
 import { ResourcesCatalog } from '@/components/resources/ResourcesCatalog';
-import { ResourcesFaq } from '@/components/resources/ResourcesFaq';
 import { ResourcesFeatured } from '@/components/resources/ResourcesFeatured';
 import { ResourcesFooter } from '@/components/resources/ResourcesFooter';
 import { ResourcesRule } from '@/components/resources/ResourcesRule';
+import { ResourcesTools } from '@/components/resources/ResourcesTools';
+import { ResourcesTopics } from '@/components/resources/ResourcesTopics';
 import { resourcesPage } from '@/lib/resources';
 
 export const metadata: Metadata = {
@@ -26,7 +27,8 @@ export default function ResourcesPage() {
         </section>
         <ResourcesCatalog />
         <ResourcesFeatured />
-        <ResourcesFaq />
+        <ResourcesTools />
+        <ResourcesTopics />
         <ResourcesFooter />
       </main>
     </>

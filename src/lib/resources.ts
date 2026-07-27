@@ -121,6 +121,13 @@ export const resourcesCatalog: CatalogColumn[] = [
   },
 ];
 
+const CARD_PLACEHOLDER = '/resources/card-placeholder.png';
+const TOOLS_PLACEHOLDER = '/resources/tools-placeholder.png';
+const TOKEN_PLACEHOLDER = '/resources/token-placeholder.png';
+const FONTS_PLACEHOLDER = '/resources/fonts-card.jpg';
+const ICON_PLACEHOLDER = '/resources/icon-card.jpg';
+const BRAND_PLACEHOLDER = '/resources/brand-card.jpg';
+
 export const resourcesFeatured = [
   {
     id: 'os4',
@@ -129,14 +136,8 @@ export const resourcesFeatured = [
     href: defaultFigmaUrl,
     external: true,
     pill: '打开 Figma',
-  },
-  {
-    id: 'icons',
-    title: 'HyperOS 图标库',
-    description: '站内预览、复制名称与 SVG。',
-    href: '/docs/os4/resources/icons',
-    external: false,
-    pill: '查看图标',
+    wide: true,
+    image: '/home/hyperos-ui-kit-4.png',
   },
   {
     id: 'tokens',
@@ -145,6 +146,7 @@ export const resourcesFeatured = [
     href: TBD,
     external: true,
     pill: '打开 Token',
+    image: CARD_PLACEHOLDER,
   },
   {
     id: 'miuix',
@@ -153,56 +155,120 @@ export const resourcesFeatured = [
     href: TBD,
     external: true,
     pill: '打开仓库',
+    image: CARD_PLACEHOLDER,
   },
 ] as const;
 
-export type FaqItem = { question: string; answer: string };
+/** 设计工具区：插件 / 协作 / 效率入口 */
+export type ToolItem = {
+  name: string;
+  description: string;
+  href: string;
+  external?: boolean;
+  image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+};
 
-export type FaqGroup = { title: string; items: FaqItem[] };
-
-export const resourcesFaq: FaqGroup[] = [
+export const resourcesTools: ToolItem[] = [
   {
-    title: '使用',
+    name: 'Figma 插件',
+    description: 'HyperOS 设计效率插件（待补充链接）。',
+    href: TBD,
+    external: true,
+    image: TOOLS_PLACEHOLDER,
+  },
+  {
+    name: '协作与评审',
+    description: '设计协作、标注与评审相关工具。',
+    href: TBD,
+    external: true,
+    image: TOOLS_PLACEHOLDER,
+  },
+  {
+    name: '效率组件',
+    description: '快速搭建界面的效率型资源与模板。',
+    href: TBD,
+    external: true,
+    image: TOOLS_PLACEHOLDER,
+  },
+];
+
+/** Components 下方专题区：Design Token / Fonts / Icon / Brand */
+export type TopicSection = {
+  id: string;
+  title: string;
+  description: string;
+  items: ToolItem[];
+};
+
+export const resourcesTopics: TopicSection[] = [
+  {
+    id: 'design-token',
+    title: 'Design Token',
+    description: 'Figma Variables 与 Token 导出入口，统一色彩、间距与圆角。',
     items: [
       {
-        question: 'OS4、OS3、OS4存量有什么区别？',
-        answer:
-          'OS4 是当前主线组件库；OS3 用于历史版本对照与维护；OS4存量面向仍在使用旧资产的业务线。新项目默认使用 OS4。',
+        name: 'Figma Variables',
+        description: '小米 HyperOS Figma Variables / Token。',
+        href: TBD,
+        external: true,
+        image: TOKEN_PLACEHOLDER,
       },
       {
-        question: 'Design Token 为什么是外链？',
-        answer:
-          'Token 的真源在 Figma Variables / 导出包中维护。文档站提供规范说明与 TokenTable 展示，完整变量集通过外链获取。',
-      },
-      {
-        question: '图标可以在站内直接用吗？',
-        answer:
-          '可以。打开「HyperOS 图标库」即可分类浏览、复制名称与 SVG；也支持跳转对应 Figma 节点。',
+        name: 'Token 文档',
+        description: '站内 TokenTable 与语义说明。',
+        href: TBD,
+        external: false,
+        image: TOKEN_PLACEHOLDER,
       },
     ],
   },
   {
-    title: '工程',
+    id: 'fonts',
+    title: 'Fonts',
+    description: '品牌与界面字体资源，保证多端排版一致。',
     items: [
       {
-        question: 'MIUIX 和文档站是什么关系？',
-        answer:
-          '文档站传播设计规范与资产入口；MIUIX（Flutter / Java）是客户端组件实现仓库。两者配合使用，本站不承载可运行组件 demo。',
-      },
-      {
-        question: '链接显示「待补充」怎么办？',
-        answer:
-          '表示该资源地址尚未录入。可联系 HyperOS 设计系统团队获取临时入口，我们会持续补齐。',
+        name: 'MiSans',
+        description: '品牌与界面字体资源（待补充下载）。',
+        href: TBD,
+        external: true,
+        image: FONTS_PLACEHOLDER,
+        imageWidth: 1024,
+        imageHeight: 576,
       },
     ],
   },
   {
-    title: '帮助',
+    id: 'icon',
+    title: 'Icon',
+    description: '图标库预览、复制名称与 SVG。',
     items: [
       {
-        question: '找不到你需要的资源？',
-        answer:
-          '请通过飞书联系页面维护人，或在文档站对应组件页留言需求。我们会评估是否纳入资源中心。',
+        name: 'HyperOS 图标库',
+        description: '分类浏览、复制名称与 SVG。',
+        href: '/docs/os4/resources/icons',
+        external: false,
+        image: ICON_PLACEHOLDER,
+        imageWidth: 1024,
+        imageHeight: 576,
+      },
+    ],
+  },
+  {
+    id: 'brand',
+    title: 'Brand',
+    description: '品牌标识与视觉规范。',
+    items: [
+      {
+        name: 'Brand Guidelines',
+        description: '品牌标识与视觉规范（待补充）。',
+        href: TBD,
+        external: true,
+        image: BRAND_PLACEHOLDER,
+        imageWidth: 1024,
+        imageHeight: 576,
       },
     ],
   },
