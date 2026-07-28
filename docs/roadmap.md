@@ -23,12 +23,13 @@
 - [x] 图标预览页 + `IconGallery` + `icons/` 资产管线（`icons:sync` / `icons:import`）
 - [x] 文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`；资产 `public/media/`）
 - [x] OS4「抽屉浮窗 Bottom Sheet」规范页（`containers/drawer`）
-- [x] 设计资源中心 `/resources`（Catalog 页内锚点 + Components / Tools / Token / Fonts / Icon / Brand；Landing PillNav「设计资源」）
+- [x] 设计资源中心 `/resources`（Catalog `#catalog` + 分区锚点、Codex 侧栏、Feature 卡标题 CTA、Landing PillNav「设计资源」）
 
 ## 下一步
 
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
 - [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
+- [ ] `/resources` Engineering 目录外链与维护团队落地页（`taughtByHref`）补齐
 - [ ] MiFlow `main` 流水线补「发布prod」（与 staging 对称），减少手动发布
 - [ ] TinaCMS 生产鉴权（Auth.js / 内网 SSO）与 Git 同步
 - [ ] Phase 2：TinaCloud 或自托管 datalayer 部署

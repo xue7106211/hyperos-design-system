@@ -5,26 +5,27 @@
 - **Also:** `ResourcesFeatureCardGrid`（同文件；布局 `hero` | `stack`）
 - **Used by:** `ResourcesFeatured`、`ResourcesTools`、`ResourcesTopics`
 - **Screenshot reference:** aiforui project cards region（Sonner / Vaul）— 视觉参考，DOM/类名已 HyperOS 化
-- **Interaction model:** 整卡链接（内部 `Link` 或外链 `a`）；`href === '#'` 时为待定态
+- **Interaction model:** 非整卡链接。标题行走 `FeatureCta`（键盘可聚焦）；预览区可选 `FeatureMediaLink`（`tabIndex={-1}`，避免重复 tab）。`href === '#'` 或空为待定态（「即将上线」，无链接）
 
 ## DOM Structure（概念）
 ```
-a.resources-feature-card [--wide] [--media]
+article.resources-feature-card [--wide] [--media] [--pending]
   [.resources-feature-row-crosses]          # wide 卡底部分隔十字
   [.resources-feature-divider-crosses]      # stack 非首卡横线十字
   .resources-feature-preview
-    Image | .resources-feature-pill
+    [a.resources-feature-media-link] Image | .resources-feature-pill
   .resources-feature-meta
-    .resources-feature-title
-    .resources-feature-desc
-    ArrowUpRight (hover)
+    a.resources-feature-cta | .resources-feature-cta--static
+      .resources-feature-title
+      [ArrowUpRight | .resources-feature-status]
+    .resources-feature-desc                 # 可选中文本，非链接
 ```
 
 ## Props（实现为准）
 
 | Prop | 用途 |
 |------|------|
-| `title` / `description` / `href` | 双行 meta + 链接 |
+| `title` / `description` / `href` | 双行 meta + 链接目标 |
 | `external` | 外链 |
 | `image` (+ width/height) | 配图 |
 | `pill` | 无图时占位文案 |
@@ -35,10 +36,11 @@ a.resources-feature-card [--wide] [--media]
 ## Styles（摘要）
 
 - 容器类：`resources-feature-card`（样式在 `resources.css`）
-- 描述色：`var(--color-gray-900)`
-- Hover：右上角 `ArrowUpRight`（ease-in-out）
+- 描述色：`var(--color-gray-900)`（深色模式见同文件 token）
+- Hover：标题 CTA 右上角 `ArrowUpRight`
 - 宽卡：full-bleed 图 + 底部分隔行十字
 - 非 media 半宽卡：固定预览高度（cover）
+- 入场：`useResourcesScrollReveal`（与 Catalog 共用）
 
 ## Grid wrapper
 

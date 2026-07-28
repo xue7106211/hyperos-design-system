@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 信息架构
 
-> **版本**：V1.5  
-> **日期**：2026-07-27  
+> **版本**：V1.6  
+> **日期**：2026-07-28  
 > **关联**：[技术设计方案](./technical-design.md) · [侧栏对照](./sidebar-ia.md)
 
 ---
@@ -34,7 +34,8 @@
 │   │   └── resources/       # 资源（图标库等；docs 侧栏）
 │   └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
 │       └── （结构同 os4）
-└── /resources               # 设计资源中心（独立 hub）
+└── /resources               # 设计资源中心（独立 hub；右侧 Codex 锚点导航）
+    ├── #catalog             # Catalog 总目录（Design / Engineering）
     ├── #components          # Components（OS4 / OS3 / AI 等）
     ├── #design-tools        # 设计工具（Figma 插件等）
     ├── #design-token        # Design Token
@@ -150,6 +151,17 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 ### 4.4 模块 Index
 
 每个一级目录的 `index.mdx` 提供该模块总览与子章节链接。
+
+### 4.5 设计资源中心（`/resources`）
+
+| 区块 | 实现 |
+|------|------|
+| 顶栏 | 共用 `PillNav`（当前页短圆角底线选中态） |
+| Hero / Rule | `ResourceHero`、`ResourcesRule`；背景 `MatrixRain` |
+| Catalog | `ResourcesCatalog`（`id="catalog"`）；Design → 页内锚点；Engineering 待定「即将上线」 |
+| 专题分区 | Featured / Tools / Topics（Token · Fonts · Icon · Brand） |
+| 页内导航 | `ResourcesCodexNav`（≥1200px；`resourcesPageAnchors` + scroll spy） |
+| 数据 | `src/lib/resources.ts`（勿写进 `content/docs/`） |
 
 ---
 

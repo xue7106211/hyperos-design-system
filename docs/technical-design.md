@@ -1,8 +1,8 @@
 # HyperOS Design System 文档站 — V1 技术设计方案
 
-> **版本**：V1.3  
-> **日期**：2026-07-27  
-> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token /「资源」IA / 文档配图 Fancybox 已落地；生产鉴权与 Token CI 规划中
+> **版本**：V1.4  
+> **日期**：2026-07-28  
+> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token /「资源」IA / 文档配图 Fancybox / 设计资源中心 `/resources` 已落地；生产鉴权与 Token CI 规划中
 
 ---
 
@@ -25,6 +25,7 @@ HyperOS 设计系统面向 **移动端客户端组件库**（Android / iOS 等�
 | Android / iOS **静态**代码片段展示 | 完整 npm 组件包发布流水线 |
 | 图标库预览（`IconGallery` + `icons/`；侧栏「资源」） | 可交互 icon picker / Storybook |
 | 文档配图页内画廊（`DocsImage` + Fancybox；`public/media/`） | 可运行 Web 组件 playground |
+| 设计资源中心 `/resources`（Catalog + Codex；`src/lib/resources.ts`） | Engineering 目录外链 / 维护团队落地页（待补） |
 | MDX + `meta.json` 内容维护 | TinaCMS 生产鉴权 / TinaCloud 部署（Phase 2 剩余项） |
 | OS4 Token 真源（Reference / Semantic / Component） | 客户端组件 CI/CD（另仓维护） |
 | — | Figma Code Connect 试点（Phase 3） |
@@ -275,11 +276,11 @@ hyperos-design-system/
 │   ├── components/
 │   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta
 │   │   ├── home/           # Landing：HomeHero、PillNav、HalftoneBloom
-│   │   ├── resources/      # /resources 设计资源中心
+│   │   ├── resources/      # /resources：Hero、Catalog、CodexNav、FeatureCard、MatrixRain 等
 │   │   ├── mdx/            # DocsImage、DocFancybox、SpecImageGrid、FigmaEmbed、TokenTable、IconGallery、PlatformTabs 等
 │   │   ├── tina/           # Tina Visual Editing
 │   │   └── HyperOSLogo.tsx
-│   └── lib/                # source、layout、shared、resources、icons、docs-version-tabs、tina-docs、git-file-mtime、cn
+│   └── lib/                # source、layout、shared、resources、icons、docs-version-tabs、tina-docs*、search-tokenizer、git-file-mtime、cn
 ├── source.config.ts        # frontmatter Zod schema
 ├── next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 ├── proxy.ts                # Markdown 内容协商
@@ -352,7 +353,7 @@ export default defineConfig({ mdxOptions: {} });
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 最佳实践 | `/docs/os4/best-practices` | 应用层实践入口 |
 | 资源（docs） | `/docs/os4/resources` | HyperOS 图标库等资产（侧栏） |
-| 设计资源中心 | `/resources` | 独立 hub：Figma / 插件 / Token / 字体 / Brand 入口（非 docs 侧栏） |
+| 设计资源中心 | `/resources` | 独立 hub：Catalog + Codex 锚点、Figma / 插件 / Token / 字体 / Brand（非 docs 侧栏；数据 `src/lib/resources.ts`） |
 
 > 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。`/resources` 与 docs「资源」分流：前者聚合站外资产与工具，后者承载规范内预览（如 IconGallery）。
 

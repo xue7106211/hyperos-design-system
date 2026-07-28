@@ -2,15 +2,20 @@
 
 ## Overview
 - **Target file:** `src/components/resources/ResourceHero.tsx`
+- **Data:** `resourcesPage`（`src/lib/resources.ts`）
 - **Screenshot:** `docs/design-references/aiforui.dev/desktop-1440-viewport.png`
-- **Interaction model:** static
-- **Source pattern:** aiforui H1 + subtitle
+- **Interaction model:** 静态文案 + 可选维护团队链接；标题按词 `resources-reveal-item` 入场
+- **Source pattern:** aiforui H1 + subtitle（文案与结构已 HyperOS 化）
 
 ## DOM Structure
 ```
-header
-  h1 — page title
-  p — short supporting line
+header.resources-hero
+  h1.resources-h1 — resourcesPage.title（按词 wrap + reveal）
+  p.resources-hero-sub — resourcesPage.description
+  .resources-taught-by
+    .resources-taught-by-pill [--static]
+      .resources-taught-by-label
+      Link | .resources-taught-by-name
 ```
 
 ## Computed Styles (exact from aiforui H1 / subtitle)
@@ -33,9 +38,11 @@ header
 - maxWidth: 540px
 - margin: 24px auto 0
 
-## Text Content (HyperOS)
-- Title: 设计资源
-- Subtitle: HyperOS 设计与工程可复用资产入口——组件库、工具、Token、图标等
+## Text Content (HyperOS，以 `resources.ts` 为准)
+
+- Title: `HyperOS Design Resources`
+- Subtitle: `使用 HyperOS 官方设计模板、图标制作模板、色彩指南以及其他资源，快速精准地设计 App。`
+- Taught-by: 标签 `维护团队` · 名称 `HyperOS 设计系统` · `taughtByHref` 为空时胶囊不可点（`--static`）
 
 ## Responsive Behavior
 - Desktop: 48/52 title

@@ -1,9 +1,11 @@
 # Resources page (aiforui 1:1 shell) Specification
 
+> **注意**：本文记录的是调研对象 [aiforui.dev](https://aiforui.dev/) 的壳层与组件清单，**不是** HyperOS 当前 `/resources` 实现。已落地映射见 [ADAPTATION.md](../ADAPTATION.md)；实现入口为 `src/app/resources/page.tsx`（含 `ResourcesCodexNav`，不含 Buy / FAQ / FixedBar）。
+
 ## Overview
-- **Target:** `src/app/resources/page.tsx` + `src/app/resources/resources.css`
-- **Screenshot:** `docs/design-references/aiforui.dev/clone-resources-v2-desktop.png`
-- **Interaction model:** mixed — static long-form + click FAQ accordion + link CTAs
+- **Target (调研参考截图):** `docs/design-references/aiforui.dev/clone-resources-v2-desktop.png`
+- **HyperOS 实现:** `src/app/resources/page.tsx` + `resources.css` + `src/components/resources/*`
+- **Interaction model (aiforui 源站):** mixed — static long-form + click FAQ accordion + link CTAs
 
 ## Verified computed styles (local clone @ 1440)
 

@@ -4,7 +4,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 
 ## 特性
 
-- 设计资源中心（`/resources`：Figma / Token / 插件 / 字体 / 图标 / Brand 入口；Landing PillNav「设计资源」）
+- 设计资源中心（`/resources`：Catalog + Codex 锚点、Figma / Token / 插件 / 字体 / 图标 / Brand；Landing PillNav「设计资源」）
 - 移动端组件规范文档（无 Web 交互 demo）
 - Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
 - Design Token 表格展示（OS4 Reference / Semantic / Component × Light / Dark）
@@ -78,11 +78,11 @@ src/
   components/
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
-    resources/       # /resources 设计资源中心组件
+    resources/       # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics 等
     mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、shared、resources、icons、tina-docs、docs-version-tabs、git-file-mtime、cn
+  lib/               # source、layout、shared、resources、icons、tina-docs*、docs-version-tabs、search-tokenizer、git-file-mtime、cn
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
