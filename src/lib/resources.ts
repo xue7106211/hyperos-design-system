@@ -17,6 +17,9 @@ const hyperosTokenUrl = 'https://hyperostoken.netlify.app/';
 /** Brand Guidelines */
 const brandGuidelinesUrl = 'https://mdc.mi.com/resources/rule/19';
 
+/** Device Assets / 机模与设备资源 */
+const deviceAssetsUrl = 'https://mdc.mi.com/resources';
+
 /** MiSans / 字体资源 */
 const fontsUrl = 'https://mdc.mi.com/resources/fonts';
 
@@ -340,7 +343,7 @@ export const resourcesTopics: TopicSection[] = [
       {
         name: 'Device Assets',
         description: '小米官方机模和设备资源。',
-        href: TBD,
+        href: deviceAssetsUrl,
         external: true,
         image: '/resources/device-assets-card.jpg',
         imageWidth: 1024,
