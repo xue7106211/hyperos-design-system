@@ -2,7 +2,11 @@ import Link from 'next/link';
 import { Library } from 'lucide-react';
 import { ResourcesCatalogFrame } from '@/components/resources/ResourcesCatalogFrame';
 import { ResourcesSplitSection } from '@/components/resources/ResourcesSplitSection';
-import { resourcesCatalog, resourcesSectionIds } from '@/lib/resources';
+import {
+  resourcesCatalog,
+  resourcesPageAnchors,
+  resourcesSectionIds,
+} from '@/lib/resources';
 
 function CatalogItemLink({
   name,
@@ -72,7 +76,11 @@ export function ResourcesCatalog() {
         <>
           <h2 className="resources-h2 resources-h2-tight">Catalog</h2>
           <p className="resources-paragraph">
-            设计与工程资源目录，条目可跳转至页内对应分区。
+            {
+              resourcesPageAnchors.find(
+                (a) => a.id === resourcesSectionIds.catalog,
+              )!.description
+            }
           </p>
         </>
       }

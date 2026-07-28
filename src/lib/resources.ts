@@ -85,7 +85,8 @@ export const resourcesPageAnchors: ResourcesPageAnchor[] = [
   {
     id: resourcesSectionIds.catalog,
     title: 'Catalog',
-    description: '设计与工程资源目录，条目可跳转至页内对应分区。',
+    description:
+      '资源总目录：按分类索引设计与工程资产，点击条目即可快捷跳转到页内对应分区。',
   },
   {
     id: resourcesSectionIds.components,
