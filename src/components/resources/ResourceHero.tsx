@@ -24,6 +24,7 @@ function Reveal({
 export function ResourceHero() {
   const titleWords = resourcesPage.title.split(/\s+/);
   let revealIndex = 0;
+  const taughtByHref = resourcesPage.taughtByHref.trim();
 
   return (
     <header className="resources-hero">
@@ -40,13 +41,24 @@ export function ResourceHero() {
       </p>
       <div className="resources-taught-by">
         <Reveal block index={revealIndex++}>
-          <span className="resources-taught-by-pill">
+          <span
+            className={[
+              'resources-taught-by-pill',
+              taughtByHref ? '' : 'resources-taught-by-pill--static',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+          >
             <span className="resources-taught-by-label">
               {resourcesPage.taughtByLabel}
             </span>
-            <Link href={resourcesPage.taughtByHref}>
-              {resourcesPage.taughtByName}
-            </Link>
+            {taughtByHref ? (
+              <Link href={taughtByHref}>{resourcesPage.taughtByName}</Link>
+            ) : (
+              <span className="resources-taught-by-name">
+                {resourcesPage.taughtByName}
+              </span>
+            )}
           </span>
         </Reveal>
       </div>

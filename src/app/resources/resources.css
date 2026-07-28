@@ -257,15 +257,23 @@
   color: var(--color-muted);
 }
 
-.resources-taught-by-pill a {
+.resources-taught-by-pill a,
+.resources-taught-by-name {
   color: var(--color-foreground-100);
   text-decoration: none;
   font-weight: 500;
+}
+
+.resources-taught-by-pill a {
   transition: color var(--resources-duration-hover) ease-out;
 }
 
+.resources-taught-by-pill--static {
+  cursor: default;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .resources-taught-by-pill:has(a:hover) {
+  .resources-taught-by-pill:not(.resources-taught-by-pill--static):has(a:hover) {
     border-color: color-mix(in oklch, var(--home-accent) 35%, var(--resources-guide));
   }
 

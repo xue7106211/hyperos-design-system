@@ -34,7 +34,8 @@ export const resourcesPage = {
     '使用 HyperOS 官方设计模板、图标制作模板、色彩指南以及其他资源，快速精准地设计 App。',
   taughtByLabel: '维护团队',
   taughtByName: 'HyperOS 设计系统',
-  taughtByHref: '/docs/os4',
+  /** 有落地页后填入路径即可恢复可点跳转；空字符串表示暂禁用 */
+  taughtByHref: '',
 } as const;
 
 /** Hero 头像堆叠；有 src 时显示照片，否则显示 initials */
