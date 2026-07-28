@@ -1,6 +1,11 @@
-import type { CSSProperties, ReactNode } from 'react';
-import Link from 'next/link';
-import { resourcesPage } from '@/lib/resources';
+import type { CSSProperties, ReactNode } from "react";
+import Link from "next/link";
+import { resourcesPage } from "@/lib/resources";
+
+/*
+把资源中心的 Hero 区域，根据配置数据渲染成带入场动画、可选跳转链接的标题模块。
+它本身没有 `useState`、`useEffect` 或事件处理，因此是一个**纯展示型组件**
+*/
 
 function Reveal({
   index,
@@ -13,8 +18,10 @@ function Reveal({
 }) {
   return (
     <span
-      className={`resources-reveal-item${block ? ' resources-hero-reveal-block' : ''}`}
-      style={{ '--index': index } as CSSProperties}
+      className={`resources-reveal-item${
+        block ? " resources-hero-reveal-block" : ""
+      }`}
+      style={{ "--index": index } as CSSProperties}
     >
       {children}
     </span>
@@ -31,7 +38,7 @@ export function ResourceHero() {
       <h1 className="resources-h1">
         {titleWords.map((word, i) => (
           <span key={word}>
-            {i > 0 ? ' ' : null}
+            {i > 0 ? " " : null}
             <Reveal index={revealIndex++}>{word}</Reveal>
           </span>
         ))}
@@ -43,11 +50,11 @@ export function ResourceHero() {
         <Reveal block index={revealIndex++}>
           <span
             className={[
-              'resources-taught-by-pill',
-              taughtByHref ? '' : 'resources-taught-by-pill--static',
+              "resources-taught-by-pill",
+              taughtByHref ? "" : "resources-taught-by-pill--static",
             ]
               .filter(Boolean)
-              .join(' ')}
+              .join(" ")}
           >
             <span className="resources-taught-by-label">
               {resourcesPage.taughtByLabel}
