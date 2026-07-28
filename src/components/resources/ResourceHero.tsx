@@ -40,8 +40,10 @@ export function ResourceHero() {
       </p>
       <div className="resources-taught-by">
         <Reveal block index={revealIndex++}>
-          <span>
-            {resourcesPage.taughtByLabel}{' '}
+          <span className="resources-taught-by-pill">
+            <span className="resources-taught-by-label">
+              {resourcesPage.taughtByLabel}
+            </span>
             <Link href={resourcesPage.taughtByHref}>
               {resourcesPage.taughtByName}
             </Link>

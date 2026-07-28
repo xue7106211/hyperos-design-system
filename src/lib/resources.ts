@@ -172,6 +172,18 @@ export const resourcesCatalog: CatalogColumn[] = [
         href: TBD,
         external: true,
       },
+      {
+        name: '{ Auto_Design_Agent }',
+        description: '自动化多终端适配 Skill',
+        href: TBD,
+        external: true,
+      },
+      {
+        name: '{ AI Design System }',
+        description: '基于 Figma 设计稿自动生成界面',
+        href: TBD,
+        external: true,
+      },
     ],
   },
 ];
