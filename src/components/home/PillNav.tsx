@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ThemeSwitch } from 'fumadocs-ui/layouts/shared/slots/theme-switch';
 import { cn } from '@/lib/cn';
 import { defaultDocsRoute } from '@/lib/shared';
@@ -13,6 +16,13 @@ const links = [
   { href: '/resources', label: '设计资源' },
 ] as const;
 
+function linkIsActive(pathname: string, href: string) {
+  if (href === '/resources') {
+    return pathname === '/resources' || pathname.startsWith('/resources/');
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 /**
  * 固定在首页顶部的胶囊型导航栏。
  *
@@ -20,6 +30,8 @@ const links = [
  * 让透明遮罩不会拦截下方内容的点击/滚动，同时保证导航本身可交互。
  */
 export function PillNav({ className }: { className?: string }) {
+  const pathname = usePathname() ?? '';
+
   return (
     <div
       className={cn(
@@ -36,16 +48,23 @@ export function PillNav({ className }: { className?: string }) {
           'bg-[var(--home-nav-bg)] shadow-[var(--home-nav-shadow)]',
         )}
       >
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            // home-nav-link 在 global.css 中定义了悬停/激活时的背景渐变与文字色过渡。
-            className="home-nav-link relative flex h-9 items-center rounded-full px-3 text-sm font-medium"
-          >
-            <span className="relative z-10">{link.label}</span>
-          </Link>
-        ))}
+        {links.map((link) => {
+          const active = linkIsActive(pathname, link.href);
+
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={active ? 'page' : undefined}
+              className={cn(
+                'home-nav-link relative flex h-9 items-center rounded-full px-3 text-sm font-medium',
+                active && 'is-active',
+              )}
+            >
+              <span className="relative z-10">{link.label}</span>
+            </Link>
+          );
+        })}
         <ThemeSwitch
           mode="light-dark"
           className="ms-0.5 border-0 bg-transparent p-0.5"
