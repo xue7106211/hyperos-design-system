@@ -15,8 +15,7 @@
   --color-gray-1100: #43423d;
   --color-gray-1200: #21201c;
   --color-blue-900: #0090ff;
-  --resources-card-shadow:
-    0 0 0 1px rgb(0 0 0 / 0.08), 0 2px 2px 0 rgb(0 0 0 / 0.04);
+  --color-muted: var(--color-gray-900);
   /* Motion tokens — 调这里即可全局改手感 */
   --resources-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
   --resources-duration-hover: 150ms;
@@ -34,6 +33,9 @@
     0 2px 4px 0 rgba(0, 0, 0, 0.1);
   --home-accent: #0082fb;
   --resources-hero-band-bg: #f9f9f8;
+  /* Light: alpha border recedes; Dark overrides to solid */
+  --resources-guide: rgb(0 0 0 / 0.08);
+  --resources-cross: rgb(0 0 0 / 0.45);
   position: relative;
   background-color: var(--color-gray-100);
   color: var(--color-gray-1200);
@@ -93,8 +95,9 @@
   --color-gray-900: #6f6d66;
   --color-gray-1100: #b5b3ad;
   --color-gray-1200: #fff;
-  --color-blue-900: #0090ff;
-  --resources-card-shadow: 0 0 0 1px rgb(255 255 255 / 0.08);
+  /* Dark: desaturate brand blue ~25% so it doesn't vibrate */
+  --color-blue-900: color-mix(in oklch, #0090ff 75%, #6f6d66);
+  --color-muted: var(--color-gray-900);
   --home-bg: var(--color-gray-100);
   --home-fg-high: var(--color-foreground-100);
   --home-fg-mid: var(--color-foreground-200);
@@ -103,8 +106,11 @@
     0 -1px 1px 0 rgba(255, 255, 255, 0.1) inset,
     0 1px 1px 0 rgba(255, 255, 255, 0.15) inset,
     0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  --home-accent: #4194ff;
+  --home-accent: color-mix(in oklch, #4194ff 80%, #6f6d66);
   --resources-hero-band-bg: #191918;
+  /* Solid guide — alpha white borders glow on dark */
+  --resources-guide: var(--color-gray-400);
+  --resources-cross: rgb(255 255 255 / 0.55);
   color-scheme: dark;
 }
 
@@ -129,7 +135,7 @@
 
 @media (min-width: 640px) {
   .resources-layout-root {
-    margin-top: 8rem;
+    margin-top: 5rem;
   }
 }
 
@@ -238,7 +244,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .resources-taught-by a:hover {
-    color: var(--color-blue-900);
+    color: var(--home-accent);
   }
 }
 
@@ -249,8 +255,6 @@
 
 /* Full-bleed horizontal rule (hero → content) */
 .resources-rule {
-  --resources-guide: rgb(0 0 0 / 0.1);
-  --resources-cross: rgb(0 0 0 / 0.45);
   --resources-cross-size: 11px;
   position: relative;
   width: 100vw;
@@ -272,11 +276,6 @@
   .resources-rule {
     margin: 8rem 0;
   }
-}
-
-.dark .resources-rule {
-  --resources-guide: rgb(255 255 255 / 0.12);
-  --resources-cross: rgb(255 255 255 / 0.55);
 }
 
 .resources-rule-cross {
@@ -411,8 +410,6 @@
 
 /* Shared Vercel-style hairline frame + crosses */
 .resources-grid-frame {
-  --resources-guide: rgb(0 0 0 / 0.1);
-  --resources-cross: rgb(0 0 0 / 0.45);
   --resources-header-h: 2.75rem;
   --resources-cross-size: 11px;
   position: relative;
@@ -421,11 +418,6 @@
   background: transparent;
   border: 1px solid var(--resources-guide);
   box-shadow: none;
-}
-
-.dark .resources-grid-frame {
-  --resources-guide: rgb(255 255 255 / 0.12);
-  --resources-cross: rgb(255 255 255 / 0.55);
 }
 
 .resources-grid-crosses {
@@ -600,6 +592,12 @@
   border-top: 0;
 }
 
+/* 末项底部分割线；贴外框时 -1px 叠边避免双线，短列则留在条目下方 */
+.resources-skills-list li:last-child {
+  border-bottom: 1px solid var(--resources-guide);
+  margin-bottom: -1px;
+}
+
 .resources-skills-list a,
 .resources-skills-list .resources-skills-item {
   position: relative;
@@ -613,6 +611,20 @@
   color: inherit;
   isolation: isolate;
   transition: scale var(--resources-duration-hover) ease-out;
+}
+
+.resources-skills-item--pending {
+  cursor: default;
+  color: var(--color-muted);
+}
+
+.resources-skills-item--pending .resources-skills-name {
+  color: var(--color-foreground-300);
+  font-weight: 500;
+}
+
+.resources-skills-item--pending .resources-skills-desc {
+  color: var(--color-muted);
 }
 
 .resources-skills-list a:focus-visible {
@@ -747,9 +759,22 @@
 
 .resources-skills-name {
   margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
   font-size: 0.8125rem;
   font-weight: 575;
   color: var(--color-foreground-100);
+}
+
+.resources-skills-status {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--color-muted);
 }
 
 .resources-skills-desc {
@@ -763,7 +788,7 @@
   margin: 0;
   font-size: 0.6875rem;
   line-height: 1;
-  color: var(--color-gray-900);
+  color: var(--color-muted);
   align-self: flex-end;
   text-align: right;
   padding-top: 0.35rem;
@@ -801,21 +826,31 @@
   background: transparent;
   padding: 1.25rem 1.25rem 1.125rem;
   box-shadow: none;
-  text-decoration: none;
   color: inherit;
   isolation: isolate;
   transition: scale var(--resources-duration-hover) ease-out;
 }
 
-a.resources-feature-card:focus-visible {
-  outline: 2px solid var(--color-foreground-100);
-  outline-offset: -2px;
+.resources-feature-card--pending {
+  cursor: default;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  a.resources-feature-card:active {
-    scale: 0.98;
-  }
+.resources-feature-card--pending .resources-feature-title {
+  color: var(--color-foreground-300);
+  font-weight: 500;
+}
+
+.resources-feature-card--pending .resources-feature-desc {
+  color: var(--color-muted);
+}
+
+.resources-feature-status {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--color-muted);
 }
 
 /* Scroll 入场：仅在 JS 挂上 data-animate 后隐藏，无 JS 时卡片保持可见 */
@@ -1020,6 +1055,25 @@ a.resources-feature-card:focus-visible {
   overflow: hidden;
 }
 
+.resources-feature-media-link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  z-index: 1;
+}
+
+.resources-feature-card--media .resources-feature-media-link {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .resources-feature-image {
   position: absolute;
   inset: 0;
@@ -1081,31 +1135,45 @@ a.resources-feature-card:focus-visible {
 
 .resources-feature-meta {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.15rem;
   font-size: 0.875rem;
   line-height: 1.4;
   color: var(--color-foreground-200);
 }
 
-.resources-feature-meta-copy {
+.resources-feature-cta {
   display: flex;
-  min-width: 0;
-  flex: 1;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.resources-feature-meta a,
-.resources-feature-meta .resources-feature-title {
-  color: var(--color-foreground-100);
-  font-weight: 500;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: inherit;
   text-decoration: none;
 }
 
+.resources-feature-cta--static {
+  pointer-events: none;
+}
+
+.resources-feature-cta:focus-visible {
+  outline: 2px solid var(--color-foreground-100);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .resources-feature-card:has(a:active) {
+    scale: 0.98;
+  }
+}
+
+.resources-feature-title {
+  min-width: 0;
+  color: var(--color-foreground-100);
+  font-weight: 500;
+}
+
 .resources-feature-desc {
-  color: var(--color-gray-900);
+  color: var(--color-muted);
 }
 
 .resources-feature-arrow {
@@ -1113,19 +1181,25 @@ a.resources-feature-card:focus-visible {
   width: 1rem;
   height: 1rem;
   color: var(--color-foreground-100);
-  opacity: 0;
-  transform: translateX(-0.25rem);
+  /* Touch: always visible; fine pointer: soft until hover */
+  opacity: 0.45;
+  transform: none;
   transition:
     opacity var(--resources-duration-hover) ease-out,
     transform var(--resources-duration-hover) ease-out;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  a.resources-feature-card:hover::before {
+  .resources-feature-arrow {
+    opacity: 0;
+    transform: translateX(-0.25rem);
+  }
+
+  .resources-feature-card:has(a:hover)::before {
     opacity: 1;
   }
 
-  a.resources-feature-card:hover .resources-feature-arrow {
+  .resources-feature-card:has(a:hover) .resources-feature-arrow {
     opacity: 1;
     transform: translateX(0);
   }
@@ -1138,18 +1212,14 @@ a.resources-feature-card:focus-visible {
   align-items: center;
   justify-content: space-between;
   font-size: 0.875rem;
-  color: var(--color-gray-900);
+  color: var(--color-muted);
 }
 
 .resources-footer a {
-  color: #989898;
+  color: var(--color-muted);
   font-weight: 500;
   text-decoration: none;
   transition: color var(--resources-duration-hover) ease-out;
-}
-
-.dark .resources-footer a {
-  color: #8c8c8c;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1163,18 +1233,204 @@ a.resources-feature-card:focus-visible {
   outline-offset: 3px;
 }
 
+/* Codex 右侧锚点 — 图一短条 / 图二 fisheye；用 scale 变形（不动画 width） */
+.resources-codex {
+  /* 槽高 ≈ 胶囊视觉高 + ~4px 缝，贴近参考图的密排 */
+  --codex-slot: 11px;
+  --codex-base-w: 36px;
+  --codex-base-h: 3px;
+  --z-codex: 35;
+  position: fixed;
+  top: 50%;
+  right: max(1.75rem, env(safe-area-inset-right, 0px));
+  z-index: var(--z-codex);
+  display: none;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+}
+
+@media (min-width: 1200px) {
+  .resources-codex {
+    display: block;
+  }
+}
+
+.resources-codex.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.resources-codex-list {
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.resources-codex-item {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: var(--codex-slot);
+}
+
+/* 命中槽 ≈ 40×22，邻槽不重叠；视觉胶囊在右侧 */
+.resources-codex-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 40px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: scale 150ms ease-out;
+}
+
+.resources-codex-bar-pill {
+  display: block;
+  width: var(--codex-base-w);
+  height: var(--codex-base-h);
+  border-radius: 9999px;
+  background: rgb(0 0 0 / 0.16);
+  transform-origin: right center;
+  transform: scaleX(var(--codex-sx, 0.39)) scaleY(var(--codex-sy, 1));
+  transition:
+    transform 180ms var(--resources-ease-out),
+    background-color 150ms ease-out;
+  pointer-events: none;
+}
+
+.dark .resources-codex-bar-pill {
+  background: rgb(255 255 255 / 0.22);
+}
+
+/* 默认态 active = 更深炭灰 */
+.resources-codex:not(.is-expanded) .resources-codex-bar.is-active .resources-codex-bar-pill,
+.resources-codex-bar--e1 .resources-codex-bar-pill {
+  background: rgb(0 0 0 / 0.72);
+}
+
+.dark .resources-codex:not(.is-expanded) .resources-codex-bar.is-active .resources-codex-bar-pill,
+.dark .resources-codex-bar--e1 .resources-codex-bar-pill {
+  background: rgb(255 255 255 / 0.78);
+}
+
+/* 展开：邻近略深；焦点纯黑 */
+.resources-codex.is-expanded .resources-codex-bar .resources-codex-bar-pill {
+  background: rgb(0 0 0 / 0.14);
+}
+
+.dark .resources-codex.is-expanded .resources-codex-bar .resources-codex-bar-pill {
+  background: rgb(255 255 255 / 0.2);
+}
+
+.resources-codex.is-expanded .resources-codex-bar--e1 .resources-codex-bar-pill {
+  background: rgb(0 0 0 / 0.28);
+}
+
+.dark .resources-codex.is-expanded .resources-codex-bar--e1 .resources-codex-bar-pill {
+  background: rgb(255 255 255 / 0.38);
+}
+
+.resources-codex.is-expanded .resources-codex-bar--e2 .resources-codex-bar-pill,
+.resources-codex.is-expanded .resources-codex-bar.is-hovered .resources-codex-bar-pill {
+  background: var(--color-foreground-100);
+}
+
+.resources-codex-bar:focus-visible {
+  outline: 2px solid var(--color-foreground-100);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .resources-codex-bar:active {
+    scale: 0.96;
+  }
+}
+
+.resources-codex-preview {
+  position: absolute;
+  right: calc(100% + 0.75rem);
+  top: 50%;
+  width: min(15.5rem, calc(100vw - 5.5rem));
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--color-gray-100);
+  border: 1px solid var(--resources-guide);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 6px 18px rgb(0 0 0 / 0.07);
+  transform-origin: right center;
+  transform: translateY(-50%) translateX(0) scale(0.97);
+  opacity: 0;
+  animation: resources-codex-preview-in 150ms var(--resources-ease-out) forwards;
+  pointer-events: none;
+  user-select: none;
+  text-align: left;
+}
+
+.dark .resources-codex-preview {
+  background: var(--color-gray-200);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.3),
+    0 6px 18px rgb(0 0 0 / 0.4);
+}
+
+@keyframes resources-codex-preview-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(4px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+}
+
+.resources-codex-preview-title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 575;
+  line-height: 1.35;
+  color: var(--color-foreground-100);
+  text-wrap: balance;
+}
+
+.resources-codex-preview-desc {
+  margin: 0.3rem 0 0;
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--color-muted);
+  text-wrap: pretty;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Back to top */
 .resources-back-to-top {
   position: fixed;
-  right: 1.75rem;
-  bottom: 1.75rem;
+  right: max(1.75rem, env(safe-area-inset-right, 0px));
+  bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
   z-index: 40;
   display: inline-flex;
   width: 2.75rem;
   height: 2.75rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(0 0 0 / 0.1);
+  border: 1px solid var(--resources-guide);
   border-radius: 9999px;
   background: var(--home-nav-bg);
   color: var(--color-foreground-100);
@@ -1193,7 +1449,7 @@ a.resources-feature-card:focus-visible {
 }
 
 .dark .resources-back-to-top {
-  border-color: rgb(255 255 255 / 0.12);
+  border-color: var(--resources-guide);
 }
 
 .resources-back-to-top.is-visible {
@@ -1249,7 +1505,16 @@ a.resources-feature-card:focus-visible {
   .resources-taught-by a,
   .resources-footer a,
   .resources-skills-list a::before,
-  .resources-feature-card::before {
+  .resources-feature-card::before,
+  .resources-codex,
+  .resources-codex-bar,
+  .resources-codex-bar-pill {
     transition: none;
+  }
+
+  .resources-codex-preview {
+    animation: none;
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
   }
 }

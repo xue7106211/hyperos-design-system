@@ -65,6 +65,7 @@ export type CatalogColumn = {
 
 /** 资源页专题区锚点（Catalog 跳转目标） */
 export const resourcesSectionIds = {
+  catalog: 'catalog',
   components: 'components',
   designTools: 'design-tools',
   designToken: 'design-token',
@@ -72,6 +73,53 @@ export const resourcesSectionIds = {
   icon: 'icon',
   brand: 'brand',
 } as const;
+
+/** 右侧 Codex 锚点导航条目 */
+export type ResourcesPageAnchor = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export const resourcesPageAnchors: ResourcesPageAnchor[] = [
+  {
+    id: resourcesSectionIds.catalog,
+    title: 'Catalog',
+    description: '设计与工程资源目录，条目可跳转至页内对应分区。',
+  },
+  {
+    id: resourcesSectionIds.components,
+    title: 'Components',
+    description: '面向界面设计的 Figma 组件库，覆盖 OS4 主线、OS3 与 AI 探索。',
+  },
+  {
+    id: resourcesSectionIds.designTools,
+    title: 'Plugin & Tools',
+    description: '面向 Figma 的效率插件，覆盖材质填充、图层语义化与 Token 规范性检查。',
+  },
+  {
+    id: resourcesSectionIds.designToken,
+    title: 'Design Token',
+    description: 'Figma Variables 与 Token 导出入口，统一色彩、间距与圆角。',
+  },
+  {
+    id: resourcesSectionIds.fonts,
+    title: 'Fonts',
+    description: '面向品牌与界面的字体资源，以 MiSans 统一多端排版与阅读体验。',
+  },
+  {
+    id: resourcesSectionIds.icon,
+    title: 'HyperOS Icon',
+    description:
+      'HyperOS Symbol 系统图标设计是一次重要的演进。它不仅具备了字体属性，还可以与系统字体无缝对接。',
+  },
+  {
+    id: resourcesSectionIds.brand,
+    title: 'Brand',
+    description:
+      '品牌标识、视觉规范与官方机模等资产，保证对外表达与产品呈现一致。',
+  },
+];
 
 export const resourcesCatalog: CatalogColumn[] = [
   {
@@ -98,7 +146,7 @@ export const resourcesCatalog: CatalogColumn[] = [
         href: `#${resourcesSectionIds.fonts}`,
       },
       {
-        name: '/ ICON /',
+        name: '/ Icon /',
         description: '图标库预览与 SVG',
         href: `#${resourcesSectionIds.icon}`,
       },

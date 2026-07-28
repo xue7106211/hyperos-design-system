@@ -4,6 +4,7 @@ import { MatrixRain } from '@/components/resources/MatrixRain';
 import { ResourceHero } from '@/components/resources/ResourceHero';
 import { ResourcesBackToTop } from '@/components/resources/ResourcesBackToTop';
 import { ResourcesCatalog } from '@/components/resources/ResourcesCatalog';
+import { ResourcesCodexNav } from '@/components/resources/ResourcesCodexNav';
 import { ResourcesFeatured } from '@/components/resources/ResourcesFeatured';
 import { ResourcesFooter } from '@/components/resources/ResourcesFooter';
 import { ResourcesRule } from '@/components/resources/ResourcesRule';
@@ -32,6 +33,7 @@ export default function ResourcesPage() {
         <ResourcesTopics />
         <ResourcesFooter />
       </main>
+      <ResourcesCodexNav />
       <ResourcesBackToTop />
     </>
   );

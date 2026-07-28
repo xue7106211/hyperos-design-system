@@ -28,6 +28,75 @@ export type ResourcesFeatureCardProps = {
   dividerCrosses?: boolean;
 };
 
+function FeatureCta({
+  href,
+  external,
+  title,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  title: string;
+  children: ReactNode;
+}) {
+  const className = 'resources-feature-cta';
+  const label = external ? `打开「${title}」（新窗口）` : undefined;
+
+  if (external) {
+    return (
+      <a
+        className={className}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link className={className} href={href}>
+      {children}
+    </Link>
+  );
+}
+
+/** 预览区点击热区：仅鼠标/触控；键盘走标题 CTA，避免重复 tab */
+function FeatureMediaLink({
+  href,
+  external,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  children: ReactNode;
+}) {
+  const className = 'resources-feature-media-link';
+
+  if (external) {
+    return (
+      <a
+        className={className}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        tabIndex={-1}
+        aria-hidden
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link className={className} href={href} tabIndex={-1} aria-hidden>
+      {children}
+    </Link>
+  );
+}
+
 export function ResourcesFeatureCard({
   title,
   description,
@@ -47,12 +116,30 @@ export function ResourcesFeatureCard({
     'resources-feature-card',
     wide ? 'resources-feature-card--wide' : '',
     useMedia ? 'resources-feature-card--media' : '',
+    pending ? 'resources-feature-card--pending' : '',
   ]
     .filter(Boolean)
     .join(' ');
 
-  const inner = (
-    <>
+  const previewMedia = image ? (
+    <Image
+      className="resources-feature-image"
+      src={image}
+      alt=""
+      width={imageWidth}
+      height={imageHeight}
+      sizes={
+        wide || useMedia
+          ? '(min-width: 768px) 677px, 100vw'
+          : '(min-width: 768px) 50vw, 100vw'
+      }
+    />
+  ) : pill ? (
+    <span className="resources-feature-pill">{pill}</span>
+  ) : null;
+
+  return (
+    <article className={className}>
       {wide ? (
         <div className="resources-feature-row-crosses" aria-hidden>
           <span className="resources-grid-cross resources-grid-cross--row-l" />
@@ -67,60 +154,39 @@ export function ResourcesFeatureCard({
         </div>
       ) : null}
       <div className="resources-feature-preview">
-        {image ? (
-          <Image
-            className="resources-feature-image"
-            src={image}
-            alt={title}
-            width={imageWidth}
-            height={imageHeight}
-            sizes={
-              wide || useMedia
-                ? '(min-width: 768px) 677px, 100vw'
-                : '(min-width: 768px) 50vw, 100vw'
-            }
-          />
-        ) : pill ? (
-          <span className="resources-feature-pill">{pill}</span>
-        ) : null}
+        {previewMedia &&
+          (pending ? (
+            previewMedia
+          ) : (
+            <FeatureMediaLink href={href} external={external}>
+              {previewMedia}
+            </FeatureMediaLink>
+          ))}
       </div>
-      <p className="resources-feature-meta">
-        <span className="resources-feature-meta-copy">
-          <span className="resources-feature-title">{title}</span>
-          <span className="resources-feature-desc">{description}</span>
-        </span>
-        {!pending ? (
-          <ArrowUpRight
-            className="resources-feature-arrow"
-            aria-hidden
-            strokeWidth={1.75}
-          />
-        ) : null}
-      </p>
-    </>
-  );
-
-  if (pending) {
-    return <div className={className}>{inner}</div>;
-  }
-
-  if (external) {
-    return (
-      <a
-        className={className}
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {inner}
-      </a>
-    );
-  }
-
-  return (
-    <Link className={className} href={href}>
-      {inner}
-    </Link>
+      <div className="resources-feature-meta">
+        {pending ? (
+          <>
+            <div className="resources-feature-cta resources-feature-cta--static">
+              <span className="resources-feature-title">{title}</span>
+              <span className="resources-feature-status">即将上线</span>
+            </div>
+            <span className="resources-feature-desc">{description}</span>
+          </>
+        ) : (
+          <>
+            <FeatureCta href={href} external={external} title={title}>
+              <span className="resources-feature-title">{title}</span>
+              <ArrowUpRight
+                className="resources-feature-arrow"
+                aria-hidden
+                strokeWidth={1.75}
+              />
+            </FeatureCta>
+            <span className="resources-feature-desc">{description}</span>
+          </>
+        )}
+      </div>
+    </article>
   );
 }
 

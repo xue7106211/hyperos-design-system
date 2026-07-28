@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Library } from 'lucide-react';
 import { ResourcesCatalogFrame } from '@/components/resources/ResourcesCatalogFrame';
 import { ResourcesSplitSection } from '@/components/resources/ResourcesSplitSection';
-import { resourcesCatalog } from '@/lib/resources';
+import { resourcesCatalog, resourcesSectionIds } from '@/lib/resources';
 
 function CatalogItemLink({
   name,
@@ -19,13 +19,22 @@ function CatalogItemLink({
   const isHash = href.startsWith('#') && href.length > 1;
   const body = (
     <>
-      <p className="resources-skills-name">{name}</p>
+      <p className="resources-skills-name">
+        <span>{name}</span>
+        {pending ? (
+          <span className="resources-skills-status">即将上线</span>
+        ) : null}
+      </p>
       <p className="resources-skills-desc">{description}</p>
     </>
   );
 
   if (pending) {
-    return <div className="resources-skills-item">{body}</div>;
+    return (
+      <div className="resources-skills-item resources-skills-item--pending">
+        {body}
+      </div>
+    );
   }
 
   if (isHash) {
@@ -34,7 +43,12 @@ function CatalogItemLink({
 
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${name}（新窗口）`}
+      >
         {body}
       </a>
     );
@@ -46,6 +60,7 @@ function CatalogItemLink({
 export function ResourcesCatalog() {
   return (
     <ResourcesSplitSection
+      id={resourcesSectionIds.catalog}
       icon={
         <Library
           className="resources-split-icon"
