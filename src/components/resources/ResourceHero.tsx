@@ -13,7 +13,7 @@ function Reveal({
 }) {
   return (
     <span
-      className={`home-reveal-item${block ? ' resources-hero-reveal-block' : ''}`}
+      className={`resources-reveal-item${block ? ' resources-hero-reveal-block' : ''}`}
       style={{ '--index': index } as CSSProperties}
     >
       {children}

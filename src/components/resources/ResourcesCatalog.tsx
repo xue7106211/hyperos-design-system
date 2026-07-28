@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Library } from 'lucide-react';
-import { ResourcesGridCrosses } from '@/components/resources/ResourcesGridCrosses';
+import { ResourcesCatalogFrame } from '@/components/resources/ResourcesCatalogFrame';
 import { ResourcesSplitSection } from '@/components/resources/ResourcesSplitSection';
 import { resourcesCatalog } from '@/lib/resources';
 
@@ -62,8 +62,7 @@ export function ResourcesCatalog() {
         </>
       }
     >
-      <div className="resources-skills-card resources-grid-frame">
-        <ResourcesGridCrosses />
+      <ResourcesCatalogFrame>
         <div className="resources-skills-grid">
           {resourcesCatalog.map((col) => (
             <div key={col.title} className="resources-skills-col">
@@ -78,7 +77,7 @@ export function ResourcesCatalog() {
             </div>
           ))}
         </div>
-      </div>
+      </ResourcesCatalogFrame>
     </ResourcesSplitSection>
   );
 }

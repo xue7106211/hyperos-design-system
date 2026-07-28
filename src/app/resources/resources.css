@@ -17,6 +17,13 @@
   --color-blue-900: #0090ff;
   --resources-card-shadow:
     0 0 0 1px rgb(0 0 0 / 0.08), 0 2px 2px 0 rgb(0 0 0 / 0.04);
+  /* Motion tokens — 调这里即可全局改手感 */
+  --resources-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --resources-duration-hover: 150ms;
+  --resources-duration-enter: 220ms;
+  --resources-duration-hero: 420ms;
+  --resources-stagger: 55ms;
+  --resources-hero-stagger: 80ms;
   --home-bg: var(--color-gray-100);
   --home-fg-high: var(--color-foreground-100);
   --home-fg-mid: var(--color-foreground-200);
@@ -32,6 +39,18 @@
   color: var(--color-gray-1200);
   color-scheme: light;
   isolation: isolate;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes resources-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* aiforui MatrixRain shell */
@@ -91,7 +110,7 @@
 
 .resources-shell .home-nav-link {
   color: var(--home-fg-mid);
-  transition: color 150ms ease-out;
+  transition: color var(--resources-duration-hover) ease-out;
 }
 
 .resources-shell .home-nav-link:hover {
@@ -140,7 +159,25 @@
   pointer-events: none;
 }
 
-/* Hero — reuse home-reveal from global.css */
+/* Hero — 轻量入场（勿复用首页 home-reveal 的 1.3s / translateY(100%)） */
+@keyframes resources-hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.resources-reveal-item {
+  display: inline-block;
+  animation: resources-hero-reveal var(--resources-duration-hero)
+    var(--resources-ease-out) backwards;
+  animation-delay: calc(var(--index, 0) * var(--resources-hero-stagger));
+}
+
 .resources-hero-reveal-block {
   display: block;
 }
@@ -196,6 +233,18 @@
   color: var(--color-foreground-100);
   text-decoration: none;
   font-weight: 500;
+  transition: color var(--resources-duration-hover) ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .resources-taught-by a:hover {
+    color: var(--color-blue-900);
+  }
+}
+
+.resources-taught-by a:focus-visible {
+  outline: 2px solid var(--color-foreground-100);
+  outline-offset: 3px;
 }
 
 /* Full-bleed horizontal rule (hero → content) */
@@ -563,6 +612,12 @@
   text-decoration: none;
   color: inherit;
   isolation: isolate;
+  transition: scale var(--resources-duration-hover) ease-out;
+}
+
+.resources-skills-list a:focus-visible {
+  outline: 2px solid var(--color-foreground-100);
+  outline-offset: -2px;
 }
 
 .resources-skills-list a::before,
@@ -579,7 +634,7 @@
     transparent 1px
   );
   background-size: 14px 14px;
-  transition: opacity 150ms ease-out;
+  transition: opacity var(--resources-duration-hover) ease-out;
   pointer-events: none;
 }
 
@@ -606,6 +661,88 @@
   .resources-skills-list .resources-skills-item:hover::before {
     opacity: 1;
   }
+
+  .resources-skills-list a:active {
+    scale: 0.98;
+  }
+}
+
+/* Catalog scroll reveal：列表项 stagger（整框不另做淡入，避免双重 opacity） */
+.resources-skills-card[data-animate] .resources-skills-heading,
+.resources-skills-card[data-animate] .resources-skills-list li {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.resources-skills-card[data-animate][data-revealed] .resources-skills-heading,
+.resources-skills-card[data-animate][data-revealed] .resources-skills-list li {
+  animation: resources-enter var(--resources-duration-enter)
+    var(--resources-ease-out) both;
+}
+
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(1)
+  .resources-skills-heading {
+  animation-delay: 0ms;
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(2)
+  .resources-skills-heading {
+  animation-delay: calc(1 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(1)
+  .resources-skills-list
+  li:nth-child(1) {
+  animation-delay: calc(1 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(1)
+  .resources-skills-list
+  li:nth-child(2) {
+  animation-delay: calc(2 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(1)
+  .resources-skills-list
+  li:nth-child(3) {
+  animation-delay: calc(3 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(1)
+  .resources-skills-list
+  li:nth-child(4) {
+  animation-delay: calc(4 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(1)
+  .resources-skills-list
+  li:nth-child(5) {
+  animation-delay: calc(5 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(1)
+  .resources-skills-list
+  li:nth-child(6) {
+  animation-delay: calc(6 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(2)
+  .resources-skills-list
+  li:nth-child(1) {
+  animation-delay: calc(2 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(2)
+  .resources-skills-list
+  li:nth-child(2) {
+  animation-delay: calc(3 * var(--resources-stagger));
+}
+.resources-skills-card[data-animate][data-revealed]
+  .resources-skills-col:nth-child(2)
+  .resources-skills-list
+  li:nth-child(3) {
+  animation-delay: calc(4 * var(--resources-stagger));
 }
 
 .resources-skills-name {
@@ -626,10 +763,11 @@
   margin: 0;
   font-size: 0.6875rem;
   line-height: 1;
-  color: var(--color-gray-500);
+  color: var(--color-gray-900);
   align-self: flex-end;
   text-align: right;
   padding-top: 0.35rem;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Featured cards (right panel in split section) */
@@ -666,49 +804,51 @@
   text-decoration: none;
   color: inherit;
   isolation: isolate;
+  transition: scale var(--resources-duration-hover) ease-out;
+}
+
+a.resources-feature-card:focus-visible {
+  outline: 2px solid var(--color-foreground-100);
+  outline-offset: -2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.resources-feature-card:active {
+    scale: 0.98;
+  }
 }
 
 /* Scroll 入场：仅在 JS 挂上 data-animate 后隐藏，无 JS 时卡片保持可见 */
 .resources-feature-grid[data-animate] > .resources-feature-card {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
 }
 
 .resources-feature-grid[data-animate][data-revealed] > .resources-feature-card {
-  animation: resources-card-enter 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: resources-enter var(--resources-duration-enter)
+    var(--resources-ease-out) both;
 }
 
-/* 首子节点是十字装饰，卡片从 nth-child(2) 起 stagger 50ms */
+/* 首子节点是十字装饰，卡片从 nth-child(2) 起 stagger */
 .resources-feature-grid[data-animate][data-revealed]
   > .resources-feature-card:nth-child(2) {
   animation-delay: 0ms;
 }
 .resources-feature-grid[data-animate][data-revealed]
   > .resources-feature-card:nth-child(3) {
-  animation-delay: 50ms;
+  animation-delay: calc(1 * var(--resources-stagger));
 }
 .resources-feature-grid[data-animate][data-revealed]
   > .resources-feature-card:nth-child(4) {
-  animation-delay: 100ms;
+  animation-delay: calc(2 * var(--resources-stagger));
 }
 .resources-feature-grid[data-animate][data-revealed]
   > .resources-feature-card:nth-child(5) {
-  animation-delay: 150ms;
+  animation-delay: calc(3 * var(--resources-stagger));
 }
 .resources-feature-grid[data-animate][data-revealed]
   > .resources-feature-card:nth-child(6) {
-  animation-delay: 200ms;
-}
-
-@keyframes resources-card-enter {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation-delay: calc(4 * var(--resources-stagger));
 }
 
 .resources-feature-card::before {
@@ -724,7 +864,7 @@
     transparent 1px
   );
   background-size: 14px 14px;
-  transition: opacity 150ms ease-out;
+  transition: opacity var(--resources-duration-hover) ease-out;
   pointer-events: none;
 }
 
@@ -974,10 +1114,10 @@
   height: 1rem;
   color: var(--color-foreground-100);
   opacity: 0;
-  transform: translateX(-0.35rem);
+  transform: translateX(-0.25rem);
   transition:
-    opacity 280ms ease-in-out,
-    transform 280ms ease-in-out;
+    opacity var(--resources-duration-hover) ease-out,
+    transform var(--resources-duration-hover) ease-out;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1005,10 +1145,22 @@
   color: #989898;
   font-weight: 500;
   text-decoration: none;
+  transition: color var(--resources-duration-hover) ease-out;
 }
 
 .dark .resources-footer a {
   color: #8c8c8c;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .resources-footer a:hover {
+    color: var(--color-foreground-100);
+  }
+}
+
+.resources-footer a:focus-visible {
+  outline: 2px solid var(--color-foreground-100);
+  outline-offset: 3px;
 }
 
 /* Back to top */
@@ -1032,11 +1184,12 @@
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(0.4rem);
+  transform: translateY(0.35rem);
   transition:
-    opacity 160ms ease-out,
-    transform 160ms ease-out,
-    background-color 160ms ease-out;
+    opacity var(--resources-duration-hover) ease-out,
+    transform var(--resources-duration-hover) ease-out,
+    background-color var(--resources-duration-hover) ease-out,
+    scale var(--resources-duration-hover) ease-out;
 }
 
 .dark .resources-back-to-top {
@@ -1049,28 +1202,54 @@
   transform: none;
 }
 
+.resources-back-to-top:focus-visible {
+  outline: 2px solid var(--color-foreground-100);
+  outline-offset: 3px;
+}
+
 .resources-back-to-top svg {
   width: 1.125rem;
   height: 1.125rem;
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .resources-back-to-top:hover {
     background: color-mix(in srgb, var(--color-gray-100) 92%, transparent);
   }
+
+  .resources-back-to-top:active {
+    scale: 0.96;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .resources-reveal-item {
+    animation: none;
+  }
+
+  .resources-skills-card[data-animate] .resources-skills-heading,
+  .resources-skills-card[data-animate] .resources-skills-list li,
+  .resources-skills-card[data-animate][data-revealed] .resources-skills-heading,
+  .resources-skills-card[data-animate][data-revealed]
+    .resources-skills-list
+    li,
   .resources-feature-grid[data-animate] > .resources-feature-card,
-  .resources-feature-grid[data-animate][data-revealed] > .resources-feature-card {
+  .resources-feature-grid[data-animate][data-revealed]
+    > .resources-feature-card {
     opacity: 1;
     transform: none;
     animation: none;
   }
 
+  .resources-skills-list a,
   .resources-feature-card,
   .resources-feature-arrow,
-  .resources-back-to-top {
+  .resources-back-to-top,
+  .resources-taught-by a,
+  .resources-footer a,
+  .resources-skills-list a::before,
+  .resources-feature-card::before {
     transition: none;
   }
 }
