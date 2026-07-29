@@ -7,342 +7,385 @@ maintainer: 胡佳奇
 maintainerOpenId: ou_5ae3ed4c0dd03925715597a23ea0088f
 figmaFileKey: "7PVSm4yEbknNLFaqauI4EM"
 figmaNodeId: "37461-103414"
-tokenGroups:
-  [
-    "semantic.fill",
-    "semantic.text",
-    "semantic.padding",
-    "semantic.radius",
-  ]
 ---
 
-## 概述
+## 一、概述
 
-按钮是用于触发即时操作的基础交互组件。通过清晰的操作文案或图形、明确的视觉层级和可感知的状态反馈，帮助用户理解「可以执行什么操作」「操作的重要程度」以及「操作是否已经生效」。
+按钮是用于触发即时操作的基础交互组件。通过清晰的操作文案或图形、明确的视觉层级和可感知的状态反馈，帮助用户理解“可以执行什么操作”“操作的重要程度”以及“操作是否已经生效”
 
-## 原则
 
-- **识别性**：按钮应易于识别与查找，与周围内容明显区分，如通过颜色、容器、边框、阴影、间距等进行视觉提示
-- **可操作性**：无论触控、鼠标、键盘还是辅助设备，按钮都应易于访问，并提供足够的触控区域和容错范围
-- **状态反馈**：按钮在触发前、触发中和触发后均提供一致、及时的状态反馈，避免用户重复操作或误判操作结果
-- **可访问性**：按钮应在多语言和大字体状态下，保持良好的可读性和扩展性，提供灵活美观的适配策略，如：折叠策略、折行策略、字号缩小策略等
 
-## 类型
+## 二、原则
 
-按钮按视觉层级、内容形式和使用场景分为强调按钮、基础按钮、文本按钮、图标按钮。
+- 识别性：按钮应易于识别与查找，与周围内容明显区分，如通过颜色、容器、边框、阴影、间距等进行视觉提示
 
-![按钮类型](/media/os4/components/actions/button/types.png)
+- 可操作性：无论触控、鼠标、键盘还是辅助设备，按钮都应易于访问，并提供足够的触控区域和容错范围
 
-### 强调按钮
+- 状态反馈：按钮在触发前、触发中和触发后均提供一致、及时的状态反馈，避免用户重复操作或误判操作结果。
+
+- 可访问性：按钮应在多语言和大字体状态下，保持良好的可读性和扩展性，提供灵活美观的适配策略，如：折叠策略、折行策略、字号缩小策略等
+
+
+
+## 三、类型
+
+### 类型
+
+按钮按视觉层级、内容形式和使用场景分为强调按钮、基础按钮、文本按钮、图标按钮
+
+![按钮类型.png](/media/os4/components/actions/button/%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B.png)
+
+#### 强调按钮
 
 强调按钮是一种高视觉优先级的按钮形式，用于引导用户完成当前页面或当前容器中的主要操作。
 
 典型场景：页面底部主按钮、弹窗确认等。如：确定、同意、下载、允许、安装。
 
-![强调按钮](/media/os4/components/actions/button/type-emphasis.png)
+![强调的按钮.png](/media/os4/components/actions/button/%E5%BC%BA%E8%B0%83%E7%9A%84%E6%8C%89%E9%92%AE.png)
 
-### 基础按钮
 
-#### 默认
 
-基础按钮用于一般界面操作。清晰的背景可以明确地指示用户可操作的区域，在界面上弱于强调按钮。
+#### 基础按钮
+
+##### 默认
+
+基础按钮用于一般界面操作。清晰的背景可以明确地指示用户可操作的区域。在界面上弱于强调按钮，
 
 典型场景：页面底部按钮、弹窗取消。如：取消、拒绝、退出登录、自定义排序、次要确认等。
 
-![基础按钮](/media/os4/components/actions/button/type-basic.png)
+![基础按钮.png](/media/os4/components/actions/button/%E5%9F%BA%E7%A1%80%E6%8C%89%E9%92%AE.png)
 
-#### 警示
 
-若用户触发将产生严重后果的不可逆操作，如「删除」「重置」「放弃编辑」「停止」等，使用红色警告色。
 
-![警示按钮](/media/os4/components/actions/button/type-warning.png)
+##### 警示
 
-### 文字按钮
+若用户触发将产生严重后果的不可逆操作，如“删除”，“重置”，“放弃编辑”，“停止”等，使用红色警告色。
 
-文本按钮为纯文本按钮，点击执行操作，可最大限度减少按钮对内容的干扰。界面内容区（跟随内容）、弹窗的跳转操作按钮：需使用强调色蓝色，以便用户找到。
+![警示按钮.png](/media/os4/components/actions/button/%E8%AD%A6%E7%A4%BA%E6%8C%89%E9%92%AE.png)
 
-![文字按钮](/media/os4/components/actions/button/type-text.png)
 
-### 图标按钮
 
-在显示区域受到限制时，使用图标按钮可以节省空间，让用户对当前界面内容执行快速操作。在以下场景较为常见：导航栏、标题栏、工具栏、控制中心、重要页面级新建场景。
+#### 文字按钮
 
-![图标按钮](/media/os4/components/actions/button/type-icon.png)
+文本按钮为纯文本按钮，点击执行操作，可最大限度减少按钮对内容的干扰。界面内容区 \(跟随内容\)、弹窗的跳转操作按钮：需使用强调色蓝色，以便用户找到。
+
+![文字按钮.png](/media/os4/components/actions/button/%E6%96%87%E5%AD%97%E6%8C%89%E9%92%AE.png)
+
+
+
+#### 图标按钮
+
+在显示区域受到限制时，使用图标按钮可以节省空间，让用户对当前界面内容执行快速操作。在以下场景较为常见：导航栏、标题栏、工具栏、控制中心、重要页面级新建场景
+
+![图标按钮.png](/media/os4/components/actions/button/%E5%9B%BE%E6%A0%87%E6%8C%89%E9%92%AE.png)
+
+
 
 ### 使用规则
 
 按钮类型应根据操作优先级、操作后果、所在容器和空间条件选择。
 
-- **按重要程度选择**：强调按钮 > 基础按钮 > 文本按钮。页面主操作优先使用强调按钮，次要操作使用基础按钮或文本按钮
-- **按操作后果选择**：删除、重置、停止、放弃编辑等不可逆或高风险操作，应使用红色警示按钮
-- **按组件场景选择**：导航栏、标题栏、工具栏默认使用图标按钮、图标加文字按钮或纯图标按钮
-- **按空间条件选择**：空间充足时优先使用文字清晰表达操作；空间受限时可使用图标按钮，但图标含义必须明确
-- **按任务连续性选择**：下载、安装、提交等异步任务，应根据进度提供等待中、进行中、暂停、重试等反馈
+- **按重要程度选择：**强调按钮 > 基础按钮 > 文本按钮。页面主操作优先使用强调按钮，次要操作使用基础按钮或文本按钮。
 
-## 结构
+- **按操作后果选择：**删除、重置、停止、放弃编辑等不可逆或高风险操作，应使用红色警示按钮。
 
-按钮组件主要由**容器、内容**两部分构成。其中文字按钮和基础图标按钮无容器。
+- **按组件场景选择：**导航栏、标题栏、工具栏默认使用图标按钮、图标加文字按钮或纯图标按钮。
+
+- **按空间条件选择：**空间充足时优先使用文字清晰表达操作；空间受限时可使用图标按钮，但图标含义必须明确。
+
+- **按任务连续性选择：**下载、安装、提交等异步任务，应根据进度提供等待中、进行中、暂停、重试等反馈。
+
+
+
+## 四、结构
+
+按钮组件主要由 **容器、内容 **两部分构成。其中文字按钮和基础图标按钮无容器
 
 ### 容器
 
-容器用于定义按钮的视觉边界和触控范围，包括高度、圆角、内边距、背景色和最小点击热区：
+容器用于定义按钮的视觉边界和触控范围，包括高度、圆角、内边距、背景色、和最小点击热区；
 
 - 圆角矩形按钮和胶囊按钮点击热区为按钮大小本身
-- 图标按钮最小热区为 44×44，在容器内时，热区为容器大小
 
-![按钮容器](/media/os4/components/actions/button/structure-container.png)
+- 图标按钮最小热区为44*44，在容器内时，热区为容器大小
+
+![按钮容器.png](/media/os4/components/actions/button/%E6%8C%89%E9%92%AE%E5%AE%B9%E5%99%A8%201.png)
+
+
 
 ### 内容
 
-内容用于承载按钮的语义信息，通常由文字标签或图标组成：
+内容用于承载按钮的语义信息，通常由文字标签或图标组成
 
 - 文字应简短、明确，优先使用动词或动宾结构
-- 图标可作为独立按钮内容，适用于高频、通用、上下文明确或空间受限的操作，如添加、编辑、更多、设置等；也可搭配文字使用，如菜单、导航栏、工具栏等
+
+- 图标可作为独立按钮内容，适用于高频、通用、上下文明确或空间受限的操作，如添加、编辑、更多、设置等也可搭配文字使用，如菜单、导航栏、工具栏等
+
 - 加载、禁用等状态下，内容表达需保持连续，避免语义跳变。跨应用的同类动作应统一命名，保证用户预期稳定
 
-## 交互与状态
+
+
+## 五、交互与状态
 
 按钮状态用于表达当前是否可操作、是否被触发、是否处于异步执行中，以及是否被焦点选中。
 
 ### 基础状态
 
-- **Enabled（必须）**：按钮默认可操作状态
-- **Hover（条件支持）**：鼠标、触控板等指针悬停时的状态，移动端不强制支持
-- **Pressed（必须）**：用户按下按钮但尚未完成释放时的状态
-- **Disabled（必须）**：当前条件下不可操作，不响应用户操作
-- **Focus（暂未支持）**：键盘、遥控器或辅助设备导航时的焦点状态
+- **Enabled（必须）：**按钮默认可操作状态
+
+- **Hover（条件支持）：**鼠标、触控板等指针悬停时的状态，移动端不强制支持
+
+- **Pressed（必须）：**用户按下按钮但尚未完成释放时的状态
+
+- **Disabled（必须）：**当前条件下不可操作，不响应用户操作
+
+- **Focus（暂未支持）：**键盘、遥控器或辅助设备导航时的焦点状态
+
+
 
 ### 异步状态
 
-- **Loading（条件支持）**：操作已经触发但结果尚未返回；应避免重复触发，并保持按钮尺寸稳定
+- **Loading（条件支持）：**操作已经触发但结果尚未返回；应避免重复触发，并保持按钮尺寸稳定。（MIUIX暂未在按钮组件中实现Loading态，需业务根据场景诉求自定义实现）
 
-<Callout type="warn">
-  MIUIX 暂未在按钮组件中实现 Loading 态，需业务根据场景诉求自定义实现。
-</Callout>
+- Loading 适用于下载、安装、提交、保存等异步任务，操作触发后，应避免重复点击。
 
-- Loading 适用于下载、安装、提交、保存等异步任务，操作触发后应避免重复点击
-- 任务执行中应保持按钮尺寸稳定，避免布局跳动
+- 任务执行中应保持按钮尺寸稳定，避免布局跳动。
+
+
 
 ### 状态切换规则
 
-- 按钮在 Enabled、Pressed、Disabled、Loading 等状态之间切换时，应保持位置和尺寸稳定
-- 状态变化应及时反馈给用户，避免造成「点击无响应」的误解
-- Loading 结束后应恢复到对应的可用状态，并明确告知结果
+- 按钮在 Enabled、Pressed、Disabled、Loading 等状态之间切换时，应保持位置和尺寸稳定。
+
+- 状态变化应及时反馈给用户，避免造成“点击无响应”的误解。
+
+- Loading 结束后应恢复到对应的可用状态，并明确告知结果。
+
+
 
 ### 状态样式说明
 
-#### 带容器按钮
+##### 带容器按钮
 
-- **强调按钮**：状态变化时，仅容器背景变色，文字不变
-- **基础按钮**：状态变化时，容器和文字均会在不同状态下有差异
+强调按钮：状态变化时，仅容器背景变色，文字不变
 
-![可交互状态](/media/os4/components/actions/button/states-container.png)
+基础按钮：状态变化时，容器和文字均会在不同状态下有差异
 
-| 交互状态 | 强调按钮容器色 | 强调按钮文字色 | 基础按钮容器色 | 基础按钮文字色 |
-|----------|----------------|----------------|----------------|----------------|
-| Enabled | `miuix_color_fill_brand_enable` | `miuix_color_text_static_white_enabled` | `miuix_color_fill_secondary_enabled` | `miuix_color_text_primary_enable` |
-| Hover | +`miuix_color_fill_status_hover` | `miuix_color_text_static_white_enabled` | +`miuix_color_fill_status_hover` | `miuix_color_text_primary_enable` |
-| Pressed | +`miuix_color_fill_status_pressed` | `miuix_color_text_static_white_enabled` | +`miuix_color_fill_status_pressed` | `miuix_color_text_primary_enable` |
-| Disabled | `miuix_color_fill_brand_disabled` | `miuix_color_text_static_white_enabled` | `miuix_color_fill_secondary_enabled` | `miuix_color_text_primary_disabled` |
+![可交互状态.png](/media/os4/components/actions/button/%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%8A%B6%E6%80%81.png)
 
-#### 图标按钮
+|交互状态|强调按钮容器色|强调按钮文字色|基础按钮容器色|基础按钮文字色|
+|---|---|---|---|---|
+|Enabled|`miuix_color_fill_brand_enable`|`miuix_color_text_static_white_enabled`|`miuix_color_fill_secondary_enabled`|`miuix_color_text_primary_enable`|
+|hover|+`miuix_color_fill_status_hover`|`miuix_color_text_static_white_enabled`|+`miuix_color_fill_status_hover`|`miuix_color_text_primary_enable`|
+|pressed|+`miuix_color_fill_status_pressed`|`miuix_color_text_static_white_enabled`|+`miuix_color_fill_status_pressed`|`miuix_color_text_primary_enable`|
+|Disabled|miuix_color_fill_brand_disabled|`miuix_color_text_static_white_enabled`|`miuix_color_fill_secondary_enabled`|`miuix_color_text_primary_disabled`|
 
-![图标按钮状态](/media/os4/components/actions/button/states-icon.png)
+##### 图标按钮
 
-| 交互状态 | 平面模式容器色 | 平面模式图标色 | 悬浮模式容器色 | 悬浮模式图标色 |
-|----------|----------------|----------------|----------------|----------------|
-| Enabled | — | `miuix_color_text_primary_enable` | `miuix_color_bg_floating_white_page` | `miuix_color_text_primary_enable` |
-| Hover | +`miuix_color_fill_status_hover` | `miuix_color_text_primary_enable` | +`miuix_color_fill_status_hover` | `miuix_color_text_primary_enable` |
-| Pressed | +`miuix_color_fill_status_pressed` | `miuix_color_text_primary_enable` | +`miuix_color_fill_status_pressed` | `miuix_color_text_tertiary_enabled` |
-| Disabled | — | `miuix_color_text_primary_disabled` | `miuix_color_bg_floating_white_page` | `miuix_color_text_primary_disabled` |
+![按钮容器.png](/media/os4/components/actions/button/%E6%8C%89%E9%92%AE%E5%AE%B9%E5%99%A8.png)
 
-## 视觉规格
+|交互状态|平面模式容器色|平面模式图标色|悬浮模式容器色|悬浮模式图标色|
+|---|---|---|---|---|
+|Enabled|-|`miuix_color_text_primary_enable`|miuix_color_bg_floating_white_page|`miuix_color_text_primary_enable`|
+|hover|+`miuix_color_fill_status_hover`|`miuix_color_text_primary_enable`|+`miuix_color_fill_status_hover`|`miuix_color_text_primary_enable`|
+|pressed|+`miuix_color_fill_status_pressed`|`miuix_color_text_primary_enable`|+`miuix_color_fill_status_pressed`|`miuix_color_text_tertiary_enabled`|
+|Disabled|-|`miuix_color_text_primary_disabled`|`miuix_color_bg_floating_white_page`|`miuix_color_text_primary_disabled`|
+
+## 六、视觉规格
 
 ### 强调按钮
 
 #### 圆角矩形
 
-视觉优先级最高，用于引导用户关注当前页面的主要操作，适用于确认、提交、完成等核心操作。
+视觉优先级最高，用于引导用户关注当前页面的主要操作，适用于确认、提交、完成等核心操作
 
-![强调按钮 · 圆角矩形](/media/os4/components/actions/button/spec-emphasis-rect.png)
+![01.png](/media/os4/components/actions/button/01.png)
 
-| 属性 | 细分 | 参数 | Token / 规则 |
-|------|------|------|--------------|
-| 容器 | 宽度 | 左右 padding 20dp | 最大值 336dp |
-| | 高度 | 50dp | 默认高度 |
-| | 颜色 | 主题蓝色 | `miuix_color_fill_brand_enable` |
-| | 圆角 | 16dp | `miuix_raidus_shape_md` |
-| 文字 | 大小 | 17dp | `button` |
-| | 字重 | 380 | `medium` |
-| | 颜色 | 白色 | `miuix_color_text_static_white_enabled` |
+|属性|细分|参数|Token/规则|
+|---|---|---|---|
+|容器|宽度|左右padding 20dp|最大值336dp|
+||高度|50dp|默认高度|
+||颜色|主题蓝色|`miuix_color_fill_brand_enable`|
+||圆角|16dp|`miuix_raidus_shape_md`|
+|文字|大小|17dp|`button`|
+||字重|380|`medium`|
+||颜色|白色|`miuix_color_text_static_white_enabled`|
 
-#### 胶囊形 · Small
 
-本身占位较小，适用于沉浸式、空间受限场景，如桌面编辑的确认、完成，下载中心的下载等场景。
 
-![强调按钮 · 胶囊 Small](/media/os4/components/actions/button/spec-emphasis-capsule-small.png)
+#### 胶囊形
 
-| 属性 | 细分 | 参数 | Token / 规则 |
-|------|------|------|--------------|
-| 容器 | 宽度 | 左右 padding 20dp | 自适应内容，文案建议 2–4 中文字符 |
-| | 高度 | 36dp | 默认高度 |
-| | 颜色 | 主题蓝色 | `miuix_color_fill_brand_enable` |
-| | 圆角 | 999（胶囊） | `miuix_raidus_shape_full` |
-| 文字 | 大小 | 14dp | `Subtitle` |
-| | 字重 | 380 | `medium` |
-| | 颜色 | 白色 | `miuix_color_text_static_white_enabled` |
+##### Small 型号
 
-#### 胶囊形 · Mini
+本身占位较小，适用于沉浸式、空间受限场景，如桌面编辑的确认、完成，下载中心的下载等场景
 
-系统内最小按钮，适用于极端空间受限场景，如通知中心场景。
+![02.png](/media/os4/components/actions/button/02.png)
 
-![强调按钮 · 胶囊 Mini](/media/os4/components/actions/button/spec-emphasis-capsule-mini.png)
+|属性|细分|参数|Token/规则|
+|---|---|---|---|
+|容器|宽度|左右padding 20dp|自适应内容，文案建议2-4中文字符|
+||高度|36dp|默认高度|
+||颜色|主题蓝色|`miuix_color_fill_brand_enable`|
+||圆角|999（胶囊）|`miuix_raidus_shape_full`|
+|文字|大小|14dp|`Subtitle`|
+||字重|380|`medium`|
+||颜色|白色 #FFFFFF|`miuix_color_text_static_white_enabled`|
 
-| 属性 | 细分 | 参数 | Token / 规则 |
-|------|------|------|--------------|
-| 容器 | 宽度 | 左右 padding 12dp | 自适应内容，文案建议 2–4 中文字符 |
-| | 高度 | 28dp | 默认高度 |
-| | 颜色 | 主题蓝色 | `miuix_color_fill_brand_enable` |
-| | 圆角 | 999（胶囊） | `miuix_raidus_shape_full` |
-| 文字 | 大小 | 13dp | `Footnote` |
-| | 字重 | 330 | `regular` |
-| | 颜色 | 白色 | `miuix_color_text_static_white_enabled` |
+##### Mini 型号
+
+系统内最小按钮，适用于极端空间受限场景，如通知中心场景
+
+![03.png](/media/os4/components/actions/button/03.png)
+
+|属性|细分|参数|Token/规则|
+|---|---|---|---|
+|容器|宽度|左右padding 12dp|自适应内容，文案建议2-4中文字符|
+||高度|28dp|默认高度|
+||颜色|主题蓝色|`miuix_color_fill_brand_enable`|
+||圆角|999（胶囊）|`miuix_raidus_shape_full`|
+|文字|大小|13dp|`Footnote`|
+||字重|330|`regular`|
+||颜色|白色 #FFFFFF|`miuix_color_text_static_white_enabled`|
+
+
 
 ### 基础按钮
 
 #### 默认
 
-基础按钮在界面中强度适中，保留明确的背景效果，常用于取消、拒绝等普通优先级的操作。
+基础按钮在界面中强度适中，保留明确的背景效果，常用于取消、拒绝等普通优先级的操作
 
-![基础按钮 · 默认](/media/os4/components/actions/button/spec-basic-default.png)
+![基础按钮类型.png](/media/os4/components/actions/button/%E5%9F%BA%E7%A1%80%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B.png)
 
-| 属性 | 细分 | 参数 | Token / 规则 |
-|------|------|------|--------------|
-| 容器 | 宽度 | 左右 padding 20dp | 最大值 336dp |
-| | 高度 | 50dp | 默认高度 |
-| | 颜色 | 背景灰 #000000 · 6% | `miuix_color_fill_secondary_enabled` |
-| | 圆角 | 16dp | `miuix_raidus_shape_md` |
-| 文字 | 大小 | 17dp | `button` |
-| | 字重 | 380 | `medium` |
-| | 颜色 | 黑色 | `miuix_color_text_primary_enable` |
+|属性|细分|参数|Token/规则|
+|---|---|---|---|
+|容器|宽度|左右padding 20dp|最大值336dp|
+||高度|50dp|默认高度|
+||颜色|背景灰 #000000 · 6%|`miuix_color_text_primary_enable`|
+||圆角|16dp|`miuix_raidus_shape_md`|
+|文字|大小|17dp|`button`|
+||字重|380|`medium`|
+||颜色|黑色 #000000|`miuix_color_text_primary_enable`|
 
 #### 警示
 
-常用于删除、清空、重置、退出等可能造成数据损失的操作。
+常用于删除、清空、重置、退出等可能造成数据损失的操作
 
-![基础按钮 · 警示](/media/os4/components/actions/button/spec-basic-warning.png)
+![基础按钮类型-警示型.png](/media/os4/components/actions/button/%E5%9F%BA%E7%A1%80%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B-%E8%AD%A6%E7%A4%BA%E5%9E%8B.png)
 
-| 属性 | 细分 | 参数 | Token / 规则 |
-|------|------|------|--------------|
-| 容器 | 宽度 | 左右 padding 20dp | 最大值 336dp |
-| | 高度 | 50dp | 默认高度 |
-| | 颜色 | 背景灰 #000000 · 6% | `miuix_color_fill_secondary_enabled` |
-| | 圆角 | 16dp | `miuix_raidus_shape_md` |
-| 文字 | 大小 | 17dp | `button` |
-| | 字重 | 380 | `medium` |
-| | 颜色 | 警示红 | `miuix_color_text_warning_enable` |
+|属性|细分|参数|Token/规则|
+|---|---|---|---|
+|容器|宽度|左右padding 20dp|最大值336dp|
+||高度|50dp|默认高度|
+||颜色|背景灰 #000000 · 6%|`miuix_color_text_primary_enable`|
+||圆角|16dp|`miuix_raidus_shape_md`|
+|文字|大小|17dp|`button`|
+||字重|380|`medium`|
+||颜色|警示红 |`miuix_color_text_warning_enable`|
 
-### 文本按钮
 
-<Callout type="info">
-  MIUIX 暂未支持文本按钮。
-</Callout>
 
-文本按钮用于表达低优先级的操作，无背景和边框，采用纯文本形式，最大限度地减少对内容的干扰。文字是核心元素，系统中使用较少，大部分可被胶囊按钮和图标按钮替代。
+### 文本按钮（MIUIX暂未支持）
 
-![文本按钮规格](/media/os4/components/actions/button/spec-text.png)
+文本按钮用于表达低优先级的操作，无背景和边框，采用纯文本形式，最大限度地减少对内容的干扰。文字是核心元素，系统中使用较少，大部分可被胶囊按钮和图标按钮替代
 
-| 型号 | 文字大小 | 颜色 | Token |
-|------|----------|------|-------|
-| Normal | 17dp | 主题蓝色 | `miuix_color_text_brand_enable` |
-| Small | 14dp | 主题蓝色 | `miuix_color_text_brand_enable` |
-| Mini | 13dp | 主题蓝色 | `miuix_color_text_brand_enable` |
+![文字按钮类型.png](/media/os4/components/actions/button/%E6%96%87%E5%AD%97%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B.png)
+
+|型号|文字大小|颜色|Token|
+|---|---|---|---|
+|Normal|17dp|主题蓝色|`miuix_color_text_brand_enable`|
+|Small|14dp|主题蓝色|`miuix_color_text_brand_enable`|
+|Mini|13dp|主题蓝色|`miuix_color_text_brand_enable`|
+
+
 
 ### 图标按钮
 
-图标按钮适合在标题栏、工具栏或控制面板等空间有限的场景中使用，主要用于功能性引导、系统导航或功能聚合等快速操作。OS4 所有图标均已封装进字体图标库，设计师在进行设计方案时，也需使用字体图标进行设计和标注。
+图标按钮适合在标题栏、工具栏或控制面板等空间有限的场景中使用，主要用于功能性引导、系统导航或功能聚合等快速操作。OS4所有图标均已封装进字体图标库，设计师在进行设计方案时，也需使用字体图标进行设计和标注
 
-![图标按钮规格](/media/os4/components/actions/button/spec-icon.png)
+![图标按钮类型.png](/media/os4/components/actions/button/%E5%9B%BE%E6%A0%87%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B.png)
 
 #### 普通图标按钮
 
-| 类型 | 图标大小 | 图标颜色 | 容器 | 容器颜色 |
-|------|----------|----------|------|----------|
-| 普通图标按钮 | 28×28dp | `miuix_color_text_primary_enable` | — | — |
+|类型|图标大小|图标颜色|容器|容器颜色|
+|---|---|---|---|---|
+|普通图标按钮|28*28dp|`miuix_color_text_primary_enable`|-|-|
 
 #### 容器图标按钮
 
-| 类型 | 图标大小 | 图标颜色 | 容器 | 容器颜色 |
-|------|----------|----------|------|----------|
-| 容器图标按钮 | 28×28dp | `miuix_color_text_primary_enable` | 44×44dp | `miuix_color_text_static_white_enabled` |
+|类型|图标大小|图标颜色|容器|容器颜色|
+|---|---|---|---|---|
+|容器图标按钮|28*28dp|`miuix_color_text_primary_enable`|44*44dp|`miuix_color_text_static_white_enabled`|
 
-容器图标按钮支持 2 种材质效果：
+**容器图标按钮：**支持2种材质效果
 
-![材质效果](/media/os4/components/actions/button/material.png)
+![材质图.png](/media/os4/components/actions/button/%E6%9D%90%E8%B4%A8%E5%9B%BE.png)
 
-- **纯色样式**：纯色或纯色半透明背景色
-- **轻透磨砂**：开启后容器会呈现模糊混色 + 高光边的透色效果，参数如下
-  - 模糊：`Blur_Extra_S`
-  - 混色：`Pured_Thin_Glass_Light`
-  - 描边：`Glass_Stroke_Middle_Light`
-  - 阴影：`Shadow_Regular`
+- **纯色样式：**纯色或纯色半透明背景色
+
+- **轻透磨砂：**开启后容器会呈现模糊混色+高光边的透色效果，参数如下
+
+    - 模糊：`Blur_Extra_S`
+
+    - 混色：`Pured_Thin_Glass_Light`
+
+    - 描边：`Glass_Stroke_Middle_Light`
+
+    - 阴影：`Shadow_Regular`
+
+
 
 #### 强调图标按钮
 
 触发当前页面或栏中的突出最主要或常用操作。位置固定，不随页面内容滚动，通常位于页面或栏的右下角。
 
-- 一个页面或栏中最多仅使用一个悬浮按钮
-- 避免在抽屉、浮窗或弹窗中使用按钮
+- 一个页面或栏中最多仅使用一个悬浮按钮。
+
+- 避免在抽屉、浮窗或弹窗中使用按钮。
+
 - 颜色可自定义，但需保持与系统整体色调统一；避免容器颜色与背景过于接近
 
-完整规范另见 [Floating Action Button](/docs/os4/components/actions/floating-action-button)。
+![FAB按钮类型.png](/media/os4/components/actions/button/FAB%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B.png)
 
-![强调图标按钮](/media/os4/components/actions/button/fab-types.png)
+**强调图标按钮：**支持2种材质效果
 
-强调图标按钮支持 2 种材质效果。
+**纯色样式：**纯色背景
 
-**纯色样式**：纯色背景
+|类型|容器色|图标色|图标大小|
+|---|---|---|---|
+|蓝色|miuix_color_fill_brand_enable|miuix_color_text_static_white_enabled|56*56dp|
+|黄色|miuix_color_fill_caution_enable|miuix_color_text_static_white_enabled|56*56dp|
+|绿色|miuix_color_fill_success_enable|miuix_color_text_static_white_enabled|56*56dp|
+|红色|miuix_color_fill_warning_enable|miuix_color_text_static_white_enabled|56*56dp|
+|白色|miuix_color_bg_floating_white_page|`miuix_color_text_primary_enable`|56*56dp|
 
-| 类型 | 容器色 | 图标色 | 图标大小 |
-|------|--------|--------|----------|
-| 蓝色 | `miuix_color_fill_brand_enable` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 黄色 | `miuix_color_fill_caution_enable` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 绿色 | `miuix_color_fill_success_enable` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 红色 | `miuix_color_fill_warning_enable` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 白色 | `miuix_color_bg_floating_white_page` | `miuix_color_text_primary_enable` | 56×56dp |
+**轻透磨砂：**开启后容器会呈现模糊混色+高光边的透色效果，参数如下
 
-**轻透磨砂**：开启后容器会呈现模糊混色 + 高光边的透色效果
+|类型|容器色|图标色|图标大小|
+|---|---|---|---|
+|蓝色|`Fab_Blue_Light`|`miuix_color_text_static_white_enabled`|56*56dp|
+|黄色|`Fab_Yellow_Light`|`miuix_color_text_static_white_enabled`|56*56dp|
+|绿色|`Fab_Green_Light`|`miuix_color_text_static_white_enabled`|56*56dp|
+|红色|`Fab_Red_Light` |`miuix_color_text_static_white_enabled`|56*56dp|
+|白色|`Pured_Thin_Glass_Light`|`miuix_color_text_primary_enable`|56*56dp|
 
-| 类型 | 容器色 | 图标色 | 图标大小 |
-|------|--------|--------|----------|
-| 蓝色 | `Fab_Blue_Light` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 黄色 | `Fab_Yellow_Light` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 绿色 | `Fab_Green_Light` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 红色 | `Fab_Red_Light` | `miuix_color_text_static_white_enabled` | 56×56dp |
-| 白色 | `Pured_Thin_Glass_Light` | `miuix_color_text_primary_enable` | 56×56dp |
 
-## Design Tokens
 
-当前导出尚未包含独立的 Button Component Token；以下展示与按钮样式相关的 Semantic Token。
+---
 
-<TokenTable
-  groups={[
-    "semantic.fill.brand",
-    "semantic.text.brand",
-    "semantic.padding",
-    "semantic.radius",
-  ]}
-/>
 
-## 多端设计指南
+
+## 七、多端设计指南（线上版）
 
 按钮在手机、折叠屏和平板端应保持一致的操作层级和视觉规则，同时根据屏幕尺寸、容器宽度和输入方式进行布局适配。
 
 ### 通用规则
 
-**按钮最大宽度为 336dp，手机、折叠、平板通用。**
+**按钮最大宽度为336dp，手机、折叠、平板通用**
 
-336dp 来源于手机端设计稿尺寸反推：392dp − 12dp × 2 页边距 − 16dp × 2 缩进 = 336dp。该值是旧规范中的按钮最大值，在折叠屏、平板端和浮窗组件中需结合容器场景判断是否保持或调整。
+336dp 来源于手机端设计稿尺寸反推：392dp - 12dp × 2 页边距 - 16dp × 2 缩进 = 336dp。该值是旧规范中的按钮最大值，在折叠屏、平板端和浮窗组件中需结合容器场景判断是否保持或调整。
+
+
 
 ### 手机
 
@@ -350,80 +393,105 @@ tokenGroups:
 
 手机竖屏中，按钮通常位于页面底部、弹窗底部或内容区内。按钮宽度应根据容器宽度和边距规则适配，最大宽度不超过 336dp。
 
-- 图中容器边距为 12dp，按钮组件缩进为 16dp
-- 按钮距离小白条间距为 28dp（默认）
+- 图中容器边距为12dp，按钮组件缩进为16dp
 
-![手机竖屏](/media/os4/components/actions/button/phone-portrait.png)
+- 按钮距离小白条间距为28dp（默认）
+
+![手机-横竖屏.png](/media/os4/components/actions/button/%E6%89%8B%E6%9C%BA-%E6%A8%AA%E7%AB%96%E5%B1%8F.png)
+
+
 
 #### 手机横屏
 
 手机横屏中，按钮应避免因横向空间增大而无限拉伸。
 
-- 单个按钮在横竖屏切换时最大扩展到 336dp；双按钮左右布局，两者间距 12dp，总体宽度与 336dp 齐平
+- 单个按钮在横竖屏切换时最大扩展到 336dp，双按钮，左右布局，两者间距 12dp，总体宽度与 336dp 齐平
+
 - 3 个以上按钮上下排列，按钮上下间隔与竖屏一致，间距保持 12dp
+
 - 抽屉组件内，最大宽度依然为 336dp，不可强制拉宽与容器内容对齐
 
-![手机横屏](/media/os4/components/actions/button/phone-landscape.png)
+![手机-横屏.png](/media/os4/components/actions/button/%E6%89%8B%E6%9C%BA-%E6%A8%AA%E5%B1%8F.png)
 
-### 折叠 & 平板
+
+
+### 折叠&平板
 
 在更大屏幕上，按钮应保持清晰可控，不随屏幕无限伸缩。
 
-- 按钮最大宽度原则上保持 336dp
-- 页面级按钮可根据布局区域居中或跟随内容区对齐
-- 浮窗、弹窗、卡片等固定容器内，应优先服从容器自身的按钮布局规则
-- 当使用鼠标、触控板或键盘时，应补充 Hover、Focus 等状态支持
+- 按钮最大宽度原则上保持 336dp。
 
-#### 折叠 & 平板竖屏
+- 页面级按钮可根据布局区域居中或跟随内容区对齐。
 
-![折叠平板竖屏](/media/os4/components/actions/button/fold-pad-portrait.png)
+- 浮窗、弹窗、卡片等固定容器内，应优先服从容器自身的按钮布局规则。
 
-#### 折叠 & 平板横屏
+- 当使用鼠标、触控板或键盘时，应补充 Hover、Focus 等状态支持。
 
-![折叠平板横屏](/media/os4/components/actions/button/fold-pad-landscape.png)
+#### 折叠&平板竖屏
 
-#### 折叠 & 平板横屏 · 浮窗模式
+![折叠平板-竖屏.png](/media/os4/components/actions/button/%E6%8A%98%E5%8F%A0%E5%B9%B3%E6%9D%BF-%E7%AB%96%E5%B1%8F.png)
 
-![折叠平板横屏浮窗](/media/os4/components/actions/button/fold-pad-floating.png)
+
+
+#### 折叠&平板横屏
+
+![折叠屏版-横屏.png](/media/os4/components/actions/button/%E6%8A%98%E5%8F%A0%E5%B1%8F%E7%89%88-%E6%A8%AA%E5%B1%8F.png)
+
+
+
+**折叠&平板横屏-浮窗模式**
+
+![折叠屏版-横屏-浮窗.png](/media/os4/components/actions/button/%E6%8A%98%E5%8F%A0%E5%B1%8F%E7%89%88-%E6%A8%AA%E5%B1%8F-%E6%B5%AE%E7%AA%97.png)
 
 ### 固定容器
 
 #### 弹窗
 
-弹窗内统一使用圆角矩形按钮：
+**弹窗内统一使用圆角矩形按钮**
 
-- 横排时基础按钮默认放左侧，强调按钮放右侧；纵排时基础按钮放底部，强调按钮放顶部
-- 按钮组默认左右和上下间距为 12dp；单页面和窗口内，可同时使用两个及以上基础按钮
+- 横排时基础按钮默认放左侧，强调按钮放右侧，纵排时基础按钮放底部，强调按钮放顶部
+
+- 按钮组默认左右和上下间距为12dp，单页面和窗口内，可同时使用两个及以上基础按钮
+
 - 按钮应根据容器的尺寸变化、排版变化，进行灵活适配设计
 
-![弹窗场景](/media/os4/components/actions/button/dialog.png)
+![弹窗场景.png](/media/os4/components/actions/button/%E5%BC%B9%E7%AA%97%E5%9C%BA%E6%99%AF.png)
+
+
 
 #### 列表 / 卡片内
 
-列表卡片内统一使用胶囊形按钮：
+**列表卡片内统一使用胶囊形按钮**
 
 - 胶囊基础按钮可在单场景内连续使用，需避免连续使用胶囊强调按钮
-- 字数建议保持在 2–4 个中文字符以内，保持简洁美观
+
+- 字数建议保持在 2-4 个中文字符以内，保持简洁美观
+
 - 根据场景需要，可对按钮设置定宽，提升排版秩序感
 
-![列表卡片胶囊按钮](/media/os4/components/actions/button/list-capsule.png)
+![胶囊小按钮.png](/media/os4/components/actions/button/%E8%83%B6%E5%9B%8A%E5%B0%8F%E6%8C%89%E9%92%AE.png)
 
-## 多语言与大字体
+
+
+## 八、多语言与大字体
 
 ### 多语言
 
-按钮应支持不同语言环境下的文本长度差异，文案需采用清晰、完整、可本地化的动作表达，避免缩写、俚语和强依赖中文语境的表述。
+按钮应支持不同语言环境下的文本长度差异，文案需采用清晰、完整、可本地化的动作表达，避免缩写、俚语和强依赖中文语境的表述
 
-布局应预留语言扩展空间，不得依赖固定字符长度；当文本较长时，应优先通过容器扩展、换行或样式调整保证完整呈现，避免截断关键信息。
+布局应预留语言扩展空间，不得依赖固定字符长度；当文本较长时，应优先通过容器扩展、换行或样式调整保证完整呈现，避免截断关键信息
 
-![多语言](/media/os4/components/actions/button/i18n.png)
+![多语言.png](/media/os4/components/actions/button/%E5%A4%9A%E8%AF%AD%E8%A8%80.png)
 
-- 文本放不下缩小字号到 14dp，同一页面内所有按钮字号需同时变小
-- 文本内容遵从简洁明晰原则，不可折行；若多语言下文案超长，通过「…」截断展示
+- 文本放不下缩小字号到14dp，同一页面内所有按钮字号需同时变小
 
-<Callout type="info">
-  业务侧提需：希望支持最大双行展示（已录入 OS5 扩展需求）。
-</Callout>
+- 文本内容遵从简洁明晰原则，不可折行，若多语言下文案超长，通过“...”截断展示
+
+    > 业务侧提需，希望支持最大双行展示（已录入OS5扩展需求）
+    > 
+    > 
+
+    
 
 ### 大字体
 
@@ -431,30 +499,23 @@ tokenGroups:
 
 必要时允许换行、增高或样式切换，不得通过压缩字重、降低对比度、裁切文本或缩小触控范围来适配大字号。
 
-![大字体](/media/os4/components/actions/button/large-text.png)
+![大字体.png](/media/os4/components/actions/button/%E5%A4%A7%E5%AD%97%E4%BD%93.png)
 
-#### 大字缩放比例
+- **大字缩放比例**
 
-| 字号 | 100% | 145% | 200% |
-|------|------|------|------|
-| 17 号 | 17 | 22.6 | 29 |
-| 14 号 | 14 | 20.2 | 26 |
-| 13 号 | 13 | 18.8 | 25 |
+|字号|100%|145%|200%|
+|---|---|---|---|
+|17号|17|22.6|29|
+|14号|14|20.2|26|
+|13号|13|18.8|25|
 
-#### 大字布局规范
+- **大字布局规范**
 
-| 字号 | 100% | 145% | 200% |
-|------|------|------|------|
-| 17 号 | 定高 50dp | 定高 50dp | 字体行高 + 上下 8 padding |
-| 14 号 | 定高 36dp | 定高 36dp | 字体行高 + 上下 8 padding |
-| 13 号 | 定高 28dp | 定高 28dp | 字体行高 + 上下 8 padding |
+|字号|100%|145%|200%|
+|---|---|---|---|
+|17号|定高50dp|定高50dp|字体行高+上下8padding|
+|14号|定高36dp|定高36dp|字体行高+上下8padding|
+|13号|定高28dp|定高28dp|字体行高+上下8padding|
 
-## 动效
-
-暂无。
-
-## 相关
-
-- [行动操作按钮 Floating Action Button](/docs/os4/components/actions/floating-action-button)
-- [对话框 Dialog](/docs/os4/components/containers/dialog)
-- [动效](/docs/os4/general/motion)
+## 九、动效（暂无）
+---
