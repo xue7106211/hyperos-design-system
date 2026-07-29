@@ -19,10 +19,10 @@
   /* Motion tokens — 调这里即可全局改手感 */
   --resources-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
   --resources-duration-hover: 150ms;
-  --resources-duration-enter: 220ms;
-  --resources-duration-hero: 420ms;
-  --resources-stagger: 55ms;
-  --resources-hero-stagger: 80ms;
+  --resources-duration-enter: 680ms;
+  --resources-duration-hero: 1200ms;
+  --resources-stagger: 140ms;
+  --resources-hero-stagger: 200ms;
   --home-bg: var(--color-gray-100);
   --home-fg-high: var(--color-foreground-100);
   --home-fg-mid: var(--color-foreground-200);
@@ -47,10 +47,12 @@
 @keyframes resources-enter {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    filter: blur(10px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
   }
 }
@@ -188,10 +190,12 @@
 @keyframes resources-hero-reveal {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    filter: blur(12px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
   }
 }
