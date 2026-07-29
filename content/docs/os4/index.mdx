@@ -1,30 +1,42 @@
 ---
 title: HyperOS 4 Design System
-description: HyperOS 4 移动端客户端组件库的设计规范、Design Tokens 与 Figma 设计源文档
+description: HyperOS 4 设计指南与重点特性规范
 ---
 
-欢迎使用 **HyperOS 4** Design System 文档。本站面向 **移动端客户端组件**（Android / iOS），聚焦设计原则、组件规范与工程对齐，不在 Web 端提供可交互组件 demo。
+<Callout type="info">
+HyperOS 4 设计指南与重点特性规范，为你提供面向垂类场景的针对性设计建议。一起打造精致流畅的 Android 应用体验。
+</Callout>
 
 ## 快速开始
 
 <Cards>
-  <Card title="HyperOS 图标库" href="/docs/os4/resources/icons" description="浏览 HyperOS 系统图标并复制名称或 SVG" />
-  <Card title="Design Token" href="/docs/os4/general/design-token" description="查看 HyperOS 4 Design Tokens 与色彩体系" />
-  <Card title="按钮 Button" href="/docs/os4/components/actions/button" description="完整组件文档页模板示范" />
-  <Card title="通用设计标准" href="/docs/os4/general" description="设计理念、原则、布局与包容性设计" />
-  <Card title="控件与组件" href="/docs/os4/components" description="导航、操作、输入、容器与展示类组件" />
+  <Card title="Design Token" href="/docs/os4/general/design-token" description="Reference / Semantic / Component，支持 Light / Dark 预览" />
+  <Card title="HyperOS 图标库" href="/docs/os4/resources/icons" description="分类浏览系统图标，复制名称或 SVG" />
+  <Card title="按钮 Button" href="/docs/os4/components/actions/button" description="完整组件规范：结构、状态、配图与维护人" />
+  <Card title="抽屉浮窗 Bottom Sheet" href="/docs/os4/components/containers/drawer" description="边缘滑入容器：抽屉、浮窗与近手浮窗" />
+  <Card title="标题栏 Action Bar" href="/docs/os4/components/navigation/top-app-bar" description="页面顶部标题与操作入口规范" />
+  <Card title="设计资源中心" href="/resources" description="组件库、设计工具、Token、字体与品牌资产入口" />
 </Cards>
 
 ## 文档结构
 
+侧栏按用途划分，各一级目录均有总览页：
+
 - **通用设计标准** — 理念、原则、Token、布局、动效、文案与包容性设计
-- **控件与组件** — 移动端 UI 组件规范（设计稿 + Token + 平台代码参考）
+- **控件与组件** — 导航、操作、输入、容器与展示类规范（设计稿 + Token + Android 代码参考）
 - **人机交互标准** — 硬件、手势、键鼠与交互归一
 - **系统特性与能力标准** — 搜索、编辑、加载、权限等系统能力
 - **多端设备标准** — 多端适配规范
 - **应用最佳实践标准** — 应用层最佳实践
-- **资源** — HyperOS 图标库等设计资产
+- **资源** — HyperOS 图标库等文档内设计资产
+
+站外资产与插件另见 [设计资源中心](/resources)。
+
 ## 最近更新
 
-- **V1.1.0** — 按设计系统全景图重构侧栏信息架构
-- **V1.0.0** — 初始化 Fumadocs 文档站，完成 Button 组件页与 Token 展示模板
+- **按钮 Button** — 按源稿入库完整规范与配图，绑定维护人与 Figma 节点
+- **标题栏 Action Bar** — 上线页面级标题栏规范与配图布局
+- **抽屉浮窗 Bottom Sheet** — 上线容器类示范规范页
+- **HyperOS 图标库** — IconGallery 预览与 `icons/` 资产管线
+- **Design Token** — OS4 真源入库，文档内支持 Light / Dark 切换
+- **设计资源中心** — 独立 `/resources` hub（Catalog + Codex 导航）

@@ -173,7 +173,7 @@ function TinaEditableContent({
           actions={actions}
           figmaAction={figmaAction}
         />
-        <DocsBody>{fallbackBody}</DocsBody>
+        <DocsBody className="pt-6">{fallbackBody}</DocsBody>
       </>
     );
   }
@@ -200,7 +200,7 @@ function TinaEditableContent({
         actions={actions}
         figmaAction={figmaAction}
       />
-      <DocsBody data-tina-field={tinaField(doc, 'body')}>
+      <DocsBody className="pt-6" data-tina-field={tinaField(doc, 'body')}>
         {doc.body ? (
           <TinaMarkdown
             content={doc.body as TinaMarkdownContent}
@@ -240,7 +240,7 @@ export function TinaDocsPageContent({
           actions={actions}
           figmaAction={figmaAction}
         />
-        <DocsBody>{fallbackBody}</DocsBody>
+        <DocsBody className="pt-6">{fallbackBody}</DocsBody>
       </>
     );
   }
