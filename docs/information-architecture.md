@@ -191,6 +191,6 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 | 1 | `/docs/os4` | 站点 Index 与快速入口 |
 | 2 | `/docs/os4/general/design-token` | 验证 TokenTable |
 | 3 | `/docs/os4/resources/icons` | 验证 IconGallery |
-| 4 | `/docs/os4/components/actions/button` | 验证完整组件页模板 |
+| 4 | `/docs/os4/components/actions/button` | 验证完整组件规范页（配图 + frontmatter / Figma 跳转） |
 | 5 | `/docs/os4/general` | 一级模块 Index |
 | 6 | `/docs/os4/components` | 组件总览 |

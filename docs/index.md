@@ -19,6 +19,7 @@
 | 图标 SVG 入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
 | 规范配图入库 | `public/media/...` + MDX `/media/...`（Fancybox；见 AGENTS「文档配图」） |
+| Agent 设计 / 实现计划产物 | [superpowers/](./superpowers/)（`specs/`、`plans/`；非对外） |
 
 ## 文档目录
 
@@ -32,6 +33,7 @@
 | [maintainers.md](./maintainers.md) | 文档页 `maintainerOpenId` 备忘 |
 | [icons/README.md](../icons/README.md) | 图标 SVG 入库与 `icons:sync` 约定 |
 | [research/aiforui.dev/ADAPTATION.md](./research/aiforui.dev/ADAPTATION.md) | `/resources` 视觉适配笔记（调研，非对外文档） |
+| [superpowers/](./superpowers/) | Agent 设计 / 实现计划产物（如彩蛋 specs / plans；非对外） |
 
 ## 路径对照
 
@@ -52,8 +54,10 @@
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
 | `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta` |
+| `src/components/easter-egg/` | 全站彩蛋（`EasterEggProvider` 挂根布局；短时连点打开签名浮层） |
 | `src/components/home/` | Landing / 资源页共用：`PillNav`、`HomeHero`、`HalftoneBloom` |
 | `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
+| `docs/superpowers/` | Agent specs / plans（非对外；与站点内容无关） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
 | `src/lib/icons.ts` | 图标 manifest 读取 |
 | `src/lib/search-tokenizer.ts` | Orama 中英文混合搜索分词（`Intl.Segmenter('zh-CN')`） |
@@ -66,6 +70,7 @@
 
 ## 变更摘要
 
+- **2026-07-29**：全站彩蛋浮层（`src/components/easter-egg/`，根布局挂载）；OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`）；`docs/superpowers/` 记录彩蛋设计 / 实现计划。
 - **2026-07-28**：`/resources` 补齐 `#catalog`、右侧 Codex 锚点导航、Feature 卡标题 CTA（非整卡链接）、Device Assets 外链；PillNav 当前页改为短圆角底线；Engineering 目录待定项与维护团队胶囊跳转仍占位。
 - **2026-07-27**：Landing 增加设计资源中心 `/resources`（Catalog 页内锚点、Components / Tools / Token / Fonts / Icon / Brand 分区）；调研笔记见 `docs/research/aiforui.dev/`。
 - **2026-07-23**：文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`）；规范图入库 `public/media/`；OS4「抽屉浮窗」规范上线。

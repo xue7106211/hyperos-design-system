@@ -24,6 +24,8 @@
 - [x] 文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`；资产 `public/media/`）
 - [x] OS4「抽屉浮窗 Bottom Sheet」规范页（`containers/drawer`）
 - [x] 设计资源中心 `/resources`（Catalog `#catalog` + 分区锚点、Codex 侧栏、Feature 卡标题 CTA、Landing PillNav「设计资源」）
+- [x] 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载，短时连点打开签名面板）
+- [x] OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`；维护人 / Figma 节点已绑定）
 
 ## 下一步
 

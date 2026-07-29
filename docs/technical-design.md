@@ -1,8 +1,8 @@
 # HyperOS Design System 文档站 — V1 技术设计方案
 
-> **版本**：V1.4  
-> **日期**：2026-07-28  
-> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token /「资源」IA / 文档配图 Fancybox / 设计资源中心 `/resources` 已落地；生产鉴权与 Token CI 规划中
+> **版本**：V1.5  
+> **日期**：2026-07-29  
+> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token /「资源」IA / 文档配图 Fancybox / 设计资源中心 `/resources` / 全站彩蛋浮层已落地；生产鉴权与 Token CI 规划中
 
 ---
 
@@ -26,6 +26,7 @@ HyperOS 设计系统面向 **移动端客户端组件库**（Android / iOS 等�
 | 图标库预览（`IconGallery` + `icons/`；侧栏「资源」） | 可交互 icon picker / Storybook |
 | 文档配图页内画廊（`DocsImage` + Fancybox；`public/media/`） | 可运行 Web 组件 playground |
 | 设计资源中心 `/resources`（Catalog + Codex；`src/lib/resources.ts`） | Engineering 目录外链 / 维护团队落地页（待补） |
+| 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载） | — |
 | MDX + `meta.json` 内容维护 | TinaCMS 生产鉴权 / TinaCloud 部署（Phase 2 剩余项） |
 | OS4 Token 真源（Reference / Semantic / Component） | 客户端组件 CI/CD（另仓维护） |
 | — | Figma Code Connect 试点（Phase 3） |
@@ -275,6 +276,7 @@ hyperos-design-system/
 │   ├── app/                # Next.js App Router（docs、resources、admin、api/tina、search、llms、og）
 │   ├── components/
 │   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta
+│   │   ├── easter-egg/     # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
 │   │   ├── home/           # Landing：HomeHero、PillNav、HalftoneBloom
 │   │   ├── resources/      # /resources：Hero、Catalog、CodexNav、FeatureCard、MatrixRain 等
 │   │   ├── mdx/            # DocsImage、DocFancybox、SpecImageGrid、FigmaEmbed、TokenTable、IconGallery、PlatformTabs 等
@@ -285,7 +287,7 @@ hyperos-design-system/
 ├── next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 ├── proxy.ts                # Markdown 内容协商
 ├── .npmrc                  # legacy-peer-deps
-├── docs/                   # 工程设计文档（本目录；deployment / technical-design / sidebar-ia 等）
+├── docs/                   # 工程设计文档（本目录；含 research/、superpowers/）
 ├── AGENTS.md               # Agent 工作指引（精简；部署细节见 deployment.md）
 ├── CLAUDE.md               # 指向 AGENTS.md
 ├── Dockerfile              # 生产镜像（builder 保留 .git 以解析文档更新时间）
@@ -349,7 +351,7 @@ export default defineConfig({ mdxOptions: {} });
 |------|----------|----------|
 | 通用设计 | `/docs/os4/general/design-token` | 原则说明 + TokenTable |
 | 图标 | `/docs/os4/resources/icons` | IconGallery（分类 / 复制名称与 SVG；侧栏「资源」） |
-| 组件 | `/docs/os4/components/actions/button` | FigmaEmbed + Token + PlatformTabs + Do/Don't |
+| 组件 | `/docs/os4/components/actions/button` | 完整规范 + `public/media/...` 配图；FigmaJump / TokenTable / PlatformTabs 等按页选用 |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 最佳实践 | `/docs/os4/best-practices` | 应用层实践入口 |
 | 资源（docs） | `/docs/os4/resources` | HyperOS 图标库等资产（侧栏） |

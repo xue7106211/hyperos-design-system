@@ -65,6 +65,7 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
   roadmap.md
   maintainers.md
   research/          # 调研笔记（含 aiforui.dev → /resources）
+  superpowers/       # Agent 设计 / 实现计划产物（specs、plans；非对外）
 icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
@@ -77,8 +78,9 @@ src/
   app/               # Next.js 路由（docs、resources、admin、api/tina、search、llms、og）
   components/
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
+    easter-egg/      # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
-    resources/       # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics 等
+    resources/       # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
     mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
@@ -146,4 +148,5 @@ CLAUDE.md            # 指向 AGENTS.md
 | [docs/sidebar-ia.md](docs/sidebar-ia.md) | 侧栏目录对照（全景图） |
 | [docs/roadmap.md](docs/roadmap.md) | 实施进度 |
 | [docs/maintainers.md](docs/maintainers.md) | 维护人飞书 open_id 备忘 |
+| [docs/superpowers/](docs/superpowers/) | Agent 设计 / 实现计划产物（非对外） |
 | [icons/README.md](icons/README.md) | 图标 SVG 入库与 `icons:sync` 约定 |

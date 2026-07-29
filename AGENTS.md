@@ -154,6 +154,7 @@ docs/                   # 工程设计文档（见 docs/index.md）
   roadmap.md
   maintainers.md
   research/             # 调研笔记（如 aiforui.dev → /resources 适配）
+  superpowers/          # Agent 设计 / 实现计划产物（specs、plans；非对外）
 tokens/                 # Design Tokens（reference|semantic|component × light|dark）
 icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
   svg/{category}/
@@ -177,6 +178,7 @@ src/
     resources/          # 设计资源中心（独立 hub，非 docs 侧栏）
   components/
     docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
+    easter-egg/         # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/               # Landing：HomeHero、PillNav、HalftoneBloom
     resources/          # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
     mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
@@ -320,6 +322,7 @@ package-lock.json       # npm 锁文件
 - MDX 内容默认 **中文**；URL 不硬编码 locale 前缀
 - 遵循现有 Fumadocs 约定，不引入与文档站无关的抽象层
 - 注释仅解释非显而易见的业务或集成逻辑
+- 飞书等导出的 `**标签：**正文` 在 CommonMark 下加粗常失效；应写成 `**标签**：正文`（冒号在加粗外）
 
 ## 验证清单
 
@@ -357,5 +360,6 @@ package-lock.json       # npm 锁文件
 - [docs/sidebar-ia.md](docs/sidebar-ia.md) — 侧栏目录对照（全景图）
 - [docs/roadmap.md](docs/roadmap.md) — 实施进度
 - [docs/maintainers.md](docs/maintainers.md) — 维护人飞书 open_id 备忘
+- [docs/superpowers/](docs/superpowers/) — Agent 设计 / 实现计划产物（非对外）
 - [icons/README.md](icons/README.md) — 图标 SVG 入库与 sync 约定
 - [Fumadocs 官方文档](https://www.fumadocs.dev)
