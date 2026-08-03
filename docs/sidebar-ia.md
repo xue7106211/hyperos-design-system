@@ -34,7 +34,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 │   │   ├── 子页签 Tabs
 │   │   ├── 搜索栏 Search Bar
 │   │   ├── 侧边导航栏 Side Navigation
-│   │   ├── 底部导航栏 Bottom Navigation
+│   │   ├── 导航栏 Navigation
 │   │   ├── 底部工具栏 Bottom Toolbar
 │   │   ├── 页面指示器 Page Indicator
 │   │   ├── 索引 Index Bar
@@ -122,7 +122,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
     - 子页签 Tabs
     - 搜索栏 Search Bar
     - 侧边导航栏 Side Navigation
-    - 底部导航栏 Bottom Navigation
+    - 导航栏 Navigation
     - 底部工具栏 Bottom Toolbar
     - 页面指示器 Page Indicator
     - 索引 Index Bar

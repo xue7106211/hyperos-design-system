@@ -2,11 +2,11 @@
   "title": "导航搜索",
   "pages": [
     "top-app-bar",
+    "bottom-navigation",
     "segmented-button",
     "tabs",
     "search-bar",
     "side-navigation",
-    "bottom-navigation",
     "bottom-toolbar",
     "page-indicator",
     "index-bar",

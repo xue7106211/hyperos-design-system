@@ -1,12 +1,338 @@
 ---
-title: 底部导航栏 Bottom Navigation
-description: 底部主导航
-status: beta
-platforms: [android, ios]
+title: 导航栏 Navigation
+description: 导航栏是一种常见的界面导航控件，通常位于应用程序屏幕的底部和顶部
+status: stable
+platforms: [android, ios, pad]
+maintainer: 冯晓洁
+maintainerOpenId: ou_e169312827003a3ed35a373b94e87452
+figmaFileKey: "7PVSm4yEbknNLFaqauI4EM"
+figmaNodeId: "82817-4257"
 ---
 
-<StatusBadge status="beta" />
+## 一、概述
 
-Bottom Navigation 文档占位。
+导航栏是一种常见的界面导航控件，通常位于应用程序屏幕的底部和顶部（顶导航详见[**顶导航细则**](https://mi.feishu.cn/wiki/AkkHwweNAi4fo8konYAcxz8Knl6#share-DwbedkTD9oBWnoxjFdScIT67njd)）。通过点击选项，用户可以快捷地访问应用的不同分类界面。根据使用场景及设备类型，导航将会呈现为不同设计样式
 
-<FigmaEmbed />
+
+
+---
+
+## 二、核心原则
+
+- **直达清晰**：导航只负责把用户直接带到一级模块，路径和选中状态都要一眼可辨，不做页面内工具分流
+
+- **功能有限**：只承载一级切换，不承担编辑、筛选、批量操作等页面内工具行为，职责边界清晰
+
+- **触达舒适**：文案短、准、稳定，点击、按下、悬停、拖动等交互反馈一致，动效克制，不干扰内容阅读
+
+- **适应性**：手机、折叠屏、平板、分屏、跨端保持信息架构、顺序和选中逻辑一致
+
+
+
+---
+
+## 三、类型
+
+从功能角度将底导航分为两类：基础型底导航，复合型底导航
+
+![底导航-类型1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E7%B1%BB%E5%9E%8B1.png)
+
+- **基础型底导航**：由选项组成，用于纯导航场景，仅承载应用一级模块切换，主要用于应用首页、一级模块数量稳定、不需要突出额外主操作
+
+- **复合型底导航**：由选项+高频操作按钮组成，用于一级模块切换和高频操作并存的场景，存在强调主操作且需要长期露出的页面，例如搜索、新建等
+
+
+
+---
+
+## 四、结构组成
+
+### 组成
+
+底部导航栏由选项、选项背景、遮罩、高频操作按钮组成
+
+![底导航-组成.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E7%BB%84%E6%88%90.png)
+
+- **选项**：必选项，由文案、图标、选中背景、选中底板组成，表示当前所在的一级模块，数量在2-5个之间，一般包括选中项与未选中项，当有高频操作按钮时，选项数量不超过4个
+
+- **选项底板**：必选项，承载导航选项的材质面板，用于统一包裹选项并区分页面内容，保证图标、文案和状态反馈清晰可读
+
+- **高频操作按钮**：可选项，由单个图标组成，承载当前业务中的高频主操作，不属于一级导航项，不参与选项数量计算，高频操作按钮不是唯一，可以是搜索、添加等，依据业务需求而定，居中布局里选项与高频操作按钮之间保持12dp间距（高频操作按钮详细视觉规则看[强调图标按钮](https://mi.feishu.cn/wiki/Y1cowhz0FiMGHFknKpZcd7cYnUp#share-FXgodTtPzoSsCXxtvQBcXVCEn1d)）
+
+- **遮罩**：必选项，由单色渐变蒙层构成，用于弱化底部内容干扰，同时强化控件层与内容层的空间关系
+
+
+
+### 底导航与系统导航区域的关系
+
+底导航通常位于应用程序屏幕的底部，此时需要避让系统导航条
+
+![底导航-结构.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E7%BB%93%E6%9E%84.png)
+
+避让规则：
+
+- ①当系统导航条高度小于24dp（如：系统导航条是控制杆或者没有系统导航条），底导航距离屏幕底部24dp
+
+- ②当系统导航条高度大于等于24dp（如：系统导航条是虚拟键），底导航距离系统导航条8dp
+
+
+
+---
+
+## 五、交互状态
+
+### 交互行为规则
+
+#### 切换目标页面时：
+
+- 可以点击切换
+
+![底导航-切换目标页面-1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E5%88%87%E6%8D%A2%E7%9B%AE%E6%A0%87%E9%A1%B5%E9%9D%A2-1.png)
+
+- 可以按压选项背景拖拽切换
+
+![底导航-拖拽.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E6%8B%96%E6%8B%BD%201.png)
+
+- 可以在页面内左右滑动（但需要与页面内容横向滑动冲突做手势优先级确认）
+
+![底导航-滑动页面.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E6%BB%91%E5%8A%A8%E9%A1%B5%E9%9D%A2.png)
+
+#### 高频操作按钮的交互
+
+- 点击高频操作按钮后进入二级页面：高频入口按钮承载搜索、添加等独立入口；点击后进入对应二级页面或任务流程，不改变当前选项的选中状态
+
+![底导航-点击高平操作按钮.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E7%82%B9%E5%87%BB%E9%AB%98%E5%B9%B3%E6%93%8D%E4%BD%9C%E6%8C%89%E9%92%AE.png)
+
+
+
+### 交互状态反馈
+
+点击按压、切换拖拽、鼠标悬停 均需要明确的视觉状态告知
+
+- 点击/按压交互反馈：
+
+选中项或者未选中项，点击/按压的交互反馈有2个变化：变化1：图标和文字100%黑色，变为60%黑 ，变化2：选项背景缩小3dp，且颜色透明度由原来的黑色6%选中态，变为黑色10%的按压态
+
+||点击/按压前|点击/按压后|
+|---|---|---|
+|图标文案|图标和文字100%黑色<br />（色值：`text/default/miuix_color_text_primary_enable`）|变为60%黑<br />（色值：`text/default/miuix_color_text_tertiary-enabled`）|
+|选项背景|选中态黑色6%<br />（色值：`fill/status/miuix_color_fill_status_selected`）|变为按压态黑色10%<br />（色值：`fill/status/miuix_color_fill_status_pressed`）|
+
+![底导航-点击 按压.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E7%82%B9%E5%87%BB%20%E6%8C%89%E5%8E%8B.png)
+
+- 拖拽选项背景交互反馈：
+
+选项背景缩小3dp，且颜色透明度由原来的黑色6%选中态，变为黑色10%的按压态，同时可跟手滑动
+
+![底导航-拖拽.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E6%8B%96%E6%8B%BD.png)
+
+- 悬停交互反馈：
+
+选中项悬停：选中背景基础上**叠加**黑色4%的按压色；未选中悬停：**增加**黑色4%的选中背景
+
+||悬停前|悬停后|
+|---|---|---|
+|图标文案：|选中态黑色6%<br />（色值：`fill/status/miuix_color_fill_status_selected`）|选中态黑色6%+悬停态黑色4%<br />（色值：**+**`fill/status/miuix_color_fill_status_hover`）|
+|选项背景：|未选中无背景|变为悬停态黑色4%<br />（色值：`fill/status/miuix_color_fill_status_hover`）|
+
+![底导航-悬停.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E6%82%AC%E5%81%9C.png)
+
+
+
+
+
+---
+
+## 六、视觉样式说明
+
+![底导航-构成.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E6%9E%84%E6%88%90.png)
+
+底部导航栏在样式层面做了较大调整。OS3 中，底导航以不透明模糊的方式覆盖在内容之上，形成明确的视觉截断；OS4 则通过模糊混色增强背景与控件层的融合，在保持控件可识别性的前提下，减少组件与内容之间的割裂感，让用户感受到内容穿透控件介质的连续空间关系，从而整体增强界面的沉浸感
+
+### 悬浮控件
+
+![底导航-材质1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E6%9D%90%E8%B4%A81.png)
+
+- 底导航的选项底板 支持三种材质类型，根据不同机型进行适配：
+
+    - 纯色背景（无材质）：单一颜色，默认为白色，用于中低端机型或用户手动关闭高级材质
+
+    - 模糊混色背景：根据下方内容动态取色并模糊，用于高端机型或用户手动打开高级材质
+
+    - 柔光玻璃背景（OS4.0.1计划支持）：具备更强的层次感与通透感，用于强调材质层次的页面
+
+- 无论使用哪种材质，选项底板的识别性优先级最高：应保证图标与背景之间有足够对比度，且底板容器边缘清晰可辨
+
+### 渐变遮罩
+
+- 底导航遮罩（渐变颜色层）：遮罩顶部建议高于底部内容 20dp，用于弱化内容干扰并形成自然渐隐过渡；遮罩颜色需与页面背景保持一致，避免底导航区域出现明显断层
+
+![底导航-遮罩1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%81%AE%E7%BD%A91.png)
+
+- 依据不同页面的背景/内容不同，使用不同的遮罩样式
+
+    - ① 常规页面：页面背景是纯色【颜色为灰色：#F3F3F3】，页面内容以文字为主，使用灰色遮罩，如日历应用
+
+![底导航-遮罩2.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%81%AE%E7%BD%A92.png)
+
+    - ② 常规页面：页面背景是纯色【颜色为白色#FFFFFF】，页面内容以文字为主，使用白色遮罩，如文管应用
+
+![底导航-遮罩3.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%81%AE%E7%BD%A93.png)
+
+    - ③ 图片页面：页面以图片为主，此时使用 黑色图片渐变遮罩（light/dark使用同一款），如相册应用
+
+![底导航-遮罩4.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%81%AE%E7%BD%A94.png)
+
+    
+
+### 视觉规格
+
+#### 色彩
+
+|对象|色彩参数值|
+|---|---|
+|选中背景 色值|fill/status/miuix_color_fill_status_selected|
+|文案/图标 色值|text/default/miuix_color_text_primary_enable|
+
+![底导航-颜色.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%A2%9C%E8%89%B2.png)
+
+#### 尺寸
+
+1. 高度
+
+底部页签由胶囊型矩形容器承载，动态高度。由于需要适应大字体多语言等场景，高度不能是定值，而是由底导航不同模块累加的高度
+
+![底导航-高度.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%AB%98%E5%BA%A6.png)
+
+2. 宽度
+
+宽度与选项数量有密切关系
+
+- 若选项配置个数为 2 个或 3 个时，则采用固定每个选项的宽度（88dp），累加形成总宽度。（当屏幕宽度小于300dp时，选项数量与高频操作总和不超过3个）
+
+![底导航-宽度-2-3.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E5%AE%BD%E5%BA%A6-2-3.png)
+
+- 当配置选项数量大于等于 4 个时，最大值限制为 344dp 。若此时底导航类型为**复合型底导航，**及有高频操作时，选项+高频操作最大值限制为 344dp 
+
+![底导航-宽度-4-5.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E5%AE%BD%E5%BA%A6-4-5.png)
+
+#### 间距
+
+1. 选项内间距
+
+|文案左右间距|最小10dp|
+|---|---|
+|文字与图标之间|0间距|
+|文案+图标整体 与 选中背景 上下边距|3dp|
+
+![底导航-间距1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%97%B4%E8%B7%9D1.png)
+
+2. 选项之间间距：选项与选项相叠加10dp
+
+![底导航-间距2.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%97%B4%E8%B7%9D2.png)
+
+3. 选项与底板之间间距：3dp
+
+![底导航-间距3.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%97%B4%E8%B7%9D3.png)
+
+#### 圆角
+
+- 当底导航单排展示时：外底板圆角、选中背景圆角、按压态圆角均为全圆角样式
+
+![底导航-圆角1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E5%9C%86%E8%A7%921.png)
+
+- 当底导航双排（文案超长允许折行）展示时：圆角大小固定，内外圆角呈现同心圆状
+
+|外底板圆角|28dp|
+|---|---|
+|选中背景圆角|25dp|
+|按压态圆角|22dp|
+
+![底导航-圆角2.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E5%9C%86%E8%A7%922.png)
+
+#### 布局
+
+依据底导航类型以及设备断点值，提供2种布局类型，居中布局和左右布局，以满足更多场景的定制化需要
+
+- 基础型底导航均为居中展示布局
+
+![底导航-布局1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E5%B8%83%E5%B1%801.png)
+
+- 复合型底导航：当设备尺寸更适合双手持握时，底导航可根据容器宽度切换布局。容器宽度 **\< **600dp 时，选项 与高频操作居中聚合展示；容器宽度 ≥ 600dp 时，二者分开布局，使选项与高频操作更靠近双手自然触达的区域
+
+![底导航-布局2.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E5%B8%83%E5%B1%802.png)
+
+#### 选项图标
+
+底部导航的选项图标建议使用 **HyperOS Symbols VF** 展示。相比传统图标资源，Symbols VF 可像系统字体一样灵活调整样式，更好地与文字信息保持视觉一致，并支持点击反馈，便于呈现更细致的交互状态。已有图标样式可在 [图标](https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?node-id=86954-12713&t=rQuAXdwn4dQ3uZiJ-1) 系统组件网站中查询
+
+|图标性质|面形图标|
+|---|---|
+|图标大小|28x28dp|
+|图标字体|HyperOS Symbols VF（21号字）（medium）|
+
+![底导航-选项图标.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%80%89%E9%A1%B9%E5%9B%BE%E6%A0%87.png)
+
+#### 选项文案
+
+|文案高低|16dp|
+|---|---|
+|文案字体|MiSans（11号字）（medium）|
+
+![底导航-选项文案.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%80%89%E9%A1%B9%E6%96%87%E6%A1%88.png)
+
+## 七.多端适配
+
+### 适配规则
+
+**导航在不同设备上会呈现不同的展示形态，并依据“窗口宽度断点 + 设备类型”自动适配。**
+
+（补图）
+
+|**容器宽度（dp）**|**代表设备/场景**|**导航类型**|
+|---|---|---|
+|w > 960|大屏、横屏平板、大窗口|**侧边导航；顶导航；顶导航&侧边导航切换**|
+|600 ≤ w \< 960|平板 竖屏、平板 分屏 1/2、平板 分屏 2/3|**侧边导航；顶导航；顶导航&侧边导航切换**|
+|w \< 600|手机竖屏、平板 1/3 分屏、折叠屏 外屏、Flip 外屏|**底导航**<br />|
+|600 ≤ w \< 960（折叠屏）|折叠屏 内屏<br />|**底导航（如相册）**；<br />**顶导航&侧边导航切换（如文管）**；<br />**顶导航（如日历）**|
+|600 ≤ w \< 960<br />同时高度小于400|手机横屏|**底导航左右布局版本（相册）**|
+|w \< 600<br />同时高度小于700|Q18外屏<br />|**底导航缩小态版本**<br />|
+
+### 顶部导航栏
+
+- 顶部导航栏适用于宽度大于 **600dp** 的平板、大屏等设备形态，通常位于页面顶部标题栏区域，并居中展示。根据是否支持侧边导航切换，可分为**可切换侧边导航**和**不可切换侧边导航**两种形式
+
+![底导航-顶导航.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%A1%B6%E5%AF%BC%E8%88%AA.png)
+
+- 顶导航参数参考
+
+![底导航-顶导航4.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%A1%B6%E5%AF%BC%E8%88%AA4.png)
+
+|对象|参数说明|
+|---|---|
+|切换侧边导航图标|固定icon，28x28dp|
+|文案|MiSans（11号字）（medium）|
+
+- 当导航内容无法在一行内完整展示时，可开启横向滑动策略，确保用户能够访问全部导航项
+
+![底导航-顶导航1.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%A1%B6%E5%AF%BC%E8%88%AA1.png)
+
+- 当右侧遇到搜索栏且与顶导航相交时，顶导航居左展示，
+
+![底导航-顶导航2.png](/media/os4/components/navigation/bottom-navigation/%E5%BA%95%E5%AF%BC%E8%88%AA-%E9%A1%B6%E5%AF%BC%E8%88%AA2.png)
+
+### 底导航缩小态展示规则
+
+当机型为 Q18 这类阔折叠形态时，由于屏幕纵向空间更有限，内容更容易被压缩；在相册等长内容的沉浸式浏览场景下，底导航可切换为缩小态（[具体交互](https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?node-id=117298-40011&t=rQuAXdwn4dQ3uZiJ-1)）
+
+## 八、动效规范（补动效）
+
+- 执行按压动画效果时，只存在一种10%的按压效果，不存在点击和按压不一样的效果
+
+- Overlay 在tab1，此时点击tab2，Overlay 会立刻过去，页面随之切换
+
+- 按着 Overlay 滑动，直到松手页面才会切换
+
+- Overlay 跟随手滑动，覆盖在哪个tab上，哪个tab的文字和icon显示按压颜色，Overlay 挪走后文字和icon的变色随之消失
+
+- 特殊：通话应用底导航在低端机存在营业厅tab，此时点击营业厅tab，右侧fab消失，动画效果是底导航底板随之长长，不是整个tab区域向右侧移动（此动效单独为电话设计）
