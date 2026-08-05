@@ -35,7 +35,7 @@ export function PillNav({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'pointer-events-none fixed inset-x-0 top-4 z-40 flex justify-center px-4',
+        'pointer-events-none fixed inset-x-0 top-4 z-[var(--z-home-nav,40)] flex justify-center px-4',
         className,
       )}
     >
@@ -57,7 +57,8 @@ export function PillNav({ className }: { className?: string }) {
               href={link.href}
               aria-current={active ? 'page' : undefined}
               className={cn(
-                'home-nav-link relative flex h-9 items-center rounded-full px-3 text-sm font-medium',
+                // h-10 ≥ 40px desktop hit target; weight stays constant (color signals state)
+                'home-nav-link relative flex h-10 min-w-10 items-center justify-center rounded-full px-3.5 text-sm font-medium',
                 active && 'is-active',
               )}
             >
@@ -67,7 +68,7 @@ export function PillNav({ className }: { className?: string }) {
         })}
         <ThemeSwitch
           mode="light-dark"
-          className="ms-0.5 border-0 bg-transparent p-0.5"
+          className="ms-0.5 flex size-10 items-center justify-center border-0 bg-transparent p-0"
         />
       </nav>
     </div>

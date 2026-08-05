@@ -1,19 +1,97 @@
+/* Home landing — system UI stack only (overrides root Inter webfont) */
+
+.home-shell {
+  --typo-fw-medium: 500;
+  --typo-fw-semibold: 600;
+  --typo-fw-bold: 700;
+  --typo-fw-extrabold: 800;
+  --typo-fw-black: 900;
+  --z-home-nav: 40;
+  font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* TypoTab form clone — scoped under .typo-clone; does not replace docs chrome tokens */
 
 .typo-clone {
   --typo-ink: #262626;
   --typo-card: #f7f7f6;
   --typo-max: 1000px;
-  --typo-nunito: var(--font-typo-nunito), 'Nunito', system-ui, sans-serif;
-  --typo-inter: var(--font-typo-inter, inherit), 'Inter', system-ui, sans-serif;
+  --typo-font:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    sans-serif;
+  /* Surfaces — elevation via translucent shadow stacks (not solid borders) */
+  --typo-elevation-raised:
+    0 0 0 1px rgb(0 0 0 / 0.05),
+    0 1px 3px rgb(0 0 0 / 0.05),
+    0 8px 24px -8px rgb(0 0 0 / 0.08);
+  --typo-elevation-raised-hover:
+    0 0 0 1px rgb(0 0 0 / 0.07),
+    0 2px 4px rgb(0 0 0 / 0.06),
+    0 16px 40px -8px rgb(0 0 0 / 0.12);
+  --typo-elevation-float:
+    0 0 0 1px rgb(0 0 0 / 0.05),
+    0 8px 30px rgb(0 0 0 / 0.08);
+  --typo-elevation-float-hover:
+    0 0 0 1px rgb(0 0 0 / 0.07),
+    0 20px 60px rgb(0 0 0 / 0.14);
+  --typo-elevation-media:
+    0 0 0 1px rgb(0 0 0 / 0.08),
+    0 21px 80px rgb(0 56 140 / 0.28),
+    0 40px 200px rgb(0 56 140 / 0.35);
+  --typo-border-hairline: 1px;
+  --typo-divider: rgb(0 0 0 / 0.08);
   background: #fff;
   color: var(--typo-ink);
   color-scheme: light;
-  font-family: var(--typo-nunito);
+  font-family: var(--typo-font);
+}
+
+@media only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi) {
+  .typo-clone {
+    --typo-border-hairline: 0.5px;
+  }
+}
+
+.typo-clone ::selection {
+  background: color-mix(in srgb, #2b6bff 18%, white);
+  color: var(--typo-ink);
 }
 
 .typo-clone * {
   box-sizing: border-box;
+}
+
+.typo-clone #start {
+  scroll-margin-top: 88px;
+}
+
+/* Photos / screenshots — inset pure-black outline (light-only clone) */
+.typo-clone .typo-media {
+  outline: 1px solid rgb(0 0 0 / 0.1);
+  outline-offset: -1px;
+}
+
+.typo-clone .typo-panel {
+  box-shadow: var(--typo-elevation-raised);
+  transition: box-shadow 150ms ease-out;
+}
+
+.typo-clone .typo-panel:hover {
+  box-shadow: var(--typo-elevation-raised-hover);
+}
+
+.typo-clone .typo-divider {
+  border-color: var(--typo-divider);
+  border-width: 0;
+  border-bottom-width: var(--typo-border-hairline);
+  border-style: solid;
 }
 
 @keyframes typo-float-y {
@@ -89,26 +167,31 @@
 }
 
 .typo-h2 {
-  font-family: var(--typo-nunito);
+  font-family: var(--typo-font);
   font-size: clamp(36px, 5vw, 60px);
   line-height: 1.1;
   letter-spacing: -0.04em;
-  font-variation-settings: 'wght' 1000;
-  font-weight: 400;
+  font-weight: var(--typo-fw-extrabold);
   color: var(--typo-ink);
   text-align: center;
+  text-wrap: balance;
   margin: 0;
 }
 
 .typo-lead {
-  font-family: var(--typo-nunito);
+  font-family: var(--typo-font);
   font-size: clamp(18px, 2vw, 22px);
   line-height: 1.5;
   letter-spacing: -0.04em;
-  font-variation-settings: 'wght' 660;
-  font-weight: 400;
+  font-weight: var(--typo-fw-semibold);
   color: var(--typo-ink);
   text-align: center;
+  text-wrap: pretty;
   margin: 0;
   max-width: 611px;
+}
+
+.typo-clone a {
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.18em;
 }

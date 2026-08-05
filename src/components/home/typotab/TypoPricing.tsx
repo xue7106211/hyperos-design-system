@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
 import { typoPricing } from './content';
-import { TypoReveal, TypoStagger, TypoStaggerItem } from './TypoReveal';
+import { TypoStagger, TypoStaggerItem } from './TypoReveal';
+import { TypoSection } from './TypoSection';
 
 function Check() {
   return (
@@ -31,14 +32,14 @@ export function TypoPricing() {
   const reduce = useReducedMotion();
 
   return (
-    <section
+    <TypoSection
       id="start"
       className="flex flex-col items-center gap-16 px-5 py-24"
     >
-      <TypoReveal className="flex max-w-[611px] flex-col items-center gap-5">
-        <h2 className="typo-h2">{typoPricing.title}</h2>
-        <p className="typo-lead">{typoPricing.subtitle}</p>
-      </TypoReveal>
+      <TypoSection.Header>
+        <TypoSection.Title>{typoPricing.title}</TypoSection.Title>
+        <TypoSection.Lead>{typoPricing.subtitle}</TypoSection.Lead>
+      </TypoSection.Header>
 
       <TypoStagger
         className="flex w-full max-w-[850px] flex-col items-stretch justify-center gap-5 md:flex-row"
@@ -47,69 +48,65 @@ export function TypoPricing() {
         {typoPricing.plans.map((plan) => (
           <TypoStaggerItem key={plan.name} className="flex flex-1">
             <motion.article
-              className="relative flex w-full flex-col rounded-[24px] p-8 text-white md:max-w-[415px]"
+              className="relative flex w-full flex-col rounded-[24px] p-8 text-white shadow-[var(--typo-elevation-raised)] md:max-w-[415px]"
               style={{ backgroundColor: plan.color }}
               whileHover={reduce ? undefined : { y: -6, scale: 1.01 }}
               transition={{ type: 'spring', stiffness: 240, damping: 22 }}
             >
               {plan.badge ? (
-                <span
-                  className="absolute top-5 right-5 rounded-full bg-white/20 px-3 py-1 text-[13px] backdrop-blur"
-                  style={{ fontVariationSettings: "'wght' 700" }}
-                >
+                <span className="absolute top-5 right-5 rounded-full bg-white/20 px-3 py-1 text-[13px] font-bold shadow-[0_0_0_1px_rgb(255_255_255/0.12)] backdrop-blur">
                   {plan.badge}
                 </span>
               ) : null}
 
-              <h3
-                className="m-0 text-[28px] leading-[1.1] tracking-[-0.04em]"
-                style={{ fontVariationSettings: "'wght' 825" }}
-              >
+              <h3 className="m-0 text-[28px] leading-[1.1] font-extrabold tracking-[-0.04em] text-balance">
                 {plan.name}
               </h3>
-              <p
-                className="mt-2 mb-6 text-[16px] opacity-90"
-                style={{ fontVariationSettings: "'wght' 600" }}
-              >
+              <p className="mt-2 mb-6 text-[16px] font-semibold text-pretty opacity-90">
                 {plan.tagline}
               </p>
 
               <div className="mb-2 flex items-end gap-2">
                 <motion.span
-                  className="text-[60px] leading-[54px] tracking-[-0.04em]"
-                  style={{ fontVariationSettings: "'wght' 900" }}
+                  className="text-[60px] leading-[54px] font-black tracking-[-0.04em] tabular-nums"
                   animate={
                     reduce
                       ? undefined
-                      : { y: [0, -3, 0], transition: { duration: 3, repeat: Infinity, ease: 'easeInOut' } }
+                      : {
+                          y: [0, -3, 0],
+                          transition: {
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                          },
+                        }
                   }
                 >
                   {plan.price}
                 </motion.span>
-                <span
-                  className="pb-1 text-[18px] opacity-90"
-                  style={{ fontVariationSettings: "'wght' 650" }}
-                >
+                <span className="pb-1 text-[18px] font-semibold opacity-90">
                   {plan.period}
                 </span>
               </div>
-              <p className="mb-6 text-[14px] opacity-85">{plan.note}</p>
+              <p className="mb-6 text-[14px] text-pretty opacity-85">
+                {plan.note}
+              </p>
 
               <Link
                 href={plan.ctaHref}
-                className="mb-8 inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-[16px] text-[#111] transition hover:scale-[1.02]"
-                style={{ fontVariationSettings: "'wght' 700" }}
+                className="mb-8 inline-flex h-12 min-h-11 items-center justify-center rounded-full bg-white px-6 text-[16px] font-bold text-[#111] shadow-[var(--typo-elevation-raised)] transition-[transform,box-shadow] duration-150 ease-out hover:scale-[1.02] hover:shadow-[var(--typo-elevation-raised-hover)] active:scale-[0.96]"
               >
                 {plan.cta}
               </Link>
 
               <ul className="m-0 flex list-none flex-col gap-3 p-0">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-[15px]">
+                  <li
+                    key={f}
+                    className="flex items-start gap-3 text-[15px] font-semibold"
+                  >
                     <Check />
-                    <span style={{ fontVariationSettings: "'wght' 600" }}>
-                      {f}
-                    </span>
+                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -117,6 +114,6 @@ export function TypoPricing() {
           </TypoStaggerItem>
         ))}
       </TypoStagger>
-    </section>
+    </TypoSection>
   );
 }

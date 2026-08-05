@@ -23,7 +23,7 @@ function FloatingShape({
   return (
     <span
       aria-hidden
-      className={`typo-anim pointer-events-none absolute text-white/70 ${className}`}
+      className={`typo-anim pointer-events-none absolute text-white/70 select-none ${className}`}
       style={
         {
           '--typo-rot': `${rotate}deg`,
@@ -49,7 +49,6 @@ export function TypoHero() {
     [0, 1],
     [1, reduce ? 1 : 0.96],
   );
-  const cloudsY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -40]);
 
   return (
     <section
@@ -60,44 +59,11 @@ export function TypoHero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         style={{
+          /* Eased blue→cyan→white (avoids hard banding of 3-stop linear) */
           background:
-            'linear-gradient(rgb(71, 114, 255) 0%, rgb(0, 172, 255) 50%, rgb(255, 255, 255) 85%)',
+            'linear-gradient(180deg, rgb(71, 114, 255) 0%, rgb(55, 130, 255) 18%, rgb(28, 155, 255) 42%, rgb(0, 185, 255) 62%, rgb(160, 230, 255) 78%, rgb(255, 255, 255) 100%)',
         }}
       />
-
-      <motion.div
-        aria-hidden
-        style={{ y: cloudsY }}
-        className="typo-anim pointer-events-none absolute bottom-[-40px] left-[-120px] z-[1] opacity-90"
-      >
-        <div style={{ animation: 'typo-float-y 7s ease-in-out infinite' }}>
-          <Image
-            src="/typotab/images/clouds-decor.png"
-            alt=""
-            width={677}
-            height={418}
-            className="h-auto w-[min(70vw,520px)] select-none"
-            priority
-          />
-        </div>
-      </motion.div>
-      <motion.div
-        aria-hidden
-        style={{ y: cloudsY }}
-        className="typo-anim pointer-events-none absolute right-[-140px] bottom-[-60px] z-[1] opacity-90"
-      >
-        <div
-          style={{ animation: 'typo-float-y 9s ease-in-out infinite reverse' }}
-        >
-          <Image
-            src="/typotab/images/clouds-decor.png"
-            alt=""
-            width={835}
-            height={515}
-            className="h-auto w-[min(75vw,600px)] scale-x-[-1] select-none"
-          />
-        </div>
-      </motion.div>
 
       <FloatingShape
         className="top-[22%] left-[12%] text-3xl opacity-60"
@@ -126,8 +92,7 @@ export function TypoHero() {
         >
           <Link
             href={typoHero.badgeHref}
-            className="inline-flex h-[30px] items-center gap-3.5 rounded-full bg-white py-1 pr-3 pl-1 text-[13px] text-[#2B6BFF] shadow-sm transition hover:scale-[1.03]"
-            style={{ fontVariationSettings: "'wght' 700" }}
+            className="inline-flex min-h-10 items-center gap-3.5 rounded-full bg-white py-1.5 pr-3 pl-1 text-[13px] font-bold text-[#2B6BFF] shadow-[var(--typo-elevation-raised)] transition-[transform,box-shadow] duration-150 ease-out hover:scale-[1.02] hover:shadow-[var(--typo-elevation-raised-hover)] active:scale-[0.96]"
           >
             <span className="rounded-full bg-[#EEF4FF] px-2 py-0.5 text-[11px] font-semibold tracking-wide text-[#2B6BFF]">
               新
@@ -140,13 +105,12 @@ export function TypoHero() {
         </motion.div>
 
         <div className="relative flex w-full max-w-[960px] flex-col items-center gap-5">
-          <h1 className="m-0 text-center text-[clamp(40px,7vw,70px)] leading-[0.9] tracking-[-0.04em] text-white">
+          <h1 className="m-0 text-center text-[clamp(40px,7vw,70px)] leading-[1.15] font-extrabold tracking-[-0.04em] text-balance text-white">
             <TypoLetterLine text={typoHero.titleLine1} delay={0.15} />
             <TypoLetterLine text={typoHero.titleLine2} delay={0.45} />
           </h1>
           <motion.p
-            className="m-0 max-w-[480px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.5] tracking-[-0.04em] text-white"
-            style={{ fontVariationSettings: "'wght' 660" }}
+            className="m-0 max-w-[480px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.5] font-semibold tracking-[-0.04em] text-pretty text-white"
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -159,31 +123,24 @@ export function TypoHero() {
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...typoSpring, delay: 1.05 }}
-          whileHover={reduce ? undefined : { scale: 1.03 }}
-          whileTap={reduce ? undefined : { scale: 0.98 }}
+          whileHover={reduce ? undefined : { scale: 1.02 }}
+          whileTap={reduce ? undefined : { scale: 0.96 }}
         >
           <Link
             href={typoHero.ctaHref}
-            className="group relative inline-flex h-[58px] items-center justify-center gap-3 overflow-hidden rounded-full bg-black px-6 py-[18px] text-white"
+            className="group relative inline-flex h-[58px] min-w-[44px] items-center justify-center gap-3 overflow-hidden rounded-full bg-black py-[18px] pr-[22px] pl-6 text-white"
           >
             <span
               aria-hidden
-              className="typo-anim pointer-events-none absolute top-[-14px] h-[84px] w-[70px] -skew-x-[11deg] bg-white opacity-90 blur-[5px] mix-blend-soft-light"
+              className="typo-anim pointer-events-none absolute top-[-14px] h-[84px] w-[70px] -skew-x-[11deg] bg-white opacity-90 blur-[5px] mix-blend-soft-light select-none"
               style={{ animation: 'typo-shine 2.8s linear infinite' }}
             />
             <BookOpen
               aria-hidden
-              className="relative size-[18px]"
+              className="relative size-[18px] shrink-0"
               strokeWidth={2}
             />
-            <span
-              className="relative text-[18px] leading-[1.2]"
-              style={{
-                fontFamily:
-                  'var(--typo-nunito), "SF Pro Rounded Medium", system-ui, sans-serif',
-                fontVariationSettings: "'wght' 700",
-              }}
-            >
+            <span className="relative text-[18px] leading-[1.2] font-bold">
               {typoHero.cta}
             </span>
           </Link>
@@ -200,7 +157,7 @@ export function TypoHero() {
         <div
           className="w-full overflow-hidden rounded-[12px]"
           style={{
-            boxShadow: 'rgba(0, 56, 140, 0.46) 0px 21px 300px 0px',
+            boxShadow: 'var(--typo-elevation-media)',
             transformStyle: 'preserve-3d',
             perspective: 1200,
           }}
@@ -210,7 +167,7 @@ export function TypoHero() {
             alt={typoHero.demoAlt}
             width={1920}
             height={1080}
-            className="h-auto w-full"
+            className="typo-media h-auto w-full"
             priority
           />
         </div>

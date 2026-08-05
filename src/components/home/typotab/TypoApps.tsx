@@ -1,18 +1,20 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { typoApps } from './content';
 import { TypoReveal } from './TypoReveal';
+import { TypoSection } from './TypoSection';
 
 export function TypoApps() {
   const ring = typoApps.logos;
 
   return (
-    <section className="relative flex flex-col items-center overflow-hidden px-5 py-20">
-      <TypoReveal className="relative z-[2] mb-16 flex max-w-[611px] flex-col items-center gap-5">
-        <h2 className="typo-h2">{typoApps.title}</h2>
-        <p className="typo-lead">{typoApps.subtitle}</p>
-      </TypoReveal>
+    <TypoSection className="relative flex flex-col items-center overflow-hidden px-5 py-20">
+      <TypoSection.Header className="relative z-[2] mb-16">
+        <TypoSection.Title>{typoApps.title}</TypoSection.Title>
+        <TypoSection.Lead>{typoApps.subtitle}</TypoSection.Lead>
+      </TypoSection.Header>
 
       <TypoReveal
         className="relative flex min-h-[640px] w-full max-w-[920px] items-center justify-center"
@@ -27,7 +29,7 @@ export function TypoApps() {
       >
         <div
           aria-hidden
-          className="typo-anim absolute size-[min(850px,95vw)]"
+          className="typo-anim pointer-events-none absolute size-[min(850px,95vw)] select-none"
           style={{ animation: 'typo-spin 60s linear infinite' }}
         >
           {ring.map((name, i) => {
@@ -42,7 +44,7 @@ export function TypoApps() {
                 alt=""
                 width={56}
                 height={56}
-                className="absolute size-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl shadow-md"
+                className="absolute size-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl shadow-[var(--typo-elevation-raised)] outline outline-1 -outline-offset-1 outline-black/10"
                 style={{ left: `${x}%`, top: `${y}%` }}
               />
             );
@@ -51,7 +53,7 @@ export function TypoApps() {
 
         <div
           aria-hidden
-          className="typo-anim absolute size-[min(520px,70vw)] opacity-80"
+          className="typo-anim pointer-events-none absolute size-[min(520px,70vw)] opacity-80 select-none"
           style={{ animation: 'typo-spin 90s linear infinite reverse' }}
         >
           {ring.slice(0, 12).map((name, i) => {
@@ -66,40 +68,52 @@ export function TypoApps() {
                 alt=""
                 width={44}
                 height={44}
-                className="absolute size-11 -translate-x-1/2 -translate-y-1/2 rounded-xl shadow"
+                className="absolute size-11 -translate-x-1/2 -translate-y-1/2 rounded-xl shadow-[var(--typo-elevation-raised)] outline outline-1 -outline-offset-1 outline-black/10"
                 style={{ left: `${x}%`, top: `${y}%` }}
               />
             );
           })}
         </div>
 
-        <div className="relative z-[1] w-[min(349px,90vw)] overflow-hidden rounded-[20px] border border-black/5 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.12)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(0,0,0,0.16)]">
-          <div className="border-b border-black/5 px-4 py-3 text-[14px] text-[#888]">
+        <div className="relative z-[1] w-[min(349px,90vw)] overflow-hidden rounded-[20px] bg-white/95 shadow-[var(--typo-elevation-float)] backdrop-blur transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-[var(--typo-elevation-float-hover)]">
+          <div
+            className="px-4 py-3 text-[14px] text-[#888]"
+            style={{
+              borderBottom:
+                'var(--typo-border-hairline) solid var(--typo-divider)',
+            }}
+          >
             {typoApps.searchPlaceholder}
           </div>
           <ul className="m-0 list-none p-2">
             {typoApps.menuItems.map((item) => (
-              <li
-                key={item.label}
-                className="flex items-center justify-between rounded-xl px-3 py-2.5 text-[15px] text-[#262626] transition hover:bg-[#f5f5f5]"
-              >
-                <span style={{ fontVariationSettings: "'wght' 600" }}>
-                  {item.label}
-                </span>
-                {item.shortcut ? (
-                  <kbd className="rounded-md bg-[#f0f0f0] px-2 py-0.5 text-[12px] text-[#666]">
-                    {item.shortcut}
-                  </kbd>
-                ) : null}
+              <li key={item.label}>
+                {/* outer 20 − pad 8 → inner 12 (rounded-xl) */}
+                <Link
+                  href={item.href}
+                  className="flex min-h-10 items-center justify-between rounded-xl px-3 py-2.5 text-[15px] font-semibold text-[#262626] no-underline transition-colors duration-150 ease-out hover:bg-[#f5f5f5]"
+                >
+                  <span>{item.label}</span>
+                  {item.shortcut ? (
+                    <kbd className="rounded-md bg-[#f0f0f0] px-2 py-0.5 font-mono text-[12px] font-medium text-[#666] tabular-nums">
+                      {item.shortcut}
+                    </kbd>
+                  ) : null}
+                </Link>
               </li>
             ))}
           </ul>
-          <div className="flex justify-between border-t border-black/5 px-4 py-2 text-[12px] text-[#999]">
+          <div
+            className="flex justify-between px-4 py-2 text-[12px] text-[#999]"
+            style={{
+              borderTop: 'var(--typo-border-hairline) solid var(--typo-divider)',
+            }}
+          >
             <span>esc 关闭</span>
             <span>回车 打开</span>
           </div>
         </div>
       </TypoReveal>
-    </section>
+    </TypoSection>
   );
 }

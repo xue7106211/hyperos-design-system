@@ -138,10 +138,22 @@ export const typoApps = {
     'telegram',
   ] as const,
   menuItems: [
-    { label: '设计规范', shortcut: 'G' },
-    { label: '系统组件', shortcut: 'C' },
-    { label: 'Design Token', shortcut: 'T' },
-    { label: '图标库', shortcut: 'I' },
+    { label: '设计规范', shortcut: 'G', href: `${defaultDocsRoute}/general` },
+    {
+      label: '系统组件',
+      shortcut: 'C',
+      href: `${defaultDocsRoute}/components`,
+    },
+    {
+      label: 'Design Token',
+      shortcut: 'T',
+      href: `${defaultDocsRoute}/general/design-token`,
+    },
+    {
+      label: '图标库',
+      shortcut: 'I',
+      href: `${defaultDocsRoute}/resources/icons`,
+    },
   ],
   searchPlaceholder: '搜索规范与组件',
 } as const;

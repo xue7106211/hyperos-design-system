@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { typoShortcuts } from './content';
+import { TypoSection } from './TypoSection';
 import { TypoReveal } from './TypoReveal';
 
 const CYCLE = typoShortcuts.cycle;
@@ -22,10 +23,10 @@ function ShortcutStatus() {
   }, []);
 
   return (
-    <div className="absolute top-[-40px] z-[1] flex items-center gap-2 rounded-full border border-black/5 bg-white px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+    <div className="absolute top-[-40px] z-[1] flex items-center gap-2 rounded-full bg-white px-4 py-3 shadow-[var(--typo-elevation-float)]">
       <motion.span
         key={KEYS[phase]}
-        className="typo-anim flex size-8 items-center justify-center rounded-lg bg-[#f3f3f3] text-sm font-semibold"
+        className="typo-anim flex size-8 items-center justify-center rounded-[10px] bg-[#f3f3f3] font-mono text-sm font-semibold tabular-nums"
         style={
           reduce
             ? undefined
@@ -38,8 +39,7 @@ function ShortcutStatus() {
         <AnimatePresence mode="wait">
           <motion.span
             key={CYCLE[phase]}
-            className="block"
-            style={{ fontVariationSettings: "'wght' 600" }}
+            className="block font-semibold"
             initial={reduce ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? undefined : { opacity: 0, y: -8 }}
@@ -55,11 +55,11 @@ function ShortcutStatus() {
 
 export function TypoShortcuts() {
   return (
-    <section className="flex flex-col items-center gap-[100px] px-5 py-[100px]">
-      <TypoReveal className="flex max-w-[611px] flex-col items-center gap-5">
-        <h2 className="typo-h2">{typoShortcuts.title}</h2>
-        <p className="typo-lead">{typoShortcuts.subtitle}</p>
-      </TypoReveal>
+    <TypoSection className="flex flex-col items-center gap-[100px] px-5 py-[100px]">
+      <TypoSection.Header>
+        <TypoSection.Title>{typoShortcuts.title}</TypoSection.Title>
+        <TypoSection.Lead>{typoShortcuts.subtitle}</TypoSection.Lead>
+      </TypoSection.Header>
 
       <TypoReveal
         className="relative flex w-full max-w-[1000px] flex-col items-center"
@@ -79,9 +79,9 @@ export function TypoShortcuts() {
           alt={typoShortcuts.keyboardAlt}
           width={1556}
           height={670}
-          className="h-auto w-full max-w-[778px]"
+          className="typo-media h-auto w-full max-w-[778px]"
         />
       </TypoReveal>
-    </section>
+    </TypoSection>
   );
 }

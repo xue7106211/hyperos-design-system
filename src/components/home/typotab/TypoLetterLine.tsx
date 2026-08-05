@@ -52,7 +52,7 @@ export function TypoLetterLine({
           style={{
             display: 'inline-block',
             whiteSpace: ch === ' ' ? 'pre' : undefined,
-            fontVariationSettings: "'wght' 980",
+            fontWeight: 'var(--typo-fw-extrabold)',
           }}
         >
           {ch === ' ' ? '\u00A0' : ch}

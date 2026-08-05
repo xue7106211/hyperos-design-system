@@ -5,3 +5,5 @@ export { TypoUseCases } from './TypoUseCases';
 export { TypoApps } from './TypoApps';
 export { TypoPricing } from './TypoPricing';
 export { TypoFaq } from './TypoFaq';
+export { TypoSection } from './TypoSection';
+export { TypoAccordion } from './TypoAccordion';

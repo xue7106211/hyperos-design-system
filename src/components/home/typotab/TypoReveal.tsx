@@ -75,11 +75,12 @@ export function TypoStagger({
   children,
   className,
   stagger = 0.08,
+  ...rest
 }: {
   children: ReactNode;
   className?: string;
   stagger?: number;
-}) {
+} & Omit<HTMLMotionProps<'div'>, 'children'>) {
   const reduce = useReducedMotion();
 
   if (reduce) {
@@ -98,6 +99,7 @@ export function TypoStagger({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2, margin: '0px 0px -6% 0px' }}
+      {...rest}
     >
       {children}
     </motion.div>
@@ -107,12 +109,13 @@ export function TypoStagger({
 export function TypoStaggerItem({
   children,
   className,
+  ...rest
 }: {
   children: ReactNode;
   className?: string;
-}) {
+} & Omit<HTMLMotionProps<'div'>, 'children' | 'variants'>) {
   return (
-    <motion.div className={className} variants={fadeUpSoft}>
+    <motion.div className={className} variants={fadeUpSoft} {...rest}>
       {children}
     </motion.div>
   );
