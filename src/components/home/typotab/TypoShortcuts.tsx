@@ -23,19 +23,21 @@ function ShortcutStatus() {
   }, []);
 
   return (
-    <div className="absolute top-[-40px] z-[1] flex items-center gap-2 rounded-full bg-white px-4 py-3 shadow-[var(--typo-elevation-float)]">
+    <div
+      className="absolute top-[-40px] z-[1] flex items-center gap-2 rounded-full px-4 py-3 shadow-[var(--typo-elevation-float)]"
+      style={{ backgroundColor: 'var(--typo-surface)' }}
+    >
       <motion.span
         key={KEYS[phase]}
-        className="typo-anim flex size-8 items-center justify-center rounded-[10px] bg-[#f3f3f3] font-mono text-sm font-semibold tabular-nums"
-        style={
-          reduce
-            ? undefined
-            : { animation: 'typo-pulse-key 0.55s ease-out' }
-        }
+        className="typo-anim flex size-8 items-center justify-center rounded-[10px] font-mono text-sm font-semibold tabular-nums text-[var(--typo-ink)]"
+        style={{
+          backgroundColor: 'var(--typo-surface-muted)',
+          ...(reduce ? {} : { animation: 'typo-pulse-key 0.55s ease-out' }),
+        }}
       >
         {KEYS[phase]}
       </motion.span>
-      <span className="relative min-w-[160px] overflow-hidden text-[15px] text-[#262626]">
+      <span className="relative min-w-[160px] overflow-hidden text-[15px] text-[var(--typo-ink)]">
         <AnimatePresence mode="wait">
           <motion.span
             key={CYCLE[phase]}

@@ -136,7 +136,7 @@ function TypoAccordionIndicator({ className }: IndicatorProps) {
     <motion.span
       aria-hidden
       className={cn(
-        "relative flex size-8 shrink-0 items-center justify-center text-[28px] leading-none text-[#262626] before:absolute before:-inset-3 before:content-['']",
+        "relative flex size-8 shrink-0 items-center justify-center text-[28px] leading-none text-[var(--typo-ink)] before:absolute before:-inset-3 before:content-['']",
         className,
       )}
       animate={{ rotate: isOpen ? 45 : 0 }}

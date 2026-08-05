@@ -26,7 +26,7 @@ export function TypoFaq({
           {typoFaq.contactPrefix}
           <Link
             href={typoFaq.contactHref}
-            className="underline decoration-black/30 underline-offset-4 transition-colors duration-150 ease-out hover:decoration-black/60"
+            className="typo-link-ink underline underline-offset-4 transition-opacity duration-150 ease-out hover:opacity-80"
           >
             {typoFaq.contactLabel}
           </Link>
@@ -43,13 +43,13 @@ export function TypoFaq({
           {typoFaq.items.map((item, i) => (
             <TypoAccordion.Item key={item.question} value={i}>
               <TypoAccordion.Trigger>
-                <span className="text-[22px] leading-[1.5] font-semibold tracking-normal text-balance text-[#262626]">
+                <span className="text-[22px] leading-[1.5] font-semibold tracking-normal text-balance text-[var(--typo-ink)]">
                   {item.question}
                 </span>
                 <TypoAccordion.Indicator />
               </TypoAccordion.Trigger>
               <TypoAccordion.Content>
-                <p className="m-0 max-w-[820px] pb-6 text-[18px] leading-[1.55] font-medium text-pretty text-[#555]">
+                <p className="m-0 max-w-[820px] pb-6 text-[18px] leading-[1.55] font-medium text-pretty text-[var(--typo-ink-muted)]">
                   {item.answer}
                 </p>
               </TypoAccordion.Content>

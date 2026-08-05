@@ -57,12 +57,7 @@ export function TypoHero() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-        style={{
-          /* Eased blue→cyan→white (avoids hard banding of 3-stop linear) */
-          background:
-            'linear-gradient(180deg, rgb(71, 114, 255) 0%, rgb(55, 130, 255) 18%, rgb(28, 155, 255) 42%, rgb(0, 185, 255) 62%, rgb(160, 230, 255) 78%, rgb(255, 255, 255) 100%)',
-        }}
+        className="typo-hero__bg pointer-events-none absolute inset-0 z-0 overflow-hidden"
       />
 
       <FloatingShape
@@ -92,9 +87,19 @@ export function TypoHero() {
         >
           <Link
             href={typoHero.badgeHref}
-            className="inline-flex h-[30px] items-center gap-3.5 rounded-full bg-white py-1 pr-3 pl-1 text-[12px] font-normal tracking-normal text-black no-underline transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.96]"
+            className="inline-flex h-[30px] items-center gap-3.5 rounded-full py-1 pr-3 pl-1 text-[12px] font-normal tracking-normal no-underline transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.96]"
+            style={{
+              backgroundColor: 'var(--typo-badge-bg)',
+              color: 'var(--typo-badge-fg)',
+            }}
           >
-            <span className="inline-flex h-[22px] items-center rounded-full bg-[rgba(0,149,255,0.14)] px-2 text-[12px] font-normal leading-none text-black">
+            <span
+              className="inline-flex h-[22px] items-center rounded-full px-2 text-[12px] font-normal leading-none"
+              style={{
+                backgroundColor: 'var(--typo-accent-soft)',
+                color: 'var(--typo-badge-fg)',
+              }}
+            >
               新
             </span>
             <span className="leading-none">{typoHero.badge}</span>
@@ -103,7 +108,8 @@ export function TypoHero() {
               width="14"
               height="14"
               viewBox="0 0 14 14"
-              className="shrink-0 text-[#0095FF]"
+              className="shrink-0"
+              style={{ color: 'var(--typo-accent)' }}
             >
               <path
                 d="M5.2 3.2 8.8 7 5.2 10.8"
@@ -141,7 +147,11 @@ export function TypoHero() {
         >
           <Link
             href={typoHero.ctaHref}
-            className="group relative inline-flex h-[58px] min-w-[44px] items-center justify-center gap-3 overflow-hidden rounded-full bg-black py-[18px] pr-[22px] pl-6 text-white"
+            className="group relative inline-flex h-[58px] min-w-[44px] items-center justify-center gap-3 overflow-hidden rounded-full py-[18px] pr-[22px] pl-6"
+            style={{
+              backgroundColor: 'var(--typo-cta-bg)',
+              color: 'var(--typo-cta-fg)',
+            }}
           >
             <span
               aria-hidden

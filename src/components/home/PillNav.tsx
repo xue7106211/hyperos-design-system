@@ -68,7 +68,7 @@ export function PillNav({ className }: { className?: string }) {
         })}
         <ThemeSwitch
           mode="light-dark"
-          className="ms-0.5 flex size-10 items-center justify-center border-0 bg-transparent p-0"
+          className="ms-0.5 self-center border-0 bg-transparent"
         />
       </nav>
     </div>

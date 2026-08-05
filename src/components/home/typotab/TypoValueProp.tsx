@@ -21,13 +21,13 @@ export function TypoValueProp() {
           <TypoStaggerItem key={card.title}>
             <Link
               href={card.href}
-              className="group typo-panel relative flex h-[min(508px,70vw)] flex-col overflow-hidden rounded-[20px] bg-[var(--typo-card)] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 active:scale-[0.99] md:h-[508px]"
+              className="group typo-panel relative flex h-[min(508px,70vw)] flex-col overflow-hidden rounded-[20px] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 active:scale-[0.99] md:h-[508px]"
             >
               <div className="flex w-full max-w-[400px] flex-col gap-2 px-10 pt-[30px]">
-                <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-normal text-balance text-[#262626]">
+                <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-normal text-balance text-[var(--typo-ink)]">
                   {card.title}
                 </h3>
-                <p className="m-0 text-[20px] leading-[1.55] font-medium tracking-[0.01em] text-pretty text-[#262626]">
+                <p className="m-0 text-[20px] leading-[1.55] font-medium tracking-[0.01em] text-pretty text-[var(--typo-ink)]">
                   {card.body}
                 </p>
               </div>
@@ -51,7 +51,7 @@ export function TypoValueProp() {
                           alt=""
                           width={72}
                           height={72}
-                          className="typo-anim typo-media size-[72px] rounded-[12px] shadow-[var(--typo-elevation-raised)]"
+                          className="typo-anim typo-thumb size-[72px] rounded-[12px] shadow-[var(--typo-elevation-raised)]"
                           style={{
                             animation: `typo-bob ${3.2 + (i % 4) * 0.45}s ease-in-out infinite`,
                             animationDelay: `${i * 0.18}s`,

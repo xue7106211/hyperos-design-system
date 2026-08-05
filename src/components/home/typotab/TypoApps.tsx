@@ -44,7 +44,7 @@ export function TypoApps() {
                 alt=""
                 width={56}
                 height={56}
-                className="absolute size-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl shadow-[var(--typo-elevation-raised)] outline outline-1 -outline-offset-1 outline-black/10"
+                className="typo-thumb absolute size-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl shadow-[var(--typo-elevation-raised)]"
                 style={{ left: `${x}%`, top: `${y}%` }}
               />
             );
@@ -68,16 +68,19 @@ export function TypoApps() {
                 alt=""
                 width={44}
                 height={44}
-                className="absolute size-11 -translate-x-1/2 -translate-y-1/2 rounded-xl shadow-[var(--typo-elevation-raised)] outline outline-1 -outline-offset-1 outline-black/10"
+                className="typo-thumb absolute size-11 -translate-x-1/2 -translate-y-1/2 rounded-xl shadow-[var(--typo-elevation-raised)]"
                 style={{ left: `${x}%`, top: `${y}%` }}
               />
             );
           })}
         </div>
 
-        <div className="relative z-[1] w-[min(349px,90vw)] overflow-hidden rounded-[20px] bg-white/95 shadow-[var(--typo-elevation-float)] backdrop-blur transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-[var(--typo-elevation-float-hover)]">
+        <div
+          className="relative z-[1] w-[min(349px,90vw)] overflow-hidden rounded-[20px] shadow-[var(--typo-elevation-float)] backdrop-blur transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-[var(--typo-elevation-float-hover)]"
+          style={{ backgroundColor: 'color-mix(in oklch, var(--typo-surface) 95%, transparent)' }}
+        >
           <div
-            className="px-4 py-3 text-[14px] text-[#888]"
+            className="px-4 py-3 text-[14px] text-[var(--typo-ink-muted)]"
             style={{
               borderBottom:
                 'var(--typo-border-hairline) solid var(--typo-divider)',
@@ -91,11 +94,17 @@ export function TypoApps() {
                 {/* outer 20 − pad 8 → inner 12 (rounded-xl) */}
                 <Link
                   href={item.href}
-                  className="flex min-h-10 items-center justify-between rounded-xl px-3 py-2.5 text-[15px] font-semibold text-[#262626] no-underline transition-colors duration-150 ease-out hover:bg-[#f5f5f5]"
+                  className="flex min-h-10 items-center justify-between rounded-xl px-3 py-2.5 text-[15px] font-semibold text-[var(--typo-ink)] no-underline transition-colors duration-150 ease-out hover:bg-[var(--typo-surface-muted)]"
                 >
                   <span>{item.label}</span>
                   {item.shortcut ? (
-                    <kbd className="rounded-md bg-[#f0f0f0] px-2 py-0.5 font-mono text-[12px] font-medium text-[#666] tabular-nums">
+                    <kbd
+                      className="rounded-md px-2 py-0.5 font-mono text-[12px] font-medium tabular-nums"
+                      style={{
+                        backgroundColor: 'var(--typo-kbd)',
+                        color: 'var(--typo-kbd-fg)',
+                      }}
+                    >
                       {item.shortcut}
                     </kbd>
                   ) : null}
@@ -104,7 +113,7 @@ export function TypoApps() {
             ))}
           </ul>
           <div
-            className="flex justify-between px-4 py-2 text-[12px] text-[#999]"
+            className="flex justify-between px-4 py-2 text-[12px] text-[var(--typo-ink-muted)]"
             style={{
               borderTop: 'var(--typo-border-hairline) solid var(--typo-divider)',
             }}
