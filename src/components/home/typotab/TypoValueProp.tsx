@@ -24,10 +24,10 @@ export function TypoValueProp() {
               className="group typo-panel relative flex h-[min(508px,70vw)] flex-col overflow-hidden rounded-[20px] bg-[var(--typo-card)] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 active:scale-[0.99] md:h-[508px]"
             >
               <div className="flex w-full max-w-[400px] flex-col gap-2 px-10 pt-[30px]">
-                <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-[-0.04em] text-balance text-[#262626]">
+                <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-normal text-balance text-[#262626]">
                   {card.title}
                 </h3>
-                <p className="m-0 text-[20px] leading-[30px] font-medium tracking-[-0.04em] text-pretty text-[#262626]">
+                <p className="m-0 text-[20px] leading-[1.55] font-medium tracking-[0.01em] text-pretty text-[#262626]">
                   {card.body}
                 </p>
               </div>

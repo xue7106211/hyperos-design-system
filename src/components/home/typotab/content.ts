@@ -10,9 +10,9 @@ export const typoHero = {
   badge: 'HyperOS 4 规范已上线',
   badgeHref: defaultDocsRoute,
   titleLine1: '一套可落地的',
-  titleLine2: 'HyperOS 设计系统。',
+  titleLine2: 'HyperOS 设计系统',
   subtitle:
-    '连接设计规范、组件、Token 与资源，让设计师与客户端工程对齐同一种语言。',
+    '串联设计规范、组件、Token 与资源，让设计师与客户端工程对齐同一种语言。',
   cta: '浏览设计规范',
   ctaHref: `${defaultDocsRoute}/general`,
   demoSrc: '/typotab/images/hero-demo.png',

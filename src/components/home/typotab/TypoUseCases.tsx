@@ -39,7 +39,7 @@ function UseCaseCard({
       transition={{ type: 'spring', stiffness: 260, damping: 24 }}
     >
       <div className="flex w-full flex-col gap-5 p-10 md:w-1/2 md:max-w-[500px]">
-        <h3 className="m-0 max-w-[420px] text-[clamp(32px,4vw,50px)] leading-[1.2] font-extrabold tracking-[-0.04em] text-balance text-white">
+        <h3 className="m-0 max-w-[420px] text-[clamp(32px,4vw,50px)] leading-[1.25] font-extrabold tracking-normal text-balance text-white">
           <Link
             href={href}
             className="text-inherit no-underline transition-opacity duration-150 ease-out hover:opacity-90"
@@ -47,7 +47,7 @@ function UseCaseCard({
             {title}
           </Link>
         </h3>
-        <p className="m-0 max-w-[420px] text-[22px] leading-[33px] font-semibold tracking-[-0.04em] text-pretty text-white">
+        <p className="m-0 max-w-[420px] text-[22px] leading-[1.55] font-semibold tracking-[0.01em] text-pretty text-white">
           {body}
         </p>
         <Link

@@ -43,7 +43,7 @@ export function TypoFaq({
           {typoFaq.items.map((item, i) => (
             <TypoAccordion.Item key={item.question} value={i}>
               <TypoAccordion.Trigger>
-                <span className="text-[22px] leading-[33px] font-semibold tracking-[-0.04em] text-balance text-[#262626]">
+                <span className="text-[22px] leading-[1.5] font-semibold tracking-normal text-balance text-[#262626]">
                   {item.question}
                 </span>
                 <TypoAccordion.Indicator />

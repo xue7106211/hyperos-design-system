@@ -92,25 +92,38 @@ export function TypoHero() {
         >
           <Link
             href={typoHero.badgeHref}
-            className="inline-flex min-h-10 items-center gap-3.5 rounded-full bg-white py-1.5 pr-3 pl-1 text-[13px] font-bold text-[#2B6BFF] shadow-[var(--typo-elevation-raised)] transition-[transform,box-shadow] duration-150 ease-out hover:scale-[1.02] hover:shadow-[var(--typo-elevation-raised-hover)] active:scale-[0.96]"
+            className="inline-flex h-[30px] items-center gap-3.5 rounded-full bg-white py-1 pr-3 pl-1 text-[12px] font-normal tracking-normal text-black no-underline transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.96]"
           >
-            <span className="rounded-full bg-[#EEF4FF] px-2 py-0.5 text-[11px] font-semibold tracking-wide text-[#2B6BFF]">
+            <span className="inline-flex h-[22px] items-center rounded-full bg-[rgba(0,149,255,0.14)] px-2 text-[12px] font-normal leading-none text-black">
               新
             </span>
-            <span>{typoHero.badge}</span>
-            <span aria-hidden className="text-[12px] opacity-70">
-              ›
-            </span>
+            <span className="leading-none">{typoHero.badge}</span>
+            <svg
+              aria-hidden
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              className="shrink-0 text-[#0095FF]"
+            >
+              <path
+                d="M5.2 3.2 8.8 7 5.2 10.8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </Link>
         </motion.div>
 
         <div className="relative flex w-full max-w-[960px] flex-col items-center gap-5">
-          <h1 className="m-0 text-center text-[clamp(40px,7vw,70px)] leading-[1.15] font-extrabold tracking-[-0.04em] text-balance text-white">
+          <h1 className="m-0 text-center text-[clamp(40px,7vw,70px)] leading-[1.2] font-extrabold tracking-normal text-balance text-white">
             <TypoLetterLine text={typoHero.titleLine1} delay={0.15} />
             <TypoLetterLine text={typoHero.titleLine2} delay={0.45} />
           </h1>
           <motion.p
-            className="m-0 max-w-[480px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.5] font-semibold tracking-[-0.04em] text-pretty text-white"
+            className="m-0 max-w-[500px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.6] font-semibold tracking-[0.01em] text-pretty text-white"
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}

@@ -59,7 +59,7 @@ export function TypoPricing() {
                 </span>
               ) : null}
 
-              <h3 className="m-0 text-[28px] leading-[1.1] font-extrabold tracking-[-0.04em] text-balance">
+              <h3 className="m-0 text-[28px] leading-[1.2] font-extrabold tracking-normal text-balance">
                 {plan.name}
               </h3>
               <p className="mt-2 mb-6 text-[16px] font-semibold text-pretty opacity-90">
@@ -68,7 +68,7 @@ export function TypoPricing() {
 
               <div className="mb-2 flex items-end gap-2">
                 <motion.span
-                  className="text-[60px] leading-[54px] font-black tracking-[-0.04em] tabular-nums"
+                  className="text-[60px] leading-[54px] font-black tracking-normal tabular-nums"
                   animate={
                     reduce
                       ? undefined

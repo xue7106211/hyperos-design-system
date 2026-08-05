@@ -170,7 +170,7 @@
   font-family: var(--typo-font);
   font-size: clamp(36px, 5vw, 60px);
   line-height: 1.1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   font-weight: var(--typo-fw-extrabold);
   color: var(--typo-ink);
   text-align: center;
@@ -181,8 +181,8 @@
 .typo-lead {
   font-family: var(--typo-font);
   font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.5;
-  letter-spacing: -0.04em;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
   font-weight: var(--typo-fw-semibold);
   color: var(--typo-ink);
   text-align: center;
