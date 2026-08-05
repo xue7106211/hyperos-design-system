@@ -15,8 +15,8 @@ export const typoHero = {
     '串联设计规范、组件、Token 与资源，让设计师与客户端工程对齐同一种语言。',
   cta: '浏览设计规范',
   ctaHref: `${defaultDocsRoute}/general`,
-  demoSrc: '/typotab/images/hero-demo.png',
-  demoAlt: 'HyperOS 设计系统文档预览（形式占位图）',
+  demoSrc: '/home/hero-devices.jpg',
+  demoAlt: 'HyperOS 设计系统多机界面预览',
 } as const;
 
 export const typoValueProp = {

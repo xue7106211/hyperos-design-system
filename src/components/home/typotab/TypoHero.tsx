@@ -171,7 +171,7 @@ export function TypoHero() {
       </div>
 
       <motion.div
-        className="relative z-[1] flex w-full max-w-[1000px] justify-center px-5 pb-8"
+        className="relative z-[1] flex w-full max-w-[1240px] justify-center px-4 pb-8 sm:px-6"
         style={{ y: mediaY, scale: mediaScale }}
         initial={reduce ? false : { opacity: 0, y: 48, rotateX: 8 }}
         animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -188,8 +188,8 @@ export function TypoHero() {
           <Image
             src={typoHero.demoSrc}
             alt={typoHero.demoAlt}
-            width={1920}
-            height={1080}
+            width={1024}
+            height={576}
             className="typo-media h-auto w-full"
             priority
           />
