@@ -1,0 +1,7 @@
+export { TypoHero } from './TypoHero';
+export { TypoValueProp } from './TypoValueProp';
+export { TypoShortcuts } from './TypoShortcuts';
+export { TypoUseCases } from './TypoUseCases';
+export { TypoApps } from './TypoApps';
+export { TypoPricing } from './TypoPricing';
+export { TypoFaq } from './TypoFaq';

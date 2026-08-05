@@ -59,6 +59,19 @@ html {
   color-scheme: dark;
 }
 
+/* TypoTab form clone is light-only; keep shell/nav readable over the blue hero */
+.home-shell:has(.typo-clone) {
+  --home-bg: #ffffff;
+  --home-fg-high: #1c1917;
+  --home-fg-mid: #57534e;
+  --home-nav-bg: oklab(0.985 0.001 0.002 / 0.72);
+  --home-nav-shadow:
+    0 -1px 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 1px 1px 0 rgba(255, 255, 255, 1) inset,
+    0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  color-scheme: light;
+}
+
 .home-shell .home-copy {
   color: var(--home-fg-mid);
 }

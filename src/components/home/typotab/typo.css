@@ -1,0 +1,114 @@
+/* TypoTab form clone — scoped under .typo-clone; does not replace docs chrome tokens */
+
+.typo-clone {
+  --typo-ink: #262626;
+  --typo-card: #f7f7f6;
+  --typo-max: 1000px;
+  --typo-nunito: var(--font-typo-nunito), 'Nunito', system-ui, sans-serif;
+  --typo-inter: var(--font-typo-inter, inherit), 'Inter', system-ui, sans-serif;
+  background: #fff;
+  color: var(--typo-ink);
+  color-scheme: light;
+  font-family: var(--typo-nunito);
+}
+
+.typo-clone * {
+  box-sizing: border-box;
+}
+
+@keyframes typo-float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes typo-float-rotate {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--typo-rot, 0deg)) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) rotate(calc(var(--typo-rot, 0deg) + 8deg))
+      scale(1.08);
+  }
+}
+
+@keyframes typo-shine {
+  0% {
+    left: -80%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+
+@keyframes typo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes typo-bob {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.04);
+  }
+}
+
+@keyframes typo-pulse-key {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.12);
+  }
+  60% {
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typo-clone .typo-anim {
+    animation: none !important;
+  }
+}
+
+.typo-section-pad {
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.typo-h2 {
+  font-family: var(--typo-nunito);
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-variation-settings: 'wght' 1000;
+  font-weight: 400;
+  color: var(--typo-ink);
+  text-align: center;
+  margin: 0;
+}
+
+.typo-lead {
+  font-family: var(--typo-nunito);
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.5;
+  letter-spacing: -0.04em;
+  font-variation-settings: 'wght' 660;
+  font-weight: 400;
+  color: var(--typo-ink);
+  text-align: center;
+  margin: 0;
+  max-width: 611px;
+}
