@@ -9,10 +9,11 @@ import { defaultDocsRoute, defaultFigmaUrl } from '@/lib/shared';
 export const typoHero = {
   badge: 'HyperOS 4 规范已上线',
   badgeHref: defaultDocsRoute,
-  titleLine1: '一套可落地的',
-  titleLine2: 'HyperOS 设计系统',
+  /** 两行展示：品牌名+版本同行，副标另起一行 */
+  titleLine1: 'Xiaomi HyperOS 4',
+  titleLine2: '生命感美学',
   subtitle:
-    '串联设计规范、组件、Token 与资源，让设计师与客户端工程对齐同一种语言。',
+    '在 HyperOS4 中，我们希望能营造一个有温度的数字空间，为你提供更自然、生动、精致的生命感新体验。',
   cta: '浏览设计规范',
   ctaHref: `${defaultDocsRoute}/general`,
   demoSrc: '/home/hero-devices.jpg',
@@ -20,7 +21,7 @@ export const typoHero = {
 } as const;
 
 export const typoValueProp = {
-  title: '把规范变成可检索、可引用的能力',
+  title: '把规范变成标准，把组件变成能力',
   cards: [
     {
       title: '设计规范',
@@ -108,9 +109,9 @@ export const typoUseCases = {
 } as const;
 
 export const typoApps = {
-  title: '对齐设计与研发工具链',
+  title: '多场景设计最佳实践',
   subtitle:
-    '从 Figma 到 Android / iOS 静态代码参考，减少「设计是一回事、实现是另一回事」。',
+    '根据你的业务应用场景，学习最佳界面适配方法与样式创新设计。',
   logos: [
     'google-docs',
     'word',

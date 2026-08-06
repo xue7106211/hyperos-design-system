@@ -219,7 +219,25 @@
   background: var(--typo-hero-gradient);
 }
 
-/* Resources-aligned hero copy reveal (blur + soft rise, not per-letter) */
+/*
+ * CJK (PingFang) at 800 vs Latin (SF) at 800: Latin looks heavier.
+ * Keep Chinese extrabold; drop Latin one step for optical match.
+ */
+.typo-clone .typo-hero-title {
+  font-weight: var(--typo-fw-extrabold);
+}
+
+.typo-clone .typo-hero-title .typo-hero-latin {
+  font-weight: var(--typo-fw-semibold);
+}
+
+/* Keep “Xiaomi HyperOS 4” on one line; subtitle on the next */
+.typo-clone .typo-hero-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Soft block reveal — resources language */
 @keyframes typo-hero-reveal {
   from {
     opacity: 0;

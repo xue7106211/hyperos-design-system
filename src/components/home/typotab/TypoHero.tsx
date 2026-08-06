@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { typoHero } from './content';
 
-/** Same reveal contract as /resources ResourceHero */
+/** Soft block reveal — same contract as /resources ResourceHero */
 function HeroReveal({
   index,
   block,
@@ -37,6 +37,11 @@ function HeroReveal({
       {children}
     </span>
   );
+}
+
+/** ASCII / Latin tokens — optical weight vs PingFang */
+function isLatinToken(text: string) {
+  return /^[\x00-\x7F]+$/.test(text.trim());
 }
 
 function FloatingShape({
@@ -80,7 +85,7 @@ export function TypoHero() {
     [1, reduce ? 1 : 0.98],
   );
 
-  const titleLine2Words = typoHero.titleLine2.split(/\s+/);
+  const titleLine1Words = typoHero.titleLine1.split(/\s+/);
   let revealIndex = 0;
 
   return (
@@ -149,20 +154,27 @@ export function TypoHero() {
         </HeroReveal>
 
         <div className="relative flex w-full max-w-[960px] flex-col items-center gap-5">
-          <h1 className="m-0 text-center text-[clamp(40px,7vw,70px)] leading-[1.2] font-extrabold tracking-normal text-balance text-[var(--typo-hero-ink)]">
-            <HeroReveal block index={revealIndex++}>
-              {typoHero.titleLine1}
-            </HeroReveal>
-            <span className="typo-hero-reveal-block">
-              {titleLine2Words.map((word, i) => (
-                <span key={word}>
+          <h1 className="typo-hero-title m-0 text-center text-[clamp(40px,7vw,70px)] leading-[1.2] tracking-normal text-[var(--typo-hero-ink)]">
+            <span className="typo-hero-title-line">
+              {titleLine1Words.map((word, i) => (
+                <span key={`${word}-${i}`}>
                   {i > 0 ? ' ' : null}
-                  <HeroReveal index={revealIndex++}>{word}</HeroReveal>
+                  <HeroReveal
+                    index={revealIndex++}
+                    className={
+                      isLatinToken(word) ? 'typo-hero-latin' : undefined
+                    }
+                  >
+                    {word}
+                  </HeroReveal>
                 </span>
               ))}
             </span>
+            <HeroReveal block index={revealIndex++}>
+              {typoHero.titleLine2}
+            </HeroReveal>
           </h1>
-          <p className="m-0 max-w-[500px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.6] font-semibold tracking-[0.01em] text-pretty text-[var(--typo-hero-ink-muted)]">
+          <p className="m-0 max-w-[560px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.6] font-semibold tracking-[0.01em] text-pretty text-[var(--typo-hero-ink-muted)]">
             <HeroReveal index={revealIndex++}>{typoHero.subtitle}</HeroReveal>
           </p>
         </div>
