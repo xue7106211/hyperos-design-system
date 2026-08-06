@@ -7,3 +7,4 @@ export { TypoPricing } from './TypoPricing';
 export { TypoFaq } from './TypoFaq';
 export { TypoSection } from './TypoSection';
 export { TypoAccordion } from './TypoAccordion';
+export { TypoRule } from './TypoRule';

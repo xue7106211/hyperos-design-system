@@ -1,4 +1,4 @@
-/* Home landing — system UI stack; theme via .dark on html (next-themes) */
+/* Home landing — surfaces aligned with /resources (aiforui gray + guide lines) */
 
 .home-shell {
   --typo-fw-medium: 500;
@@ -7,6 +7,11 @@
   --typo-fw-extrabold: 800;
   --typo-fw-black: 900;
   --z-home-nav: 40;
+  --typo-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --typo-duration-hover: 150ms;
+  /* Match /resources hero reveal */
+  --typo-duration-hero: 1200ms;
+  --typo-hero-stagger: 200ms;
   font-family:
     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
@@ -15,8 +20,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* TypoTab form — semantic surfaces (cool neutrals; flip under .dark) */
-
 .typo-clone {
   --typo-font:
     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -24,100 +27,116 @@
     sans-serif;
   --typo-max: 1000px;
 
-  /* Neutrals — slight cool bias (blue brand) */
-  --typo-canvas: #ffffff;
-  --typo-ink: #24262b;
-  --typo-ink-muted: #5c6068;
-  --typo-card: #f5f6f7;
-  --typo-surface: #ffffff;
-  --typo-surface-muted: #eef0f2;
-  --typo-kbd: #e8eaed;
-  --typo-kbd-fg: #5c6068;
-  --typo-divider: rgb(0 0 0 / 0.08);
-  --typo-accent: #0095ff;
-  --typo-accent-soft: rgb(0 149 255 / 0.14);
+  /* Resources gray scale (warm stone) */
+  --typo-canvas: #fdfdfc;
+  --typo-band: #f9f9f8;
+  --typo-ink: #21201c;
+  --typo-ink-muted: #43423d;
+  --typo-card: #f9f9f8;
+  --typo-surface: #fdfdfc;
+  --typo-surface-muted: #f1f0ef;
+  --typo-kbd: #e9e9e7;
+  --typo-kbd-fg: #8d8d86;
+  --typo-guide: rgb(0 0 0 / 0.08);
+  --typo-cross: rgb(0 0 0 / 0.45);
+  --typo-divider: var(--typo-guide);
+  --typo-accent: #0082fb;
+  --typo-accent-soft: color-mix(in oklch, var(--typo-accent) 14%, transparent);
 
-  --typo-badge-bg: #ffffff;
-  --typo-badge-fg: #111111;
-  --typo-cta-bg: #111111;
-  --typo-cta-fg: #ffffff;
+  --typo-badge-bg: var(--typo-canvas);
+  --typo-badge-fg: var(--typo-ink);
+  --typo-cta-bg: var(--typo-ink);
+  --typo-cta-fg: var(--typo-canvas);
 
+  /* TypoTab sky → warm canvas (resources gray) */
   --typo-hero-gradient: linear-gradient(
     180deg,
     rgb(71, 114, 255) 0%,
-    rgb(55, 130, 255) 18%,
-    rgb(28, 155, 255) 42%,
-    rgb(0, 185, 255) 62%,
-    rgb(160, 230, 255) 78%,
+    rgb(55, 130, 255) 16%,
+    rgb(28, 155, 255) 36%,
+    rgb(0, 185, 255) 54%,
+    rgb(160, 230, 255) 70%,
+    color-mix(in oklch, rgb(210, 238, 255) 45%, var(--typo-canvas)) 86%,
     var(--typo-canvas) 100%
   );
+  --typo-hero-ink: #ffffff;
+  --typo-hero-ink-muted: rgb(255 255 255 / 0.88);
+  --typo-hero-badge-bg: #ffffff;
+  --typo-hero-badge-fg: #111111;
 
   --typo-elevation-raised:
-    0 0 0 1px rgb(0 0 0 / 0.05),
-    0 1px 3px rgb(0 0 0 / 0.05),
-    0 8px 24px -8px rgb(0 0 0 / 0.08);
+    0 0 0 1px var(--typo-guide),
+    0 1px 3px rgb(0 0 0 / 0.04),
+    0 8px 24px -10px rgb(0 0 0 / 0.08);
   --typo-elevation-raised-hover:
-    0 0 0 1px rgb(0 0 0 / 0.07),
-    0 2px 4px rgb(0 0 0 / 0.06),
-    0 16px 40px -8px rgb(0 0 0 / 0.12);
+    0 0 0 1px color-mix(in oklch, var(--typo-accent) 28%, var(--typo-guide)),
+    0 2px 4px rgb(0 0 0 / 0.05),
+    0 14px 36px -12px rgb(0 0 0 / 0.1);
   --typo-elevation-float:
-    0 0 0 1px rgb(0 0 0 / 0.05),
-    0 8px 30px rgb(0 0 0 / 0.08);
+    0 0 0 1px var(--typo-guide),
+    0 8px 28px rgb(0 0 0 / 0.07);
   --typo-elevation-float-hover:
-    0 0 0 1px rgb(0 0 0 / 0.07),
-    0 20px 60px rgb(0 0 0 / 0.14);
+    0 0 0 1px color-mix(in oklch, var(--typo-accent) 28%, var(--typo-guide)),
+    0 16px 40px rgb(0 0 0 / 0.1);
+  /* Soft blue ambient so media sits in the sky band */
   --typo-elevation-media:
-    0 0 0 1px rgb(0 0 0 / 0.08),
-    0 21px 80px rgb(0 56 140 / 0.28),
-    0 40px 200px rgb(0 56 140 / 0.35);
+    0 0 0 1px var(--typo-guide),
+    0 16px 48px -16px rgb(0 56 140 / 0.2),
+    0 28px 80px -24px rgb(0 56 140 / 0.22);
 
   --typo-media-outline: rgb(0 0 0 / 0.1);
   --typo-border-hairline: 1px;
+  --typo-cross-size: 11px;
 
   background: var(--typo-canvas);
   color: var(--typo-ink);
   color-scheme: light;
   font-family: var(--typo-font);
+  isolation: isolate;
 }
 
-/* Dark: flip variables — canvas darkest, elevated surfaces lighter; shadows → rings */
 :is(html.dark, .dark) .typo-clone {
-  --typo-canvas: #1e1e1d;
-  --typo-ink: #eeeeec;
+  --typo-canvas: #111110;
+  --typo-band: #191918;
+  --typo-ink: #ffffff;
   --typo-ink-muted: #b5b3ad;
-  --typo-card: #252524;
-  --typo-surface: #2a2a28;
-  --typo-surface-muted: #222221;
+  --typo-card: #191918;
+  --typo-surface: #222221;
+  --typo-surface-muted: #2a2a28;
   --typo-kbd: #191918;
-  --typo-kbd-fg: #b5b3ad;
-  /* Solid hairlines in dark — alpha white glows */
-  --typo-divider: #2a2a28;
-  /* Desaturate accent ~25% so it doesn't vibrate on dark */
-  --typo-accent: color-mix(in oklch, #0095ff 75%, #6f6d66);
+  --typo-kbd-fg: #6f6d66;
+  --typo-guide: #2a2a28;
+  --typo-cross: rgb(255 255 255 / 0.55);
+  --typo-divider: var(--typo-guide);
+  --typo-accent: color-mix(in oklch, #4194ff 80%, #6f6d66);
   --typo-accent-soft: color-mix(in oklch, var(--typo-accent) 22%, transparent);
 
-  --typo-badge-bg: #2a2a28;
-  --typo-badge-fg: #eeeeec;
-  --typo-cta-bg: #eeeeec;
-  --typo-cta-fg: #1e1e1d;
+  --typo-badge-bg: transparent;
+  --typo-badge-fg: var(--typo-ink);
+  --typo-cta-bg: var(--typo-ink);
+  --typo-cta-fg: var(--typo-canvas);
 
   --typo-hero-gradient: linear-gradient(
     180deg,
     color-mix(in oklch, #3d5fcc 82%, #1a1a22) 0%,
-    color-mix(in oklch, #2f6fd4 80%, #1a1a22) 22%,
-    color-mix(in oklch, #1a7ab8 78%, #151518) 48%,
-    color-mix(in oklch, #156a9a 70%, #121214) 68%,
-    color-mix(in oklch, #1a2a38 55%, var(--typo-canvas)) 86%,
+    color-mix(in oklch, #2f6fd4 80%, #1a1a22) 20%,
+    color-mix(in oklch, #1a7ab8 78%, #151518) 44%,
+    color-mix(in oklch, #156a9a 70%, #121214) 64%,
+    color-mix(in oklch, #1a2a38 50%, var(--typo-canvas)) 84%,
     var(--typo-canvas) 100%
   );
+  --typo-hero-ink: #ffffff;
+  --typo-hero-ink-muted: rgb(255 255 255 / 0.82);
+  --typo-hero-badge-bg: var(--typo-surface);
+  --typo-hero-badge-fg: var(--typo-ink);
 
-  --typo-elevation-raised: 0 0 0 1px rgb(255 255 255 / 0.09);
-  --typo-elevation-raised-hover: 0 0 0 1px rgb(255 255 255 / 0.14);
-  --typo-elevation-float: 0 0 0 1px rgb(255 255 255 / 0.09);
-  --typo-elevation-float-hover: 0 0 0 1px rgb(255 255 255 / 0.14);
-  --typo-elevation-media:
-    0 0 0 1px rgb(255 255 255 / 0.1),
-    0 24px 80px rgb(0 40 90 / 0.45);
+  --typo-elevation-raised: 0 0 0 1px var(--typo-guide);
+  --typo-elevation-raised-hover: 0 0 0 1px
+    color-mix(in oklch, var(--typo-accent) 40%, var(--typo-guide));
+  --typo-elevation-float: 0 0 0 1px var(--typo-guide);
+  --typo-elevation-float-hover: 0 0 0 1px
+    color-mix(in oklch, var(--typo-accent) 40%, var(--typo-guide));
+  --typo-elevation-media: 0 0 0 1px var(--typo-guide);
 
   --typo-media-outline: rgb(255 255 255 / 0.1);
   color-scheme: dark;
@@ -143,35 +162,172 @@
   scroll-margin-top: 88px;
 }
 
-.typo-clone .typo-media {
-  outline: 1px solid var(--typo-media-outline);
-  outline-offset: -1px;
-}
-
+.typo-clone .typo-media,
 .typo-clone .typo-thumb {
   outline: 1px solid var(--typo-media-outline);
   outline-offset: -1px;
 }
 
 .typo-clone .typo-panel {
+  position: relative;
   background: var(--typo-card);
   box-shadow: var(--typo-elevation-raised);
-  transition: box-shadow 150ms ease-out;
+  transition: box-shadow var(--typo-duration-hover) ease-out;
+  isolation: isolate;
+}
+
+.typo-clone .typo-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  background-color: rgb(0 0 0 / 0.015);
+  background-image: radial-gradient(
+    circle,
+    rgb(0 0 0 / 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 14px 14px;
+  transition: opacity var(--typo-duration-hover) ease-out;
+}
+
+:is(html.dark, .dark) .typo-clone .typo-panel::before {
+  background-color: rgb(255 255 255 / 0.02);
+  background-image: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.08) 1px,
+    transparent 1px
+  );
 }
 
 .typo-clone .typo-panel:hover {
   box-shadow: var(--typo-elevation-raised-hover);
 }
 
-.typo-clone .typo-divider {
-  border-color: var(--typo-divider);
-  border-width: 0;
-  border-bottom-width: var(--typo-border-hairline);
-  border-style: solid;
+.typo-clone .typo-panel:hover::before {
+  opacity: 1;
+}
+
+.typo-clone .typo-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .typo-clone .typo-hero__bg {
   background: var(--typo-hero-gradient);
+}
+
+/* Resources-aligned hero copy reveal (blur + soft rise, not per-letter) */
+@keyframes typo-hero-reveal {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.typo-hero-reveal-item {
+  display: inline-block;
+  animation: typo-hero-reveal var(--typo-duration-hero) var(--typo-ease-out)
+    backwards;
+  animation-delay: calc(var(--index, 0) * var(--typo-hero-stagger));
+}
+
+.typo-hero-reveal-block {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typo-clone .typo-hero-reveal-item {
+    animation: none;
+  }
+}
+
+/* White pill on sky — elevation ring instead of guide hairline */
+.typo-clone .typo-badge--sky {
+  border: none;
+  background: var(--typo-hero-badge-bg);
+  color: var(--typo-hero-badge-fg);
+  box-shadow: var(--typo-elevation-raised);
+  transition:
+    box-shadow var(--typo-duration-hover) ease-out,
+    transform var(--typo-duration-hover) ease-out;
+}
+
+.typo-clone .typo-badge--sky:hover {
+  border-color: transparent;
+  box-shadow: var(--typo-elevation-raised-hover);
+}
+
+/* Full-bleed hairline + end crosses (resources rule language) */
+.typo-rule {
+  position: relative;
+  width: 100vw;
+  height: var(--typo-border-hairline);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 2.5rem 0 0;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--typo-guide) 12%,
+    var(--typo-guide) 88%,
+    transparent
+  );
+}
+
+.typo-rule-cross {
+  position: absolute;
+  top: calc(var(--typo-cross-size) / -2);
+  width: var(--typo-cross-size);
+  height: var(--typo-cross-size);
+  pointer-events: none;
+}
+
+.typo-rule-cross::before,
+.typo-rule-cross::after {
+  content: '';
+  position: absolute;
+  background: var(--typo-cross);
+}
+
+.typo-rule-cross::before {
+  left: 50%;
+  top: 0;
+  width: var(--typo-border-hairline);
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.typo-rule-cross::after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: var(--typo-border-hairline);
+  transform: translateY(-50%);
+}
+
+.typo-rule-cross--l {
+  left: max(
+    0.5rem,
+    calc(50% - min(500px, 50vw - 1rem) - var(--typo-cross-size) / 2)
+  );
+}
+
+.typo-rule-cross--r {
+  right: max(
+    0.5rem,
+    calc(50% - min(500px, 50vw - 1rem) - var(--typo-cross-size) / 2)
+  );
+  left: auto;
 }
 
 @keyframes typo-float-y {
@@ -264,7 +420,7 @@
   line-height: 1.55;
   letter-spacing: 0.01em;
   font-weight: var(--typo-fw-semibold);
-  color: var(--typo-ink);
+  color: var(--typo-ink-muted);
   text-align: center;
   text-wrap: pretty;
   margin: 0;
@@ -282,4 +438,18 @@
 
 .typo-clone .typo-link-ink:hover {
   text-decoration-color: color-mix(in oklch, var(--typo-ink) 60%, transparent);
+}
+
+.typo-clone .typo-badge {
+  box-shadow: none;
+  border: var(--typo-border-hairline) solid var(--typo-guide);
+  background: var(--typo-badge-bg);
+  color: var(--typo-badge-fg);
+  transition:
+    border-color var(--typo-duration-hover) ease-out,
+    transform var(--typo-duration-hover) ease-out;
+}
+
+.typo-clone .typo-badge:hover {
+  border-color: color-mix(in oklch, var(--typo-accent) 35%, var(--typo-guide));
 }

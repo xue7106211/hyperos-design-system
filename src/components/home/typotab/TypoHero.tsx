@@ -1,13 +1,43 @@
 'use client';
 
-import { type CSSProperties, useRef } from 'react';
+import {
+  type CSSProperties,
+  type ReactNode,
+  useRef,
+} from 'react';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { typoHero } from './content';
-import { TypoLetterLine } from './TypoLetterLine';
-import { typoSpring } from './TypoReveal';
+
+/** Same reveal contract as /resources ResourceHero */
+function HeroReveal({
+  index,
+  block,
+  className,
+  children,
+}: {
+  index: number;
+  block?: boolean;
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <span
+      className={[
+        'typo-hero-reveal-item',
+        block ? 'typo-hero-reveal-block' : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={{ '--index': index } as CSSProperties}
+    >
+      {children}
+    </span>
+  );
+}
 
 function FloatingShape({
   className,
@@ -23,7 +53,7 @@ function FloatingShape({
   return (
     <span
       aria-hidden
-      className={`typo-anim pointer-events-none absolute text-white/70 select-none ${className}`}
+      className={`typo-anim pointer-events-none absolute select-none text-[var(--typo-hero-ink)]/70 ${className}`}
       style={
         {
           '--typo-rot': `${rotate}deg`,
@@ -43,12 +73,15 @@ export function TypoHero() {
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  const mediaY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 80]);
+  const mediaY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 48]);
   const mediaScale = useTransform(
     scrollYProgress,
     [0, 1],
-    [1, reduce ? 1 : 0.96],
+    [1, reduce ? 1 : 0.98],
   );
+
+  const titleLine2Words = typoHero.titleLine2.split(/\s+/);
+  let revealIndex = 0;
 
   return (
     <section
@@ -61,43 +94,35 @@ export function TypoHero() {
       />
 
       <FloatingShape
-        className="top-[22%] left-[12%] text-3xl opacity-60"
+        className="top-[22%] left-[12%] text-3xl"
         delay={0}
         duration={5.5}
         rotate={-12}
       />
       <FloatingShape
-        className="top-[28%] right-[14%] text-2xl opacity-50"
+        className="top-[28%] right-[14%] text-2xl"
         delay={0.6}
         duration={6.5}
         rotate={18}
       />
       <FloatingShape
-        className="top-[18%] right-[28%] text-lg opacity-40"
+        className="top-[18%] right-[28%] text-lg"
         delay={1.2}
         duration={4.8}
         rotate={8}
       />
 
       <div className="relative z-[1] flex w-full max-w-[1000px] flex-col items-center gap-9 px-5 pb-5 pt-20">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: -12, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ ...typoSpring, delay: 0.05 }}
-        >
+        <HeroReveal block index={revealIndex++}>
           <Link
             href={typoHero.badgeHref}
-            className="inline-flex h-[30px] items-center gap-3.5 rounded-full py-1 pr-3 pl-1 text-[12px] font-normal tracking-normal no-underline transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.96]"
-            style={{
-              backgroundColor: 'var(--typo-badge-bg)',
-              color: 'var(--typo-badge-fg)',
-            }}
+            className="typo-badge typo-badge--sky inline-flex h-[30px] items-center gap-3.5 rounded-full py-1 pr-3 pl-1 text-[12px] font-normal tracking-normal no-underline hover:scale-[1.02] active:scale-[0.96]"
           >
             <span
               className="inline-flex h-[22px] items-center rounded-full px-2 text-[12px] font-normal leading-none"
               style={{
                 backgroundColor: 'var(--typo-accent-soft)',
-                color: 'var(--typo-badge-fg)',
+                color: 'var(--typo-hero-badge-fg)',
               }}
             >
               新
@@ -121,33 +146,31 @@ export function TypoHero() {
               />
             </svg>
           </Link>
-        </motion.div>
+        </HeroReveal>
 
         <div className="relative flex w-full max-w-[960px] flex-col items-center gap-5">
-          <h1 className="m-0 text-center text-[clamp(40px,7vw,70px)] leading-[1.2] font-extrabold tracking-normal text-balance text-white">
-            <TypoLetterLine text={typoHero.titleLine1} delay={0.15} />
-            <TypoLetterLine text={typoHero.titleLine2} delay={0.45} />
+          <h1 className="m-0 text-center text-[clamp(40px,7vw,70px)] leading-[1.2] font-extrabold tracking-normal text-balance text-[var(--typo-hero-ink)]">
+            <HeroReveal block index={revealIndex++}>
+              {typoHero.titleLine1}
+            </HeroReveal>
+            <span className="typo-hero-reveal-block">
+              {titleLine2Words.map((word, i) => (
+                <span key={word}>
+                  {i > 0 ? ' ' : null}
+                  <HeroReveal index={revealIndex++}>{word}</HeroReveal>
+                </span>
+              ))}
+            </span>
           </h1>
-          <motion.p
-            className="m-0 max-w-[500px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.6] font-semibold tracking-[0.01em] text-pretty text-white"
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {typoHero.subtitle}
-          </motion.p>
+          <p className="m-0 max-w-[500px] text-center text-[clamp(18px,2.2vw,22px)] leading-[1.6] font-semibold tracking-[0.01em] text-pretty text-[var(--typo-hero-ink-muted)]">
+            <HeroReveal index={revealIndex++}>{typoHero.subtitle}</HeroReveal>
+          </p>
         </div>
 
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...typoSpring, delay: 1.05 }}
-          whileHover={reduce ? undefined : { scale: 1.02 }}
-          whileTap={reduce ? undefined : { scale: 0.96 }}
-        >
+        <HeroReveal block index={revealIndex++}>
           <Link
             href={typoHero.ctaHref}
-            className="group relative inline-flex h-[58px] min-w-[44px] items-center justify-center gap-3 overflow-hidden rounded-full py-[18px] pr-[22px] pl-6"
+            className="group relative inline-flex h-[58px] min-w-[44px] items-center justify-center gap-3 overflow-hidden rounded-full py-[18px] pr-[22px] pl-6 transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.96]"
             style={{
               backgroundColor: 'var(--typo-cta-bg)',
               color: 'var(--typo-cta-fg)',
@@ -167,33 +190,28 @@ export function TypoHero() {
               {typoHero.cta}
             </span>
           </Link>
-        </motion.div>
+        </HeroReveal>
       </div>
 
       <motion.div
-        className="relative z-[1] flex w-full max-w-[1240px] justify-center px-4 pb-8 sm:px-6"
+        className="relative z-[1] flex w-full max-w-[1240px] justify-center px-4 pb-24 sm:px-6"
         style={{ y: mediaY, scale: mediaScale }}
-        initial={reduce ? false : { opacity: 0, y: 48, rotateX: 8 }}
-        animate={{ opacity: 1, y: 0, rotateX: 0 }}
-        transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div
-          className="w-full overflow-hidden rounded-[12px]"
-          style={{
-            boxShadow: 'var(--typo-elevation-media)',
-            transformStyle: 'preserve-3d',
-            perspective: 1200,
-          }}
-        >
-          <Image
-            src={typoHero.demoSrc}
-            alt={typoHero.demoAlt}
-            width={1024}
-            height={576}
-            className="typo-media h-auto w-full"
-            priority
-          />
-        </div>
+        <HeroReveal block className="w-full" index={revealIndex}>
+          <div
+            className="w-full overflow-hidden rounded-[12px]"
+            style={{ boxShadow: 'var(--typo-elevation-media)' }}
+          >
+            <Image
+              src={typoHero.demoSrc}
+              alt={typoHero.demoAlt}
+              width={1024}
+              height={576}
+              className="typo-media h-auto w-full"
+              priority
+            />
+          </div>
+        </HeroReveal>
       </motion.div>
     </section>
   );

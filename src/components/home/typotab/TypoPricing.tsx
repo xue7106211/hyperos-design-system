@@ -94,7 +94,7 @@ export function TypoPricing() {
 
               <Link
                 href={plan.ctaHref}
-                className="mb-8 inline-flex h-12 min-h-11 items-center justify-center rounded-full bg-white px-6 text-[16px] font-bold text-[#111] shadow-[var(--typo-elevation-raised)] transition-[transform,box-shadow] duration-150 ease-out hover:scale-[1.02] hover:shadow-[var(--typo-elevation-raised-hover)] active:scale-[0.96]"
+                className="mb-8 inline-flex h-12 min-h-11 items-center justify-center rounded-full bg-[var(--typo-canvas)] px-6 text-[16px] font-bold text-[#21201c] shadow-[var(--typo-elevation-raised)] transition-[transform,box-shadow] duration-150 ease-out hover:scale-[1.02] hover:shadow-[var(--typo-elevation-raised-hover)] active:scale-[0.96]"
               >
                 {plan.cta}
               </Link>
