@@ -21,18 +21,18 @@ export function TypoValueProp() {
           <TypoStaggerItem key={card.title}>
             <Link
               href={card.href}
-              className="group typo-panel relative flex h-[min(508px,70vw)] flex-col overflow-hidden rounded-[20px] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 active:scale-[0.99] md:h-[508px]"
+              className="group typo-panel relative flex h-[min(508px,70vw)] flex-col gap-6 overflow-hidden rounded-[20px] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 active:scale-[0.99] md:h-[508px]"
             >
-              <div className="flex w-full max-w-[400px] flex-col gap-2 px-10 pt-[30px]">
+              <div className="flex w-full flex-col gap-2 px-10 pt-[30px]">
                 <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-normal text-balance text-[var(--typo-ink)]">
                   {card.title}
                 </h3>
-                <p className="m-0 text-[20px] leading-[1.55] font-medium tracking-[0.01em] text-pretty text-[var(--typo-ink)]">
+                <p className="m-0 text-[20px] leading-[1.55] font-medium tracking-[0.01em] text-[var(--typo-ink)]">
                   {card.body}
                 </p>
               </div>
 
-              <div className="relative mt-auto min-h-0 flex-1">
+              <div className="relative min-h-0 flex-1">
                 {card.variant === 'apps' ? (
                   <div className="pointer-events-none absolute inset-0 select-none">
                     <Image
@@ -64,9 +64,9 @@ export function TypoValueProp() {
                   <Image
                     src={card.image}
                     alt={card.imageAlt}
-                    width={1011}
-                    height={750}
-                    className="typo-media pointer-events-none absolute inset-x-0 bottom-0 h-auto w-full object-contain object-bottom transition-transform duration-500 ease-out select-none group-hover:scale-[1.02]"
+                    fill
+                    className="typo-media pointer-events-none object-cover object-center transition-transform duration-500 ease-out select-none group-hover:scale-[1.02]"
+                    sizes="(max-width: 768px) 100vw, 490px"
                   />
                 )}
               </div>

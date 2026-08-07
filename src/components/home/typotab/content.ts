@@ -25,7 +25,7 @@ export const typoValueProp = {
   cards: [
     {
       title: '设计规范',
-      body: '通用设计标准与写法约定，统一视觉与体验底线。',
+      body: '通用设计标准与写法约定，统一视\u2060觉与体验底线。',
       image: '/typotab/images/menu-hotkeys.png',
       imageAlt: '设计规范入口示意',
       href: `${defaultDocsRoute}/general`,
@@ -34,20 +34,10 @@ export const typoValueProp = {
     {
       title: '控件与组件',
       body: '导航、操作、输入、容器与展示——对照 Figma 与平台代码。',
-      image: '/typotab/images/works-everywhere-bg.jpg',
-      imageAlt: '',
+      image: '/home/value-components.jpg',
+      imageAlt: 'HyperOS 控件与组件界面示意',
       href: `${defaultDocsRoute}/components`,
-      variant: 'apps' as const,
-      logos: [
-        '/typotab/logos/chrome.png',
-        '/typotab/logos/safari.png',
-        '/typotab/logos/notion.png',
-        '/typotab/logos/finder.png',
-        '/typotab/logos/whatsapp.png',
-        '/typotab/logos/x.png',
-        '/typotab/logos/linkedin.png',
-        '/typotab/logos/instagram.png',
-      ],
+      variant: 'menu' as const,
     },
     {
       title: 'Design Token',
