@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useSearchContext } from 'fumadocs-ui/contexts/search';
 import { typoShortcuts } from './content';
 import { TypoSection } from './TypoSection';
 import { TypoReveal } from './TypoReveal';
@@ -14,6 +15,7 @@ const CYCLE_MS = 1800;
 function ShortcutStatus() {
   const [phase, setPhase] = useState(0);
   const reduce = useReducedMotion();
+  const { setOpenSearch } = useSearchContext();
 
   useEffect(() => {
     const id = window.setInterval(() => {
@@ -23,13 +25,16 @@ function ShortcutStatus() {
   }, []);
 
   return (
-    <div
-      className="absolute top-[-40px] z-[1] flex items-center gap-2 rounded-full px-4 py-3 shadow-[var(--typo-elevation-float)]"
+    <button
+      type="button"
+      aria-label="打开全局搜索（CMD+K）"
+      onClick={() => setOpenSearch(true)}
+      className="absolute top-[-40px] z-[1] flex cursor-pointer items-center gap-2 rounded-full px-4 py-3 shadow-[var(--typo-elevation-float)] transition-[transform,box-shadow] duration-150 ease-out hover:shadow-[var(--typo-elevation-float-hover)] active:scale-[0.96]"
       style={{ backgroundColor: 'var(--typo-surface)' }}
     >
       <motion.span
         key={KEYS[phase]}
-        className="typo-anim flex size-8 items-center justify-center rounded-[10px] font-mono text-sm font-semibold tabular-nums text-[var(--typo-ink)]"
+        className="typo-anim flex h-8 min-w-8 items-center justify-center rounded-[10px] px-2 font-mono text-[11px] font-semibold tracking-tight text-[var(--typo-ink)]"
         style={{
           backgroundColor: 'var(--typo-surface-muted)',
           ...(reduce ? {} : { animation: 'typo-pulse-key 0.55s ease-out' }),
@@ -37,7 +42,7 @@ function ShortcutStatus() {
       >
         {KEYS[phase]}
       </motion.span>
-      <span className="relative min-w-[160px] overflow-hidden text-[15px] text-[var(--typo-ink)]">
+      <span className="relative min-w-[160px] overflow-hidden text-left text-[15px] text-[var(--typo-ink)]">
         <AnimatePresence mode="wait">
           <motion.span
             key={CYCLE[phase]}
@@ -51,7 +56,7 @@ function ShortcutStatus() {
           </motion.span>
         </AnimatePresence>
       </span>
-    </div>
+    </button>
   );
 }
 
@@ -81,7 +86,7 @@ export function TypoShortcuts() {
           alt={typoShortcuts.keyboardAlt}
           width={1556}
           height={670}
-          className="typo-media h-auto w-full max-w-[778px]"
+          className="typo-media typo-media--flush h-auto w-full max-w-[778px]"
         />
       </TypoReveal>
     </TypoSection>

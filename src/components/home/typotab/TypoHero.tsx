@@ -312,16 +312,13 @@ export function TypoHero() {
             className="w-full"
             style={reduce ? undefined : { y: mediaScrollY }}
           >
-            <div
-              className="w-full overflow-hidden rounded-[12px]"
-              style={{ boxShadow: 'var(--typo-elevation-media)' }}
-            >
+            <div className="w-full overflow-hidden rounded-[20px]">
               <Image
                 src={typoHero.demoSrc}
                 alt={typoHero.demoAlt}
                 width={1024}
                 height={576}
-                className="typo-media h-auto w-full"
+                className="typo-media typo-media--flush h-auto w-full"
                 priority
               />
             </div>

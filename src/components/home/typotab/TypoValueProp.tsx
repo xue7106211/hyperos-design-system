@@ -38,7 +38,7 @@ export function TypoValueProp() {
                   src={card.image}
                   alt={card.imageAlt}
                   fill
-                  className="typo-media pointer-events-none object-cover object-center select-none"
+                  className="typo-media typo-media--flush pointer-events-none object-cover object-center select-none"
                   sizes="(max-width: 768px) 100vw, 490px"
                 />
               </div>

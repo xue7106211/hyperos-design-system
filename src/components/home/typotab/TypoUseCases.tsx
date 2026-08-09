@@ -1,35 +1,23 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { typoUseCases } from './content';
 import { TypoStagger, TypoStaggerItem } from './TypoReveal';
 import { TypoSection } from './TypoSection';
 
+type UseCaseCardData = (typeof typoUseCases.cards)[number];
+
 function UseCaseCard({
   title,
   body,
   color,
-  video,
-  poster,
   href,
-}: (typeof typoUseCases.cards)[number]) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
+  image,
+  imageAlt,
+}: UseCaseCardData) {
   const reduce = useReducedMotion();
-
-  const toggle = () => {
-    const el = ref.current;
-    if (!el) return;
-    if (el.paused) {
-      void el.play();
-      setPlaying(true);
-    } else {
-      el.pause();
-      setPlaying(false);
-    }
-  };
 
   return (
     <motion.article
@@ -59,36 +47,13 @@ function UseCaseCard({
       </div>
 
       <div className="relative min-h-[220px] flex-1 overflow-hidden md:min-h-0">
-        <video
-          ref={ref}
-          className="typo-media absolute inset-0 size-full object-cover"
-          src={video}
-          poster={poster}
-          muted
-          loop
-          playsInline
-          onClick={toggle}
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          className="typo-media typo-media--flush object-cover object-center"
+          sizes="(max-width: 768px) 100vw, 500px"
         />
-        <motion.button
-          type="button"
-          onClick={toggle}
-          aria-label={playing ? '暂停' : '播放'}
-          className="absolute top-1/2 left-1/2 z-[1] flex size-[70px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white shadow-[var(--typo-elevation-raised)] backdrop-blur-sm"
-          whileHover={reduce ? undefined : { scale: 1.06 }}
-          whileTap={reduce ? undefined : { scale: 0.96 }}
-        >
-          {playing ? (
-            <span className="flex gap-1.5" aria-hidden>
-              <span className="h-5 w-1.5 rounded-sm bg-white" />
-              <span className="h-5 w-1.5 rounded-sm bg-white" />
-            </span>
-          ) : (
-            <span
-              aria-hidden
-              className="ml-[2px] border-y-[10px] border-l-[16px] border-y-transparent border-l-white"
-            />
-          )}
-        </motion.button>
       </div>
     </motion.article>
   );

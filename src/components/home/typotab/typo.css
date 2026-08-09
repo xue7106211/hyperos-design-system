@@ -192,6 +192,16 @@
   outline-offset: -1px;
 }
 
+/* Hero / full-bleed media: no inset stroke */
+.typo-clone .typo-media--flush {
+  outline: none;
+}
+
+/* Quiet cards: panel elevation is enough — media stroke doubles the edge */
+.typo-clone .typo-panel--quiet .typo-media {
+  outline: none;
+}
+
 .typo-clone .typo-panel {
   position: relative;
   background: var(--typo-card);

@@ -1487,65 +1487,7 @@
   overflow: hidden;
 }
 
-/* Back to top */
-.resources-back-to-top {
-  position: fixed;
-  right: max(1.75rem, env(safe-area-inset-right, 0px));
-  bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
-  z-index: 40;
-  display: inline-flex;
-  width: 2.75rem;
-  height: 2.75rem;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--resources-guide);
-  border-radius: 9999px;
-  background: var(--home-nav-bg);
-  color: var(--color-foreground-100);
-  box-shadow: var(--home-nav-shadow);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(0.35rem);
-  transition:
-    opacity var(--resources-duration-hover) ease-out,
-    transform var(--resources-duration-hover) ease-out,
-    background-color var(--resources-duration-hover) ease-out,
-    scale var(--resources-duration-hover) ease-out;
-}
-
-.dark .resources-back-to-top {
-  border-color: var(--resources-guide);
-}
-
-.resources-back-to-top.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: none;
-}
-
-.resources-back-to-top:focus-visible {
-  outline: 2px solid var(--color-foreground-100);
-  outline-offset: 3px;
-}
-
-.resources-back-to-top svg {
-  width: 1.125rem;
-  height: 1.125rem;
-  pointer-events: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .resources-back-to-top:hover {
-    background: color-mix(in srgb, var(--color-gray-100) 92%, transparent);
-  }
-
-  .resources-back-to-top:active {
-    scale: 0.96;
-  }
-}
+/* Back to top — styles live in global.css (.site-back-to-top) */
 
 @media (prefers-reduced-motion: reduce) {
   .resources-reveal-item {
@@ -1570,6 +1512,7 @@
   .resources-feature-card,
   .resources-feature-arrow,
   .resources-back-to-top,
+  .site-back-to-top,
   .resources-taught-by-pill,
   .resources-taught-by-pill a,
   .resources-footer a,

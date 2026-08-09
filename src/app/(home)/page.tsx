@@ -1,10 +1,10 @@
 import { preload } from 'react-dom';
+import { BackToTop } from '@/components/BackToTop';
 import { PillNav } from '@/components/home/PillNav';
 import {
   TypoApps,
   TypoFaq,
   TypoHero,
-  TypoPricing,
   TypoRule,
   TypoShortcuts,
   TypoUseCases,
@@ -26,16 +26,15 @@ export default function HomePage() {
         <TypoRule />
         <TypoValueProp />
         <TypoRule />
-        <TypoShortcuts />
-        <TypoRule />
         <TypoUseCases />
+        <TypoRule />
+        <TypoShortcuts />
         <TypoRule />
         <TypoApps />
         <TypoRule />
-        <TypoPricing />
-        <TypoRule />
         <TypoFaq />
       </div>
+      <BackToTop />
     </>
   );
 }

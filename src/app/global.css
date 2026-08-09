@@ -72,6 +72,72 @@ html {
   color: var(--home-accent);
 }
 
+/* Back to top — home & /resources (shells define --home-nav-* / --home-fg-*) */
+.site-back-to-top {
+  position: fixed;
+  right: max(1.75rem, env(safe-area-inset-right, 0px));
+  bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--resources-guide, rgb(0 0 0 / 0.08));
+  border-radius: 9999px;
+  background: var(--home-nav-bg);
+  color: var(--home-fg-high);
+  box-shadow: var(--home-nav-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.35rem);
+  transition:
+    opacity 150ms ease-out,
+    transform 150ms ease-out,
+    background-color 150ms ease-out,
+    scale 150ms ease-out;
+}
+
+.dark .site-back-to-top {
+  border-color: var(--resources-guide, color-mix(in oklch, white 14%, transparent));
+}
+
+.site-back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.site-back-to-top:focus-visible {
+  outline: 2px solid var(--home-fg-high);
+  outline-offset: 3px;
+}
+
+.site-back-to-top svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-back-to-top:hover {
+    background: color-mix(in srgb, var(--home-bg, #fdfdfc) 92%, transparent);
+  }
+
+  .site-back-to-top:active {
+    scale: 0.96;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-back-to-top {
+    transition: none;
+  }
+}
+
 .home-shell .home-nav-link {
   color: var(--home-fg-mid);
   transition-property: color;
