@@ -7,6 +7,10 @@ const config = {
   reactStrictMode: true,
   // 容器化部署输出：只打包运行必需的最小 node_modules，配合 Dockerfile 的 runner 阶段使用
   output: 'standalone',
+  images: {
+    // Next 16 默认仅允许 q=75；Hero 需要更高质量
+    qualities: [75, 90],
+  },
   async redirects() {
     return [
       {

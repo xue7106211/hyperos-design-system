@@ -313,13 +313,20 @@ export function TypoHero() {
             style={reduce ? undefined : { y: mediaScrollY }}
           >
             <div className="w-full overflow-hidden rounded-[20px]">
+              {/*
+                Hero is LCP + heavily transformed (tilt/scale). Prefer the original
+                asset over the image optimizer so retina never gets a stale/low-res WebP.
+              */}
               <Image
                 src={typoHero.demoSrc}
                 alt={typoHero.demoAlt}
-                width={1024}
-                height={576}
+                width={3840}
+                height={2160}
                 className="typo-media typo-media--flush h-auto w-full"
+                sizes="(max-width: 1240px) calc(100vw - 2rem), 1240px"
+                quality={90}
                 priority
+                unoptimized
               />
             </div>
           </motion.div>

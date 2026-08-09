@@ -16,7 +16,7 @@ export const typoHero = {
     '在 HyperOS4 中，我们希望能营造一个有温度的数字空间，为你提供更自然、生动、精致的生命感新体验。',
   cta: '浏览设计规范',
   ctaHref: `${defaultDocsRoute}/general`,
-  demoSrc: '/home/hero-devices-v2.jpg',
+  demoSrc: '/home/hero-devices-v3.jpg',
   demoAlt: 'HyperOS 设计系统多机界面预览',
 } as const;
 
@@ -43,8 +43,8 @@ export const typoValueProp = {
     {
       title: 'Design Token',
       body: '语义色、间距与组件 Token，Light / Dark 一并查阅。',
-      image: '/typotab/images/settings-card.png',
-      imageAlt: 'Token 示意',
+      image: '/home/value-token.jpg',
+      imageAlt: 'HyperOS Semantic Token 查阅界面',
       href: `${defaultDocsRoute}/general/design-token`,
       variant: 'settings' as const,
     },
