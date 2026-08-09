@@ -16,9 +16,12 @@ function isAdminPath(pathname: string | null): boolean {
   return pathname === '/admin' || pathname.startsWith('/admin/');
 }
 
+/** 临时关闭全站彩蛋；恢复时改为 true */
+const EASTER_EGG_ENABLED = false;
+
 export function EasterEggProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const disabled = isAdminPath(pathname);
+  const disabled = !EASTER_EGG_ENABLED || isAdminPath(pathname);
   const [open, setOpen] = useState(false);
   const timestampsRef = useRef<number[]>([]);
 

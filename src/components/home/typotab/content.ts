@@ -21,7 +21,8 @@ export const typoHero = {
 } as const;
 
 export const typoValueProp = {
-  title: '把规范变成标准，把组件变成能力',
+  title: '设计语言与资源',
+  subtitle: '围绕生命感，重塑 HyperOS，持续打造和谐美学',
   cards: [
     {
       title: '设计规范',
@@ -68,7 +69,7 @@ export const typoShortcuts = {
 } as const;
 
 export const typoUseCases = {
-  title: '从单端控件到多端体验',
+  title: '多终端设计体验',
   subtitle: '在同一套系统里覆盖设备差异、交付资产与落地实践。',
   cards: [
     {
@@ -101,7 +102,7 @@ export const typoUseCases = {
 export const typoApps = {
   title: '多场景设计最佳实践',
   subtitle:
-    '根据你的业务应用场景，学习最佳界面适配方法与样式创新设计。',
+    '根据你的应用场景，获取最佳界面适配方法与样式设计。',
   logos: [
     'google-docs',
     'word',

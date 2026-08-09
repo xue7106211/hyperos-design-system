@@ -61,8 +61,24 @@
   );
   --typo-hero-ink: #ffffff;
   --typo-hero-ink-muted: rgb(255 255 255 / 0.88);
-  --typo-hero-badge-bg: #ffffff;
-  --typo-hero-badge-fg: #111111;
+  --typo-hero-badge-bg: rgb(255 255 255 / 0.92);
+  --typo-hero-badge-fg: #21201c;
+  --typo-hero-badge-chip-bg: color-mix(
+    in oklch,
+    var(--typo-accent) 12%,
+    white
+  );
+  --typo-hero-badge-chip-fg: var(--typo-accent);
+  --typo-hero-badge-elevation:
+    0 0 0 1px rgb(255 255 255 / 0.55) inset,
+    0 0 0 1px rgb(0 40 120 / 0.08),
+    0 1px 2px rgb(0 40 120 / 0.06),
+    0 8px 20px -6px rgb(0 56 140 / 0.28);
+  --typo-hero-badge-elevation-hover:
+    0 0 0 1px rgb(255 255 255 / 0.7) inset,
+    0 0 0 1px rgb(0 40 120 / 0.12),
+    0 2px 4px rgb(0 40 120 / 0.08),
+    0 14px 28px -8px rgb(0 56 140 / 0.34);
 
   --typo-elevation-raised:
     0 0 0 1px var(--typo-guide),
@@ -127,8 +143,16 @@
   );
   --typo-hero-ink: #ffffff;
   --typo-hero-ink-muted: rgb(255 255 255 / 0.82);
-  --typo-hero-badge-bg: var(--typo-surface);
+  --typo-hero-badge-bg: color-mix(in oklch, var(--typo-surface) 88%, transparent);
   --typo-hero-badge-fg: var(--typo-ink);
+  --typo-hero-badge-chip-bg: color-mix(
+    in oklch,
+    var(--typo-accent) 22%,
+    transparent
+  );
+  --typo-hero-badge-chip-fg: color-mix(in oklch, var(--typo-accent) 85%, white);
+  --typo-hero-badge-elevation: 0 0 0 1px rgb(255 255 255 / 0.12);
+  --typo-hero-badge-elevation-hover: 0 0 0 1px rgb(255 255 255 / 0.2);
 
   --typo-elevation-raised: 0 0 0 1px var(--typo-guide);
   --typo-elevation-raised-hover: 0 0 0 1px
@@ -215,6 +239,17 @@
   z-index: 1;
 }
 
+/* Media cards: elevation only — no lift / overlay flash */
+.typo-clone .typo-panel--quiet::before {
+  content: none;
+}
+
+.typo-clone .typo-panel--quiet {
+  transition:
+    box-shadow var(--typo-duration-hover) ease-out,
+    transform var(--typo-duration-hover) ease-out;
+}
+
 .typo-clone .typo-hero__bg {
   background: var(--typo-hero-gradient);
 }
@@ -268,20 +303,81 @@
   }
 }
 
-/* White pill on sky — elevation ring instead of guide hairline */
+/*
+ * Hero announcement pill — glass on sky band.
+ * Nested radii: outer 999, pad 4 → chip ≈ 999 (still round).
+ * Hit ≥ 40px desktop; weight constant; hover via shadow/color only.
+ */
 .typo-clone .typo-badge--sky {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 4px 12px 4px 4px;
   border: none;
+  border-radius: 9999px;
   background: var(--typo-hero-badge-bg);
   color: var(--typo-hero-badge-fg);
-  box-shadow: var(--typo-elevation-raised);
+  box-shadow: var(--typo-hero-badge-elevation);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: var(--typo-fw-medium);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
   transition:
     box-shadow var(--typo-duration-hover) ease-out,
+    background-color var(--typo-duration-hover) ease-out,
     transform var(--typo-duration-hover) ease-out;
 }
 
 .typo-clone .typo-badge--sky:hover {
-  border-color: transparent;
-  box-shadow: var(--typo-elevation-raised-hover);
+  box-shadow: var(--typo-hero-badge-elevation-hover);
+  background: color-mix(in oklch, var(--typo-hero-badge-bg) 92%, white);
+}
+
+.typo-clone .typo-badge--sky:active {
+  transform: scale(0.96);
+}
+
+.typo-clone .typo-badge--sky:focus-visible {
+  outline: 2px solid rgb(255 255 255 / 0.9);
+  outline-offset: 3px;
+}
+
+.typo-clone .typo-badge__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0 0.5rem;
+  border-radius: 9999px;
+  background: var(--typo-hero-badge-chip-bg);
+  color: var(--typo-hero-badge-chip-fg);
+  font-size: 11px;
+  font-weight: var(--typo-fw-semibold);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.typo-clone .typo-badge__label {
+  color: var(--typo-hero-badge-fg);
+}
+
+.typo-clone .typo-badge__chevron {
+  flex-shrink: 0;
+  margin-left: -2px; /* optical: trailing chevron */
+  color: color-mix(in oklch, var(--typo-accent) 70%, var(--typo-hero-badge-fg));
+  transition: color var(--typo-duration-hover) ease-out,
+    transform var(--typo-duration-hover) ease-out;
+}
+
+.typo-clone .typo-badge--sky:hover .typo-badge__chevron {
+  color: var(--typo-accent);
+  transform: translateX(1px);
 }
 
 /* Full-bleed hairline + end crosses (resources rule language) */
@@ -437,7 +533,7 @@
   font-size: clamp(18px, 2vw, 22px);
   line-height: 1.55;
   letter-spacing: 0.01em;
-  font-weight: var(--typo-fw-semibold);
+  font-weight: var(--typo-fw-medium);
   color: var(--typo-ink-muted);
   text-align: center;
   text-wrap: pretty;

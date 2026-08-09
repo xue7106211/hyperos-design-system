@@ -11,6 +11,7 @@ export function TypoValueProp() {
     <TypoSection className="typo-section-pad gap-[43px]">
       <TypoSection.Header maxWidthClassName="max-w-[1000px]">
         <TypoSection.Title>{typoValueProp.title}</TypoSection.Title>
+        <TypoSection.Lead>{typoValueProp.subtitle}</TypoSection.Lead>
       </TypoSection.Header>
 
       <TypoStagger
@@ -21,13 +22,13 @@ export function TypoValueProp() {
           <TypoStaggerItem key={card.title}>
             <Link
               href={card.href}
-              className="group typo-panel relative flex h-[min(508px,70vw)] flex-col gap-6 overflow-hidden rounded-[20px] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 active:scale-[0.99] md:h-[508px]"
+              className="group typo-panel typo-panel--quiet relative flex h-[min(508px,70vw)] flex-col gap-6 overflow-hidden rounded-[20px] active:scale-[0.96] md:h-[508px]"
             >
               <div className="flex w-full flex-col gap-2 px-10 pt-[30px]">
                 <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-normal text-balance text-[var(--typo-ink)]">
                   {card.title}
                 </h3>
-                <p className="m-0 text-[20px] leading-[1.55] font-medium tracking-[0.01em] text-[var(--typo-ink)]">
+                <p className="m-0 text-[16px] leading-[1.55] font-normal tracking-[0.01em] text-[var(--typo-ink-muted)]">
                   {card.body}
                 </p>
               </div>
@@ -65,7 +66,7 @@ export function TypoValueProp() {
                     src={card.image}
                     alt={card.imageAlt}
                     fill
-                    className="typo-media pointer-events-none object-cover object-center transition-transform duration-500 ease-out select-none group-hover:scale-[1.02]"
+                    className="typo-media pointer-events-none object-cover object-center select-none"
                     sizes="(max-width: 768px) 100vw, 490px"
                   />
                 )}

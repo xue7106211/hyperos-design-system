@@ -11,7 +11,7 @@ export function TypoApps() {
 
   return (
     <TypoSection className="relative flex flex-col items-center overflow-hidden px-5 py-20">
-      <TypoSection.Header className="relative z-[2] mb-16">
+      <TypoSection.Header className="relative z-[2] mb-28">
         <TypoSection.Title>{typoApps.title}</TypoSection.Title>
         <TypoSection.Lead>{typoApps.subtitle}</TypoSection.Lead>
       </TypoSection.Header>

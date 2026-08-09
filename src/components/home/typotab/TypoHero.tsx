@@ -121,28 +121,19 @@ export function TypoHero() {
         <HeroReveal block index={revealIndex++}>
           <Link
             href={typoHero.badgeHref}
-            className="typo-badge typo-badge--sky inline-flex h-[30px] items-center gap-3.5 rounded-full py-1 pr-3 pl-1 text-[12px] font-normal tracking-normal no-underline hover:scale-[1.02] active:scale-[0.96]"
+            className="typo-badge typo-badge--sky"
           >
-            <span
-              className="inline-flex h-[22px] items-center rounded-full px-2 text-[12px] font-normal leading-none"
-              style={{
-                backgroundColor: 'var(--typo-accent-soft)',
-                color: 'var(--typo-hero-badge-fg)',
-              }}
-            >
-              新
-            </span>
-            <span className="leading-none">{typoHero.badge}</span>
+            <span className="typo-badge__chip">新</span>
+            <span className="typo-badge__label">{typoHero.badge}</span>
             <svg
               aria-hidden
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              className="shrink-0"
-              style={{ color: 'var(--typo-accent)' }}
+              className="typo-badge__chevron"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
             >
               <path
-                d="M5.2 3.2 8.8 7 5.2 10.8"
+                d="M4.4 2.6 7.6 6 4.4 9.4"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.5"

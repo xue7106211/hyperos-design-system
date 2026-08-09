@@ -11,12 +11,16 @@ import { defaultDocsRoute } from '@/lib/shared';
  * 这里硬编码了落地页的主要入口，与侧边栏 IA 保持一致，方便用户快速跳转。
  */
 const links = [
+  { href: '/', label: '首页' },
   { href: `${defaultDocsRoute}/general`, label: '设计指南' },
   { href: `${defaultDocsRoute}/components`, label: '系统组件' },
   { href: '/resources', label: '设计资源' },
 ] as const;
 
 function linkIsActive(pathname: string, href: string) {
+  if (href === '/') {
+    return pathname === '/';
+  }
   if (href === '/resources') {
     return pathname === '/resources' || pathname.startsWith('/resources/');
   }
