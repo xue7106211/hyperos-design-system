@@ -7,7 +7,7 @@
     "build": "tinacms build && next build",
     "start": "next start",
     "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
-    "postinstall": "fumadocs-mdx",
+    "postinstall": "fumadocs-mdx && patch-package",
     "tina:build": "tinacms build",
     "tina:dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
     "icons:sync": "node scripts/generate-icon-manifest.mjs",
@@ -36,6 +36,7 @@
     "@types/node": "^26.1.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "patch-package": "8.0.1",
     "postcss": "^8.5.16",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3"

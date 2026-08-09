@@ -11,6 +11,9 @@ import { tinaField, useTina } from 'tinacms/dist/react';
 
 import { DocMeta } from '@/components/docs/DocMeta';
 import {
+  DocsModeShell,
+} from '@/components/docs/DocsDesignCodePilot';
+import {
   getDocumentFromPayload,
   type TinaDocPayload,
 } from '@/lib/tina-docs';
@@ -27,9 +30,34 @@ type TinaDocsPageContentProps = {
   fallbackMaintainerOpenId?: string;
   updatedAt: string;
   fallbackBody: ReactNode;
+  /** Left: e.g. Design / Code segmented control */
+  leadingAction?: ReactNode;
+  /** Right cluster: Copy Markdown, Open, etc. */
   actions?: ReactNode;
   figmaAction?: ReactNode;
+  /** When set, show Design / Code segmented body (pilot pages only) */
+  codePanel?: ReactNode;
 };
+
+function DocBodySlot({
+  design,
+  codePanel,
+  tinaFieldAttr,
+}: {
+  design: ReactNode;
+  codePanel?: ReactNode;
+  tinaFieldAttr?: string | null;
+}) {
+  if (codePanel) {
+    return <DocsModeShell design={design} code={codePanel} />;
+  }
+
+  return (
+    <DocsBody className="pt-6" data-tina-field={tinaFieldAttr ?? undefined}>
+      {design}
+    </DocsBody>
+  );
+}
 
 function resolveMaintainer(value: unknown, fallback?: string): string {
   if (typeof value === 'string' && value.trim()) return value.trim();
@@ -50,6 +78,7 @@ function DocHeader({
   maintainer,
   maintainerOpenId,
   maintainerField,
+  leadingAction,
   actions,
   figmaAction,
   titleField,
@@ -61,11 +90,14 @@ function DocHeader({
   maintainer: string;
   maintainerOpenId?: string;
   maintainerField?: string | null;
+  leadingAction?: ReactNode;
   actions?: ReactNode;
   figmaAction?: ReactNode;
   titleField?: string | null;
   descriptionField?: string | null;
 }) {
+  const hasTrailing = Boolean(actions || figmaAction);
+
   return (
     <>
       <DocsTitle
@@ -82,21 +114,20 @@ function DocHeader({
           {description}
         </DocsDescription>
       ) : null}
-      <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 border-b pb-6">
-        {actions}
-        <span
-          aria-hidden
-          className="mx-0.5 select-none text-sm text-fd-muted-foreground/50"
-        >
-          ·
-        </span>
+      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-b pb-6">
+        {leadingAction}
         <DocMeta
           updatedAt={updatedAt}
           maintainer={maintainer}
           maintainerOpenId={maintainerOpenId}
           maintainerField={maintainerField ?? undefined}
         />
-        {figmaAction ? <div className="ms-auto">{figmaAction}</div> : null}
+        {hasTrailing ? (
+          <div className="ms-auto flex flex-wrap items-center gap-x-2 gap-y-2">
+            {actions}
+            {figmaAction}
+          </div>
+        ) : null}
       </div>
     </>
   );
@@ -130,8 +161,10 @@ function TinaEditableContent({
   fallbackMaintainerOpenId,
   updatedAt,
   fallbackBody,
+  leadingAction,
   actions,
   figmaAction,
+  codePanel,
 }: {
   payload: TinaDocPayload;
   fallbackTitle: string;
@@ -140,8 +173,10 @@ function TinaEditableContent({
   fallbackMaintainerOpenId?: string;
   updatedAt: string;
   fallbackBody: ReactNode;
+  leadingAction?: ReactNode;
   actions?: ReactNode;
   figmaAction?: ReactNode;
+  codePanel?: ReactNode;
 }) {
   const { data } = useTina({
     query: payload.query,
@@ -170,10 +205,11 @@ function TinaEditableContent({
           updatedAt={updatedAt}
           maintainer={resolveMaintainer(undefined, fallbackMaintainer)}
           maintainerOpenId={resolveOpenId(undefined, fallbackMaintainerOpenId)}
+          leadingAction={leadingAction}
           actions={actions}
           figmaAction={figmaAction}
         />
-        <DocsBody className="pt-6">{fallbackBody}</DocsBody>
+        <DocBodySlot design={fallbackBody} codePanel={codePanel} />
       </>
     );
   }
@@ -184,6 +220,15 @@ function TinaEditableContent({
   const maintainerOpenId = resolveOpenId(
     doc.maintainerOpenId,
     fallbackMaintainerOpenId,
+  );
+
+  const design = doc.body ? (
+    <TinaMarkdown
+      content={doc.body as TinaMarkdownContent}
+      components={components}
+    />
+  ) : (
+    fallbackBody
   );
 
   return (
@@ -197,19 +242,15 @@ function TinaEditableContent({
         titleField={tinaField(doc, 'title')}
         descriptionField={tinaField(doc, 'description')}
         maintainerField={tinaField(doc, 'maintainer')}
+        leadingAction={leadingAction}
         actions={actions}
         figmaAction={figmaAction}
       />
-      <DocsBody className="pt-6" data-tina-field={tinaField(doc, 'body')}>
-        {doc.body ? (
-          <TinaMarkdown
-            content={doc.body as TinaMarkdownContent}
-            components={components}
-          />
-        ) : (
-          fallbackBody
-        )}
-      </DocsBody>
+      <DocBodySlot
+        design={design}
+        codePanel={codePanel}
+        tinaFieldAttr={tinaField(doc, 'body')}
+      />
     </>
   );
 }
@@ -223,8 +264,10 @@ export function TinaDocsPageContent({
   fallbackMaintainerOpenId,
   updatedAt,
   fallbackBody,
+  leadingAction,
   actions,
   figmaAction,
+  codePanel,
 }: TinaDocsPageContentProps) {
   const payload = useTinaPayload(pagePath, initialPayload);
 
@@ -237,10 +280,11 @@ export function TinaDocsPageContent({
           updatedAt={updatedAt}
           maintainer={resolveMaintainer(undefined, fallbackMaintainer)}
           maintainerOpenId={resolveOpenId(undefined, fallbackMaintainerOpenId)}
+          leadingAction={leadingAction}
           actions={actions}
           figmaAction={figmaAction}
         />
-        <DocsBody className="pt-6">{fallbackBody}</DocsBody>
+        <DocBodySlot design={fallbackBody} codePanel={codePanel} />
       </>
     );
   }
@@ -254,8 +298,10 @@ export function TinaDocsPageContent({
       fallbackMaintainerOpenId={fallbackMaintainerOpenId}
       updatedAt={updatedAt}
       fallbackBody={fallbackBody}
+      leadingAction={leadingAction}
       actions={actions}
       figmaAction={figmaAction}
+      codePanel={codePanel}
     />
   );
 }

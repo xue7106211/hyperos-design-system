@@ -1,0 +1,316 @@
+---
+title: 抽屉浮窗 · 代码
+description: BottomSheet 工程接入说明——依赖、主题、BottomSheetModal 与 Behavior 配置
+status: stable
+platforms: [android]
+maintainer: 薛一飞
+maintainerOpenId: ou_cd8297ba73b43960fcbc8821d2c714fd
+---
+
+## 简介
+
+在底部弹出交互内容区的控件，并具有切换成「浮窗」形态的能力。（「浮窗」形态的大小规则与线上 Activity 的浮窗主题规则一致。）
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/containers/drawer/code/modes-compare-1.jpg',
+      alt: '抽屉形态示意',
+      caption: '抽屉形态',
+    },
+    {
+      src: '/media/os4/components/containers/drawer/code/modes-compare-2.jpeg',
+      alt: '浮窗形态示意',
+      caption: '浮窗形态',
+    },
+  ]}
+/>
+
+## 接入方法
+
+Gradle 配置：
+
+```groovy
+implementation 'miuix.bottomsheet:bottomsheet:xxx'
+```
+
+## 使用方法
+
+业务需要关注的类：
+
+- `miuix.bottomsheet.BottomSheetModal`
+- `miuix.bottomsheet.BottomSheetDialog`（不建议使用）
+- `miuix.bottomsheet.BottomSheetDialogFragment`（不建议使用）
+- `miuix.bottomsheet.BottomSheetBehavior`
+
+### 主题配置
+
+在业务自身的主题里添加如下配置（对应 Activity 的主题）。
+
+Light：
+
+```xml
+<style name="xxx" parent="Theme.DayNight">
+    <item name="bottomSheetStyle">@style/Widget.Miuix.BottomSheet.Modal.Light</item>
+</style>
+```
+
+Dark：
+
+```xml
+<style name="xxx" parent="Theme.DayNight">
+    <item name="bottomSheetStyle">@style/Widget.Miuix.BottomSheet.Modal.Dark</item>
+</style>
+```
+
+注意：不必必须是 `Theme.DayNight`，这里只是举例说明——在你业务实际使用的主题上添加如上配置即可。
+
+如果要修改 BottomSheet 相关控件的默认背景色，在主题里修改 `bottomSheetStyle`；**一定要继承 MIUIX 的 style，而不是完全重写一个**，否则会丢失其他默认配置。主题里 `bottomSheetStyle` 引用自己的 style：
+
+Light：
+
+```xml
+<style name="xxx" parent="Widget.Miuix.BottomSheet.Modal.Light">
+    <item name="android:background"></item>
+</style>
+```
+
+Dark：
+
+```xml
+<style name="xxx" parent="Widget.Miuix.BottomSheet.Modal.Dark">
+    <item name="android:background"></item>
+</style>
+```
+
+在业务主题里配置：
+
+```xml
+<item name="bottomSheetStyle">@style/xxx</item>
+```
+
+#### 重要属性
+
+1. **`miuixPaddingBottomSystemWindowInsets`**
+
+控制是否主动避让系统底部导航栏、小白条以及 IME 等。默认 `true`，会将业务布局抬升到系统底部 Decorations 上方。
+
+若需要视觉上的 edge-to-edge（沉浸式）效果，在相关 style 上配置为 `false`，并根据 `WindowInsets` 自行适配（含 IME、小白条、底部导航栏等）。
+
+2. **`contentHeightMatchParent`**
+
+默认 `false`。若希望进入 `fullHeight` 状态时业务区高度撑满剩余空间，配置为 `true`。
+
+### BottomSheetModal
+
+业务请优先使用这个类。
+
+1. `BottomSheetDialog` / `BottomSheetDialogFragment` 实现方式内存开销较大；`BottomSheetModal` 以非模态方式实现了模态效果。
+2. `BottomSheetDialog` / `BottomSheetDialogFragment` 的进入与退出是 Window 动画，不满足设计预期，请优先使用 `BottomSheetModal`。且由于底层跨窗口模糊能力有问题，它们都没有高级材质能力。
+
+注：「模态」可简单理解为有窗口压黑。
+
+#### 示例代码
+
+```java
+BottomSheetModal bottomSheetModal = new BottomSheetModal(activity);
+View contentView = LayoutInflater.from(this).inflate(R.layout.demo, null);
+bottomSheetModal.setContentView(contentView);
+// BottomSheetBehavior 配置
+BottomSheetBehavior bottomSheetBehavior = bottomSheetModal.getBehavior();
+// 设置初始的「展开状态」
+bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+// 展示弹窗
+bottomSheetModal.show();
+```
+
+注意：每次调用 `show` 前，都要明确指定状态，以下代码必须成对出现：
+
+```java
+bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+bottomSheetModal.show();
+```
+
+如果不想要背景压黑效果：
+
+```java
+new BottomSheetModal(activity, false);
+```
+
+#### 重要方法
+
+| 方法 | 说明 |
+|------|------|
+| `setOnTouchOutsideListener(@Nullable OnTouchOutsideListener)` | 设置点击 Outside 区域监听。`OnTouchOutsideListener` 返回 `true` 则消费事件，不触发默认处理。 |
+| `setOnBackListener(@Nullable OnBackListener)` | 设置 Back 事件监听。返回 `true` 则消费事件，不触发默认处理。 |
+| `setOnOnShowListener(@Nullable OnShowListener)` | 抽屉弹窗出现后的回调。 |
+| `setOnDismissListener(@Nullable OnDismissListener)` | 抽屉弹窗消失后的回调。 |
+| `setDragHandleViewEnabled(boolean enabled)` | 是否启用「拖动条」。默认非浮窗形态展示拖动条，浮窗形态不展示；`false` 则不展示。 |
+| `getBehavior()` | 获取关联的 `BottomSheetBehavior`。 |
+
+### BottomSheetBehavior
+
+`BottomSheetBehavior` 是核心交互配置，抽屉弹窗的行为策略都在其上配置。
+
+#### 重要方法
+
+| 方法 | 说明 |
+|------|------|
+| `setModeConfig(@BottomSheetModeConfig int modeConfig)` | `Auto`：响应式策略，按容器宽高进入抽屉或浮窗（默认）；`Bottom`：始终抽屉；`Floating`：始终浮窗。 |
+| `setForceFullHeight(boolean forceFullHeight)` | `true`：忽略内容区自身高度，强制为最大高度；`false`：按内容区自身高度决定控件高度。 |
+| `setState(@StableState int state)` | 展开状态：`STATE_EXPANDED` / `STATE_COLLAPSED` / `STATE_HIDDEN` / `STATE_HALF_EXPANDED`。 |
+| `setDraggable(boolean draggable)` | `true` 允许上下拖动；`false` 不可拖动。 |
+| `setSkipCollapsed(boolean skipCollapsed)` | `true` 跳过「折叠状态」。 |
+| `setSkipHalfExpanded(boolean skipHalfExpanded)` | `true` 跳过「半展开态」。 |
+| `setHideable(boolean hideable)` | `true` 允许拖拽隐藏。 |
+| `setFixedHeightRatioEnabled(boolean)` | 是否开启固定高度比例。`forceFullHeight` 为 `false` 时，控件高度固定为容器高度的 70%；为 `true` 时，`STATE_HALF_EXPANDED` 下可见高度为容器高度的 70%。 |
+| `setOnModeChangeListener(OnModeChangeListener)` | 形态（浮窗 / 抽屉）变化监听。 |
+| `setBottomModeLandscapeWidthRuleEnabled(boolean enabled)` | `true`：抽屉形态横屏默认居中（空间足够时），宽度与浮窗宽度一致。 |
+
+![横屏宽度规则示意](/media/os4/components/containers/drawer/code/landscape-width.jpg)
+
+注意：接入 alpha 05 版本的业务请先一律在代码中设置：
+
+```java
+setFixedHeightRatioEnabled(false)
+```
+
+若有需求再明确设为 `true`。后续版本会默认关闭该功能，避免默认行为变更导致需要改代码。
+
+#### 状态示意图
+
+**STATE_COLLAPSED** / **STATE_HALF_EXPANDED**
+
+![折叠与半展开状态](/media/os4/components/containers/drawer/code/state-collapsed-half.jpeg)
+
+**STATE_EXPANDED（full height）**
+
+<SpecImageGrid
+  items={[
+    {
+      src: '/media/os4/components/containers/drawer/code/state-expanded-full-1.jpeg',
+      alt: '全高展开状态 1',
+    },
+    {
+      src: '/media/os4/components/containers/drawer/code/state-expanded-full-2.jpeg',
+      alt: '全高展开状态 2',
+    },
+  ]}
+/>
+
+**STATE_EXPANDED**
+
+![展开状态](/media/os4/components/containers/drawer/code/state-expanded.jpeg)
+
+#### 注意事项
+
+`STATE_HALF_EXPANDED` **不是**控件展示一半，而是控件顶部距离窗口顶部半个窗口高度。
+
+设置该状态时，预期控件自身高度至少有半个窗口高度；否则会出现控件与窗口底部有距离、控件脱离底部的现象。
+
+根据设计要求：只有内容区高度达到 full height（控件处于统一贴顶状态）时，才会有半展开态 `STATE_HALF_EXPANDED`；否则交互上跳过该状态，类似于 `setSkipHalfExpanded(true)`。
+
+达成 full height 的条件：
+
+1. 业务内容区自身高度足够高（达到窗口高度 70%），触发 full height 阈值；或
+2. `setForceFullHeight(true)` 强制进入 full height。
+
+### 拖动把柄 Overlay 模式
+
+默认情况下，DragHandle 占据顶部一行布局空间，把内容区压在下方。若希望内容区充满整个面板、把柄叠加在内容之上（典型：顶部有图片、ActionBar 需顶到面板边缘），可开启 overlay 模式。
+
+#### 启用方式
+
+在业务的 `bottomSheetStyle` 上配置 `handleOverlay`：
+
+```xml
+<style name="xxx" parent="Widget.Miuix.BottomSheet.Modal.Light">
+    <item name="handleOverlay">true</item>
+</style>
+```
+
+并在 Activity 主题里把 `bottomSheetStyle` 指向上面这个 style。
+
+#### 把柄样式
+
+开启 overlay 后，若业务未设置 `bottomSheetDragHandleStyle`，会自动应用 overlay 场景默认把柄样式：
+
+- Light：`Widget.Miuix.BottomSheet.OverlayDragHandle.Light`
+- Dark：`Widget.Miuix.BottomSheet.OverlayDragHandle.Dark`
+
+自定义时建议继承 `Widget.Miuix.BottomSheet.OverlayDragHandle`，保留 overlay 适配的基础参数。
+
+### 自定义拖动区域
+
+默认仅「拖动把柄」与「内容区滚动到顶 / 底部」能触发面板整体拖动。当内容区存在类似标题栏的固定视图（典型：overlay 下 ActionBar 叠在 NestedScrollView 之上）时，用户期望在该视图上直接拖动面板，又不破坏点击响应。
+
+`BottomSheetBehavior` 提供 `addDragHandleView(View)`，可将任意视图区域注册为拖动入口。
+
+设计要求：需要把「标题栏」作为拖动热区，其他地方滑动不再拖动面板——业务一般都需要调用该接口。
+
+#### 接入方法
+
+```java
+BottomSheetBehavior behavior = bottomSheetModal.getBehavior();
+behavior.addDragHandleView(actionBar.getActionBarView());
+```
+
+注册后，在该视图上的触摸：
+
+- 拖动距离 &lt; touchSlop：事件按原路径分发，点击 / 长按不受影响
+- 拖动距离 ≥ touchSlop：BottomSheet 接管，整个面板跟随手指上下滑动
+
+取消注册：
+
+```java
+behavior.removeDragHandleView(actionBar.getActionBarView());
+```
+
+#### 重要方法
+
+| 方法 | 说明 |
+|------|------|
+| `addDragHandleView(View view)` | 注册拖动入口。超过 touchSlop 后由 BottomSheet 接管；未超过时正常分发。内部 WeakReference 持有，仍建议不需要时主动 remove。 |
+| `removeDragHandleView(View view)` | 取消注册。 |
+
+#### 完整示例（overlay + ActionBar 作为拖动区域）
+
+```java
+// 主题 bottomSheetStyle 已设置 handleOverlay=true 的前提下：
+BottomSheetModal modal = new BottomSheetModal(activity);
+FragmentContainerView container = new FragmentContainerView(activity);
+container.setId(R.id.container_view);
+modal.setContentView(container, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
+
+MyFragment fragment = new MyFragment();
+fragment.setBottomSheetBehavior(modal.getBehavior());
+getSupportFragmentManager().beginTransaction()
+        .replace(R.id.container_view, fragment).commit();
+
+modal.show();
+```
+
+```java
+// MyFragment 内（继承自 miuix.appcompat.app.Fragment）
+private BottomSheetBehavior<?> mBehavior;
+
+public void setBottomSheetBehavior(BottomSheetBehavior<?> behavior) {
+    mBehavior = behavior;
+}
+
+@Override
+public void onViewInflated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewInflated(view, savedInstanceState);
+    ActionBar actionBar = getActionBar();
+    if (actionBar != null && mBehavior != null) {
+        // handle overlay 模式：设计要求标题栏顶部额外 6dp 边距，需业务自行加上
+        actionBar.setExtraPaddingTop(6f);
+        mBehavior.addDragHandleView(actionBar.getActionBarView());
+    }
+}
+```
+
+注意：
+
+- handle overlay 模式下，设计要求标题栏顶部额外 **6dp** 边距，需业务自行加上。
+- 注册的 View 必须是当前 BottomSheet 内容树里的子孙节点，否则坐标判定不会命中。
