@@ -3,13 +3,30 @@
 import {
   type CSSProperties,
   type ReactNode,
+  useEffect,
+  useLayoutEffect,
   useRef,
 } from 'react';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import {
+  animate,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'motion/react';
 import { typoHero } from './content';
+
+/** Settle once scroll progress reaches the end of the media reveal range */
+const MEDIA_REVEAL_END = 1;
+/** First-paint desk tilt — hero centerpiece needs a hard read before scroll */
+const MEDIA_TILT_DEG = 44;
+const HERO_MEDIA_INTRO_KEY = 'hyperos-home-hero-media-intro';
+const HERO_MEDIA_INTRO_EASE = [0.32, 0.72, 0, 1] as const;
 
 /** Soft block reveal — same contract as /resources ResourceHero */
 function HeroReveal({
@@ -73,24 +90,95 @@ function FloatingShape({
 
 export function TypoHero() {
   const reduce = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
+  // Progress ≈ 0 on first paint (media center still low); upright by mid-viewport
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
+    target: mediaRef,
+    offset: ['center 0.95', 'center 0.48'],
   });
-  const mediaY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 48]);
-  const mediaScale = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [1, reduce ? 1 : 0.98],
+
+  const introOpacity = useMotionValue(1);
+  const introY = useMotionValue(0);
+
+  // Once per session: settle into the tilted hero pose (maps to load, not scroll)
+  useLayoutEffect(() => {
+    if (reduce) {
+      introOpacity.set(1);
+      introY.set(0);
+      return;
+    }
+
+    let playIntro = true;
+    try {
+      if (sessionStorage.getItem(HERO_MEDIA_INTRO_KEY) === '1') {
+        playIntro = false;
+      } else {
+        sessionStorage.setItem(HERO_MEDIA_INTRO_KEY, '1');
+      }
+    } catch {
+      playIntro = true;
+    }
+
+    if (!playIntro) return;
+
+    introOpacity.set(0);
+    introY.set(40);
+    const opacityAnim = animate(introOpacity, 1, {
+      duration: 0.85,
+      ease: HERO_MEDIA_INTRO_EASE,
+      delay: 0.06,
+    });
+    const yAnim = animate(introY, 0, {
+      duration: 0.85,
+      ease: HERO_MEDIA_INTRO_EASE,
+      delay: 0.06,
+    });
+    return () => {
+      opacityAnim.stop();
+      yAnim.stop();
+    };
+  }, [reduce, introOpacity, introY]);
+
+  // Progress follows scroll until the media fully settles, then locks (no reverse)
+  const revealProgress = useMotionValue(reduce ? MEDIA_REVEAL_END : 0);
+
+  useEffect(() => {
+    if (reduce) {
+      revealProgress.set(MEDIA_REVEAL_END);
+      return;
+    }
+    const current = scrollYProgress.get();
+    if (current >= MEDIA_REVEAL_END) {
+      revealProgress.set(MEDIA_REVEAL_END);
+      return;
+    }
+    revealProgress.set(current);
+  }, [reduce, revealProgress, scrollYProgress]);
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    if (reduce) return;
+    if (revealProgress.get() >= MEDIA_REVEAL_END) return;
+    if (latest >= MEDIA_REVEAL_END) {
+      revealProgress.set(MEDIA_REVEAL_END);
+      return;
+    }
+    revealProgress.set(latest);
+  });
+
+  // Hold a strong tilt through most of the range, then resolve upright (1:1 scroll)
+  const mediaRotateX = useTransform(
+    revealProgress,
+    [0, 0.55, 1],
+    [MEDIA_TILT_DEG, 22, 0],
   );
+  const mediaScrollY = useTransform(revealProgress, [0, 1], [0, 36]);
+  const mediaScale = useTransform(revealProgress, [0, 1], [0.86, 1]);
 
   const titleLine1Words = typoHero.titleLine1.split(/\s+/);
   let revealIndex = 0;
 
   return (
     <section
-      ref={sectionRef}
       className="typo-hero relative flex flex-col items-center gap-10 overflow-visible pt-20"
     >
       <div
@@ -196,26 +284,50 @@ export function TypoHero() {
         </HeroReveal>
       </div>
 
-      <motion.div
+      <div
+        ref={mediaRef}
         className="relative z-[1] flex w-full max-w-[1240px] justify-center px-4 pb-24 sm:px-6"
-        style={{ y: mediaY, scale: mediaScale }}
+        style={
+          reduce
+            ? undefined
+            : ({ perspective: 1000 } as CSSProperties)
+        }
       >
-        <HeroReveal block className="w-full" index={revealIndex}>
-          <div
-            className="w-full overflow-hidden rounded-[12px]"
-            style={{ boxShadow: 'var(--typo-elevation-media)' }}
+        <motion.div
+          className="w-full will-change-transform"
+          style={
+            reduce
+              ? undefined
+              : {
+                  opacity: introOpacity,
+                  y: introY,
+                  scale: mediaScale,
+                  rotateX: mediaRotateX,
+                  transformOrigin: '50% 100%',
+                  transformStyle: 'preserve-3d',
+                }
+          }
+        >
+          <motion.div
+            className="w-full"
+            style={reduce ? undefined : { y: mediaScrollY }}
           >
-            <Image
-              src={typoHero.demoSrc}
-              alt={typoHero.demoAlt}
-              width={1024}
-              height={576}
-              className="typo-media h-auto w-full"
-              priority
-            />
-          </div>
-        </HeroReveal>
-      </motion.div>
+            <div
+              className="w-full overflow-hidden rounded-[12px]"
+              style={{ boxShadow: 'var(--typo-elevation-media)' }}
+            >
+              <Image
+                src={typoHero.demoSrc}
+                alt={typoHero.demoAlt}
+                width={1024}
+                height={576}
+                className="typo-media h-auto w-full"
+                priority
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

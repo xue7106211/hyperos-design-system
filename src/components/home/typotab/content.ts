@@ -16,7 +16,7 @@ export const typoHero = {
     '在 HyperOS4 中，我们希望能营造一个有温度的数字空间，为你提供更自然、生动、精致的生命感新体验。',
   cta: '浏览设计规范',
   ctaHref: `${defaultDocsRoute}/general`,
-  demoSrc: '/home/hero-devices.jpg',
+  demoSrc: '/home/hero-devices-v2.jpg',
   demoAlt: 'HyperOS 设计系统多机界面预览',
 } as const;
 
@@ -27,14 +27,14 @@ export const typoValueProp = {
     {
       title: '设计规范',
       body: '通用设计标准与写法约定，统一视\u2060觉与体验底线。',
-      image: '/typotab/images/menu-hotkeys.png',
+      image: '/home/value-guidelines.jpg',
       imageAlt: '设计规范入口示意',
       href: `${defaultDocsRoute}/general`,
       variant: 'menu' as const,
     },
     {
       title: '控件与组件',
-      body: '导航、操作、输入、容器与展示——对照 Figma 与平台代码。',
+      body: '导航、操作、输入、容器，对照 Figma 与平台代码。',
       image: '/home/value-components.jpg',
       imageAlt: 'HyperOS 控件与组件界面示意',
       href: `${defaultDocsRoute}/components`,
@@ -49,7 +49,7 @@ export const typoValueProp = {
       variant: 'settings' as const,
     },
     {
-      title: '图标库',
+      title: '图标资产',
       body: '分类预览、搜索与复制，接入 HyperOS 图标资产。',
       image: '/typotab/images/menubar-menu.png',
       imageAlt: '图标库示意',
