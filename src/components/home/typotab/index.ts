@@ -1,4 +1,5 @@
 export { TypoHero } from './TypoHero';
+export { TypoRecentUpdates } from './TypoRecentUpdates';
 export { TypoValueProp } from './TypoValueProp';
 export { TypoShortcuts } from './TypoShortcuts';
 export { TypoUseCases } from './TypoUseCases';

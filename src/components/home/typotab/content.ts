@@ -43,20 +43,27 @@ export const typoValueProp = {
     {
       title: 'Design Token',
       body: '语义色、间距与组件 Token，Light / Dark 一并查阅。',
-      image: '/home/value-token.jpg',
-      imageAlt: 'HyperOS Semantic Token 查阅界面',
+      image: '/home/value-token-v3.jpg',
+      imageAlt: 'Design Token 层级：Value → Base → Semantic → Component',
       href: `${defaultDocsRoute}/general/design-token`,
       variant: 'settings' as const,
     },
     {
       title: '图标资产',
       body: '分类预览、搜索与复制，接入 HyperOS 图标资产。',
-      image: '/home/value-icons.jpg',
-      imageAlt: 'HyperOS 图标资产示意',
+      image: '/home/value-icons-v2.jpg',
+      imageAlt: 'HyperOS 图标资产网格示意',
       href: `${defaultDocsRoute}/resources/icons`,
       variant: 'menubar' as const,
     },
   ],
+} as const;
+
+export const typoRecentUpdates = {
+  title: '最新设计动态',
+  subtitle: '跟进设计系统最新入库的规范、组件与资产变更。',
+  moreHref: `${defaultDocsRoute}#最近更新`,
+  moreLabel: '查看全部更新',
 } as const;
 
 export const typoShortcuts = {
