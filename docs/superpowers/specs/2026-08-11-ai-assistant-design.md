@@ -24,7 +24,7 @@
 | 项 | 约定 |
 |----|------|
 | 网络 | 站点仅小米内网可访问；运行时调用内网 LLM 网关 |
-| 模型 API | OpenAI 兼容（`baseURL` + `apiKey` + model id） |
+| 模型 API | 小米内网 Anthropic Messages（`baseURL` + Bearer + model id；流式；`X-Model-Request-Id`） |
 | Key | 站点统一申请与配置，仅服务端环境变量 |
 | 知识源 | `content/docs/os4/**`，与现有 Orama 搜索过滤一致 |
 | 入口 | 全局浮动助手（右下角），全站可用 |
@@ -32,12 +32,13 @@
 
 ## 方案选型
 
-采用 **方案 1：Fumadocs 官方 Ask AI + 替换为小米 OpenAI 兼容端点**。
+采用 **方案 1：Fumadocs 官方 Ask AI + 小米内网 Anthropic 网关**。
 
 - 脚手架参考：`npx @fumadocs/cli add ai/openrouter`（或 `ai/llmgateway`）作为模板
-- Provider：`@ai-sdk/openai-compatible` → 小米内网网关
-- 检索：模型 tool calling 调用站内 `searchDocs`（复用 Orama / 现有搜索能力），不另建向量库
+- Provider：`@ai-sdk/anthropic`（`authToken` Bearer + 自定义 `baseURL`）→ `https://api.llm.mioffice.cn/anthropic/v1`
+- 检索：模型 tool calling 调用站内 `searchDocs`（复用站内文档检索），不另建向量库
 - 弃用方案：纯自组 assistant-ui（组装量更大）；Inkeep 等 SaaS（内网不合规）
+- 说明：初版假设为 OpenAI 兼容；联调确认网关为 Anthropic `/v1/messages` 后已切换 provider
 
 ## 架构
 
@@ -47,8 +48,8 @@
         ▼
 Next.js Route Handler
   ├─ Vercel AI SDK（streamText + tools）
-  ├─ Provider: @ai-sdk/openai-compatible
-  │     → 小米内网 LLM（baseURL + apiKey，仅服务端）
+  ├─ Provider: @ai-sdk/anthropic
+  │     → 小米内网 LLM（baseURL + Bearer + X-Model-Request-Id，仅服务端）
   └─ Tool: searchDocs
         → 复用现有 Orama（仅 OS4）
         → 返回 title / url / snippet
@@ -71,7 +72,7 @@ Next.js Route Handler
 | 根挂载 | 全站可用（首页 / docs / resources） | `src/app/layout.tsx`（不仅 Docs layout） |
 | Chat API | 流式对话、挂 search tool、system prompt | `src/app/api/chat/route.ts` |
 | 检索工具 | `searchDocs(query)` → OS4 命中列表 | `src/lib/ai/search-docs.ts` |
-| Provider | 读 env，创建 OpenAI 兼容客户端 | `src/lib/ai/provider.ts` |
+| Provider | 读 env，创建 Anthropic 客户端（Bearer） | `src/lib/ai/provider.ts` |
 | 提示词 | 强制引用、拒答、中文优先 | `src/lib/ai/prompt.ts` |
 | Env 模板 | 内网 LLM 配置说明 | `.env.example`（不提交真实 Key） |
 
@@ -101,9 +102,9 @@ Next.js Route Handler
 
 | 变量 | 用途 |
 |------|------|
-| `MI_LLM_BASE_URL` | 小米内网 OpenAI 兼容网关，如 `https://…/v1` |
-| `MI_LLM_API_KEY` | 站点统一 Key |
-| `MI_LLM_MODEL` | 模型 ID（与网关文档一致） |
+| `MI_LLM_BASE_URL` | Anthropic 网关前缀，如 `https://api.llm.mioffice.cn/anthropic/v1` |
+| `MI_LLM_API_KEY` | 站点统一 Bearer Key |
+| `MI_LLM_MODEL` | 模型 ID（如 `ppio/pa/claude-sonnet-4-6`） |
 | `AI_CHAT_ENABLED`（可选） | 缺 Key / 预发关闭时隐藏入口 |
 
 由本地 `.env.local` 与 Matrix / 部署侧注入；**不进 git、不进镜像层**。
@@ -129,7 +130,7 @@ Next.js Route Handler
 ## 验收标准
 
 - [ ] 全站右下角可打开 Ask AI，多轮流式对话可用
-- [ ] 服务端经小米 OpenAI 兼容 API 出答（Key 仅 env）
+- [ ] 服务端经小米 Anthropic 网关出答（Key 仅 env）
 - [ ] 相关规范问题能附上可点的 OS4 文档链接
 - [ ] 无依据时明确拒答，不编造 Token / 尺寸 / 平台能力
 - [ ] 本地缺 Key 时入口可关或友好提示；有 Key 时可联调
@@ -147,8 +148,8 @@ Next.js Route Handler
 ## 决策记录
 
 - 核心目标：文档答疑（非纯导航、非深度设计顾问）
-- Key：站点统一；小米内部 OpenAI 兼容大模型 API
+- Key：站点统一；小米内部 Anthropic Messages 网关（`api.llm.mioffice.cn`）
 - 入口：全局浮动（A）
 - 引用：必须（A）
 - 知识范围首版：仅 OS4（A）
-- 技术路线：Fumadocs Ask AI 脚手架 + `@ai-sdk/openai-compatible`，检索用现有 Orama tool，不自研框架
+- 技术路线：Fumadocs Ask AI 脚手架 + `@ai-sdk/anthropic`，检索用站内 `searchDocs`，不自研框架

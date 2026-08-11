@@ -29,6 +29,7 @@
 
 ## 下一步
 
+- [ ] Ask AI 文档问答助手（Fumadocs Ask AI + 小米内网 Anthropic 网关 `api.llm.mioffice.cn`；spec 见 `docs/superpowers/specs/2026-08-11-ai-assistant-design.md`）
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
 - [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
 - [ ] `/resources` Engineering 目录外链与维护团队落地页（`taughtByHref`）补齐

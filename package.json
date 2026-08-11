@@ -15,9 +15,13 @@
     "tokens:import": "node scripts/import-os4-tokens.mjs"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.37",
+    "@ai-sdk/react": "^4.0.62",
     "@fancyapps/ui": "^6.1.14",
     "@icons-pack/react-simple-icons": "^13.11.1",
+    "ai": "^7.0.59",
     "cnfast": "^0.0.8",
+    "flexsearch": "^0.8.212",
     "fumadocs-core": "16.11.1",
     "fumadocs-mdx": "15.1.0",
     "fumadocs-ui": "npm:@fumadocs/base-ui@16.11.1",
@@ -26,12 +30,15 @@
     "next": "16.2.10",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "tinacms": "^3.10.0"
+    "react-markdown": "^10.1.0",
+    "tinacms": "^3.10.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.2",
     "@tinacms/cli": "^2.5.3",
     "@tinacms/datalayer": "^2.0.27",
+    "@types/flexsearch": "^0.7.6",
     "@types/mdx": "^2.0.14",
     "@types/node": "^26.1.0",
     "@types/react": "^19.2.17",
