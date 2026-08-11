@@ -12,6 +12,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 文档配图页内画廊（Fancybox；同页前后切换）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
+- Ask AI 文档问答（全站浮动；仅 OS4；小米内网 Anthropic 网关；需配置 `MI_LLM_*`）
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
 - TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 图标 / 代码 block
 - OS 版本切换（HyperOS 4 / 5；侧边栏 `DocsVersionSwitcher`，当前默认 OS4）
@@ -27,7 +28,7 @@ npm run dev
 
 访问 [http://localhost:3000](http://localhost:3000) · CMS 后台 [http://localhost:3000/admin](http://localhost:3000/admin)
 
-`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`；`.env.example` 仅供自定义启动命令时参考。
+`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`。Ask AI 需在 `.env.local` 配置 `MI_LLM_*`（模板见 `.env.example`）；未配置时不显示入口。
 
 ## 构建与检查
 
@@ -69,14 +70,18 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
 icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
-scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
+scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs 等）
 tokens/              # Design Tokens（reference / semantic / component × light / dark）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
-.env.example         # TinaCMS 本地模式环境变量模板
+.env.example         # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
+components.json      # shadcn / AI Elements（Ask AI UI）
 src/
-  app/               # Next.js 路由（docs、resources、admin、api/tina、search、llms、og）
+  app/               # Next.js 路由（docs、resources、admin、api/tina|search|chat、llms、og）
   components/
+    ai/              # Ask AI（AiAssistant + 浮动面板）
+    ai-elements/     # AI Elements 对话组件
+    ui/              # shadcn 基础组件（Ask AI chrome）
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     easter-egg/      # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/            # Landing：HomeHero、PillNav、HalftoneBloom
@@ -84,7 +89,7 @@ src/
     mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、shared、resources、icons、tina-docs*、docs-version-tabs、search-tokenizer、git-file-mtime、cn
+  lib/               # source、layout、shared、resources、icons、tina-docs*、ai/、cn、utils 等
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图

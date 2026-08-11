@@ -1,12 +1,19 @@
 # AI 问答助手（Ask AI）Implementation Plan
 
+> **As-built（2026-08-11）**：本计划为实施过程记录。落地与计划差异如下，以代码与 [设计规格](../specs/2026-08-11-ai-assistant-design.md) 为准，勿按下文旧步骤重做：
+>
+> - Provider：`@ai-sdk/anthropic`（非 `@ai-sdk/openai-compatible`）
+> - 检索：Orama + 中文 tokenizer（非独立 Flexsearch 索引）
+> - UI：AI Elements + shadcn（`src/components/ai-elements/`、`ui/`）；已删除 `src/components/ai/markdown.tsx`
+> - Chat API：AI SDK 7 使用 `instructions`（非 system message 塞进 `messages`）
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 全站浮动 Ask AI：经小米内网 OpenAI 兼容网关流式问答，检索仅限 OS4 文档，回答必须附带来源链接。
+**Goal:** 全站浮动 Ask AI：经小米内网 Anthropic 网关流式问答，检索仅限 OS4 文档，回答必须附带来源链接。
 
-**Architecture:** 按 Fumadocs Ask AI 官方模式组装：Client `AISearch*` → `POST /api/chat`（Vercel AI SDK `streamText` + `searchDocs` tool）→ `@ai-sdk/openai-compatible` 指向内网 `baseURL`。检索用与 `/api/search` 同源的 OS4 MDX（`getText('processed')`）建 Flexsearch 内存索引（官方 Ask AI 同款，避免耦合 Orama HTTP）；不落库、不接外网 SaaS。
+**Architecture（计划原文，已过时见上方 As-built）:** 按 Fumadocs Ask AI 官方模式组装：Client `AISearch*` → `POST /api/chat`（Vercel AI SDK `streamText` + `searchDocs` tool）→ `@ai-sdk/openai-compatible` 指向内网 `baseURL`。检索用与 `/api/search` 同源的 OS4 MDX（`getText('processed')`）建 Flexsearch 内存索引（官方 Ask AI 同款，避免耦合 Orama HTTP）；不落库、不接外网 SaaS。
 
-**Tech Stack:** Next.js 16 App Router · Vercel AI SDK (`ai` + `@ai-sdk/react` + `@ai-sdk/openai-compatible`) · Flexsearch · Zod · Node `node:test` · 现有 `source` / `cn` / Tailwind `fd-*`
+**Tech Stack（计划原文）:** Next.js 16 App Router · Vercel AI SDK (`ai` + `@ai-sdk/react` + `@ai-sdk/openai-compatible`) · Flexsearch · Zod · Node `node:test` · 现有 `source` / `cn` / Tailwind `fd-*`
 
 **Spec:** [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](../specs/2026-08-11-ai-assistant-design.md)
 

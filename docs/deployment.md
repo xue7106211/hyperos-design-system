@@ -139,7 +139,7 @@ micr.cloud.mioffice.cn/hyperos-design/hyperos-design-system:prod-$CI_COMMIT_SHOR
 
 ### Ask AI 环境变量
 
-部署 Ask AI 时需在运行环境注入 `MI_LLM_BASE_URL`、`MI_LLM_API_KEY`、`MI_LLM_MODEL`（小米内网 Anthropic Messages 网关，例如 `https://api.llm.mioffice.cn/anthropic/v1` + Bearer Key + 模型 ID）；可选 `AI_CHAT_ENABLED`（`false` 时隐藏入口）。网关需支持流式；请求会自动带唯一 `X-Model-Request-Id`。API Key 勿写入镜像或仓库，仅通过 Matrix / 密钥管理注入。本地变量模板见 `.env.example`；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)。
+部署 Ask AI 时需在运行环境注入 `MI_LLM_BASE_URL`、`MI_LLM_API_KEY`、`MI_LLM_MODEL`（小米内网 Anthropic Messages 网关，例如 `https://api.llm.mioffice.cn/anthropic/v1` + Bearer Key + 模型 ID）；可选 `AI_CHAT_ENABLED`（`false` 时隐藏入口）。未配齐 Key 时入口亦不渲染。网关需支持流式；请求会自动带唯一 `X-Model-Request-Id`。API Key 勿写入镜像或仓库，仅通过 Matrix / 密钥管理注入。本地变量模板见 `.env.example`；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)。
 
 ## 6. 卡点排查（2026-07）
 

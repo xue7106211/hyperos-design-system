@@ -330,6 +330,8 @@ export const MessageResponse = memo(
         "size-full [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
         className
       )}
+      // 站内文档链接无需二次确认；默认 linkSafety 弹层会把 div 挂进 <p>，触发 hydration 报错
+      linkSafety={{ enabled: false }}
       // shiki language bundles differ between streamdown and @streamdown/code in this install
       plugins={streamdownPlugins as never}
       {...props}

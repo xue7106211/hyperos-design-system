@@ -3,24 +3,6 @@ import { describe, it } from 'node:test';
 import { normalizeSearchHits } from './search-docs.ts';
 
 describe('normalizeSearchHits', () => {
-  it('maps enriched flexsearch rows to title/url/snippet', () => {
-    const hits = normalizeSearchHits([
-      {
-        doc: {
-          title: '抽屉浮窗',
-          url: '/docs/os4/components/containers/drawer',
-          description: 'Bottom Sheet',
-          content: '圆角使用 miuix_raidus_shape_2xl，对应 36dp。更多说明……',
-        },
-      },
-    ]);
-    assert.equal(hits.length, 1);
-    assert.equal(hits[0].title, '抽屉浮窗');
-    assert.equal(hits[0].url, '/docs/os4/components/containers/drawer');
-    assert.ok(hits[0].snippet.includes('36dp'));
-    assert.ok(hits[0].snippet.length <= 240);
-  });
-
   it('maps Orama/Fumadocs hits and keeps section anchors', () => {
     const hits = normalizeSearchHits([
       {

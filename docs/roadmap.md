@@ -26,10 +26,10 @@
 - [x] 设计资源中心 `/resources`（Catalog `#catalog` + 分区锚点、Codex 侧栏、Feature 卡标题 CTA、Landing PillNav「设计资源」）
 - [x] 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载，短时连点打开签名面板）
 - [x] OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`；维护人 / Figma 节点已绑定）
+- [x] Ask AI 文档问答助手（AI Elements + shadcn UI；`POST /api/chat` + `@ai-sdk/anthropic` 小米网关；Orama `searchDocs` 仅 OS4；部署需注入 `MI_LLM_*`；spec 见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)）
 
 ## 下一步
 
-- [ ] Ask AI 文档问答助手（AI Elements + shadcn UI；小米 Anthropic 网关；spec 见 `docs/superpowers/specs/2026-08-11-ai-assistant-design.md`）
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
 - [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
 - [ ] `/resources` Engineering 目录外链与维护团队落地页（`taughtByHref`）补齐

@@ -11,8 +11,7 @@ function stripHighlightMarks(text: string): string {
 }
 
 /**
- * 归一化检索结果为 Ask AI 可引用的 hit。
- * 兼容：Fumadocs/Orama 命中，以及早期 Flexsearch enrich 行。
+ * 归一化检索结果为 Ask AI 可引用的 hit（Fumadocs / Orama 命中形状）。
  */
 export function normalizeSearchHits(raw: unknown): SearchDocsHit[] {
   if (!Array.isArray(raw)) return [];
@@ -22,25 +21,6 @@ export function normalizeSearchHits(raw: unknown): SearchDocsHit[] {
 
   for (const row of raw) {
     if (!row || typeof row !== 'object') continue;
-
-    // Flexsearch enrich: { doc: { title, url, description, content } }
-    if ('doc' in row) {
-      const doc = (row as { doc?: Record<string, unknown> }).doc;
-      if (!doc || typeof doc.url !== 'string' || typeof doc.title !== 'string') {
-        continue;
-      }
-      const url = doc.url;
-      if (seenPages.has(url)) continue;
-      seenPages.add(url);
-      const base =
-        (typeof doc.content === 'string' && doc.content.trim()) ||
-        (typeof doc.description === 'string' && doc.description.trim()) ||
-        '';
-      const snippet =
-        base.length > SNIPPET_MAX ? `${base.slice(0, SNIPPET_MAX)}…` : base;
-      out.push({ title: doc.title, url, snippet });
-      continue;
-    }
 
     // Fumadocs Orama: { url, content, type, ... }
     const hit = row as {

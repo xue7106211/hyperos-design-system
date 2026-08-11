@@ -1,13 +1,12 @@
 # AI 问答助手（Ask AI）设计
 
 日期：2026-08-11  
-状态：已确认，待实现  
-分支：`feat/ai-assistant`  
-范围：全站浮动 Ask AI；知识源仅 OS4 文档；小米内网 OpenAI 兼容大模型
+状态：已实现（分支 `feat/ai-assistant`；上线需 Matrix 注入 `MI_LLM_*`）  
+范围：全站浮动 Ask AI；知识源仅 OS4 文档；小米内网 Anthropic Messages 网关
 
 ## 目标
 
-在 HyperOS 设计系统文档站接入 **站点侧统一配置** 的大模型能力，让用户基于 **本站 OS4 文档内容** 进行问答，回答必须 **附带可点击的文档来源链接**；优先复用 **Fumadocs 官方 Ask AI 脚手架 + Vercel AI SDK**，不自研 RAG / 聊天框架。
+在 HyperOS 设计系统文档站接入 **站点侧统一配置** 的大模型能力，让用户基于 **本站 OS4 文档内容** 进行问答，回答必须 **附带可点击的文档来源链接**；优先复用 **Vercel AI SDK + 站内检索 tool**，不自研 RAG / 聊天框架。UI 采用 **AI Elements + shadcn**（初版曾对标 Fumadocs Ask AI 脚手架，后改为 AI Elements）。
 
 ## 非目标（首版不做）
 
@@ -17,7 +16,7 @@
 - 用户自带 API Key、前端模型切换 UI
 - Inkeep / Kapa / Orama Cloud 等外网 SaaS（与仅内网可访问冲突）
 - TinaCMS 配置助手文案；Figma / Token 深度 tool（首版仅 `searchDocs`）
-- Storybook / 可交互 Web 组件 demo
+- Storybook / 可交互 Web 组件 demo（shadcn 仅用于 Ask AI 站点 chrome）
 
 ## 约束与前提
 
@@ -27,18 +26,17 @@
 | 模型 API | 小米内网 Anthropic Messages（`baseURL` + Bearer + model id；流式；`X-Model-Request-Id`） |
 | Key | 站点统一申请与配置，仅服务端环境变量 |
 | 知识源 | `content/docs/os4/**`，与现有 Orama 搜索过滤一致 |
-| 入口 | 全局浮动助手（右下角），全站可用 |
+| 入口 | 全局浮动助手（右下角），全站可用（**排除 `/admin`**） |
 | 引用 | **必须**；无依据则拒答 |
 
 ## 方案选型
 
-采用 **方案 1：Fumadocs 官方 Ask AI + 小米内网 Anthropic 网关**。
+采用 **Vercel AI SDK + 小米内网 Anthropic 网关 + AI Elements UI**。
 
-- 脚手架参考：`npx @fumadocs/cli add ai/openrouter`（或 `ai/llmgateway`）作为模板
 - Provider：`@ai-sdk/anthropic`（`authToken` Bearer + 自定义 `baseURL`）→ `https://api.llm.mioffice.cn/anthropic/v1`
-- 检索：模型 tool calling 调用站内 `searchDocs`（复用站内文档检索），不另建向量库
-- 弃用方案：纯自组 assistant-ui（组装量更大）；Inkeep 等 SaaS（内网不合规）
-- 说明：初版假设为 OpenAI 兼容；联调确认网关为 Anthropic `/v1/messages` 后已切换 provider
+- 检索：模型 tool calling 调用站内 `searchDocs`（Orama + 中文 tokenizer），不另建向量库
+- UI：`src/components/ai/search.tsx` + `ai-elements/` + `components/ui/`（shadcn）；可拖拽调节面板大小
+- 弃用方案：纯自组 assistant-ui；Inkeep 等 SaaS；初版 OpenAI 兼容假设（联调确认为 Anthropic `/v1/messages` 后已切换）；独立 Flexsearch 索引（CJK 效果差，改为 Orama）
 
 ## 架构
 
@@ -47,7 +45,7 @@
         │  POST /api/chat（流式）
         ▼
 Next.js Route Handler
-  ├─ Vercel AI SDK（streamText + tools）
+  ├─ Vercel AI SDK（streamText + tools；instructions）
   ├─ Provider: @ai-sdk/anthropic
   │     → 小米内网 LLM（baseURL + Bearer + X-Model-Request-Id，仅服务端）
   └─ Tool: searchDocs
@@ -66,11 +64,12 @@ Next.js Route Handler
 
 ## 组件边界与目录
 
-| 单元 | 职责 | 建议位置 |
-|------|------|----------|
-| Ask AI UI | 浮动按钮 + 对话面板（CLI 脚手架） | `src/components/ai/` |
-| 根挂载 | 全站可用（首页 / docs / resources） | `src/app/layout.tsx`（不仅 Docs layout） |
-| Chat API | 流式对话、挂 search tool、system prompt | `src/app/api/chat/route.ts` |
+| 单元 | 职责 | 位置 |
+|------|------|------|
+| Ask AI UI | 浮动按钮 + 可调大小对话面板 | `src/components/ai/search.tsx` |
+| AI Elements / shadcn | 对话、消息、输入、tool 展示 | `src/components/ai-elements/`、`src/components/ui/` |
+| 根挂载 | 全站可用（首页 / docs / resources）；admin 隐藏 | `src/app/layout.tsx` + `AiAssistant.tsx` |
+| Chat API | 流式对话、挂 search tool、instructions | `src/app/api/chat/route.ts` |
 | 检索工具 | `searchDocs(query)` → OS4 命中列表 | `src/lib/ai/search-docs.ts` |
 | Provider | 读 env，创建 Anthropic 客户端（Bearer） | `src/lib/ai/provider.ts` |
 | 提示词 | 强制引用、拒答、中文优先 | `src/lib/ai/prompt.ts` |
@@ -83,7 +82,7 @@ Next.js Route Handler
 
 1. 用户在浮动面板输入（可多轮；会话仅浏览器内存，首版不落库）
 2. 前端 AI SDK `useChat` → `POST /api/chat`
-3. 服务端 `streamText`：system prompt 约束「只依据检索结果；必须引用；无依据拒答」
+3. 服务端 `streamText`：`instructions` 约束「只依据检索结果；必须引用；无依据拒答」
 4. 模型调用 `searchDocs`，得到 `{ title, url, snippet }[]`
 5. 基于片段流式生成 Markdown 回答；附可点击来源 `[标题](url)`
 
@@ -120,7 +119,7 @@ Next.js Route Handler
 
 | 失败 | 表现 |
 |------|------|
-| 未配置 Key / `AI_CHAT_ENABLED=false` | 不展示浮动入口，或提示「助手暂未开通」 |
+| 未配置 Key / `AI_CHAT_ENABLED=false` | 不展示浮动入口 |
 | 网关超时 / 5xx | 「模型服务暂时不可用，请稍后重试」 |
 | 流中断 | 保留已生成内容 + 可重试 |
 | 检索异常 | 视为无依据 → 拒答话术，不编造 |
@@ -129,13 +128,13 @@ Next.js Route Handler
 
 ## 验收标准
 
-- [ ] 全站右下角可打开 Ask AI，多轮流式对话可用
-- [ ] 服务端经小米 Anthropic 网关出答（Key 仅 env）
-- [ ] 相关规范问题能附上可点的 OS4 文档链接
-- [ ] 无依据时明确拒答，不编造 Token / 尺寸 / 平台能力
-- [ ] 本地缺 Key 时入口可关或友好提示；有 Key 时可联调
-- [ ] `npm run build` 通过；无外网 SaaS 运行时依赖
-- [ ] 与彩蛋浮层、`/admin` 共存无严重交互冲突（admin 可隐藏 Ask AI，实现时定）
+- [x] 全站右下角可打开 Ask AI，多轮流式对话可用
+- [x] 服务端经小米 Anthropic 网关出答（Key 仅 env）
+- [x] 相关规范问题能附上可点的 OS4 文档链接
+- [x] 无依据时明确拒答，不编造 Token / 尺寸 / 平台能力
+- [x] 本地缺 Key 时入口可关；有 Key 时可联调
+- [x] `npm run build` / types 检查路径可用；无外网 SaaS 运行时依赖
+- [x] 与彩蛋浮层、`/admin` 共存（admin 隐藏 Ask AI）
 
 ## 手工验证用例（实现阶段）
 
@@ -152,4 +151,4 @@ Next.js Route Handler
 - 入口：全局浮动（A）
 - 引用：必须（A）
 - 知识范围首版：仅 OS4（A）
-- 技术路线：Fumadocs Ask AI 脚手架 + `@ai-sdk/anthropic`，检索用站内 `searchDocs`，不自研框架
+- 技术路线：Vercel AI SDK + `@ai-sdk/anthropic` + AI Elements / shadcn；检索 Orama `searchDocs`，不自研框架
