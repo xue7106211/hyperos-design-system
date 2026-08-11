@@ -1,352 +1,226 @@
 'use client';
 
+import { useChat, type UseChatHelpers } from '@ai-sdk/react';
 import {
-  type ComponentProps,
+  DefaultChatTransport,
+  type ToolUIPart,
+  isToolUIPart,
+} from 'ai';
+import { MessageCircleIcon, XIcon } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import {
   createContext,
-  type ReactNode,
-  type SyntheticEvent,
   use,
+  useCallback,
   useEffect,
   useEffectEvent,
   useMemo,
   useRef,
   useState,
+  type ComponentProps,
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
 } from 'react';
-import { flushSync } from 'react-dom';
-import { usePathname } from 'next/navigation';
+import { createPortal, flushSync } from 'react-dom';
 import {
-  Loader2,
-  MessageCircleIcon,
-  RefreshCw,
-  SearchIcon,
-  Send,
-  X,
-} from 'lucide-react';
-import { useChat, type UseChatHelpers } from '@ai-sdk/react';
+  Conversation,
+  ConversationContent,
+  ConversationEmptyState,
+  ConversationScrollButton,
+} from '@/components/ai-elements/conversation';
 import {
-  DefaultChatTransport,
-  type Tool,
-  type UIToolInvocation,
-} from 'ai';
-import { cn } from '@/lib/cn';
+  Message,
+  MessageContent,
+  MessageResponse,
+} from '@/components/ai-elements/message';
+import {
+  PromptInput,
+  PromptInputBody,
+  PromptInputFooter,
+  PromptInputSubmit,
+  PromptInputTextarea,
+  type PromptInputMessage,
+} from '@/components/ai-elements/prompt-input';
+import {
+  Tool,
+  ToolContent,
+  ToolHeader,
+  ToolInput,
+  ToolOutput,
+} from '@/components/ai-elements/tool';
+import { Button } from '@/components/ui/button';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import type { ChatUIMessage } from '@/lib/ai/types';
-import { Markdown } from './markdown';
+import { cn } from '@/lib/utils';
 
-export type SearchTool = Tool<{ query: string; limit: number }>;
+type AISearchContextValue = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  chat: UseChatHelpers<ChatUIMessage>;
+};
 
-const btnIconGhost =
-  'inline-flex size-8 shrink-0 items-center justify-center rounded-full text-fd-muted-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground';
-const btnSecondary =
-  'inline-flex items-center justify-center gap-1.5 rounded-full border bg-fd-secondary px-3 py-1.5 text-sm font-medium text-fd-secondary-foreground transition-colors hover:bg-fd-accent disabled:pointer-events-none disabled:opacity-50';
-const btnPrimary =
-  'inline-flex items-center justify-center rounded-full bg-fd-primary p-2 text-fd-primary-foreground transition-all hover:opacity-90 disabled:pointer-events-none disabled:opacity-50';
+const Context = createContext<AISearchContextValue | null>(null);
+
+function useAISearchContext() {
+  const ctx = use(Context);
+  if (!ctx) throw new Error('AISearch components require <AISearch>');
+  return ctx;
+}
 
 function isAdminPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/admin' || pathname.startsWith('/admin/');
 }
 
-const Context = createContext<{
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  chat: UseChatHelpers<ChatUIMessage>;
-} | null>(null);
+const PANEL_SIZE_KEY = '__ai_assistant_panel_size';
+const DEFAULT_PANEL_SIZE = { width: 384, height: 640 };
+const MIN_PANEL_SIZE = { width: 320, height: 420 };
 
-export function AISearchPanelHeader({
-  className,
-  ...props
-}: ComponentProps<'div'>) {
-  const { setOpen } = useAISearchContext();
+type PanelSize = { width: number; height: number };
+type ResizeEdge = 'n' | 'w' | 'nw';
 
-  return (
-    <div
-      className={cn(
-        'sticky top-0 flex items-start gap-2 rounded-xl border bg-fd-secondary text-fd-secondary-foreground shadow-sm',
-        className,
-      )}
-      {...props}
-    >
-      <div className="flex-1 px-3 py-2">
-        <p className="mb-2 text-sm font-medium">Ask AI</p>
-        <p className="text-xs text-fd-muted-foreground">
-          回答可能不准确，请以文档为准。
-        </p>
-      </div>
-
-      <button
-        type="button"
-        aria-label="关闭"
-        tabIndex={-1}
-        className={cn(btnIconGhost, 'mt-1 me-1')}
-        onClick={() => setOpen(false)}
-      >
-        <X className="size-4" />
-      </button>
-    </div>
-  );
-}
-
-export function AISearchInputActions() {
-  const { messages, status, setMessages, regenerate } = useChatContext();
-  const isLoading = status === 'streaming';
-
-  if (messages.length === 0) return null;
-
-  return (
-    <>
-      {!isLoading && messages.at(-1)?.role === 'assistant' && (
-        <button
-          type="button"
-          className={btnSecondary}
-          onClick={() => regenerate()}
-        >
-          <RefreshCw className="size-4" />
-          重试
-        </button>
-      )}
-      <button
-        type="button"
-        className={cn(btnSecondary, 'rounded-full')}
-        onClick={() => setMessages([])}
-      >
-        清空对话
-      </button>
-    </>
-  );
-}
-
-const StorageKeyInput = '__ai_search_input';
-
-export function AISearchInput(props: ComponentProps<'form'>) {
-  const { status, sendMessage, stop } = useChatContext();
-  const [input, setInput] = useState(() =>
-    typeof window !== 'undefined'
-      ? (localStorage.getItem(StorageKeyInput) ?? '')
-      : '',
-  );
-  const isLoading = status === 'streaming' || status === 'submitted';
-  const onStart = (e?: SyntheticEvent) => {
-    e?.preventDefault();
-    const message = input.trim();
-    if (message.length === 0) return;
-
-    void sendMessage({
-      role: 'user',
-      parts: [
-        {
-          type: 'data-client',
-          data: {
-            location: location.href,
-          },
-        },
-        {
-          type: 'text',
-          text: message,
-        },
-      ],
-    });
-    setInput('');
-    localStorage.removeItem(StorageKeyInput);
-  };
-
-  useEffect(() => {
-    if (isLoading) document.getElementById('nd-ai-input')?.focus();
-  }, [isLoading]);
-
-  return (
-    <form
-      {...props}
-      className={cn('flex items-start pe-2', props.className)}
-      onSubmit={onStart}
-    >
-      <Input
-        value={input}
-        placeholder={isLoading ? '正在回答…' : '询问 OS4 设计规范…'}
-        autoFocus
-        className="p-3"
-        disabled={status === 'streaming' || status === 'submitted'}
-        onChange={(e) => {
-          setInput(e.target.value);
-          localStorage.setItem(StorageKeyInput, e.target.value);
-        }}
-        onKeyDown={(event) => {
-          if (!event.shiftKey && event.key === 'Enter') {
-            onStart(event);
-          }
-        }}
-      />
-      {isLoading ? (
-        <button
-          key="bn"
-          type="button"
-          className={cn(btnSecondary, 'mt-2 gap-2 transition-all')}
-          onClick={stop}
-        >
-          <Loader2 className="size-4 animate-spin text-fd-muted-foreground" />
-          停止回答
-        </button>
-      ) : (
-        <button
-          key="bn"
-          type="submit"
-          className={cn(btnPrimary, 'mt-2 transition-all')}
-          disabled={input.length === 0}
-        >
-          <Send className="size-4" />
-        </button>
-      )}
-    </form>
-  );
-}
-
-function List(props: Omit<ComponentProps<'div'>, 'dir'>) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    function callback() {
-      const container = containerRef.current;
-      if (!container) return;
-
-      container.scrollTo({
-        top: container.scrollHeight,
-        behavior: 'instant',
-      });
-    }
-
-    const observer = new ResizeObserver(callback);
-    callback();
-
-    const element = containerRef.current?.firstElementChild;
-
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      observer.disconnect();
+function clampPanelSize(width: number, height: number): PanelSize {
+  if (typeof window === 'undefined') {
+    return {
+      width: Math.max(MIN_PANEL_SIZE.width, width),
+      height: Math.max(MIN_PANEL_SIZE.height, height),
     };
+  }
+  const maxWidth = Math.min(window.innerWidth - 32, window.innerWidth * 0.92);
+  const maxHeight = Math.min(window.innerHeight - 96, window.innerHeight * 0.85);
+  return {
+    width: Math.round(
+      Math.min(maxWidth, Math.max(MIN_PANEL_SIZE.width, width)),
+    ),
+    height: Math.round(
+      Math.min(maxHeight, Math.max(MIN_PANEL_SIZE.height, height)),
+    ),
+  };
+}
+
+function readStoredPanelSize(): PanelSize {
+  if (typeof window === 'undefined') return DEFAULT_PANEL_SIZE;
+  try {
+    const raw = localStorage.getItem(PANEL_SIZE_KEY);
+    if (!raw) return DEFAULT_PANEL_SIZE;
+    const parsed = JSON.parse(raw) as Partial<PanelSize>;
+    if (
+      typeof parsed.width !== 'number' ||
+      typeof parsed.height !== 'number'
+    ) {
+      return DEFAULT_PANEL_SIZE;
+    }
+    return clampPanelSize(parsed.width, parsed.height);
+  } catch {
+    return DEFAULT_PANEL_SIZE;
+  }
+}
+
+function useResizablePanelSize() {
+  const [size, setSize] = useState<PanelSize>(DEFAULT_PANEL_SIZE);
+  const [resizing, setResizing] = useState(false);
+  const dragRef = useRef<{
+    edge: ResizeEdge;
+    startX: number;
+    startY: number;
+    startWidth: number;
+    startHeight: number;
+  } | null>(null);
+
+  useEffect(() => {
+    setSize(readStoredPanelSize());
   }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      {...props}
-      className={cn(
-        'fd-scroll-container flex min-w-0 flex-col overflow-y-auto',
-        props.className,
-      )}
-    >
-      {props.children}
-    </div>
+  useEffect(() => {
+    const onResize = () => {
+      setSize((prev) => clampPanelSize(prev.width, prev.height));
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const onPointerMove = useEffectEvent((event: PointerEvent) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    const dx = event.clientX - drag.startX;
+    const dy = event.clientY - drag.startY;
+    // 面板锚定右下角：向左/上拖动时增大尺寸
+    const nextWidth =
+      drag.edge === 'n' ? drag.startWidth : drag.startWidth - dx;
+    const nextHeight =
+      drag.edge === 'w' ? drag.startHeight : drag.startHeight - dy;
+    setSize(clampPanelSize(nextWidth, nextHeight));
+  });
+
+  const stopDragging = useEffectEvent(() => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    setResizing(false);
+    setSize((prev) => {
+      const next = clampPanelSize(prev.width, prev.height);
+      try {
+        localStorage.setItem(PANEL_SIZE_KEY, JSON.stringify(next));
+      } catch {
+        // ignore quota / private mode
+      }
+      return next;
+    });
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  });
+
+  useEffect(() => {
+    if (!resizing) return;
+    const onMove = (event: PointerEvent) => onPointerMove(event);
+    const onUp = () => stopDragging();
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+    };
+  }, [resizing]);
+
+  const startResize = useCallback(
+    (edge: ResizeEdge, event: ReactPointerEvent<HTMLElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      dragRef.current = {
+        edge,
+        startX: event.clientX,
+        startY: event.clientY,
+        startWidth: size.width,
+        startHeight: size.height,
+      };
+      setResizing(true);
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor =
+        edge === 'nw' ? 'nwse-resize' : edge === 'n' ? 'ns-resize' : 'ew-resize';
+    },
+    [size.height, size.width],
   );
-}
 
-function Input(props: ComponentProps<'textarea'>) {
-  const ref = useRef<HTMLDivElement>(null);
-  const shared = cn('col-start-1 row-start-1', props.className);
-
-  return (
-    <div className="grid flex-1">
-      <textarea
-        id="nd-ai-input"
-        {...props}
-        className={cn(
-          'resize-none bg-transparent placeholder:text-fd-muted-foreground focus-visible:outline-none',
-          shared,
-        )}
-      />
-      <div ref={ref} className={cn(shared, 'invisible break-all')}>
-        {`${props.value?.toString() ?? ''}\n`}
-      </div>
-    </div>
-  );
-}
-
-const roleName: Record<string, string> = {
-  user: '你',
-  assistant: 'HyperOS',
-};
-
-function Message({
-  message,
-  ...props
-}: { message: ChatUIMessage } & ComponentProps<'div'>) {
-  let markdown = '';
-  const searchCalls: UIToolInvocation<SearchTool>[] = [];
-
-  for (const part of message.parts ?? []) {
-    if (part.type === 'text') {
-      markdown += part.text;
-      continue;
-    }
-
-    if (part.type.startsWith('tool-')) {
-      const toolName = part.type.slice('tool-'.length);
-      const p = part as UIToolInvocation<Tool>;
-
-      if (toolName !== 'search' || !p.toolCallId) continue;
-      searchCalls.push(p as UIToolInvocation<SearchTool>);
-    }
-  }
-
-  return (
-    <div onClick={(e) => e.stopPropagation()} {...props}>
-      <p
-        className={cn(
-          'mb-1 text-sm font-medium text-fd-muted-foreground',
-          message.role === 'assistant' && 'text-fd-primary',
-        )}
-      >
-        {roleName[message.role] ?? 'unknown'}
-      </p>
-      <div className="prose text-sm">
-        <Markdown text={markdown} />
-      </div>
-
-      {searchCalls.map((call) => {
-        const output = call.state === 'output-available' ? call.output : undefined;
-        const resultCount = Array.isArray(output) ? output.length : undefined;
-
-        return (
-          <div
-            key={call.toolCallId}
-            className="mt-3 flex flex-row items-center gap-2 rounded-lg border bg-fd-secondary p-2 text-xs text-fd-muted-foreground"
-          >
-            <SearchIcon className="size-4" />
-            {call.state === 'output-error' || call.state === 'output-denied' ? (
-              <p className="text-fd-error">
-                {call.errorText ?? '检索失败'}
-              </p>
-            ) : (
-              <p>
-                {resultCount === undefined
-                  ? '检索中…'
-                  : `${resultCount} 条检索结果`}
-              </p>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
+  return { size, resizing, startResize };
 }
 
 export function AISearch({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const chat = useChat<ChatUIMessage>({
-    id: 'search',
-    transport: new DefaultChatTransport({
-      api: '/api/chat',
-    }),
+    id: 'ask-ai',
+    transport: new DefaultChatTransport({ api: '/api/chat' }),
   });
+  const value = useMemo(
+    () => ({ open, setOpen, chat }),
+    [open, chat],
+  );
 
   return (
-    <Context
-      value={useMemo(() => ({ chat, open, setOpen }), [chat, open])}
-    >
-      {children}
-    </Context>
+    <TooltipProvider delayDuration={200}>
+      <Context value={value}>{children}</Context>
+    </TooltipProvider>
   );
 }
 
@@ -355,139 +229,35 @@ export function AISearchTrigger({
   className,
   ...props
 }: ComponentProps<'button'> & { position?: 'default' | 'float' }) {
-  const pathname = usePathname();
   const { open, setOpen } = useAISearchContext();
-
+  const pathname = usePathname();
   if (isAdminPath(pathname)) return null;
 
   return (
-    <button
+    <Button
       type="button"
-      data-state={open ? 'open' : 'closed'}
+      variant={position === 'float' ? 'default' : 'secondary'}
+      aria-expanded={open}
       className={cn(
-        position === 'float' && [
-          'fixed right-4 bottom-4 z-40 flex w-auto items-center gap-2 rounded-full border bg-fd-primary px-4 py-2.5 text-sm font-medium text-fd-primary-foreground shadow-lg transition-[translate,opacity]',
-          open && 'translate-y-10 opacity-0',
-        ],
+        position === 'float' &&
+          'fixed right-4 bottom-4 z-40 gap-2 rounded-full px-4 py-2.5 shadow-lg',
         className,
       )}
       onClick={() => setOpen(!open)}
       {...props}
-    >
-      {props.children}
-    </button>
+    />
   );
 }
 
-export function AISearchPanel() {
-  const pathname = usePathname();
-  const { open, setOpen } = useAISearchContext();
-  const [actualOpen, setActualOpen] = useState(open);
-  useHotKey();
-
-  useEffect(() => {
-    if (open) setActualOpen(true);
-  }, [open]);
-
-  if (isAdminPath(pathname)) return null;
-
-  return (
-    <>
-      {actualOpen && (
-        <div
-          className={cn(
-            'fixed inset-0 z-30 bg-fd-overlay backdrop-blur-xs lg:hidden',
-            open ? 'animate-fd-fade-in' : 'animate-fd-fade-out',
-          )}
-          onClick={() => setOpen(false)}
-          onAnimationEnd={() => {
-            if (!open) flushSync(() => setActualOpen(false));
-          }}
-        />
-      )}
-      {actualOpen && (
-        <div
-          className={cn(
-            'fixed right-4 bottom-20 z-40 flex h-[min(80dvh,640px)] w-(--ai-chat-width) max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border bg-fd-card text-fd-card-foreground shadow-xl [--ai-chat-width:400px] 2xl:[--ai-chat-width:460px]',
-            'max-sm:inset-x-2 max-sm:inset-y-4 max-sm:right-auto max-sm:bottom-auto max-sm:h-auto max-sm:w-auto max-sm:max-w-none',
-            open ? 'animate-fd-dialog-in' : 'animate-fd-dialog-out',
-          )}
-          onAnimationEnd={() => {
-            if (!open) flushSync(() => setActualOpen(false));
-          }}
-        >
-          <div className="flex size-full min-h-0 flex-col p-2 sm:p-3">
-            <AISearchPanelHeader />
-            <AISearchPanelList className="min-h-0 flex-1" />
-            <div className="rounded-xl border bg-fd-secondary text-fd-secondary-foreground shadow-sm has-focus-visible:shadow-md">
-              <AISearchInput />
-              <div className="flex items-center gap-1.5 p-1 empty:hidden">
-                <AISearchInputActions />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-export function AISearchPanelList({
-  className,
-  style,
-  ...props
-}: ComponentProps<'div'>) {
-  const chat = useChatContext();
-  const messages = chat.messages.filter((msg) => msg.role !== 'system');
-
-  return (
-    <List
-      className={cn('overscroll-contain py-4', className)}
-      style={{
-        maskImage:
-          'linear-gradient(to bottom, transparent, white 1rem, white calc(100% - 1rem), transparent 100%)',
-        ...style,
-      }}
-      {...props}
-    >
-      {messages.length === 0 ? (
-        <div className="flex size-full flex-col items-center justify-center gap-2 text-center text-sm text-fd-muted-foreground/80">
-          <MessageCircleIcon fill="currentColor" stroke="none" />
-          <p onClick={(e) => e.stopPropagation()}>在下方开始提问。</p>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-4 px-3">
-          {chat.error && (
-            <div className="rounded-lg border bg-fd-secondary p-2 text-fd-secondary-foreground">
-              <p className="text-sm">模型服务暂时不可用，请稍后重试</p>
-              {chat.error.message ? (
-                <p className="mt-1 text-xs text-fd-muted-foreground">
-                  {chat.error.message}
-                </p>
-              ) : null}
-            </div>
-          )}
-          {messages.map((item) => (
-            <Message key={item.id} message={item} />
-          ))}
-        </div>
-      )}
-    </List>
-  );
-}
-
-export function useHotKey() {
-  const pathname = usePathname();
+function useHotKey(disabled: boolean) {
   const { open, setOpen } = useAISearchContext();
 
   const onKeyPress = useEffectEvent((e: KeyboardEvent) => {
-    if (isAdminPath(pathname)) return;
-
+    if (disabled) return;
     if (e.key === 'Escape' && open) {
       setOpen(false);
       e.preventDefault();
     }
-
     if (e.key === '/' && (e.metaKey || e.ctrlKey) && !open) {
       setOpen(true);
       e.preventDefault();
@@ -495,17 +265,231 @@ export function useHotKey() {
   });
 
   useEffect(() => {
-    if (isAdminPath(pathname)) return;
-
+    if (disabled) return;
     window.addEventListener('keydown', onKeyPress);
     return () => window.removeEventListener('keydown', onKeyPress);
-  }, [pathname]);
+  }, [disabled]);
 }
 
-export function useAISearchContext() {
-  return use(Context)!;
+function MessageParts({ message }: { message: ChatUIMessage }) {
+  return (
+    <>
+      {message.parts.map((part, i) => {
+        if (part.type === 'text') {
+          return (
+            <MessageResponse key={`${message.id}-text-${i}`}>
+              {part.text}
+            </MessageResponse>
+          );
+        }
+
+        if (isToolUIPart(part)) {
+          const invocation = part as ToolUIPart;
+          const toolName = invocation.type.replace(/^tool-/, '');
+
+          return (
+            <Tool key={invocation.toolCallId ?? `${message.id}-tool-${i}`} defaultOpen={false}>
+              <ToolHeader
+                title={toolName === 'search' ? '检索文档' : toolName}
+                type={invocation.type}
+                state={invocation.state}
+              />
+              <ToolContent>
+                {invocation.input != null ? (
+                  <ToolInput input={invocation.input} />
+                ) : null}
+                {invocation.state === 'output-available' ||
+                invocation.state === 'output-error' ? (
+                  <ToolOutput
+                    output={
+                      invocation.state === 'output-available'
+                        ? invocation.output
+                        : undefined
+                    }
+                    errorText={
+                      invocation.state === 'output-error'
+                        ? invocation.errorText
+                        : undefined
+                    }
+                  />
+                ) : null}
+              </ToolContent>
+            </Tool>
+          );
+        }
+
+        return null;
+      })}
+    </>
+  );
 }
 
-function useChatContext() {
-  return use(Context)!.chat;
+export function AISearchPanel() {
+  const { open, setOpen, chat } = useAISearchContext();
+  const pathname = usePathname();
+  const disabled = isAdminPath(pathname);
+  const [actualOpen, setActualOpen] = useState(false);
+  const [text, setText] = useState('');
+  const { size, resizing, startResize } = useResizablePanelSize();
+
+  useHotKey(disabled);
+
+  useEffect(() => {
+    if (open) setActualOpen(true);
+  }, [open]);
+
+  if (disabled || !actualOpen) return null;
+
+  const messages = chat.messages.filter((msg) => msg.role !== 'system');
+
+  const handleSubmit = (message: PromptInputMessage) => {
+    const value = message.text.trim();
+    if (!value) return;
+
+    void chat.sendMessage({
+      role: 'user',
+      parts: [
+        {
+          type: 'data-client',
+          data: { location: location.href },
+        },
+        {
+          type: 'text',
+          text: value,
+        },
+      ],
+    });
+    setText('');
+  };
+
+  return createPortal(
+    <>
+      <button
+        type="button"
+        aria-label="关闭 Ask AI"
+        className={cn(
+          'fixed inset-0 z-30 bg-black/20 backdrop-blur-[1px] transition-opacity',
+          open ? 'opacity-100' : 'pointer-events-none opacity-0',
+        )}
+        onClick={() => setOpen(false)}
+      />
+
+      <aside
+        className={cn(
+          // 只用 fixed：勿再加 relative，否则 Tailwind 层叠可能覆盖 position
+          'fixed z-40 flex flex-col overflow-hidden rounded-2xl border bg-background text-foreground shadow-xl',
+          !resizing && open && 'animate-in fade-in slide-in-from-bottom-2 duration-200',
+          !resizing && !open && 'animate-out fade-out slide-out-to-bottom-2 duration-150',
+          resizing && 'transition-none',
+        )}
+        style={
+          {
+            position: 'fixed',
+            right: 16,
+            bottom: 80,
+            left: 'auto',
+            top: 'auto',
+            width: size.width,
+            height: size.height,
+            maxWidth: 'calc(100vw - 2rem)',
+            maxHeight: 'calc(100dvh - 6rem)',
+          } satisfies CSSProperties
+        }
+        onAnimationEnd={() => {
+          if (!open) flushSync(() => setActualOpen(false));
+        }}
+      >
+        {/* 锚定右下角：左侧 / 顶部 / 左上角可拖拽调节大小 */}
+        <div
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="调节面板宽度"
+          className="absolute inset-y-3 left-0 z-20 w-1.5 cursor-ew-resize touch-none"
+          onPointerDown={(event) => startResize('w', event)}
+        />
+        <div
+          role="separator"
+          aria-orientation="horizontal"
+          aria-label="调节面板高度"
+          className="absolute inset-x-3 top-0 z-20 h-1.5 cursor-ns-resize touch-none"
+          onPointerDown={(event) => startResize('n', event)}
+        />
+        <div
+          role="separator"
+          aria-label="调节面板大小"
+          className="absolute top-0 left-0 z-30 size-4 cursor-nwse-resize touch-none"
+          onPointerDown={(event) => startResize('nw', event)}
+        />
+
+        <header className="flex items-start justify-between gap-3 border-b px-4 py-3">
+          <div className="min-w-0">
+            <p className="font-medium text-sm">Ask AI</p>
+            <p className="text-muted-foreground text-xs">
+              回答可能不准确，请以文档为准。
+            </p>
+          </div>
+          <Button
+            type="button"
+            size="icon-sm"
+            variant="ghost"
+            aria-label="关闭"
+            onClick={() => setOpen(false)}
+          >
+            <XIcon className="size-4" />
+          </Button>
+        </header>
+
+        <Conversation className="min-h-0 flex-1">
+          <ConversationContent className="gap-4">
+            {messages.length === 0 ? (
+              <ConversationEmptyState
+                icon={<MessageCircleIcon className="size-8" />}
+                title="询问 OS4 设计规范"
+                description="例如：抽屉圆角是多少？按钮有哪些类型？"
+              />
+            ) : (
+              messages.map((message) => (
+                <Message from={message.role} key={message.id}>
+                  <MessageContent>
+                    <MessageParts message={message} />
+                  </MessageContent>
+                </Message>
+              ))
+            )}
+
+            {chat.error ? (
+              <div className="rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm">
+                <p className="font-medium">模型服务暂时不可用，请稍后重试</p>
+                <p className="mt-1 text-muted-foreground text-xs">
+                  {chat.error.message}
+                </p>
+              </div>
+            ) : null}
+          </ConversationContent>
+          <ConversationScrollButton />
+        </Conversation>
+
+        <div className="border-t p-3">
+          <PromptInput onSubmit={handleSubmit} className="rounded-xl border">
+            <PromptInputBody>
+              <PromptInputTextarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="询问 OS4 设计规范…"
+                className="min-h-12"
+              />
+            </PromptInputBody>
+            <PromptInputFooter className="justify-end">
+              <PromptInputSubmit
+                status={chat.status}
+                disabled={!text.trim() && chat.status === 'ready'}
+                onStop={() => chat.stop()}
+              />
+            </PromptInputFooter>
+          </PromptInput>
+        </div>
+      </aside>
+    </>,
+    document.body,
+  );
 }
