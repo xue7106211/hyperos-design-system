@@ -91,26 +91,15 @@ export function TypoApps() {
           >
             {typoApps.searchPlaceholder}
           </div>
-          <ul className="m-0 list-none p-2">
+          <ul className="m-0 grid list-none grid-cols-2 gap-1 p-2">
             {typoApps.menuItems.map((item) => (
               <li key={item.label}>
                 {/* outer 20 − pad 8 → inner 12 (rounded-xl) */}
                 <Link
                   href={item.href}
-                  className="flex min-h-10 items-center justify-between rounded-xl px-3 py-2.5 text-[15px] font-semibold text-[var(--typo-ink)] no-underline transition-colors duration-150 ease-out hover:bg-[var(--typo-surface-muted)]"
+                  className="flex min-h-10 items-center justify-center rounded-xl px-3 py-2.5 text-center text-[15px] font-semibold text-[var(--typo-ink)] no-underline transition-colors duration-150 ease-out hover:bg-[var(--typo-surface-muted)] active:scale-[0.96]"
                 >
-                  <span>{item.label}</span>
-                  {item.shortcut ? (
-                    <kbd
-                      className="rounded-md px-2 py-0.5 font-mono text-[12px] font-medium tabular-nums"
-                      style={{
-                        backgroundColor: 'var(--typo-kbd)',
-                        color: 'var(--typo-kbd-fg)',
-                      }}
-                    >
-                      {item.shortcut}
-                    </kbd>
-                  ) : null}
+                  {item.label}
                 </Link>
               </li>
             ))}

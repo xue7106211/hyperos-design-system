@@ -577,3 +577,134 @@
 .typo-clone .typo-badge:hover {
   border-color: color-mix(in oklch, var(--typo-accent) 35%, var(--typo-guide));
 }
+
+/*
+ * FAQ accordion — 1:1 from billow.so (Framer metrics)
+ * Card 640 / r16 / border #E6EDF2 / soft navy shadow
+ * Row pad 16 16 16 20 / gap 10 / divider #E6EDF2 + soft row shadow
+ * Chip 28² / r6 / #DBF3FF / plus #007FFF stroke 2
+ * Q: 15/500/#001C2E tracking -0.45px; open top pad bottom 8; answer pad 0 20 20
+ */
+.typo-clone .typo-faq {
+  --typo-faq-ink: #001c2e;
+  --typo-faq-muted: #757575;
+  --typo-faq-line: #e6edf2;
+  --typo-faq-chip-bg: #dbf3ff;
+  --typo-faq-chip-fg: #007fff;
+  --typo-faq-card-shadow:
+    rgba(1, 27, 46, 0.16) 0 0.482901px 0.338031px -1.75px,
+    rgba(1, 27, 46, 0.07) 0 4px 2.8px -3.5px;
+  --typo-faq-row-shadow:
+    rgba(0, 2, 23, 0.26) 0 0.602187px 0.602187px -1.5px,
+    rgba(0, 2, 23, 0.22) 0 2.28853px 2.28853px -3px,
+    rgba(0, 2, 23, 0.03) 0 10px 10px -4.5px;
+
+  width: 100%;
+  overflow: clip;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow:
+    var(--typo-faq-card-shadow),
+    inset 0 0 0 1px var(--typo-faq-line);
+}
+
+.typo-clone .typo-faq-item {
+  background: #fff;
+  box-shadow: var(--typo-faq-row-shadow);
+  border-bottom: 1px solid var(--typo-faq-line);
+}
+
+.typo-clone .typo-faq-item:last-child {
+  border-bottom: none;
+}
+
+.typo-clone .typo-faq-trigger {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 16px 16px 16px 20px;
+  text-align: start;
+  background: transparent;
+  border: 0;
+  color: inherit;
+}
+
+.typo-clone .typo-faq-trigger[data-state='open'] {
+  padding: 16px 16px 8px 20px;
+}
+
+.typo-clone .typo-faq-question {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22.5px;
+  letter-spacing: -0.45px;
+  color: var(--typo-faq-ink);
+  text-wrap: balance;
+  user-select: none;
+  overflow-wrap: break-word;
+}
+
+.typo-clone .typo-faq-chip {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--typo-faq-chip-bg);
+  color: var(--typo-faq-chip-fg);
+  box-shadow: inset 0 0 0 1px var(--typo-faq-chip-bg);
+  /* hit area ≥ 40px */
+}
+
+.typo-clone .typo-faq-chip::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+}
+
+.typo-clone .typo-faq-chip__icon {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.typo-clone .typo-faq-content {
+  overflow: hidden;
+}
+
+.typo-clone .typo-faq-answer {
+  margin: 0;
+  padding: 0 20px 20px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+  color: var(--typo-faq-muted);
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+:is(html.dark, .dark) .typo-clone .typo-faq {
+  --typo-faq-ink: #e8eef3;
+  --typo-faq-muted: #9aa6b2;
+  --typo-faq-line: #2a2a28;
+  --typo-faq-chip-bg: color-mix(in oklch, #007fff 22%, #191918);
+  --typo-faq-chip-fg: #6eb6ff;
+  --typo-faq-card-shadow: 0 0 0 1px var(--typo-faq-line);
+  --typo-faq-row-shadow: none;
+  background: var(--typo-card);
+}
+
+:is(html.dark, .dark) .typo-clone .typo-faq-item {
+  background: var(--typo-card);
+}
+

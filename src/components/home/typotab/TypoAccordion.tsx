@@ -37,9 +37,7 @@ function useAccordionItem() {
 type AccordionProps = {
   children: ReactNode;
   className?: string;
-  /** Controlled open index (`null` = all closed). */
   value?: number | null;
-  /** Uncontrolled initial open index. */
   defaultValue?: number | null;
   onValueChange?: (value: number | null) => void;
 };
@@ -62,7 +60,7 @@ function TypoAccordionRoot({
 
   return (
     <AccordionContext.Provider value={{ value, setValue }}>
-      <div className={cn('w-full', className)}>{children}</div>
+      <div className={cn(className)}>{children}</div>
     </AccordionContext.Provider>
   );
 }
@@ -76,12 +74,7 @@ type ItemProps = {
 function TypoAccordionItem({ children, value, className }: ItemProps) {
   return (
     <AccordionItemContext.Provider value={value}>
-      <div
-        className={cn('border-b border-[var(--typo-divider)]', className)}
-        style={{ borderBottomWidth: 'var(--typo-border-hairline)' }}
-      >
-        {children}
-      </div>
+      <div className={cn('typo-faq-item', className)}>{children}</div>
     </AccordionItemContext.Provider>
   );
 }
@@ -106,10 +99,7 @@ function TypoAccordionTrigger({
       type={type}
       aria-expanded={isOpen}
       data-state={isOpen ? 'open' : 'closed'}
-      className={cn(
-        'flex w-full min-h-11 cursor-pointer items-center justify-between gap-6 py-6 text-left',
-        className,
-      )}
+      className={cn('typo-faq-trigger', className)}
       onClick={(e) => {
         setValue(isOpen ? null : index);
         onClick?.(e);
@@ -125,7 +115,7 @@ type IndicatorProps = {
   className?: string;
 };
 
-/** Rotating “+” — open state comes from accordion context. */
+/** Billow FAQ chip: 28² / 6px radius / #DBF3FF / #007FFF plus → rotate 45° open */
 function TypoAccordionIndicator({ className }: IndicatorProps) {
   const { value } = useAccordion();
   const index = useAccordionItem();
@@ -135,18 +125,29 @@ function TypoAccordionIndicator({ className }: IndicatorProps) {
   return (
     <motion.span
       aria-hidden
-      className={cn(
-        "relative flex size-8 shrink-0 items-center justify-center text-[28px] leading-none text-[var(--typo-ink)] before:absolute before:-inset-3 before:content-['']",
-        className,
-      )}
+      data-state={isOpen ? 'open' : 'closed'}
+      className={cn('typo-faq-chip', className)}
       animate={{ rotate: isOpen ? 45 : 0 }}
       transition={
         reduce
           ? { duration: 0 }
-          : { type: 'spring', stiffness: 320, damping: 22 }
+          : { type: 'spring', stiffness: 380, damping: 24 }
       }
     >
-      +
+      <svg
+        className="typo-faq-chip__icon"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+      >
+        <path
+          d="M12 6v12M6 12h12"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
     </motion.span>
   );
 }
@@ -170,8 +171,8 @@ function TypoAccordionContent({ children, className }: ContentProps) {
           initial={reduce ? false : { height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
           exit={reduce ? undefined : { height: 0, opacity: 0 }}
-          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-          className={cn('overflow-hidden', className)}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className={cn('typo-faq-content', className)}
           data-state="open"
         >
           {children}

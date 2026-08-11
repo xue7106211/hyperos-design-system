@@ -150,24 +150,16 @@ export const typoApps = {
   outerLogoCount: 24,
   logoBasePath: '/home/app-icons',
   menuItems: [
-    { label: '设计规范', shortcut: 'G', href: `${defaultDocsRoute}/general` },
-    {
-      label: '系统组件',
-      shortcut: 'C',
-      href: `${defaultDocsRoute}/components`,
-    },
-    {
-      label: 'Design Token',
-      shortcut: 'T',
-      href: `${defaultDocsRoute}/general/design-token`,
-    },
-    {
-      label: '图标库',
-      shortcut: 'I',
-      href: `${defaultDocsRoute}/resources/icons`,
-    },
+    { label: '影音娱乐', href: `${defaultDocsRoute}/best-practices` },
+    { label: '效率工具', href: `${defaultDocsRoute}/best-practices` },
+    { label: '生活服务', href: `${defaultDocsRoute}/best-practices` },
+    { label: '智能家居', href: `${defaultDocsRoute}/best-practices` },
+    { label: '社交通讯', href: `${defaultDocsRoute}/best-practices` },
+    { label: '金融支付', href: `${defaultDocsRoute}/best-practices` },
+    { label: '出行导航', href: `${defaultDocsRoute}/best-practices` },
+    { label: '健康运动', href: `${defaultDocsRoute}/best-practices` },
   ],
-  searchPlaceholder: '搜索规范与组件',
+  searchPlaceholder: '按业务场景查找实践',
 } as const;
 
 /** 原 Pricing 双卡形式 → 双入口（非售卖） */
