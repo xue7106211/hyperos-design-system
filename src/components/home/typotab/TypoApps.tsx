@@ -104,15 +104,6 @@ export function TypoApps() {
               </li>
             ))}
           </ul>
-          <div
-            className="flex justify-between px-4 py-2 text-[12px] text-[var(--typo-ink-muted)]"
-            style={{
-              borderTop: 'var(--typo-border-hairline) solid var(--typo-divider)',
-            }}
-          >
-            <span>esc 关闭</span>
-            <span>回车 打开</span>
-          </div>
         </div>
       </TypoReveal>
     </TypoSection>

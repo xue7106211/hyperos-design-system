@@ -95,7 +95,7 @@ export const typoValueProp = {
       href: `${defaultDocsRoute}/system`,
     },
     {
-      title: 'Design Token',
+      title: '设计变量',
       body: '语义色、间距与组件 Token，Light / Dark 一并查阅。',
       image: '/home/value-token-v3.jpg',
       imageAlt: 'Design Token 层级：Value → Base → Semantic → Component',

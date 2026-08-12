@@ -88,6 +88,11 @@
     0 0 0 1px color-mix(in oklch, var(--typo-accent) 28%, var(--typo-guide)),
     0 2px 4px rgb(0 0 0 / 0.05),
     0 14px 36px -12px rgb(0 0 0 / 0.1);
+  /* Quiet 卡悬停：同色描边 + 更柔的浮起阴影（无 accent 环） */
+  --typo-elevation-quiet-hover:
+    0 0 0 1px var(--typo-guide),
+    0 4px 12px rgb(0 0 0 / 0.06),
+    0 18px 40px -14px rgb(0 0 0 / 0.12);
   --typo-elevation-float:
     0 0 0 1px var(--typo-guide),
     0 8px 28px rgb(0 0 0 / 0.07);
@@ -157,6 +162,9 @@
   --typo-elevation-raised: 0 0 0 1px var(--typo-guide);
   --typo-elevation-raised-hover: 0 0 0 1px
     color-mix(in oklch, var(--typo-accent) 40%, var(--typo-guide));
+  --typo-elevation-quiet-hover:
+    0 0 0 1px var(--typo-guide),
+    0 8px 28px rgb(0 0 0 / 0.35);
   --typo-elevation-float: 0 0 0 1px var(--typo-guide);
   --typo-elevation-float-hover: 0 0 0 1px
     color-mix(in oklch, var(--typo-accent) 40%, var(--typo-guide));
@@ -258,6 +266,18 @@
   transition:
     box-shadow var(--typo-duration-hover) ease-out,
     transform var(--typo-duration-hover) ease-out;
+}
+
+/* Quiet 入口卡：轻抬升 + 柔阴影，描边保持中性 */
+.typo-clone .typo-panel--quiet:hover {
+  box-shadow: var(--typo-elevation-quiet-hover);
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typo-clone .typo-panel--quiet:hover {
+    transform: none;
+  }
 }
 
 .typo-clone .typo-hero__bg {
