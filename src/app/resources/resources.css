@@ -144,6 +144,20 @@
   pointer-events: none;
 }
 
+.resources-shell [data-theme-toggle] {
+  background: color-mix(in oklab, var(--home-fg-high) 8%, transparent);
+}
+
+.resources-shell [data-theme-toggle] svg {
+  color: var(--home-fg-mid);
+  background-color: transparent;
+}
+
+.resources-shell [data-theme-toggle] svg.bg-fd-accent {
+  background-color: var(--home-fg-high);
+  color: var(--home-bg);
+}
+
 .resources-layout-root {
   position: relative;
   z-index: 1;

@@ -1,4 +1,5 @@
 export { TypoHero } from './TypoHero';
+export { HeroVideo } from './HeroVideo';
 export { TypoDesignLanguage } from './TypoDesignLanguage';
 export { TypoFeatureCard } from './TypoFeatureCard';
 export { TypoRecentUpdates } from './TypoRecentUpdates';

@@ -8,7 +8,6 @@ import {
   useRef,
 } from 'react';
 import { BookOpen } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   animate,
@@ -19,6 +18,7 @@ import {
   useScroll,
   useTransform,
 } from 'motion/react';
+import { HeroVideo } from './HeroVideo';
 import { typoHero } from './content';
 
 /** Settle once scroll progress reaches the end of the media reveal range */
@@ -313,20 +313,13 @@ export function TypoHero() {
             style={reduce ? undefined : { y: mediaScrollY }}
           >
             <div className="w-full overflow-hidden rounded-[20px]">
-              {/*
-                Hero is LCP + heavily transformed (tilt/scale). Prefer the original
-                asset over the image optimizer so retina never gets a stale/low-res WebP.
-              */}
-              <Image
-                src={typoHero.demoSrc}
+              <HeroVideo
+                mp4={typoHero.demoVideoMp4}
+                webm={typoHero.demoVideoWebm}
+                poster={typoHero.demoPoster}
                 alt={typoHero.demoAlt}
-                width={3840}
-                height={2160}
-                className="typo-media typo-media--flush h-auto w-full"
-                sizes="(max-width: 1240px) calc(100vw - 2rem), 1240px"
-                quality={90}
-                priority
-                unoptimized
+                width={typoHero.demoWidth}
+                height={typoHero.demoHeight}
               />
             </div>
           </motion.div>

@@ -3,9 +3,44 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { typoValueProp } from './content';
-import { TypoFeatureCard } from './TypoFeatureCard';
 import { TypoStagger, TypoStaggerItem } from './TypoReveal';
 import { TypoSection } from './TypoSection';
+
+type QuietCard = {
+  title: string;
+  body: string;
+  image: string;
+  imageAlt: string;
+  href: string;
+};
+
+function QuietEntryCard({ title, body, image, imageAlt, href }: QuietCard) {
+  return (
+    <Link
+      href={href}
+      className="group typo-panel typo-panel--quiet relative flex h-[min(508px,70vw)] flex-col gap-6 overflow-hidden rounded-[20px] active:scale-[0.96] md:h-[508px]"
+    >
+      <div className="flex w-full flex-col gap-2 px-10 pt-[30px]">
+        <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-normal text-balance text-[var(--typo-ink)]">
+          {title}
+        </h3>
+        <p className="m-0 text-[16px] leading-[1.55] font-normal tracking-[0.01em] text-[var(--typo-ink-muted)]">
+          {body}
+        </p>
+      </div>
+
+      <div className="relative min-h-0 flex-1">
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          className="typo-media typo-media--flush pointer-events-none object-cover object-center select-none"
+          sizes="(max-width: 768px) 100vw, 490px"
+        />
+      </div>
+    </Link>
+  );
+}
 
 export function TypoValueProp() {
   return (
@@ -21,40 +56,7 @@ export function TypoValueProp() {
       >
         {typoValueProp.cards.map((card) => (
           <TypoStaggerItem key={card.title}>
-            <Link
-              href={card.href}
-              className="group typo-panel typo-panel--quiet relative flex h-[min(508px,70vw)] flex-col gap-6 overflow-hidden rounded-[20px] active:scale-[0.96] md:h-[508px]"
-            >
-              <div className="flex w-full flex-col gap-2 px-10 pt-[30px]">
-                <h3 className="m-0 text-[28px] leading-[42px] font-semibold tracking-normal text-balance text-[var(--typo-ink)]">
-                  {card.title}
-                </h3>
-                <p className="m-0 text-[16px] leading-[1.55] font-normal tracking-[0.01em] text-[var(--typo-ink-muted)]">
-                  {card.body}
-                </p>
-              </div>
-
-              <div className="relative min-h-0 flex-1">
-                <Image
-                  src={card.image}
-                  alt={card.imageAlt}
-                  fill
-                  className="typo-media typo-media--flush pointer-events-none object-cover object-center select-none"
-                  sizes="(max-width: 768px) 100vw, 490px"
-                />
-              </div>
-            </Link>
-          </TypoStaggerItem>
-        ))}
-      </TypoStagger>
-
-      <TypoStagger
-        className="flex w-full max-w-[1000px] flex-col gap-5"
-        stagger={0.12}
-      >
-        {typoValueProp.featureCards.map((card) => (
-          <TypoStaggerItem key={card.title}>
-            <TypoFeatureCard {...card} />
+            <QuietEntryCard {...card} />
           </TypoStaggerItem>
         ))}
       </TypoStagger>

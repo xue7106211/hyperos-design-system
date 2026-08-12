@@ -16,8 +16,13 @@ export const typoHero = {
     '在 HyperOS4 中，我们希望能营造一个有温度的数字空间，为你提供更自然、生动、精致的生命感新体验。',
   cta: '浏览设计规范',
   ctaHref: `${defaultDocsRoute}/general`,
-  demoSrc: '/home/hero-devices-v3.jpg',
+  /** 静图封面（LCP / reduced-motion） */
+  demoPoster: '/home/hero-devices-poster.jpg',
+  demoVideoMp4: '/home/hero-devices.mp4',
+  demoVideoWebm: '/home/hero-devices.webm',
   demoAlt: 'HyperOS 设计系统多机界面预览',
+  demoWidth: 1920,
+  demoHeight: 1080,
 } as const;
 
 /** 设计语言宣言：放在「设计指南」之上 */
@@ -53,7 +58,7 @@ export const typoValueProp = {
     '了解最新 HyperOS 设计动态，系统特性与能力，打造和谐流畅生态体验。',
   cards: [
     {
-      title: '设计规范',
+      title: '通用设计标准',
       body: '通用设计标准与写法约定，统一视\u2060觉与体验底线。',
       image: '/home/value-guidelines.jpg',
       imageAlt: '设计规范入口示意',
@@ -61,12 +66,33 @@ export const typoValueProp = {
       variant: 'menu' as const,
     },
     {
-      title: '控件与组件',
+      title: '控件设计规范',
       body: '导航、操作、输入、容器，对照 Figma 与平台代码。',
       image: '/home/value-components-v2.jpg',
       imageAlt: 'HyperOS 天气、时钟与日程小组件示意',
       href: `${defaultDocsRoute}/components`,
       variant: 'menu' as const,
+    },
+    {
+      title: '多端设备标准',
+      body: '手机、Pad 等多端场景下的布局、适配与一致性约定。',
+      image: '/home/usecase-multi-device.jpg',
+      imageAlt: 'HyperOS 折叠屏外屏与分屏多端界面示意',
+      href: `${defaultDocsRoute}/multi-device`,
+    },
+    {
+      title: '人机交互标准',
+      body: 'HyperOS 人机交互标准。',
+      image: '/home/usecase-resources.jpg',
+      imageAlt: 'HyperOS 锁屏个性化与时钟样式示意',
+      href: `${defaultDocsRoute}/interaction`,
+    },
+    {
+      title: '系统特性与能力',
+      body: 'HyperOS 系统特性与能力标准总览。',
+      image: '/home/usecase-best-practices.jpg',
+      imageAlt: 'HyperOS 桌面小组件与日历界面示意',
+      href: `${defaultDocsRoute}/system`,
     },
     {
       title: 'Design Token',
@@ -83,33 +109,6 @@ export const typoValueProp = {
       imageAlt: 'HyperOS 图标资产网格示意',
       href: `${defaultDocsRoute}/resources/icons`,
       variant: 'menubar' as const,
-    },
-  ],
-  /** 原「多终端与系统特性」彩色大卡，并入本区 */
-  featureCards: [
-    {
-      title: '多端设备标准',
-      body: '手机、Pad 等多端场景下的布局、适配与一致性约定。',
-      color: '#00A1FF',
-      image: '/home/usecase-multi-device.jpg',
-      imageAlt: 'HyperOS 折叠屏外屏与分屏多端界面示意',
-      href: `${defaultDocsRoute}/multi-device`,
-    },
-    {
-      title: '人机交互标准',
-      body: 'HyperOS 人机交互标准。',
-      color: '#AD6DFF',
-      image: '/home/usecase-resources.jpg',
-      imageAlt: 'HyperOS 锁屏个性化与时钟样式示意',
-      href: `${defaultDocsRoute}/interaction`,
-    },
-    {
-      title: '系统特性与能力',
-      body: 'HyperOS 系统特性与能力标准总览。',
-      color: '#FF7300',
-      image: '/home/usecase-best-practices.jpg',
-      imageAlt: 'HyperOS 桌面小组件与日历界面示意',
-      href: `${defaultDocsRoute}/system`,
     },
   ],
 } as const;

@@ -172,6 +172,21 @@ html {
   pointer-events: none;
 }
 
+/* ThemeSwitch：选中态用高对比 chip，避免 fd-accent 在毛玻璃导航上发灰发糊 */
+.home-shell [data-theme-toggle] {
+  background: color-mix(in oklab, var(--home-fg-high) 8%, transparent);
+}
+
+.home-shell [data-theme-toggle] svg {
+  color: var(--home-fg-mid);
+  background-color: transparent;
+}
+
+.home-shell [data-theme-toggle] svg.bg-fd-accent {
+  background-color: var(--home-fg-high);
+  color: var(--home-bg);
+}
+
 html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
