@@ -27,6 +27,7 @@
 - [x] 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载，短时连点打开签名面板）
 - [x] OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`；维护人 / Figma 节点已绑定）
 - [x] Ask AI 文档问答助手（AI Elements + shadcn UI；`POST /api/chat` + `@ai-sdk/anthropic` 小米网关；Orama `searchDocs` 仅 OS4；部署需注入 `MI_LLM_*`；spec 见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)）
+- [x] 侧栏「设计模式」（原「应用最佳实践标准」；路径 `best-practices/`）补齐二级占位页（OS4/OS5）；首页移除「返回顶部」以避免与 Ask AI 冲突
 
 ## 下一步
 

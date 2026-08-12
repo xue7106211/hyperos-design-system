@@ -159,7 +159,7 @@ tokens/                 # Design Tokens（reference|semantic|component × light|
 icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
   svg/{category}/
   manifest.json
-scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs 等）
+scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs、download-typotab-assets.mjs 等）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
   schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block
@@ -183,7 +183,7 @@ src/
     ui/                 # shadcn 基础组件（仅服务于 Ask AI 等站点 chrome，非文档 Web demo）
     docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     easter-egg/         # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
-    home/               # Landing：HomeHero、PillNav、HalftoneBloom
+    home/               # Landing：PillNav + typotab（TypoHero 等）；资源页共用 PillNav
     resources/          # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
     mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
@@ -223,7 +223,8 @@ package-lock.json       # npm 锁文件
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
 - **旧路径兼容**：`/docs/foundations/...` 等永久重定向到新 IA（见 `next.config.mjs`）
 - **OS5**：侧栏可见但禁用；`/docs/os5` 暂重定向到 OS4，待内容发布后移除
-- **设计资源中心**：`/resources`（Landing `PillNav`「设计资源」；当前页短圆角底线选中态）；独立 hub，内容数据在 `src/lib/resources.ts`，组件在 `src/components/resources/`；Catalog（`#catalog`）设计类条目跳转页内锚点（`#components` / `#design-tools` / `#design-token` / `#fonts` / `#icon` / `#brand`）；右侧 Codex 导航见 `ResourcesCodexNav` + `resourcesPageAnchors`
+- **设计资源中心**：`/resources`（Landing `PillNav`「设计资源」；当前页短圆角底线选中态）；独立 hub，内容数据在 `src/lib/resources.ts`，组件在 `src/components/resources/`；Catalog（`#catalog`）设计类条目跳转页内锚点（`#components` / `#design-tools` / `#design-token` / `#fonts` / `#icon` / `#brand`）；右侧 Codex 导航见 `ResourcesCodexNav` + `resourcesPageAnchors`；「返回顶部」仅挂在 `/resources`（首页不挂，避免与 Ask AI 右下角入口重叠）
+- **设计模式**（侧栏名；路径 `best-practices/`）：总览 + 二级占位页（页面模式 / 加载与刷新 / 下载 / 状态提示 / 启动 / 引导 / 资源选择 / 系统分享 / 自升级 / 系统能力衔接 / 数据图表化）；OS5 同步占位
 
 新增页面时 **必须**：
 
@@ -311,7 +312,7 @@ package-lock.json       # npm 锁文件
 
 - 全文搜索：Orama（[src/app/api/search/route.ts](src/app/api/search/route.ts)）+ 中文 tokenizer（[src/lib/search-tokenizer.ts](src/lib/search-tokenizer.ts)）；OS5 发布前仅索引 OS4
 - LLM 导出：`/llms.txt`（索引）、`/llms-full.txt`（全文）、`/llms.mdx/docs/*`（单页 Markdown）
-- **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool `searchDocs`（Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。部署注入见 [docs/deployment.md](docs/deployment.md)；规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。
+- **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；打开后面板取代入口按钮（Motion 进出场）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool `searchDocs`（Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。部署注入见 [docs/deployment.md](docs/deployment.md)；规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。首页不挂「返回顶部」；`/resources` 仍可有返回顶部，注意与 Ask AI 同角共存。
 
 ## Figma 集成
 

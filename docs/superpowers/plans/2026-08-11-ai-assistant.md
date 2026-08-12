@@ -3,9 +3,10 @@
 > **As-built（2026-08-11）**：本计划为实施过程记录。落地与计划差异如下，以代码与 [设计规格](../specs/2026-08-11-ai-assistant-design.md) 为准，勿按下文旧步骤重做：
 >
 > - Provider：`@ai-sdk/anthropic`（非 `@ai-sdk/openai-compatible`）
-> - 检索：Orama + 中文 tokenizer（非独立 Flexsearch 索引）
+> - 检索：Orama + 中文 tokenizer（已卸载未使用的 `flexsearch`）
 > - UI：AI Elements + shadcn（`src/components/ai-elements/`、`ui/`）；已删除 `src/components/ai/markdown.tsx`
 > - Chat API：AI SDK 7 使用 `instructions`（非 system message 塞进 `messages`）
+> - 首页不挂「返回顶部」；打开 Ask AI 时入口淡出，面板从右下角进入
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 

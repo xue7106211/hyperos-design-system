@@ -73,7 +73,19 @@
     ├── interaction/                       # 人机交互标准
     ├── system/                            # 系统特性与能力标准
     ├── multi-device/                       # 多端设备标准（暂仅 index）
-    ├── best-practices/                    # 设计模式（总览 + 二级专题占位）
+    ├── best-practices/                    # 设计模式（侧栏名；slug 仍为 best-practices）
+    │   ├── index
+    │   ├── page-patterns                  # 页面模式
+    │   ├── loading-refresh                # 加载与刷新
+    │   ├── download                       # 下载
+    │   ├── status-feedback                # 状态提示
+    │   ├── launch                         # 启动
+    │   ├── onboarding                     # 引导
+    │   ├── resource-picker                # 资源选择
+    │   ├── system-share                   # 系统分享
+    │   ├── self-update                    # 自升级
+    │   ├── system-capability              # 系统能力衔接
+    │   └── data-charts                    # 数据图表化
     └── resources/                         # 资源
         ├── index
         └── icons                          # HyperOS 图标库
@@ -106,7 +118,7 @@ Fumadocs MDX 按文件路径生成 URL。根级 `content/docs/meta.json` 注册 
 | `/docs/os5`、`/docs/os5/*` | `/docs/os4`（临时，待 OS5 发布） |
 | `/docs/foundations/*` 等旧无前缀路径 | 映射到新 `os4` 对应页（永久 301） |
 | `/docs/os4/foundations/*`、`patterns/*` | 映射到 `general` / `system` 等 |
-| `/docs/os4/resources/design-tokens` 等**旧** Resources 子页 | Token / 最佳实践；**不含**现 `resources/icons` |
+| `/docs/os4/resources/design-tokens` 等**旧** Resources 子页 | Token / 设计模式入口；**不含**现 `resources/icons` |
 | `/docs/os4/icons`、`general/icons`、`foundations/iconography` | `/docs/os4/resources/icons` |
 
 Sidebar 通过各目录 `meta.json` 控制顺序与分组。

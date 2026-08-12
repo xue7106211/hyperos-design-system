@@ -70,7 +70,7 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
 icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
-scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs 等）
+scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs、download-typotab-assets.mjs 等）
 tokens/              # Design Tokens（reference / semantic / component × light / dark）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
@@ -84,7 +84,7 @@ src/
     ui/              # shadcn 基础组件（Ask AI chrome）
     docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     easter-egg/      # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
-    home/            # Landing：HomeHero、PillNav、HalftoneBloom
+    home/            # Landing：PillNav + typotab；资源页共用 PillNav
     resources/       # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
     mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing

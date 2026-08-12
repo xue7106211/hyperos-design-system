@@ -75,8 +75,8 @@ Next.js Route Handler
 | 提示词 | 强制引用、拒答、中文优先 | `src/lib/ai/prompt.ts` |
 | Env 模板 | 内网 LLM 配置说明 | `.env.example`（不提交真实 Key） |
 
-与现有全站彩蛋浮层共存：Ask AI 固定右下角，避免与 easter-egg 抢交互。  
-工程说明写入 `docs/superpowers/`；**不**写入 `content/docs/`，不改侧栏 `meta.json`。
+与现有全站彩蛋浮层共存：Ask AI 固定右下角。首页不挂「返回顶部」以免重叠；`/resources` 仍可保留返回顶部，实现时注意同角布局。  
+工程说明写入 `docs/superpowers/`；**不**写入 `content/docs/`，不改侧栏 `meta.json`（侧栏「设计模式」等 IA 变更另议）。
 
 ## 数据流与引用规则
 

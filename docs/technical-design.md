@@ -278,7 +278,7 @@ hyperos-design-system/
 │   ├── components/
 │   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta
 │   │   ├── easter-egg/     # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
-│   │   ├── home/           # Landing：HomeHero、PillNav、HalftoneBloom
+│   │   ├── home/           # Landing：PillNav + typotab；资源页共用 PillNav
 │   │   ├── resources/      # /resources：Hero、Catalog、CodexNav、FeatureCard、MatrixRain 等
 │   │   ├── mdx/            # DocsImage、DocFancybox、SpecImageGrid、FigmaEmbed、TokenTable、IconGallery、PlatformTabs 等
 │   │   ├── tina/           # Tina Visual Editing

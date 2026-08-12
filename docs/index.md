@@ -16,6 +16,7 @@
 | 侧栏目录对照（全景图） | [sidebar-ia.md](./sidebar-ia.md) |
 | 实施进度与后续 Phase | [roadmap.md](./roadmap.md) |
 | Ask AI 文档问答 | 根布局浮动入口 · `POST /api/chat` · env `MI_LLM_*`（见 [deployment.md](./deployment.md)）· 规格 [superpowers/specs/2026-08-11-ai-assistant-design.md](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
+| 设计模式（原最佳实践） | 侧栏「设计模式」· 路径 `content/docs/os4/best-practices/` · 对照 [sidebar-ia.md](./sidebar-ia.md) |
 | 维护人飞书 open_id | [maintainers.md](./maintainers.md) |
 | 图标 SVG 入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
@@ -42,7 +43,8 @@
 |------|------|
 | `docs/` | 工程设计文档（本目录） |
 | `content/docs/` | Fumadocs 网站 MDX（根级 `meta.json` 注册 `os4` / `os5`） |
-| `content/docs/os4/` | HyperOS 4 规范（默认；一级：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`（设计模式） / `resources`） |
+| `content/docs/os4/` | HyperOS 4 规范（默认；一级：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`（侧栏名「设计模式」） / `resources`） |
+| `content/docs/os4/best-practices/` | 设计模式：总览 + 二级占位（页面模式、加载与刷新、下载、状态提示、启动、引导、资源选择、系统分享、自升级、系统能力衔接、数据图表化） |
 | `content/docs/os4/resources/icons.mdx` | HyperOS 图标库预览（`<IconGallery />`；属「资源」一级目录） |
 | `content/docs/os5/` | HyperOS 5 占位（侧栏可见，内容未发布） |
 | `src/app/resources/` | 设计资源中心路由（`/resources`；独立 hub，非 docs 侧栏） |
@@ -53,7 +55,7 @@
 | `tokens/` | Design Tokens：`reference|semantic|component` × `light|dark` |
 | `public/icons/` | 图标静态访问（`icons:sync` 产物） |
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
-| `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
+| `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`、`download-typotab-assets.mjs`） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta` |
 | `src/components/ai/` | Ask AI：`AiAssistant` 门闩 + `search` 浮动面板（AI Elements） |
 | `src/components/ai-elements/` | AI Elements（conversation / message / prompt / tool） |
@@ -61,8 +63,9 @@
 | `src/lib/ai/` | Ask AI：config / provider / prompt / search-docs / types |
 | `src/app/api/chat/` | Ask AI 流式对话 API |
 | `components.json` | shadcn / AI Elements 注册表 |
+| `src/components/BackToTop.tsx` | 「返回顶部」；首页不挂载（与 Ask AI 冲突）；`/resources` 经 `ResourcesBackToTop` 使用 |
 | `src/components/easter-egg/` | 全站彩蛋（`EasterEggProvider` 挂根布局；短时连点打开签名浮层） |
-| `src/components/home/` | Landing / 资源页共用：`PillNav`、`HomeHero`、`HalftoneBloom` |
+| `src/components/home/` | Landing：`PillNav` + typotab 区块（`TypoHero` 等）；资源页共用 `PillNav` |
 | `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
 | `docs/superpowers/` | Agent specs / plans（非对外；与站点内容无关） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
@@ -77,6 +80,7 @@
 
 ## 变更摘要
 
+- **2026-08-12**：侧栏「应用最佳实践标准」更名为「设计模式」（路径仍为 `best-practices/`）；OS4/OS5 补齐 11 个二级占位页；首页移除「返回顶部」以免与 Ask AI 入口重叠（`/resources` 仍保留）。
 - **2026-08-11**：Ask AI 全站浮动问答（`/api/chat` + `@ai-sdk/anthropic` 小米网关；检索 Orama OS4；UI 为 AI Elements + shadcn；`/admin` 隐藏）；规格 / 计划见 `docs/superpowers/`。
 - **2026-07-29**：全站彩蛋浮层（`src/components/easter-egg/`，根布局挂载）；OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`）；`docs/superpowers/` 记录彩蛋设计 / 实现计划。
 - **2026-07-28**：`/resources` 补齐 `#catalog`、右侧 Codex 锚点导航、Feature 卡标题 CTA（非整卡链接）、Device Assets 外链；PillNav 当前页改为短圆角底线；Engineering 目录待定项与维护团队胶囊跳转仍占位。
