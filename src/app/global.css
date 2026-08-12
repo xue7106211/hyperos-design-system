@@ -441,6 +441,33 @@ html > body[data-scroll-locked] {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+
+/* Ask AI float trigger — elevation via translucent shadow stack (surfaces) */
+:root {
+  --ai-ask-elevation:
+    0 0 0 1px rgb(0 0 0 / 0.06),
+    0 1px 2px rgb(0 0 0 / 0.08),
+    0 8px 20px -6px rgb(0 0 0 / 0.2);
+  --ai-ask-elevation-hover:
+    0 0 0 1px rgb(0 0 0 / 0.08),
+    0 2px 4px rgb(0 0 0 / 0.1),
+    0 12px 28px -8px rgb(0 0 0 / 0.24);
+}
+
+.dark {
+  --ai-ask-elevation: 0 0 0 1px rgb(255 255 255 / 0.12);
+  --ai-ask-elevation-hover: 0 0 0 1px rgb(255 255 255 / 0.18);
+}
+
+.ai-ask-trigger {
+  box-shadow: var(--ai-ask-elevation);
+  transition: box-shadow 150ms ease-out;
+}
+
+.ai-ask-trigger:hover {
+  box-shadow: var(--ai-ask-elevation-hover);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

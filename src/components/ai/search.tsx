@@ -23,6 +23,7 @@ import {
   type ReactNode,
 } from 'react';
 import { createPortal, flushSync } from 'react-dom';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import {
   Conversation,
   ConversationContent,
@@ -76,6 +77,14 @@ function isAdminPath(pathname: string | null): boolean {
 const PANEL_SIZE_KEY = '__ai_assistant_panel_size';
 const DEFAULT_PANEL_SIZE = { width: 384, height: 640 };
 const MIN_PANEL_SIZE = { width: 320, height: 420 };
+
+/** 空状态可点预设问题，点击后直接发送 */
+const SUGGESTED_PROMPTS = [
+  '抽屉圆角是多少？',
+  '按钮有哪些类型？',
+  '抽屉浮窗的设计规格是什么？',
+  '标题栏的遮罩有几种类型？',
+] as const;
 
 type PanelSize = { width: number; height: number };
 type ResizeEdge = 'n' | 'w' | 'nw';
@@ -224,6 +233,8 @@ export function AISearch({ children }: { children: ReactNode }) {
   );
 }
 
+const ASK_MOTION_EASE = [0.32, 0.72, 0, 1] as const;
+
 export function AISearchTrigger({
   position = 'default',
   className,
@@ -231,21 +242,50 @@ export function AISearchTrigger({
 }: ComponentProps<'button'> & { position?: 'default' | 'float' }) {
   const { open, setOpen } = useAISearchContext();
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
   if (isAdminPath(pathname)) return null;
 
-  return (
+  const button = (
     <Button
       type="button"
       variant={position === 'float' ? 'default' : 'secondary'}
       aria-expanded={open}
+      aria-controls="ai-ask-panel"
       className={cn(
         position === 'float' &&
-          'fixed right-4 bottom-4 z-40 gap-2 rounded-full px-4 py-2.5 shadow-lg',
+          'ai-ask-trigger h-9 gap-2 rounded-full px-4 shadow-none transition-[box-shadow] active:scale-[0.96]',
         className,
       )}
-      onClick={() => setOpen(!open)}
+      onClick={() => setOpen(true)}
       {...props}
     />
+  );
+
+  if (position !== 'float') return button;
+
+  return (
+    <AnimatePresence>
+      {!open ? (
+        <motion.div
+          key="ai-ask-trigger"
+          className="fixed right-6 bottom-6 z-40 origin-bottom-right"
+          initial={false}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={
+            reduceMotion
+              ? { opacity: 0 }
+              : { opacity: 0, scale: 0.96, y: 8 }
+          }
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : { duration: 0.16, ease: ASK_MOTION_EASE }
+          }
+        >
+          {button}
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   );
 }
 
@@ -331,20 +371,23 @@ export function AISearchPanel() {
   const [actualOpen, setActualOpen] = useState(false);
   const [text, setText] = useState('');
   const { size, resizing, startResize } = useResizablePanelSize();
+  const reduceMotion = useReducedMotion();
 
   useHotKey(disabled);
 
-  useEffect(() => {
-    if (open) setActualOpen(true);
-  }, [open]);
+  // 打开时同步挂载，避免入口已退出、面板晚一帧才出现
+  if (open && !actualOpen) {
+    setActualOpen(true);
+  }
 
   if (disabled || !actualOpen) return null;
 
   const messages = chat.messages.filter((msg) => msg.role !== 'system');
+  const canSend = chat.status === 'ready';
 
-  const handleSubmit = (message: PromptInputMessage) => {
-    const value = message.text.trim();
-    if (!value) return;
+  const sendUserText = (value: string) => {
+    const textValue = value.trim();
+    if (!textValue || !canSend) return;
 
     void chat.sendMessage({
       role: 'user',
@@ -355,50 +398,66 @@ export function AISearchPanel() {
         },
         {
           type: 'text',
-          text: value,
+          text: textValue,
         },
       ],
     });
     setText('');
   };
 
-  return createPortal(
-    <>
-      <button
-        type="button"
-        aria-label="关闭 Ask AI"
-        className={cn(
-          'fixed inset-0 z-30 bg-black/20 backdrop-blur-[1px] transition-opacity',
-          open ? 'opacity-100' : 'pointer-events-none opacity-0',
-        )}
-        onClick={() => setOpen(false)}
-      />
+  const handleSubmit = (message: PromptInputMessage) => {
+    sendUserText(message.text);
+  };
 
-      <aside
-        className={cn(
-          // 只用 fixed：勿再加 relative，否则 Tailwind 层叠可能覆盖 position
-          'fixed z-40 flex flex-col overflow-hidden rounded-2xl border bg-background text-foreground shadow-xl',
-          !resizing && open && 'animate-in fade-in slide-in-from-bottom-2 duration-200',
-          !resizing && !open && 'animate-out fade-out slide-out-to-bottom-2 duration-150',
-          resizing && 'transition-none',
-        )}
-        style={
-          {
-            position: 'fixed',
-            right: 16,
-            bottom: 80,
-            left: 'auto',
-            top: 'auto',
-            width: size.width,
-            height: size.height,
-            maxWidth: 'calc(100vw - 2rem)',
-            maxHeight: 'calc(100dvh - 6rem)',
-          } satisfies CSSProperties
-        }
-        onAnimationEnd={() => {
-          if (!open) flushSync(() => setActualOpen(false));
-        }}
-      >
+  return createPortal(
+    <AnimatePresence
+      onExitComplete={() => {
+        if (!open) flushSync(() => setActualOpen(false));
+      }}
+    >
+      {open ? (
+        <motion.aside
+          key="ai-ask-panel"
+          id="ai-ask-panel"
+          role="dialog"
+          aria-label="Ask AI"
+          className={cn(
+            // 只用 fixed：勿再加 relative，否则 Tailwind 层叠可能覆盖 position
+            'fixed z-40 flex flex-col overflow-hidden rounded-2xl border bg-background text-foreground shadow-xl origin-bottom-right',
+            resizing && 'transition-none',
+          )}
+          initial={
+            reduceMotion ? false : { opacity: 0, scale: 0.97, y: 12 }
+          }
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={
+            reduceMotion
+              ? { opacity: 0 }
+              : { opacity: 0, scale: 0.97, y: 8 }
+          }
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : {
+                  duration: open ? 0.22 : 0.16,
+                  ease: ASK_MOTION_EASE,
+                }
+          }
+          style={
+            {
+              position: 'fixed',
+              // 入口隐藏后，面板落在同一角落，形成空间连续感
+              right: 24,
+              bottom: 24,
+              left: 'auto',
+              top: 'auto',
+              width: size.width,
+              height: size.height,
+              maxWidth: 'calc(100vw - 2rem)',
+              maxHeight: 'calc(100dvh - 6rem)',
+            } satisfies CSSProperties
+          }
+        >
         {/* 锚定右下角：左侧 / 顶部 / 左上角可拖拽调节大小 */}
         <div
           role="separator"
@@ -442,11 +501,32 @@ export function AISearchPanel() {
         <Conversation className="min-h-0 flex-1">
           <ConversationContent className="gap-4">
             {messages.length === 0 ? (
-              <ConversationEmptyState
-                icon={<MessageCircleIcon className="size-8" />}
-                title="询问 OS4 设计规范"
-                description="例如：抽屉圆角是多少？按钮有哪些类型？"
-              />
+              <ConversationEmptyState>
+                <div className="text-muted-foreground">
+                  <MessageCircleIcon className="size-8" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-medium text-sm">询问 OS4 设计规范</h3>
+                  <p className="text-muted-foreground text-xs">
+                    点击下方问题快速开始
+                  </p>
+                </div>
+                <div className="mt-1 flex w-full flex-wrap justify-center gap-2">
+                  {SUGGESTED_PROMPTS.map((prompt) => (
+                    <Button
+                      key={prompt}
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="h-auto w-auto max-w-full shrink-0 justify-start whitespace-normal px-3 py-2 text-left font-normal"
+                      disabled={!canSend}
+                      onClick={() => sendUserText(prompt)}
+                    >
+                      {prompt}
+                    </Button>
+                  ))}
+                </div>
+              </ConversationEmptyState>
             ) : (
               messages.map((message) => (
                 <Message from={message.role} key={message.id}>
@@ -488,8 +568,9 @@ export function AISearchPanel() {
             </PromptInputFooter>
           </PromptInput>
         </div>
-      </aside>
-    </>,
+        </motion.aside>
+      ) : null}
+    </AnimatePresence>,
     document.body,
   );
 }
