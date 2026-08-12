@@ -8,7 +8,7 @@
 
 - **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4 + TinaCMS（本地模式）
 - **目标用户**：设计、文档、客户端工程（Android / iOS）
-- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、文档配图页内画廊（Fancybox）、Compose / SwiftUI 静态代码参考、**设计资源中心**（`/resources`）
+- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、文档配图页内画廊（Fancybox）、Compose / SwiftUI 静态代码参考、**设计资源中心**（`/resources`）、**Ask AI**（全站浮动问答，仅 OS4 文档）
 
 客户端组件 **源码在独立仓库** 维护；本仓只负责规范传播与 Figma / Token / 图标资产连接。
 
@@ -79,7 +79,7 @@ npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/
 
 ### TinaCMS 后台
 
-- 本地开发：运行 `npm run dev`（脚本已设置 `TINA_PUBLIC_IS_LOCAL=true`；`.env.example` 仅供自定义启动命令时参考）
+- 本地开发：运行 `npm run dev`（脚本已设置 `TINA_PUBLIC_IS_LOCAL=true`；Ask AI 另需 `.env.local` 中的 `MI_LLM_*`，见 `.env.example`）
 - 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/os4/`、`content/docs/os5/` 下的 MDX 规范
 - **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`IconGallery`、`DosDonts`、`PlatformCodeBlock` 等
@@ -165,7 +165,8 @@ tina/
   schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block
   database.ts           # 本地 filesystem datalayer
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
-.env.example            # TinaCMS 本地模式环境变量模板
+.env.example            # TinaCMS + Ask AI（MI_LLM_*）本地变量模板
+components.json         # shadcn / AI Elements 注册表配置（Ask AI UI）
 public/
   logo/                 # HyperOS Logo 静态资源
   home/                 # Landing 页静态图
@@ -174,9 +175,12 @@ public/
   resources/            # /resources 页卡片配图（已提交）
   uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
-  app/                  # Next.js 路由（docs、resources、admin、api/tina、search、llms、og）
+  app/                  # Next.js 路由（docs、resources、admin、api/tina|search|chat、llms、og）
     resources/          # 设计资源中心（独立 hub，非 docs 侧栏）
   components/
+    ai/                 # Ask AI（AiAssistant 门闩 + search 浮动面板）
+    ai-elements/        # AI Elements（conversation / message / prompt / tool）
+    ui/                 # shadcn 基础组件（仅服务于 Ask AI 等站点 chrome，非文档 Web demo）
     docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     easter-egg/         # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/               # Landing：HomeHero、PillNav、HalftoneBloom
@@ -184,7 +188,7 @@ src/
     mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source、layout、shared、resources、icons、tina-docs*、docs-version-tabs、search-tokenizer、git-file-mtime、cn
+  lib/                  # source、layout、shared、resources、icons、tina-docs*、ai/、cn、utils（shadcn）等
 source.config.ts        # MDX frontmatter Zod schema
 next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts                # Markdown 内容协商（.md / Accept 重写）
@@ -307,6 +311,7 @@ package-lock.json       # npm 锁文件
 
 - 全文搜索：Orama（[src/app/api/search/route.ts](src/app/api/search/route.ts)）+ 中文 tokenizer（[src/lib/search-tokenizer.ts](src/lib/search-tokenizer.ts)）；OS5 发布前仅索引 OS4
 - LLM 导出：`/llms.txt`（索引）、`/llms-full.txt`（全文）、`/llms.mdx/docs/*`（单页 Markdown）
+- **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool `searchDocs`（Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。部署注入见 [docs/deployment.md](docs/deployment.md)；规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。
 
 ## Figma 集成
 
