@@ -1,5 +1,4 @@
 import { preload } from 'react-dom';
-import { BackToTop } from '@/components/BackToTop';
 import { PillNav } from '@/components/home/PillNav';
 import {
   TypoApps,
@@ -15,6 +14,7 @@ import { getRecentDocs } from '@/lib/recent-docs';
 
 /**
  * 首页：TypoTab 形式 + HyperOS 文案；视觉对齐设计资源中心 surfaces。
+ * 不挂载「返回顶部」：右下角与 Ask AI 入口冲突。
  */
 export default function HomePage() {
   preload(typoHero.demoPoster, { as: 'image' });
@@ -36,7 +36,6 @@ export default function HomePage() {
         <TypoRule />
         <TypoFaq />
       </div>
-      <BackToTop />
     </>
   );
 }

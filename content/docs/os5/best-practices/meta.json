@@ -1,4 +1,17 @@
 {
-  "title": "应用最佳实践标准",
-  "pages": ["index"]
+  "title": "设计模式",
+  "pages": [
+    "index",
+    "page-patterns",
+    "loading-refresh",
+    "download",
+    "status-feedback",
+    "launch",
+    "onboarding",
+    "resource-picker",
+    "system-share",
+    "self-update",
+    "system-capability",
+    "data-charts"
+  ]
 }

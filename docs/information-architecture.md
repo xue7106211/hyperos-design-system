@@ -30,7 +30,7 @@
 │   │   ├── interaction/     # 人机交互标准
 │   │   ├── system/          # 系统特性与能力标准
 │   │   ├── multi-device/     # 多端设备标准
-│   │   ├── best-practices/  # 应用最佳实践标准
+│   │   ├── best-practices/  # 设计模式
 │   │   └── resources/       # 资源（图标库等；docs 侧栏）
 │   └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
 │       └── （结构同 os4）
@@ -73,7 +73,7 @@
     ├── interaction/                       # 人机交互标准
     ├── system/                            # 系统特性与能力标准
     ├── multi-device/                       # 多端设备标准（暂仅 index）
-    ├── best-practices/                    # 应用最佳实践标准（暂仅 index）
+    ├── best-practices/                    # 设计模式（总览 + 二级专题占位）
     └── resources/                         # 资源
         ├── index
         └── icons                          # HyperOS 图标库

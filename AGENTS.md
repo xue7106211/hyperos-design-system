@@ -142,7 +142,7 @@ content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
     interaction/        # 人机交互标准
     system/             # 系统特性与能力标准
     multi-device/        # 多端设备标准
-    best-practices/     # 应用最佳实践标准
+    best-practices/     # 设计模式（路径 slug 保持 best-practices）
     resources/          # 资源（HyperOS 图标库等）
   os5/                  # HyperOS 5（占位，侧栏禁用跳转；结构同 os4）
 docs/                   # 工程设计文档（见 docs/index.md）
@@ -214,7 +214,7 @@ package-lock.json       # npm 锁文件
 各版本内一级目录：
 
 ```text
-通用设计标准 → 控件与组件 → 人机交互标准 → 系统特性与能力标准 → 多端设备标准 → 应用最佳实践标准 → 资源
+通用设计标准 → 控件与组件 → 人机交互标准 → 系统特性与能力标准 → 多端设备标准 → 设计模式 → 资源
 ```
 
 （路径：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices` / `resources`）
@@ -317,7 +317,7 @@ package-lock.json       # npm 锁文件
 
 - Embed API：https://developers.figma.com/docs/embeds/embed-figma-file/
 - 无 `fileKey` 时组件显示占位提示（预期行为）
-- 配置说明页：暂挂 [应用最佳实践标准](content/docs/os4/best-practices/index.mdx)（原 `resources/figma-library` 已重定向）
+- 配置说明页：暂挂 [设计模式](content/docs/os4/best-practices/index.mdx)（原 `resources/figma-library` 已重定向）
 - Code Connect（Dev Mode）尚未在本仓实现，计划在 Phase 3 试点
 
 ## 代码风格

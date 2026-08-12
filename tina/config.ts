@@ -46,7 +46,7 @@ const docSections = [
   { key: 'Interaction', label: '人机交互标准', include: 'interaction/**/*' },
   { key: 'System', label: '系统特性与能力标准', include: 'system/**/*' },
   { key: 'MultiDevice', label: '多端设备标准', include: 'multi-device/**/*' },
-  { key: 'BestPractices', label: '应用最佳实践标准', include: 'best-practices/**/*' },
+  { key: 'BestPractices', label: '设计模式', include: 'best-practices/**/*' },
   { key: 'Resources', label: '资源', include: 'resources/**/*' },
 ] as const;
 

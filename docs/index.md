@@ -42,7 +42,7 @@
 |------|------|
 | `docs/` | 工程设计文档（本目录） |
 | `content/docs/` | Fumadocs 网站 MDX（根级 `meta.json` 注册 `os4` / `os5`） |
-| `content/docs/os4/` | HyperOS 4 规范（默认；一级：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices` / `resources`） |
+| `content/docs/os4/` | HyperOS 4 规范（默认；一级：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`（设计模式） / `resources`） |
 | `content/docs/os4/resources/icons.mdx` | HyperOS 图标库预览（`<IconGallery />`；属「资源」一级目录） |
 | `content/docs/os5/` | HyperOS 5 占位（侧栏可见，内容未发布） |
 | `src/app/resources/` | 设计资源中心路由（`/resources`；独立 hub，非 docs 侧栏） |

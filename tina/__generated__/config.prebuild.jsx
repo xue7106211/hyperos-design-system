@@ -312,7 +312,7 @@ var docSections = [
   { key: "Interaction", label: "\u4EBA\u673A\u4EA4\u4E92\u6807\u51C6", include: "interaction/**/*" },
   { key: "System", label: "\u7CFB\u7EDF\u7279\u6027\u4E0E\u80FD\u529B\u6807\u51C6", include: "system/**/*" },
   { key: "MultiDevice", label: "\u591A\u7AEF\u8BBE\u5907\u6807\u51C6", include: "multi-device/**/*" },
-  { key: "BestPractices", label: "\u5E94\u7528\u6700\u4F73\u5B9E\u8DF5\u6807\u51C6", include: "best-practices/**/*" },
+  { key: "BestPractices", label: "\u8BBE\u8BA1\u6A21\u5F0F", include: "best-practices/**/*" },
   { key: "Resources", label: "\u8D44\u6E90", include: "resources/**/*" }
 ];
 var config_default = defineConfig({

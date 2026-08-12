@@ -252,7 +252,7 @@ hyperos-design-system/
 │   │   ├── interaction/    # 人机交互标准
 │   │   ├── system/         # 系统特性与能力标准
 │   │   ├── multi-device/    # 多端设备标准
-│   │   ├── best-practices/ # 应用最佳实践标准
+│   │   ├── best-practices/ # 设计模式
 │   │   └── resources/      # 资源（HyperOS 图标库等）
 │   └── os5/                # HyperOS 5（占位；结构同 os4）
 ├── tokens/                 # Design Tokens（层 × light/dark）
@@ -354,7 +354,7 @@ export default defineConfig({ mdxOptions: {} });
 | 图标 | `/docs/os4/resources/icons` | IconGallery（分类 / 复制名称与 SVG；侧栏「资源」） |
 | 组件 | `/docs/os4/components/actions/button` | 完整规范 + `public/media/...` 配图；FigmaJump / TokenTable / PlatformTabs 等按页选用 |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
-| 最佳实践 | `/docs/os4/best-practices` | 应用层实践入口 |
+| 设计模式 | `/docs/os4/best-practices` | 页面模式、加载、引导、系统能力等应用层模式 |
 | 资源（docs） | `/docs/os4/resources` | HyperOS 图标库等资产（侧栏） |
 | 设计资源中心 | `/resources` | 独立 hub：Catalog + Codex 锚点、Figma / 插件 / Token / 字体 / Brand（非 docs 侧栏；数据 `src/lib/resources.ts`） |
 

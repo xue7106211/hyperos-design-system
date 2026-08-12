@@ -91,8 +91,19 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 │   └── 框选反馈
 ├── 多端设备标准
 │   └── Index                    # 模块总览（暂无下级页）
-├── 应用最佳实践标准
-│   └── Index                    # 模块总览（暂无下级页）
+├── 设计模式
+│   ├── Index                    # 模块总览
+│   ├── 页面模式
+│   ├── 加载与刷新
+│   ├── 下载
+│   ├── 状态提示
+│   ├── 启动
+│   ├── 引导
+│   ├── 资源选择
+│   ├── 系统分享
+│   ├── 自升级
+│   ├── 系统能力衔接
+│   └── 数据图表化
 └── 资源
     ├── Index                    # 模块总览
     └── HyperOS 图标库           # /docs/os4/resources/icons
@@ -179,8 +190,19 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
   - 框选反馈
 - 多端设备标准
   - Index（模块总览）
-- 应用最佳实践标准
+- 设计模式
   - Index（模块总览）
+  - 页面模式
+  - 加载与刷新
+  - 下载
+  - 状态提示
+  - 启动
+  - 引导
+  - 资源选择
+  - 系统分享
+  - 自升级
+  - 系统能力衔接
+  - 数据图表化
 - 资源
   - Index（模块总览）
   - HyperOS 图标库
@@ -196,7 +218,7 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 | Icons | 资源 → HyperOS 图标库（`resources/icons`） | 原 OS 一级入口已迁入「资源」 |
 | Components（actions / inputs / …） | 控件与组件（导航搜索 / 菜单和操作 / 选择和输入 / 容器类 / 展示类） | 分组与叶子页按本列表重划；中英对照见上 |
 | Patterns | 系统特性与能力标准 / 展示类空状态等 | 旧路径 301 到 `system` 或对应组件页 |
-| Resources | 应用最佳实践标准（`best-practices/`） | 旧 Resources 页暂重定向至 best-practices；现「资源」为新一级目录（图标库） |
+| Resources | 设计模式（`best-practices/`） | 旧 Resources 页暂重定向至 best-practices；现「资源」为新一级目录（图标库） |
 | （无） | 人机交互标准 | 新增一级 |
 | （无） | 多端设备标准 | 新增一级，暂仅 Index |
 | （无） | 资源 | 新增一级；含 HyperOS 图标库 |
