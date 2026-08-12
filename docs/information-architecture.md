@@ -21,7 +21,7 @@
 ## 2. 站点地图
 
 ```text
-/  (Landing；PillNav：设计指南 / 系统组件 / 设计资源)
+/  (Landing；PillNav：概览 / 设计指南 / 设计资源)
 ├── /docs                    # → 重定向 /docs/os4
 │   ├── os4/                 # HyperOS 4（当前默认）
 │   │   ├── index            # HyperOS 4 Design System

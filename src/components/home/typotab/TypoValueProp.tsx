@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { typoValueProp } from './content';
+import { TypoFeatureCard } from './TypoFeatureCard';
 import { TypoStagger, TypoStaggerItem } from './TypoReveal';
 import { TypoSection } from './TypoSection';
 
@@ -43,6 +44,17 @@ export function TypoValueProp() {
                 />
               </div>
             </Link>
+          </TypoStaggerItem>
+        ))}
+      </TypoStagger>
+
+      <TypoStagger
+        className="flex w-full max-w-[1000px] flex-col gap-5"
+        stagger={0.12}
+      >
+        {typoValueProp.featureCards.map((card) => (
+          <TypoStaggerItem key={card.title}>
+            <TypoFeatureCard {...card} />
           </TypoStaggerItem>
         ))}
       </TypoStagger>

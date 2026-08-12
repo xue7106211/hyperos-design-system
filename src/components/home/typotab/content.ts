@@ -20,9 +20,37 @@ export const typoHero = {
   demoAlt: 'HyperOS 设计系统多机界面预览',
 } as const;
 
-export const typoValueProp = {
-  title: '设计规范与资产',
+/** 设计语言宣言：放在「设计指南」之上 */
+export const typoDesignLanguage = {
+  title: '设计语言再次进化',
   subtitle: '围绕生命感，重塑 HyperOS，持续打造和谐美学',
+  cards: [
+    {
+      title: '柔光玻璃',
+      body: '将材质视作独立界面物质,统一整合其光学行为、空间属性与交互响应能力，系统化地模拟光线的传播与反射，构建兼具通透性与层次感的数字物质。',
+      tone: 'quiet' as const,
+      image: '/home/value-soft-glass-v2.jpg',
+      imageAlt: 'HyperOS 柔光玻璃：锁屏音乐控件材质示意',
+      href: `${defaultDocsRoute}/general/philosophy`,
+    },
+    {
+      title: '全新设计组件',
+      body: '打造更多沉浸光感组件，系统化地应用于核心界面的互动区域,通过材质表达、交互响应与自适应机制的整合，重塑体验范式。',
+      tone: 'quiet' as const,
+      image: '/home/value-new-components-v3.jpg',
+      imageAlt: 'HyperOS 光感设计组件：笔记、旅程与设备控件示意',
+      href: `${defaultDocsRoute}/components`,
+    },
+  ],
+} as const;
+
+/**
+ * 设计指南：原「设计规范与资产」+ 原「多终端与系统特性」入口融合。
+ */
+export const typoValueProp = {
+  title: '设计指南',
+  subtitle:
+    '了解最新 HyperOS 设计动态，系统特性与能力，打造和谐流畅生态体验。',
   cards: [
     {
       title: '设计规范',
@@ -57,28 +85,8 @@ export const typoValueProp = {
       variant: 'menubar' as const,
     },
   ],
-} as const;
-
-export const typoRecentUpdates = {
-  title: '最新设计动态',
-  subtitle: '跟进设计系统最新入库的规范、组件与资产变更。',
-  moreHref: `${defaultDocsRoute}#最近更新`,
-  moreLabel: '查看全部更新',
-} as const;
-
-export const typoShortcuts = {
-  title: '更快找到你要的规范',
-  subtitle: '全文搜索与侧栏信息架构，让组件与 Token 一键可达。',
-  keyboardSrc: '/typotab/images/mac-keyboard.png',
-  keyboardAlt: '快捷检索示意',
-  cycle: ['输入组件名…', '定位规范页…', '已打开文档'] as const,
-  cycleKeys: ['CMD+K', 'CMD+K', 'CMD+K'] as const,
-} as const;
-
-export const typoUseCases = {
-  title: '多终端与系统特性',
-  subtitle: '在同一套系统里覆盖设备差异、交付资产与落地实践。',
-  cards: [
+  /** 原「多终端与系统特性」彩色大卡，并入本区 */
+  featureCards: [
     {
       title: '多端设备标准',
       body: '手机、Pad 等多端场景下的布局、适配与一致性约定。',
@@ -93,7 +101,7 @@ export const typoUseCases = {
       color: '#AD6DFF',
       image: '/home/usecase-resources.jpg',
       imageAlt: 'HyperOS 锁屏个性化与时钟样式示意',
-      href: '/resources',
+      href: `${defaultDocsRoute}/interaction`,
     },
     {
       title: '系统特性与能力',
@@ -101,9 +109,16 @@ export const typoUseCases = {
       color: '#FF7300',
       image: '/home/usecase-best-practices.jpg',
       imageAlt: 'HyperOS 桌面小组件与日历界面示意',
-      href: `${defaultDocsRoute}/best-practices`,
+      href: `${defaultDocsRoute}/system`,
     },
   ],
+} as const;
+
+export const typoRecentUpdates = {
+  title: '最新设计动态',
+  subtitle: '跟进设计系统最新入库的规范、组件与资产变更。',
+  moreHref: `${defaultDocsRoute}#最近更新`,
+  moreLabel: '查看全部更新',
 } as const;
 
 export const typoApps = {

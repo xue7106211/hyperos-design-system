@@ -3,12 +3,11 @@ import { BackToTop } from '@/components/BackToTop';
 import { PillNav } from '@/components/home/PillNav';
 import {
   TypoApps,
+  TypoDesignLanguage,
   TypoFaq,
   TypoHero,
   TypoRecentUpdates,
   TypoRule,
-  TypoShortcuts,
-  TypoUseCases,
   TypoValueProp,
 } from '@/components/home/typotab';
 import { typoHero } from '@/components/home/typotab/content';
@@ -27,11 +26,9 @@ export default function HomePage() {
       <div className="typo-clone">
         <TypoHero />
         <TypoRule />
+        <TypoDesignLanguage />
+        <TypoRule />
         <TypoValueProp />
-        <TypoRule />
-        <TypoUseCases />
-        <TypoRule />
-        <TypoShortcuts />
         <TypoRule />
         <TypoApps />
         <TypoRule />
