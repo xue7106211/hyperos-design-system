@@ -38,5 +38,5 @@ npm run icons:sync
 
 ## 文档站预览
 
-- 页面：[`/docs/os4/resources/icons`](../content/docs/os4/resources/icons.mdx)（侧栏「资源」→ HyperOS 图标库）
+- 页面：[`/docs/os4/resources/icons`](../content/docs/os4/resources/icons.mdx)（不在 docs 侧栏；也可从 `/resources` 进入）
 - 组件：`<IconGallery />`（可选 `categories` 过滤）

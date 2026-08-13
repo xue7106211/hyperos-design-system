@@ -140,10 +140,10 @@ content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
     general/            # 通用设计标准
     components/         # 控件与组件（navigation / actions / inputs / containers / display）
     interaction/        # 人机交互标准
+    best-practices/     # 设计模式（路径 slug 保持 best-practices）
     system/             # 系统特性与能力标准
     multi-device/        # 多端设备标准
-    best-practices/     # 设计模式（路径 slug 保持 best-practices）
-    resources/          # 资源（HyperOS 图标库等）
+    resources/          # 图标库等（保留 URL，不在侧栏一级）
   os5/                  # HyperOS 5（占位，侧栏禁用跳转；结构同 os4）
 docs/                   # 工程设计文档（见 docs/index.md）
   index.md
@@ -214,10 +214,12 @@ package-lock.json       # npm 锁文件
 各版本内一级目录：
 
 ```text
-通用设计标准 → 控件与组件 → 人机交互标准 → 系统特性与能力标准 → 多端设备标准 → 设计模式 → 资源
+通用设计标准 → 控件与组件 → 人机交互标准 → 设计模式 → 系统特性与能力标准 → 多端设备标准
 ```
 
-（路径：`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices` / `resources`）
+（路径：`general` / `components` / `interaction` / `best-practices` / `system` / `multi-device`）
+
+`content/docs/{os}/resources/`（HyperOS 图标库等）仍保留页面 URL，**不进入** docs 侧栏一级；入口在 [设计资源中心](/resources) 与文档内链。
 
 - **默认版本**：`/docs` → `/docs/os4`（`next.config.mjs` 重定向）
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
@@ -225,6 +227,7 @@ package-lock.json       # npm 锁文件
 - **OS5**：侧栏可见但禁用；`/docs/os5` 暂重定向到 OS4，待内容发布后移除
 - **设计资源中心**：`/resources`（Landing `PillNav`「设计资源」；当前页短圆角底线选中态）；独立 hub，内容数据在 `src/lib/resources.ts`，组件在 `src/components/resources/`；Catalog（`#catalog`）设计类条目跳转页内锚点（`#components` / `#design-tools` / `#design-token` / `#fonts` / `#icon` / `#brand`）；右侧 Codex 导航见 `ResourcesCodexNav` + `resourcesPageAnchors`；「返回顶部」仅挂在 `/resources`（首页不挂，避免与 Ask AI 右下角入口重叠）
 - **设计模式**（侧栏名；路径 `best-practices/`）：总览 + 二级占位页（页面模式 / 加载与刷新 / 下载 / 状态提示 / 启动 / 引导 / 资源选择 / 系统分享 / 自升级 / 系统能力衔接 / 数据图表化）；OS5 同步占位
+- **多端设备标准**（路径 `multi-device/`）：总览 + 二级占位页（设备特性发挥 / 设备互通与跨设备协同 / 应用最佳实践）；OS5 同步占位
 
 新增页面时 **必须**：
 

@@ -15,7 +15,7 @@ export const typoHero = {
   subtitle:
     '在 HyperOS4 中，我们希望能营造一个有温度的数字空间，为你提供更自然、生动、精致的生命感新体验。',
   cta: '浏览设计规范',
-  ctaHref: `${defaultDocsRoute}/general`,
+  ctaHref: defaultDocsRoute,
   /** 静图封面（LCP / reduced-motion） */
   demoPoster: '/home/hero-devices-poster.jpg',
   demoVideoMp4: '/home/hero-devices.mp4',
@@ -95,20 +95,19 @@ export const typoValueProp = {
       href: `${defaultDocsRoute}/system`,
     },
     {
+      title: '设计模式',
+      body: '沉淀可复用的应用层设计模式。',
+      image: '/home/value-design-patterns-v2.jpg',
+      imageAlt: 'HyperOS 设计模式：桌面与锁屏布局示意',
+      href: `${defaultDocsRoute}/best-practices`,
+    },
+    {
       title: '设计变量',
       body: '语义色、间距与组件 Token，Light / Dark 一并查阅。',
       image: '/home/value-token-v3.jpg',
       imageAlt: 'Design Token 层级：Value → Base → Semantic → Component',
       href: `${defaultDocsRoute}/general/design-token`,
       variant: 'settings' as const,
-    },
-    {
-      title: '图标资产',
-      body: '分类预览、搜索与复制，接入 HyperOS 图标资产。',
-      image: '/home/value-icons-v2.jpg',
-      imageAlt: 'HyperOS 图标资产网格示意',
-      href: `${defaultDocsRoute}/resources/icons`,
-      variant: 'menubar' as const,
     },
   ],
 } as const;
@@ -188,7 +187,7 @@ export const typoPricing = {
       period: '当前版本',
       note: 'HyperOS 4 为默认文档版本，OS5 即将开放。',
       cta: '进入文档',
-      ctaHref: `${defaultDocsRoute}/general`,
+      ctaHref: defaultDocsRoute,
       color: '#0095FF',
       features: ['通用设计标准', '控件与组件', '人机交互与系统能力'],
       badge: null as string | null,
@@ -228,7 +227,7 @@ export const typoFaq = {
     {
       question: '设计规范、Token 和图标分别在哪里？',
       answer:
-        '设计规范在「通用设计标准」与「控件与组件」；Token 可在文档中的 TokenTable 或 Token 相关页查看；图标库在「资源 → HyperOS 图标库」，也可从设计资源中心进入。',
+        '设计规范在「通用设计标准」与「控件与组件」；Token 可在文档中的 TokenTable 或 Token 相关页查看；图标库在设计资源中心，也可打开文档内 HyperOS 图标库预览。',
     },
     {
       question: '如何对照 Android / iOS 实现？',

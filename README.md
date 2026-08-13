@@ -52,10 +52,10 @@ content/docs/        # 网站 MDX 文档（对外）
     general/         # 通用设计标准
     components/      # 控件与组件
     interaction/     # 人机交互标准
+    best-practices/  # 设计模式（slug 仍为 best-practices）
     system/          # 系统特性与能力标准
     multi-device/     # 多端设备标准
-    best-practices/  # 设计模式（slug 仍为 best-practices）
-    resources/       # 资源（HyperOS 图标库等）
+    resources/       # 图标库等（保留 URL，不在侧栏一级）
   os5/               # HyperOS 5 占位（侧栏可见，内容未发布；结构同 os4）
 docs/                # 工程设计文档（对内，见 docs/index.md）
   index.md

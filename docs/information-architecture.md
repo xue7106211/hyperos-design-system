@@ -28,10 +28,9 @@
 │   │   ├── general/         # 通用设计标准
 │   │   ├── components/      # 控件与组件
 │   │   ├── interaction/     # 人机交互标准
-│   │   ├── system/          # 系统特性与能力标准
-│   │   ├── multi-device/     # 多端设备标准
 │   │   ├── best-practices/  # 设计模式
-│   │   └── resources/       # 资源（图标库等；docs 侧栏）
+│   │   ├── system/          # 系统特性与能力标准
+│   │   └── multi-device/     # 多端设备标准
 │   └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
 │       └── （结构同 os4）
 └── /resources               # 设计资源中心（独立 hub；右侧 Codex 锚点导航）
@@ -71,8 +70,6 @@
     │   └── display/                       # 展示类
     │
     ├── interaction/                       # 人机交互标准
-    ├── system/                            # 系统特性与能力标准
-    ├── multi-device/                       # 多端设备标准（暂仅 index）
     ├── best-practices/                    # 设计模式（侧栏名；slug 仍为 best-practices）
     │   ├── index
     │   ├── page-patterns                  # 页面模式
@@ -86,7 +83,13 @@
     │   ├── self-update                    # 自升级
     │   ├── system-capability              # 系统能力衔接
     │   └── data-charts                    # 数据图表化
-    └── resources/                         # 资源
+    ├── system/                            # 系统特性与能力标准
+    ├── multi-device/                       # 多端设备标准
+    │   ├── index
+    │   ├── device-characteristics          # 设备特性发挥
+    │   ├── cross-device                    # 设备互通 / 跨设备协同
+    │   └── app-best-practices              # 应用最佳实践
+    └── resources/                         # 图标库等（保留 URL，不在侧栏一级）
         ├── index
         └── icons                          # HyperOS 图标库
 ```

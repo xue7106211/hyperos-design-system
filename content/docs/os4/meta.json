@@ -7,9 +7,8 @@
     "general",
     "components",
     "interaction",
-    "system",
-    "multi-device",
     "best-practices",
-    "resources"
+    "system",
+    "multi-device"
   ]
 }

@@ -1,4 +1,9 @@
 {
   "title": "多端设备标准",
-  "pages": ["index"]
+  "pages": [
+    "index",
+    "device-characteristics",
+    "cross-device",
+    "app-best-practices"
+  ]
 }

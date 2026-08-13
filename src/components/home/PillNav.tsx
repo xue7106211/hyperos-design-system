@@ -12,7 +12,7 @@ import { defaultDocsRoute } from '@/lib/shared';
  */
 const links = [
   { href: '/', label: '概览' },
-  { href: `${defaultDocsRoute}/general`, label: '设计指南' },
+  { href: defaultDocsRoute, label: '设计指南' },
   { href: '/resources', label: '设计资源' },
 ] as const;
 

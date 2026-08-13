@@ -351,14 +351,14 @@ export default defineConfig({ mdxOptions: {} });
 | 类型 | 路径示例 | 核心内容 |
 |------|----------|----------|
 | 通用设计 | `/docs/os4/general/design-token` | 原则说明 + TokenTable |
-| 图标 | `/docs/os4/resources/icons` | IconGallery（分类 / 复制名称与 SVG；侧栏「资源」） |
+| 图标 | `/docs/os4/resources/icons` | IconGallery（分类 / 复制名称与 SVG；不在侧栏一级） |
 | 组件 | `/docs/os4/components/actions/button` | 完整规范 + `public/media/...` 配图；FigmaJump / TokenTable / PlatformTabs 等按页选用 |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 设计模式 | `/docs/os4/best-practices` | 页面模式、加载、引导、系统能力等应用层模式 |
-| 资源（docs） | `/docs/os4/resources` | HyperOS 图标库等资产（侧栏） |
+| 资源（docs） | `/docs/os4/resources` | HyperOS 图标库等资产（不在侧栏一级，直达 URL 仍可用） |
 | 设计资源中心 | `/resources` | 独立 hub：Catalog + Codex 锚点、Figma / 插件 / Token / 字体 / Brand（非 docs 侧栏；数据 `src/lib/resources.ts`） |
 
-> 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。`/resources` 与 docs「资源」分流：前者聚合站外资产与工具，后者承载规范内预览（如 IconGallery）。
+> 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。设计资产入口为 `/resources`；规范内图标预览仍在 `/docs/os4/resources/icons`，但不挂 docs 侧栏一级。
 
 ### 5.3 组件文档页模板
 
