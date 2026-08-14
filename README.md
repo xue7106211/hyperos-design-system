@@ -28,7 +28,9 @@ npm run dev
 
 访问 [http://localhost:3000](http://localhost:3000) · CMS 后台 [http://localhost:3000/admin](http://localhost:3000/admin)
 
-`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`。Ask AI 需在 `.env.local` 配置 `MI_LLM_*`（模板见 `.env.example`）；未配置时不显示入口。线上在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入同名变量后发布（见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」）。
+`npm install` 的 `postinstall` 会依次跑 `fumadocs-mdx` 与 `patch-package`（应用 `patches/` 下的补丁，当前只有 `next-themes+0.4.6.patch`）；不要手改 `node_modules`。
+
+`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`（`npm run tina:dev` 为同一命令的别名）。Ask AI 需在 `.env.local` 配置 `MI_LLM_*`（模板见 `.env.example`）；未配置时不显示入口。线上在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入同名变量后发布（见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」）。
 
 ## 构建与检查
 
@@ -41,6 +43,14 @@ npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
 npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
 npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/*.{light,dark}.json
 ```
+
+单元测试用 Node 内置 runner（没有 `npm test` script，也未引入 Jest / Vitest）：
+
+```bash
+node --test "src/**/*.test.mjs"   # 当前 6 suites / 18 tests
+```
+
+覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）与彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
 
 生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/deployment.md](docs/deployment.md)；镜像定义见根目录 `Dockerfile`。
 
@@ -65,14 +75,17 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
   sidebar-ia.md
   roadmap.md
   maintainers.md
-  research/          # 调研笔记（含 aiforui.dev → /resources）
+  design-references/ # 参考站点截图（typotab.com、aiforui.dev；非对外）
+  research/          # 调研笔记（aiforui.dev → /resources；typotab.com → Landing typotab）
   superpowers/       # Agent 设计 / 实现计划产物（specs、plans；非对外）
 icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
 scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
+patches/             # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
 tokens/              # Design Tokens（reference / semantic / component × light / dark）
 tina/                # TinaCMS schema 与 block 模板
+  tina-lock.json     # tinacms 依赖/schema 锁（产物，已提交）
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
 .env.example         # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
 components.json      # shadcn / AI Elements（Ask AI UI）
@@ -82,20 +95,22 @@ src/
     ai/              # Ask AI（AiAssistant + 浮动面板）
     ai-elements/     # AI Elements 对话组件
     ui/              # shadcn 基础组件（Ask AI chrome）
-    docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta
+    docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot
     easter-egg/      # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/            # Landing：PillNav + typotab；资源页共用 PillNav
     resources/       # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
     mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing
+    BackToTop.tsx    # 「返回顶部」（首页不挂；/resources 使用）
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、shared、resources、icons、tina-docs*、ai/、cn、utils 等
+  lib/               # source、layout、shared、resources、icons、recent-docs、tina-docs*、ai/、cn、utils 等
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
   icons/             # 图标静态访问（由 icons:sync 生成，含 manifest.json）
   media/             # 规范配图（已提交；MDX 用 /media/...）
   resources/         # /resources 页卡片配图（已提交）
+  admin/             # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
   uploads/           # TinaCMS 媒体上传（本地模式；gitignore）
 source.config.ts     # MDX frontmatter schema
 next.config.mjs      # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容

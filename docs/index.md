@@ -22,6 +22,9 @@
 | 图标 SVG 入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
 | 规范配图入库 | `public/media/...` + MDX `/media/...`（Fancybox；见 AGENTS「文档配图」） |
+| 单元测试（纯逻辑） | `node --test "src/**/*.test.mjs"`（无 `npm test` script；覆盖 Ask AI 检索与彩蛋连点；约定见 [AGENTS.md](../AGENTS.md)「单元测试」） |
+| 依赖补丁 | `patches/next-themes+0.4.6.patch`；`npm install` 的 `postinstall` 经 **patch-package** 自动应用，勿手改 `node_modules` |
+| 参考站点截图（比对用） | [design-references/](./design-references/)（typotab.com、aiforui.dev；非对外） |
 | Agent 设计 / 实现计划产物 | [superpowers/](./superpowers/)（`specs/`、`plans/`；非对外） |
 
 ## 文档目录
@@ -36,6 +39,8 @@
 | [maintainers.md](./maintainers.md) | 文档页 `maintainerOpenId` 备忘 |
 | [icons/README.md](../icons/README.md) | 图标 SVG 入库与 `icons:sync` 约定 |
 | [research/aiforui.dev/ADAPTATION.md](./research/aiforui.dev/ADAPTATION.md) | `/resources` 视觉适配笔记（调研，非对外文档） |
+| [research/typotab.com/](./research/typotab.com/) | Landing typotab 区块调研（页面拓扑 / 动效 / 行为 spec；非对外） |
+| [design-references/](./design-references/) | 参考站点整页与局部截图（typotab.com、aiforui.dev；仅供比对，非对外） |
 | [superpowers/](./superpowers/) | Agent 设计 / 实现计划产物（如彩蛋、Ask AI specs / plans；非对外） |
 
 ## 路径对照
@@ -58,6 +63,8 @@
 | `public/icons/` | 图标静态访问（`icons:sync` 产物） |
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
 | `scripts/` | 仓库脚本（`generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
+| `patches/` | patch-package 补丁（`next-themes+0.4.6.patch`；`postinstall` 自动应用） |
+| `public/admin/` | TinaCMS 后台静态产物（`tinacms build` 生成；**gitignore**） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta`、`DocsDesignCodePilot` / `DocsModeSwitch`（Design / Code 双模 pilot） |
 | `content/docs/os4/components/containers/drawer-code.mdx` | 双模 pilot 的 Code 侧正文（**不进 `meta.json`**；由 `page.tsx` 直取渲染，URL 仍可直达） |
 | `src/components/ai/` | Ask AI：`AiAssistant` 门闩 + `search` 浮动面板（AI Elements） |
@@ -71,18 +78,22 @@
 | `src/components/home/` | Landing：`PillNav` + typotab 区块（`TypoHero` / `TypoValueProp` / `TypoRecentUpdates` / `TypoFaq` 等） |
 | `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
 | `docs/superpowers/` | Agent specs / plans（非对外；与站点内容无关） |
+| `docs/design-references/` | 参考站点截图（typotab.com、aiforui.dev；非对外） |
+| `docs/research/` | 调研笔记（`aiforui.dev` → `/resources`；`typotab.com` → Landing typotab） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
+| `src/lib/recent-docs.ts` | Landing「最近更新」：按 git 提交时间排序的 OS4 文档（跳过总览页与 `-code` 伴生页） |
 | `src/lib/icons.ts` | 图标 manifest 读取 |
 | `src/lib/search-tokenizer.ts` | Orama 中英文混合搜索分词（`Intl.Segmenter('zh-CN')`） |
 | `src/lib/shared.ts` | 站点常量、默认维护人、飞书 AppLink |
 | `src/lib/tina-docs.ts` / `tina-docs-client.ts` / `tina-node-handler.ts` | Tina 文档读取与 `/api/tina` 桥接 |
 | `source.config.ts` | MDX frontmatter schema |
-| `tina/` | TinaCMS schema 与已提交的 `__generated__/` |
+| `tina/` | TinaCMS schema 与已提交的 `__generated__/`、`tina-lock.json`（均为产物，改 schema 后需同步提交） |
 | `Dockerfile` | 生产镜像（不跑 `tinacms build`；builder 保留 `.git`） |
 | `AGENTS.md` / `CLAUDE.md` | Agent 工作指引 |
 
 ## 变更摘要
 
+- **2026-08-14**：全仓文档与依赖引用同步。补记此前文档零覆盖的三项事实：`patches/` + **patch-package**（`postinstall` 依次跑 `fumadocs-mdx` 与 `patch-package`）、纯逻辑单测（`node --test "src/**/*.test.mjs"`，无 `npm test` script）、`public/admin/` 与 `docs/design-references/`；`technical-design.md` §4.2 结构树按实际补齐（`api/chat`、`components/ai*`、`ui/`、`lib/recent-docs` 等），§4.3 记录 `fumadocs-ui` 为 npm alias（`@fumadocs/base-ui@16.11.1`）。Ask AI 正式环境已注入 `MI_LLM_*` 并发布，staging 待补（部署空间之间环境变量不继承）。
 - **2026-08-13**：补记文档页 **Design / Code 双模 pilot**（仅「抽屉浮窗」；`drawer-code.mdx` 不进侧栏、Code 模式 TOC 走 portal 不改原生 TOC DOM；机制与已知限制见 [technical-design.md §5.4](./technical-design.md)、ADR-007）。Ask AI 检索层去掉调试期遗留的「圆角 / 36dp」硬编码回退词，并将检索故障与「无结果」区分开（`src/lib/ai/search-docs.ts`）。
 - **2026-08-13**：沉淀 Ask AI 线上配置：Matrix 部署空间 **编辑 → 主容器环境变量**（Oncall 确认；勿用「设置 → 变量配置」）；首页永久移除「多场景设计最佳实践」（删除 `TypoApps` 与 `public/home/app-icons`）。另：docs 侧栏移除「资源」一级（图标库页 URL 保留）；「多端设备标准」补齐二级占位页；OS4 / OS5 同步。
 - **2026-08-12**：侧栏「应用最佳实践标准」更名为「设计模式」（路径仍为 `best-practices/`）；OS4/OS5 补齐 11 个二级占位页；首页移除「返回顶部」以免与 Ask AI 入口重叠（`/resources` 仍保留）。

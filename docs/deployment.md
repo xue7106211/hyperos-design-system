@@ -5,7 +5,7 @@
 
 本文说明 **MiFlow（DEVX 流水线）** 与 **Matrix（部署平台）** 的职责拆分、发布流程与常见卡点。网站对外 MDX 不在此目录（见 `content/docs/`）。
 
-本地常用命令（与 `package.json` 一致）：`npm install` · `npm run dev`（`npm run tina:dev` 为同一开发命令别名）· `npm run build`（含 `tinacms build`）· `npm run tina:build` · `npm run start` · `npm run types:check` · `npm run icons:sync` · `npm run icons:import -- /path/to/svgs` · `npm run tokens:import -- /path/to/OS4Token`。生产镜像构建不跑 `tinacms build`；图标资产以仓库内已提交的 `icons/manifest.json` 与 `public/icons/` 为准；规范配图以已提交的 `public/media/` 为准。
+本地常用命令（与 `package.json` 一致）：`npm install`（`postinstall` 依次跑 `fumadocs-mdx` 与 `patch-package`）· `npm run dev`（`npm run tina:dev` 为同一开发命令别名）· `npm run build`（含 `tinacms build`）· `npm run tina:build` · `npm run start` · `npm run types:check` · `npm run icons:sync` · `npm run icons:import -- /path/to/svgs` · `npm run tokens:import -- /path/to/OS4Token`。纯逻辑单测用 `node --test "src/**/*.test.mjs"`（无 `npm test` script）。生产镜像构建不跑 `tinacms build`；图标资产以仓库内已提交的 `icons/manifest.json` 与 `public/icons/` 为准；规范配图以已提交的 `public/media/` 为准。
 
 ## 1. MiFlow vs Matrix
 
@@ -166,7 +166,7 @@ Matrix → 应用 hyperos-design-system
       → 下一步 → 核对 → 发布
 ```
 
-测环境同理，改部署空间为 `hyperos-design-system-staging`。
+测环境同理，改部署空间为 `hyperos-design-system-staging`。**两个部署空间的环境变量互不继承**，prod 配好不代表 staging 生效，需各配一次。
 
 说明：
 
@@ -175,6 +175,21 @@ Matrix → 应用 hyperos-design-system
 - **不必为配 env 单独重建镜像**（可沿用当前 `prod-*` / `staging-*` tag）
 - 若开启了发布审批，编辑后需审批通过才生效
 - Oncall 建议敏感 Key 可走 KeyCenter 注入；本站尚未接 KeyCenter 客户端，**现阶段以部署单「环境变量」为准**（Key 勿进 git / 镜像）
+
+#### 怎么确认 env 已生效
+
+入口由服务端门闩控制（`isAiChatConfigured()`，见 `src/lib/ai/config.ts`），`AiAssistant` 里 `await connection()` 强制动态渲染 → **env 是运行时读的，配 env 不必重建镜像**，沿用当前 `prod-*` / `staging-*` tag 发布即可。
+
+不想靠肉眼看右下角，可用 `/api/chat` 的返回码区分（门闩在解析 body 之前）：
+
+```bash
+curl -i -X POST https://<域名>/api/chat -H 'Content-Type: application/json' -d 'not-json'
+```
+
+| 响应 | 含义 |
+|------|------|
+| `503` + `{"error":"Ask AI 未配置，请稍后重试"}` | env **未生效**（缺 `MI_LLM_*` 或 `AI_CHAT_ENABLED=false`） |
+| `400` + `{"error":"请求体不是有效的 JSON"}` | env **已生效**，门闩已通过 |
 
 #### 容易误判的入口（不是自定义业务 env）
 

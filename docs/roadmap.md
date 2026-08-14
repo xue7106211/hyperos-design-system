@@ -33,7 +33,7 @@
 ## 下一步
 
 - [ ] Design / Code 双模从 pilot 转约定（frontmatter 或 `*-code.mdx` 命名替代硬编码 slug；决定 Code 页是否排除出搜索索引；补 Tina 正文编辑绑定）
-- [ ] 正式 / staging Matrix 注入 `MI_LLM_*` 并验收 Ask AI 入口（见 [deployment.md](./deployment.md)「Ask AI 环境变量」）
+- [ ] **staging** Matrix 注入 `MI_LLM_*` 并验收 Ask AI 入口（正式环境已于 2026-08-14 在部署单主容器环境变量注入并发布；staging 为独立部署空间，不继承 prod 变量。见 [deployment.md](./deployment.md)「Ask AI 环境变量」）
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
 - [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
 - [ ] `/resources` Engineering 目录外链与维护团队落地页（`taughtByHref`）补齐

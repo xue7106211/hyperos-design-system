@@ -29,8 +29,8 @@
 包管理器：**npm**（`package-lock.json`；`.npmrc` 启用 `legacy-peer-deps`）
 
 ```bash
-npm install          # 安装依赖（postinstall 会运行 fumadocs-mdx）
-npm run dev          # TinaCMS + Next.js 开发（/admin → CMS 后台）
+npm install          # 安装依赖（postinstall 依次跑 fumadocs-mdx 与 patch-package）
+npm run dev          # TinaCMS + Next.js 开发（/admin → CMS 后台）；tina:dev 为同名别名
 npm run build        # 本地全量构建（tinacms build + next build），改 tina schema 后必跑
 npm run tina:build   # 只跑 tinacms build（刷新 tina/__generated__/）
 npm run start        # 启动生产服务
@@ -38,7 +38,11 @@ npm run types:check  # MDX 生成 + TypeScript 检查
 npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
 npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
 npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/*.{light,dark}.json
+
+node --test "src/**/*.test.mjs"   # 运行仓库内单元测试（无 npm script；见下「单元测试」）
 ```
+
+> `postinstall` 会用 **patch-package** 应用 `patches/` 下的补丁（当前只有 `next-themes+0.4.6.patch`）。不要手改 `node_modules`；要调整补丁请改源码后重新生成 `.patch` 并提交。
 
 > **生产 Docker 构建只跑 `npx next build`**，不跑 `tinacms build`。部署详解见 [docs/deployment.md](docs/deployment.md)。
 
@@ -153,17 +157,20 @@ docs/                   # 工程设计文档（见 docs/index.md）
   sidebar-ia.md
   roadmap.md
   maintainers.md
-  research/             # 调研笔记（如 aiforui.dev → /resources 适配）
+  design-references/     # 参考站点截图（typotab.com、aiforui.dev；仅供比对，非对外）
+  research/             # 调研笔记（aiforui.dev → /resources；typotab.com → Landing typotab）
   superpowers/          # Agent 设计 / 实现计划产物（specs、plans；非对外）
 tokens/                 # Design Tokens（reference|semantic|component × light|dark）
 icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
   svg/{category}/
   manifest.json
 scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
+patches/                # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
   schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block
   database.ts           # 本地 filesystem datalayer
+  tina-lock.json        # tinacms 依赖/schema 锁（产物，已提交）
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
 .env.example            # TinaCMS + Ask AI（MI_LLM_*）模板；线上见 docs/deployment.md
 components.json         # shadcn / AI Elements 注册表配置（Ask AI UI）
@@ -173,6 +180,7 @@ public/
   icons/                # 图标静态访问（icons:sync 产物，含 manifest.json）
   media/                # 规范配图（已提交；MDX 用 /media/...）
   resources/            # /resources 页卡片配图（已提交）
+  admin/                # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
   uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
   app/                  # Next.js 路由（docs、resources、admin、api/tina|search|chat、llms、og）
@@ -181,14 +189,15 @@ src/
     ai/                 # Ask AI（AiAssistant 门闩 + search 浮动面板）
     ai-elements/        # AI Elements（conversation / message / prompt / tool）
     ui/                 # shadcn 基础组件（仅服务于 Ask AI 等站点 chrome，非文档 Web demo）
-    docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
+    docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot
     easter-egg/         # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/               # Landing：PillNav + typotab（TypoHero / ValueProp / RecentUpdates / Faq 等）；资源页共用 PillNav
     resources/          # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
     mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
+    BackToTop.tsx       # 「返回顶部」（首页不挂；/resources 经 ResourcesBackToTop 使用）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source、layout、shared、resources、icons、tina-docs*、ai/、cn、utils（shadcn）等
+  lib/                  # source、layout、shared、resources、icons、recent-docs、tina-docs*、ai/、cn、utils（shadcn）等
 source.config.ts        # MDX frontmatter Zod schema
 next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts                # Markdown 内容协商（.md / Accept 重写）
@@ -341,11 +350,28 @@ package-lock.json       # npm 锁文件
 - 注释仅解释非显而易见的业务或集成逻辑
 - 飞书等导出的 `**标签：**正文` 在 CommonMark 下加粗常失效；应写成 `**标签**：正文`（冒号在加粗外）
 
+## 单元测试
+
+仓库有少量纯逻辑单测，用 **Node 内置 test runner**（`node:test` + `node:assert`），**没有** `npm test` script、也没引入 Jest / Vitest。
+
+```bash
+node --test "src/**/*.test.mjs"   # 全部（当前 6 suites / 18 tests）
+node --test src/lib/ai/search-docs.test.mjs   # 单个文件
+```
+
+| 测试 | 覆盖 |
+|------|------|
+| `src/lib/ai/search-docs.test.mjs` | Ask AI 检索层：查询归一化、OS4 过滤、「无结果」与「检索故障」区分 |
+| `src/components/easter-egg/rapid-click.test.mjs` | 彩蛋连点判定 `recordRapidClick` |
+
+约定：只给**不依赖 React 渲染 / Next 运行时**的纯函数写 `.test.mjs`（与被测文件同目录）。组件行为不做单测，靠 `npm run build` + 人工验收。
+
 ## 验证清单
 
 提交改动前：
 
 - [ ] `npm run build` 成功（含 `tinacms build`）
+- [ ] 若改了带 `.test.mjs` 的纯逻辑文件（Ask AI 检索、彩蛋连点等），`node --test "src/**/*.test.mjs"` 全绿
 - [ ] 新页面已在 `meta.json` 注册
 - [ ] 未破坏 `docs/` 工程设计文档
 - [ ] 未添加 Storybook / Web 组件 playground

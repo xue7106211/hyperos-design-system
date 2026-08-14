@@ -1,8 +1,8 @@
 # HyperOS Design System 文档站 — V1 技术设计方案
 
-> **版本**：V1.6  
-> **日期**：2026-08-13  
-> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token / 图标库页 / 文档配图 Fancybox / 设计资源中心 `/resources` / 全站彩蛋 / Ask AI 已落地；docs 侧栏「资源」一级已移除（图标 URL 保留）；生产鉴权与 Token CI 规划中
+> **版本**：V1.7  
+> **日期**：2026-08-14  
+> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token / 图标库页 / 文档配图 Fancybox / 设计资源中心 `/resources` / 全站彩蛋 / Ask AI 已落地（正式环境已注入 `MI_LLM_*`）；docs 侧栏「资源」一级已移除（图标 URL 保留）；生产鉴权与 Token CI 规划中。§4.2 仓库结构与 §4.3 依赖别名已按当前代码校准
 
 ---
 
@@ -265,7 +265,8 @@ hyperos-design-system/
 │   ├── manifest.json
 │   └── README.md
 ├── scripts/                # generate-icon-manifest.mjs、import-os4-tokens.mjs
-├── tina/                   # TinaCMS schema（按 os4/os5 × 分组 collections）
+├── patches/                # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
+├── tina/                   # TinaCMS schema（按 os4/os5 × 分组 collections）；tina-lock.json 与 __generated__/ 已提交
 ├── .env.example            # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
 ├── public/
 │   ├── logo/               # HyperOS Logo（light / dark）
@@ -273,23 +274,28 @@ hyperos-design-system/
 │   ├── icons/              # 图标静态访问（icons:sync 产物）
 │   ├── media/              # 规范配图（已提交；MDX 用 /media/...）
 │   ├── resources/          # /resources 页卡片配图（已提交）
+│   ├── admin/              # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
 │   └── uploads/            # TinaCMS 媒体上传（本地模式；gitignore）
 ├── src/
-│   ├── app/                # Next.js App Router（docs、resources、admin、api/tina、search、llms、og）
+│   ├── app/                # Next.js App Router（docs、resources、admin、api/tina|search|chat、llms、og）
 │   ├── components/
-│   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta
+│   │   ├── ai/             # Ask AI（AiAssistant 门闩 + search 浮动面板）
+│   │   ├── ai-elements/    # AI Elements（conversation / message / prompt / tool）
+│   │   ├── ui/             # shadcn 基础组件（Ask AI 等站点 chrome，非文档 Web demo）
+│   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot、DocsModeSwitch
 │   │   ├── easter-egg/     # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
 │   │   ├── home/           # Landing：PillNav + typotab；资源页共用 PillNav
 │   │   ├── resources/      # /resources：Hero、Catalog、CodexNav、FeatureCard、MatrixRain 等
 │   │   ├── mdx/            # DocsImage、DocFancybox、SpecImageGrid、FigmaEmbed、TokenTable、IconGallery、PlatformTabs 等
 │   │   ├── tina/           # Tina Visual Editing
+│   │   ├── BackToTop.tsx   # 「返回顶部」（首页不挂；/resources 使用）
 │   │   └── HyperOSLogo.tsx
-│   └── lib/                # source、layout、shared、resources、icons、docs-version-tabs、tina-docs*、search-tokenizer、git-file-mtime、cn
+│   └── lib/                # source、layout、shared、resources、icons、recent-docs、docs-version-tabs、tina-docs*、search-tokenizer、git-file-mtime、ai/、cn、utils
 ├── source.config.ts        # frontmatter Zod schema
 ├── next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 ├── proxy.ts                # Markdown 内容协商
 ├── .npmrc                  # legacy-peer-deps
-├── docs/                   # 工程设计文档（本目录；含 research/、superpowers/）
+├── docs/                   # 工程设计文档（本目录；含 research/、design-references/、superpowers/）
 ├── AGENTS.md               # Agent 工作指引（精简；部署细节见 deployment.md）
 ├── CLAUDE.md               # 指向 AGENTS.md
 ├── Dockerfile              # 生产镜像（builder 保留 .git 以解析文档更新时间）
@@ -310,6 +316,8 @@ hyperos-design-system/
 | `fumadocs-mdx` | MDX 编译、frontmatter、Collections | 扩展组件页 schema（figmaNodeId、platforms 等） |
 | `fumadocs-core` | Source API、搜索 | Orama 使用 `Intl.Segmenter('zh-CN')` 自定义 tokenizer，兼容中文、英文与数字 |
 | `fumadocs-ui` | DocsPage、Sidebar、TOC | 默认 neutral 主题、紧凑排版与 sidebar 布局（`global.css`） |
+
+> **依赖别名（升级时注意）**：`package.json` 里 `fumadocs-ui` 是 npm alias —— `"fumadocs-ui": "npm:@fumadocs/base-ui@16.11.1"`，与 `fumadocs-core` 同版本线；`fumadocs-mdx` 单独走 15.x。源码仍按 `fumadocs-ui/*` 导入，升级时要同时改别名右侧的真实包版本。另 `.npmrc` 开了 `legacy-peer-deps`（TinaCMS 依赖兼容），装包时 peer 冲突不会报错，需人工留意。
 
 ---
 
@@ -554,7 +562,7 @@ Design Token（业务 token）与 Fumadocs UI token（文档站 chrome）**分�
 | 可访问性 | 文档站 WCAG 2.1 AA；代码块语义化 |
 | SEO | Fumadocs 静态生成；sitemap 尚未配置 |
 | 安全 | Figma 文件权限与文档站访问策略一致；CMS 走 Git PR review |
-| 可维护性 | 内容即代码；frontmatter schema 校验（Zod） |
+| 可维护性 | 内容即代码；frontmatter schema 校验（Zod）；纯逻辑单测用 Node 内置 runner（`node --test "src/**/*.test.mjs"`，无 Jest / Vitest），组件行为靠构建 + 人工验收 |
 
 ---
 

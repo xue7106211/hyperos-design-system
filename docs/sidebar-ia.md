@@ -8,6 +8,7 @@
 > - **每个一级目录**（通用设计标准 / 控件与组件 / … / 多端设备标准）下必须有 `index` 作为该模块总览
 > - 侧栏已按本列表落地；后续改动请同步 `content/docs/os4/**/meta.json`
 > - Landing「设计资源」入口 `/resources` **不属于** docs 侧栏；见 [information-architecture.md](./information-architecture.md)
+> - 「抽屉浮窗」的 Code 侧正文 `containers/drawer-code.mdx` **故意不进侧栏 / `meta.json`**（Design / Code 双模 pilot；机制见 [technical-design.md §5.4](./technical-design.md)），本对照表中不体现
 
 ---
 
