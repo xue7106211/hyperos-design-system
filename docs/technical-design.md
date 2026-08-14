@@ -264,7 +264,7 @@ hyperos-design-system/
 │   ├── svg/{category}/
 │   ├── manifest.json
 │   └── README.md
-├── scripts/                # generate-icon-manifest.mjs、import-os4-tokens.mjs 等
+├── scripts/                # generate-icon-manifest.mjs、import-os4-tokens.mjs
 ├── tina/                   # TinaCMS schema（按 os4/os5 × 分组 collections）
 ├── .env.example            # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
 ├── public/

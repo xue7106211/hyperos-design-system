@@ -48,7 +48,7 @@ Total scroll height (~desktop): **8843px**
 ## Dependencies
 
 - PillNav overlays everything (`z-40` in our codebase) — hero top padding must clear it (~80px+ already on TypoTab)
-- Cloud PNGs and hero demo image are layered compositions — download to `public/typotab/`
+- Cloud PNGs and hero demo image are layered compositions — ~~download to `public/typotab/`~~（**已废弃**：本站首页用自有配图 `public/home/`，源站素材与抓取脚本已删除，勿再下载）
 - Three use-case videos (Dropbox) + posters
 
 ## Assembly blueprint (our `page.tsx`)

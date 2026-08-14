@@ -70,7 +70,7 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
 icons/               # 图标源 SVG + manifest（见 icons/README.md）
   svg/{category}/
   manifest.json
-scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs、download-typotab-assets.mjs 等）
+scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
 tokens/              # Design Tokens（reference / semantic / component × light / dark）
 tina/                # TinaCMS schema 与 block 模板
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）

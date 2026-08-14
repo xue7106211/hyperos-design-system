@@ -159,7 +159,7 @@ tokens/                 # Design Tokens（reference|semantic|component × light|
 icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
   svg/{category}/
   manifest.json
-scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs、download-typotab-assets.mjs 等）
+scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
 tina/
   config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
   schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block

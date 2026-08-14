@@ -57,7 +57,7 @@
 | `tokens/` | Design Tokens：`reference|semantic|component` × `light|dark` |
 | `public/icons/` | 图标静态访问（`icons:sync` 产物） |
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
-| `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`、`download-typotab-assets.mjs`） |
+| `scripts/` | 仓库脚本（`generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta`、`DocsDesignCodePilot` / `DocsModeSwitch`（Design / Code 双模 pilot） |
 | `content/docs/os4/components/containers/drawer-code.mdx` | 双模 pilot 的 Code 侧正文（**不进 `meta.json`**；由 `page.tsx` 直取渲染，URL 仍可直达） |
 | `src/components/ai/` | Ask AI：`AiAssistant` 门闩 + `search` 浮动面板（AI Elements） |

@@ -28,6 +28,6 @@ Local: http://localhost:3000/
 
 ## Assets
 
-- Images/logos/videos under `public/typotab/` (40+ files)
+- ~~Images/logos/videos under `public/typotab/` (40+ files)~~ — **已删除**（源站 Framer CDN 素材，本站未引用；抓取脚本 `download-typotab-assets.mjs` 同时移除）
 - Research under `docs/research/typotab.com/`
 - References under `docs/design-references/typotab.com/`
