@@ -17,6 +17,7 @@
 | 实施进度与后续 Phase | [roadmap.md](./roadmap.md) |
 | Ask AI 文档问答 | 根布局浮动入口 · `POST /api/chat` · env `MI_LLM_*`（见 [deployment.md](./deployment.md)）· 规格 [superpowers/specs/2026-08-11-ai-assistant-design.md](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
 | 设计模式（原最佳实践） | 侧栏「设计模式」· 路径 `content/docs/os4/best-practices/` · 对照 [sidebar-ia.md](./sidebar-ia.md) |
+| 文档页 Design / Code 双模（pilot） | 仅「抽屉浮窗」一页：`content/docs/os4/components/containers/drawer.mdx` + 不进侧栏的 `drawer-code.mdx` · 代码 `src/components/docs/DocsDesignCodePilot.tsx` · 机制与易踩点见 [technical-design.md §5.4](./technical-design.md) |
 | 维护人飞书 open_id | [maintainers.md](./maintainers.md) |
 | 图标 SVG 入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
@@ -57,7 +58,8 @@
 | `public/icons/` | 图标静态访问（`icons:sync` 产物） |
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
 | `scripts/` | 仓库脚本（含 `generate-icon-manifest.mjs`、`import-os4-tokens.mjs`、`download-typotab-assets.mjs`） |
-| `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta` |
+| `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta`、`DocsDesignCodePilot` / `DocsModeSwitch`（Design / Code 双模 pilot） |
+| `content/docs/os4/components/containers/drawer-code.mdx` | 双模 pilot 的 Code 侧正文（**不进 `meta.json`**；由 `page.tsx` 直取渲染，URL 仍可直达） |
 | `src/components/ai/` | Ask AI：`AiAssistant` 门闩 + `search` 浮动面板（AI Elements） |
 | `src/components/ai-elements/` | AI Elements（conversation / message / prompt / tool） |
 | `src/components/ui/` | shadcn 基础组件（Ask AI chrome；非文档 Web demo） |
@@ -81,6 +83,7 @@
 
 ## 变更摘要
 
+- **2026-08-13**：补记文档页 **Design / Code 双模 pilot**（仅「抽屉浮窗」；`drawer-code.mdx` 不进侧栏、Code 模式 TOC 走 portal 不改原生 TOC DOM；机制与已知限制见 [technical-design.md §5.4](./technical-design.md)、ADR-007）。Ask AI 检索层去掉调试期遗留的「圆角 / 36dp」硬编码回退词，并将检索故障与「无结果」区分开（`src/lib/ai/search-docs.ts`）。
 - **2026-08-13**：docs 侧栏移除「资源」一级（图标库页 URL 保留）；「多端设备标准」补齐二级占位页（设备特性发挥、设备互通 / 跨设备协同、应用最佳实践）；OS4 / OS5 同步。
 - **2026-08-12**：侧栏「应用最佳实践标准」更名为「设计模式」（路径仍为 `best-practices/`）；OS4/OS5 补齐 11 个二级占位页；首页移除「返回顶部」以免与 Ask AI 入口重叠（`/resources` 仍保留）。
 - **2026-08-11**：Ask AI 全站浮动问答（`/api/chat` + `@ai-sdk/anthropic` 小米网关；检索 Orama OS4；UI 为 AI Elements + shadcn；`/admin` 隐藏）；规格 / 计划见 `docs/superpowers/`。

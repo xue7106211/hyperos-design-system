@@ -378,6 +378,51 @@ export default defineConfig({ mdxOptions: {} });
 9. Accessibility / Motion（MDX 正文）
 ```
 
+### 5.4 Design / Code 双模文档页（pilot）
+
+设计规范与工程接入说明受众不同（设计 vs 客户端），但描述的是同一个组件。V1 的做法是：**一个 URL、两份 MDX、页内切换**，而不是拆成侧栏里两个平级页面。
+
+当前为 **pilot，仅「抽屉浮窗 Bottom Sheet」一页生效**，未推广到其他组件。
+
+**内容约定**
+
+| 角色 | 文件 | 是否进 `meta.json` |
+|------|------|-------------------|
+| Design（默认模式） | `content/docs/os4/components/containers/drawer.mdx` | 是（侧栏「容器类」） |
+| Code（切换后） | `content/docs/os4/components/containers/drawer-code.mdx` | **否**（不进侧栏） |
+
+Code 侧文档写成一份**独立的普通 MDX**（自带 frontmatter，`platforms: [android]`），由页面在服务端用 `source.getPage()` 直接取用并渲染进同一路由，因此可正常使用 `SpecImageGrid`、`PlatformCodeBlock` 等全部 MDX 组件。
+
+**代码位置**
+
+| 文件 | 职责 |
+|------|------|
+| `src/app/docs/[[...slug]]/page.tsx` | `isDesignCodePilotPage()` 判定 + `DRAWER_CODE_SLUG` 取 Code 页 → 作为 `codePanel` 下传 |
+| `src/components/docs/DocsDesignCodePilot.tsx` | `DocsModeProvider`（mode state）、`DocsModeShell`（切正文）、`DocsModeToolbarSwitch`、`CodeModeTocPortal` |
+| `src/components/docs/DocsModeSwitch.tsx` | 无状态 segmented control（`role="tablist"`） |
+| `src/components/tina/TinaDocsPageContent.tsx` | `DocBodySlot`：有 `codePanel` 时走 `DocsModeShell`，否则走普通 `DocsBody` |
+
+模式开关渲染在**元信息栏左侧**（`leadingAction`，位于更新时间 / 维护人之前、Copy Markdown 之前），非 pilot 页该位置为空。
+
+**TOC 处理（易踩点）**
+
+Fumadocs 的 TOC 是 React 托管节点，带 scroll-spy 与进度条。Code 模式**不能改写 Design TOC 的 DOM**，否则会破坏其滚动追踪。当前实现是 `CodeModeTocPortal`：
+
+1. 用 `display:none` + `hidden` 隐藏原生 TOC 滚动容器（不卸载、不改内容）
+2. `createPortal` 往 `#nd-toc` 挂一份 Code 侧的 TOC
+3. 自行 `IntersectionObserver` 做高亮（`rootMargin: 0px 0px -70% 0px`）
+4. 切回 Design 时恢复原生 TOC 的 `hidden` / `display`
+
+改动 docs 页布局、TOC 或升级 Fumadocs 时，需回归验证这条路径——它依赖 `#nd-toc`、`#toc-title` 与 `[role="tabpanel"]` 三个选择器。
+
+**已知限制**
+
+- Code 页虽不在侧栏，但仍会被 `generateStaticParams()` 静态生成、可直达 `/docs/os4/components/containers/drawer-code`，也会进 Orama 索引与 `llms-full.txt`（Ask AI 可能引用到这个「隐藏」URL）。
+- 双模页在 Tina Visual Editing 下正文点击编辑失效：`DocBodySlot` 走 `DocsModeShell` 分支时不传 `data-tina-field`（title / description / 维护人仍可编辑）。
+- 模式为组件内 state，不落 URL / storage：刷新与分享都回到 Design。
+
+**若要推广到更多组件**，最小改动是三处：把 `isDesignCodePilotPage()` 的硬编码 slug 与 `DRAWER_CODE_SLUG` 换成约定（如 frontmatter 增加 `codeDoc` 字段或 `*-code.mdx` 命名约定）、决定 Code 页是否排除出搜索索引、补上 Tina 正文编辑绑定。
+
 ---
 
 ## 6. 自定义 MDX 组件（Phase 0–1 已实现）
@@ -534,6 +579,7 @@ Design Token（业务 token）与 Fumadocs UI token（文档站 chrome）**分�
 | ADR-004 | Token 格式 W3C DTCG | 工具可替换、行业标准化 |
 | ADR-005 | Figma 交互用原型 embed | 替代 Web playground，更贴近移动体验 |
 | ADR-006 | 客户端组件代码独立仓库 | 关注点分离；文档站专注规范传播 |
+| ADR-007 | 设计 / 工程双受众用「同 URL 页内切换」而非平级两页 | 同一组件只有一个入口，侧栏不因受众翻倍；Code 侧仍是普通 MDX，可复用全部组件（pilot，见 §5.4） |
 
 ---
 

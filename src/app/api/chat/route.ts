@@ -18,8 +18,11 @@ export const maxDuration = 60;
 const MODEL_UNAVAILABLE_MESSAGE = '模型服务暂时不可用，请稍后重试';
 
 const searchTool = tool({
-  description:
-    'Search HyperOS OS4 design-system docs and return title, url, snippet JSON.',
+  description: [
+    'Search HyperOS OS4 design-system docs.',
+    'Returns { status: "ok", hits: [{ title, url, snippet }] } — an empty hits array means nothing matched.',
+    'Returns { status: "unavailable", error } when the search index itself failed; that is an outage, not a missing doc.',
+  ].join(' '),
   inputSchema: z.object({
     query: z.string().describe('Search query in Chinese or English'),
     limit: z.number().int().min(1).max(20).default(8),

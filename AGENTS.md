@@ -264,6 +264,14 @@ package-lock.json       # npm 锁文件
 - `maintainer`: 维护人显示名（可选）
 - `maintainerOpenId`: 飞书 `open_id`（`ou_` 前缀；可选，有值则可点开会话）
 
+### Design / Code 双模页（pilot，Agent 必读）
+
+**当前只有「抽屉浮窗」一页**开启：`components/containers/drawer.mdx`（Design）+ `drawer-code.mdx`（Code，**故意不进 `meta.json`**，由 `src/app/docs/[[...slug]]/page.tsx` 直取渲染）。
+
+- 判定在 `isDesignCodePilotPage()`，**硬编码 slug**；不要以为它是全站能力
+- Code 模式 TOC 由 `CodeModeTocPortal` portal 挂到 `#nd-toc`，**不得改写 Design 原生 TOC 的 DOM**（会破坏 Fumadocs scroll-spy）；改 docs 页布局 / TOC 或升 Fumadocs 后需回归
+- 机制、已知限制与推广路径 → [docs/technical-design.md](docs/technical-design.md) §5.4
+
 ## 自定义 MDX 组件
 
 注册入口：[src/components/mdx/index.tsx](src/components/mdx/index.tsx)

@@ -28,9 +28,11 @@
 - [x] OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`；维护人 / Figma 节点已绑定）
 - [x] Ask AI 文档问答助手（AI Elements + shadcn UI；`POST /api/chat` + `@ai-sdk/anthropic` 小米网关；Orama `searchDocs` 仅 OS4；部署需注入 `MI_LLM_*`；spec 见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)）
 - [x] 侧栏「设计模式」（原「应用最佳实践标准」；路径 `best-practices/`）补齐二级占位页（OS4/OS5）；首页移除「返回顶部」以避免与 Ask AI 冲突
+- [x] 文档页 Design / Code 双模 **pilot**（仅「抽屉浮窗」：`drawer.mdx` + 不进侧栏的 `drawer-code.mdx`；元信息栏 segmented 切换 + Code 模式 TOC portal；机制见 [technical-design.md §5.4](./technical-design.md)）
 
 ## 下一步
 
+- [ ] Design / Code 双模从 pilot 转约定（frontmatter 或 `*-code.mdx` 命名替代硬编码 slug；决定 Code 页是否排除出搜索索引；补 Tina 正文编辑绑定）
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
 - [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
 - [ ] `/resources` Engineering 目录外链与维护团队落地页（`taughtByHref`）补齐
