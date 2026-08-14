@@ -4,7 +4,6 @@ export { TypoDesignLanguage } from './TypoDesignLanguage';
 export { TypoFeatureCard } from './TypoFeatureCard';
 export { TypoRecentUpdates } from './TypoRecentUpdates';
 export { TypoValueProp } from './TypoValueProp';
-export { TypoApps } from './TypoApps';
 export { TypoPricing } from './TypoPricing';
 export { TypoFaq } from './TypoFaq';
 export { TypoSection } from './TypoSection';

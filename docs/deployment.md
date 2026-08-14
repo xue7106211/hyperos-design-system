@@ -139,7 +139,53 @@ micr.cloud.mioffice.cn/hyperos-design/hyperos-design-system:prod-$CI_COMMIT_SHOR
 
 ### Ask AI 环境变量
 
-部署 Ask AI 时需在运行环境注入 `MI_LLM_BASE_URL`、`MI_LLM_API_KEY`、`MI_LLM_MODEL`（小米内网 Anthropic Messages 网关，例如 `https://api.llm.mioffice.cn/anthropic/v1` + Bearer Key + 模型 ID）；可选 `AI_CHAT_ENABLED`（`false` 时隐藏入口）。未配齐 Key 时入口亦不渲染。网关需支持流式；请求会自动带唯一 `X-Model-Request-Id`。API Key 勿写入镜像或仓库，仅通过 Matrix / 密钥管理注入。本地变量模板见 `.env.example`；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)。
+Ask AI 入口由服务端门闩控制：未配齐 `MI_LLM_*`（或 `AI_CHAT_ENABLED=false`）时 **不渲染** 右下角入口。本地靠 `.env.local`；线上必须在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入，**不要**写进镜像或 git。
+
+#### 要注入的变量
+
+| 变量 | 示例 / 说明 |
+|------|-------------|
+| `MI_LLM_BASE_URL` | `https://api.llm.mioffice.cn/anthropic/v1`（勿带末尾 `/messages`） |
+| `MI_LLM_API_KEY` | 站点统一 Bearer Key |
+| `MI_LLM_MODEL` | 如 `ppio/pa/claude-sonnet-4-6` |
+| `AI_CHAT_ENABLED`（可选） | 设为 `false` 时强制隐藏入口 |
+
+网关需支持流式；请求会自动带唯一 `X-Model-Request-Id`。本地模板见 `.env.example`；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)。
+
+#### 在 Matrix 哪里配（正确入口）
+
+> 与 Matrix Oncall 确认（2026-08）：无状态 Node.js 自定义 env 配在部署编辑页的主容器「环境变量」，不是「设置 → 变量配置」。
+
+路径（正式站为例）：
+
+```text
+Matrix → 应用 hyperos-design-system
+      → 部署空间 hyperos-design-system-prod
+      → 右上角「编辑」（进入发布 / 部署单配置）
+      → 主容器 main →「环境变量」→「+ 添加」或「批量编辑」
+      → 下一步 → 核对 → 发布
+```
+
+测环境同理，改部署空间为 `hyperos-design-system-staging`。
+
+说明：
+
+- 代码侧通过 `process.env.MI_LLM_*` 读取；当前 Ask AI **直接读环境变量**，在部署单明文（或平台密文映射到同名 env）注入即可
+- 修改环境变量会触发实例 **滚动升级**；新实例起来后入口才会出现
+- **不必为配 env 单独重建镜像**（可沿用当前 `prod-*` / `staging-*` tag）
+- 若开启了发布审批，编辑后需审批通过才生效
+- Oncall 建议敏感 Key 可走 KeyCenter 注入；本站尚未接 KeyCenter 客户端，**现阶段以部署单「环境变量」为准**（Key 勿进 git / 镜像）
+
+#### 容易误判的入口（不是自定义业务 env）
+
+部署空间 **设置** 侧栏里这些页 **不要**当作 Ask AI 的 `MI_LLM_*` 填写处：
+
+| 设置项 | 实际作用 |
+|--------|----------|
+| **变量配置** | 只注入平台元数据：`REGION` / `ZONE`，或 `MATRIX_CLUSTER` / `MATRIX_APP_ID` 等；**不能**填 `MI_LLM_*` |
+| **KeyCenter** | 平台加解密 Sidecar / 密钥托管入口；与「环境变量」表单不同；未接客户端前不要指望在这里单独配出 Ask AI |
+| **镜像配置** | 镜像 tag 过滤 / 审批 |
+| **高级设置 → 自定义配置** | 高影响覆盖，非首选；改前先问 Matrix Oncall |
 
 ## 6. 卡点排查（2026-07）
 
@@ -148,6 +194,7 @@ micr.cloud.mioffice.cn/hyperos-design/hyperos-design-system:prod-$CI_COMMIT_SHOR
 | 本地有、staging 没有 | 只 push 了 `main`，未 merge 到 `staging` | 按 §3.1 同步并 push |
 | staging 有、正式没有 | 正式走 `main` → `prod-*` | 触发 `main` 造镜像后，Matrix 发 prod |
 | **`main` 流水线「运行完成」，正式站仍旧** | **只构建 prod，没有「发布prod」**；「发布staging」在 push main 时跳过 | Matrix **`…-prod` 手动选 `prod-<短 commit>`** |
+| **线上无 Ask AI 入口**（本地有） | 部署单未注入 `MI_LLM_*`，或 `AI_CHAT_ENABLED=false` | 部署空间 **编辑 → 主容器环境变量** 配齐三项并发布（滚动升级）；勿只开「设置 → 变量配置」 |
 | 构建成功，发布报「镜像版本不存在」 | ① tag 写成了 `镜像名:tag`；② 仓库绑定不一致；③ 构建未完成就发布 | 发布字段只填 tag；核对镜像仓库路径；等 push + register 完成 |
 | 流水线发布失败，但实例已是新 tag | 自动发布失败，手动已成功 | 以 Matrix 实例为准 |
 | 反复「重新执行」同一流水线 | 配置未改，或正式线不含发布步骤 | 先改配置或 Matrix 手动发；空跑无意义 |

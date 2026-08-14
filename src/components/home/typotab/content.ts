@@ -119,62 +119,6 @@ export const typoRecentUpdates = {
   moreLabel: '查看全部更新',
 } as const;
 
-export const typoApps = {
-  title: '多场景设计最佳实践',
-  subtitle:
-    '根据你的应用场景，获取最佳界面适配方法与样式设计。',
-  /** HyperOS 系统应用图标（public/home/app-icons）；外圈只用前若干枚控制密度 */
-  logos: [
-    'weather',
-    'clock',
-    'calendar',
-    'camera',
-    'gallery',
-    'phone',
-    'sms',
-    'contacts',
-    'notes',
-    'browser',
-    'settings',
-    'files',
-    'music',
-    'mi-video',
-    'app-store',
-    'game-center',
-    'mijia',
-    'xiaoai',
-    'themes',
-    'security',
-    'wallet',
-    'email',
-    'recorder',
-    'calculator',
-    // 内圈补充
-    'compass',
-    'downloads',
-    'find-device',
-    'mi-create',
-    'remote',
-    'feedback',
-    'xiaoai-vision',
-    'global-internet',
-  ] as const,
-  /** 外圈约 24 个；内圈用剩余图标 */
-  outerLogoCount: 24,
-  logoBasePath: '/home/app-icons',
-  menuItems: [
-    { label: '影音娱乐', href: `${defaultDocsRoute}/best-practices` },
-    { label: '效率工具', href: `${defaultDocsRoute}/best-practices` },
-    { label: '生活服务', href: `${defaultDocsRoute}/best-practices` },
-    { label: '智能家居', href: `${defaultDocsRoute}/best-practices` },
-    { label: '社交通讯', href: `${defaultDocsRoute}/best-practices` },
-    { label: '金融支付', href: `${defaultDocsRoute}/best-practices` },
-    { label: '出行导航', href: `${defaultDocsRoute}/best-practices` },
-    { label: '健康运动', href: `${defaultDocsRoute}/best-practices` },
-  ],
-  searchPlaceholder: '按业务场景查找实践',
-} as const;
-
 /** 原 Pricing 双卡形式 → 双入口（非售卖） */
 export const typoPricing = {
   title: '选一个入口开始',

@@ -165,7 +165,7 @@ tina/
   schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block
   database.ts           # 本地 filesystem datalayer
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
-.env.example            # TinaCMS + Ask AI（MI_LLM_*）本地变量模板
+.env.example            # TinaCMS + Ask AI（MI_LLM_*）模板；线上见 docs/deployment.md
 components.json         # shadcn / AI Elements 注册表配置（Ask AI UI）
 public/
   logo/                 # HyperOS Logo 静态资源
@@ -183,7 +183,7 @@ src/
     ui/                 # shadcn 基础组件（仅服务于 Ask AI 等站点 chrome，非文档 Web demo）
     docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta
     easter-egg/         # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
-    home/               # Landing：PillNav + typotab（TypoHero 等）；资源页共用 PillNav
+    home/               # Landing：PillNav + typotab（TypoHero / ValueProp / RecentUpdates / Faq 等）；资源页共用 PillNav
     resources/          # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
     mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
@@ -323,7 +323,7 @@ package-lock.json       # npm 锁文件
 
 - 全文搜索：Orama（[src/app/api/search/route.ts](src/app/api/search/route.ts)）+ 中文 tokenizer（[src/lib/search-tokenizer.ts](src/lib/search-tokenizer.ts)）；OS5 发布前仅索引 OS4
 - LLM 导出：`/llms.txt`（索引）、`/llms-full.txt`（全文）、`/llms.mdx/docs/*`（单页 Markdown）
-- **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；打开后面板取代入口按钮（Motion 进出场）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool `searchDocs`（Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。部署注入见 [docs/deployment.md](docs/deployment.md)；规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。首页不挂「返回顶部」；`/resources` 仍可有返回顶部，注意与 Ask AI 同角共存。
+- **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；打开后面板取代入口按钮（Motion 进出场）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool `searchDocs`（Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。线上在 Matrix 部署空间 **右上角「编辑」→ 主容器「环境变量」** 注入后发布（滚动升级；不是「设置 → 变量配置」）；细节见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」；规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。首页不挂「返回顶部」；`/resources` 仍可有返回顶部，注意与 Ask AI 同角共存。
 
 ## Figma 集成
 
@@ -371,7 +371,7 @@ package-lock.json       # npm 锁文件
 - [README.md](README.md) — 快速上手
 - [CLAUDE.md](CLAUDE.md) — Claude 入口（指向本文件）
 - [docs/index.md](docs/index.md) — 工程设计文档索引
-- [docs/deployment.md](docs/deployment.md) — MiFlow / Matrix 部署与卡点
+- [docs/deployment.md](docs/deployment.md) — MiFlow / Matrix 部署、Ask AI 环境变量与卡点
 - [docs/technical-design.md](docs/technical-design.md) — 技术方案
 - [docs/information-architecture.md](docs/information-architecture.md) — 站点 IA
 - [docs/sidebar-ia.md](docs/sidebar-ia.md) — 侧栏目录对照（全景图）

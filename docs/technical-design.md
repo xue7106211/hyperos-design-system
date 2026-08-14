@@ -1,8 +1,8 @@
 # HyperOS Design System 文档站 — V1 技术设计方案
 
-> **版本**：V1.5  
-> **日期**：2026-07-29  
-> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token /「资源」IA / 文档配图 Fancybox / 设计资源中心 `/resources` / 全站彩蛋浮层已落地；生产鉴权与 Token CI 规划中
+> **版本**：V1.6  
+> **日期**：2026-08-13  
+> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token / 图标库页 / 文档配图 Fancybox / 设计资源中心 `/resources` / 全站彩蛋 / Ask AI 已落地；docs 侧栏「资源」一级已移除（图标 URL 保留）；生产鉴权与 Token CI 规划中
 
 ---
 
@@ -23,10 +23,11 @@ HyperOS 设计系统面向 **移动端客户端组件库**（Android / iOS 等�
 | Figma 设计稿 / 原型 iframe 嵌入 | Storybook / 在线 Playground |
 | Token 目录页（`tokens/*.{light,dark}.json`；Light / Dark；`TokenTable`） | Tokens Studio → Git 自动同步（Phase 3）；Typography Token（待导出） |
 | Android / iOS **静态**代码片段展示 | 完整 npm 组件包发布流水线 |
-| 图标库预览（`IconGallery` + `icons/`；侧栏「资源」） | 可交互 icon picker / Storybook |
+| 图标库预览（`IconGallery` + `icons/`；页 `/docs/os4/resources/icons`，不在侧栏一级） | 可交互 icon picker / Storybook |
 | 文档配图页内画廊（`DocsImage` + Fancybox；`public/media/`） | 可运行 Web 组件 playground |
 | 设计资源中心 `/resources`（Catalog + Codex；`src/lib/resources.ts`） | Engineering 目录外链 / 维护团队落地页（待补） |
 | 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载） | — |
+| Ask AI（`MI_LLM_*`；Matrix 编辑 → 环境变量；见 [deployment.md](./deployment.md)） | KeyCenter 客户端密文注入（未接） |
 | MDX + `meta.json` 内容维护 | TinaCMS 生产鉴权 / TinaCloud 部署（Phase 2 剩余项） |
 | OS4 Token 真源（Reference / Semantic / Component） | 客户端组件 CI/CD（另仓维护） |
 | — | Figma Code Connect 试点（Phase 3） |
@@ -190,9 +191,9 @@ https://embed.figma.com/design/{file_key}?embed-host=hyperos-ds&node-id={node_id
 | 能力 | V1 方案 |
 |------|---------|
 | 搜索 | Orama（`src/app/api/search/route.ts`）+ `Intl.Segmenter('zh-CN')` 自定义 tokenizer（`src/lib/search-tokenizer.ts`），支持中英文混合检索；OS5 发布前仅索引 OS4 |
-| Ask AI | 全站浮动问答（`src/components/ai/` + AI Elements / shadcn）；`POST /api/chat` 用 Vercel AI SDK `streamText` + `searchDocs` tool（复用 Orama，仅 OS4）；模型经 `@ai-sdk/anthropic` 对接小米内网 Messages 网关（`MI_LLM_*`）；`/admin` 不挂载；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
+| Ask AI | 全站浮动问答（`src/components/ai/` + AI Elements / shadcn）；`POST /api/chat` 用 Vercel AI SDK `streamText` + `searchDocs` tool（复用 Orama，仅 OS4）；模型经 `@ai-sdk/anthropic` 对接小米内网 Messages 网关（`MI_LLM_*`）；`/admin` 不挂载；线上在 Matrix **编辑 → 主容器环境变量** 注入；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
 | i18n | 当前未配置多语言路由；站点内容与 HTML 语言为中文（`zh-CN`） |
-| 部署 | MiFlow + Matrix + Docker（`Dockerfile`）；分支/环境与卡点见 [deployment.md](./deployment.md)；生产只跑 `npx next build`（不跑 `tinacms build`）；Ask AI 运行时 env 见 deployment「Ask AI 环境变量」 |
+| 部署 | MiFlow + Matrix + Docker（`Dockerfile`）；分支/环境与卡点见 [deployment.md](./deployment.md)；生产只跑 `npx next build`（不跑 `tinacms build`）；Ask AI 运行时 env 见 deployment「Ask AI 环境变量」（勿与「设置 → 变量配置」混淆） |
 | 主题 | Fumadocs 默认 `neutral.css`；`global.css` 定制紧凑排版与 sidebar 布局；明暗主题由 Fumadocs `RootProvider` 提供；Ask AI 另用 shadcn CSS 变量（与业务 Design Token 分离） |
 
 ---
@@ -265,7 +266,7 @@ hyperos-design-system/
 │   └── README.md
 ├── scripts/                # generate-icon-manifest.mjs、import-os4-tokens.mjs 等
 ├── tina/                   # TinaCMS schema（按 os4/os5 × 分组 collections）
-├── .env.example            # TinaCMS 本地模式环境变量模板
+├── .env.example            # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
 ├── public/
 │   ├── logo/               # HyperOS Logo（light / dark）
 │   ├── home/               # Landing 页静态图

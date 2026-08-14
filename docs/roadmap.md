@@ -19,20 +19,21 @@
 - [x] Docker / MiFlow / Matrix 部署文档（[deployment.md](./deployment.md)；正式环境当前需 Matrix 手动发 `prod-*`）
 - [x] 按设计系统全景图重构侧栏 IA（`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`；对照 [sidebar-ia.md](./sidebar-ia.md)）
 - [x] 文档页操作栏「跳转 Figma」（`FigmaJumpButton`；默认库 URL 见 `src/lib/shared.ts`）
-- [x] 侧栏「资源」一级目录；图标页 `/docs/os4/resources/icons`（HyperOS 图标库）
+- [x] 图标库页 `/docs/os4/resources/icons`（HyperOS 图标库；曾一度进 docs 侧栏「资源」，现已移出侧栏一级，URL 保留）
 - [x] 图标预览页 + `IconGallery` + `icons/` 资产管线（`icons:sync` / `icons:import`）
 - [x] 文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`；资产 `public/media/`）
 - [x] OS4「抽屉浮窗 Bottom Sheet」规范页（`containers/drawer`）
 - [x] 设计资源中心 `/resources`（Catalog `#catalog` + 分区锚点、Codex 侧栏、Feature 卡标题 CTA、Landing PillNav「设计资源」）
 - [x] 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载，短时连点打开签名面板）
 - [x] OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`；维护人 / Figma 节点已绑定）
-- [x] Ask AI 文档问答助手（AI Elements + shadcn UI；`POST /api/chat` + `@ai-sdk/anthropic` 小米网关；Orama `searchDocs` 仅 OS4；部署需注入 `MI_LLM_*`；spec 见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)）
-- [x] 侧栏「设计模式」（原「应用最佳实践标准」；路径 `best-practices/`）补齐二级占位页（OS4/OS5）；首页移除「返回顶部」以避免与 Ask AI 冲突
+- [x] Ask AI 文档问答助手（AI Elements + shadcn UI；`POST /api/chat` + `@ai-sdk/anthropic` 小米网关；Orama `searchDocs` 仅 OS4；线上 Matrix **编辑 → 主容器环境变量** 注入 `MI_LLM_*`；spec 见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)；步骤见 [deployment.md](./deployment.md)）
+- [x] 侧栏「设计模式」（原「应用最佳实践标准」；路径 `best-practices/`）补齐二级占位页（OS4/OS5）；首页移除「返回顶部」；永久删除「多场景设计最佳实践」区块（`TypoApps` + `public/home/app-icons`）
 - [x] 文档页 Design / Code 双模 **pilot**（仅「抽屉浮窗」：`drawer.mdx` + 不进侧栏的 `drawer-code.mdx`；元信息栏 segmented 切换 + Code 模式 TOC portal；机制见 [technical-design.md §5.4](./technical-design.md)）
 
 ## 下一步
 
 - [ ] Design / Code 双模从 pilot 转约定（frontmatter 或 `*-code.mdx` 命名替代硬编码 slug；决定 Code 页是否排除出搜索索引；补 Tina 正文编辑绑定）
+- [ ] 正式 / staging Matrix 注入 `MI_LLM_*` 并验收 Ask AI 入口（见 [deployment.md](./deployment.md)「Ask AI 环境变量」）
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
 - [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
 - [ ] `/resources` Engineering 目录外链与维护团队落地页（`taughtByHref`）补齐

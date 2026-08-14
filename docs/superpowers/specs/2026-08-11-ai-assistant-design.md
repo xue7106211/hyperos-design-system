@@ -1,7 +1,7 @@
 # AI 问答助手（Ask AI）设计
 
 日期：2026-08-11  
-状态：已实现（分支 `feat/ai-assistant`；上线需 Matrix 注入 `MI_LLM_*`）  
+状态：已实现（上线需在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入 `MI_LLM_*`；见 [deployment.md](../../deployment.md)）
 范围：全站浮动 Ask AI；知识源仅 OS4 文档；小米内网 Anthropic Messages 网关
 
 ## 目标
@@ -106,7 +106,7 @@ Next.js Route Handler
 | `MI_LLM_MODEL` | 模型 ID（如 `ppio/pa/claude-sonnet-4-6`） |
 | `AI_CHAT_ENABLED`（可选） | 缺 Key / 预发关闭时隐藏入口 |
 
-由本地 `.env.local` 与 Matrix / 部署侧注入；**不进 git、不进镜像层**。
+由本地 `.env.local` 与 Matrix 部署空间 **编辑 → 主容器「环境变量」** 注入（勿与「设置 → 变量配置」混淆，后者只注入平台元数据）；**不进 git、不进镜像层**。操作步骤见 [deployment.md](../../deployment.md)「Ask AI 环境变量」。
 
 ### 安全
 

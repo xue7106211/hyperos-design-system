@@ -60,7 +60,7 @@ Total scroll height (~desktop): **8843px**
   <TypoValueProp />
   <TypoShortcuts />
   <TypoUseCases />
-  <TypoApps />
+  <TypoApps />           // 源站区块；本站产品侧已删除，勿再挂载
   <TypoPricing />
   <TypoFaq />
   {/* footer later */}

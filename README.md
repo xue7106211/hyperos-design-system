@@ -12,7 +12,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 文档配图页内画廊（Fancybox；同页前后切换）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
-- Ask AI 文档问答（全站浮动；仅 OS4；小米内网 Anthropic 网关；需配置 `MI_LLM_*`）
+- Ask AI 文档问答（全站浮动；仅 OS4；小米内网 Anthropic 网关；本地 `.env.local` / 线上 Matrix 部署空间「编辑 → 环境变量」配置 `MI_LLM_*`）
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
 - TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 图标 / 代码 block
 - OS 版本切换（HyperOS 4 / 5；侧边栏 `DocsVersionSwitcher`，当前默认 OS4）
@@ -28,7 +28,7 @@ npm run dev
 
 访问 [http://localhost:3000](http://localhost:3000) · CMS 后台 [http://localhost:3000/admin](http://localhost:3000/admin)
 
-`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`。Ask AI 需在 `.env.local` 配置 `MI_LLM_*`（模板见 `.env.example`）；未配置时不显示入口。
+`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`。Ask AI 需在 `.env.local` 配置 `MI_LLM_*`（模板见 `.env.example`）；未配置时不显示入口。线上在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入同名变量后发布（见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」）。
 
 ## 构建与检查
 
@@ -147,7 +147,7 @@ CLAUDE.md            # 指向 AGENTS.md
 | [AGENTS.md](AGENTS.md) | Agent 工作约定与验证清单（权威，精简） |
 | [CLAUDE.md](CLAUDE.md) | Claude 入口，指向 AGENTS.md |
 | [docs/index.md](docs/index.md) | 工程设计文档索引 |
-| [docs/deployment.md](docs/deployment.md) | MiFlow / Matrix 部署与卡点 |
+| [docs/deployment.md](docs/deployment.md) | MiFlow / Matrix 部署、Ask AI 环境变量与卡点 |
 | [docs/technical-design.md](docs/technical-design.md) | 技术方案 |
 | [docs/information-architecture.md](docs/information-architecture.md) | 站点 IA |
 | [docs/sidebar-ia.md](docs/sidebar-ia.md) | 侧栏目录对照（全景图） |

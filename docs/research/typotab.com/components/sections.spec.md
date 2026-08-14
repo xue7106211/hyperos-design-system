@@ -20,9 +20,9 @@ Full extraction: `docs/research/typotab.com/sections-styles.json`, `BEHAVIORS.md
 - h3: 50px wght 850 white; body 22px wght 660
 
 ## TypoApps
-- Target: `TypoApps.tsx`
+- Target: `TypoApps.tsx`（调研源站区块；本站产品侧已删除，不再挂载）
 - Interaction: time-driven dual rotating logo rings + static center menu
-- Logos from `/typotab/logos/*`
+- Logos from `/typotab/logos/*`（源站）；本站曾用 `public/home/app-icons`，已随组件删除
 
 ## TypoPricing
 - Target: `TypoPricing.tsx`

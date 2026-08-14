@@ -1,7 +1,6 @@
 import { preload } from 'react-dom';
 import { PillNav } from '@/components/home/PillNav';
 import {
-  TypoApps,
   TypoDesignLanguage,
   TypoFaq,
   TypoHero,
@@ -29,8 +28,6 @@ export default function HomePage() {
         <TypoDesignLanguage />
         <TypoRule />
         <TypoValueProp />
-        <TypoRule />
-        <TypoApps />
         <TypoRule />
         <TypoRecentUpdates items={recentDocs} />
         <TypoRule />

@@ -15,7 +15,7 @@
 | 站点目录与路由规划 | [information-architecture.md](./information-architecture.md) |
 | 侧栏目录对照（全景图） | [sidebar-ia.md](./sidebar-ia.md) |
 | 实施进度与后续 Phase | [roadmap.md](./roadmap.md) |
-| Ask AI 文档问答 | 根布局浮动入口 · `POST /api/chat` · env `MI_LLM_*`（见 [deployment.md](./deployment.md)）· 规格 [superpowers/specs/2026-08-11-ai-assistant-design.md](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
+| Ask AI 文档问答 | 根布局浮动入口 · `POST /api/chat` · env `MI_LLM_*`（本地 `.env.local`；线上 Matrix **编辑 → 主容器环境变量**，见 [deployment.md](./deployment.md)）· 规格 [superpowers/specs/2026-08-11-ai-assistant-design.md](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
 | 设计模式（原最佳实践） | 侧栏「设计模式」· 路径 `content/docs/os4/best-practices/` · 对照 [sidebar-ia.md](./sidebar-ia.md) |
 | 文档页 Design / Code 双模（pilot） | 仅「抽屉浮窗」一页：`content/docs/os4/components/containers/drawer.mdx` + 不进侧栏的 `drawer-code.mdx` · 代码 `src/components/docs/DocsDesignCodePilot.tsx` · 机制与易踩点见 [technical-design.md §5.4](./technical-design.md) |
 | 维护人飞书 open_id | [maintainers.md](./maintainers.md) |
@@ -28,7 +28,7 @@
 
 | 文档 | 说明 |
 |------|------|
-| [deployment.md](./deployment.md) | MiFlow / Matrix：平台职责、分支环境、发布步骤、卡点排查 |
+| [deployment.md](./deployment.md) | MiFlow / Matrix：平台职责、分支环境、发布步骤、Ask AI 环境变量、卡点排查 |
 | [technical-design.md](./technical-design.md) | 架构、选型、内容模型、Figma / Token / 图标集成 |
 | [information-architecture.md](./information-architecture.md) | Sidebar 结构、页面类型、MVP 页面集 |
 | [sidebar-ia.md](./sidebar-ia.md) | 设计系统全景图侧栏对照（已落地） |
@@ -68,7 +68,7 @@
 | `components.json` | shadcn / AI Elements 注册表 |
 | `src/components/BackToTop.tsx` | 「返回顶部」；首页不挂载（与 Ask AI 冲突）；`/resources` 经 `ResourcesBackToTop` 使用 |
 | `src/components/easter-egg/` | 全站彩蛋（`EasterEggProvider` 挂根布局；短时连点打开签名浮层） |
-| `src/components/home/` | Landing：`PillNav` + typotab 区块（`TypoHero` 等）；资源页共用 `PillNav` |
+| `src/components/home/` | Landing：`PillNav` + typotab 区块（`TypoHero` / `TypoValueProp` / `TypoRecentUpdates` / `TypoFaq` 等） |
 | `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
 | `docs/superpowers/` | Agent specs / plans（非对外；与站点内容无关） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
@@ -84,7 +84,7 @@
 ## 变更摘要
 
 - **2026-08-13**：补记文档页 **Design / Code 双模 pilot**（仅「抽屉浮窗」；`drawer-code.mdx` 不进侧栏、Code 模式 TOC 走 portal 不改原生 TOC DOM；机制与已知限制见 [technical-design.md §5.4](./technical-design.md)、ADR-007）。Ask AI 检索层去掉调试期遗留的「圆角 / 36dp」硬编码回退词，并将检索故障与「无结果」区分开（`src/lib/ai/search-docs.ts`）。
-- **2026-08-13**：docs 侧栏移除「资源」一级（图标库页 URL 保留）；「多端设备标准」补齐二级占位页（设备特性发挥、设备互通 / 跨设备协同、应用最佳实践）；OS4 / OS5 同步。
+- **2026-08-13**：沉淀 Ask AI 线上配置：Matrix 部署空间 **编辑 → 主容器环境变量**（Oncall 确认；勿用「设置 → 变量配置」）；首页永久移除「多场景设计最佳实践」（删除 `TypoApps` 与 `public/home/app-icons`）。另：docs 侧栏移除「资源」一级（图标库页 URL 保留）；「多端设备标准」补齐二级占位页；OS4 / OS5 同步。
 - **2026-08-12**：侧栏「应用最佳实践标准」更名为「设计模式」（路径仍为 `best-practices/`）；OS4/OS5 补齐 11 个二级占位页；首页移除「返回顶部」以免与 Ask AI 入口重叠（`/resources` 仍保留）。
 - **2026-08-11**：Ask AI 全站浮动问答（`/api/chat` + `@ai-sdk/anthropic` 小米网关；检索 Orama OS4；UI 为 AI Elements + shadcn；`/admin` 隐藏）；规格 / 计划见 `docs/superpowers/`。
 - **2026-07-29**：全站彩蛋浮层（`src/components/easter-egg/`，根布局挂载）；OS4「按钮 Button」规范按源稿入库（配图 `public/media/os4/components/actions/button/`）；`docs/superpowers/` 记录彩蛋设计 / 实现计划。
