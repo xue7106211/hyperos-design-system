@@ -88,11 +88,14 @@
 | `src/lib/tina-docs.ts` / `tina-docs-client.ts` / `tina-node-handler.ts` | Tina 文档读取与 `/api/tina` 桥接 |
 | `source.config.ts` | MDX frontmatter schema |
 | `tina/` | TinaCMS schema 与已提交的 `__generated__/`、`tina-lock.json`（均为产物，改 schema 后需同步提交） |
+| `tina/schema/shared-fields.ts` | `createDocsCollection` 工厂 + frontmatter / body 字段（改 collection 结构动这里） |
+| `tina/schema/blocks.ts` | 7 个正文 block 模板（StatusBadge / FigmaEmbed / FigmaPrototypeEmbed / TokenTable / IconGallery / DosDonts / PlatformCodeBlock） |
 | `Dockerfile` | 生产镜像（不跑 `tinacms build`；builder 保留 `.git`） |
 | `AGENTS.md` / `CLAUDE.md` | Agent 工作指引 |
 
 ## 变更摘要
 
+- **2026-08-17**：第二轮文档 / 依赖同步。依赖清理：移除源码零引用的孤儿依赖 `react-markdown`（streamdown 走 `unified` + `hast-util-to-jsx-runtime`，并不依赖它），CLI 工具 `shadcn` 由 `dependencies` 移入 `devDependencies`（`output: 'standalone'` 下二者本就不进运行镜像）。文档补记：`tina/schema/shared-fields.ts` 才是 collection 工厂（改结构动这里，非 `blocks.ts`）、Ask AI 检索 tool 对模型暴露名为 `search`（实现 `searchDocs`）、`tinacms build` 会往 `client.ts` 注入本机 `cacheDir` 不可提交。校验：`meta.json` 与 MDX 一一对应（仅 `drawer-code.mdx` 有意未注册）、icons 90/90/90 同步、TokenTable `groups` 示例全部有效。
 - **2026-08-14**：全仓文档与依赖引用同步。补记此前文档零覆盖的三项事实：`patches/` + **patch-package**（`postinstall` 依次跑 `fumadocs-mdx` 与 `patch-package`）、纯逻辑单测（`node --test "src/**/*.test.mjs"`，无 `npm test` script）、`public/admin/` 与 `docs/design-references/`；`technical-design.md` §4.2 结构树按实际补齐（`api/chat`、`components/ai*`、`ui/`、`lib/recent-docs` 等），§4.3 记录 `fumadocs-ui` 为 npm alias（`@fumadocs/base-ui@16.11.1`）。Ask AI 正式环境已注入 `MI_LLM_*` 并发布，staging 待补（部署空间之间环境变量不继承）。
 - **2026-08-13**：补记文档页 **Design / Code 双模 pilot**（仅「抽屉浮窗」；`drawer-code.mdx` 不进侧栏、Code 模式 TOC 走 portal 不改原生 TOC DOM；机制与已知限制见 [technical-design.md §5.4](./technical-design.md)、ADR-007）。Ask AI 检索层去掉调试期遗留的「圆角 / 36dp」硬编码回退词，并将检索故障与「无结果」区分开（`src/lib/ai/search-docs.ts`）。
 - **2026-08-13**：沉淀 Ask AI 线上配置：Matrix 部署空间 **编辑 → 主容器环境变量**（Oncall 确认；勿用「设置 → 变量配置」）；首页永久移除「多场景设计最佳实践」（删除 `TypoApps` 与 `public/home/app-icons`）。另：docs 侧栏移除「资源」一级（图标库页 URL 保留）；「多端设备标准」补齐二级占位页；OS4 / OS5 同步。

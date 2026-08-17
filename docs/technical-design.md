@@ -191,7 +191,7 @@ https://embed.figma.com/design/{file_key}?embed-host=hyperos-ds&node-id={node_id
 | 能力 | V1 方案 |
 |------|---------|
 | 搜索 | Orama（`src/app/api/search/route.ts`）+ `Intl.Segmenter('zh-CN')` 自定义 tokenizer（`src/lib/search-tokenizer.ts`），支持中英文混合检索；OS5 发布前仅索引 OS4 |
-| Ask AI | 全站浮动问答（`src/components/ai/` + AI Elements / shadcn）；`POST /api/chat` 用 Vercel AI SDK `streamText` + `searchDocs` tool（复用 Orama，仅 OS4）；模型经 `@ai-sdk/anthropic` 对接小米内网 Messages 网关（`MI_LLM_*`）；`/admin` 不挂载；线上在 Matrix **编辑 → 主容器环境变量** 注入；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
+| Ask AI | 全站浮动问答（`src/components/ai/` + AI Elements / shadcn）；`POST /api/chat` 用 Vercel AI SDK `streamText` + 检索 tool（对模型暴露为 `search`，实现 `searchDocs`，复用 Orama，仅 OS4）；模型经 `@ai-sdk/anthropic` 对接小米内网 Messages 网关（`MI_LLM_*`）；`/admin` 不挂载；线上在 Matrix **编辑 → 主容器环境变量** 注入；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
 | i18n | 当前未配置多语言路由；站点内容与 HTML 语言为中文（`zh-CN`） |
 | 部署 | MiFlow + Matrix + Docker（`Dockerfile`）；分支/环境与卡点见 [deployment.md](./deployment.md)；生产只跑 `npx next build`（不跑 `tinacms build`）；Ask AI 运行时 env 见 deployment「Ask AI 环境变量」（勿与「设置 → 变量配置」混淆） |
 | 主题 | Fumadocs 默认 `neutral.css`；`global.css` 定制紧凑排版与 sidebar 布局；明暗主题由 Fumadocs `RootProvider` 提供；Ask AI 另用 shadcn CSS 变量（与业务 Design Token 分离） |

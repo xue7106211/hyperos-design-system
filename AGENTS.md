@@ -87,7 +87,7 @@ node --test "src/**/*.test.mjs"   # 运行仓库内单元测试（无 npm script
 - 访问 [http://localhost:3000/admin](http://localhost:3000/admin) 编辑 `content/docs/os4/`、`content/docs/os5/` 下的 MDX 规范
 - **Visual Editing**：在 `/admin` 打开文档后，左侧表单会绑定页面 title / description / body；iframe 内点击字段即可编辑
 - 正文可插入自定义 block：`FigmaEmbed`、`TokenTable`、`IconGallery`、`DosDonts`、`PlatformCodeBlock` 等
-- 配置：`tina/config.ts` · block 模板：`tina/schema/blocks.ts`
+- 配置：`tina/config.ts` · collection 工厂与字段：`tina/schema/shared-fields.ts` · block 模板：`tina/schema/blocks.ts`
 - Collections 按 **OS 版本**（`os4` / `os5`）× 站点分组（概览 / 通用设计 / 控件与组件 / … / 资源）展开；组件子目录使用 `**/*` glob 递归索引
 
 ### TinaCMS schema 变更（重要）
@@ -108,6 +108,8 @@ npm run dev            # dev server 会自动重新生成
 ```
 
 然后 `git add tina/__generated__/` 一起提交。**忘记同步会导致 Matrix CI 类型检查失败或运行时行为异常**。
+
+> **别提交 `client.ts` 的 cacheDir 噪音**：本地跑 `npm run build` / `tina:build` 时，`tinacms build` 会往 `tina/__generated__/client.ts` 注入本机绝对路径与时间戳（`cacheDir: '/Users/xxx/.../.cache/1786701903580'`）。仓库里的干净版本**不含** `cacheDir`。提交前检查该文件 diff，只有这一处变化时用 `git checkout tina/__generated__/client.ts` 还原。
 
 只是新增 `content/docs/**` 下的 MDX 文档、改 UI 组件、动 Tailwind 等，不需要重新生成。
 
@@ -167,8 +169,10 @@ icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/REA
 scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
 patches/                # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
 tina/
-  config.ts             # TinaCMS schema（按 os4/os5 × 分组 collections）
-  schema/blocks.ts      # FigmaEmbed、TokenTable、IconGallery 等 MDX block
+  config.ts             # TinaCMS schema 入口（只 import createDocsCollection）
+  schema/
+    shared-fields.ts    # createDocsCollection 工厂 + frontmatter / body 字段（改 collection 结构动这里）
+    blocks.ts           # 7 个正文 block 模板（StatusBadge / FigmaEmbed / FigmaPrototypeEmbed / TokenTable / IconGallery / DosDonts / PlatformCodeBlock）
   database.ts           # 本地 filesystem datalayer
   tina-lock.json        # tinacms 依赖/schema 锁（产物，已提交）
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
@@ -332,7 +336,7 @@ package-lock.json       # npm 锁文件
 
 - 全文搜索：Orama（[src/app/api/search/route.ts](src/app/api/search/route.ts)）+ 中文 tokenizer（[src/lib/search-tokenizer.ts](src/lib/search-tokenizer.ts)）；OS5 发布前仅索引 OS4
 - LLM 导出：`/llms.txt`（索引）、`/llms-full.txt`（全文）、`/llms.mdx/docs/*`（单页 Markdown）
-- **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；打开后面板取代入口按钮（Motion 进出场）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool `searchDocs`（Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。线上在 Matrix 部署空间 **右上角「编辑」→ 主容器「环境变量」** 注入后发布（滚动升级；不是「设置 → 变量配置」）；细节见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」；规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。首页不挂「返回顶部」；`/resources` 仍可有返回顶部，注意与 Ask AI 同角共存。
+- **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；打开后面板取代入口按钮（Motion 进出场）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool 对模型暴露为 `search`（实现 `searchDocs`，Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。线上在 Matrix 部署空间 **右上角「编辑」→ 主容器「环境变量」** 注入后发布（滚动升级；不是「设置 → 变量配置」）；细节见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」；规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。首页不挂「返回顶部」；`/resources` 仍可有返回顶部，注意与 Ask AI 同角共存。
 
 ## Figma 集成
 
