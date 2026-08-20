@@ -1,0 +1,70 @@
+export const ALL_FONTS = 'all';
+
+export const COLOR_PRESETS = [
+  { id: 'black', hex: '#111111', label: '黑' },
+  { id: 'white', hex: '#FFFFFF', label: '白' },
+  { id: 'brand', hex: '#FF6900', label: '品牌' },
+];
+
+export function formatUnicode(hex) {
+  const h = String(hex)
+    .replace(/^U\+/i, '')
+    .replace(/^0x/i, '')
+    .toUpperCase();
+  return `U+${h.padStart(4, '0')}`;
+}
+
+export function codePointToChar(hex) {
+  return String.fromCodePoint(Number.parseInt(String(hex).replace(/^U\+/i, ''), 16));
+}
+
+export function parseHexColor(input, fallback) {
+  const m = String(input)
+    .trim()
+    .match(/^#?([0-9a-fA-F]{6})$/);
+  if (!m) return fallback;
+  return `#${m[1].toUpperCase()}`;
+}
+
+export function previewSurfaceHex(hex) {
+  const raw = parseHexColor(hex, '#111111').slice(1);
+  const r = Number.parseInt(raw.slice(0, 2), 16);
+  const g = Number.parseInt(raw.slice(2, 4), 16);
+  const b = Number.parseInt(raw.slice(4, 6), 16);
+  const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  return lum > 0.6 ? '#1A1A1A' : '#F5F5F5';
+}
+
+function normalizeHexQuery(query) {
+  return query
+    .trim()
+    .toLowerCase()
+    .replace(/^(u\+|\\u|0x)/, '')
+    .replace(/[^0-9a-f]/g, '');
+}
+
+function digitQuery(query) {
+  return query.replace(/\D/g, '');
+}
+
+export function filterIcons(icons, { fontId = ALL_FONTS, query = '' } = {}) {
+  const suite =
+    fontId && fontId !== ALL_FONTS
+      ? icons.filter((icon) => icon.fontId === fontId)
+      : icons;
+
+  const q = query.trim().toLowerCase();
+  if (!q) return suite;
+
+  const hexQ = normalizeHexQuery(q);
+  const digits = digitQuery(q);
+
+  return suite.filter((icon) => {
+    if (icon.name.toLowerCase().includes(q) || icon.id.toLowerCase().includes(q)) {
+      return true;
+    }
+    if (hexQ && icon.unicode.toLowerCase().includes(hexQ)) return true;
+    if (digits && String(icon.glyphIndex).includes(digits)) return true;
+    return false;
+  });
+}

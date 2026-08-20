@@ -1,0 +1,63 @@
+import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
+import {
+  ALL_FONTS,
+  codePointToChar,
+  filterIcons,
+  formatUnicode,
+  parseHexColor,
+  previewSurfaceHex,
+} from './icon-query.mjs';
+
+const sample = [
+  { id: 'symbols.reset', fontId: 'symbols', name: 'reset', unicode: 'F0000', glyphIndex: 1 },
+  { id: 'symbols.play', fontId: 'symbols', name: 'play', unicode: 'F0002', glyphIndex: 3 },
+  { id: 'small.uF02AA', fontId: 'small', name: 'uF02AA', unicode: 'F02AA', glyphIndex: 1 },
+];
+
+describe('formatUnicode', () => {
+  it('pads to at least 4 uppercase hex digits with U+ prefix', () => {
+    assert.equal(formatUnicode('E1'), 'U+00E1');
+    assert.equal(formatUnicode('f0000'), 'U+F0000');
+    assert.equal(formatUnicode('F0000'), 'U+F0000');
+  });
+});
+
+describe('codePointToChar', () => {
+  it('maps hex to a single character', () => {
+    assert.equal(codePointToChar('F0000'), String.fromCodePoint(0xf0000));
+  });
+});
+
+describe('parseHexColor', () => {
+  it('accepts #rrggbb and rrggbb, keeps last valid on junk', () => {
+    assert.equal(parseHexColor('#ff6900', '#111111'), '#FF6900');
+    assert.equal(parseHexColor('111111', '#FF6900'), '#111111');
+    assert.equal(parseHexColor('zzz', '#111111'), '#111111');
+  });
+});
+
+describe('previewSurfaceHex', () => {
+  it('uses a dark tile for light glyphs', () => {
+    assert.equal(previewSurfaceHex('#FFFFFF'), '#1A1A1A');
+    assert.equal(previewSurfaceHex('#111111'), '#F5F5F5');
+  });
+});
+
+describe('filterIcons', () => {
+  it('returns all when fontId is all and query is empty', () => {
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: '' }).length, 3);
+  });
+
+  it('filters by fontId', () => {
+    const hits = filterIcons(sample, { fontId: 'small', query: '' });
+    assert.deepEqual(hits.map((i) => i.id), ['small.uF02AA']);
+  });
+
+  it('matches name, U+F0000, f0000, and glyph index', () => {
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: 'RESET' })[0].name, 'reset');
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: 'U+F0000' })[0].name, 'reset');
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: ' f0000 ' })[0].name, 'reset');
+    assert.equal(filterIcons(sample, { fontId: 'symbols', query: '3' })[0].name, 'play');
+  });
+});
