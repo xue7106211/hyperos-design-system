@@ -1,681 +1,6692 @@
 {
-  "version": 1,
-  "generatedAt": "2026-07-17T06:33:06.584Z",
-  "categories": [
+  "version": 2,
+  "generatedAt": "2026-08-20T13:13:01.394Z",
+  "fonts": [
     {
-      "id": "action",
-      "label": "操作"
+      "id": "symbols",
+      "label": "Symbols",
+      "family": "HyperOS Symbols VF",
+      "path": "/fonts/HyperOSSymbolsVF.woff2",
+      "weight": {
+        "min": 150,
+        "max": 700,
+        "default": 330
+      }
     },
     {
-      "id": "ai",
-      "label": "智能"
+      "id": "content-regular",
+      "label": "Content Regular",
+      "family": " HyperOSSymbols-Content-Regular VF",
+      "path": "/fonts/HyperOSSymbols-Content-RegularVF.woff2",
+      "weight": {
+        "min": 150,
+        "max": 700,
+        "default": 330
+      }
     },
     {
-      "id": "edit",
-      "label": "编辑"
+      "id": "content-secondary",
+      "label": "Content Secondary",
+      "family": " HyperOSSymbols-Content-Secondary VF",
+      "path": "/fonts/HyperOSSymbols-Content-SecondaryVF.woff2",
+      "weight": {
+        "min": 150,
+        "max": 700,
+        "default": 330
+      }
     },
     {
-      "id": "location",
-      "label": "位置"
+      "id": "small",
+      "label": "Small",
+      "family": "HyperOSSymbols-Small VF",
+      "path": "/fonts/HyperOSSymbols-SmallVF.woff2",
+      "weight": {
+        "min": 150,
+        "max": 700,
+        "default": 150
+      }
     },
     {
-      "id": "misc",
-      "label": "其他"
-    },
-    {
-      "id": "navigation",
-      "label": "导航"
-    },
-    {
-      "id": "people",
-      "label": "人"
-    },
-    {
-      "id": "system",
-      "label": "系统"
-    },
-    {
-      "id": "time",
-      "label": "时间"
+      "id": "small-dualtone",
+      "label": "Small Dualtone",
+      "family": "HyperOSSymbols-Small-Dualtone VF",
+      "path": "/fonts/HyperOSSymbols-Small-DualtoneVF.woff2",
+      "weight": {
+        "min": 150,
+        "max": 700,
+        "default": 150
+      }
     }
   ],
   "icons": [
     {
-      "id": "action.download",
-      "name": "download",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/download.svg"
-    },
-    {
-      "id": "action.file_downloads",
-      "name": "file_downloads",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/file_downloads.svg"
-    },
-    {
-      "id": "action.import",
-      "name": "import",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/import.svg"
-    },
-    {
-      "id": "action.merge",
-      "name": "merge",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/merge.svg"
-    },
-    {
-      "id": "action.redo",
-      "name": "redo",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/redo.svg"
-    },
-    {
-      "id": "action.refresh",
-      "name": "refresh",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/refresh.svg"
-    },
-    {
-      "id": "action.remove",
-      "name": "remove",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/remove.svg"
-    },
-    {
-      "id": "action.replace",
-      "name": "replace",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/replace.svg"
-    },
-    {
-      "id": "action.reset",
+      "id": "symbols.reset",
+      "fontId": "symbols",
       "name": "reset",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/reset.svg"
+      "unicode": "F0000",
+      "glyphIndex": 1
     },
     {
-      "id": "action.rotate_left",
-      "name": "rotate_left",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/rotate_left.svg"
+      "id": "symbols.replace",
+      "fontId": "symbols",
+      "name": "replace",
+      "unicode": "F0001",
+      "glyphIndex": 2
     },
     {
-      "id": "action.share",
-      "name": "share",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/share.svg"
+      "id": "symbols.play",
+      "fontId": "symbols",
+      "name": "play",
+      "unicode": "F0002",
+      "glyphIndex": 3
     },
     {
-      "id": "action.sort",
-      "name": "sort",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/sort.svg"
+      "id": "symbols.more",
+      "fontId": "symbols",
+      "name": "more",
+      "unicode": "F0003",
+      "glyphIndex": 4
     },
     {
-      "id": "action.undo",
+      "id": "symbols.search",
+      "fontId": "symbols",
+      "name": "search",
+      "unicode": "F0004",
+      "glyphIndex": 5
+    },
+    {
+      "id": "symbols.redo",
+      "fontId": "symbols",
+      "name": "redo",
+      "unicode": "F0005",
+      "glyphIndex": 6
+    },
+    {
+      "id": "symbols.undo",
+      "fontId": "symbols",
       "name": "undo",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/undo.svg"
+      "unicode": "F0006",
+      "glyphIndex": 7
     },
     {
-      "id": "action.update",
-      "name": "update",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/update.svg"
+      "id": "symbols.pause",
+      "fontId": "symbols",
+      "name": "pause",
+      "unicode": "F0007",
+      "glyphIndex": 8
     },
     {
-      "id": "action.zoom_out",
-      "name": "zoom_out",
-      "category": "action",
-      "tags": [],
-      "path": "/icons/action/zoom_out.svg"
+      "id": "symbols.ok",
+      "fontId": "symbols",
+      "name": "ok",
+      "unicode": "F0008",
+      "glyphIndex": 9
     },
     {
-      "id": "ai.ic-技能推荐",
-      "name": "ic-技能推荐",
-      "category": "ai",
-      "tags": [],
-      "path": "/icons/ai/ic-技能推荐.svg"
+      "id": "symbols.close",
+      "fontId": "symbols",
+      "name": "close",
+      "unicode": "F0009",
+      "glyphIndex": 10
     },
     {
-      "id": "ai.ic-输入模块",
-      "name": "ic-输入模块",
-      "category": "ai",
-      "tags": [],
-      "path": "/icons/ai/ic-输入模块.svg",
-      "multicolor": true
-    },
-    {
-      "id": "edit.插入文本",
-      "name": "插入文本",
-      "category": "edit",
-      "tags": [],
-      "path": "/icons/edit/插入文本.svg"
-    },
-    {
-      "id": "edit.放大",
-      "name": "放大",
-      "category": "edit",
-      "tags": [],
-      "path": "/icons/edit/放大.svg"
-    },
-    {
-      "id": "edit.删除内容",
-      "name": "删除内容",
-      "category": "edit",
-      "tags": [],
-      "path": "/icons/edit/删除内容.svg"
-    },
-    {
-      "id": "edit.上滑",
-      "name": "上滑",
-      "category": "edit",
-      "tags": [],
-      "path": "/icons/edit/上滑.svg",
-      "multicolor": true
-    },
-    {
-      "id": "edit.缩小",
-      "name": "缩小",
-      "category": "edit",
-      "tags": [],
-      "path": "/icons/edit/缩小.svg"
-    },
-    {
-      "id": "location.到达地点",
-      "name": "到达地点",
-      "category": "location",
-      "tags": [],
-      "path": "/icons/location/到达地点.svg"
-    },
-    {
-      "id": "location.离开地点",
-      "name": "离开地点",
-      "category": "location",
-      "tags": [],
-      "path": "/icons/location/离开地点.svg"
-    },
-    {
-      "id": "misc.图标",
-      "name": "图标",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/图标.svg"
-    },
-    {
-      "id": "misc.图标-1",
-      "name": "图标-1",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/图标-1.svg"
-    },
-    {
-      "id": "misc.图标-2",
-      "name": "图标-2",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/图标-2.svg"
-    },
-    {
-      "id": "misc.图标-3",
-      "name": "图标-3",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/图标-3.svg"
-    },
-    {
-      "id": "misc.frame-2090060244",
-      "name": "frame-2090060244",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/frame-2090060244.svg"
-    },
-    {
-      "id": "misc.group-2090054316",
-      "name": "group-2090054316",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/group-2090054316.svg"
-    },
-    {
-      "id": "misc.group-2090054683",
-      "name": "group-2090054683",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/group-2090054683.svg"
-    },
-    {
-      "id": "misc.group-2090054911",
-      "name": "group-2090054911",
-      "category": "misc",
-      "tags": [],
-      "path": "/icons/misc/group-2090054911.svg"
-    },
-    {
-      "id": "navigation.back",
+      "id": "symbols.back",
+      "fontId": "symbols",
       "name": "back",
-      "category": "navigation",
-      "tags": [],
-      "path": "/icons/navigation/back.svg"
+      "unicode": "F000A",
+      "glyphIndex": 11
     },
     {
-      "id": "navigation.chevron_backward",
-      "name": "chevron_backward",
-      "category": "navigation",
-      "tags": [],
-      "path": "/icons/navigation/chevron_backward.svg"
+      "id": "symbols.link",
+      "fontId": "symbols",
+      "name": "link",
+      "unicode": "F000B",
+      "glyphIndex": 12
     },
     {
-      "id": "navigation.chevron_forward",
-      "name": "chevron_forward",
-      "category": "navigation",
-      "tags": [],
-      "path": "/icons/navigation/chevron_forward.svg"
+      "id": "symbols.hide",
+      "fontId": "symbols",
+      "name": "hide",
+      "unicode": "F000C",
+      "glyphIndex": 13
     },
     {
-      "id": "navigation.forward",
-      "name": "forward",
-      "category": "navigation",
-      "tags": [],
-      "path": "/icons/navigation/forward.svg"
-    },
-    {
-      "id": "navigation.navbar-backicon",
-      "name": "navbar-backicon",
-      "category": "navigation",
-      "tags": [],
-      "path": "/icons/navigation/navbar-backicon.svg"
-    },
-    {
-      "id": "people.28",
-      "name": "28",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/28.svg"
-    },
-    {
-      "id": "people.帮助更多人获得地震信息",
-      "name": "帮助更多人获得地震信息",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/帮助更多人获得地震信息.svg"
-    },
-    {
-      "id": "people.参考人脸",
-      "name": "参考人脸",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/参考人脸.svg"
-    },
-    {
-      "id": "people.参考姿势",
-      "name": "参考姿势",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/参考姿势.svg"
-    },
-    {
-      "id": "people.称呼",
-      "name": "称呼",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/称呼.svg"
-    },
-    {
-      "id": "people.儿童空间",
-      "name": "儿童空间",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/儿童空间.svg"
-    },
-    {
-      "id": "people.共享",
-      "name": "共享",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/共享.svg"
-    },
-    {
-      "id": "people.拦截来电",
-      "name": "拦截来电",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/拦截来电.svg"
-    },
-    {
-      "id": "people.人物参考",
-      "name": "人物参考",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/人物参考.svg"
-    },
-    {
-      "id": "people.人像居中",
-      "name": "人像居中",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/人像居中.svg"
-    },
-    {
-      "id": "people.身份证",
-      "name": "身份证",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/身份证.svg"
-    },
-    {
-      "id": "people.身体传感器2",
-      "name": "身体传感器2",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/身体传感器2.svg"
-    },
-    {
-      "id": "people.图标",
-      "name": "图标",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/图标.svg"
-    },
-    {
-      "id": "people.图标-1",
-      "name": "图标-1",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/图标-1.svg"
-    },
-    {
-      "id": "people.图标-2",
-      "name": "图标-2",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/图标-2.svg"
-    },
-    {
-      "id": "people.系统触感",
-      "name": "系统触感",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/系统触感.svg"
-    },
-    {
-      "id": "people.线性图标",
-      "name": "线性图标",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/线性图标.svg"
-    },
-    {
-      "id": "people.一起听",
-      "name": "一起听",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/一起听.svg"
-    },
-    {
-      "id": "people.专注模式",
-      "name": "专注模式",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/专注模式.svg"
-    },
-    {
-      "id": "people.专注模式-1",
-      "name": "专注模式-1",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/专注模式-1.svg"
-    },
-    {
-      "id": "people.自拍",
-      "name": "自拍",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/自拍.svg"
-    },
-    {
-      "id": "people.blocklist",
-      "name": "blocklist",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/blocklist.svg"
-    },
-    {
-      "id": "people.component-72",
-      "name": "component-72",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/component-72.svg",
-      "multicolor": true
-    },
-    {
-      "id": "people.component-9",
-      "name": "component-9",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/component-9.svg"
-    },
-    {
-      "id": "people.contacts",
-      "name": "contacts",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/contacts.svg"
-    },
-    {
-      "id": "people.contacts_book",
-      "name": "contacts_book",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/contacts_book.svg"
-    },
-    {
-      "id": "people.contacts_circle",
-      "name": "contacts_circle",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/contacts_circle.svg"
-    },
-    {
-      "id": "people.frame-2090060244",
-      "name": "frame-2090060244",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/frame-2090060244.svg"
-    },
-    {
-      "id": "people.group-2090054691",
-      "name": "group-2090054691",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/group-2090054691.svg"
-    },
-    {
-      "id": "people.ic-垂域导航",
-      "name": "ic-垂域导航",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-垂域导航.svg"
-    },
-    {
-      "id": "people.ic-垂域导航-1",
-      "name": "ic-垂域导航-1",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-垂域导航-1.svg"
-    },
-    {
-      "id": "people.ic-耳机模式",
-      "name": "ic-耳机模式",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-耳机模式.svg"
-    },
-    {
-      "id": "people.ic-耳机模式-1",
-      "name": "ic-耳机模式-1",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-耳机模式-1.svg"
-    },
-    {
-      "id": "people.ic-耳机模式-2",
-      "name": "ic-耳机模式-2",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-耳机模式-2.svg",
-      "multicolor": true
-    },
-    {
-      "id": "people.ic-技能推荐",
-      "name": "ic-技能推荐",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-技能推荐.svg"
-    },
-    {
-      "id": "people.ic-主框架",
-      "name": "ic-主框架",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-主框架.svg"
-    },
-    {
-      "id": "people.ic-主框架-1",
-      "name": "ic-主框架-1",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/ic-主框架-1.svg"
-    },
-    {
-      "id": "people.icon",
-      "name": "icon",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/icon.svg",
-      "multicolor": true
-    },
-    {
-      "id": "people.icon-1",
-      "name": "icon-1",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/icon-1.svg",
-      "multicolor": true
-    },
-    {
-      "id": "people.icon-2",
-      "name": "icon-2",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/icon-2.svg",
-      "multicolor": true
-    },
-    {
-      "id": "people.remove_contact",
-      "name": "remove_contact",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/remove_contact.svg"
-    },
-    {
-      "id": "people.show",
+      "id": "symbols.show",
+      "fontId": "symbols",
       "name": "show",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/show.svg"
+      "unicode": "F000D",
+      "glyphIndex": 14
     },
     {
-      "id": "people.show-1",
-      "name": "show-1",
-      "category": "people",
-      "tags": [],
-      "path": "/icons/people/show-1.svg"
+      "id": "symbols.store",
+      "fontId": "symbols",
+      "name": "store",
+      "unicode": "F000E",
+      "glyphIndex": 15
     },
     {
-      "id": "system.超级文件",
-      "name": "超级文件",
-      "category": "system",
-      "tags": [],
-      "path": "/icons/system/超级文件.svg"
+      "id": "symbols.copy",
+      "fontId": "symbols",
+      "name": "copy",
+      "unicode": "F000F",
+      "glyphIndex": 16
     },
     {
-      "id": "system.超级文件-1",
-      "name": "超级文件-1",
-      "category": "system",
-      "tags": [],
-      "path": "/icons/system/超级文件-1.svg"
+      "id": "symbols.paste",
+      "fontId": "symbols",
+      "name": "paste",
+      "unicode": "F0010",
+      "glyphIndex": 17
     },
     {
-      "id": "system.列表缓存状态",
-      "name": "列表缓存状态",
-      "category": "system",
-      "tags": [],
-      "path": "/icons/system/列表缓存状态.svg"
+      "id": "symbols.lock",
+      "fontId": "symbols",
+      "name": "lock",
+      "unicode": "F0011",
+      "glyphIndex": 18
     },
     {
-      "id": "system.列表缓存状态-1",
-      "name": "列表缓存状态-1",
-      "category": "system",
-      "tags": [],
-      "path": "/icons/system/列表缓存状态-1.svg"
+      "id": "symbols.unlock",
+      "fontId": "symbols",
+      "name": "unlock",
+      "unicode": "F0012",
+      "glyphIndex": 19
     },
     {
-      "id": "time.alarm",
+      "id": "symbols.community",
+      "fontId": "symbols",
+      "name": "community",
+      "unicode": "F0013",
+      "glyphIndex": 20
+    },
+    {
+      "id": "symbols.translate",
+      "fontId": "symbols",
+      "name": "translate",
+      "unicode": "F0014",
+      "glyphIndex": 21
+    },
+    {
+      "id": "symbols.download",
+      "fontId": "symbols",
+      "name": "download",
+      "unicode": "F0015",
+      "glyphIndex": 22
+    },
+    {
+      "id": "symbols.scan",
+      "fontId": "symbols",
+      "name": "scan",
+      "unicode": "F0016",
+      "glyphIndex": 23
+    },
+    {
+      "id": "symbols.delete",
+      "fontId": "symbols",
+      "name": "delete",
+      "unicode": "F0017",
+      "glyphIndex": 24
+    },
+    {
+      "id": "symbols.file",
+      "fontId": "symbols",
+      "name": "file",
+      "unicode": "F0018",
+      "glyphIndex": 25
+    },
+    {
+      "id": "symbols.sidebar",
+      "fontId": "symbols",
+      "name": "sidebar",
+      "unicode": "F0019",
+      "glyphIndex": 26
+    },
+    {
+      "id": "symbols.edit",
+      "fontId": "symbols",
+      "name": "edit",
+      "unicode": "F001A",
+      "glyphIndex": 27
+    },
+    {
+      "id": "symbols.share",
+      "fontId": "symbols",
+      "name": "share",
+      "unicode": "F001B",
+      "glyphIndex": 28
+    },
+    {
+      "id": "symbols.move_file",
+      "fontId": "symbols",
+      "name": "move_file",
+      "unicode": "F001C",
+      "glyphIndex": 29
+    },
+    {
+      "id": "symbols.settings",
+      "fontId": "symbols",
+      "name": "settings",
+      "unicode": "F001D",
+      "glyphIndex": 30
+    },
+    {
+      "id": "symbols.favorites",
+      "fontId": "symbols",
+      "name": "favorites",
+      "unicode": "F001E",
+      "glyphIndex": 31
+    },
+    {
+      "id": "symbols.report",
+      "fontId": "symbols",
+      "name": "report",
+      "unicode": "F001F",
+      "glyphIndex": 32
+    },
+    {
+      "id": "symbols.search_device",
+      "fontId": "symbols",
+      "name": "search_device",
+      "unicode": "F0020",
+      "glyphIndex": 33
+    },
+    {
+      "id": "symbols.close_2",
+      "fontId": "symbols",
+      "name": "close_2",
+      "unicode": "F0021",
+      "glyphIndex": 34
+    },
+    {
+      "id": "symbols.refresh",
+      "fontId": "symbols",
+      "name": "refresh",
+      "unicode": "F0022",
+      "glyphIndex": 35
+    },
+    {
+      "id": "symbols.answer",
+      "fontId": "symbols",
+      "name": "answer",
+      "unicode": "F0023",
+      "glyphIndex": 36
+    },
+    {
+      "id": "symbols.help",
+      "fontId": "symbols",
+      "name": "help",
+      "unicode": "F0024",
+      "glyphIndex": 37
+    },
+    {
+      "id": "symbols.more_circle",
+      "fontId": "symbols",
+      "name": "more_circle",
+      "unicode": "F0025",
+      "glyphIndex": 38
+    },
+    {
+      "id": "symbols.info",
+      "fontId": "symbols",
+      "name": "info",
+      "unicode": "F0026",
+      "glyphIndex": 39
+    },
+    {
+      "id": "symbols.add_circle",
+      "fontId": "symbols",
+      "name": "add_circle",
+      "unicode": "F0027",
+      "glyphIndex": 40
+    },
+    {
+      "id": "symbols.update",
+      "fontId": "symbols",
+      "name": "update",
+      "unicode": "F0028",
+      "glyphIndex": 41
+    },
+    {
+      "id": "symbols.cut",
+      "fontId": "symbols",
+      "name": "cut",
+      "unicode": "F0029",
+      "glyphIndex": 42
+    },
+    {
+      "id": "symbols.rename",
+      "fontId": "symbols",
+      "name": "rename",
+      "unicode": "F002A",
+      "glyphIndex": 43
+    },
+    {
+      "id": "symbols.pin",
+      "fontId": "symbols",
+      "name": "pin",
+      "unicode": "F002B",
+      "glyphIndex": 44
+    },
+    {
+      "id": "symbols.unpin",
+      "fontId": "symbols",
+      "name": "unpin",
+      "unicode": "F002C",
+      "glyphIndex": 45
+    },
+    {
+      "id": "symbols.select_all",
+      "fontId": "symbols",
+      "name": "select_all",
+      "unicode": "F002D",
+      "glyphIndex": 46
+    },
+    {
+      "id": "symbols.playlist",
+      "fontId": "symbols",
+      "name": "playlist",
+      "unicode": "F002E",
+      "glyphIndex": 47
+    },
+    {
+      "id": "symbols.alarm",
+      "fontId": "symbols",
       "name": "alarm",
-      "category": "time",
-      "tags": [],
-      "path": "/icons/time/alarm.svg"
+      "unicode": "F002F",
+      "glyphIndex": 48
     },
     {
-      "id": "time.months",
-      "name": "months",
-      "category": "time",
-      "tags": [],
-      "path": "/icons/time/months.svg"
+      "id": "symbols.world_clock",
+      "fontId": "symbols",
+      "name": "world_clock",
+      "unicode": "F0030",
+      "glyphIndex": 49
     },
     {
-      "id": "time.th_20",
-      "name": "th_20",
-      "category": "time",
-      "tags": [],
-      "path": "/icons/time/th_20.svg"
+      "id": "symbols.recent",
+      "fontId": "symbols",
+      "name": "recent",
+      "unicode": "F0031",
+      "glyphIndex": 50
     },
     {
-      "id": "time.timer",
+      "id": "symbols.stopwatch",
+      "fontId": "symbols",
+      "name": "stopwatch",
+      "unicode": "F0032",
+      "glyphIndex": 51
+    },
+    {
+      "id": "symbols.timer",
+      "fontId": "symbols",
       "name": "timer",
-      "category": "time",
-      "tags": [],
-      "path": "/icons/time/timer.svg"
+      "unicode": "F0033",
+      "glyphIndex": 52
     },
     {
-      "id": "time.weeks",
-      "name": "weeks",
-      "category": "time",
-      "tags": [],
-      "path": "/icons/time/weeks.svg"
+      "id": "symbols.folder_fill",
+      "fontId": "symbols",
+      "name": "folder_fill",
+      "unicode": "F0034",
+      "glyphIndex": 53
     },
     {
-      "id": "time.years",
+      "id": "symbols.cloud_fill",
+      "fontId": "symbols",
+      "name": "cloud_fill",
+      "unicode": "F0035",
+      "glyphIndex": 54
+    },
+    {
+      "id": "symbols.photos",
+      "fontId": "symbols",
+      "name": "photos",
+      "unicode": "F0036",
+      "glyphIndex": 55
+    },
+    {
+      "id": "symbols.album",
+      "fontId": "symbols",
+      "name": "album",
+      "unicode": "F0037",
+      "glyphIndex": 56
+    },
+    {
+      "id": "symbols.notes_fill",
+      "fontId": "symbols",
+      "name": "notes_fill",
+      "unicode": "F0038",
+      "glyphIndex": 57
+    },
+    {
+      "id": "symbols.tasks",
+      "fontId": "symbols",
+      "name": "tasks",
+      "unicode": "F0039",
+      "glyphIndex": 58
+    },
+    {
+      "id": "symbols.phone",
+      "fontId": "symbols",
+      "name": "phone",
+      "unicode": "F003A",
+      "glyphIndex": 59
+    },
+    {
+      "id": "symbols.favorites_fill",
+      "fontId": "symbols",
+      "name": "favorites_fill",
+      "unicode": "F003B",
+      "glyphIndex": 60
+    },
+    {
+      "id": "symbols.contacts_circle",
+      "fontId": "symbols",
+      "name": "contacts_circle",
+      "unicode": "F003C",
+      "glyphIndex": 61
+    },
+    {
+      "id": "symbols.carrier",
+      "fontId": "symbols",
+      "name": "carrier",
+      "unicode": "F003D",
+      "glyphIndex": 62
+    },
+    {
+      "id": "symbols.messages",
+      "fontId": "symbols",
+      "name": "messages",
+      "unicode": "F003E",
+      "glyphIndex": 63
+    },
+    {
+      "id": "symbols.promotions",
+      "fontId": "symbols",
+      "name": "promotions",
+      "unicode": "F003F",
+      "glyphIndex": 64
+    },
+    {
+      "id": "symbols.bank_cards",
+      "fontId": "symbols",
+      "name": "bank_cards",
+      "unicode": "F0040",
+      "glyphIndex": 65
+    },
+    {
+      "id": "symbols.years",
+      "fontId": "symbols",
       "name": "years",
-      "category": "time",
-      "tags": [],
-      "path": "/icons/time/years.svg"
+      "unicode": "F0041",
+      "glyphIndex": 66
+    },
+    {
+      "id": "symbols.months",
+      "fontId": "symbols",
+      "name": "months",
+      "unicode": "F0042",
+      "glyphIndex": 67
+    },
+    {
+      "id": "symbols.weeks",
+      "fontId": "symbols",
+      "name": "weeks",
+      "unicode": "F0043",
+      "glyphIndex": 68
+    },
+    {
+      "id": "symbols.location",
+      "fontId": "symbols",
+      "name": "location",
+      "unicode": "F0044",
+      "glyphIndex": 69
+    },
+    {
+      "id": "symbols.all",
+      "fontId": "symbols",
+      "name": "all",
+      "unicode": "F0045",
+      "glyphIndex": 70
+    },
+    {
+      "id": "symbols.recording",
+      "fontId": "symbols",
+      "name": "recording",
+      "unicode": "F0046",
+      "glyphIndex": 71
+    },
+    {
+      "id": "symbols.call_recording",
+      "fontId": "symbols",
+      "name": "call_recording",
+      "unicode": "F0047",
+      "glyphIndex": 72
+    },
+    {
+      "id": "symbols.app_recording",
+      "fontId": "symbols",
+      "name": "app_recording",
+      "unicode": "F0048",
+      "glyphIndex": 73
+    },
+    {
+      "id": "symbols.th_1",
+      "fontId": "symbols",
+      "name": "th_1",
+      "unicode": "F0049",
+      "glyphIndex": 74
+    },
+    {
+      "id": "symbols.th_2",
+      "fontId": "symbols",
+      "name": "th_2",
+      "unicode": "F004A",
+      "glyphIndex": 75
+    },
+    {
+      "id": "symbols.th_3",
+      "fontId": "symbols",
+      "name": "th_3",
+      "unicode": "F004B",
+      "glyphIndex": 76
+    },
+    {
+      "id": "symbols.th_4",
+      "fontId": "symbols",
+      "name": "th_4",
+      "unicode": "F004C",
+      "glyphIndex": 77
+    },
+    {
+      "id": "symbols.th_5",
+      "fontId": "symbols",
+      "name": "th_5",
+      "unicode": "F004D",
+      "glyphIndex": 78
+    },
+    {
+      "id": "symbols.th_6",
+      "fontId": "symbols",
+      "name": "th_6",
+      "unicode": "F004E",
+      "glyphIndex": 79
+    },
+    {
+      "id": "symbols.th_7",
+      "fontId": "symbols",
+      "name": "th_7",
+      "unicode": "F004F",
+      "glyphIndex": 80
+    },
+    {
+      "id": "symbols.th_8",
+      "fontId": "symbols",
+      "name": "th_8",
+      "unicode": "F0050",
+      "glyphIndex": 81
+    },
+    {
+      "id": "symbols.th_9",
+      "fontId": "symbols",
+      "name": "th_9",
+      "unicode": "F0051",
+      "glyphIndex": 82
+    },
+    {
+      "id": "symbols.th_10",
+      "fontId": "symbols",
+      "name": "th_10",
+      "unicode": "F0052",
+      "glyphIndex": 83
+    },
+    {
+      "id": "symbols.th_11",
+      "fontId": "symbols",
+      "name": "th_11",
+      "unicode": "F0053",
+      "glyphIndex": 84
+    },
+    {
+      "id": "symbols.th_12",
+      "fontId": "symbols",
+      "name": "th_12",
+      "unicode": "F0054",
+      "glyphIndex": 85
+    },
+    {
+      "id": "symbols.th_13",
+      "fontId": "symbols",
+      "name": "th_13",
+      "unicode": "F0055",
+      "glyphIndex": 86
+    },
+    {
+      "id": "symbols.th_14",
+      "fontId": "symbols",
+      "name": "th_14",
+      "unicode": "F0056",
+      "glyphIndex": 87
+    },
+    {
+      "id": "symbols.th_15",
+      "fontId": "symbols",
+      "name": "th_15",
+      "unicode": "F0057",
+      "glyphIndex": 88
+    },
+    {
+      "id": "symbols.th_16",
+      "fontId": "symbols",
+      "name": "th_16",
+      "unicode": "F0058",
+      "glyphIndex": 89
+    },
+    {
+      "id": "symbols.th_17",
+      "fontId": "symbols",
+      "name": "th_17",
+      "unicode": "F0059",
+      "glyphIndex": 90
+    },
+    {
+      "id": "symbols.th_18",
+      "fontId": "symbols",
+      "name": "th_18",
+      "unicode": "F005A",
+      "glyphIndex": 91
+    },
+    {
+      "id": "symbols.th_19",
+      "fontId": "symbols",
+      "name": "th_19",
+      "unicode": "F005B",
+      "glyphIndex": 92
+    },
+    {
+      "id": "symbols.th_20",
+      "fontId": "symbols",
+      "name": "th_20",
+      "unicode": "F005C",
+      "glyphIndex": 93
+    },
+    {
+      "id": "symbols.th_21",
+      "fontId": "symbols",
+      "name": "th_21",
+      "unicode": "F005D",
+      "glyphIndex": 94
+    },
+    {
+      "id": "symbols.th_22",
+      "fontId": "symbols",
+      "name": "th_22",
+      "unicode": "F005E",
+      "glyphIndex": 95
+    },
+    {
+      "id": "symbols.th_23",
+      "fontId": "symbols",
+      "name": "th_23",
+      "unicode": "F005F",
+      "glyphIndex": 96
+    },
+    {
+      "id": "symbols.th_24",
+      "fontId": "symbols",
+      "name": "th_24",
+      "unicode": "F0060",
+      "glyphIndex": 97
+    },
+    {
+      "id": "symbols.th_25",
+      "fontId": "symbols",
+      "name": "th_25",
+      "unicode": "F0061",
+      "glyphIndex": 98
+    },
+    {
+      "id": "symbols.th_26",
+      "fontId": "symbols",
+      "name": "th_26",
+      "unicode": "F0062",
+      "glyphIndex": 99
+    },
+    {
+      "id": "symbols.th_27",
+      "fontId": "symbols",
+      "name": "th_27",
+      "unicode": "F0063",
+      "glyphIndex": 100
+    },
+    {
+      "id": "symbols.th_28",
+      "fontId": "symbols",
+      "name": "th_28",
+      "unicode": "F0064",
+      "glyphIndex": 101
+    },
+    {
+      "id": "symbols.th_29",
+      "fontId": "symbols",
+      "name": "th_29",
+      "unicode": "F0065",
+      "glyphIndex": 102
+    },
+    {
+      "id": "symbols.th_30",
+      "fontId": "symbols",
+      "name": "th_30",
+      "unicode": "F0066",
+      "glyphIndex": 103
+    },
+    {
+      "id": "symbols.th_31",
+      "fontId": "symbols",
+      "name": "th_31",
+      "unicode": "F0067",
+      "glyphIndex": 104
+    },
+    {
+      "id": "symbols.sort",
+      "fontId": "symbols",
+      "name": "sort",
+      "unicode": "F0068",
+      "glyphIndex": 105
+    },
+    {
+      "id": "symbols.create",
+      "fontId": "symbols",
+      "name": "create",
+      "unicode": "F0069",
+      "glyphIndex": 106
+    },
+    {
+      "id": "symbols.volume_up",
+      "fontId": "symbols",
+      "name": "volume_up",
+      "unicode": "F006A",
+      "glyphIndex": 107
+    },
+    {
+      "id": "symbols.volume_off",
+      "fontId": "symbols",
+      "name": "volume_off",
+      "unicode": "F006B",
+      "glyphIndex": 108
+    },
+    {
+      "id": "symbols.trim",
+      "fontId": "symbols",
+      "name": "trim",
+      "unicode": "F006C",
+      "glyphIndex": 109
+    },
+    {
+      "id": "symbols.filter",
+      "fontId": "symbols",
+      "name": "filter",
+      "unicode": "F006D",
+      "glyphIndex": 110
+    },
+    {
+      "id": "symbols.import",
+      "fontId": "symbols",
+      "name": "import",
+      "unicode": "F006E",
+      "glyphIndex": 111
+    },
+    {
+      "id": "symbols.folder",
+      "fontId": "symbols",
+      "name": "folder",
+      "unicode": "F006F",
+      "glyphIndex": 112
+    },
+    {
+      "id": "symbols.add_folder",
+      "fontId": "symbols",
+      "name": "add_folder",
+      "unicode": "F0070",
+      "glyphIndex": 113
+    },
+    {
+      "id": "symbols.remove",
+      "fontId": "symbols",
+      "name": "remove",
+      "unicode": "F0071",
+      "glyphIndex": 114
+    },
+    {
+      "id": "symbols.rotate_left",
+      "fontId": "symbols",
+      "name": "rotate_left",
+      "unicode": "F0072",
+      "glyphIndex": 115
+    },
+    {
+      "id": "symbols.merge",
+      "fontId": "symbols",
+      "name": "merge",
+      "unicode": "F0073",
+      "glyphIndex": 116
+    },
+    {
+      "id": "symbols.recording_tape",
+      "fontId": "symbols",
+      "name": "recording_tape",
+      "unicode": "F0074",
+      "glyphIndex": 117
+    },
+    {
+      "id": "symbols.notes",
+      "fontId": "symbols",
+      "name": "notes",
+      "unicode": "F0075",
+      "glyphIndex": 118
+    },
+    {
+      "id": "symbols.music",
+      "fontId": "symbols",
+      "name": "music",
+      "unicode": "F0076",
+      "glyphIndex": 119
+    },
+    {
+      "id": "symbols.remove_contact",
+      "fontId": "symbols",
+      "name": "remove_contact",
+      "unicode": "F0077",
+      "glyphIndex": 120
+    },
+    {
+      "id": "symbols.blocklist",
+      "fontId": "symbols",
+      "name": "blocklist",
+      "unicode": "F0078",
+      "glyphIndex": 121
+    },
+    {
+      "id": "symbols.contacts",
+      "fontId": "symbols",
+      "name": "contacts",
+      "unicode": "F0079",
+      "glyphIndex": 122
+    },
+    {
+      "id": "symbols.contacts_book",
+      "fontId": "symbols",
+      "name": "contacts_book",
+      "unicode": "F007A",
+      "glyphIndex": 123
+    },
+    {
+      "id": "symbols.theme",
+      "fontId": "symbols",
+      "name": "theme",
+      "unicode": "F007B",
+      "glyphIndex": 124
+    },
+    {
+      "id": "symbols.convert_file",
+      "fontId": "symbols",
+      "name": "convert_file",
+      "unicode": "F007C",
+      "glyphIndex": 125
+    },
+    {
+      "id": "symbols.image",
+      "fontId": "symbols",
+      "name": "image",
+      "unicode": "F007D",
+      "glyphIndex": 126
+    },
+    {
+      "id": "symbols.tune",
+      "fontId": "symbols",
+      "name": "tune",
+      "unicode": "F007E",
+      "glyphIndex": 127
+    },
+    {
+      "id": "symbols.add",
+      "fontId": "symbols",
+      "name": "add",
+      "unicode": "F007F",
+      "glyphIndex": 128
+    },
+    {
+      "id": "symbols.mic",
+      "fontId": "symbols",
+      "name": "mic",
+      "unicode": "F0080",
+      "glyphIndex": 129
+    },
+    {
+      "id": "symbols.mic_slash",
+      "fontId": "symbols",
+      "name": "mic_slash",
+      "unicode": "F0081",
+      "glyphIndex": 130
+    },
+    {
+      "id": "symbols.reply",
+      "fontId": "symbols",
+      "name": "reply",
+      "unicode": "F0082",
+      "glyphIndex": 131
+    },
+    {
+      "id": "symbols.reply_all",
+      "fontId": "symbols",
+      "name": "reply_all",
+      "unicode": "F0083",
+      "glyphIndex": 132
+    },
+    {
+      "id": "symbols.backup",
+      "fontId": "symbols",
+      "name": "backup",
+      "unicode": "F0084",
+      "glyphIndex": 133
+    },
+    {
+      "id": "symbols.expand_more",
+      "fontId": "symbols",
+      "name": "expand_more",
+      "unicode": "F0085",
+      "glyphIndex": 134
+    },
+    {
+      "id": "symbols.expand_less",
+      "fontId": "symbols",
+      "name": "expand_less",
+      "unicode": "F0086",
+      "glyphIndex": 135
+    },
+    {
+      "id": "symbols.mind_map",
+      "fontId": "symbols",
+      "name": "mind_map",
+      "unicode": "F0087",
+      "glyphIndex": 136
+    },
+    {
+      "id": "symbols.layers",
+      "fontId": "symbols",
+      "name": "layers",
+      "unicode": "F0088",
+      "glyphIndex": 137
+    },
+    {
+      "id": "symbols.background",
+      "fontId": "symbols",
+      "name": "background",
+      "unicode": "F0089",
+      "glyphIndex": 138
+    },
+    {
+      "id": "symbols.map_album",
+      "fontId": "symbols",
+      "name": "map_album",
+      "unicode": "F008A",
+      "glyphIndex": 139
+    },
+    {
+      "id": "symbols.horizontal_split",
+      "fontId": "symbols",
+      "name": "horizontal_split",
+      "unicode": "F008B",
+      "glyphIndex": 140
+    },
+    {
+      "id": "symbols.vertical_split",
+      "fontId": "symbols",
+      "name": "vertical_split",
+      "unicode": "F008C",
+      "glyphIndex": 141
+    },
+    {
+      "id": "symbols.chevron_backward",
+      "fontId": "symbols",
+      "name": "chevron_backward",
+      "unicode": "F008D",
+      "glyphIndex": 142
+    },
+    {
+      "id": "symbols.chevron_forward",
+      "fontId": "symbols",
+      "name": "chevron_forward",
+      "unicode": "F008E",
+      "glyphIndex": 143
+    },
+    {
+      "id": "symbols.zoom_out",
+      "fontId": "symbols",
+      "name": "zoom_out",
+      "unicode": "F008F",
+      "glyphIndex": 144
+    },
+    {
+      "id": "symbols.email",
+      "fontId": "symbols",
+      "name": "email",
+      "unicode": "F0090",
+      "glyphIndex": 145
+    },
+    {
+      "id": "symbols.send",
+      "fontId": "symbols",
+      "name": "send",
+      "unicode": "F0091",
+      "glyphIndex": 146
+    },
+    {
+      "id": "symbols.forward",
+      "fontId": "symbols",
+      "name": "forward",
+      "unicode": "F0092",
+      "glyphIndex": 147
+    },
+    {
+      "id": "symbols.file_downloads",
+      "fontId": "symbols",
+      "name": "file_downloads",
+      "unicode": "F0093",
+      "glyphIndex": 148
+    },
+    {
+      "id": "symbols.top_downloads",
+      "fontId": "symbols",
+      "name": "top_downloads",
+      "unicode": "F0094",
+      "glyphIndex": 149
+    },
+    {
+      "id": "symbols.clear",
+      "fontId": "symbols",
+      "name": "clear",
+      "unicode": "F0095",
+      "glyphIndex": 150
+    },
+    {
+      "id": "symbols.upload_cloud",
+      "fontId": "symbols",
+      "name": "upload_cloud",
+      "unicode": "F0096",
+      "glyphIndex": 151
+    },
+    {
+      "id": "symbols.list_view",
+      "fontId": "symbols",
+      "name": "list_view",
+      "unicode": "F0097",
+      "glyphIndex": 152
+    },
+    {
+      "id": "symbols.grid_view",
+      "fontId": "symbols",
+      "name": "grid_view",
+      "unicode": "F0098",
+      "glyphIndex": 153
+    },
+    {
+      "id": "symbols.screen_capture",
+      "fontId": "symbols",
+      "name": "screen_capture",
+      "unicode": "F0099",
+      "glyphIndex": 154
+    },
+    {
+      "id": "symbols.screen_mirroring",
+      "fontId": "symbols",
+      "name": "screen_mirroring",
+      "unicode": "F009A",
+      "glyphIndex": 155
+    },
+    {
+      "id": "symbols.read",
+      "fontId": "symbols",
+      "name": "read",
+      "unicode": "F009C",
+      "glyphIndex": 156
+    },
+    {
+      "id": "symbols.mark_all_as_read",
+      "fontId": "symbols",
+      "name": "mark_all_as_read",
+      "unicode": "F009D",
+      "glyphIndex": 157
+    },
+    {
+      "id": "symbols.mark_as_read",
+      "fontId": "symbols",
+      "name": "mark_as_read",
+      "unicode": "F009E",
+      "glyphIndex": 158
+    },
+    {
+      "id": "symbols.save",
+      "fontId": "symbols",
+      "name": "save",
+      "unicode": "F009F",
+      "glyphIndex": 159
+    },
+    {
+      "id": "symbols.starred",
+      "fontId": "symbols",
+      "name": "starred",
+      "unicode": "F00A0",
+      "glyphIndex": 160
+    },
+    {
+      "id": "symbols.insufficient_cloud_storage_space",
+      "fontId": "symbols",
+      "name": "insufficient_cloud_storage_space",
+      "unicode": "F00A1",
+      "glyphIndex": 161
+    },
+    {
+      "id": "symbols.unstar",
+      "fontId": "symbols",
+      "name": "unstar",
+      "unicode": "F00A2",
+      "glyphIndex": 162
+    },
+    {
+      "id": "symbols.mark_ras_unread",
+      "fontId": "symbols",
+      "name": "mark_ras_unread",
+      "unicode": "F00A3",
+      "glyphIndex": 163
+    },
+    {
+      "id": "symbols.add_bookmark",
+      "fontId": "symbols",
+      "name": "add_bookmark",
+      "unicode": "F00A4",
+      "glyphIndex": 164
+    },
+    {
+      "id": "symbols.ai_scan",
+      "fontId": "symbols",
+      "name": "ai_scan",
+      "unicode": "F00A5",
+      "glyphIndex": 165
+    },
+    {
+      "id": "symbols.notifications",
+      "fontId": "symbols",
+      "name": "notifications",
+      "unicode": "F00A6",
+      "glyphIndex": 166
+    },
+    {
+      "id": "symbols.short_video",
+      "fontId": "symbols",
+      "name": "short_video",
+      "unicode": "F00A7",
+      "glyphIndex": 167
+    },
+    {
+      "id": "symbols.mini_drama",
+      "fontId": "symbols",
+      "name": "mini_drama",
+      "unicode": "F00A8",
+      "glyphIndex": 168
+    },
+    {
+      "id": "symbols.coupon",
+      "fontId": "symbols",
+      "name": "coupon",
+      "unicode": "F00A9",
+      "glyphIndex": 169
+    },
+    {
+      "id": "symbols.movie",
+      "fontId": "symbols",
+      "name": "movie",
+      "unicode": "F00AA",
+      "glyphIndex": 170
+    },
+    {
+      "id": "symbols.menu",
+      "fontId": "symbols",
+      "name": "menu",
+      "unicode": "F00AB",
+      "glyphIndex": 171
+    },
+    {
+      "id": "symbols.child",
+      "fontId": "symbols",
+      "name": "child",
+      "unicode": "F00AC",
+      "glyphIndex": 172
+    },
+    {
+      "id": "symbols.gift",
+      "fontId": "symbols",
+      "name": "gift",
+      "unicode": "F00AD",
+      "glyphIndex": 173
+    },
+    {
+      "id": "symbols.rocket",
+      "fontId": "symbols",
+      "name": "rocket",
+      "unicode": "F00AE",
+      "glyphIndex": 174
+    },
+    {
+      "id": "symbols.book",
+      "fontId": "symbols",
+      "name": "book",
+      "unicode": "F00AF",
+      "glyphIndex": 175
+    },
+    {
+      "id": "symbols.memory_function",
+      "fontId": "symbols",
+      "name": "memory_function",
+      "unicode": "F03A8",
+      "glyphIndex": 176
+    },
+    {
+      "id": "content-regular.Surround_Line",
+      "fontId": "content-regular",
+      "name": "Surround_Line",
+      "unicode": "F00C5",
+      "glyphIndex": 1
+    },
+    {
+      "id": "content-regular.high_risk_call_surface",
+      "fontId": "content-regular",
+      "name": "high_risk_call_surface",
+      "unicode": "F00C6",
+      "glyphIndex": 2
+    },
+    {
+      "id": "content-regular.sun_protection_advised_surface",
+      "fontId": "content-regular",
+      "name": "sun_protection_advised_surface",
+      "unicode": "F00C7",
+      "glyphIndex": 3
+    },
+    {
+      "id": "content-regular.no_sun_protection_needed_surface",
+      "fontId": "content-regular",
+      "name": "no_sun_protection_needed_surface",
+      "unicode": "F00C8",
+      "glyphIndex": 4
+    },
+    {
+      "id": "content-regular.my_device_surface",
+      "fontId": "content-regular",
+      "name": "my_device_surface",
+      "unicode": "F00C9",
+      "glyphIndex": 5
+    },
+    {
+      "id": "content-regular.phone_backup_restore_line",
+      "fontId": "content-regular",
+      "name": "phone_backup_restore_line",
+      "unicode": "F00CA",
+      "glyphIndex": 6
+    },
+    {
+      "id": "content-regular.computer_backup_restore_line",
+      "fontId": "content-regular",
+      "name": "computer_backup_restore_line",
+      "unicode": "F00CB",
+      "glyphIndex": 7
+    },
+    {
+      "id": "content-regular.usb_drive_backup_restore_line",
+      "fontId": "content-regular",
+      "name": "usb_drive_backup_restore_line",
+      "unicode": "F00CC",
+      "glyphIndex": 8
+    },
+    {
+      "id": "content-regular.folding_screen_my_device_surface",
+      "fontId": "content-regular",
+      "name": "folding_screen_my_device_surface",
+      "unicode": "F00CD",
+      "glyphIndex": 9
+    },
+    {
+      "id": "content-regular.pad_my_device_surface",
+      "fontId": "content-regular",
+      "name": "pad_my_device_surface",
+      "unicode": "F00CE",
+      "glyphIndex": 10
+    },
+    {
+      "id": "content-regular.pad_device_line",
+      "fontId": "content-regular",
+      "name": "pad_device_line",
+      "unicode": "F00CF",
+      "glyphIndex": 11
+    },
+    {
+      "id": "content-regular.rear_screen_surface",
+      "fontId": "content-regular",
+      "name": "rear_screen_surface",
+      "unicode": "F00D0",
+      "glyphIndex": 12
+    },
+    {
+      "id": "content-regular.battery_surface",
+      "fontId": "content-regular",
+      "name": "battery_surface",
+      "unicode": "F00D1",
+      "glyphIndex": 13
+    },
+    {
+      "id": "content-regular.keyboard_stylus_surface",
+      "fontId": "content-regular",
+      "name": "keyboard_stylus_surface",
+      "unicode": "F00D2",
+      "glyphIndex": 14
+    },
+    {
+      "id": "content-regular.usb_surface",
+      "fontId": "content-regular",
+      "name": "usb_surface",
+      "unicode": "F00D3",
+      "glyphIndex": 15
+    },
+    {
+      "id": "content-regular.processor_line",
+      "fontId": "content-regular",
+      "name": "processor_line",
+      "unicode": "F00D4",
+      "glyphIndex": 16
+    },
+    {
+      "id": "content-regular.ram_line",
+      "fontId": "content-regular",
+      "name": "ram_line",
+      "unicode": "F00D5",
+      "glyphIndex": 17
+    },
+    {
+      "id": "content-regular.screen_size_line",
+      "fontId": "content-regular",
+      "name": "screen_size_line",
+      "unicode": "F00D6",
+      "glyphIndex": 18
+    },
+    {
+      "id": "content-regular.resolution_line",
+      "fontId": "content-regular",
+      "name": "resolution_line",
+      "unicode": "F00D7",
+      "glyphIndex": 19
+    },
+    {
+      "id": "content-regular.camera_line",
+      "fontId": "content-regular",
+      "name": "camera_line",
+      "unicode": "F00D8",
+      "glyphIndex": 20
+    },
+    {
+      "id": "content-regular.computer_surface",
+      "fontId": "content-regular",
+      "name": "computer_surface",
+      "unicode": "F00D9",
+      "glyphIndex": 21
+    },
+    {
+      "id": "content-regular.bluetooth_headphones_surface",
+      "fontId": "content-regular",
+      "name": "bluetooth_headphones_surface",
+      "unicode": "F00DA",
+      "glyphIndex": 22
+    },
+    {
+      "id": "content-regular.earphones_with_microphone_line",
+      "fontId": "content-regular",
+      "name": "earphones_with_microphone_line",
+      "unicode": "F00DB",
+      "glyphIndex": 23
+    },
+    {
+      "id": "content-regular.earphones_surface",
+      "fontId": "content-regular",
+      "name": "earphones_surface",
+      "unicode": "F00DC",
+      "glyphIndex": 24
+    },
+    {
+      "id": "content-regular.glasses_line",
+      "fontId": "content-regular",
+      "name": "glasses_line",
+      "unicode": "F00DD",
+      "glyphIndex": 25
+    },
+    {
+      "id": "content-regular.game_console_surface",
+      "fontId": "content-regular",
+      "name": "game_console_surface",
+      "unicode": "F00DE",
+      "glyphIndex": 26
+    },
+    {
+      "id": "content-regular.speaker_surface",
+      "fontId": "content-regular",
+      "name": "speaker_surface",
+      "unicode": "F00DF",
+      "glyphIndex": 27
+    },
+    {
+      "id": "content-regular.stereo_speaker_surface",
+      "fontId": "content-regular",
+      "name": "stereo_speaker_surface",
+      "unicode": "F00E0",
+      "glyphIndex": 28
+    },
+    {
+      "id": "content-regular.phone_icon_line",
+      "fontId": "content-regular",
+      "name": "phone_icon_line",
+      "unicode": "F00E1",
+      "glyphIndex": 29
+    },
+    {
+      "id": "content-regular.wearable_universal_surface",
+      "fontId": "content-regular",
+      "name": "wearable_universal_surface",
+      "unicode": "F00E2",
+      "glyphIndex": 30
+    },
+    {
+      "id": "content-regular.car_surface",
+      "fontId": "content-regular",
+      "name": "car_surface",
+      "unicode": "F00E3",
+      "glyphIndex": 31
+    },
+    {
+      "id": "content-regular.xiaomi_smart_band_surface",
+      "fontId": "content-regular",
+      "name": "xiaomi_smart_band_surface",
+      "unicode": "F00E4",
+      "glyphIndex": 32
+    },
+    {
+      "id": "content-regular.xiaomi_watch_square_surface",
+      "fontId": "content-regular",
+      "name": "xiaomi_watch_square_surface",
+      "unicode": "F00E5",
+      "glyphIndex": 33
+    },
+    {
+      "id": "content-regular.xiaomi_watch_round_surface",
+      "fontId": "content-regular",
+      "name": "xiaomi_watch_round_surface",
+      "unicode": "F00E6",
+      "glyphIndex": 34
+    },
+    {
+      "id": "content-regular.smart_speaker_with_screen_surface",
+      "fontId": "content-regular",
+      "name": "smart_speaker_with_screen_surface",
+      "unicode": "F00E7",
+      "glyphIndex": 35
+    },
+    {
+      "id": "content-regular.tv_surface",
+      "fontId": "content-regular",
+      "name": "tv_surface",
+      "unicode": "F00E8",
+      "glyphIndex": 36
+    },
+    {
+      "id": "content-regular.webcam_surface",
+      "fontId": "content-regular",
+      "name": "webcam_surface",
+      "unicode": "F00E9",
+      "glyphIndex": 37
+    },
+    {
+      "id": "content-regular.mouse_surface",
+      "fontId": "content-regular",
+      "name": "mouse_surface",
+      "unicode": "F00EA",
+      "glyphIndex": 38
+    },
+    {
+      "id": "content-regular.keyboard_surface",
+      "fontId": "content-regular",
+      "name": "keyboard_surface",
+      "unicode": "F00EB",
+      "glyphIndex": 39
+    },
+    {
+      "id": "content-regular.stylus_surface",
+      "fontId": "content-regular",
+      "name": "stylus_surface",
+      "unicode": "F00EC",
+      "glyphIndex": 40
+    },
+    {
+      "id": "content-regular.tv_stereo_surface",
+      "fontId": "content-regular",
+      "name": "tv_stereo_surface",
+      "unicode": "F00ED",
+      "glyphIndex": 41
+    },
+    {
+      "id": "content-regular.tv_soundbar_surface",
+      "fontId": "content-regular",
+      "name": "tv_soundbar_surface",
+      "unicode": "F00EE",
+      "glyphIndex": 42
+    },
+    {
+      "id": "content-regular.printer_surface",
+      "fontId": "content-regular",
+      "name": "printer_surface",
+      "unicode": "F00EF",
+      "glyphIndex": 43
+    },
+    {
+      "id": "content-regular.vr_surface",
+      "fontId": "content-regular",
+      "name": "vr_surface",
+      "unicode": "F00F0",
+      "glyphIndex": 44
+    },
+    {
+      "id": "content-regular.hearing_aid_surface",
+      "fontId": "content-regular",
+      "name": "hearing_aid_surface",
+      "unicode": "F00F1",
+      "glyphIndex": 45
+    },
+    {
+      "id": "content-regular.access_control_surface",
+      "fontId": "content-regular",
+      "name": "access_control_surface",
+      "unicode": "F00F2",
+      "glyphIndex": 46
+    },
+    {
+      "id": "content-regular.whole_house_audio_surface",
+      "fontId": "content-regular",
+      "name": "whole_house_audio_surface",
+      "unicode": "F00F3",
+      "glyphIndex": 47
+    },
+    {
+      "id": "content-regular.bluetooth_media_device_surface",
+      "fontId": "content-regular",
+      "name": "bluetooth_media_device_surface",
+      "unicode": "F00F4",
+      "glyphIndex": 48
+    },
+    {
+      "id": "content-regular.calculator_surface",
+      "fontId": "content-regular",
+      "name": "calculator_surface",
+      "unicode": "F00F5",
+      "glyphIndex": 49
+    },
+    {
+      "id": "content-regular.data_surface",
+      "fontId": "content-regular",
+      "name": "data_surface",
+      "unicode": "F00F6",
+      "glyphIndex": 50
+    },
+    {
+      "id": "content-regular.camera_phone_surface",
+      "fontId": "content-regular",
+      "name": "camera_phone_surface",
+      "unicode": "F00F7",
+      "glyphIndex": 51
+    },
+    {
+      "id": "content-regular.toggle_control_shortcut_surface",
+      "fontId": "content-regular",
+      "name": "toggle_control_shortcut_surface",
+      "unicode": "F00F8",
+      "glyphIndex": 52
+    },
+    {
+      "id": "content-regular.speed_playback_1x_surface",
+      "fontId": "content-regular",
+      "name": "speed_playback_1x_surface",
+      "unicode": "F00F9",
+      "glyphIndex": 53
+    },
+    {
+      "id": "content-regular.speed_playback_0.5x_surface",
+      "fontId": "content-regular",
+      "name": "speed_playback_0.5x_surface",
+      "unicode": "F00FA",
+      "glyphIndex": 54
+    },
+    {
+      "id": "content-regular.add_marker_line",
+      "fontId": "content-regular",
+      "name": "add_marker_line",
+      "unicode": "F00FB",
+      "glyphIndex": 55
+    },
+    {
+      "id": "content-regular.feedback_surface",
+      "fontId": "content-regular",
+      "name": "feedback_surface",
+      "unicode": "F00FC",
+      "glyphIndex": 56
+    },
+    {
+      "id": "content-regular.usage_experience_evaluation_surface",
+      "fontId": "content-regular",
+      "name": "usage_experience_evaluation_surface",
+      "unicode": "F00FD",
+      "glyphIndex": 57
+    },
+    {
+      "id": "content-regular.talkback_surface",
+      "fontId": "content-regular",
+      "name": "talkback_surface",
+      "unicode": "F00FE",
+      "glyphIndex": 58
+    },
+    {
+      "id": "content-regular.audio_line",
+      "fontId": "content-regular",
+      "name": "audio_line",
+      "unicode": "F00FF",
+      "glyphIndex": 59
+    },
+    {
+      "id": "content-regular.satellite_surface",
+      "fontId": "content-regular",
+      "name": "satellite_surface",
+      "unicode": "F0100",
+      "glyphIndex": 60
+    },
+    {
+      "id": "content-regular.wlan_surface",
+      "fontId": "content-regular",
+      "name": "wlan_surface",
+      "unicode": "F0101",
+      "glyphIndex": 61
+    },
+    {
+      "id": "content-regular.no_network_surface",
+      "fontId": "content-regular",
+      "name": "no_network_surface",
+      "unicode": "F0102",
+      "glyphIndex": 62
+    },
+    {
+      "id": "content-regular.mobile_network_surface",
+      "fontId": "content-regular",
+      "name": "mobile_network_surface",
+      "unicode": "F0103",
+      "glyphIndex": 63
+    },
+    {
+      "id": "content-regular.ai_call_surface",
+      "fontId": "content-regular",
+      "name": "ai_call_surface",
+      "unicode": "F0104",
+      "glyphIndex": 64
+    },
+    {
+      "id": "content-regular.privacy_security_surface",
+      "fontId": "content-regular",
+      "name": "privacy_security_surface",
+      "unicode": "F0105",
+      "glyphIndex": 65
+    },
+    {
+      "id": "content-regular.security_surface",
+      "fontId": "content-regular",
+      "name": "security_surface",
+      "unicode": "F0106",
+      "glyphIndex": 66
+    },
+    {
+      "id": "content-regular.authenticity_check_surface",
+      "fontId": "content-regular",
+      "name": "authenticity_check_surface",
+      "unicode": "F0107",
+      "glyphIndex": 67
+    },
+    {
+      "id": "content-regular.security_status_surface",
+      "fontId": "content-regular",
+      "name": "security_status_surface",
+      "unicode": "F0108",
+      "glyphIndex": 68
+    },
+    {
+      "id": "content-regular.fingerprint_face_password_surface",
+      "fontId": "content-regular",
+      "name": "fingerprint_face_password_surface",
+      "unicode": "F0109",
+      "glyphIndex": 69
+    },
+    {
+      "id": "content-regular.after_sales_policy_surface",
+      "fontId": "content-regular",
+      "name": "after_sales_policy_surface",
+      "unicode": "F010A",
+      "glyphIndex": 70
+    },
+    {
+      "id": "content-regular.log_surface",
+      "fontId": "content-regular",
+      "name": "log_surface",
+      "unicode": "F010B",
+      "glyphIndex": 71
+    },
+    {
+      "id": "content-regular.no_content_surface",
+      "fontId": "content-regular",
+      "name": "no_content_surface",
+      "unicode": "F010C",
+      "glyphIndex": 72
+    },
+    {
+      "id": "content-regular.backup_data_surface",
+      "fontId": "content-regular",
+      "name": "backup_data_surface",
+      "unicode": "F010D",
+      "glyphIndex": 73
+    },
+    {
+      "id": "content-regular.document_line",
+      "fontId": "content-regular",
+      "name": "document_line",
+      "unicode": "F010E",
+      "glyphIndex": 74
+    },
+    {
+      "id": "content-regular.edit_subtitle_line",
+      "fontId": "content-regular",
+      "name": "edit_subtitle_line",
+      "unicode": "F010F",
+      "glyphIndex": 75
+    },
+    {
+      "id": "content-regular.microphone_surface",
+      "fontId": "content-regular",
+      "name": "microphone_surface",
+      "unicode": "F0110",
+      "glyphIndex": 76
+    },
+    {
+      "id": "content-regular.wallet_surface",
+      "fontId": "content-regular",
+      "name": "wallet_surface",
+      "unicode": "F0111",
+      "glyphIndex": 77
+    },
+    {
+      "id": "content-regular.repair_pricing_surface",
+      "fontId": "content-regular",
+      "name": "repair_pricing_surface",
+      "unicode": "F0112",
+      "glyphIndex": 78
+    },
+    {
+      "id": "content-regular.currency_conversion_surface",
+      "fontId": "content-regular",
+      "name": "currency_conversion_surface",
+      "unicode": "F0113",
+      "glyphIndex": 79
+    },
+    {
+      "id": "content-regular.personal_income_tax_calculator_surface",
+      "fontId": "content-regular",
+      "name": "personal_income_tax_calculator_surface",
+      "unicode": "F0114",
+      "glyphIndex": 80
+    },
+    {
+      "id": "content-regular.mortgage_calculator_surface",
+      "fontId": "content-regular",
+      "name": "mortgage_calculator_surface",
+      "unicode": "F0115",
+      "glyphIndex": 81
+    },
+    {
+      "id": "content-regular.financial_surface",
+      "fontId": "content-regular",
+      "name": "financial_surface",
+      "unicode": "F0116",
+      "glyphIndex": 82
+    },
+    {
+      "id": "content-regular.discount_surface",
+      "fontId": "content-regular",
+      "name": "discount_surface",
+      "unicode": "F0117",
+      "glyphIndex": 83
+    },
+    {
+      "id": "content-regular.app_data_surface",
+      "fontId": "content-regular",
+      "name": "app_data_surface",
+      "unicode": "F0119",
+      "glyphIndex": 84
+    },
+    {
+      "id": "content-regular.time_lapse_line",
+      "fontId": "content-regular",
+      "name": "time_lapse_line",
+      "unicode": "F011A",
+      "glyphIndex": 85
+    },
+    {
+      "id": "content-regular.slow_motion_line",
+      "fontId": "content-regular",
+      "name": "slow_motion_line",
+      "unicode": "F011B",
+      "glyphIndex": 86
+    },
+    {
+      "id": "content-regular.portrait_line",
+      "fontId": "content-regular",
+      "name": "portrait_line",
+      "unicode": "F011C",
+      "glyphIndex": 87
+    },
+    {
+      "id": "content-regular.motion_photo_line",
+      "fontId": "content-regular",
+      "name": "motion_photo_line",
+      "unicode": "F011D",
+      "glyphIndex": 88
+    },
+    {
+      "id": "content-regular.hd_line",
+      "fontId": "content-regular",
+      "name": "hd_line",
+      "unicode": "F011E",
+      "glyphIndex": 89
+    },
+    {
+      "id": "content-regular.panorama_line",
+      "fontId": "content-regular",
+      "name": "panorama_line",
+      "unicode": "F011F",
+      "glyphIndex": 90
+    },
+    {
+      "id": "content-regular.burst_shot_line",
+      "fontId": "content-regular",
+      "name": "burst_shot_line",
+      "unicode": "F0120",
+      "glyphIndex": 91
+    },
+    {
+      "id": "content-regular.gif_line",
+      "fontId": "content-regular",
+      "name": "gif_line",
+      "unicode": "F0121",
+      "glyphIndex": 92
+    },
+    {
+      "id": "content-regular.vlog_line",
+      "fontId": "content-regular",
+      "name": "vlog_line",
+      "unicode": "F0122",
+      "glyphIndex": 93
+    },
+    {
+      "id": "content-regular.magic_clone_surface",
+      "fontId": "content-regular",
+      "name": "magic_clone_surface",
+      "unicode": "F0123",
+      "glyphIndex": 94
+    },
+    {
+      "id": "content-regular.raw_line",
+      "fontId": "content-regular",
+      "name": "raw_line",
+      "unicode": "F0124",
+      "glyphIndex": 95
+    },
+    {
+      "id": "content-regular.camera_surface",
+      "fontId": "content-regular",
+      "name": "camera_surface",
+      "unicode": "F0125",
+      "glyphIndex": 96
+    },
+    {
+      "id": "content-regular.cutout_surface",
+      "fontId": "content-regular",
+      "name": "cutout_surface",
+      "unicode": "F0126",
+      "glyphIndex": 97
+    },
+    {
+      "id": "content-regular.restricted_5_0_line",
+      "fontId": "content-regular",
+      "name": "restricted_5_0_line",
+      "unicode": "F0127",
+      "glyphIndex": 98
+    },
+    {
+      "id": "content-regular.restricted_1_6_line",
+      "fontId": "content-regular",
+      "name": "restricted_1_6_line",
+      "unicode": "F0128",
+      "glyphIndex": 99
+    },
+    {
+      "id": "content-regular.restricted_2_7_Line",
+      "fontId": "content-regular",
+      "name": "restricted_2_7_Line",
+      "unicode": "F0129",
+      "glyphIndex": 100
+    },
+    {
+      "id": "content-regular.restricted_3_8_line",
+      "fontId": "content-regular",
+      "name": "restricted_3_8_line",
+      "unicode": "F012A",
+      "glyphIndex": 101
+    },
+    {
+      "id": "content-regular.restricted_4_9_line",
+      "fontId": "content-regular",
+      "name": "restricted_4_9_line",
+      "unicode": "F012B",
+      "glyphIndex": 102
+    },
+    {
+      "id": "content-regular.uppercase_numerals_surface",
+      "fontId": "content-regular",
+      "name": "uppercase_numerals_surface",
+      "unicode": "F012C",
+      "glyphIndex": 103
+    },
+    {
+      "id": "content-regular.restricted_0_line",
+      "fontId": "content-regular",
+      "name": "restricted_0_line",
+      "unicode": "F012D",
+      "glyphIndex": 104
+    },
+    {
+      "id": "content-regular.restricted_1_line",
+      "fontId": "content-regular",
+      "name": "restricted_1_line",
+      "unicode": "F012E",
+      "glyphIndex": 105
+    },
+    {
+      "id": "content-regular.restricted_2_line",
+      "fontId": "content-regular",
+      "name": "restricted_2_line",
+      "unicode": "F012F",
+      "glyphIndex": 106
+    },
+    {
+      "id": "content-regular.restricted_3_line",
+      "fontId": "content-regular",
+      "name": "restricted_3_line",
+      "unicode": "F0130",
+      "glyphIndex": 107
+    },
+    {
+      "id": "content-regular.restricted_4_line",
+      "fontId": "content-regular",
+      "name": "restricted_4_line",
+      "unicode": "F0131",
+      "glyphIndex": 108
+    },
+    {
+      "id": "content-regular.restricted_5_line",
+      "fontId": "content-regular",
+      "name": "restricted_5_line",
+      "unicode": "F0132",
+      "glyphIndex": 109
+    },
+    {
+      "id": "content-regular.restricted_6_line",
+      "fontId": "content-regular",
+      "name": "restricted_6_line",
+      "unicode": "F0133",
+      "glyphIndex": 110
+    },
+    {
+      "id": "content-regular.restricted_7_line",
+      "fontId": "content-regular",
+      "name": "restricted_7_line",
+      "unicode": "F0134",
+      "glyphIndex": 111
+    },
+    {
+      "id": "content-regular.restricted_8_line",
+      "fontId": "content-regular",
+      "name": "restricted_8_line",
+      "unicode": "F0135",
+      "glyphIndex": 112
+    },
+    {
+      "id": "content-regular.restricted_9_line",
+      "fontId": "content-regular",
+      "name": "restricted_9_line",
+      "unicode": "F0136",
+      "glyphIndex": 113
+    },
+    {
+      "id": "content-regular.odd_Number_license_plate_restriction_line",
+      "fontId": "content-regular",
+      "name": "odd_Number_license_plate_restriction_line",
+      "unicode": "F0137",
+      "glyphIndex": 114
+    },
+    {
+      "id": "content-regular.even_number_license_plate_restriction_line",
+      "fontId": "content-regular",
+      "name": "even_number_license_plate_restriction_line",
+      "unicode": "F0138",
+      "glyphIndex": 115
+    },
+    {
+      "id": "content-regular.numeral_system_conversion_surface",
+      "fontId": "content-regular",
+      "name": "numeral_system_conversion_surface",
+      "unicode": "F0141",
+      "glyphIndex": 116
+    },
+    {
+      "id": "content-regular.currency_surface",
+      "fontId": "content-regular",
+      "name": "currency_surface",
+      "unicode": "F0142",
+      "glyphIndex": 117
+    },
+    {
+      "id": "content-regular.wi_fi_6_3_bars_surface",
+      "fontId": "content-regular",
+      "name": "wi_fi_6_3_bars_surface",
+      "unicode": "F0146",
+      "glyphIndex": 118
+    },
+    {
+      "id": "content-regular.wi_fi_7_3_bars_surface",
+      "fontId": "content-regular",
+      "name": "wi_fi_7_3_bars_surface",
+      "unicode": "F0147",
+      "glyphIndex": 119
+    },
+    {
+      "id": "content-regular.numeric_password_with_frame_line",
+      "fontId": "content-regular",
+      "name": "numeric_password_with_frame_line",
+      "unicode": "F014C",
+      "glyphIndex": 120
+    },
+    {
+      "id": "content-regular.hybrid_password_with_frame_line",
+      "fontId": "content-regular",
+      "name": "hybrid_password_with_frame_line",
+      "unicode": "F014D",
+      "glyphIndex": 121
+    },
+    {
+      "id": "content-regular.take_photo_line",
+      "fontId": "content-regular",
+      "name": "take_photo_line",
+      "unicode": "F0150",
+      "glyphIndex": 122
+    },
+    {
+      "id": "content-regular.videography_surface",
+      "fontId": "content-regular",
+      "name": "videography_surface",
+      "unicode": "F0151",
+      "glyphIndex": 123
+    },
+    {
+      "id": "content-regular.haptic_intensity_surface",
+      "fontId": "content-regular",
+      "name": "haptic_intensity_surface",
+      "unicode": "F0152",
+      "glyphIndex": 124
+    },
+    {
+      "id": "content-regular.privacy_surface",
+      "fontId": "content-regular",
+      "name": "privacy_surface",
+      "unicode": "F0153",
+      "glyphIndex": 125
+    },
+    {
+      "id": "content-regular.shared_members_surface",
+      "fontId": "content-regular",
+      "name": "shared_members_surface",
+      "unicode": "F0154",
+      "glyphIndex": 126
+    },
+    {
+      "id": "content-regular.selfie_line1",
+      "fontId": "content-regular",
+      "name": "selfie_line1",
+      "unicode": "F0155",
+      "glyphIndex": 127
+    },
+    {
+      "id": "content-regular.id_card_line",
+      "fontId": "content-regular",
+      "name": "id_card_line",
+      "unicode": "F0156",
+      "glyphIndex": 128
+    },
+    {
+      "id": "content-regular.real_estate_agency_surface",
+      "fontId": "content-regular",
+      "name": "real_estate_agency_surface",
+      "unicode": "F0157",
+      "glyphIndex": 129
+    },
+    {
+      "id": "content-regular.name_calculation_surface",
+      "fontId": "content-regular",
+      "name": "name_calculation_surface",
+      "unicode": "F0158",
+      "glyphIndex": 130
+    },
+    {
+      "id": "content-regular.more_connections_surface",
+      "fontId": "content-regular",
+      "name": "more_connections_surface",
+      "unicode": "F0159",
+      "glyphIndex": 131
+    },
+    {
+      "id": "content-regular.hotspot_surface",
+      "fontId": "content-regular",
+      "name": "hotspot_surface",
+      "unicode": "F015A",
+      "glyphIndex": 132
+    },
+    {
+      "id": "content-regular.global_vpn_surface",
+      "fontId": "content-regular",
+      "name": "global_vpn_surface",
+      "unicode": "F015C",
+      "glyphIndex": 133
+    },
+    {
+      "id": "content-regular.all_sd_card_data_surface",
+      "fontId": "content-regular",
+      "name": "all_sd_card_data_surface",
+      "unicode": "F015E",
+      "glyphIndex": 134
+    },
+    {
+      "id": "content-regular.lock_screen_surface",
+      "fontId": "content-regular",
+      "name": "lock_screen_surface",
+      "unicode": "F015F",
+      "glyphIndex": 135
+    },
+    {
+      "id": "content-regular.search_surface",
+      "fontId": "content-regular",
+      "name": "search_surface",
+      "unicode": "F0161",
+      "glyphIndex": 136
+    },
+    {
+      "id": "content-regular.app_settings_surface",
+      "fontId": "content-regular",
+      "name": "app_settings_surface",
+      "unicode": "F0162",
+      "glyphIndex": 137
+    },
+    {
+      "id": "content-regular.home_screen_surface",
+      "fontId": "content-regular",
+      "name": "home_screen_surface",
+      "unicode": "F0163",
+      "glyphIndex": 138
+    },
+    {
+      "id": "content-regular.desktop_line",
+      "fontId": "content-regular",
+      "name": "desktop_line",
+      "unicode": "F0164",
+      "glyphIndex": 139
+    },
+    {
+      "id": "content-regular.cover_display_surface",
+      "fontId": "content-regular",
+      "name": "cover_display_surface",
+      "unicode": "F0165",
+      "glyphIndex": 140
+    },
+    {
+      "id": "content-regular.wallpaper_surface",
+      "fontId": "content-regular",
+      "name": "wallpaper_surface",
+      "unicode": "F0166",
+      "glyphIndex": 141
+    },
+    {
+      "id": "content-regular.maintenance_line",
+      "fontId": "content-regular",
+      "name": "maintenance_line",
+      "unicode": "F0167",
+      "glyphIndex": 142
+    },
+    {
+      "id": "content-regular.flashlight_surface",
+      "fontId": "content-regular",
+      "name": "flashlight_surface",
+      "unicode": "F0168",
+      "glyphIndex": 143
+    },
+    {
+      "id": "content-regular.notification_reminders_surface",
+      "fontId": "content-regular",
+      "name": "notification_reminders_surface",
+      "unicode": "F0169",
+      "glyphIndex": 144
+    },
+    {
+      "id": "content-regular.ringtone_muted_surface",
+      "fontId": "content-regular",
+      "name": "ringtone_muted_surface",
+      "unicode": "F016A",
+      "glyphIndex": 145
+    },
+    {
+      "id": "content-regular.media_muted_surface",
+      "fontId": "content-regular",
+      "name": "media_muted_surface",
+      "unicode": "F016B",
+      "glyphIndex": 146
+    },
+    {
+      "id": "content-regular.sound_vibration_surface",
+      "fontId": "content-regular",
+      "name": "sound_vibration_surface",
+      "unicode": "F016C",
+      "glyphIndex": 147
+    },
+    {
+      "id": "content-regular.control_center_surface",
+      "fontId": "content-regular",
+      "name": "control_center_surface",
+      "unicode": "F016D",
+      "glyphIndex": 148
+    },
+    {
+      "id": "content-regular.security_emergency_surface",
+      "fontId": "content-regular",
+      "name": "security_emergency_surface",
+      "unicode": "F016E",
+      "glyphIndex": 149
+    },
+    {
+      "id": "content-regular.healthy_phone_usage_surface",
+      "fontId": "content-regular",
+      "name": "healthy_phone_usage_surface",
+      "unicode": "F016F",
+      "glyphIndex": 150
+    },
+    {
+      "id": "content-regular.screen_recording_surface",
+      "fontId": "content-regular",
+      "name": "screen_recording_surface",
+      "unicode": "F0170",
+      "glyphIndex": 151
+    },
+    {
+      "id": "content-regular.bank_card_line",
+      "fontId": "content-regular",
+      "name": "bank_card_line",
+      "unicode": "F0171",
+      "glyphIndex": 152
+    },
+    {
+      "id": "content-regular.cinematic_effect_line",
+      "fontId": "content-regular",
+      "name": "cinematic_effect_line",
+      "unicode": "F0172",
+      "glyphIndex": 153
+    },
+    {
+      "id": "content-regular.suitable_for_short_sleeves_line",
+      "fontId": "content-regular",
+      "name": "suitable_for_short_sleeves_line",
+      "unicode": "F0173",
+      "glyphIndex": 154
+    },
+    {
+      "id": "content-regular.suitable_for_long_sleeves_line",
+      "fontId": "content-regular",
+      "name": "suitable_for_long_sleeves_line",
+      "unicode": "F0174",
+      "glyphIndex": 155
+    },
+    {
+      "id": "content-regular.suitable_for_light_jacket_line",
+      "fontId": "content-regular",
+      "name": "suitable_for_light_jacket_line",
+      "unicode": "F0175",
+      "glyphIndex": 156
+    },
+    {
+      "id": "content-regular.suitable_for_heavy_jacket_line",
+      "fontId": "content-regular",
+      "name": "suitable_for_heavy_jacket_line",
+      "unicode": "F0176",
+      "glyphIndex": 157
+    },
+    {
+      "id": "content-regular.suitable_for_windbreaker_line",
+      "fontId": "content-regular",
+      "name": "suitable_for_windbreaker_line",
+      "unicode": "F0177",
+      "glyphIndex": 158
+    },
+    {
+      "id": "content-regular.indoor_sports_line",
+      "fontId": "content-regular",
+      "name": "indoor_sports_line",
+      "unicode": "F0178",
+      "glyphIndex": 159
+    },
+    {
+      "id": "content-regular.outdoor_sports_line",
+      "fontId": "content-regular",
+      "name": "outdoor_sports_line",
+      "unicode": "F0179",
+      "glyphIndex": 160
+    },
+    {
+      "id": "content-regular.suitable_for_car_wash_line",
+      "fontId": "content-regular",
+      "name": "suitable_for_car_wash_line",
+      "unicode": "F017A",
+      "glyphIndex": 161
+    },
+    {
+      "id": "content-regular.not_suitable_for_car_wash_line",
+      "fontId": "content-regular",
+      "name": "not_suitable_for_car_wash_line",
+      "unicode": "F017B",
+      "glyphIndex": 162
+    },
+    {
+      "id": "content-regular.susceptible_very_susceptible_to_cold_line",
+      "fontId": "content-regular",
+      "name": "susceptible_very_susceptible_to_cold_line",
+      "unicode": "F017C",
+      "glyphIndex": 163
+    },
+    {
+      "id": "content-regular.not_susceptible_to_cold_line",
+      "fontId": "content-regular",
+      "name": "not_susceptible_to_cold_line",
+      "unicode": "F017D",
+      "glyphIndex": 164
+    },
+    {
+      "id": "content-regular.umbrella_needed_line",
+      "fontId": "content-regular",
+      "name": "umbrella_needed_line",
+      "unicode": "F017E",
+      "glyphIndex": 165
+    },
+    {
+      "id": "content-regular.umbrella_not_needed_line",
+      "fontId": "content-regular",
+      "name": "umbrella_not_needed_line",
+      "unicode": "F017F",
+      "glyphIndex": 166
+    },
+    {
+      "id": "content-regular.no_driving_restrictions_line",
+      "fontId": "content-regular",
+      "name": "no_driving_restrictions_line",
+      "unicode": "F0180",
+      "glyphIndex": 167
+    },
+    {
+      "id": "content-regular.frequently_used_surface",
+      "fontId": "content-regular",
+      "name": "frequently_used_surface",
+      "unicode": "F0181",
+      "glyphIndex": 168
+    },
+    {
+      "id": "content-regular.express_delivery_takeout_surface",
+      "fontId": "content-regular",
+      "name": "express_delivery_takeout_surface",
+      "unicode": "F0182",
+      "glyphIndex": 169
+    },
+    {
+      "id": "content-regular.volume_conversion_surface",
+      "fontId": "content-regular",
+      "name": "volume_conversion_surface",
+      "unicode": "F0183",
+      "glyphIndex": 170
+    },
+    {
+      "id": "content-regular.length_conversion_surface",
+      "fontId": "content-regular",
+      "name": "length_conversion_surface",
+      "unicode": "F0184",
+      "glyphIndex": 171
+    },
+    {
+      "id": "content-regular.weight_conversion_surface",
+      "fontId": "content-regular",
+      "name": "weight_conversion_surface",
+      "unicode": "F0185",
+      "glyphIndex": 172
+    },
+    {
+      "id": "content-regular.temperature_conversion_surface",
+      "fontId": "content-regular",
+      "name": "temperature_conversion_surface",
+      "unicode": "F0186",
+      "glyphIndex": 173
+    },
+    {
+      "id": "content-regular.speed_conversion_surface",
+      "fontId": "content-regular",
+      "name": "speed_conversion_surface",
+      "unicode": "F0187",
+      "glyphIndex": 174
+    },
+    {
+      "id": "content-regular.custom_surface",
+      "fontId": "content-regular",
+      "name": "custom_surface",
+      "unicode": "F0188",
+      "glyphIndex": 175
+    },
+    {
+      "id": "content-regular.third_party_apps_data_surface",
+      "fontId": "content-regular",
+      "name": "third_party_apps_data_surface",
+      "unicode": "F0189",
+      "glyphIndex": 176
+    },
+    {
+      "id": "content-regular.super_xiaoai_surface",
+      "fontId": "content-regular",
+      "name": "super_xiaoai_surface",
+      "unicode": "F018A",
+      "glyphIndex": 177
+    },
+    {
+      "id": "content-regular.super_xiaoai_muted_surface",
+      "fontId": "content-regular",
+      "name": "super_xiaoai_muted_surface",
+      "unicode": "F018B",
+      "glyphIndex": 178
+    },
+    {
+      "id": "content-regular.usage_help_surface",
+      "fontId": "content-regular",
+      "name": "usage_help_surface",
+      "unicode": "F018C",
+      "glyphIndex": 179
+    },
+    {
+      "id": "content-regular.notifications_status_bar_surface",
+      "fontId": "content-regular",
+      "name": "notifications_status_bar_surface",
+      "unicode": "F018D",
+      "glyphIndex": 180
+    },
+    {
+      "id": "content-regular.my_services_surface",
+      "fontId": "content-regular",
+      "name": "my_services_surface",
+      "unicode": "F018E",
+      "glyphIndex": 181
+    },
+    {
+      "id": "content-regular.error_surface",
+      "fontId": "content-regular",
+      "name": "error_surface",
+      "unicode": "F018F",
+      "glyphIndex": 182
+    },
+    {
+      "id": "content-regular.cedit_selection_surface",
+      "fontId": "content-regular",
+      "name": "cedit_selection_surface",
+      "unicode": "F0190",
+      "glyphIndex": 183
+    },
+    {
+      "id": "content-regular.recent_tasks_surface",
+      "fontId": "content-regular",
+      "name": "recent_tasks_surface",
+      "unicode": "F0191",
+      "glyphIndex": 184
+    },
+    {
+      "id": "content-regular.large_screen_zone_surface",
+      "fontId": "content-regular",
+      "name": "large_screen_zone_surface",
+      "unicode": "F0192",
+      "glyphIndex": 185
+    },
+    {
+      "id": "content-regular.blacklist_surface",
+      "fontId": "content-regular",
+      "name": "blacklist_surface",
+      "unicode": "F0193",
+      "glyphIndex": 186
+    },
+    {
+      "id": "content-regular.widget_surface",
+      "fontId": "content-regular",
+      "name": "widget_surface",
+      "unicode": "F0194",
+      "glyphIndex": 187
+    },
+    {
+      "id": "content-regular.outer_screen_apps_surface",
+      "fontId": "content-regular",
+      "name": "outer_screen_apps_surface",
+      "unicode": "F0195",
+      "glyphIndex": 188
+    },
+    {
+      "id": "content-regular.home_button_line",
+      "fontId": "content-regular",
+      "name": "home_button_line",
+      "unicode": "F0196",
+      "glyphIndex": 189
+    },
+    {
+      "id": "content-regular.install_line",
+      "fontId": "content-regular",
+      "name": "install_line",
+      "unicode": "F0197",
+      "glyphIndex": 190
+    },
+    {
+      "id": "content-regular.remove_line",
+      "fontId": "content-regular",
+      "name": "remove_line",
+      "unicode": "F0198",
+      "glyphIndex": 191
+    },
+    {
+      "id": "content-regular.small_window_surface",
+      "fontId": "content-regular",
+      "name": "small_window_surface",
+      "unicode": "F0199",
+      "glyphIndex": 192
+    },
+    {
+      "id": "content-regular.music_surface",
+      "fontId": "content-regular",
+      "name": "music_surface",
+      "unicode": "F019A",
+      "glyphIndex": 193
+    },
+    {
+      "id": "content-regular.extract_line",
+      "fontId": "content-regular",
+      "name": "extract_line",
+      "unicode": "F019B",
+      "glyphIndex": 194
+    },
+    {
+      "id": "content-regular.start_surface",
+      "fontId": "content-regular",
+      "name": "start_surface",
+      "unicode": "F019C",
+      "glyphIndex": 195
+    },
+    {
+      "id": "content-regular.area_conversion_surface",
+      "fontId": "content-regular",
+      "name": "area_conversion_surface",
+      "unicode": "F019D",
+      "glyphIndex": 196
+    },
+    {
+      "id": "content-regular.ic_split_screen_vertical_line",
+      "fontId": "content-regular",
+      "name": "ic_split_screen_vertical_line",
+      "unicode": "F019E",
+      "glyphIndex": 197
+    },
+    {
+      "id": "content-regular.ic_split_screen_horizontal_line",
+      "fontId": "content-regular",
+      "name": "ic_split_screen_horizontal_line",
+      "unicode": "F01B4",
+      "glyphIndex": 198
+    },
+    {
+      "id": "content-regular.ic_small_window_line",
+      "fontId": "content-regular",
+      "name": "ic_small_window_line",
+      "unicode": "F01B5",
+      "glyphIndex": 199
+    },
+    {
+      "id": "content-regular.ic_small_window_landscape_line",
+      "fontId": "content-regular",
+      "name": "ic_small_window_landscape_line",
+      "unicode": "F01B6",
+      "glyphIndex": 200
+    },
+    {
+      "id": "content-regular.right_split_screen_surface",
+      "fontId": "content-regular",
+      "name": "right_split_screen_surface",
+      "unicode": "F01B7",
+      "glyphIndex": 201
+    },
+    {
+      "id": "content-regular.left_split_screen_surface",
+      "fontId": "content-regular",
+      "name": "left_split_screen_surface",
+      "unicode": "F01B8",
+      "glyphIndex": 202
+    },
+    {
+      "id": "content-regular.power_surface",
+      "fontId": "content-regular",
+      "name": "power_surface",
+      "unicode": "F01BB",
+      "glyphIndex": 203
+    },
+    {
+      "id": "content-regular.ic_multi_split_screen_line",
+      "fontId": "content-regular",
+      "name": "ic_multi_split_screen_line",
+      "unicode": "F01BD",
+      "glyphIndex": 204
+    },
+    {
+      "id": "content-regular.date_surface",
+      "fontId": "content-regular",
+      "name": "date_surface",
+      "unicode": "F01CB",
+      "glyphIndex": 205
+    },
+    {
+      "id": "content-regular.display_brightness_surface",
+      "fontId": "content-regular",
+      "name": "display_brightness_surface",
+      "unicode": "F01CE",
+      "glyphIndex": 206
+    },
+    {
+      "id": "content-regular.html_viewer_surface",
+      "fontId": "content-regular",
+      "name": "html_viewer_surface",
+      "unicode": "F01CF",
+      "glyphIndex": 207
+    },
+    {
+      "id": "content-regular.my_feedback_surface",
+      "fontId": "content-regular",
+      "name": "my_feedback_surface",
+      "unicode": "F01D0",
+      "glyphIndex": 208
+    },
+    {
+      "id": "content-regular.blinking_prompt_surface",
+      "fontId": "content-regular",
+      "name": "blinking_prompt_surface",
+      "unicode": "F01D1",
+      "glyphIndex": 209
+    },
+    {
+      "id": "content-regular.key_surface",
+      "fontId": "content-regular",
+      "name": "key_surface",
+      "unicode": "F01D2",
+      "glyphIndex": 210
+    },
+    {
+      "id": "content-regular.face_surface",
+      "fontId": "content-regular",
+      "name": "face_surface",
+      "unicode": "F01D3",
+      "glyphIndex": 211
+    },
+    {
+      "id": "content-regular.ai_surface",
+      "fontId": "content-regular",
+      "name": "ai_surface",
+      "unicode": "F01D4",
+      "glyphIndex": 212
+    },
+    {
+      "id": "content-regular.child_safety_mode_surface",
+      "fontId": "content-regular",
+      "name": "child_safety_mode_surface",
+      "unicode": "F01D5",
+      "glyphIndex": 213
+    },
+    {
+      "id": "content-regular.repair_surface",
+      "fontId": "content-regular",
+      "name": "repair_surface",
+      "unicode": "F01D6",
+      "glyphIndex": 214
+    },
+    {
+      "id": "content-regular.xiaomi_one_finger_link_surface",
+      "fontId": "content-regular",
+      "name": "xiaomi_one_finger_link_surface",
+      "unicode": "F01D7",
+      "glyphIndex": 215
+    },
+    {
+      "id": "content-regular.xiaomi_surface",
+      "fontId": "content-regular",
+      "name": "xiaomi_surface",
+      "unicode": "F01D8",
+      "glyphIndex": 216
+    },
+    {
+      "id": "content-regular.address_surface",
+      "fontId": "content-regular",
+      "name": "address_surface",
+      "unicode": "F01D9",
+      "glyphIndex": 217
+    },
+    {
+      "id": "content-regular.google_surface",
+      "fontId": "content-regular",
+      "name": "google_surface",
+      "unicode": "F01DA",
+      "glyphIndex": 218
+    },
+    {
+      "id": "content-regular.notification_muted_surface",
+      "fontId": "content-regular",
+      "name": "notification_muted_surface",
+      "unicode": "F01DB",
+      "glyphIndex": 219
+    },
+    {
+      "id": "content-regular.pet_surface",
+      "fontId": "content-regular",
+      "name": "pet_surface",
+      "unicode": "F01DC",
+      "glyphIndex": 220
+    },
+    {
+      "id": "content-regular.flip_phone_surface",
+      "fontId": "content-regular",
+      "name": "flip_phone_surface",
+      "unicode": "F01DD",
+      "glyphIndex": 221
+    },
+    {
+      "id": "content-regular.earphones_disabled_surface",
+      "fontId": "content-regular",
+      "name": "earphones_disabled_surface",
+      "unicode": "F01DE",
+      "glyphIndex": 222
+    },
+    {
+      "id": "content-regular.edit_selection_surface",
+      "fontId": "content-regular",
+      "name": "edit_selection_surface",
+      "unicode": "F01DF",
+      "glyphIndex": 223
+    },
+    {
+      "id": "content-regular.alarm_muted_surface",
+      "fontId": "content-regular",
+      "name": "alarm_muted_surface",
+      "unicode": "F01E0",
+      "glyphIndex": 224
+    },
+    {
+      "id": "content-regular.paper_texture_surface",
+      "fontId": "content-regular",
+      "name": "paper_texture_surface",
+      "unicode": "F01E1",
+      "glyphIndex": 225
+    },
+    {
+      "id": "content-regular.eye_protection_surface",
+      "fontId": "content-regular",
+      "name": "eye_protection_surface",
+      "unicode": "F01E2",
+      "glyphIndex": 226
+    },
+    {
+      "id": "content-regular.zoom_ring_surface",
+      "fontId": "content-regular",
+      "name": "zoom_ring_surface",
+      "unicode": "F01E3",
+      "glyphIndex": 227
+    },
+    {
+      "id": "content-regular.repair_mode_surface",
+      "fontId": "content-regular",
+      "name": "repair_mode_surface",
+      "unicode": "F01E4",
+      "glyphIndex": 228
+    },
+    {
+      "id": "content-regular.quiet_mode_line",
+      "fontId": "content-regular",
+      "name": "quiet_mode_line",
+      "unicode": "F01E5",
+      "glyphIndex": 229
+    },
+    {
+      "id": "content-regular.cooling_fan_surface",
+      "fontId": "content-regular",
+      "name": "cooling_fan_surface",
+      "unicode": "F01E6",
+      "glyphIndex": 230
+    },
+    {
+      "id": "content-regular.quick_notes_surface",
+      "fontId": "content-regular",
+      "name": "quick_notes_surface",
+      "unicode": "F01E7",
+      "glyphIndex": 231
+    },
+    {
+      "id": "content-regular.dialer_surface",
+      "fontId": "content-regular",
+      "name": "dialer_surface",
+      "unicode": "F01E8",
+      "glyphIndex": 232
+    },
+    {
+      "id": "content-regular.beast_mode_surface",
+      "fontId": "content-regular",
+      "name": "beast_mode_surface",
+      "unicode": "F01E9",
+      "glyphIndex": 233
+    },
+    {
+      "id": "content-regular.bmi_calculator_surface",
+      "fontId": "content-regular",
+      "name": "bmi_calculator_surface",
+      "unicode": "F01EA",
+      "glyphIndex": 234
+    },
+    {
+      "id": "content-regular.error_line",
+      "fontId": "content-regular",
+      "name": "error_line",
+      "unicode": "F01EB",
+      "glyphIndex": 235
+    },
+    {
+      "id": "content-regular.repair_line",
+      "fontId": "content-regular",
+      "name": "repair_line",
+      "unicode": "F01EC",
+      "glyphIndex": 236
+    },
+    {
+      "id": "content-regular.sort_line",
+      "fontId": "content-regular",
+      "name": "sort_line",
+      "unicode": "F01ED",
+      "glyphIndex": 237
+    },
+    {
+      "id": "content-regular.loan_promotion_surface",
+      "fontId": "content-regular",
+      "name": "loan_promotion_surface",
+      "unicode": "F01EE",
+      "glyphIndex": 238
+    },
+    {
+      "id": "content-regular.insurance_finance_surface",
+      "fontId": "content-regular",
+      "name": "insurance_finance_surface",
+      "unicode": "F01EF",
+      "glyphIndex": 239
+    },
+    {
+      "id": "content-regular.education_training_surface",
+      "fontId": "content-regular",
+      "name": "education_training_surface",
+      "unicode": "F01F0",
+      "glyphIndex": 240
+    },
+    {
+      "id": "content-regular.decoration_maintenance_surface",
+      "fontId": "content-regular",
+      "name": "decoration_maintenance_surface",
+      "unicode": "F01F1",
+      "glyphIndex": 241
+    },
+    {
+      "id": "content-regular.iphone_surface",
+      "fontId": "content-regular",
+      "name": "iphone_surface",
+      "unicode": "F01F2",
+      "glyphIndex": 242
+    },
+    {
+      "id": "content-regular.smile_line",
+      "fontId": "content-regular",
+      "name": "smile_line",
+      "unicode": "F01F3",
+      "glyphIndex": 243
+    },
+    {
+      "id": "content-regular.video_line",
+      "fontId": "content-regular",
+      "name": "video_line",
+      "unicode": "F01F5",
+      "glyphIndex": 244
+    },
+    {
+      "id": "content-regular.slideshow_line",
+      "fontId": "content-regular",
+      "name": "slideshow_line",
+      "unicode": "F01F6",
+      "glyphIndex": 245
+    },
+    {
+      "id": "content-regular.log_line",
+      "fontId": "content-regular",
+      "name": "log_line",
+      "unicode": "F01F8",
+      "glyphIndex": 246
+    },
+    {
+      "id": "content-regular.leica_moment_line",
+      "fontId": "content-regular",
+      "name": "leica_moment_line",
+      "unicode": "F01F9",
+      "glyphIndex": 247
+    },
+    {
+      "id": "content-regular.generate_pdf_line",
+      "fontId": "content-regular",
+      "name": "generate_pdf_line",
+      "unicode": "F01FA",
+      "glyphIndex": 248
+    },
+    {
+      "id": "content-regular.privacy_protection_watermark_line",
+      "fontId": "content-regular",
+      "name": "privacy_protection_watermark_line",
+      "unicode": "F01FB",
+      "glyphIndex": 249
+    },
+    {
+      "id": "content-regular.compress_line",
+      "fontId": "content-regular",
+      "name": "compress_line",
+      "unicode": "F01FC",
+      "glyphIndex": 250
+    },
+    {
+      "id": "content-regular.playback_speed_line",
+      "fontId": "content-regular",
+      "name": "playback_speed_line",
+      "unicode": "F01FD",
+      "glyphIndex": 251
+    },
+    {
+      "id": "content-regular.convert_to_gif_Line",
+      "fontId": "content-regular",
+      "name": "convert_to_gif_Line",
+      "unicode": "F01FE",
+      "glyphIndex": 252
+    },
+    {
+      "id": "content-regular.copy_edit_point_line",
+      "fontId": "content-regular",
+      "name": "copy_edit_point_line",
+      "unicode": "F01FF",
+      "glyphIndex": 253
+    },
+    {
+      "id": "content-regular.paste_edit_point_line",
+      "fontId": "content-regular",
+      "name": "paste_edit_point_line",
+      "unicode": "F0200",
+      "glyphIndex": 254
+    },
+    {
+      "id": "content-regular.google_lens",
+      "fontId": "content-regular",
+      "name": "google_lens",
+      "unicode": "F0201",
+      "glyphIndex": 255
+    },
+    {
+      "id": "content-regular.drawer_list_handle_line",
+      "fontId": "content-regular",
+      "name": "drawer_list_handle_line",
+      "unicode": "F0202",
+      "glyphIndex": 256
+    },
+    {
+      "id": "content-regular.not_interested_line",
+      "fontId": "content-regular",
+      "name": "not_interested_line",
+      "unicode": "F0203",
+      "glyphIndex": 257
+    },
+    {
+      "id": "content-regular.prohibit_line",
+      "fontId": "content-regular",
+      "name": "prohibit_line",
+      "unicode": "F0204",
+      "glyphIndex": 258
+    },
+    {
+      "id": "content-regular.universal_remote_surface",
+      "fontId": "content-regular",
+      "name": "universal_remote_surface",
+      "unicode": "F0205",
+      "glyphIndex": 259
+    },
+    {
+      "id": "content-regular.mi_home_surface",
+      "fontId": "content-regular",
+      "name": "mi_home_surface",
+      "unicode": "F0206",
+      "glyphIndex": 260
+    },
+    {
+      "id": "content-regular.overseas_music_surface",
+      "fontId": "content-regular",
+      "name": "overseas_music_surface",
+      "unicode": "F0207",
+      "glyphIndex": 261
+    },
+    {
+      "id": "content-regular.no_network_line",
+      "fontId": "content-regular",
+      "name": "no_network_line",
+      "unicode": "F020A",
+      "glyphIndex": 262
+    },
+    {
+      "id": "content-regular.device_surface",
+      "fontId": "content-regular",
+      "name": "device_surface",
+      "unicode": "F020B",
+      "glyphIndex": 263
+    },
+    {
+      "id": "content-regular.item_surface",
+      "fontId": "content-regular",
+      "name": "item_surface",
+      "unicode": "F020C",
+      "glyphIndex": 264
+    },
+    {
+      "id": "content-regular.xiaomi_card_surface",
+      "fontId": "content-regular",
+      "name": "xiaomi_card_surface",
+      "unicode": "F020D",
+      "glyphIndex": 265
+    },
+    {
+      "id": "content-regular.e-card_surface",
+      "fontId": "content-regular",
+      "name": "e-card_surface",
+      "unicode": "F020E",
+      "glyphIndex": 266
+    },
+    {
+      "id": "content-regular.card_1-2_surface",
+      "fontId": "content-regular",
+      "name": "card_1-2_surface",
+      "unicode": "F020F",
+      "glyphIndex": 267
+    },
+    {
+      "id": "content-regular.card_2-2_surface",
+      "fontId": "content-regular",
+      "name": "card_2-2_surface",
+      "unicode": "F0210",
+      "glyphIndex": 268
+    },
+    {
+      "id": "content-regular.no_card_selected_surface",
+      "fontId": "content-regular",
+      "name": "no_card_selected_surface",
+      "unicode": "F0211",
+      "glyphIndex": 269
+    },
+    {
+      "id": "content-regular.card_1-selected_plus_surface",
+      "fontId": "content-regular",
+      "name": "card_1-selected_plus_surface",
+      "unicode": "F0212",
+      "glyphIndex": 270
+    },
+    {
+      "id": "content-regular.card_2-selected_plus_surface",
+      "fontId": "content-regular",
+      "name": "card_2-selected_plus_surface",
+      "unicode": "F0213",
+      "glyphIndex": 271
+    },
+    {
+      "id": "content-regular.keyboard_mouse_keyboard_mouse_sharing_surface",
+      "fontId": "content-regular",
+      "name": "keyboard_mouse_keyboard_mouse_sharing_surface",
+      "unicode": "F0229",
+      "glyphIndex": 272
+    },
+    {
+      "id": "content-regular.xiaomin_listen_surface",
+      "fontId": "content-regular",
+      "name": "xiaomin_listen_surface",
+      "unicode": "F0239",
+      "glyphIndex": 273
+    },
+    {
+      "id": "content-regular.highlighter_pen_line",
+      "fontId": "content-regular",
+      "name": "highlighter_pen_line",
+      "unicode": "F028A",
+      "glyphIndex": 274
+    },
+    {
+      "id": "content-regular.doodle_pen_line",
+      "fontId": "content-regular",
+      "name": "doodle_pen_line",
+      "unicode": "F028B",
+      "glyphIndex": 275
+    },
+    {
+      "id": "content-regular.schedule_management_surface",
+      "fontId": "content-regular",
+      "name": "schedule_management_surface",
+      "unicode": "F02F8",
+      "glyphIndex": 276
+    },
+    {
+      "id": "content-regular.left_earbud_surface",
+      "fontId": "content-regular",
+      "name": "left_earbud_surface",
+      "unicode": "F02F9",
+      "glyphIndex": 277
+    },
+    {
+      "id": "content-regular.right_earbud_surface",
+      "fontId": "content-regular",
+      "name": "right_earbud_surface",
+      "unicode": "F02FA",
+      "glyphIndex": 278
+    },
+    {
+      "id": "content-regular.charging_case_surface",
+      "fontId": "content-regular",
+      "name": "charging_case_surface",
+      "unicode": "F02FB",
+      "glyphIndex": 279
+    },
+    {
+      "id": "content-regular.wired_hdmi_surface",
+      "fontId": "content-regular",
+      "name": "wired_hdmi_surface",
+      "unicode": "F02FC",
+      "glyphIndex": 280
+    },
+    {
+      "id": "content-regular.jump_previous_line",
+      "fontId": "content-regular",
+      "name": "jump_previous_line",
+      "unicode": "F02FD",
+      "glyphIndex": 281
+    },
+    {
+      "id": "content-regular.jump_next_line",
+      "fontId": "content-regular",
+      "name": "jump_next_line",
+      "unicode": "F02FE",
+      "glyphIndex": 282
+    },
+    {
+      "id": "content-regular.book_course_schedule_line",
+      "fontId": "content-regular",
+      "name": "book_course_schedule_line",
+      "unicode": "F02FF",
+      "glyphIndex": 283
+    },
+    {
+      "id": "content-regular.schedule_surface",
+      "fontId": "content-regular",
+      "name": "schedule_surface",
+      "unicode": "F0300",
+      "glyphIndex": 284
+    },
+    {
+      "id": "content-regular.feedback_line",
+      "fontId": "content-regular",
+      "name": "feedback_line",
+      "unicode": "F0301",
+      "glyphIndex": 285
+    },
+    {
+      "id": "content-regular.cool_features_surface",
+      "fontId": "content-regular",
+      "name": "cool_features_surface",
+      "unicode": "F0304",
+      "glyphIndex": 286
+    },
+    {
+      "id": "content-regular.tags_surface",
+      "fontId": "content-regular",
+      "name": "tags_surface",
+      "unicode": "F0305",
+      "glyphIndex": 287
+    },
+    {
+      "id": "content-regular.view_in_document_viewer_line",
+      "fontId": "content-regular",
+      "name": "view_in_document_viewer_line",
+      "unicode": "F0308",
+      "glyphIndex": 288
+    },
+    {
+      "id": "content-regular.bookmarked_surface",
+      "fontId": "content-regular",
+      "name": "bookmarked_surface",
+      "unicode": "F0309",
+      "glyphIndex": 289
+    },
+    {
+      "id": "content-regular.like_selected_surface",
+      "fontId": "content-regular",
+      "name": "like_selected_surface",
+      "unicode": "F030A",
+      "glyphIndex": 290
+    },
+    {
+      "id": "content-regular.dislike_selected_surface",
+      "fontId": "content-regular",
+      "name": "dislike_selected_surface",
+      "unicode": "F030B",
+      "glyphIndex": 291
+    },
+    {
+      "id": "content-regular.borderless_canvas_line",
+      "fontId": "content-regular",
+      "name": "borderless_canvas_line",
+      "unicode": "F030C",
+      "glyphIndex": 292
+    },
+    {
+      "id": "content-regular.thumbnail_line",
+      "fontId": "content-regular",
+      "name": "thumbnail_line",
+      "unicode": "F030D",
+      "glyphIndex": 293
+    },
+    {
+      "id": "content-regular.expand_more_line",
+      "fontId": "content-regular",
+      "name": "expand_more_line",
+      "unicode": "F030E",
+      "glyphIndex": 294
+    },
+    {
+      "id": "content-regular.pen_pouch_line",
+      "fontId": "content-regular",
+      "name": "pen_pouch_line",
+      "unicode": "F030F",
+      "glyphIndex": 295
+    },
+    {
+      "id": "content-regular.new_message_line",
+      "fontId": "content-regular",
+      "name": "new_message_line",
+      "unicode": "F0310",
+      "glyphIndex": 296
+    },
+    {
+      "id": "content-regular.ai_writing_line",
+      "fontId": "content-regular",
+      "name": "ai_writing_line",
+      "unicode": "F0311",
+      "glyphIndex": 297
+    },
+    {
+      "id": "content-regular.swap_small_windows_line",
+      "fontId": "content-regular",
+      "name": "swap_small_windows_line",
+      "unicode": "F0312",
+      "glyphIndex": 298
+    },
+    {
+      "id": "content-regular.flip_right_line",
+      "fontId": "content-regular",
+      "name": "flip_right_line",
+      "unicode": "F032A",
+      "glyphIndex": 299
+    },
+    {
+      "id": "content-regular.ic_reference_line",
+      "fontId": "content-regular",
+      "name": "ic_reference_line",
+      "unicode": "F035E",
+      "glyphIndex": 300
+    },
+    {
+      "id": "content-regular.waiting_surface",
+      "fontId": "content-regular",
+      "name": "waiting_surface",
+      "unicode": "F0360",
+      "glyphIndex": 301
+    },
+    {
+      "id": "content-regular.screen_casting_surface",
+      "fontId": "content-regular",
+      "name": "screen_casting_surface",
+      "unicode": "F0367",
+      "glyphIndex": 302
+    },
+    {
+      "id": "content-regular.full_screen_surface",
+      "fontId": "content-regular",
+      "name": "full_screen_surface",
+      "unicode": "F036F",
+      "glyphIndex": 303
+    },
+    {
+      "id": "content-regular.small_window_fold_surface",
+      "fontId": "content-regular",
+      "name": "small_window_fold_surface",
+      "unicode": "F0370",
+      "glyphIndex": 304
+    },
+    {
+      "id": "content-regular.close_surface",
+      "fontId": "content-regular",
+      "name": "close_surface",
+      "unicode": "F0371",
+      "glyphIndex": 305
+    },
+    {
+      "id": "content-regular.new_window_surface",
+      "fontId": "content-regular",
+      "name": "new_window_surface",
+      "unicode": "F0372",
+      "glyphIndex": 306
+    },
+    {
+      "id": "content-regular.bottom_split_screen_surface",
+      "fontId": "content-regular",
+      "name": "bottom_split_screen_surface",
+      "unicode": "F0373",
+      "glyphIndex": 307
+    },
+    {
+      "id": "content-regular.top_split_screen_surface",
+      "fontId": "content-regular",
+      "name": "top_split_screen_surface",
+      "unicode": "F0374",
+      "glyphIndex": 308
+    },
+    {
+      "id": "content-regular.multi_split_screen_surface",
+      "fontId": "content-regular",
+      "name": "multi_split_screen_surface",
+      "unicode": "F0375",
+      "glyphIndex": 309
+    },
+    {
+      "id": "content-regular.multi_screen_surface",
+      "fontId": "content-regular",
+      "name": "multi_screen_surface",
+      "unicode": "F0376",
+      "glyphIndex": 310
+    },
+    {
+      "id": "content-regular.print_line",
+      "fontId": "content-regular",
+      "name": "print_line",
+      "unicode": "F0378",
+      "glyphIndex": 311
+    },
+    {
+      "id": "content-regular.weather_forecast_play_surface",
+      "fontId": "content-regular",
+      "name": "weather_forecast_play_surface",
+      "unicode": "F0391",
+      "glyphIndex": 312
+    },
+    {
+      "id": "content-regular.handwriting_calculator_line",
+      "fontId": "content-regular",
+      "name": "handwriting_calculator_line",
+      "unicode": "F03A9",
+      "glyphIndex": 313
+    },
+    {
+      "id": "content-regular.quotation_marks_surface",
+      "fontId": "content-regular",
+      "name": "quotation_marks_surface",
+      "unicode": "F03AA",
+      "glyphIndex": 314
+    },
+    {
+      "id": "content-regular.hang_up_surface",
+      "fontId": "content-regular",
+      "name": "hang_up_surface",
+      "unicode": "F03AB",
+      "glyphIndex": 315
+    },
+    {
+      "id": "content-regular.open_with_other_app_line",
+      "fontId": "content-regular",
+      "name": "open_with_other_app_line",
+      "unicode": "F03AC",
+      "glyphIndex": 316
+    },
+    {
+      "id": "content-regular.ppt_notes_line",
+      "fontId": "content-regular",
+      "name": "ppt_notes_line",
+      "unicode": "F03AD",
+      "glyphIndex": 317
+    },
+    {
+      "id": "content-regular.view_watch_on_wrist_line",
+      "fontId": "content-regular",
+      "name": "view_watch_on_wrist_line",
+      "unicode": "F03AE",
+      "glyphIndex": 318
+    },
+    {
+      "id": "content-regular.annotation_settings_line",
+      "fontId": "content-regular",
+      "name": "annotation_settings_line",
+      "unicode": "F03AF",
+      "glyphIndex": 319
+    },
+    {
+      "id": "content-regular.fit_to_screen_line",
+      "fontId": "content-regular",
+      "name": "fit_to_screen_line",
+      "unicode": "F03B0",
+      "glyphIndex": 320
+    },
+    {
+      "id": "content-regular.freeze_panes_line",
+      "fontId": "content-regular",
+      "name": "freeze_panes_line",
+      "unicode": "F03B1",
+      "glyphIndex": 321
+    },
+    {
+      "id": "content-regular.expand_list_line",
+      "fontId": "content-regular",
+      "name": "expand_list_line",
+      "unicode": "F03B2",
+      "glyphIndex": 322
+    },
+    {
+      "id": "content-regular.collapse_list_line",
+      "fontId": "content-regular",
+      "name": "collapse_list_line",
+      "unicode": "F03B3",
+      "glyphIndex": 323
+    },
+    {
+      "id": "content-regular.show_speaker_label_line",
+      "fontId": "content-regular",
+      "name": "show_speaker_label_line",
+      "unicode": "F03B4",
+      "glyphIndex": 324
+    },
+    {
+      "id": "content-regular.hide_speaker_label_line",
+      "fontId": "content-regular",
+      "name": "hide_speaker_label_line",
+      "unicode": "F03B5",
+      "glyphIndex": 325
+    },
+    {
+      "id": "content-regular.multi_select_line",
+      "fontId": "content-regular",
+      "name": "multi_select_line",
+      "unicode": "F03B6",
+      "glyphIndex": 326
+    },
+    {
+      "id": "content-regular.jump_to_recording_line",
+      "fontId": "content-regular",
+      "name": "jump_to_recording_line",
+      "unicode": "F03B7",
+      "glyphIndex": 327
+    },
+    {
+      "id": "content-regular.gesture_password_line",
+      "fontId": "content-regular",
+      "name": "gesture_password_line",
+      "unicode": "F03B8",
+      "glyphIndex": 328
+    },
+    {
+      "id": "content-regular.right_split_screen_line",
+      "fontId": "content-regular",
+      "name": "right_split_screen_line",
+      "unicode": "F03B9",
+      "glyphIndex": 329
+    },
+    {
+      "id": "content-regular.top_split_screen_line",
+      "fontId": "content-regular",
+      "name": "top_split_screen_line",
+      "unicode": "F03BA",
+      "glyphIndex": 330
+    },
+    {
+      "id": "content-regular.bottom_split_screen_line",
+      "fontId": "content-regular",
+      "name": "bottom_split_screen_line",
+      "unicode": "F03BB",
+      "glyphIndex": 331
+    },
+    {
+      "id": "content-regular.left_split_screen_line",
+      "fontId": "content-regular",
+      "name": "left_split_screen_line",
+      "unicode": "F03BC",
+      "glyphIndex": 332
+    },
+    {
+      "id": "content-regular.no_operation_surface",
+      "fontId": "content-regular",
+      "name": "no_operation_surface",
+      "unicode": "F03BD",
+      "glyphIndex": 333
+    },
+    {
+      "id": "content-regular.underline_line",
+      "fontId": "content-regular",
+      "name": "underline_line",
+      "unicode": "F03D0",
+      "glyphIndex": 334
+    },
+    {
+      "id": "content-regular.digital_statistics_line",
+      "fontId": "content-regular",
+      "name": "digital_statistics_line",
+      "unicode": "F03D8",
+      "glyphIndex": 335
+    },
+    {
+      "id": "content-regular.sound_wave_surface",
+      "fontId": "content-regular",
+      "name": "sound_wave_surface",
+      "unicode": "F03D9",
+      "glyphIndex": 336
+    },
+    {
+      "id": "content-regular.page_up_line",
+      "fontId": "content-regular",
+      "name": "page_up_line",
+      "unicode": "F03DA",
+      "glyphIndex": 337
+    },
+    {
+      "id": "content-regular.page_down_line",
+      "fontId": "content-regular",
+      "name": "page_down_line",
+      "unicode": "F03DB",
+      "glyphIndex": 338
+    },
+    {
+      "id": "content-regular.add_window_surface",
+      "fontId": "content-regular",
+      "name": "add_window_surface",
+      "unicode": "F03DC",
+      "glyphIndex": 339
+    },
+    {
+      "id": "content-regular.bookmark_line",
+      "fontId": "content-regular",
+      "name": "bookmark_line",
+      "unicode": "F03DD",
+      "glyphIndex": 340
+    },
+    {
+      "id": "content-regular.bookmark_selected_surface",
+      "fontId": "content-regular",
+      "name": "bookmark_selected_surface",
+      "unicode": "F03DE",
+      "glyphIndex": 341
+    },
+    {
+      "id": "content-regular.annotation_line",
+      "fontId": "content-regular",
+      "name": "annotation_line",
+      "unicode": "F03DF",
+      "glyphIndex": 342
+    },
+    {
+      "id": "content-regular.ppt_line",
+      "fontId": "content-regular",
+      "name": "ppt_line",
+      "unicode": "F03E0",
+      "glyphIndex": 343
+    },
+    {
+      "id": "content-regular.battery_new_10_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_10_normal_on_surface",
+      "unicode": "F03E1",
+      "glyphIndex": 344
+    },
+    {
+      "id": "content-regular.battery_new_20_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_20_normal_on_surface",
+      "unicode": "F03E2",
+      "glyphIndex": 345
+    },
+    {
+      "id": "content-regular.battery_new_30_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_30_normal_on_surface",
+      "unicode": "F03E3",
+      "glyphIndex": 346
+    },
+    {
+      "id": "content-regular.battery_new_40_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_40_normal_on_surface",
+      "unicode": "F03E4",
+      "glyphIndex": 347
+    },
+    {
+      "id": "content-regular.battery_new_50_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_50_normal_on_surface",
+      "unicode": "F03E5",
+      "glyphIndex": 348
+    },
+    {
+      "id": "content-regular.battery_new_60_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_60_normal_on_surface",
+      "unicode": "F03E6",
+      "glyphIndex": 349
+    },
+    {
+      "id": "content-regular.battery_new_70_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_70_normal_on_surface",
+      "unicode": "F03E7",
+      "glyphIndex": 350
+    },
+    {
+      "id": "content-regular.battery_new_80_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_80_normal_on_surface",
+      "unicode": "F03E8",
+      "glyphIndex": 351
+    },
+    {
+      "id": "content-regular.battery_new_90_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_90_normal_on_surface",
+      "unicode": "F03E9",
+      "glyphIndex": 352
+    },
+    {
+      "id": "content-regular.battery_new_100_normal_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_100_normal_on_surface",
+      "unicode": "F03EA",
+      "glyphIndex": 353
+    },
+    {
+      "id": "content-regular.battery_new_10_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_10_Charging_on_surface",
+      "unicode": "F03EB",
+      "glyphIndex": 354
+    },
+    {
+      "id": "content-regular.battery_new_20_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_20_Charging_on_surface",
+      "unicode": "F03EC",
+      "glyphIndex": 355
+    },
+    {
+      "id": "content-regular.battery_new_30_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_30_Charging_on_surface",
+      "unicode": "F03ED",
+      "glyphIndex": 356
+    },
+    {
+      "id": "content-regular.battery_new_40_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_40_Charging_on_surface",
+      "unicode": "F03EE",
+      "glyphIndex": 357
+    },
+    {
+      "id": "content-regular.battery_new_50_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_50_Charging_on_surface",
+      "unicode": "F03EF",
+      "glyphIndex": 358
+    },
+    {
+      "id": "content-regular.battery_new_60_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_60_Charging_on_surface",
+      "unicode": "F03F0",
+      "glyphIndex": 359
+    },
+    {
+      "id": "content-regular.battery_new_70_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_70_Charging_on_surface",
+      "unicode": "F03F1",
+      "glyphIndex": 360
+    },
+    {
+      "id": "content-regular.battery_new_80_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_80_Charging_on_surface",
+      "unicode": "F03F2",
+      "glyphIndex": 361
+    },
+    {
+      "id": "content-regular.battery_new_90_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_90_Charging_on_surface",
+      "unicode": "F03F3",
+      "glyphIndex": 362
+    },
+    {
+      "id": "content-regular.battery_new_1000_Charging_on_surface",
+      "fontId": "content-regular",
+      "name": "battery_new_1000_Charging_on_surface",
+      "unicode": "F03F4",
+      "glyphIndex": 363
+    },
+    {
+      "id": "content-secondary.gst_surface",
+      "fontId": "content-secondary",
+      "name": "gst_surface",
+      "unicode": "F0118",
+      "glyphIndex": 1
+    },
+    {
+      "id": "content-secondary.combination_password_surface",
+      "fontId": "content-secondary",
+      "name": "combination_password_surface",
+      "unicode": "F0139",
+      "glyphIndex": 2
+    },
+    {
+      "id": "content-secondary.numeric_password_surface",
+      "fontId": "content-secondary",
+      "name": "numeric_password_surface",
+      "unicode": "F013A",
+      "glyphIndex": 3
+    },
+    {
+      "id": "content-secondary.fast_forward_surface",
+      "fontId": "content-secondary",
+      "name": "fast_forward_surface",
+      "unicode": "F013B",
+      "glyphIndex": 4
+    },
+    {
+      "id": "content-secondary.rewind_surface",
+      "fontId": "content-secondary",
+      "name": "rewind_surface",
+      "unicode": "F013C",
+      "glyphIndex": 5
+    },
+    {
+      "id": "content-secondary.fast_forward_line",
+      "fontId": "content-secondary",
+      "name": "fast_forward_line",
+      "unicode": "F013D",
+      "glyphIndex": 6
+    },
+    {
+      "id": "content-secondary.rewind_line",
+      "fontId": "content-secondary",
+      "name": "rewind_line",
+      "unicode": "F013E",
+      "glyphIndex": 7
+    },
+    {
+      "id": "content-secondary.speed_playback_1x_line",
+      "fontId": "content-secondary",
+      "name": "speed_playback_1x_line",
+      "unicode": "F013F",
+      "glyphIndex": 8
+    },
+    {
+      "id": "content-secondary.speed_play_back_0.5x_line",
+      "fontId": "content-secondary",
+      "name": "speed_play_back_0.5x_line",
+      "unicode": "F0140",
+      "glyphIndex": 9
+    },
+    {
+      "id": "content-secondary.ai_image_generation_line",
+      "fontId": "content-secondary",
+      "name": "ai_image_generation_line",
+      "unicode": "F014A",
+      "glyphIndex": 10
+    },
+    {
+      "id": "content-secondary.ai_video_generation_line",
+      "fontId": "content-secondary",
+      "name": "ai_video_generation_line",
+      "unicode": "F014E",
+      "glyphIndex": 11
+    },
+    {
+      "id": "content-secondary.shared_album_surface",
+      "fontId": "content-secondary",
+      "name": "shared_album_surface",
+      "unicode": "F014F",
+      "glyphIndex": 12
+    },
+    {
+      "id": "content-secondary.low_brightness_surface",
+      "fontId": "content-secondary",
+      "name": "low_brightness_surface",
+      "unicode": "F019F",
+      "glyphIndex": 13
+    },
+    {
+      "id": "content-secondary.medium_brightness_surface",
+      "fontId": "content-secondary",
+      "name": "medium_brightness_surface",
+      "unicode": "F01A0",
+      "glyphIndex": 14
+    },
+    {
+      "id": "content-secondary.high_brightness_surface",
+      "fontId": "content-secondary",
+      "name": "high_brightness_surface",
+      "unicode": "F01A1",
+      "glyphIndex": 15
+    },
+    {
+      "id": "content-secondary.gale_surface",
+      "fontId": "content-secondary",
+      "name": "gale_surface",
+      "unicode": "F01A2",
+      "glyphIndex": 16
+    },
+    {
+      "id": "content-secondary.hail_surface",
+      "fontId": "content-secondary",
+      "name": "hail_surface",
+      "unicode": "F01A3",
+      "glyphIndex": 17
+    },
+    {
+      "id": "content-secondary.rainstorm_surface",
+      "fontId": "content-secondary",
+      "name": "rainstorm_surface",
+      "unicode": "F01A4",
+      "glyphIndex": 18
+    },
+    {
+      "id": "content-secondary.smog_surface",
+      "fontId": "content-secondary",
+      "name": "smog_surface",
+      "unicode": "F01A5",
+      "glyphIndex": 19
+    },
+    {
+      "id": "content-secondary.typhoon_surface",
+      "fontId": "content-secondary",
+      "name": "typhoon_surface",
+      "unicode": "F01A6",
+      "glyphIndex": 20
+    },
+    {
+      "id": "content-secondary.small_precipitation_occurring_surface",
+      "fontId": "content-secondary",
+      "name": "small_precipitation_occurring_surface",
+      "unicode": "F01A7",
+      "glyphIndex": 21
+    },
+    {
+      "id": "content-secondary.main_precipitation_occurring_surface",
+      "fontId": "content-secondary",
+      "name": "main_precipitation_occurring_surface",
+      "unicode": "F01A8",
+      "glyphIndex": 22
+    },
+    {
+      "id": "content-secondary.middle_precipitation_occurring_surface",
+      "fontId": "content-secondary",
+      "name": "middle_precipitation_occurring_surface",
+      "unicode": "F01A9",
+      "glyphIndex": 23
+    },
+    {
+      "id": "content-secondary.heavy_precipitation_occurring_surface",
+      "fontId": "content-secondary",
+      "name": "heavy_precipitation_occurring_surface",
+      "unicode": "F01AA",
+      "glyphIndex": 24
+    },
+    {
+      "id": "content-secondary.do_not_disturb_mode_moon_surface",
+      "fontId": "content-secondary",
+      "name": "do_not_disturb_mode_moon_surface",
+      "unicode": "F01AB",
+      "glyphIndex": 25
+    },
+    {
+      "id": "content-secondary.water_leak_sensor_category_surface",
+      "fontId": "content-secondary",
+      "name": "water_leak_sensor_category_surface",
+      "unicode": "F01AC",
+      "glyphIndex": 26
+    },
+    {
+      "id": "content-secondary.natural_gas_sensor_category_surface",
+      "fontId": "content-secondary",
+      "name": "natural_gas_sensor_category_surface",
+      "unicode": "F01AD",
+      "glyphIndex": 27
+    },
+    {
+      "id": "content-secondary.vibration_surface",
+      "fontId": "content-secondary",
+      "name": "vibration_surface",
+      "unicode": "F01AE",
+      "glyphIndex": 28
+    },
+    {
+      "id": "content-secondary.phone_layout_surface",
+      "fontId": "content-secondary",
+      "name": "phone_layout_surface",
+      "unicode": "F01AF",
+      "glyphIndex": 29
+    },
+    {
+      "id": "content-secondary.new_phone_new_device_line",
+      "fontId": "content-secondary",
+      "name": "new_phone_new_device_line",
+      "unicode": "F01B0",
+      "glyphIndex": 30
+    },
+    {
+      "id": "content-secondary.task_manager_surface",
+      "fontId": "content-secondary",
+      "name": "task_manager_surface",
+      "unicode": "F01B1",
+      "glyphIndex": 31
+    },
+    {
+      "id": "content-secondary.usb_drive_surface",
+      "fontId": "content-secondary",
+      "name": "usb_drive_surface",
+      "unicode": "F01B2",
+      "glyphIndex": 32
+    },
+    {
+      "id": "content-secondary.find_device_surface",
+      "fontId": "content-secondary",
+      "name": "find_device_surface",
+      "unicode": "F01B3",
+      "glyphIndex": 33
+    },
+    {
+      "id": "content-secondary.scheduled_power_on_off_surface",
+      "fontId": "content-secondary",
+      "name": "scheduled_power_on_off_surface",
+      "unicode": "F01B9",
+      "glyphIndex": 34
+    },
+    {
+      "id": "content-secondary.auto_brightness_surface",
+      "fontId": "content-secondary",
+      "name": "auto_brightness_surface",
+      "unicode": "F01BA",
+      "glyphIndex": 35
+    },
+    {
+      "id": "content-secondary.pause_with_circle_bottom_line",
+      "fontId": "content-secondary",
+      "name": "pause_with_circle_bottom_line",
+      "unicode": "F01BC",
+      "glyphIndex": 36
+    },
+    {
+      "id": "content-secondary.insert_shape_line",
+      "fontId": "content-secondary",
+      "name": "insert_shape_line",
+      "unicode": "F01BE",
+      "glyphIndex": 37
+    },
+    {
+      "id": "content-secondary.draw_line",
+      "fontId": "content-secondary",
+      "name": "draw_line",
+      "unicode": "F01BF",
+      "glyphIndex": 38
+    },
+    {
+      "id": "content-secondary.sticker_line",
+      "fontId": "content-secondary",
+      "name": "sticker_line",
+      "unicode": "F01C0",
+      "glyphIndex": 39
+    },
+    {
+      "id": "content-secondary.insert_signature_line",
+      "fontId": "content-secondary",
+      "name": "insert_signature_line",
+      "unicode": "F01C1",
+      "glyphIndex": 40
+    },
+    {
+      "id": "content-secondary.deep_thinking_line",
+      "fontId": "content-secondary",
+      "name": "deep_thinking_line",
+      "unicode": "F01C2",
+      "glyphIndex": 41
+    },
+    {
+      "id": "content-secondary.magic_wand_line",
+      "fontId": "content-secondary",
+      "name": "magic_wand_line",
+      "unicode": "F01C3",
+      "glyphIndex": 42
+    },
+    {
+      "id": "content-secondary.xiaoai_memory_line",
+      "fontId": "content-secondary",
+      "name": "xiaoai_memory_line",
+      "unicode": "F01C4",
+      "glyphIndex": 43
+    },
+    {
+      "id": "content-secondary.circle_search_line",
+      "fontId": "content-secondary",
+      "name": "circle_search_line",
+      "unicode": "F01C5",
+      "glyphIndex": 44
+    },
+    {
+      "id": "content-secondary.new_arrivals_surface",
+      "fontId": "content-secondary",
+      "name": "new_arrivals_surface",
+      "unicode": "F01C6",
+      "glyphIndex": 45
+    },
+    {
+      "id": "content-secondary.screen_recognition_surface",
+      "fontId": "content-secondary",
+      "name": "screen_recognition_surface",
+      "unicode": "F01C7",
+      "glyphIndex": 46
+    },
+    {
+      "id": "content-secondary.search_enhancement_line",
+      "fontId": "content-secondary",
+      "name": "search_enhancement_line",
+      "unicode": "F01C8",
+      "glyphIndex": 47
+    },
+    {
+      "id": "content-secondary.cloud_download_line",
+      "fontId": "content-secondary",
+      "name": "cloud_download_line",
+      "unicode": "F01C9",
+      "glyphIndex": 48
+    },
+    {
+      "id": "content-secondary.cloud_cloud_drive_line",
+      "fontId": "content-secondary",
+      "name": "cloud_cloud_drive_line",
+      "unicode": "F01CA",
+      "glyphIndex": 49
+    },
+    {
+      "id": "content-secondary.star_line",
+      "fontId": "content-secondary",
+      "name": "star_line",
+      "unicode": "F01CC",
+      "glyphIndex": 50
+    },
+    {
+      "id": "content-secondary.starred_line",
+      "fontId": "content-secondary",
+      "name": "starred_line",
+      "unicode": "F01CD",
+      "glyphIndex": 51
+    },
+    {
+      "id": "content-secondary.convert_line",
+      "fontId": "content-secondary",
+      "name": "convert_line",
+      "unicode": "F01F4",
+      "glyphIndex": 52
+    },
+    {
+      "id": "content-secondary.eye_eye_protection_surface",
+      "fontId": "content-secondary",
+      "name": "eye_eye_protection_surface",
+      "unicode": "F0208",
+      "glyphIndex": 53
+    },
+    {
+      "id": "content-secondary.arrow_left_surface",
+      "fontId": "content-secondary",
+      "name": "arrow_left_surface",
+      "unicode": "F0209",
+      "glyphIndex": 54
+    },
+    {
+      "id": "content-secondary.auto_brightness_control_center_surface",
+      "fontId": "content-secondary",
+      "name": "auto_brightness_control_center_surface",
+      "unicode": "F0215",
+      "glyphIndex": 55
+    },
+    {
+      "id": "content-secondary.blizzard_surface",
+      "fontId": "content-secondary",
+      "name": "blizzard_surface",
+      "unicode": "F0216",
+      "glyphIndex": 56
+    },
+    {
+      "id": "content-secondary.road_icing_surface",
+      "fontId": "content-secondary",
+      "name": "road_icing_surface",
+      "unicode": "F0217",
+      "glyphIndex": 57
+    },
+    {
+      "id": "content-secondary.high_temperature_surface",
+      "fontId": "content-secondary",
+      "name": "high_temperature_surface",
+      "unicode": "F0218",
+      "glyphIndex": 58
+    },
+    {
+      "id": "content-secondary.cold_wave_surface",
+      "fontId": "content-secondary",
+      "name": "cold_wave_surface",
+      "unicode": "F0219",
+      "glyphIndex": 59
+    },
+    {
+      "id": "content-secondary.thunder_and_lightning_surface",
+      "fontId": "content-secondary",
+      "name": "thunder_and_lightning_surface",
+      "unicode": "F021A",
+      "glyphIndex": 60
+    },
+    {
+      "id": "content-secondary.frost_surface",
+      "fontId": "content-secondary",
+      "name": "frost_surface",
+      "unicode": "F021B",
+      "glyphIndex": 61
+    },
+    {
+      "id": "content-secondary.dense_fog_surface.001",
+      "fontId": "content-secondary",
+      "name": "dense_fog_surface.001",
+      "unicode": "F021C",
+      "glyphIndex": 62
+    },
+    {
+      "id": "content-secondary.drought_surface",
+      "fontId": "content-secondary",
+      "name": "drought_surface",
+      "unicode": "F021D",
+      "glyphIndex": 63
+    },
+    {
+      "id": "content-secondary.sandstorm_surface",
+      "fontId": "content-secondary",
+      "name": "sandstorm_surface",
+      "unicode": "F021E",
+      "glyphIndex": 64
+    },
+    {
+      "id": "content-secondary.snow_snowing_surface",
+      "fontId": "content-secondary",
+      "name": "snow_snowing_surface",
+      "unicode": "F021F",
+      "glyphIndex": 65
+    },
+    {
+      "id": "content-secondary.air_quality_excellent_good_surface",
+      "fontId": "content-secondary",
+      "name": "air_quality_excellent_good_surface",
+      "unicode": "F0220",
+      "glyphIndex": 66
+    },
+    {
+      "id": "content-secondary.air_quality_slightly_moderately_polluted_surface",
+      "fontId": "content-secondary",
+      "name": "air_quality_slightly_moderately_polluted_surface",
+      "unicode": "F0221",
+      "glyphIndex": 67
+    },
+    {
+      "id": "content-secondary.air_quality_heavily_severely_beyond_index_polluted_surface",
+      "fontId": "content-secondary",
+      "name": "air_quality_heavily_severely_beyond_index_polluted_surface",
+      "unicode": "F0222",
+      "glyphIndex": 68
+    },
+    {
+      "id": "content-secondary.marine_disasters_surface",
+      "fontId": "content-secondary",
+      "name": "marine_disasters_surface",
+      "unicode": "F0223",
+      "glyphIndex": 69
+    },
+    {
+      "id": "content-secondary.forest_disasters_surface",
+      "fontId": "content-secondary",
+      "name": "forest_disasters_surface",
+      "unicode": "F0224",
+      "glyphIndex": 70
+    },
+    {
+      "id": "content-secondary.meteorological_disasters_surface",
+      "fontId": "content-secondary",
+      "name": "meteorological_disasters_surface",
+      "unicode": "F0225",
+      "glyphIndex": 71
+    },
+    {
+      "id": "content-secondary.geological_disasters_surface",
+      "fontId": "content-secondary",
+      "name": "geological_disasters_surface",
+      "unicode": "F0226",
+      "glyphIndex": 72
+    },
+    {
+      "id": "content-secondary.biological_disasters_surface",
+      "fontId": "content-secondary",
+      "name": "biological_disasters_surface",
+      "unicode": "F0227",
+      "glyphIndex": 73
+    },
+    {
+      "id": "content-secondary.smoke_sensor_category_surface",
+      "fontId": "content-secondary",
+      "name": "smoke_sensor_category_surface",
+      "unicode": "F0228",
+      "glyphIndex": 74
+    },
+    {
+      "id": "content-secondary.earphone_battery_level_surface",
+      "fontId": "content-secondary",
+      "name": "earphone_battery_level_surface",
+      "unicode": "F022A",
+      "glyphIndex": 75
+    },
+    {
+      "id": "content-secondary.earthquake_warning_badge_surface",
+      "fontId": "content-secondary",
+      "name": "earthquake_warning_badge_surface",
+      "unicode": "F022B",
+      "glyphIndex": 76
+    },
+    {
+      "id": "content-secondary.screen_sharing_protection_surface",
+      "fontId": "content-secondary",
+      "name": "screen_sharing_protection_surface",
+      "unicode": "F022C",
+      "glyphIndex": 77
+    },
+    {
+      "id": "content-secondary.always-on_display_surface",
+      "fontId": "content-secondary",
+      "name": "always-on_display_surface",
+      "unicode": "F022D",
+      "glyphIndex": 78
+    },
+    {
+      "id": "content-secondary.watching_video_surface",
+      "fontId": "content-secondary",
+      "name": "watching_video_surface",
+      "unicode": "F022E",
+      "glyphIndex": 79
+    },
+    {
+      "id": "content-secondary.high_battery_temperature_surface",
+      "fontId": "content-secondary",
+      "name": "high_battery_temperature_surface",
+      "unicode": "F022F",
+      "glyphIndex": 80
+    },
+    {
+      "id": "content-secondary.battery_protection_surface",
+      "fontId": "content-secondary",
+      "name": "battery_protection_surface",
+      "unicode": "F0230",
+      "glyphIndex": 81
+    },
+    {
+      "id": "content-secondary.wired_earphones_surface",
+      "fontId": "content-secondary",
+      "name": "wired_earphones_surface",
+      "unicode": "F0231",
+      "glyphIndex": 82
+    },
+    {
+      "id": "content-secondary.phone_seismometer_surface",
+      "fontId": "content-secondary",
+      "name": "phone_seismometer_surface",
+      "unicode": "F0232",
+      "glyphIndex": 83
+    },
+    {
+      "id": "content-secondary.screen_protection_active_surface",
+      "fontId": "content-secondary",
+      "name": "screen_protection_active_surface",
+      "unicode": "F0233",
+      "glyphIndex": 84
+    },
+    {
+      "id": "content-secondary.recording_surface",
+      "fontId": "content-secondary",
+      "name": "recording_surface",
+      "unicode": "F0234",
+      "glyphIndex": 85
+    },
+    {
+      "id": "content-secondary.hidden_camera_detection_surface",
+      "fontId": "content-secondary",
+      "name": "hidden_camera_detection_surface",
+      "unicode": "F0235",
+      "glyphIndex": 86
+    },
+    {
+      "id": "content-secondary.controller_battery_level_line",
+      "fontId": "content-secondary",
+      "name": "controller_battery_level_line",
+      "unicode": "F0236",
+      "glyphIndex": 87
+    },
+    {
+      "id": "content-secondary.battery_line",
+      "fontId": "content-secondary",
+      "name": "battery_line",
+      "unicode": "F0237",
+      "glyphIndex": 88
+    },
+    {
+      "id": "content-secondary.android_accessibility_suite_surface",
+      "fontId": "content-secondary",
+      "name": "android_accessibility_suite_surface",
+      "unicode": "F0238",
+      "glyphIndex": 89
+    },
+    {
+      "id": "content-secondary.network_collaboration_surface",
+      "fontId": "content-secondary",
+      "name": "network_collaboration_surface",
+      "unicode": "F023A",
+      "glyphIndex": 90
+    },
+    {
+      "id": "content-secondary.miaobo_surface",
+      "fontId": "content-secondary",
+      "name": "miaobo_surface",
+      "unicode": "F023B",
+      "glyphIndex": 91
+    },
+    {
+      "id": "content-secondary.hold_call_surface",
+      "fontId": "content-secondary",
+      "name": "hold_call_surface",
+      "unicode": "F023C",
+      "glyphIndex": 92
+    },
+    {
+      "id": "content-secondary.link_hotspot_line",
+      "fontId": "content-secondary",
+      "name": "link_hotspot_line",
+      "unicode": "F023D",
+      "glyphIndex": 93
+    },
+    {
+      "id": "content-secondary.block_reject_surface",
+      "fontId": "content-secondary",
+      "name": "block_reject_surface",
+      "unicode": "F0242",
+      "glyphIndex": 94
+    },
+    {
+      "id": "content-secondary.volte_no_service_surface",
+      "fontId": "content-secondary",
+      "name": "volte_no_service_surface",
+      "unicode": "F0244",
+      "glyphIndex": 95
+    },
+    {
+      "id": "content-secondary.bluetooth_transfer_surface",
+      "fontId": "content-secondary",
+      "name": "bluetooth_transfer_surface",
+      "unicode": "F0247",
+      "glyphIndex": 96
+    },
+    {
+      "id": "content-secondary.bluetooth_connected_surface",
+      "fontId": "content-secondary",
+      "name": "bluetooth_connected_surface",
+      "unicode": "F0248",
+      "glyphIndex": 97
+    },
+    {
+      "id": "content-secondary.hotspot_network_surface",
+      "fontId": "content-secondary",
+      "name": "hotspot_network_surface",
+      "unicode": "F0249",
+      "glyphIndex": 98
+    },
+    {
+      "id": "content-secondary.wi-fi_anomaly_surface",
+      "fontId": "content-secondary",
+      "name": "wi-fi_anomaly_surface",
+      "unicode": "F024B",
+      "glyphIndex": 99
+    },
+    {
+      "id": "content-secondary.dual_wi-fi_acceleration_surface",
+      "fontId": "content-secondary",
+      "name": "dual_wi-fi_acceleration_surface",
+      "unicode": "F024C",
+      "glyphIndex": 100
+    },
+    {
+      "id": "content-secondary.satellite_network_surface",
+      "fontId": "content-secondary",
+      "name": "satellite_network_surface",
+      "unicode": "F024D",
+      "glyphIndex": 101
+    },
+    {
+      "id": "content-secondary.no_signal_surface",
+      "fontId": "content-secondary",
+      "name": "no_signal_surface",
+      "unicode": "F024E",
+      "glyphIndex": 102
+    },
+    {
+      "id": "content-secondary.computing_power_sharing_surface",
+      "fontId": "content-secondary",
+      "name": "computing_power_sharing_surface",
+      "unicode": "F024F",
+      "glyphIndex": 103
+    },
+    {
+      "id": "content-secondary.signal_surface",
+      "fontId": "content-secondary",
+      "name": "signal_surface",
+      "unicode": "F0250",
+      "glyphIndex": 104
+    },
+    {
+      "id": "content-secondary.NFC_Link_Surface",
+      "fontId": "content-secondary",
+      "name": "NFC_Link_Surface",
+      "unicode": "F0251",
+      "glyphIndex": 105
+    },
+    {
+      "id": "content-secondary.disconnect_surface",
+      "fontId": "content-secondary",
+      "name": "disconnect_surface",
+      "unicode": "F0252",
+      "glyphIndex": 106
+    },
+    {
+      "id": "content-secondary.report_earthquake_info_build_monitoring_network_surface",
+      "fontId": "content-secondary",
+      "name": "report_earthquake_info_build_monitoring_network_surface",
+      "unicode": "F0256",
+      "glyphIndex": 107
+    },
+    {
+      "id": "content-secondary.web_protection_surface",
+      "fontId": "content-secondary",
+      "name": "web_protection_surface",
+      "unicode": "F0257",
+      "glyphIndex": 108
+    },
+    {
+      "id": "content-secondary.optimization_boost_surface",
+      "fontId": "content-secondary",
+      "name": "optimization_boost_surface",
+      "unicode": "F0258",
+      "glyphIndex": 109
+    },
+    {
+      "id": "content-secondary.family_guardian_surface",
+      "fontId": "content-secondary",
+      "name": "family_guardian_surface",
+      "unicode": "F0259",
+      "glyphIndex": 110
+    },
+    {
+      "id": "content-secondary.network_control_surface",
+      "fontId": "content-secondary",
+      "name": "network_control_surface",
+      "unicode": "F025A",
+      "glyphIndex": 111
+    },
+    {
+      "id": "content-secondary.shutdown_password_verification_surface",
+      "fontId": "content-secondary",
+      "name": "shutdown_password_verification_surface",
+      "unicode": "F025C",
+      "glyphIndex": 112
+    },
+    {
+      "id": "content-secondary.network_assistant_surface",
+      "fontId": "content-secondary",
+      "name": "network_assistant_surface",
+      "unicode": "F025D",
+      "glyphIndex": 113
+    },
+    {
+      "id": "content-secondary.anti-tracking_surface",
+      "fontId": "content-secondary",
+      "name": "anti-tracking_surface",
+      "unicode": "F025E",
+      "glyphIndex": 114
+    },
+    {
+      "id": "content-secondary.privacy_lab_surface",
+      "fontId": "content-secondary",
+      "name": "privacy_lab_surface",
+      "unicode": "F025F",
+      "glyphIndex": 115
+    },
+    {
+      "id": "content-secondary.emergency_alert_assistance_surface",
+      "fontId": "content-secondary",
+      "name": "emergency_alert_assistance_surface",
+      "unicode": "F0260",
+      "glyphIndex": 116
+    },
+    {
+      "id": "content-secondary.privacy_input_mode_surface",
+      "fontId": "content-secondary",
+      "name": "privacy_input_mode_surface",
+      "unicode": "F0261",
+      "glyphIndex": 117
+    },
+    {
+      "id": "content-secondary.telecom_fraud_protection_surface",
+      "fontId": "content-secondary",
+      "name": "telecom_fraud_protection_surface",
+      "unicode": "F0262",
+      "glyphIndex": 118
+    },
+    {
+      "id": "content-secondary.sim_card_security_protection_surface",
+      "fontId": "content-secondary",
+      "name": "sim_card_security_protection_surface",
+      "unicode": "F0263",
+      "glyphIndex": 119
+    },
+    {
+      "id": "content-secondary.browsing_history_surface",
+      "fontId": "content-secondary",
+      "name": "browsing_history_surface",
+      "unicode": "F0265",
+      "glyphIndex": 120
+    },
+    {
+      "id": "content-secondary.chat_information_surface",
+      "fontId": "content-secondary",
+      "name": "chat_information_surface",
+      "unicode": "F0266",
+      "glyphIndex": 121
+    },
+    {
+      "id": "content-secondary.qq_special_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "qq_special_cleanup_surface",
+      "unicode": "F0267",
+      "glyphIndex": 122
+    },
+    {
+      "id": "content-secondary.large_file_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "large_file_cleanup_surface",
+      "unicode": "F0268",
+      "glyphIndex": 123
+    },
+    {
+      "id": "content-secondary.app_special_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "app_special_cleanup_surface",
+      "unicode": "F0269",
+      "glyphIndex": 124
+    },
+    {
+      "id": "content-secondary.abstract_line",
+      "fontId": "content-secondary",
+      "name": "abstract_line",
+      "unicode": "F026A",
+      "glyphIndex": 125
+    },
+    {
+      "id": "content-secondary.camera_mode_surface",
+      "fontId": "content-secondary",
+      "name": "camera_mode_surface",
+      "unicode": "F026B",
+      "glyphIndex": 126
+    },
+    {
+      "id": "content-secondary.all_photos_surface",
+      "fontId": "content-secondary",
+      "name": "all_photos_surface",
+      "unicode": "F026C",
+      "glyphIndex": 127
+    },
+    {
+      "id": "content-secondary.smart_movie_surface",
+      "fontId": "content-secondary",
+      "name": "smart_movie_surface",
+      "unicode": "F026D",
+      "glyphIndex": 128
+    },
+    {
+      "id": "content-secondary.moments_editor_surface",
+      "fontId": "content-secondary",
+      "name": "moments_editor_surface",
+      "unicode": "F026E",
+      "glyphIndex": 129
+    },
+    {
+      "id": "content-secondary.listen_together_surface",
+      "fontId": "content-secondary",
+      "name": "listen_together_surface",
+      "unicode": "F026F",
+      "glyphIndex": 130
+    },
+    {
+      "id": "content-secondary.face_id_surface",
+      "fontId": "content-secondary",
+      "name": "face_id_surface",
+      "unicode": "F0270",
+      "glyphIndex": 131
+    },
+    {
+      "id": "content-secondary.conversation_call_log_surface",
+      "fontId": "content-secondary",
+      "name": "conversation_call_log_surface",
+      "unicode": "F0271",
+      "glyphIndex": 132
+    },
+    {
+      "id": "content-secondary.friendly_surface",
+      "fontId": "content-secondary",
+      "name": "friendly_surface",
+      "unicode": "F0272",
+      "glyphIndex": 133
+    },
+    {
+      "id": "content-secondary.character_reference_surface",
+      "fontId": "content-secondary",
+      "name": "character_reference_surface",
+      "unicode": "F0273",
+      "glyphIndex": 134
+    },
+    {
+      "id": "content-secondary.reference_face_surface",
+      "fontId": "content-secondary",
+      "name": "reference_face_surface",
+      "unicode": "F0274",
+      "glyphIndex": 135
+    },
+    {
+      "id": "content-secondary.reference_pose_surface",
+      "fontId": "content-secondary",
+      "name": "reference_pose_surface",
+      "unicode": "F0275",
+      "glyphIndex": 136
+    },
+    {
+      "id": "content-secondary.selfie_surface",
+      "fontId": "content-secondary",
+      "name": "selfie_surface",
+      "unicode": "F0276",
+      "glyphIndex": 137
+    },
+    {
+      "id": "content-secondary.man_surface",
+      "fontId": "content-secondary",
+      "name": "man_surface",
+      "unicode": "F0277",
+      "glyphIndex": 138
+    },
+    {
+      "id": "content-secondary.woman_surface",
+      "fontId": "content-secondary",
+      "name": "woman_surface",
+      "unicode": "F0278",
+      "glyphIndex": 139
+    },
+    {
+      "id": "content-secondary.sports_surface",
+      "fontId": "content-secondary",
+      "name": "sports_surface",
+      "unicode": "F0279",
+      "glyphIndex": 140
+    },
+    {
+      "id": "content-secondary.blacklist_surface.001",
+      "fontId": "content-secondary",
+      "name": "blacklist_surface.001",
+      "unicode": "F027A",
+      "glyphIndex": 141
+    },
+    {
+      "id": "content-secondary.smart_agent_line",
+      "fontId": "content-secondary",
+      "name": "smart_agent_line",
+      "unicode": "F027B",
+      "glyphIndex": 142
+    },
+    {
+      "id": "content-secondary.focus_mode_surface",
+      "fontId": "content-secondary",
+      "name": "focus_mode_surface",
+      "unicode": "F027C",
+      "glyphIndex": 143
+    },
+    {
+      "id": "content-secondary.focus_mode_line",
+      "fontId": "content-secondary",
+      "name": "focus_mode_line",
+      "unicode": "F027D",
+      "glyphIndex": 144
+    },
+    {
+      "id": "content-secondary.kids_space_surface",
+      "fontId": "content-secondary",
+      "name": "kids_space_surface",
+      "unicode": "F027E",
+      "glyphIndex": 145
+    },
+    {
+      "id": "content-secondary.transparency_mode_surface",
+      "fontId": "content-secondary",
+      "name": "transparency_mode_surface",
+      "unicode": "F027F",
+      "glyphIndex": 146
+    },
+    {
+      "id": "content-secondary.noise_cancellation_surface",
+      "fontId": "content-secondary",
+      "name": "noise_cancellation_surface",
+      "unicode": "F0280",
+      "glyphIndex": 147
+    },
+    {
+      "id": "content-secondary.image_line",
+      "fontId": "content-secondary",
+      "name": "image_line",
+      "unicode": "F0281",
+      "glyphIndex": 148
+    },
+    {
+      "id": "content-secondary.body_sensor_surface",
+      "fontId": "content-secondary",
+      "name": "body_sensor_surface",
+      "unicode": "F0282",
+      "glyphIndex": 149
+    },
+    {
+      "id": "content-secondary.like_line",
+      "fontId": "content-secondary",
+      "name": "like_line",
+      "unicode": "F0283",
+      "glyphIndex": 150
+    },
+    {
+      "id": "content-secondary.dislike_line",
+      "fontId": "content-secondary",
+      "name": "dislike_line",
+      "unicode": "F0284",
+      "glyphIndex": 151
+    },
+    {
+      "id": "content-secondary.cycling_line",
+      "fontId": "content-secondary",
+      "name": "cycling_line",
+      "unicode": "F0285",
+      "glyphIndex": 152
+    },
+    {
+      "id": "content-secondary.t_haptics_surface",
+      "fontId": "content-secondary",
+      "name": "t_haptics_surface",
+      "unicode": "F0286",
+      "glyphIndex": 153
+    },
+    {
+      "id": "content-secondary.ic-vertical_domain_navigation_line",
+      "fontId": "content-secondary",
+      "name": "ic-vertical_domain_navigation_line",
+      "unicode": "F0287",
+      "glyphIndex": 154
+    },
+    {
+      "id": "content-secondary.help_more_people_get_earthquake_info_surface",
+      "fontId": "content-secondary",
+      "name": "help_more_people_get_earthquake_info_surface",
+      "unicode": "F0288",
+      "glyphIndex": 155
+    },
+    {
+      "id": "content-secondary.vibration_off_surface",
+      "fontId": "content-secondary",
+      "name": "vibration_off_surface",
+      "unicode": "F0289",
+      "glyphIndex": 156
+    },
+    {
+      "id": "content-secondary.professional_line",
+      "fontId": "content-secondary",
+      "name": "professional_line",
+      "unicode": "F028C",
+      "glyphIndex": 157
+    },
+    {
+      "id": "content-secondary.universal_line",
+      "fontId": "content-secondary",
+      "name": "universal_line",
+      "unicode": "F028D",
+      "glyphIndex": 158
+    },
+    {
+      "id": "content-secondary.local_redraw_line",
+      "fontId": "content-secondary",
+      "name": "local_redraw_line",
+      "unicode": "F028E",
+      "glyphIndex": 159
+    },
+    {
+      "id": "content-secondary.add_description_surface",
+      "fontId": "content-secondary",
+      "name": "add_description_surface",
+      "unicode": "F028F",
+      "glyphIndex": 160
+    },
+    {
+      "id": "content-secondary.Switch_Camera_Surface",
+      "fontId": "content-secondary",
+      "name": "Switch_Camera_Surface",
+      "unicode": "F0290",
+      "glyphIndex": 161
+    },
+    {
+      "id": "content-secondary.taxi_surface",
+      "fontId": "content-secondary",
+      "name": "taxi_surface",
+      "unicode": "F0291",
+      "glyphIndex": 162
+    },
+    {
+      "id": "content-secondary.meeting_noise_reduction_surface",
+      "fontId": "content-secondary",
+      "name": "meeting_noise_reduction_surface",
+      "unicode": "F0292",
+      "glyphIndex": 163
+    },
+    {
+      "id": "content-secondary.toolbox_surface",
+      "fontId": "content-secondary",
+      "name": "toolbox_surface",
+      "unicode": "F0293",
+      "glyphIndex": 164
+    },
+    {
+      "id": "content-secondary.harassment_surface",
+      "fontId": "content-secondary",
+      "name": "harassment_surface",
+      "unicode": "F0294",
+      "glyphIndex": 165
+    },
+    {
+      "id": "content-secondary.high_risk_surface",
+      "fontId": "content-secondary",
+      "name": "high_risk_surface",
+      "unicode": "F0295",
+      "glyphIndex": 166
+    },
+    {
+      "id": "content-secondary.express_delivery_surface",
+      "fontId": "content-secondary",
+      "name": "express_delivery_surface",
+      "unicode": "F0296",
+      "glyphIndex": 167
+    },
+    {
+      "id": "content-secondary.force_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "force_cleanup_surface",
+      "unicode": "F0297",
+      "glyphIndex": 168
+    },
+    {
+      "id": "content-secondary.app_reset_surface",
+      "fontId": "content-secondary",
+      "name": "app_reset_surface",
+      "unicode": "F0299",
+      "glyphIndex": 169
+    },
+    {
+      "id": "content-secondary.car_crash_detection_line",
+      "fontId": "content-secondary",
+      "name": "car_crash_detection_line",
+      "unicode": "F029B",
+      "glyphIndex": 170
+    },
+    {
+      "id": "content-secondary.motion_sickness_relief_line",
+      "fontId": "content-secondary",
+      "name": "motion_sickness_relief_line",
+      "unicode": "F029C",
+      "glyphIndex": 171
+    },
+    {
+      "id": "content-secondary.smart_lock_category_surface",
+      "fontId": "content-secondary",
+      "name": "smart_lock_category_surface",
+      "unicode": "F029D",
+      "glyphIndex": 172
+    },
+    {
+      "id": "content-secondary.present_personal_medical_id_card_surface",
+      "fontId": "content-secondary",
+      "name": "present_personal_medical_id_card_surface",
+      "unicode": "F029E",
+      "glyphIndex": 173
+    },
+    {
+      "id": "content-secondary.lunch_break_surface",
+      "fontId": "content-secondary",
+      "name": "lunch_break_surface",
+      "unicode": "F029F",
+      "glyphIndex": 174
+    },
+    {
+      "id": "content-secondary.file_package_surface",
+      "fontId": "content-secondary",
+      "name": "file_package_surface",
+      "unicode": "F02A0",
+      "glyphIndex": 175
+    },
+    {
+      "id": "content-secondary.file_close_surface",
+      "fontId": "content-secondary",
+      "name": "file_close_surface",
+      "unicode": "F02A1",
+      "glyphIndex": 176
+    },
+    {
+      "id": "content-secondary.su7_ultra_surface",
+      "fontId": "content-secondary",
+      "name": "su7_ultra_surface",
+      "unicode": "F02A2",
+      "glyphIndex": 177
+    },
+    {
+      "id": "content-secondary.bus_surface",
+      "fontId": "content-secondary",
+      "name": "bus_surface",
+      "unicode": "F02A3",
+      "glyphIndex": 178
+    },
+    {
+      "id": "content-secondary.sound_on_surface",
+      "fontId": "content-secondary",
+      "name": "sound_on_surface",
+      "unicode": "F02A4",
+      "glyphIndex": 179
+    },
+    {
+      "id": "content-secondary.microphone_muted_surface",
+      "fontId": "content-secondary",
+      "name": "microphone_muted_surface",
+      "unicode": "F02A5",
+      "glyphIndex": 180
+    },
+    {
+      "id": "content-secondary.nfc_surface",
+      "fontId": "content-secondary",
+      "name": "nfc_surface",
+      "unicode": "F02A6",
+      "glyphIndex": 181
+    },
+    {
+      "id": "content-secondary.mutual_transfer_surface",
+      "fontId": "content-secondary",
+      "name": "mutual_transfer_surface",
+      "unicode": "F02A7",
+      "glyphIndex": 182
+    },
+    {
+      "id": "content-secondary.structure_line",
+      "fontId": "content-secondary",
+      "name": "structure_line",
+      "unicode": "F02A8",
+      "glyphIndex": 183
+    },
+    {
+      "id": "content-secondary.photography_circle_surface",
+      "fontId": "content-secondary",
+      "name": "photography_circle_surface",
+      "unicode": "F02A9",
+      "glyphIndex": 184
+    },
+    {
+      "id": "content-secondary.fully_charged_battery_surface",
+      "fontId": "content-secondary",
+      "name": "fully_charged_battery_surface",
+      "unicode": "F02E0",
+      "glyphIndex": 185
+    },
+    {
+      "id": "content-secondary.low_battery_surface",
+      "fontId": "content-secondary",
+      "name": "low_battery_surface",
+      "unicode": "F02E1",
+      "glyphIndex": 186
+    },
+    {
+      "id": "content-secondary.battery_level_surface",
+      "fontId": "content-secondary",
+      "name": "battery_level_surface",
+      "unicode": "F02E2",
+      "glyphIndex": 187
+    },
+    {
+      "id": "content-secondary.fast_charging_in_progress_surface",
+      "fontId": "content-secondary",
+      "name": "fast_charging_in_progress_surface",
+      "unicode": "F02E3",
+      "glyphIndex": 188
+    },
+    {
+      "id": "content-secondary.fast_charging_surface",
+      "fontId": "content-secondary",
+      "name": "fast_charging_surface",
+      "unicode": "F02E4",
+      "glyphIndex": 189
+    },
+    {
+      "id": "content-secondary.standard_charging_in_progress_surface",
+      "fontId": "content-secondary",
+      "name": "standard_charging_in_progress_surface",
+      "unicode": "F02E5",
+      "glyphIndex": 190
+    },
+    {
+      "id": "content-secondary.standard_charging_surface",
+      "fontId": "content-secondary",
+      "name": "standard_charging_surface",
+      "unicode": "F02E6",
+      "glyphIndex": 191
+    },
+    {
+      "id": "content-secondary.power_saving_battery_surface",
+      "fontId": "content-secondary",
+      "name": "power_saving_battery_surface",
+      "unicode": "F02E7",
+      "glyphIndex": 192
+    },
+    {
+      "id": "content-secondary.screen_flickering_surface",
+      "fontId": "content-secondary",
+      "name": "screen_flickering_surface",
+      "unicode": "F02E8",
+      "glyphIndex": 193
+    },
+    {
+      "id": "content-secondary.multiple_files_surface",
+      "fontId": "content-secondary",
+      "name": "multiple_files_surface",
+      "unicode": "F02E9",
+      "glyphIndex": 194
+    },
+    {
+      "id": "content-secondary.pause_surface",
+      "fontId": "content-secondary",
+      "name": "pause_surface",
+      "unicode": "F02EA",
+      "glyphIndex": 195
+    },
+    {
+      "id": "content-secondary.play_surface",
+      "fontId": "content-secondary",
+      "name": "play_surface",
+      "unicode": "F02EB",
+      "glyphIndex": 196
+    },
+    {
+      "id": "content-secondary.stop_surface",
+      "fontId": "content-secondary",
+      "name": "stop_surface",
+      "unicode": "F02EC",
+      "glyphIndex": 197
+    },
+    {
+      "id": "content-secondary.previous_surface",
+      "fontId": "content-secondary",
+      "name": "previous_surface",
+      "unicode": "F02ED",
+      "glyphIndex": 198
+    },
+    {
+      "id": "content-secondary.next_surface",
+      "fontId": "content-secondary",
+      "name": "next_surface",
+      "unicode": "F02EE",
+      "glyphIndex": 199
+    },
+    {
+      "id": "content-secondary.bookmark_surface",
+      "fontId": "content-secondary",
+      "name": "bookmark_surface",
+      "unicode": "F02EF",
+      "glyphIndex": 200
+    },
+    {
+      "id": "content-secondary.play_line",
+      "fontId": "content-secondary",
+      "name": "play_line",
+      "unicode": "F02F0",
+      "glyphIndex": 201
+    },
+    {
+      "id": "content-secondary.stop_line",
+      "fontId": "content-secondary",
+      "name": "stop_line",
+      "unicode": "F02F1",
+      "glyphIndex": 202
+    },
+    {
+      "id": "content-secondary.previous_line",
+      "fontId": "content-secondary",
+      "name": "previous_line",
+      "unicode": "F02F2",
+      "glyphIndex": 203
+    },
+    {
+      "id": "content-secondary.next_line",
+      "fontId": "content-secondary",
+      "name": "next_line",
+      "unicode": "F02F3",
+      "glyphIndex": 204
+    },
+    {
+      "id": "content-secondary.phone_call_round_surface",
+      "fontId": "content-secondary",
+      "name": "phone_call_round_surface",
+      "unicode": "F02F4",
+      "glyphIndex": 205
+    },
+    {
+      "id": "content-secondary.bluetooth_line",
+      "fontId": "content-secondary",
+      "name": "bluetooth_line",
+      "unicode": "F02F5",
+      "glyphIndex": 206
+    },
+    {
+      "id": "content-secondary.awareness_surface",
+      "fontId": "content-secondary",
+      "name": "awareness_surface",
+      "unicode": "F02F6",
+      "glyphIndex": 207
+    },
+    {
+      "id": "content-secondary.esim_surface",
+      "fontId": "content-secondary",
+      "name": "esim_surface",
+      "unicode": "F02F7",
+      "glyphIndex": 208
+    },
+    {
+      "id": "content-secondary.whatsapp_surface",
+      "fontId": "content-secondary",
+      "name": "whatsapp_surface",
+      "unicode": "F0315",
+      "glyphIndex": 209
+    },
+    {
+      "id": "content-secondary.no_sim_card_surface",
+      "fontId": "content-secondary",
+      "name": "no_sim_card_surface",
+      "unicode": "F0316",
+      "glyphIndex": 210
+    },
+    {
+      "id": "content-secondary.risk_complaint_surface",
+      "fontId": "content-secondary",
+      "name": "risk_complaint_surface",
+      "unicode": "F0317",
+      "glyphIndex": 211
+    },
+    {
+      "id": "content-secondary.virus_scan_surface",
+      "fontId": "content-secondary",
+      "name": "virus_scan_surface",
+      "unicode": "F0318",
+      "glyphIndex": 212
+    },
+    {
+      "id": "content-secondary.no_call_blocking_records_surface",
+      "fontId": "content-secondary",
+      "name": "no_call_blocking_records_surface",
+      "unicode": "F0319",
+      "glyphIndex": 213
+    },
+    {
+      "id": "content-secondary.safe_sharing_surface",
+      "fontId": "content-secondary",
+      "name": "safe_sharing_surface",
+      "unicode": "F031A",
+      "glyphIndex": 214
+    },
+    {
+      "id": "content-secondary.system_clone_surface",
+      "fontId": "content-secondary",
+      "name": "system_clone_surface",
+      "unicode": "F031B",
+      "glyphIndex": 215
+    },
+    {
+      "id": "content-secondary.alert_center_surface",
+      "fontId": "content-secondary",
+      "name": "alert_center_surface",
+      "unicode": "F031C",
+      "glyphIndex": 216
+    },
+    {
+      "id": "content-secondary.anomaly_detection_repair_surface",
+      "fontId": "content-secondary",
+      "name": "anomaly_detection_repair_surface",
+      "unicode": "F031D",
+      "glyphIndex": 217
+    },
+    {
+      "id": "content-secondary.network_diagnostics_surface",
+      "fontId": "content-secondary",
+      "name": "network_diagnostics_surface",
+      "unicode": "F031E",
+      "glyphIndex": 218
+    },
+    {
+      "id": "content-secondary.app_lock_surface",
+      "fontId": "content-secondary",
+      "name": "app_lock_surface",
+      "unicode": "F031F",
+      "glyphIndex": 219
+    },
+    {
+      "id": "content-secondary.harassment_blocking_surface",
+      "fontId": "content-secondary",
+      "name": "harassment_blocking_surface",
+      "unicode": "F0320",
+      "glyphIndex": 220
+    },
+    {
+      "id": "content-secondary.app_permission_management_surface",
+      "fontId": "content-secondary",
+      "name": "app_permission_management_surface",
+      "unicode": "F0321",
+      "glyphIndex": 221
+    },
+    {
+      "id": "content-secondary.defense_guide_surface",
+      "fontId": "content-secondary",
+      "name": "defense_guide_surface",
+      "unicode": "F0322",
+      "glyphIndex": 222
+    },
+    {
+      "id": "content-secondary.anomaly_detection_surface",
+      "fontId": "content-secondary",
+      "name": "anomaly_detection_surface",
+      "unicode": "F0323",
+      "glyphIndex": 223
+    },
+    {
+      "id": "content-secondary.expand_line",
+      "fontId": "content-secondary",
+      "name": "expand_line",
+      "unicode": "F0324",
+      "glyphIndex": 224
+    },
+    {
+      "id": "content-secondary.switch_surface",
+      "fontId": "content-secondary",
+      "name": "switch_surface",
+      "unicode": "F032B",
+      "glyphIndex": 225
+    },
+    {
+      "id": "content-secondary.device_migration_surface",
+      "fontId": "content-secondary",
+      "name": "device_migration_surface",
+      "unicode": "F032C",
+      "glyphIndex": 226
+    },
+    {
+      "id": "content-secondary.zoom_in_Full_screen_line",
+      "fontId": "content-secondary",
+      "name": "zoom_in_Full_screen_line",
+      "unicode": "F032D",
+      "glyphIndex": 227
+    },
+    {
+      "id": "content-secondary.zoom_out_window_line",
+      "fontId": "content-secondary",
+      "name": "zoom_out_window_line",
+      "unicode": "F032E",
+      "glyphIndex": 228
+    },
+    {
+      "id": "content-secondary.fit_to_size_line",
+      "fontId": "content-secondary",
+      "name": "fit_to_size_line",
+      "unicode": "F0332",
+      "glyphIndex": 229
+    },
+    {
+      "id": "content-secondary.view_line",
+      "fontId": "content-secondary",
+      "name": "view_line",
+      "unicode": "F0333",
+      "glyphIndex": 230
+    },
+    {
+      "id": "content-secondary.swipe_up_surface",
+      "fontId": "content-secondary",
+      "name": "swipe_up_surface",
+      "unicode": "F0334",
+      "glyphIndex": 231
+    },
+    {
+      "id": "content-secondary.insert_text_line",
+      "fontId": "content-secondary",
+      "name": "insert_text_line",
+      "unicode": "F0335",
+      "glyphIndex": 232
+    },
+    {
+      "id": "content-secondary.concise_line",
+      "fontId": "content-secondary",
+      "name": "concise_line",
+      "unicode": "F0336",
+      "glyphIndex": 233
+    },
+    {
+      "id": "content-secondary.notepad_surface",
+      "fontId": "content-secondary",
+      "name": "notepad_surface",
+      "unicode": "F0337",
+      "glyphIndex": 234
+    },
+    {
+      "id": "content-secondary.clipping_board_surface",
+      "fontId": "content-secondary",
+      "name": "clipping_board_surface",
+      "unicode": "F0338",
+      "glyphIndex": 235
+    },
+    {
+      "id": "content-secondary.bill_bank_statement_line",
+      "fontId": "content-secondary",
+      "name": "bill_bank_statement_line",
+      "unicode": "F0339",
+      "glyphIndex": 236
+    },
+    {
+      "id": "content-secondary.file_surface",
+      "fontId": "content-secondary",
+      "name": "file_surface",
+      "unicode": "F033A",
+      "glyphIndex": 237
+    },
+    {
+      "id": "content-secondary.page_line",
+      "fontId": "content-secondary",
+      "name": "page_line",
+      "unicode": "F033B",
+      "glyphIndex": 238
+    },
+    {
+      "id": "content-secondary.portal_surface",
+      "fontId": "content-secondary",
+      "name": "portal_surface",
+      "unicode": "F033C",
+      "glyphIndex": 239
+    },
+    {
+      "id": "content-secondary.cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "cleanup_surface",
+      "unicode": "F033D",
+      "glyphIndex": 240
+    },
+    {
+      "id": "content-secondary.app_data_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "app_data_cleanup_surface",
+      "unicode": "F033E",
+      "glyphIndex": 241
+    },
+    {
+      "id": "content-secondary.video_special_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "video_special_cleanup_surface",
+      "unicode": "F033F",
+      "glyphIndex": 242
+    },
+    {
+      "id": "content-secondary.app_uninstall_surface",
+      "fontId": "content-secondary",
+      "name": "app_uninstall_surface",
+      "unicode": "F0340",
+      "glyphIndex": 243
+    },
+    {
+      "id": "content-secondary.automatic_task_surface",
+      "fontId": "content-secondary",
+      "name": "automatic_task_surface",
+      "unicode": "F0341",
+      "glyphIndex": 244
+    },
+    {
+      "id": "content-secondary.list_view_surface",
+      "fontId": "content-secondary",
+      "name": "list_view_surface",
+      "unicode": "F0342",
+      "glyphIndex": 245
+    },
+    {
+      "id": "content-secondary.font_size_weight_surface",
+      "fontId": "content-secondary",
+      "name": "font_size_weight_surface",
+      "unicode": "F0343",
+      "glyphIndex": 246
+    },
+    {
+      "id": "content-secondary.text_extraction_line",
+      "fontId": "content-secondary",
+      "name": "text_extraction_line",
+      "unicode": "F0344",
+      "glyphIndex": 247
+    },
+    {
+      "id": "content-secondary.document_summary_line",
+      "fontId": "content-secondary",
+      "name": "document_summary_line",
+      "unicode": "F0345",
+      "glyphIndex": 248
+    },
+    {
+      "id": "content-secondary.find_file_line",
+      "fontId": "content-secondary",
+      "name": "find_file_line",
+      "unicode": "F0346",
+      "glyphIndex": 249
+    },
+    {
+      "id": "content-secondary.more_content_line",
+      "fontId": "content-secondary",
+      "name": "more_content_line",
+      "unicode": "F0347",
+      "glyphIndex": 250
+    },
+    {
+      "id": "content-secondary.unordered_list_line",
+      "fontId": "content-secondary",
+      "name": "unordered_list_line",
+      "unicode": "F0348",
+      "glyphIndex": 251
+    },
+    {
+      "id": "content-secondary.left_align_line",
+      "fontId": "content-secondary",
+      "name": "left_align_line",
+      "unicode": "F0349",
+      "glyphIndex": 252
+    },
+    {
+      "id": "content-secondary.center_align_line",
+      "fontId": "content-secondary",
+      "name": "center_align_line",
+      "unicode": "F034A",
+      "glyphIndex": 253
+    },
+    {
+      "id": "content-secondary.right_align_line",
+      "fontId": "content-secondary",
+      "name": "right_align_line",
+      "unicode": "F034B",
+      "glyphIndex": 254
+    },
+    {
+      "id": "content-secondary.increase_indent_line",
+      "fontId": "content-secondary",
+      "name": "increase_indent_line",
+      "unicode": "F034C",
+      "glyphIndex": 255
+    },
+    {
+      "id": "content-secondary.decrease_indent_surface",
+      "fontId": "content-secondary",
+      "name": "decrease_indent_surface",
+      "unicode": "F034D",
+      "glyphIndex": 256
+    },
+    {
+      "id": "content-secondary.divider_line",
+      "fontId": "content-secondary",
+      "name": "divider_line",
+      "unicode": "F034E",
+      "glyphIndex": 257
+    },
+    {
+      "id": "content-secondary.mind_map_add_horizontally_surface",
+      "fontId": "content-secondary",
+      "name": "mind_map_add_horizontally_surface",
+      "unicode": "F034F",
+      "glyphIndex": 258
+    },
+    {
+      "id": "content-secondary.mind_map_add_parallel_line",
+      "fontId": "content-secondary",
+      "name": "mind_map_add_parallel_line",
+      "unicode": "F0350",
+      "glyphIndex": 259
+    },
+    {
+      "id": "content-secondary.pixel_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "pixel_cleanup_surface",
+      "unicode": "F0351",
+      "glyphIndex": 260
+    },
+    {
+      "id": "content-secondary.music_audio_surface",
+      "fontId": "content-secondary",
+      "name": "music_audio_surface",
+      "unicode": "F0352",
+      "glyphIndex": 261
+    },
+    {
+      "id": "content-secondary.screenshot_screen_recording_surface",
+      "fontId": "content-secondary",
+      "name": "screenshot_screen_recording_surface",
+      "unicode": "F0353",
+      "glyphIndex": 262
+    },
+    {
+      "id": "content-secondary.stitching_surface",
+      "fontId": "content-secondary",
+      "name": "stitching_surface",
+      "unicode": "F0354",
+      "glyphIndex": 263
+    },
+    {
+      "id": "content-secondary.video_effects_surface",
+      "fontId": "content-secondary",
+      "name": "video_effects_surface",
+      "unicode": "F0355",
+      "glyphIndex": 264
+    },
+    {
+      "id": "content-secondary.magic_cutout_surface",
+      "fontId": "content-secondary",
+      "name": "magic_cutout_surface",
+      "unicode": "F0356",
+      "glyphIndex": 265
+    },
+    {
+      "id": "content-secondary.mi_video_editor_surface",
+      "fontId": "content-secondary",
+      "name": "mi_video_editor_surface",
+      "unicode": "F0357",
+      "glyphIndex": 266
+    },
+    {
+      "id": "content-secondary.delete_surface",
+      "fontId": "content-secondary",
+      "name": "delete_surface",
+      "unicode": "F0358",
+      "glyphIndex": 267
+    },
+    {
+      "id": "content-secondary.arrow_right_surface",
+      "fontId": "content-secondary",
+      "name": "arrow_right_surface",
+      "unicode": "F0359",
+      "glyphIndex": 268
+    },
+    {
+      "id": "content-secondary.refresh_line",
+      "fontId": "content-secondary",
+      "name": "refresh_line",
+      "unicode": "F035A",
+      "glyphIndex": 269
+    },
+    {
+      "id": "content-secondary.arrived_at_location_surface",
+      "fontId": "content-secondary",
+      "name": "arrived_at_location_surface",
+      "unicode": "F035B",
+      "glyphIndex": 270
+    },
+    {
+      "id": "content-secondary.left_location_surface",
+      "fontId": "content-secondary",
+      "name": "left_location_surface",
+      "unicode": "F035C",
+      "glyphIndex": 271
+    },
+    {
+      "id": "content-secondary.send_activation_surface",
+      "fontId": "content-secondary",
+      "name": "send_activation_surface",
+      "unicode": "F035D",
+      "glyphIndex": 272
+    },
+    {
+      "id": "content-secondary.descending_line",
+      "fontId": "content-secondary",
+      "name": "descending_line",
+      "unicode": "F035F",
+      "glyphIndex": 273
+    },
+    {
+      "id": "content-secondary.find_text_line",
+      "fontId": "content-secondary",
+      "name": "find_text_line",
+      "unicode": "F0361",
+      "glyphIndex": 274
+    },
+    {
+      "id": "content-secondary.airplane_mode_surface",
+      "fontId": "content-secondary",
+      "name": "airplane_mode_surface",
+      "unicode": "F0362",
+      "glyphIndex": 275
+    },
+    {
+      "id": "content-secondary.orientation_lock_on_surface",
+      "fontId": "content-secondary",
+      "name": "orientation_lock_on_surface",
+      "unicode": "F0363",
+      "glyphIndex": 276
+    },
+    {
+      "id": "content-secondary.orientation_lock_off_surface",
+      "fontId": "content-secondary",
+      "name": "orientation_lock_off_surface",
+      "unicode": "F0364",
+      "glyphIndex": 277
+    },
+    {
+      "id": "content-secondary.volume_low_surface",
+      "fontId": "content-secondary",
+      "name": "volume_low_surface",
+      "unicode": "F0365",
+      "glyphIndex": 278
+    },
+    {
+      "id": "content-secondary.volume_high_surface",
+      "fontId": "content-secondary",
+      "name": "volume_high_surface",
+      "unicode": "F0366",
+      "glyphIndex": 279
+    },
+    {
+      "id": "content-secondary.cloud_service_surface",
+      "fontId": "content-secondary",
+      "name": "cloud_service_surface",
+      "unicode": "F0368",
+      "glyphIndex": 280
+    },
+    {
+      "id": "content-secondary.layout_line",
+      "fontId": "content-secondary",
+      "name": "layout_line",
+      "unicode": "F0369",
+      "glyphIndex": 281
+    },
+    {
+      "id": "content-secondary.fingerprint_line",
+      "fontId": "content-secondary",
+      "name": "fingerprint_line",
+      "unicode": "F036A",
+      "glyphIndex": 282
+    },
+    {
+      "id": "content-secondary.family_security_surface",
+      "fontId": "content-secondary",
+      "name": "family_security_surface",
+      "unicode": "F036B",
+      "glyphIndex": 283
+    },
+    {
+      "id": "content-secondary.image_printing_surface",
+      "fontId": "content-secondary",
+      "name": "image_printing_surface",
+      "unicode": "F036C",
+      "glyphIndex": 284
+    },
+    {
+      "id": "content-secondary.color_picker_surface",
+      "fontId": "content-secondary",
+      "name": "color_picker_surface",
+      "unicode": "F036D",
+      "glyphIndex": 285
+    },
+    {
+      "id": "content-secondary.close_video_surface",
+      "fontId": "content-secondary",
+      "name": "close_video_surface",
+      "unicode": "F036E",
+      "glyphIndex": 286
+    },
+    {
+      "id": "content-secondary.spam_line",
+      "fontId": "content-secondary",
+      "name": "spam_line",
+      "unicode": "F0377",
+      "glyphIndex": 287
+    },
+    {
+      "id": "content-secondary.earthquake_warning_surface",
+      "fontId": "content-secondary",
+      "name": "earthquake_warning_surface",
+      "unicode": "F0379",
+      "glyphIndex": 288
+    },
+    {
+      "id": "content-secondary.red_packet_assistant_surface",
+      "fontId": "content-secondary",
+      "name": "red_packet_assistant_surface",
+      "unicode": "F037A",
+      "glyphIndex": 289
+    },
+    {
+      "id": "content-secondary.app_update_surface",
+      "fontId": "content-secondary",
+      "name": "app_update_surface",
+      "unicode": "F037B",
+      "glyphIndex": 290
+    },
+    {
+      "id": "content-secondary.app_intelligent_power_saving_surface",
+      "fontId": "content-secondary",
+      "name": "app_intelligent_power_saving_surface",
+      "unicode": "F037C",
+      "glyphIndex": 291
+    },
+    {
+      "id": "content-secondary.duplicate_file_compression_surface",
+      "fontId": "content-secondary",
+      "name": "duplicate_file_compression_surface",
+      "unicode": "F037D",
+      "glyphIndex": 292
+    },
+    {
+      "id": "content-secondary.medical_id_card_surface",
+      "fontId": "content-secondary",
+      "name": "medical_id_card_surface",
+      "unicode": "F037E",
+      "glyphIndex": 293
+    },
+    {
+      "id": "content-secondary.deep_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "deep_cleanup_surface",
+      "unicode": "F037F",
+      "glyphIndex": 294
+    },
+    {
+      "id": "content-secondary.text_input_surface",
+      "fontId": "content-secondary",
+      "name": "text_input_surface",
+      "unicode": "F0380",
+      "glyphIndex": 295
+    },
+    {
+      "id": "content-secondary.flashlight_line",
+      "fontId": "content-secondary",
+      "name": "flashlight_line",
+      "unicode": "F0381",
+      "glyphIndex": 296
+    },
+    {
+      "id": "content-secondary.sensor_surface",
+      "fontId": "content-secondary",
+      "name": "sensor_surface",
+      "unicode": "F0382",
+      "glyphIndex": 297
+    },
+    {
+      "id": "content-secondary.light_dark_mode_surface",
+      "fontId": "content-secondary",
+      "name": "light_dark_mode_surface",
+      "unicode": "F0383",
+      "glyphIndex": 298
+    },
+    {
+      "id": "content-secondary.xiaoai_line",
+      "fontId": "content-secondary",
+      "name": "xiaoai_line",
+      "unicode": "F0384",
+      "glyphIndex": 299
+    },
+    {
+      "id": "content-secondary.pause_with_circle_line",
+      "fontId": "content-secondary",
+      "name": "pause_with_circle_line",
+      "unicode": "F0385",
+      "glyphIndex": 300
+    },
+    {
+      "id": "content-secondary.lightning_power_saving_surface",
+      "fontId": "content-secondary",
+      "name": "lightning_power_saving_surface",
+      "unicode": "F0386",
+      "glyphIndex": 301
+    },
+    {
+      "id": "content-secondary.location_positioning_surface",
+      "fontId": "content-secondary",
+      "name": "location_positioning_surface",
+      "unicode": "F0387",
+      "glyphIndex": 302
+    },
+    {
+      "id": "content-secondary.reverse_charging_surface",
+      "fontId": "content-secondary",
+      "name": "reverse_charging_surface",
+      "unicode": "F0388",
+      "glyphIndex": 303
+    },
+    {
+      "id": "content-secondary.scan_code_surface",
+      "fontId": "content-secondary",
+      "name": "scan_code_surface",
+      "unicode": "F0389",
+      "glyphIndex": 304
+    },
+    {
+      "id": "content-secondary.checkmark_with_circle_bottom_line",
+      "fontId": "content-secondary",
+      "name": "checkmark_with_circle_bottom_line",
+      "unicode": "F038A",
+      "glyphIndex": 305
+    },
+    {
+      "id": "content-secondary.prohibit_surface",
+      "fontId": "content-secondary",
+      "name": "prohibit_surface",
+      "unicode": "F038B",
+      "glyphIndex": 306
+    },
+    {
+      "id": "content-secondary.qr_code_line",
+      "fontId": "content-secondary",
+      "name": "qr_code_line",
+      "unicode": "F038C",
+      "glyphIndex": 307
+    },
+    {
+      "id": "content-secondary.dolby_surface",
+      "fontId": "content-secondary",
+      "name": "dolby_surface",
+      "unicode": "F038D",
+      "glyphIndex": 308
+    },
+    {
+      "id": "content-secondary.small_window_phone_surface",
+      "fontId": "content-secondary",
+      "name": "small_window_phone_surface",
+      "unicode": "F038E",
+      "glyphIndex": 309
+    },
+    {
+      "id": "content-secondary.miaobo_line",
+      "fontId": "content-secondary",
+      "name": "miaobo_line",
+      "unicode": "F038F",
+      "glyphIndex": 310
+    },
+    {
+      "id": "content-secondary.backup_surface",
+      "fontId": "content-secondary",
+      "name": "backup_surface",
+      "unicode": "F0390",
+      "glyphIndex": 311
+    },
+    {
+      "id": "content-secondary.compressed_file_surface",
+      "fontId": "content-secondary",
+      "name": "compressed_file_surface",
+      "unicode": "F0392",
+      "glyphIndex": 312
+    },
+    {
+      "id": "content-secondary.android_surface",
+      "fontId": "content-secondary",
+      "name": "android_surface",
+      "unicode": "F0393",
+      "glyphIndex": 313
+    },
+    {
+      "id": "content-secondary.app_clone_surface",
+      "fontId": "content-secondary",
+      "name": "app_clone_surface",
+      "unicode": "F0394",
+      "glyphIndex": 314
+    },
+    {
+      "id": "content-secondary.screen_capture_recording_surface",
+      "fontId": "content-secondary",
+      "name": "screen_capture_recording_surface",
+      "unicode": "F0395",
+      "glyphIndex": 315
+    },
+    {
+      "id": "content-secondary.switch_switch_background_line",
+      "fontId": "content-secondary",
+      "name": "switch_switch_background_line",
+      "unicode": "F0396",
+      "glyphIndex": 316
+    },
+    {
+      "id": "content-secondary.add_surface",
+      "fontId": "content-secondary",
+      "name": "add_surface",
+      "unicode": "F0397",
+      "glyphIndex": 317
+    },
+    {
+      "id": "content-secondary.filter_line",
+      "fontId": "content-secondary",
+      "name": "filter_line",
+      "unicode": "F0398",
+      "glyphIndex": 318
+    },
+    {
+      "id": "content-secondary.doodle_line",
+      "fontId": "content-secondary",
+      "name": "doodle_line",
+      "unicode": "F0399",
+      "glyphIndex": 319
+    },
+    {
+      "id": "content-secondary.to_do_line",
+      "fontId": "content-secondary",
+      "name": "to_do_line",
+      "unicode": "F039A",
+      "glyphIndex": 320
+    },
+    {
+      "id": "content-secondary.attachment_line",
+      "fontId": "content-secondary",
+      "name": "attachment_line",
+      "unicode": "F039B",
+      "glyphIndex": 321
+    },
+    {
+      "id": "content-secondary.close_recording_surface",
+      "fontId": "content-secondary",
+      "name": "close_recording_surface",
+      "unicode": "F039C",
+      "glyphIndex": 322
+    },
+    {
+      "id": "content-secondary.ai_summary_surface",
+      "fontId": "content-secondary",
+      "name": "ai_summary_surface",
+      "unicode": "F039D",
+      "glyphIndex": 323
+    },
+    {
+      "id": "content-secondary.mirror_window_surface",
+      "fontId": "content-secondary",
+      "name": "mirror_window_surface",
+      "unicode": "F039E",
+      "glyphIndex": 324
+    },
+    {
+      "id": "content-secondary.extend_surface",
+      "fontId": "content-secondary",
+      "name": "extend_surface",
+      "unicode": "F039F",
+      "glyphIndex": 325
+    },
+    {
+      "id": "content-secondary.description_surface",
+      "fontId": "content-secondary",
+      "name": "description_surface",
+      "unicode": "F03A0",
+      "glyphIndex": 326
+    },
+    {
+      "id": "content-secondary.reset_surface",
+      "fontId": "content-secondary",
+      "name": "reset_surface",
+      "unicode": "F03A1",
+      "glyphIndex": 327
+    },
+    {
+      "id": "content-secondary.divide_line",
+      "fontId": "content-secondary",
+      "name": "divide_line",
+      "unicode": "F03A2",
+      "glyphIndex": 328
+    },
+    {
+      "id": "content-secondary.equals_line",
+      "fontId": "content-secondary",
+      "name": "equals_line",
+      "unicode": "F03A3",
+      "glyphIndex": 329
+    },
+    {
+      "id": "content-secondary.subtract_line",
+      "fontId": "content-secondary",
+      "name": "subtract_line",
+      "unicode": "F03A4",
+      "glyphIndex": 330
+    },
+    {
+      "id": "content-secondary.multiply_line",
+      "fontId": "content-secondary",
+      "name": "multiply_line",
+      "unicode": "F03A5",
+      "glyphIndex": 331
+    },
+    {
+      "id": "content-secondary.percentage_line",
+      "fontId": "content-secondary",
+      "name": "percentage_line",
+      "unicode": "F03A6",
+      "glyphIndex": 332
+    },
+    {
+      "id": "content-secondary.clear_line",
+      "fontId": "content-secondary",
+      "name": "clear_line",
+      "unicode": "F03A7",
+      "glyphIndex": 333
+    },
+    {
+      "id": "content-secondary.vowifi_surface",
+      "fontId": "content-secondary",
+      "name": "vowifi_surface",
+      "unicode": "F03BE",
+      "glyphIndex": 334
+    },
+    {
+      "id": "content-secondary.vo_wifi_1_surface",
+      "fontId": "content-secondary",
+      "name": "vo_wifi_1_surface",
+      "unicode": "F03BF",
+      "glyphIndex": 335
+    },
+    {
+      "id": "content-secondary.vo_wifi_2_surface",
+      "fontId": "content-secondary",
+      "name": "vo_wifi_2_surface",
+      "unicode": "F03C0",
+      "glyphIndex": 336
+    },
+    {
+      "id": "content-secondary.call_history_surface",
+      "fontId": "content-secondary",
+      "name": "call_history_surface",
+      "unicode": "F03C1",
+      "glyphIndex": 337
+    },
+    {
+      "id": "content-secondary.hd_surface",
+      "fontId": "content-secondary",
+      "name": "hd_surface",
+      "unicode": "F03C2",
+      "glyphIndex": 338
+    },
+    {
+      "id": "content-secondary.fifth_generation_line",
+      "fontId": "content-secondary",
+      "name": "fifth_generation_line",
+      "unicode": "F03C3",
+      "glyphIndex": 339
+    },
+    {
+      "id": "content-secondary.fifth_generation_surface",
+      "fontId": "content-secondary",
+      "name": "fifth_generation_surface",
+      "unicode": "F03C4",
+      "glyphIndex": 340
+    },
+    {
+      "id": "content-secondary.vpn_surface",
+      "fontId": "content-secondary",
+      "name": "vpn_surface",
+      "unicode": "F03C5",
+      "glyphIndex": 341
+    },
+    {
+      "id": "content-secondary.tty_surface",
+      "fontId": "content-secondary",
+      "name": "tty_surface",
+      "unicode": "F03C6",
+      "glyphIndex": 342
+    },
+    {
+      "id": "content-secondary.volte_surface",
+      "fontId": "content-secondary",
+      "name": "volte_surface",
+      "unicode": "F03C7",
+      "glyphIndex": 343
+    },
+    {
+      "id": "content-secondary.roaming_surface",
+      "fontId": "content-secondary",
+      "name": "roaming_surface",
+      "unicode": "F03C8",
+      "glyphIndex": 344
+    },
+    {
+      "id": "content-secondary.sos_surface",
+      "fontId": "content-secondary",
+      "name": "sos_surface",
+      "unicode": "F03C9",
+      "glyphIndex": 345
+    },
+    {
+      "id": "content-secondary.alipay_security_check_surface",
+      "fontId": "content-secondary",
+      "name": "alipay_security_check_surface",
+      "unicode": "F03CA",
+      "glyphIndex": 346
+    },
+    {
+      "id": "content-secondary.heading_1_line",
+      "fontId": "content-secondary",
+      "name": "heading_1_line",
+      "unicode": "F03CB",
+      "glyphIndex": 347
+    },
+    {
+      "id": "content-secondary.heading_2_line",
+      "fontId": "content-secondary",
+      "name": "heading_2_line",
+      "unicode": "F03CC",
+      "glyphIndex": 348
+    },
+    {
+      "id": "content-secondary.heading_3_line",
+      "fontId": "content-secondary",
+      "name": "heading_3_line",
+      "unicode": "F03CD",
+      "glyphIndex": 349
+    },
+    {
+      "id": "content-secondary.bold_surface",
+      "fontId": "content-secondary",
+      "name": "bold_surface",
+      "unicode": "F03CE",
+      "glyphIndex": 350
+    },
+    {
+      "id": "content-secondary.italic_line",
+      "fontId": "content-secondary",
+      "name": "italic_line",
+      "unicode": "F03CF",
+      "glyphIndex": 351
+    },
+    {
+      "id": "content-secondary.strikethrough_line",
+      "fontId": "content-secondary",
+      "name": "strikethrough_line",
+      "unicode": "F03D1",
+      "glyphIndex": 352
+    },
+    {
+      "id": "content-secondary.installation_package_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "installation_package_cleanup_surface",
+      "unicode": "F03D2",
+      "glyphIndex": 353
+    },
+    {
+      "id": "content-secondary.facebook_special_cleanup_surface",
+      "fontId": "content-secondary",
+      "name": "facebook_special_cleanup_surface",
+      "unicode": "F03D3",
+      "glyphIndex": 354
+    },
+    {
+      "id": "content-secondary.subtitle_transcription_surface",
+      "fontId": "content-secondary",
+      "name": "subtitle_transcription_surface",
+      "unicode": "F03D4",
+      "glyphIndex": 355
+    },
+    {
+      "id": "content-secondary.ac_line",
+      "fontId": "content-secondary",
+      "name": "ac_line",
+      "unicode": "F03D5",
+      "glyphIndex": 356
+    },
+    {
+      "id": "content-secondary.ordered_list_line",
+      "fontId": "content-secondary",
+      "name": "ordered_list_line",
+      "unicode": "F03D7",
+      "glyphIndex": 357
+    },
+    {
+      "id": "small.uF02AA",
+      "fontId": "small",
+      "name": "uF02AA",
+      "unicode": "F02AA",
+      "glyphIndex": 2
+    },
+    {
+      "id": "small.uF02AB",
+      "fontId": "small",
+      "name": "uF02AB",
+      "unicode": "F02AB",
+      "glyphIndex": 3
+    },
+    {
+      "id": "small.uF02AC",
+      "fontId": "small",
+      "name": "uF02AC",
+      "unicode": "F02AC",
+      "glyphIndex": 4
+    },
+    {
+      "id": "small.uF02AD",
+      "fontId": "small",
+      "name": "uF02AD",
+      "unicode": "F02AD",
+      "glyphIndex": 5
+    },
+    {
+      "id": "small.uF02AE",
+      "fontId": "small",
+      "name": "uF02AE",
+      "unicode": "F02AE",
+      "glyphIndex": 6
+    },
+    {
+      "id": "small.uF02AF",
+      "fontId": "small",
+      "name": "uF02AF",
+      "unicode": "F02AF",
+      "glyphIndex": 7
+    },
+    {
+      "id": "small.uF02B0",
+      "fontId": "small",
+      "name": "uF02B0",
+      "unicode": "F02B0",
+      "glyphIndex": 8
+    },
+    {
+      "id": "small.uF02B1",
+      "fontId": "small",
+      "name": "uF02B1",
+      "unicode": "F02B1",
+      "glyphIndex": 9
+    },
+    {
+      "id": "small.uF02B2",
+      "fontId": "small",
+      "name": "uF02B2",
+      "unicode": "F02B2",
+      "glyphIndex": 10
+    },
+    {
+      "id": "small.uF02B3",
+      "fontId": "small",
+      "name": "uF02B3",
+      "unicode": "F02B3",
+      "glyphIndex": 11
+    },
+    {
+      "id": "small.uF02B4",
+      "fontId": "small",
+      "name": "uF02B4",
+      "unicode": "F02B4",
+      "glyphIndex": 12
+    },
+    {
+      "id": "small.uF02B5",
+      "fontId": "small",
+      "name": "uF02B5",
+      "unicode": "F02B5",
+      "glyphIndex": 13
+    },
+    {
+      "id": "small.uF02B6",
+      "fontId": "small",
+      "name": "uF02B6",
+      "unicode": "F02B6",
+      "glyphIndex": 14
+    },
+    {
+      "id": "small.uF02B7",
+      "fontId": "small",
+      "name": "uF02B7",
+      "unicode": "F02B7",
+      "glyphIndex": 15
+    },
+    {
+      "id": "small.uF02B8",
+      "fontId": "small",
+      "name": "uF02B8",
+      "unicode": "F02B8",
+      "glyphIndex": 16
+    },
+    {
+      "id": "small.uF02B9",
+      "fontId": "small",
+      "name": "uF02B9",
+      "unicode": "F02B9",
+      "glyphIndex": 17
+    },
+    {
+      "id": "small.uF02BA",
+      "fontId": "small",
+      "name": "uF02BA",
+      "unicode": "F02BA",
+      "glyphIndex": 18
+    },
+    {
+      "id": "small.uF02BB",
+      "fontId": "small",
+      "name": "uF02BB",
+      "unicode": "F02BB",
+      "glyphIndex": 19
+    },
+    {
+      "id": "small.uF02BC",
+      "fontId": "small",
+      "name": "uF02BC",
+      "unicode": "F02BC",
+      "glyphIndex": 20
+    },
+    {
+      "id": "small.uF02BD",
+      "fontId": "small",
+      "name": "uF02BD",
+      "unicode": "F02BD",
+      "glyphIndex": 21
+    },
+    {
+      "id": "small.uF02BE",
+      "fontId": "small",
+      "name": "uF02BE",
+      "unicode": "F02BE",
+      "glyphIndex": 22
+    },
+    {
+      "id": "small.uF02BF",
+      "fontId": "small",
+      "name": "uF02BF",
+      "unicode": "F02BF",
+      "glyphIndex": 23
+    },
+    {
+      "id": "small.uF02C0",
+      "fontId": "small",
+      "name": "uF02C0",
+      "unicode": "F02C0",
+      "glyphIndex": 24
+    },
+    {
+      "id": "small.uF02C1",
+      "fontId": "small",
+      "name": "uF02C1",
+      "unicode": "F02C1",
+      "glyphIndex": 25
+    },
+    {
+      "id": "small.uF02C2",
+      "fontId": "small",
+      "name": "uF02C2",
+      "unicode": "F02C2",
+      "glyphIndex": 26
+    },
+    {
+      "id": "small.uF02C3",
+      "fontId": "small",
+      "name": "uF02C3",
+      "unicode": "F02C3",
+      "glyphIndex": 27
+    },
+    {
+      "id": "small.uF02C4",
+      "fontId": "small",
+      "name": "uF02C4",
+      "unicode": "F02C4",
+      "glyphIndex": 28
+    },
+    {
+      "id": "small.uF02C5",
+      "fontId": "small",
+      "name": "uF02C5",
+      "unicode": "F02C5",
+      "glyphIndex": 29
+    },
+    {
+      "id": "small.uF02C6",
+      "fontId": "small",
+      "name": "uF02C6",
+      "unicode": "F02C6",
+      "glyphIndex": 30
+    },
+    {
+      "id": "small.uF02C7",
+      "fontId": "small",
+      "name": "uF02C7",
+      "unicode": "F02C7",
+      "glyphIndex": 31
+    },
+    {
+      "id": "small.uF02C8",
+      "fontId": "small",
+      "name": "uF02C8",
+      "unicode": "F02C8",
+      "glyphIndex": 32
+    },
+    {
+      "id": "small.uF02C9",
+      "fontId": "small",
+      "name": "uF02C9",
+      "unicode": "F02C9",
+      "glyphIndex": 33
+    },
+    {
+      "id": "small.uF02CA",
+      "fontId": "small",
+      "name": "uF02CA",
+      "unicode": "F02CA",
+      "glyphIndex": 34
+    },
+    {
+      "id": "small.uF02CB",
+      "fontId": "small",
+      "name": "uF02CB",
+      "unicode": "F02CB",
+      "glyphIndex": 35
+    },
+    {
+      "id": "small.uF02CC",
+      "fontId": "small",
+      "name": "uF02CC",
+      "unicode": "F02CC",
+      "glyphIndex": 36
+    },
+    {
+      "id": "small.uF02CD",
+      "fontId": "small",
+      "name": "uF02CD",
+      "unicode": "F02CD",
+      "glyphIndex": 37
+    },
+    {
+      "id": "small.uF02CE",
+      "fontId": "small",
+      "name": "uF02CE",
+      "unicode": "F02CE",
+      "glyphIndex": 38
+    },
+    {
+      "id": "small.uF02D3",
+      "fontId": "small",
+      "name": "uF02D3",
+      "unicode": "F02D3",
+      "glyphIndex": 39
+    },
+    {
+      "id": "small.uF02D4",
+      "fontId": "small",
+      "name": "uF02D4",
+      "unicode": "F02D4",
+      "glyphIndex": 40
+    },
+    {
+      "id": "small.uF02D5",
+      "fontId": "small",
+      "name": "uF02D5",
+      "unicode": "F02D5",
+      "glyphIndex": 41
+    },
+    {
+      "id": "small.uF02D6",
+      "fontId": "small",
+      "name": "uF02D6",
+      "unicode": "F02D6",
+      "glyphIndex": 42
+    },
+    {
+      "id": "small.uF02D7",
+      "fontId": "small",
+      "name": "uF02D7",
+      "unicode": "F02D7",
+      "glyphIndex": 43
+    },
+    {
+      "id": "small.uF02D8",
+      "fontId": "small",
+      "name": "uF02D8",
+      "unicode": "F02D8",
+      "glyphIndex": 44
+    },
+    {
+      "id": "small.uF02D9",
+      "fontId": "small",
+      "name": "uF02D9",
+      "unicode": "F02D9",
+      "glyphIndex": 45
+    },
+    {
+      "id": "small.uF02DA",
+      "fontId": "small",
+      "name": "uF02DA",
+      "unicode": "F02DA",
+      "glyphIndex": 46
+    },
+    {
+      "id": "small.uF02DC",
+      "fontId": "small",
+      "name": "uF02DC",
+      "unicode": "F02DC",
+      "glyphIndex": 47
+    },
+    {
+      "id": "small-dualtone.uF02CF",
+      "fontId": "small-dualtone",
+      "name": "uF02CF",
+      "unicode": "F02CF",
+      "glyphIndex": 2
+    },
+    {
+      "id": "small-dualtone.uF02D0",
+      "fontId": "small-dualtone",
+      "name": "uF02D0",
+      "unicode": "F02D0",
+      "glyphIndex": 3
+    },
+    {
+      "id": "small-dualtone.uF02D1",
+      "fontId": "small-dualtone",
+      "name": "uF02D1",
+      "unicode": "F02D1",
+      "glyphIndex": 4
+    },
+    {
+      "id": "small-dualtone.uF02D2",
+      "fontId": "small-dualtone",
+      "name": "uF02D2",
+      "unicode": "F02D2",
+      "glyphIndex": 5
+    },
+    {
+      "id": "small-dualtone.uF03D6",
+      "fontId": "small-dualtone",
+      "name": "uF03D6",
+      "unicode": "F03D6",
+      "glyphIndex": 6
     }
   ]
 }
