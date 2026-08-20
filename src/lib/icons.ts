@@ -7,12 +7,21 @@ export type IconFontWeight = {
   default: number;
 };
 
+export type IconFontMetrics = {
+  unitsPerEm: number;
+  ascender: number;
+  descender: number;
+  capHeight: number;
+  xHeight: number;
+};
+
 export type IconFont = {
   id: string;
   label: string;
   family: string;
   path: string;
   weight: IconFontWeight;
+  metrics?: IconFontMetrics;
 };
 
 export type IconEntry = {
@@ -21,6 +30,8 @@ export type IconEntry = {
   name: string;
   unicode: string;
   glyphIndex: number;
+  advanceWidth?: number;
+  bbox?: [number, number, number, number];
 };
 
 export type IconManifest = {

@@ -126,8 +126,8 @@ npm run dev            # dev server 会自动重新生成
 ### 图标资产（Agent 必读）
 
 - 源文件：`icons/font/*.ttf`；索引：`icons/manifest.json`；站点静态：`public/fonts/`
-- 文档页：`/docs/os4/resources/icons`（`<IconGallery />`）
-- 旧路径：`/docs/os4/icons`、`/docs/os4/foundations/iconography`、`/docs/os4/general/icons` → `/docs/os4/resources/icons`
+- 文档页：`/icons`（独立页 `<IconGallery variant="app" />`；无 docs 侧栏、无 PillNav；顶栏为套件一级导航）
+- 旧路径：`/docs/os4/resources/icons`、`/docs/os4/icons`、`/docs/os4/foundations/iconography`、`/docs/os4/general/icons` → `/icons`
 
 ## 容器化（Agent 必读）
 
@@ -148,7 +148,7 @@ content/docs/           # 网站对外 MDX 文档（Fumadocs 内容源）
     best-practices/     # 设计模式（路径 slug 保持 best-practices）
     system/             # 系统特性与能力标准
     multi-device/        # 多端设备标准
-    resources/          # 图标库等（保留 URL，不在侧栏一级）
+    resources/          # 资源总览（不在侧栏一级；图标库已迁至 /icons）
   os5/                  # HyperOS 5（占位，侧栏禁用跳转；结构同 os4）
 docs/                   # 工程设计文档（见 docs/index.md）
   index.md
@@ -187,7 +187,8 @@ public/
   admin/                # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
   uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
-  app/                  # Next.js 路由（docs、resources、admin、api/tina|search|chat、llms、og）
+  app/                  # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og）
+    icons/              # /icons HyperOS Symbols 独立页（套件一级导航；无 PillNav / docs 侧栏）
     resources/          # 设计资源中心（独立 hub，非 docs 侧栏）
   components/
     ai/                 # Ask AI（AiAssistant 门闩 + search 浮动面板）
@@ -232,7 +233,7 @@ package-lock.json       # npm 锁文件
 
 （路径：`general` / `components` / `interaction` / `best-practices` / `system` / `multi-device`）
 
-`content/docs/{os}/resources/`（HyperOS 图标库等）仍保留页面 URL，**不进入** docs 侧栏一级；入口在 [设计资源中心](/resources) 与文档内链。
+`content/docs/{os}/resources/` 为资源总览（不进入 docs 侧栏一级）。**HyperOS 图标库**在独立页 [`/icons`](/icons)（无 docs 侧栏、无 PillNav；套件切换为页内一级导航）；入口在 [设计资源中心](/resources) 与文档内链。
 
 - **默认版本**：`/docs` → `/docs/os4`（`next.config.mjs` 重定向）
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
@@ -298,7 +299,7 @@ package-lock.json       # npm 锁文件
 | `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`；可选 `mode="dev"` 查看 Dev Mode 标注） |
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
 | `TokenTable` | 从 `tokens/*.{light,dark}.json` 按 group 渲染；支持 Light / Dark 切换 |
-| `IconGallery` | 图标库预览（套件切换 / 搜索 / 复制字符、Unicode、Glyph Index） |
+| `IconGallery` | 图标库预览（独立页 `/icons` 用 `variant="app"`；文档 / Tina 内嵌默认 `embed`） |
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab（Client Component） |
 | `PlatformCodeBlock` | Tina CMS 友好的平台代码 block（扁平 android/ios 字段） |
 | `StatusBadge` | stable / beta / deprecated 标签 |

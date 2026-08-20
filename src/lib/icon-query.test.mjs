@@ -4,9 +4,11 @@ import {
   ALL_FONTS,
   codePointToChar,
   filterIcons,
+  formatBBox,
   formatUnicode,
   parseHexColor,
   previewSurfaceHex,
+  unicodeToDecimal,
 } from './icon-query.ts';
 
 const sample = [
@@ -14,6 +16,20 @@ const sample = [
   { id: 'symbols.play', fontId: 'symbols', name: 'play', unicode: 'F0002', glyphIndex: 3 },
   { id: 'small.uF02AA', fontId: 'small', name: 'uF02AA', unicode: 'F02AA', glyphIndex: 1 },
 ];
+
+describe('unicodeToDecimal', () => {
+  it('parses 5-digit PUA hex', () => {
+    assert.equal(unicodeToDecimal('F0000'), 983040);
+    assert.equal(unicodeToDecimal('U+F0000'), 983040);
+  });
+});
+
+describe('formatBBox', () => {
+  it('joins four integers, em dash when missing', () => {
+    assert.equal(formatBBox([112, -95, 1222, 931]), '112, -95, 1222, 931');
+    assert.equal(formatBBox(undefined), '—');
+  });
+});
 
 describe('formatUnicode', () => {
   it('pads to at least 4 uppercase hex digits with U+ prefix', () => {

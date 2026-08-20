@@ -109,7 +109,7 @@ Fumadocs MDX 按文件路径生成 URL。根级 `content/docs/meta.json` 注册 
 | 文件路径 | URL |
 |----------|-----|
 | `content/docs/os4/index.mdx` | `/docs/os4` |
-| `content/docs/os4/resources/icons.mdx` | `/docs/os4/resources/icons` |
+| `src/app/icons/page.tsx` | `/icons` |
 | `content/docs/os4/general/design-token.mdx` | `/docs/os4/general/design-token` |
 | `content/docs/os4/components/actions/button.mdx` | `/docs/os4/components/actions/button` |
 
@@ -121,8 +121,8 @@ Fumadocs MDX 按文件路径生成 URL。根级 `content/docs/meta.json` 注册 
 | `/docs/os5`、`/docs/os5/*` | `/docs/os4`（临时，待 OS5 发布） |
 | `/docs/foundations/*` 等旧无前缀路径 | 映射到新 `os4` 对应页（永久 301） |
 | `/docs/os4/foundations/*`、`patterns/*` | 映射到 `general` / `system` 等 |
-| `/docs/os4/resources/design-tokens` 等**旧** Resources 子页 | Token / 设计模式入口；**不含**现 `resources/icons` |
-| `/docs/os4/icons`、`general/icons`、`foundations/iconography` | `/docs/os4/resources/icons` |
+| `/docs/os4/resources/design-tokens` 等**旧** Resources 子页 | Token / 设计模式入口；**不含**现 `/icons` |
+| `/docs/os4/resources/icons`、`/docs/os4/icons`、`general/icons`、`foundations/iconography` | `/icons` |
 
 Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 
@@ -148,7 +148,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 |------|----------|
 | 说明正文 | 默认 MDX |
 | Token 可视化 | `<TokenTable groups={[...]} />` |
-| 图标预览 | `<IconGallery />`（见 `/docs/os4/resources/icons`） |
+| 图标预览 | `<IconGallery />`（独立页 `/icons`；文档内嵌仍可用） |
 | 可选 Figma 参考 | `<FigmaEmbed />` |
 
 ### 4.3 组件页
@@ -185,10 +185,11 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 | 旧路径 | 新路径 |
 |--------|--------|
 | `/docs/os4/foundations/colors` | `/docs/os4/general/design-token` |
-| `/docs/os4/foundations/iconography` | `/docs/os4/resources/icons` |
-| `/docs/foundations/iconography` | `/docs/os4/resources/icons` |
-| `/docs/os4/general/icons` | `/docs/os4/resources/icons` |
-| `/docs/os4/icons` | `/docs/os4/resources/icons` |
+| `/docs/os4/foundations/iconography` | `/icons` |
+| `/docs/foundations/iconography` | `/icons` |
+| `/docs/os4/general/icons` | `/icons` |
+| `/docs/os4/icons` | `/icons` |
+| `/docs/os4/resources/icons` | `/icons` |
 | `/docs/os4/foundations/principles` | `/docs/os4/general/principles` |
 | `/docs/os4/components/feedback/dialog` | `/docs/os4/components/containers/dialog` |
 | `/docs/os4/components/navigation/bottom-nav` | `/docs/os4/components/navigation/bottom-navigation` |
@@ -205,7 +206,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 |---|------|--------|
 | 1 | `/docs/os4` | 站点 Index 与快速入口 |
 | 2 | `/docs/os4/general/design-token` | 验证 TokenTable |
-| 3 | `/docs/os4/resources/icons` | 验证 IconGallery |
+| 3 | `/icons` | 验证 IconGallery 独立页 |
 | 4 | `/docs/os4/components/actions/button` | 验证完整组件规范页（配图 + frontmatter / Figma 跳转） |
 | 5 | `/docs/os4/general` | 一级模块 Index |
 | 6 | `/docs/os4/components` | 组件总览 |

@@ -5,10 +5,11 @@ import { IconGallery as IconGalleryClient } from './IconGallery';
 type IconGalleryProps = {
   /** @deprecated SVG 分类；字体画廊忽略 */
   categories?: string[];
+  variant?: 'embed' | 'app';
 };
 
-export function IconGallery(_props: IconGalleryProps) {
+export function IconGallery({ variant = 'embed' }: IconGalleryProps) {
   noStore();
   const manifest = getIconManifest();
-  return <IconGalleryClient manifest={manifest} />;
+  return <IconGalleryClient variant={variant} manifest={manifest} />;
 }

@@ -23,7 +23,7 @@ HyperOS 设计系统面向 **移动端客户端组件库**（Android / iOS 等�
 | Figma 设计稿 / 原型 iframe 嵌入 | Storybook / 在线 Playground |
 | Token 目录页（`tokens/*.{light,dark}.json`；Light / Dark；`TokenTable`） | Tokens Studio → Git 自动同步（Phase 3）；Typography Token（待导出） |
 | Android / iOS **静态**代码片段展示 | 完整 npm 组件包发布流水线 |
-| 图标库预览（`IconGallery` + `icons/`；页 `/docs/os4/resources/icons`，不在侧栏一级） | 可交互 icon picker / Storybook |
+| 图标库预览（`IconGallery` + `icons/`；独立页 `/icons`，无 docs 侧栏 / PillNav） | 可交互 icon picker / Storybook |
 | 文档配图页内画廊（`DocsImage` + Fancybox；`public/media/`） | 可运行 Web 组件 playground |
 | 设计资源中心 `/resources`（Catalog + Codex；`src/lib/resources.ts`） | Engineering 目录外链 / 维护团队落地页（待补） |
 | 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载） | — |
@@ -254,7 +254,7 @@ hyperos-design-system/
 │   │   ├── system/         # 系统特性与能力标准
 │   │   ├── multi-device/    # 多端设备标准
 │   │   ├── best-practices/ # 设计模式
-│   │   └── resources/      # 资源（HyperOS 图标库等）
+│   │   └── resources/      # 资源总览（图标库已迁至 /icons）
 │   └── os5/                # HyperOS 5（占位；结构同 os4）
 ├── tokens/                 # Design Tokens（层 × light/dark）
 │   ├── reference.{light,dark}.json
@@ -278,7 +278,7 @@ hyperos-design-system/
 │   ├── admin/              # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
 │   └── uploads/            # TinaCMS 媒体上传（本地模式；gitignore）
 ├── src/
-│   ├── app/                # Next.js App Router（docs、resources、admin、api/tina|search|chat、llms、og）
+│   ├── app/                # Next.js App Router（docs、icons、resources、admin、api/tina|search|chat、llms、og）
 │   ├── components/
 │   │   ├── ai/             # Ask AI（AiAssistant 门闩 + search 浮动面板）
 │   │   ├── ai-elements/    # AI Elements（conversation / message / prompt / tool）
@@ -361,14 +361,14 @@ export default defineConfig({ mdxOptions: {} });
 | 类型 | 路径示例 | 核心内容 |
 |------|----------|----------|
 | 通用设计 | `/docs/os4/general/design-token` | 原则说明 + TokenTable |
-| 图标 | `/docs/os4/resources/icons` | IconGallery（套件切换 / 搜索 / 复制字符、Unicode、Glyph Index；不在侧栏一级） |
+| 图标 | `/icons` | IconGallery `variant="app"`（套件一级导航 / 搜索 / 复制字符、Unicode、Glyph Index；无 docs 侧栏、无 PillNav） |
 | 组件 | `/docs/os4/components/actions/button` | 完整规范 + `public/media/...` 配图；FigmaJump / TokenTable / PlatformTabs 等按页选用 |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 设计模式 | `/docs/os4/best-practices` | 页面模式、加载、引导、系统能力等应用层模式 |
-| 资源（docs） | `/docs/os4/resources` | HyperOS 图标库等资产（不在侧栏一级，直达 URL 仍可用） |
+| 资源（docs） | `/docs/os4/resources` | 资源总览（不在侧栏一级；图标库入口指向 `/icons`） |
 | 设计资源中心 | `/resources` | 独立 hub：Catalog + Codex 锚点、Figma / 插件 / Token / 字体 / Brand（非 docs 侧栏；数据 `src/lib/resources.ts`） |
 
-> 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。设计资产入口为 `/resources`；规范内图标预览仍在 `/docs/os4/resources/icons`，但不挂 docs 侧栏一级。
+> 旧路径 `/docs/foundations/...`、`/docs/os4/foundations/...` 等永久 301 到新 IA；`/docs` 默认进入 OS4。设计资产入口为 `/resources`；图标库独立页为 `/icons`（旧 `/docs/os4/resources/icons` 等 301 至此）。
 
 ### 5.3 组件文档页模板
 

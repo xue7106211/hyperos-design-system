@@ -171,7 +171,7 @@ export const typoFaq = {
     {
       question: '设计规范、Token 和图标分别在哪里？',
       answer:
-        '设计规范在「通用设计标准」与「控件与组件」；Token 可在文档中的 TokenTable 或 Token 相关页查看；图标库在设计资源中心，也可打开文档内 HyperOS 图标库预览。',
+        '设计规范在「通用设计标准」与「控件与组件」；Token 可在文档中的 TokenTable 或 Token 相关页查看；图标库在设计资源中心，也可打开独立页 /icons 预览。',
     },
     {
       question: '如何对照 Android / iOS 实现？',

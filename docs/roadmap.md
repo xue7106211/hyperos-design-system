@@ -19,7 +19,7 @@
 - [x] Docker / MiFlow / Matrix 部署文档（[deployment.md](./deployment.md)；正式环境当前需 Matrix 手动发 `prod-*`）
 - [x] 按设计系统全景图重构侧栏 IA（`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`；对照 [sidebar-ia.md](./sidebar-ia.md)）
 - [x] 文档页操作栏「跳转 Figma」（`FigmaJumpButton`；默认库 URL 见 `src/lib/shared.ts`）
-- [x] 图标库页 `/docs/os4/resources/icons`（HyperOS 图标库；曾一度进 docs 侧栏「资源」，现已移出侧栏一级，URL 保留）
+- [x] 图标库页 `/icons`（HyperOS Symbols 独立页；旧 docs 路径 301）
 - [x] 图标预览页 + `IconGallery` + `icons/` 资产管线（TTF 可变字体；`icons:sync`）
 - [x] 文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`；资产 `public/media/`）
 - [x] OS4「抽屉浮窗 Bottom Sheet」规范页（`containers/drawer`）

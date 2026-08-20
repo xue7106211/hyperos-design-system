@@ -56,6 +56,13 @@ function glyphNameOf(glyph) {
   return `gid-${glyph.id}`;
 }
 
+function roundBox(cbox) {
+  if (!cbox || !Number.isFinite(cbox.minX) || !Number.isFinite(cbox.minY)) {
+    return [0, 0, 0, 0];
+  }
+  return [Math.round(cbox.minX), Math.round(cbox.minY), Math.round(cbox.maxX), Math.round(cbox.maxY)];
+}
+
 function writeWebFont(ttfPath, stem) {
   mkdirSync(PUBLIC_FONTS, { recursive: true });
   const ttf = readFileSync(ttfPath);
@@ -87,15 +94,26 @@ function parseFontFile(fileName) {
   const icons = [];
   for (const cp of font.characterSet) {
     if (SKIP_CODEPOINTS.has(cp)) continue;
-    const glyph = font.glyphForCodePoint(cp);
-    if (!glyph || glyph.name === '.notdef') continue;
-    const name = glyphNameOf(glyph);
+    const gid = font._cmapProcessor.lookup(cp);
+    if (!gid) continue;
+    // COLR 字体上 glyphForCodePoint 会缓存彩色包装，cbox 为空且读 bbox 会栈溢出。
+    // 先 cmap → _getBaseGlyph，直接读 glyf 轮廓。
+    const base = font._getBaseGlyph(gid);
+    if (!base || base.name === '.notdef') continue;
+    let bbox = [0, 0, 0, 0];
+    try {
+      bbox = roundBox(base.cbox);
+    } catch {
+      // ignore unreadable outlines
+    }
     icons.push({
-      id: `${meta.id}.${name}`,
+      id: `${meta.id}.${glyphNameOf(base)}`,
       fontId: meta.id,
-      name,
+      name: glyphNameOf(base),
       unicode: cp.toString(16).toUpperCase(),
-      glyphIndex: glyph.id,
+      glyphIndex: gid,
+      advanceWidth: Math.round(base.advanceWidth ?? 0),
+      bbox,
     });
   }
 
@@ -111,6 +129,13 @@ function parseFontFile(fileName) {
         min: wght.min,
         max: wght.max,
         default: wght.default,
+      },
+      metrics: {
+        unitsPerEm: font.unitsPerEm,
+        ascender: Math.round(font.ascent),
+        descender: Math.round(font.descent),
+        capHeight: Math.round(font.capHeight || 0),
+        xHeight: Math.round(font.xHeight || 0),
       },
     },
     icons,

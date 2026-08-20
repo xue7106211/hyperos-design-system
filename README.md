@@ -131,7 +131,7 @@ CLAUDE.md            # 指向 AGENTS.md
 
 参考模板：[content/docs/os4/components/actions/button.mdx](content/docs/os4/components/actions/button.mdx) · 含多图示例：[containers/drawer.mdx](content/docs/os4/components/containers/drawer.mdx)
 
-> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标页：`/docs/os4/resources/icons`（旧路径 `icons`、`foundations/iconography`、`general/icons` 会重定向至此）。
+> `/docs` 默认进入 OS4；旧路径（如 `/docs/foundations/...`、`/docs/os4/foundations/...`）会 301 到新 IA（见 `next.config.mjs`）。图标库：`/icons`（旧路径 `resources/icons`、`icons`、`foundations/iconography`、`general/icons` 会重定向至此）。
 
 ### Figma Embed 示例
 
@@ -152,7 +152,7 @@ CLAUDE.md            # 指向 AGENTS.md
 <IconGallery />
 ```
 
-图标入库约定见 [icons/README.md](icons/README.md)；预览页：[`/docs/os4/resources/icons`](content/docs/os4/resources/icons.mdx)。
+图标入库约定见 [icons/README.md](icons/README.md)；独立预览页：[`/icons`](/icons)。
 
 ## 文档
 

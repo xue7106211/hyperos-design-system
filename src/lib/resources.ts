@@ -314,7 +314,7 @@ export const resourcesTopics: TopicSection[] = [
       {
         name: 'HyperOS 图标库',
         description: '套件浏览、复制字符、Unicode 与 Glyph Index。',
-        href: '/docs/os4/resources/icons',
+        href: '/icons',
         image: ICON_PLACEHOLDER,
         imageWidth: 1024,
         imageHeight: 576,

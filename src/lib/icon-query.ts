@@ -8,6 +8,15 @@ export const COLOR_PRESETS = [
   { id: 'brand', hex: '#FF6900', label: '品牌' },
 ];
 
+export function unicodeToDecimal(hex: string): number {
+  return Number.parseInt(String(hex).replace(/^U\+/i, ''), 16);
+}
+
+export function formatBBox(bbox: [number, number, number, number] | undefined): string {
+  if (!bbox || bbox.length !== 4) return '—';
+  return bbox.join(', ');
+}
+
 export function formatUnicode(hex: string): string {
   const h = String(hex)
     .replace(/^U\+/i, '')

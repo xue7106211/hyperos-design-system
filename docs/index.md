@@ -52,7 +52,8 @@
 | `content/docs/os4/` | HyperOS 4 规范（默认；一级：`general` / `components` / `interaction` / `best-practices`（侧栏名「设计模式」） / `system` / `multi-device`） |
 | `content/docs/os4/best-practices/` | 设计模式：总览 + 二级占位（页面模式、加载与刷新、下载、状态提示、启动、引导、资源选择、系统分享、自升级、系统能力衔接、数据图表化） |
 | `content/docs/os4/multi-device/` | 多端设备标准：总览 + 二级占位（设备特性发挥、设备互通 / 跨设备协同、应用最佳实践） |
-| `content/docs/os4/resources/icons.mdx` | HyperOS 图标库预览（`<IconGallery />`；不在侧栏一级，直达 URL 仍可用） |
+| `content/docs/os4/resources/` | 资源总览（不在侧栏一级；图标库入口 `/icons`） |
+| `src/app/icons/` | HyperOS 图标库独立页（`<IconGallery variant="app" />`；无 docs 侧栏 / PillNav） |
 | `content/docs/os5/` | HyperOS 5 占位（侧栏可见，内容未发布） |
 | `src/app/resources/` | 设计资源中心路由（`/resources`；独立 hub，非 docs 侧栏） |
 | `src/components/resources/` | `/resources`：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等 |
@@ -96,6 +97,7 @@
 
 ## 变更摘要
 
+- **2026-08-20（二）**：HyperOS 图标库迁出 Fumadocs 文档壳，独立页 `/icons`（套件一级导航；无 docs 侧栏、无 PillNav）；旧 `/docs/**/icons` 等 301 至此。
 - **2026-08-20**：`IconGallery` 改为 HyperOS Symbols 可变字体画廊（5 套件 + 搜索 / 复制字符、Unicode、Glyph Index）；下线 SVG 管线与 `icons:import`，真源改为 `icons/font/*.ttf`。
 - **2026-08-17（二）**：修正 `IconGallery` 的能力过度声称。README / AGENTS / technical-design 三处原写「分类 / 搜索 / 深浅色 / 复制名称与 SVG」，但 `src/components/mdx/IconGallery.tsx` 只有 `activeCategory` 与 `copiedKey` 两个 state——**没有搜索框、没有深浅色切换**，预览底色固定白、单色图标固定 `#111111`；复制的是 icon `id` 而非 name。全部统一为「分类过滤 / 复制 ID 与 SVG」。同批核对 `TokenTable`（Light/Dark ModeToggle）、`DocsImage`（`rounded-none` + `data-fancybox="doc-gallery"`）、`DocFancybox`（`Carousel.infinite: false`）、`FigmaEmbed`（`embed-host=hyperos-ds` + `mode=dev`）、`SpecImageGrid` 均与文档描述一致，无需改动。
 - **2026-08-17**：第二轮文档 / 依赖同步。依赖清理：移除源码零引用的孤儿依赖 `react-markdown`（streamdown 走 `unified` + `hast-util-to-jsx-runtime`，并不依赖它），CLI 工具 `shadcn` 由 `dependencies` 移入 `devDependencies`（`output: 'standalone'` 下二者本就不进运行镜像）。文档补记：`tina/schema/shared-fields.ts` 才是 collection 工厂（改结构动这里，非 `blocks.ts`）、Ask AI 检索 tool 对模型暴露名为 `search`（实现 `searchDocs`）、`tinacms build` 会往 `client.ts` 注入本机 `cacheDir` 不可提交。校验：`meta.json` 与 MDX 一一对应（仅 `drawer-code.mdx` 有意未注册）、icons 90/90/90 同步、TokenTable `groups` 示例全部有效。

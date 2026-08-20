@@ -1,6 +1,6 @@
 # Docs 侧边栏目录对照（基于设计系统全景图）
 
-> **状态**：已落地到 `content/docs/`；docs 侧栏不含「资源」一级（图标库页仍保留 URL）；本文件为侧栏对照源  
+> **状态**：已落地到 `content/docs/`；docs 侧栏不含「资源」一级（图标库在 `/icons`）；本文件为侧栏对照源  
 > **日期**：2026-08-13  
 > **来源**：HyperOS 设计系统全景图（经人工优化）  
 > **约束**：
@@ -216,13 +216,13 @@ HyperOS 4 Design System          # 站点 Index（保留现有 /docs/os4）
 |-------------|-----------------|------|
 | Index：HyperOS 4 Design System | 保留 | 不改 title / 路由 |
 | Foundations | 通用设计标准（`general/`） | 总览 / 理念 / 原则 / Token / 布局 / 动效 / 文案 / 包容性 |
-| Icons | HyperOS 图标库（`resources/icons`，不在侧栏） | 直达 URL 仍可用；入口改走 `/resources` |
+| Icons | HyperOS 图标库（`/icons`，不在侧栏） | 独立页；入口改走 `/resources` |
 | Components（actions / inputs / …） | 控件与组件（导航搜索 / 菜单和操作 / 选择和输入 / 容器类 / 展示类） | 分组与叶子页按本列表重划；中英对照见上 |
 | Patterns | 系统特性与能力标准 / 展示类空状态等 | 旧路径 301 到 `system` 或对应组件页 |
 | Resources | 设计模式（`best-practices/`） | 旧 Resources 页暂重定向至 best-practices；图标库不在侧栏一级 |
 | （无） | 人机交互标准 | 新增一级 |
 | （无） | 多端设备标准 | 新增一级；二级：设备特性发挥 / 设备互通与跨设备协同 / 应用最佳实践 |
-| （无） | （已移出侧栏）资源 | 图标库页 `/docs/os4/resources/icons` 保留；设计资产入口为 `/resources` |
+| （无） | （已移出侧栏）资源 | 图标库页 `/icons`；设计资产入口为 `/resources` |
 ---
 
 ## 英文命名备注（可改）
