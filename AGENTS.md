@@ -35,8 +35,7 @@ npm run build        # 本地全量构建（tinacms build + next build），改 
 npm run tina:build   # 只跑 tinacms build（刷新 tina/__generated__/）
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
-npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
-npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
+npm run icons:sync   # 扫描 icons/font → manifest + public/fonts
 npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/*.{light,dark}.json
 
 node --test "src/**/*.test.mjs"   # 运行仓库内单元测试（无 npm script；见下「单元测试」）
@@ -113,7 +112,7 @@ npm run dev            # dev server 会自动重新生成
 
 只是新增 `content/docs/**` 下的 MDX 文档、改 UI 组件、动 Tailwind 等，不需要重新生成。
 
-增删改 `icons/svg/**` 后须跑 `npm run icons:sync`，并将 `icons/manifest.json` 与 `public/icons/` 一并提交（约定见 [icons/README.md](icons/README.md)）。
+更换 `icons/font/**` 后须跑 `npm run icons:sync`，并将 `icons/manifest.json` 与 `public/fonts/` 一并提交（约定见 [icons/README.md](icons/README.md)）。
 
 从 Figma Variables 重新导出 OS4 Token 后须跑 `npm run tokens:import -- /path/to/OS4Token`，并将 `tokens/*.{light,dark}.json` 一并提交。
 
@@ -126,7 +125,7 @@ npm run dev            # dev server 会自动重新生成
 
 ### 图标资产（Agent 必读）
 
-- 源文件：`icons/svg/{category}/{name}.svg`；索引：`icons/manifest.json`；站点静态：`public/icons/`
+- 源文件：`icons/font/*.ttf`；索引：`icons/manifest.json`；站点静态：`public/fonts/`
 - 文档页：`/docs/os4/resources/icons`（`<IconGallery />`）
 - 旧路径：`/docs/os4/icons`、`/docs/os4/foundations/iconography`、`/docs/os4/general/icons` → `/docs/os4/resources/icons`
 
@@ -163,8 +162,8 @@ docs/                   # 工程设计文档（见 docs/index.md）
   research/             # 调研笔记（aiforui.dev → /resources；typotab.com → Landing typotab）
   superpowers/          # Agent 设计 / 实现计划产物（specs、plans；非对外）
 tokens/                 # Design Tokens（reference|semantic|component × light|dark）
-icons/                  # 图标源 SVG + manifest（IconGallery；见 icons/README.md）
-  svg/{category}/
+icons/                  # HyperOS Symbols 可变字体 + manifest（IconGallery；见 icons/README.md）
+  font/
   manifest.json
 scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
 patches/                # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
@@ -181,7 +180,8 @@ components.json         # shadcn / AI Elements 注册表配置（Ask AI UI）
 public/
   logo/                 # HyperOS Logo 静态资源
   home/                 # Landing 页静态图
-  icons/                # 图标静态访问（icons:sync 产物，含 manifest.json）
+  fonts/                # 图标 web 字体（icons:sync 产物）
+  icons/                # 图标清单（icons:sync 产物，含 manifest.json）
   media/                # 规范配图（已提交；MDX 用 /media/...）
   resources/            # /resources 页卡片配图（已提交）
   admin/                # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
@@ -215,7 +215,7 @@ package-lock.json       # npm 锁文件
 **生成目录**：
 - `.source/`（`fumadocs-mdx` 生成）、`.next/`（Next.js 构建缓存）— gitignore，勿手改
 - `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见上面「TinaCMS schema 变更」节）；子目录 `.cache/` 仍 gitignore
-- `icons/manifest.json` 与 `public/icons/`（`icons:sync` 生成）— **已提交仓库**，改 `icons/svg/**` 后需一并更新
+- `icons/manifest.json` 与 `public/fonts/`（`icons:sync` 生成）— **已提交仓库**，改 `icons/font/**` 后需一并更新
 - `tokens/*.{light,dark}.json`（`tokens:import` 生成/更新）— **已提交仓库**，改 Token 真源后需一并更新
 
 **注意**：`docs/` ≠ `content/docs/`。前者是仓库内设计说明，后者是站点页面内容。
@@ -298,7 +298,7 @@ package-lock.json       # npm 锁文件
 | `FigmaEmbed` | Figma 设计稿 iframe（`embed-host=hyperos-ds`；可选 `mode="dev"` 查看 Dev Mode 标注） |
 | `FigmaPrototypeEmbed` | Figma 原型 iframe |
 | `TokenTable` | 从 `tokens/*.{light,dark}.json` 按 group 渲染；支持 Light / Dark 切换 |
-| `IconGallery` | 图标库预览（分类 / 搜索 / 深浅色 / 复制名称与 SVG） |
+| `IconGallery` | 图标库预览（套件切换 / 搜索 / 复制字符、Unicode、Glyph Index） |
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab（Client Component） |
 | `PlatformCodeBlock` | Tina CMS 友好的平台代码 block（扁平 android/ios 字段） |
 | `StatusBadge` | stable / beta / deprecated 标签 |
@@ -381,7 +381,7 @@ node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 - [ ] 未添加 Storybook / Web 组件 playground
 - [ ] Figma embed 使用占位或有效 `fileKey`
 - [ ] 若改了 `tina/config.ts` 或 `tina/schema/**`，`tina/__generated__/` 已同步更新并 `git add`
-- [ ] 若改了 `icons/svg/**`，已跑 `icons:sync` 并提交 `icons/manifest.json` 与 `public/icons/`
+- [ ] 若改了 `icons/font/**`，已跑 `icons:sync` 并提交 `icons/manifest.json` 与 `public/fonts/`
 - [ ] 若改了 Token 真源导出，已跑 `tokens:import` 并提交 `tokens/*.{light,dark}.json`
 - [ ] 若新增规范配图，已放入 `public/media/`（勿用 `uploads/` / `public/docs/`）并随 MDX 一并提交
 - [ ] 上测环境：`main` → `staging` 已 merge 并 push；Matrix staging 实例 Tag 已更新

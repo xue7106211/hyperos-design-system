@@ -1,42 +1,31 @@
 # HyperOS 图标资产
 
-本目录存放文档站图标预览的 **源 SVG** 与索引。
+本目录存放 **HyperOS Symbols 可变字体**（5 字重）与由 sync 生成的清单。
 
 ## 结构
 
-```text
-icons/
-  svg/{category}/{name}.svg   # 源文件（提交到仓库）
-  manifest.json               # 由 icons:sync 生成（提交）
-public/icons/                 # 同步产物，供站点静态访问（提交）
-```
+    icons/font/*.ttf          # 真源（提交）
+    icons/manifest.json       # icons:sync 生成（提交）
+    public/fonts/             # web 字体（提交）
+    public/icons/manifest.json
 
-## 约定
+## 套件
 
-- 文件路径：`icons/svg/{category}/{name}.svg`
-- 稳定 ID：`{category}.{name}`（例如 `action.share`）
-- 单色图标：优先 `fill="currentColor"` / `stroke="currentColor"`（sync 会把 `fill="black"` 规范化）
-- 多色图标：保留原色；manifest 中标记 `multicolor: true`
+| id | 标签 | 文件 |
+|----|------|------|
+| symbols | Symbols | HyperOSSymbolsVF.ttf |
+| content-regular | Content Regular | HyperOSSymbols-Content-RegularVF.ttf |
+| content-secondary | Content Secondary | HyperOSSymbols-Content-SecondaryVF.ttf |
+| small | Small | HyperOSSymbols-SmallVF.ttf |
+| small-dualtone | Small Dualtone | HyperOSSymbols-Small-DualtoneVF.ttf |
+
+更换或升级字体：覆盖 `icons/font/` 对应文件后执行 `npm run icons:sync`。不要放入「10 字重」`*UIVF.ttf`。
 
 ## 命令
 
-```bash
-# 从扁平导出目录导入（按文件名启发式分类）并生成 manifest
-npm run icons:import -- /path/to/exported-svgs
-
-# 指定分类导入（例如「时间」「人」文件夹）
-npm run icons:import -- /path/to/时间 --category time
-npm run icons:import -- /path/to/人 --category people
-
-# 仅根据 icons/svg 重新生成 manifest + public/icons
-npm run icons:sync
-```
-
-> 仅支持 **SVG**。PNG 等栅格文件会被跳过，需先从 Figma 导出为 SVG。
-
-人工补充的 `tags` / `label`（categories）会在再次 sync 时保留（按 icon `id` 合并）。
+    npm run icons:sync
 
 ## 文档站预览
 
-- 页面：[`/docs/os4/resources/icons`](../content/docs/os4/resources/icons.mdx)（不在 docs 侧栏；也可从 `/resources` 进入）
-- 组件：`<IconGallery />`（可选 `categories` 过滤）
+- 页面：`/docs/os4/resources/icons`
+- 组件：`<IconGallery />`

@@ -3,13 +3,12 @@ import { getIconManifest } from '@/lib/icons';
 import { IconGallery as IconGalleryClient } from './IconGallery';
 
 type IconGalleryProps = {
-  /** Limit to these category ids; empty = all */
+  /** @deprecated SVG 分类；字体画廊忽略 */
   categories?: string[];
 };
 
-/** Server wrapper: loads manifest once and hydrates the client gallery. */
-export function IconGallery({ categories }: IconGalleryProps) {
+export function IconGallery(_props: IconGalleryProps) {
   noStore();
   const manifest = getIconManifest();
-  return <IconGalleryClient categories={categories} manifest={manifest} />;
+  return <IconGalleryClient manifest={manifest} />;
 }

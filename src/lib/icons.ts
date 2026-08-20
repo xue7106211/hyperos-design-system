@@ -1,24 +1,32 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-export type IconCategory = {
+export type IconFontWeight = {
+  min: number;
+  max: number;
+  default: number;
+};
+
+export type IconFont = {
   id: string;
   label: string;
+  family: string;
+  path: string;
+  weight: IconFontWeight;
 };
 
 export type IconEntry = {
   id: string;
+  fontId: string;
   name: string;
-  category: string;
-  tags?: string[];
-  path: string;
-  multicolor?: boolean;
+  unicode: string;
+  glyphIndex: number;
 };
 
 export type IconManifest = {
   version: number;
   generatedAt?: string;
-  categories: IconCategory[];
+  fonts: IconFont[];
   icons: IconEntry[];
 };
 
