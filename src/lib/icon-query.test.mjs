@@ -66,6 +66,11 @@ describe('filterIcons', () => {
   });
 
   it('does not treat non-hex queries as unicode hex', () => {
-    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: 'zzzz' }).length, 0);
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: 'zzzf' }).length, 0);
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: '#F0000' }).length, 0);
+  });
+
+  it('matches icon id substring', () => {
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: 'symbols' })[0].id, 'symbols.reset');
   });
 });

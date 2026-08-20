@@ -41,7 +41,7 @@ export function previewSurfaceHex(hex) {
 
 function extractHexQuery(query) {
   let s = query.trim().toLowerCase();
-  s = s.replace(/^(u\+|\\u|0x)/, '').replace(/^#/, '');
+  s = s.replace(/^(u\+|\\u|0x)/, '');
   return /^[0-9a-f]+$/.test(s) ? s : '';
 }
 
