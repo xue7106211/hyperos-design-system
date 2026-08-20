@@ -58,9 +58,10 @@
 | `src/components/resources/` | `/resources`：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等 |
 | `src/lib/resources.ts` | `/resources` 文案、Catalog、专题、`resourcesSectionIds` / `resourcesPageAnchors` |
 | `public/resources/` | `/resources` 卡片配图（已提交） |
-| `icons/` | 图标源 SVG + `manifest.json`（见 [icons/README.md](../icons/README.md)） |
+| `icons/` | HyperOS Symbols 可变字体 + `manifest.json`（见 [icons/README.md](../icons/README.md)） |
 | `tokens/` | Design Tokens：`reference|semantic|component` × `light|dark` |
-| `public/icons/` | 图标静态访问（`icons:sync` 产物） |
+| `public/fonts/` | 图标 web 字体（`icons:sync` 产物） |
+| `public/icons/manifest.json` | 图标清单（`icons:sync` 产物） |
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
 | `scripts/` | 仓库脚本（`generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
 | `patches/` | patch-package 补丁（`next-themes+0.4.6.patch`；`postinstall` 自动应用） |
@@ -95,6 +96,8 @@
 
 ## 变更摘要
 
+- **2026-08-20**：`IconGallery` 改为 HyperOS Symbols 可变字体画廊（5 套件 + 搜索 / 复制字符、Unicode、Glyph Index）；下线 SVG 管线与 `icons:import`，真源改为 `icons/font/*.ttf`。
+- **2026-08-17（二）**：修正 `IconGallery` 的能力过度声称。README / AGENTS / technical-design 三处原写「分类 / 搜索 / 深浅色 / 复制名称与 SVG」，但 `src/components/mdx/IconGallery.tsx` 只有 `activeCategory` 与 `copiedKey` 两个 state——**没有搜索框、没有深浅色切换**，预览底色固定白、单色图标固定 `#111111`；复制的是 icon `id` 而非 name。全部统一为「分类过滤 / 复制 ID 与 SVG」。同批核对 `TokenTable`（Light/Dark ModeToggle）、`DocsImage`（`rounded-none` + `data-fancybox="doc-gallery"`）、`DocFancybox`（`Carousel.infinite: false`）、`FigmaEmbed`（`embed-host=hyperos-ds` + `mode=dev`）、`SpecImageGrid` 均与文档描述一致，无需改动。
 - **2026-08-17**：第二轮文档 / 依赖同步。依赖清理：移除源码零引用的孤儿依赖 `react-markdown`（streamdown 走 `unified` + `hast-util-to-jsx-runtime`，并不依赖它），CLI 工具 `shadcn` 由 `dependencies` 移入 `devDependencies`（`output: 'standalone'` 下二者本就不进运行镜像）。文档补记：`tina/schema/shared-fields.ts` 才是 collection 工厂（改结构动这里，非 `blocks.ts`）、Ask AI 检索 tool 对模型暴露名为 `search`（实现 `searchDocs`）、`tinacms build` 会往 `client.ts` 注入本机 `cacheDir` 不可提交。校验：`meta.json` 与 MDX 一一对应（仅 `drawer-code.mdx` 有意未注册）、icons 90/90/90 同步、TokenTable `groups` 示例全部有效。
 - **2026-08-14**：全仓文档与依赖引用同步。补记此前文档零覆盖的三项事实：`patches/` + **patch-package**（`postinstall` 依次跑 `fumadocs-mdx` 与 `patch-package`）、纯逻辑单测（`node --test "src/**/*.test.mjs"`，无 `npm test` script）、`public/admin/` 与 `docs/design-references/`；`technical-design.md` §4.2 结构树按实际补齐（`api/chat`、`components/ai*`、`ui/`、`lib/recent-docs` 等），§4.3 记录 `fumadocs-ui` 为 npm alias（`@fumadocs/base-ui@16.11.1`）。Ask AI 正式环境已注入 `MI_LLM_*` 并发布，staging 待补（部署空间之间环境变量不继承）。
 - **2026-08-13**：补记文档页 **Design / Code 双模 pilot**（仅「抽屉浮窗」；`drawer-code.mdx` 不进侧栏、Code 模式 TOC 走 portal 不改原生 TOC DOM；机制与已知限制见 [technical-design.md §5.4](./technical-design.md)、ADR-007）。Ask AI 检索层去掉调试期遗留的「圆角 / 36dp」硬编码回退词，并将检索故障与「无结果」区分开（`src/lib/ai/search-docs.ts`）。

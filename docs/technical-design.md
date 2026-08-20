@@ -260,8 +260,8 @@ hyperos-design-system/
 │   ├── reference.{light,dark}.json
 │   ├── semantic.{light,dark}.json
 │   └── component.{light,dark}.json
-├── icons/                  # 图标源 SVG + manifest（IconGallery）
-│   ├── svg/{category}/
+├── icons/                  # HyperOS Symbols 可变字体 + manifest（IconGallery）
+│   ├── font/
 │   ├── manifest.json
 │   └── README.md
 ├── scripts/                # generate-icon-manifest.mjs、import-os4-tokens.mjs
@@ -271,7 +271,8 @@ hyperos-design-system/
 ├── public/
 │   ├── logo/               # HyperOS Logo（light / dark）
 │   ├── home/               # Landing 页静态图
-│   ├── icons/              # 图标静态访问（icons:sync 产物）
+│   ├── fonts/              # 图标 web 字体（icons:sync 产物）
+│   ├── icons/              # 图标清单（icons:sync 产物，含 manifest.json）
 │   ├── media/              # 规范配图（已提交；MDX 用 /media/...）
 │   ├── resources/          # /resources 页卡片配图（已提交）
 │   ├── admin/              # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
@@ -360,7 +361,7 @@ export default defineConfig({ mdxOptions: {} });
 | 类型 | 路径示例 | 核心内容 |
 |------|----------|----------|
 | 通用设计 | `/docs/os4/general/design-token` | 原则说明 + TokenTable |
-| 图标 | `/docs/os4/resources/icons` | IconGallery（分类 / 复制名称与 SVG；不在侧栏一级） |
+| 图标 | `/docs/os4/resources/icons` | IconGallery（套件切换 / 搜索 / 复制字符、Unicode、Glyph Index；不在侧栏一级） |
 | 组件 | `/docs/os4/components/actions/button` | 完整规范 + `public/media/...` 配图；FigmaJump / TokenTable / PlatformTabs 等按页选用 |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 设计模式 | `/docs/os4/best-practices` | 页面模式、加载、引导、系统能力等应用层模式 |
@@ -448,7 +449,7 @@ Fumadocs 的 TOC 是 React 托管节点，带 scroll-spy 与进度条。Code 模
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab 切换 | P0 |
 | `PlatformCodeBlock` | Tina CMS 友好的平台代码 block（扁平 android/ios 字段） | P0 ✅ |
 | `TokenTable` | 从 `tokens/*.{light,dark}.json` 按 group 渲染；支持 Light / Dark | P0 ✅ |
-| `IconGallery` | 图标库预览（`icons/manifest.json`；分类 / 搜索 / 深浅色 / 复制名称与 SVG） | P1 ✅ |
+| `IconGallery` | 图标库预览（`icons/manifest.json`；套件切换 / 搜索 / 复制字符、Unicode、Glyph Index） | P1 ✅ |
 | `SpecImageGrid` | 多张规范配图的响应式并排网格；图片仍接入 Fancybox | P1 ✅ |
 | `DeviceFrame` | 移动端设备框包裹静态截图 | P1（未实现） |
 | `StatusBadge` | stable / beta / deprecated | P1 ✅ |

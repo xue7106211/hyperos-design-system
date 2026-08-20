@@ -8,7 +8,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 移动端组件规范文档（无 Web 交互 demo）
 - Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
 - Design Token 表格展示（OS4 Reference / Semantic / Component × Light / Dark）
-- 图标库预览（分类 / 搜索 / 深浅色 / 复制名称与 SVG）
+- 图标库预览（套件切换 / 搜索 / 复制字符、Unicode、Glyph Index）
 - 文档配图页内画廊（Fancybox；同页前后切换）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
@@ -39,8 +39,7 @@ npm run build        # tinacms build + 生产构建
 npm run tina:build   # 只跑 tinacms build（改 tina schema 后刷新 __generated__）
 npm run start        # 启动生产服务
 npm run types:check  # MDX 生成 + TypeScript 检查
-npm run icons:sync   # 扫描 icons/svg → manifest + public/icons
-npm run icons:import -- /path/to/svgs  # 扁平 SVG 导入并 sync
+npm run icons:sync   # 扫描 icons/font → manifest + public/fonts
 npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/*.{light,dark}.json
 ```
 
@@ -78,8 +77,8 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
   design-references/ # 参考站点截图（typotab.com、aiforui.dev；非对外）
   research/          # 调研笔记（aiforui.dev → /resources；typotab.com → Landing typotab）
   superpowers/       # Agent 设计 / 实现计划产物（specs、plans；非对外）
-icons/               # 图标源 SVG + manifest（见 icons/README.md）
-  svg/{category}/
+icons/               # HyperOS Symbols 可变字体 + manifest（见 icons/README.md）
+  font/
   manifest.json
 scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
 patches/             # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
@@ -107,7 +106,8 @@ src/
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
-  icons/             # 图标静态访问（由 icons:sync 生成，含 manifest.json）
+  fonts/             # 图标 web 字体（由 icons:sync 生成）
+  icons/             # 图标清单（由 icons:sync 生成，含 manifest.json）
   media/             # 规范配图（已提交；MDX 用 /media/...）
   resources/         # /resources 页卡片配图（已提交）
   admin/             # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
@@ -150,7 +150,6 @@ CLAUDE.md            # 指向 AGENTS.md
 
 ```mdx
 <IconGallery />
-<IconGallery categories={["navigation", "action"]} />
 ```
 
 图标入库约定见 [icons/README.md](icons/README.md)；预览页：[`/docs/os4/resources/icons`](content/docs/os4/resources/icons.mdx)。

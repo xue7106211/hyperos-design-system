@@ -152,7 +152,7 @@ export const resourcesCatalog: CatalogColumn[] = [
       },
       {
         name: '/ Icon /',
-        description: '图标库预览与 SVG',
+        description: '套件浏览、复制字符与 Unicode',
         href: `#${resourcesSectionIds.icon}`,
       },
       {
@@ -317,7 +317,7 @@ export const resourcesTopics: TopicSection[] = [
     items: [
       {
         name: 'HyperOS 图标库',
-        description: '分类浏览、复制名称与 SVG。',
+        description: '套件浏览、复制字符、Unicode 与 Glyph Index。',
         href: iconsFigmaUrl,
         external: true,
         image: ICON_PLACEHOLDER,
