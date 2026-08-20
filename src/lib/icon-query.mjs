@@ -26,21 +26,23 @@ export function parseHexColor(input, fallback) {
   return `#${m[1].toUpperCase()}`;
 }
 
+function linearizeChannel(c) {
+  return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+}
+
 export function previewSurfaceHex(hex) {
   const raw = parseHexColor(hex, '#111111').slice(1);
-  const r = Number.parseInt(raw.slice(0, 2), 16);
-  const g = Number.parseInt(raw.slice(2, 4), 16);
-  const b = Number.parseInt(raw.slice(4, 6), 16);
-  const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  const r = linearizeChannel(Number.parseInt(raw.slice(0, 2), 16) / 255);
+  const g = linearizeChannel(Number.parseInt(raw.slice(2, 4), 16) / 255);
+  const b = linearizeChannel(Number.parseInt(raw.slice(4, 6), 16) / 255);
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
   return lum > 0.6 ? '#1A1A1A' : '#F5F5F5';
 }
 
-function normalizeHexQuery(query) {
-  return query
-    .trim()
-    .toLowerCase()
-    .replace(/^(u\+|\\u|0x)/, '')
-    .replace(/[^0-9a-f]/g, '');
+function extractHexQuery(query) {
+  let s = query.trim().toLowerCase();
+  s = s.replace(/^(u\+|\\u|0x)/, '').replace(/^#/, '');
+  return /^[0-9a-f]+$/.test(s) ? s : '';
 }
 
 function digitQuery(query) {
@@ -56,7 +58,7 @@ export function filterIcons(icons, { fontId = ALL_FONTS, query = '' } = {}) {
   const q = query.trim().toLowerCase();
   if (!q) return suite;
 
-  const hexQ = normalizeHexQuery(q);
+  const hexQ = extractHexQuery(q);
   const digits = digitQuery(q);
 
   return suite.filter((icon) => {

@@ -42,6 +42,10 @@ describe('previewSurfaceHex', () => {
     assert.equal(previewSurfaceHex('#FFFFFF'), '#1A1A1A');
     assert.equal(previewSurfaceHex('#111111'), '#F5F5F5');
   });
+
+  it('uses linearized relative luminance at the 0.6 threshold', () => {
+    assert.equal(previewSurfaceHex('#C9C9C9'), '#F5F5F5');
+  });
 });
 
 describe('filterIcons', () => {
@@ -59,5 +63,9 @@ describe('filterIcons', () => {
     assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: 'U+F0000' })[0].name, 'reset');
     assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: ' f0000 ' })[0].name, 'reset');
     assert.equal(filterIcons(sample, { fontId: 'symbols', query: '3' })[0].name, 'play');
+  });
+
+  it('does not treat non-hex queries as unicode hex', () => {
+    assert.equal(filterIcons(sample, { fontId: ALL_FONTS, query: 'zzzz' }).length, 0);
   });
 });
