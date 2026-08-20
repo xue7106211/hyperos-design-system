@@ -23,10 +23,6 @@ const deviceAssetsUrl = 'https://mdc.mi.com/resources';
 /** MiSans / 字体资源 */
 const fontsUrl = 'https://mdc.mi.com/resources/fonts';
 
-/** HyperOS 图标库（Figma） */
-const iconsFigmaUrl =
-  'https://www.figma.com/design/7PVSm4yEbknNLFaqauI4EM/Xiaomi-Hyper-OS4-UI-Kit?node-id=40676-51245';
-
 export const resourcesPage = {
   title: 'HyperOS Design Resources',
   /** Hero 副标题；同时供 metadata 使用 */
@@ -318,8 +314,7 @@ export const resourcesTopics: TopicSection[] = [
       {
         name: 'HyperOS 图标库',
         description: '套件浏览、复制字符、Unicode 与 Glyph Index。',
-        href: iconsFigmaUrl,
-        external: true,
+        href: '/docs/os4/resources/icons',
         image: ICON_PLACEHOLDER,
         imageWidth: 1024,
         imageHeight: 576,

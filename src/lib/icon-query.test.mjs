@@ -43,8 +43,9 @@ describe('previewSurfaceHex', () => {
     assert.equal(previewSurfaceHex('#111111'), '#F5F5F5');
   });
 
-  it('uses linearized relative luminance at the 0.6 threshold', () => {
-    assert.equal(previewSurfaceHex('#C9C9C9'), '#F5F5F5');
+  it('uses linearized relative luminance at the 0.179 threshold', () => {
+    assert.equal(previewSurfaceHex('#C9C9C9'), '#1A1A1A');
+    assert.equal(previewSurfaceHex('#FF6900'), '#1A1A1A');
   });
 });
 

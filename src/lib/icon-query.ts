@@ -38,7 +38,7 @@ export function previewSurfaceHex(hex: string): string {
   const g = linearizeChannel(Number.parseInt(raw.slice(2, 4), 16) / 255);
   const b = linearizeChannel(Number.parseInt(raw.slice(4, 6), 16) / 255);
   const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return lum > 0.6 ? '#1A1A1A' : '#F5F5F5';
+  return lum > 0.179 ? '#1A1A1A' : '#F5F5F5';
 }
 
 function extractHexQuery(query: string): string {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-20T13:13:01.394Z",
+  "generatedAt": "2026-08-20T13:36:22.550Z",
   "fonts": [
     {
       "id": "symbols",
@@ -16,7 +16,7 @@
     {
       "id": "content-regular",
       "label": "Content Regular",
-      "family": " HyperOSSymbols-Content-Regular VF",
+      "family": "HyperOSSymbols-Content-Regular VF",
       "path": "/fonts/HyperOSSymbols-Content-RegularVF.woff2",
       "weight": {
         "min": 150,
@@ -27,7 +27,7 @@
     {
       "id": "content-secondary",
       "label": "Content Secondary",
-      "family": " HyperOSSymbols-Content-Secondary VF",
+      "family": "HyperOSSymbols-Content-Secondary VF",
       "path": "/fonts/HyperOSSymbols-Content-SecondaryVF.woff2",
       "weight": {
         "min": 150,

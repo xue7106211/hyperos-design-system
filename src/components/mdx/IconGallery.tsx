@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react';
 import type { IconEntry, IconFont, IconManifest } from '@/lib/icons';
 import {
   ALL_FONTS,
@@ -21,19 +21,7 @@ function fontOf(manifest: IconManifest, fontId: string): IconFont | undefined {
   return manifest.fonts.find((f) => f.id === fontId);
 }
 
-function GlyphPreview({
-  icon,
-  font,
-  color,
-  weight,
-  size,
-}: {
-  icon: IconEntry;
-  font: IconFont | undefined;
-  color: string;
-  weight: number;
-  size: number;
-}) {
+function GlyphPreview({ icon, font }: { icon: IconEntry; font: IconFont | undefined }) {
   if (!font) {
     return <span className="text-[10px] text-fd-muted-foreground">字体缺失</span>;
   }
@@ -44,10 +32,10 @@ function GlyphPreview({
       className="leading-none"
       style={{
         fontFamily: `"${font.family}", sans-serif`,
-        fontWeight: weight,
-        fontVariationSettings: `"wght" ${weight}`,
-        fontSize: size,
-        color,
+        fontWeight: 'var(--icon-wght)',
+        fontVariationSettings: '"wght" var(--icon-wght)',
+        fontSize: 'var(--icon-size)',
+        color: 'var(--icon-color)',
       }}
     >
       {codePointToChar(icon.unicode)}
@@ -70,6 +58,77 @@ async function copyText(text: string) {
   document.body.removeChild(ta);
 }
 
+function copyFeedback(copiedKey: string | null): string {
+  if (!copiedKey) return '';
+  if (copiedKey.endsWith(':ok')) return '已复制';
+  if (copiedKey.endsWith(':err')) return '复制失败';
+  return '';
+}
+
+const IconGrid = memo(function IconGrid({
+  manifest,
+  icons,
+  showSuiteLabel,
+  copiedKey,
+  onCopy,
+}: {
+  manifest: IconManifest;
+  icons: IconEntry[];
+  showSuiteLabel: boolean;
+  copiedKey: string | null;
+  onCopy: (key: string, text: string) => void;
+}) {
+  return (
+    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      {icons.map((icon) => {
+        const font = fontOf(manifest, icon.fontId);
+        const unicodeText = formatUnicode(icon.unicode);
+        const copyState = (part: string) => {
+          if (copiedKey === `${icon.id}:${part}:ok`) return '已复制';
+          if (copiedKey === `${icon.id}:${part}:err`) return '复制失败';
+          return null;
+        };
+
+        return (
+          <li key={icon.id} className="flex flex-col overflow-hidden rounded-xl border border-fd-border">
+            <button
+              type="button"
+              aria-label={`复制 ${icon.name} 字符`}
+              onClick={() => onCopy(`${icon.id}:glyph`, codePointToChar(icon.unicode))}
+              className="flex h-24 items-center justify-center"
+              style={{ backgroundColor: 'var(--icon-surface)' }}
+            >
+              <GlyphPreview icon={icon} font={font} />
+            </button>
+            <div className="flex flex-1 flex-col gap-1 border-t border-fd-border bg-fd-card p-3">
+              {showSuiteLabel ? (
+                <p className="text-[10px] text-fd-muted-foreground">{font?.label ?? icon.fontId}</p>
+              ) : null}
+              <p className="truncate text-xs" title={icon.name}>
+                {icon.name}
+              </p>
+              <button
+                type="button"
+                className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
+                onClick={() => onCopy(`${icon.id}:unicode`, unicodeText)}
+              >
+                {copyState('unicode') ?? unicodeText}
+              </button>
+              <button
+                type="button"
+                className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
+                onClick={() => onCopy(`${icon.id}:gid`, String(icon.glyphIndex))}
+              >
+                {copyState('gid') ?? `Glyph Index ${icon.glyphIndex}`}
+              </button>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+});
+
 function GalleryBody({ manifest }: { manifest: IconManifest }) {
   const [fontId, setFontId] = useState(ALL_FONTS);
   const [query, setQuery] = useState('');
@@ -81,6 +140,13 @@ function GalleryBody({ manifest }: { manifest: IconManifest }) {
 
   const weightMin = Math.min(...manifest.fonts.map((f) => f.weight.min), 150);
   const weightMax = Math.max(...manifest.fonts.map((f) => f.weight.max), 700);
+  const surface = previewSurfaceHex(color);
+  const galleryVars = {
+    '--icon-wght': weight,
+    '--icon-size': `${size}px`,
+    '--icon-color': color,
+    '--icon-surface': surface,
+  } as CSSProperties;
 
   useEffect(() => {
     const styleId = 'hyperos-symbol-faces';
@@ -103,21 +169,24 @@ function GalleryBody({ manifest }: { manifest: IconManifest }) {
     [manifest.icons, fontId, query],
   );
 
-  const flashCopied = (key: string) => {
+  const flashCopied = useCallback((key: string) => {
     setCopiedKey(key);
     window.setTimeout(() => {
       setCopiedKey((current) => (current === key ? null : current));
     }, 1500);
-  };
+  }, []);
 
-  const onCopy = async (key: string, text: string) => {
-    try {
-      await copyText(text);
-      flashCopied(`${key}:ok`);
-    } catch {
-      flashCopied(`${key}:err`);
-    }
-  };
+  const onCopy = useCallback(
+    async (key: string, text: string) => {
+      try {
+        await copyText(text);
+        flashCopied(`${key}:ok`);
+      } catch {
+        flashCopied(`${key}:err`);
+      }
+    },
+    [flashCopied],
+  );
 
   const showSuiteLabel = fontId === ALL_FONTS;
   const chipClass = (active: boolean) =>
@@ -128,7 +197,10 @@ function GalleryBody({ manifest }: { manifest: IconManifest }) {
     }`;
 
   return (
-    <div className="my-6 not-prose space-y-4">
+    <div className="my-6 not-prose space-y-4" style={galleryVars}>
+      <div className="sr-only" aria-live="polite">
+        {copyFeedback(copiedKey)}
+      </div>
       <div className="flex flex-wrap gap-2">
         <button type="button" className={chipClass(fontId === ALL_FONTS)} onClick={() => setFontId(ALL_FONTS)}>
           全部
@@ -209,53 +281,13 @@ function GalleryBody({ manifest }: { manifest: IconManifest }) {
           没有匹配的图标
         </div>
       ) : (
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {filtered.map((icon) => {
-            const font = fontOf(manifest, icon.fontId);
-            const unicodeText = formatUnicode(icon.unicode);
-            const surface = previewSurfaceHex(color);
-            const copyState = (part: string) => {
-              if (copiedKey === `${icon.id}:${part}:ok`) return '已复制';
-              if (copiedKey === `${icon.id}:${part}:err`) return '复制失败';
-              return null;
-            };
-
-            return (
-              <li key={icon.id} className="flex flex-col overflow-hidden rounded-xl border border-fd-border">
-                <button
-                  type="button"
-                  onClick={() => void onCopy(`${icon.id}:glyph`, codePointToChar(icon.unicode))}
-                  className="flex h-24 items-center justify-center"
-                  style={{ backgroundColor: surface }}
-                >
-                  <GlyphPreview icon={icon} font={font} color={color} weight={weight} size={size} />
-                </button>
-                <div className="flex flex-1 flex-col gap-1 border-t border-fd-border bg-fd-card p-3">
-                  {showSuiteLabel ? (
-                    <p className="text-[10px] text-fd-muted-foreground">{font?.label ?? icon.fontId}</p>
-                  ) : null}
-                  <p className="truncate text-xs" title={icon.name}>
-                    {icon.name}
-                  </p>
-                  <button
-                    type="button"
-                    className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
-                    onClick={() => void onCopy(`${icon.id}:unicode`, unicodeText)}
-                  >
-                    {copyState('unicode') ?? unicodeText}
-                  </button>
-                  <button
-                    type="button"
-                    className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
-                    onClick={() => void onCopy(`${icon.id}:gid`, String(icon.glyphIndex))}
-                  >
-                    {copyState('gid') ?? `Glyph Index ${icon.glyphIndex}`}
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        <IconGrid
+          manifest={manifest}
+          icons={filtered}
+          showSuiteLabel={showSuiteLabel}
+          copiedKey={copiedKey}
+          onCopy={onCopy}
+        />
       )}
     </div>
   );
@@ -266,6 +298,12 @@ export function IconGallery({ manifest: manifestProp }: IconGalleryProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (manifestProp) {
+      setManifest(manifestProp);
+      return;
+    }
+
+    // Tina / 无 SSR 时没有服务端清单，才请求公开的 /icons/manifest.json
     let cancelled = false;
     void fetch(`/icons/manifest.json?t=${Date.now()}`)
       .then(async (res) => {
@@ -277,10 +315,6 @@ export function IconGallery({ manifest: manifestProp }: IconGalleryProps) {
       })
       .catch((err: unknown) => {
         if (cancelled) return;
-        if (manifestProp) {
-          setManifest(manifestProp);
-          return;
-        }
         setError(err instanceof Error ? err.message : '加载失败');
       });
     return () => {

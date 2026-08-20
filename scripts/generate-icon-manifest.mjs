@@ -50,7 +50,7 @@ function fail(message) {
   process.exit(1);
 }
 
-function glyphNameOf(glyph, codePoint) {
+function glyphNameOf(glyph) {
   const name = glyph?.name;
   if (name && name !== '.notdef') return name;
   return `gid-${glyph.id}`;
@@ -82,14 +82,14 @@ function parseFontFile(fileName) {
 
   const stem = basename(fileName, '.ttf');
   const path = writeWebFont(ttfPath, stem);
-  const family = font.familyName || stem;
+  const family = String(font.familyName).trim() || stem;
 
   const icons = [];
   for (const cp of font.characterSet) {
     if (SKIP_CODEPOINTS.has(cp)) continue;
     const glyph = font.glyphForCodePoint(cp);
     if (!glyph || glyph.name === '.notdef') continue;
-    const name = glyphNameOf(glyph, cp);
+    const name = glyphNameOf(glyph);
     icons.push({
       id: `${meta.id}.${name}`,
       fontId: meta.id,
@@ -141,6 +141,14 @@ function main() {
     const parsed = parseFontFile(name);
     fonts.push(parsed.font);
     icons.push(...parsed.icons);
+  }
+
+  const seenFamilies = new Set();
+  for (const font of fonts) {
+    if (seenFamilies.has(font.family)) {
+      fail(`Duplicate font family name after trim: ${JSON.stringify(font.family)}`);
+    }
+    seenFamilies.add(font.family);
   }
 
   const manifest = {
