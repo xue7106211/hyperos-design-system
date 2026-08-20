@@ -7,7 +7,7 @@ import {
   formatUnicode,
   parseHexColor,
   previewSurfaceHex,
-} from './icon-query.mjs';
+} from './icon-query.ts';
 
 const sample = [
   { id: 'symbols.reset', fontId: 'symbols', name: 'reset', unicode: 'F0000', glyphIndex: 1 },

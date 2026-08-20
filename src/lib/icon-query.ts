@@ -1,3 +1,5 @@
+import type { IconEntry } from './icons';
+
 export const ALL_FONTS = 'all';
 
 export const COLOR_PRESETS = [
@@ -6,7 +8,7 @@ export const COLOR_PRESETS = [
   { id: 'brand', hex: '#FF6900', label: '品牌' },
 ];
 
-export function formatUnicode(hex) {
+export function formatUnicode(hex: string): string {
   const h = String(hex)
     .replace(/^U\+/i, '')
     .replace(/^0x/i, '')
@@ -14,11 +16,11 @@ export function formatUnicode(hex) {
   return `U+${h.padStart(4, '0')}`;
 }
 
-export function codePointToChar(hex) {
+export function codePointToChar(hex: string): string {
   return String.fromCodePoint(Number.parseInt(String(hex).replace(/^U\+/i, ''), 16));
 }
 
-export function parseHexColor(input, fallback) {
+export function parseHexColor(input: string, fallback: string): string {
   const m = String(input)
     .trim()
     .match(/^#?([0-9a-fA-F]{6})$/);
@@ -26,11 +28,11 @@ export function parseHexColor(input, fallback) {
   return `#${m[1].toUpperCase()}`;
 }
 
-function linearizeChannel(c) {
+function linearizeChannel(c: number): number {
   return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
 }
 
-export function previewSurfaceHex(hex) {
+export function previewSurfaceHex(hex: string): string {
   const raw = parseHexColor(hex, '#111111').slice(1);
   const r = linearizeChannel(Number.parseInt(raw.slice(0, 2), 16) / 255);
   const g = linearizeChannel(Number.parseInt(raw.slice(2, 4), 16) / 255);
@@ -39,17 +41,22 @@ export function previewSurfaceHex(hex) {
   return lum > 0.6 ? '#1A1A1A' : '#F5F5F5';
 }
 
-function extractHexQuery(query) {
+function extractHexQuery(query: string): string {
   let s = query.trim().toLowerCase();
   s = s.replace(/^(u\+|\\u|0x)/, '');
   return /^[0-9a-f]+$/.test(s) ? s : '';
 }
 
-function digitQuery(query) {
+function digitQuery(query: string): string {
   return query.replace(/\D/g, '');
 }
 
-export function filterIcons(icons, { fontId = ALL_FONTS, query = '' } = {}) {
+type FilterOptions = {
+  fontId?: string;
+  query?: string;
+};
+
+export function filterIcons(icons: IconEntry[], { fontId = ALL_FONTS, query = '' }: FilterOptions = {}): IconEntry[] {
   const suite =
     fontId && fontId !== ALL_FONTS
       ? icons.filter((icon) => icon.fontId === fontId)

@@ -1,45 +1,57 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import type { IconEntry, IconManifest } from '@/lib/icons';
+import type { IconEntry, IconFont, IconManifest } from '@/lib/icons';
+import {
+  ALL_FONTS,
+  COLOR_PRESETS,
+  codePointToChar,
+  filterIcons,
+  formatUnicode,
+  parseHexColor,
+  previewSurfaceHex,
+} from '@/lib/icon-query';
 
 type IconGalleryProps = {
-  /** Limit to these category ids; empty = all */
   categories?: string[];
-  /** When omitted (e.g. Tina), fetch `/icons/manifest.json` */
   manifest?: IconManifest;
 };
 
-function IconPreview({ icon }: { icon: IconEntry }) {
-  if (icon.multicolor) {
-    return (
-      <img
-        src={icon.path}
-        alt=""
-        width={28}
-        height={28}
-        loading="lazy"
-        className="size-7 object-contain"
-      />
-    );
+function fontOf(manifest: IconManifest, fontId: string): IconFont | undefined {
+  return manifest.fonts.find((f) => f.id === fontId);
+}
+
+function GlyphPreview({
+  icon,
+  font,
+  color,
+  weight,
+  size,
+}: {
+  icon: IconEntry;
+  font: IconFont | undefined;
+  color: string;
+  weight: number;
+  size: number;
+}) {
+  if (!font) {
+    return <span className="text-[10px] text-fd-muted-foreground">字体缺失</span>;
   }
 
   return (
     <span
       aria-hidden
-      className="size-7 shrink-0"
+      className="leading-none"
       style={{
-        backgroundColor: '#111111',
-        WebkitMaskImage: `url(${icon.path})`,
-        maskImage: `url(${icon.path})`,
-        WebkitMaskRepeat: 'no-repeat',
-        maskRepeat: 'no-repeat',
-        WebkitMaskPosition: 'center',
-        maskPosition: 'center',
-        WebkitMaskSize: 'contain',
-        maskSize: 'contain',
+        fontFamily: `"${font.family}", sans-serif`,
+        fontWeight: weight,
+        fontVariationSettings: `"wght" ${weight}`,
+        fontSize: size,
+        color,
       }}
-    />
+    >
+      {codePointToChar(icon.unicode)}
+    </span>
   );
 }
 
@@ -58,33 +70,38 @@ async function copyText(text: string) {
   document.body.removeChild(ta);
 }
 
-function GalleryBody({
-  categories: categoryFilter = [],
-  manifest,
-}: {
-  categories?: string[];
-  manifest: IconManifest;
-}) {
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+function GalleryBody({ manifest }: { manifest: IconManifest }) {
+  const [fontId, setFontId] = useState(ALL_FONTS);
+  const [query, setQuery] = useState('');
+  const [color, setColor] = useState(COLOR_PRESETS[0].hex);
+  const [hexDraft, setHexDraft] = useState(COLOR_PRESETS[0].hex);
+  const [weight, setWeight] = useState(330);
+  const [size, setSize] = useState(32);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
-  const availableCategories = useMemo(() => {
-    if (categoryFilter.length === 0) return manifest.categories;
-    const allow = new Set(categoryFilter);
-    return manifest.categories.filter((c) => allow.has(c.id));
-  }, [manifest.categories, categoryFilter]);
+  const weightMin = Math.min(...manifest.fonts.map((f) => f.weight.min), 150);
+  const weightMax = Math.max(...manifest.fonts.map((f) => f.weight.max), 700);
 
-  const filtered = useMemo(() => {
-    return manifest.icons.filter((icon) => {
-      if (categoryFilter.length > 0 && !categoryFilter.includes(icon.category)) {
-        return false;
-      }
-      if (activeCategory !== 'all' && icon.category !== activeCategory) {
-        return false;
-      }
-      return true;
-    });
-  }, [manifest.icons, activeCategory, categoryFilter]);
+  useEffect(() => {
+    const styleId = 'hyperos-symbol-faces';
+    let el = document.getElementById(styleId) as HTMLStyleElement | null;
+    if (!el) {
+      el = document.createElement('style');
+      el.id = styleId;
+      document.head.appendChild(el);
+    }
+    el.textContent = manifest.fonts
+      .map((f) => {
+        const fmt = f.path.endsWith('.woff2') ? 'woff2' : 'truetype';
+        return `@font-face{font-family:${JSON.stringify(f.family)};src:url(${JSON.stringify(f.path)}) format(${JSON.stringify(fmt)});font-weight:${f.weight.min} ${f.weight.max};font-style:normal;font-display:block;}`;
+      })
+      .join('\n');
+  }, [manifest.fonts]);
+
+  const filtered = useMemo(
+    () => filterIcons(manifest.icons, { fontId, query }),
+    [manifest.icons, fontId, query],
+  );
 
   const flashCopied = (key: string) => {
     setCopiedKey(key);
@@ -93,97 +110,147 @@ function GalleryBody({
     }, 1500);
   };
 
-  const onCopyId = async (icon: IconEntry) => {
-    await copyText(icon.id);
-    flashCopied(`${icon.id}:id`);
+  const onCopy = async (key: string, text: string) => {
+    try {
+      await copyText(text);
+      flashCopied(`${key}:ok`);
+    } catch {
+      flashCopied(`${key}:err`);
+    }
   };
 
-  const onCopySvg = async (icon: IconEntry) => {
-    const res = await fetch(icon.path);
-    if (!res.ok) throw new Error(`Failed to load ${icon.path}`);
-    const svg = await res.text();
-    await copyText(svg);
-    flashCopied(`${icon.id}:svg`);
-  };
+  const showSuiteLabel = fontId === ALL_FONTS;
+  const chipClass = (active: boolean) =>
+    `rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+      active
+        ? 'border-fd-foreground bg-fd-foreground text-fd-background'
+        : 'border-fd-border text-fd-muted-foreground hover:border-fd-foreground/40 hover:text-fd-foreground'
+    }`;
 
   return (
     <div className="my-6 not-prose space-y-4">
       <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => setActiveCategory('all')}
-          className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-            activeCategory === 'all'
-              ? 'border-fd-foreground bg-fd-foreground text-fd-background'
-              : 'border-fd-border text-fd-muted-foreground hover:border-fd-foreground/40 hover:text-fd-foreground'
-          }`}
-        >
+        <button type="button" className={chipClass(fontId === ALL_FONTS)} onClick={() => setFontId(ALL_FONTS)}>
           全部
         </button>
-        {availableCategories.map((cat) => (
+        {manifest.fonts.map((font) => (
           <button
-            key={cat.id}
+            key={font.id}
             type="button"
-            onClick={() => setActiveCategory(cat.id)}
-            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-              activeCategory === cat.id
-                ? 'border-fd-foreground bg-fd-foreground text-fd-background'
-                : 'border-fd-border text-fd-muted-foreground hover:border-fd-foreground/40 hover:text-fd-foreground'
-            }`}
+            className={chipClass(fontId === font.id)}
+            onClick={() => setFontId(font.id)}
           >
-            {cat.label}
+            {font.label}
           </button>
         ))}
       </div>
 
+      <div className="flex flex-col gap-3 rounded-xl border border-fd-border p-3">
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="搜索名称、Unicode、Glyph Index"
+          className="w-full rounded-lg border border-fd-border bg-fd-background px-3 py-2 text-sm"
+        />
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-2">
+            {COLOR_PRESETS.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                title={preset.label}
+                onClick={() => {
+                  setColor(preset.hex);
+                  setHexDraft(preset.hex);
+                }}
+                className="size-6 rounded-full border border-fd-border"
+                style={{ backgroundColor: preset.hex }}
+              />
+            ))}
+            <input
+              value={hexDraft}
+              onChange={(e) => {
+                const next = e.target.value;
+                setHexDraft(next);
+                setColor((prev) => parseHexColor(next, prev));
+              }}
+              className="w-28 rounded-md border border-fd-border bg-fd-background px-2 py-1 font-mono text-xs"
+              aria-label="自定义颜色"
+            />
+          </div>
+          <label className="flex min-w-40 flex-1 items-center gap-2 text-xs text-fd-muted-foreground">
+            粗细 {weight}
+            <input
+              type="range"
+              min={weightMin}
+              max={weightMax}
+              value={weight}
+              onChange={(e) => setWeight(Number(e.target.value))}
+              className="flex-1"
+            />
+          </label>
+          <label className="flex min-w-40 flex-1 items-center gap-2 text-xs text-fd-muted-foreground">
+            字号 {size}
+            <input
+              type="range"
+              min={16}
+              max={64}
+              value={size}
+              onChange={(e) => setSize(Number(e.target.value))}
+              className="flex-1"
+            />
+          </label>
+        </div>
+      </div>
+
       {filtered.length === 0 ? (
         <div className="rounded-xl border border-dashed border-fd-border p-8 text-center text-sm text-fd-muted-foreground">
-          没有匹配的图标，试试其他分类。
+          没有匹配的图标
         </div>
       ) : (
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {filtered.map((icon) => {
-            const idCopied = copiedKey === `${icon.id}:id`;
-            const svgCopied = copiedKey === `${icon.id}:svg`;
+            const font = fontOf(manifest, icon.fontId);
+            const unicodeText = formatUnicode(icon.unicode);
+            const surface = previewSurfaceHex(color);
+            const copyState = (part: string) => {
+              if (copiedKey === `${icon.id}:${part}:ok`) return '已复制';
+              if (copiedKey === `${icon.id}:${part}:err`) return '复制失败';
+              return null;
+            };
 
             return (
-              <li
-                key={icon.id}
-                className="flex flex-col overflow-hidden rounded-xl border border-fd-border"
-              >
-                <div className="flex h-24 items-center justify-center bg-white">
-                  <IconPreview icon={icon} />
-                </div>
-                <div className="flex flex-1 flex-col gap-2 border-t border-fd-border bg-fd-card p-3">
-                  <div className="min-w-0">
-                    <p className="truncate text-xs font-normal" title={icon.name}>
-                      {icon.name}
-                    </p>
-                    <p
-                      className="truncate font-mono text-[10px] font-normal text-fd-muted-foreground"
-                      title={icon.id}
-                    >
-                      {icon.id}
-                    </p>
-                  </div>
-                  <div className="mt-auto flex flex-wrap gap-1">
-                    <button
-                      type="button"
-                      onClick={() => void onCopyId(icon)}
-                      className="rounded-md border border-fd-border px-2 py-1 text-[11px] text-fd-muted-foreground hover:border-fd-foreground/30 hover:text-fd-foreground"
-                    >
-                      {idCopied ? '已复制' : 'ID'}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        void onCopySvg(icon).catch(() => flashCopied(`${icon.id}:err`))
-                      }
-                      className="rounded-md border border-fd-border px-2 py-1 text-[11px] text-fd-muted-foreground hover:border-fd-foreground/30 hover:text-fd-foreground"
-                    >
-                      {svgCopied ? '已复制' : 'SVG'}
-                    </button>
-                  </div>
+              <li key={icon.id} className="flex flex-col overflow-hidden rounded-xl border border-fd-border">
+                <button
+                  type="button"
+                  onClick={() => void onCopy(`${icon.id}:glyph`, codePointToChar(icon.unicode))}
+                  className="flex h-24 items-center justify-center"
+                  style={{ backgroundColor: surface }}
+                >
+                  <GlyphPreview icon={icon} font={font} color={color} weight={weight} size={size} />
+                </button>
+                <div className="flex flex-1 flex-col gap-1 border-t border-fd-border bg-fd-card p-3">
+                  {showSuiteLabel ? (
+                    <p className="text-[10px] text-fd-muted-foreground">{font?.label ?? icon.fontId}</p>
+                  ) : null}
+                  <p className="truncate text-xs" title={icon.name}>
+                    {icon.name}
+                  </p>
+                  <button
+                    type="button"
+                    className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
+                    onClick={() => void onCopy(`${icon.id}:unicode`, unicodeText)}
+                  >
+                    {copyState('unicode') ?? unicodeText}
+                  </button>
+                  <button
+                    type="button"
+                    className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
+                    onClick={() => void onCopy(`${icon.id}:gid`, String(icon.glyphIndex))}
+                  >
+                    {copyState('gid') ?? `Glyph Index ${icon.glyphIndex}`}
+                  </button>
                 </div>
               </li>
             );
@@ -194,14 +261,12 @@ function GalleryBody({
   );
 }
 
-export function IconGallery({ categories, manifest: manifestProp }: IconGalleryProps) {
+export function IconGallery({ manifest: manifestProp }: IconGalleryProps) {
   const [manifest, setManifest] = useState<IconManifest | null>(manifestProp ?? null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-
-    // Prefer live public manifest so `icons:sync` shows up without a full reload race.
     void fetch(`/icons/manifest.json?t=${Date.now()}`)
       .then(async (res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -218,7 +283,6 @@ export function IconGallery({ categories, manifest: manifestProp }: IconGalleryP
         }
         setError(err instanceof Error ? err.message : '加载失败');
       });
-
     return () => {
       cancelled = true;
     };
@@ -240,5 +304,5 @@ export function IconGallery({ categories, manifest: manifestProp }: IconGalleryP
     );
   }
 
-  return <GalleryBody categories={categories} manifest={manifest} />;
+  return <GalleryBody manifest={manifest} />;
 }
