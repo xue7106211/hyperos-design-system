@@ -8,6 +8,17 @@ export const COLOR_PRESETS = [
   { id: 'brand', hex: '#FF6900', label: '品牌' },
 ];
 
+/** Named `wght` instances shared by all HyperOS Symbols VFs. */
+export const WEIGHT_PRESETS = [
+  { value: 250, label: 'Light' },
+  { value: 305, label: 'Normal' },
+  { value: 330, label: 'Regular' },
+  { value: 430, label: 'Medium' },
+  { value: 500, label: 'Demibold' },
+] as const;
+
+export const DEFAULT_WEIGHT = 330;
+
 export function unicodeToDecimal(hex: string): number {
   return Number.parseInt(String(hex).replace(/^U\+/i, ''), 16);
 }

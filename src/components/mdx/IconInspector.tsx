@@ -135,11 +135,11 @@ export function IconInspector({
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden">
       <div className="shrink-0 px-4 pt-3 sm:px-5 sm:pt-4">
-        <p className="truncate text-sm font-medium" title={icon.name}>
+        <p className="truncate text-sm font-medium tracking-tight" title={icon.name}>
           {icon.name}
         </p>
         {showSuiteLabel ? (
-          <p className="text-xs text-fd-muted-foreground">{font?.label ?? icon.fontId}</p>
+          <p className="mt-0.5 text-xs text-fd-muted-foreground">{font?.label ?? icon.fontId}</p>
         ) : null}
       </div>
 
@@ -148,14 +148,14 @@ export function IconInspector({
           type="button"
           aria-label={`复制 ${icon.name} 字符`}
           onClick={() => onCopy(`${icon.id}:glyph`, char)}
-          className="absolute inset-0 z-10 cursor-pointer"
+          className="absolute inset-0 z-10 cursor-pointer outline-none transition-opacity duration-150 ease-out focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
         />
-        <div ref={stageRef} className="pointer-events-none absolute inset-3 grid place-items-center overflow-hidden sm:inset-4">
+        <div
+          ref={stageRef}
+          className="pointer-events-none absolute inset-3 grid place-items-center overflow-hidden select-none sm:inset-4"
+        >
           {font && frameW > 0 ? (
-            <div
-              className="relative overflow-hidden"
-              style={{ width: frameW, height: frameH }}
-            >
+            <div className="relative overflow-hidden" style={{ width: frameW, height: frameH }}>
               {lines.map((line) => (
                 <div
                   key={line.label}
@@ -199,21 +199,26 @@ export function IconInspector({
         </div>
       </div>
 
-      <dl className="grid max-h-[40%] shrink-0 grid-cols-1 gap-x-6 gap-y-1 overflow-y-auto border-t border-fd-border px-4 py-2.5 sm:max-h-none sm:grid-cols-2 sm:gap-x-8 sm:gap-y-2.5 sm:px-5 sm:py-4 sm:pb-6">
+      <dl className="grid max-h-[40%] shrink-0 grid-cols-1 gap-x-6 gap-y-0.5 overflow-y-auto border-t border-fd-border px-4 py-2 sm:max-h-none sm:grid-cols-2 sm:gap-x-8 sm:gap-y-1 sm:px-5 sm:py-4 sm:pb-6">
         {fields.map((field) => (
-          <div key={field.label} className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-baseline gap-2 sm:grid-cols-[7.25rem_minmax(0,1fr)]">
+          <div
+            key={field.label}
+            className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[7.25rem_minmax(0,1fr)]"
+          >
             <dt className="text-[11px] text-fd-muted-foreground">{field.label}</dt>
             <dd>
               {field.copy ? (
                 <button
                   type="button"
-                  className="max-w-full break-all text-left font-mono text-xs tabular-nums text-fd-foreground hover:text-fd-foreground/80"
+                  className="min-h-8 max-w-full break-all rounded-sm py-1 text-left font-mono text-xs tabular-nums text-fd-foreground outline-none transition-colors duration-150 ease-out hover:text-fd-foreground/70 focus-visible:ring-2 focus-visible:ring-fd-ring"
                   onClick={() => onCopy(`${icon.id}:${field.part}`, field.copy)}
                 >
                   {copyState(field.part) ?? field.value}
                 </button>
               ) : (
-                <span className="font-mono text-xs tabular-nums text-fd-muted-foreground">{field.value}</span>
+                <span className="inline-flex min-h-8 items-center font-mono text-xs tabular-nums text-fd-muted-foreground">
+                  {field.value}
+                </span>
               )}
             </dd>
           </div>

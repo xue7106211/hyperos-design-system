@@ -6,12 +6,21 @@ import type { IconEntry, IconFont, IconManifest } from '@/lib/icons';
 import {
   ALL_FONTS,
   COLOR_PRESETS,
+  DEFAULT_WEIGHT,
+  WEIGHT_PRESETS,
   codePointToChar,
   filterIcons,
   formatUnicode,
   parseHexColor,
   previewSurfaceHex,
 } from '@/lib/icon-query';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { IconInspector } from './IconInspector';
 
 type IconGalleryProps = {
@@ -107,7 +116,7 @@ const IconGrid = memo(function IconGrid({
               type="button"
               aria-label={`复制 ${icon.name} 字符`}
               onClick={() => onCopy(`${icon.id}:glyph`, codePointToChar(icon.unicode))}
-              className="flex h-24 items-center justify-center"
+              className="flex h-24 items-center justify-center transition-[opacity,transform] duration-150 ease-out active:scale-[0.96]"
               style={{ backgroundColor: 'var(--icon-surface)' }}
             >
               <GlyphPreview icon={icon} font={font} />
@@ -121,14 +130,14 @@ const IconGrid = memo(function IconGrid({
               </p>
               <button
                 type="button"
-                className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
+                className="min-h-8 truncate text-left font-mono text-[10px] tabular-nums text-fd-muted-foreground transition-colors duration-150 ease-out hover:text-fd-foreground"
                 onClick={() => onCopy(`${icon.id}:unicode`, unicodeText)}
               >
                 {copyState('unicode') ?? unicodeText}
               </button>
               <button
                 type="button"
-                className="truncate text-left font-mono text-[10px] text-fd-muted-foreground hover:text-fd-foreground"
+                className="min-h-8 truncate text-left font-mono text-[10px] tabular-nums text-fd-muted-foreground transition-colors duration-150 ease-out hover:text-fd-foreground"
                 onClick={() => onCopy(`${icon.id}:gid`, String(icon.glyphIndex))}
               >
                 {copyState('gid') ?? `Glyph Index ${icon.glyphIndex}`}
@@ -181,7 +190,7 @@ const IconPickerGrid = memo(function IconPickerGrid({
       aria-activedescendant={selectedId ? `icon-cell-${selectedId}` : undefined}
       tabIndex={0}
       onKeyDown={onKeyDown}
-      className="grid grid-cols-[repeat(auto-fill,minmax(2.75rem,1fr))] content-start outline-none focus-visible:ring-2 focus-visible:ring-fd-ring"
+      className="grid grid-cols-[repeat(auto-fill,minmax(2.75rem,1fr))] content-start rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
       style={{ '--icon-size': '1.35rem' } as CSSProperties}
     >
       {icons.map((icon) => {
@@ -198,7 +207,7 @@ const IconPickerGrid = memo(function IconPickerGrid({
             aria-label={icon.name}
             tabIndex={-1}
             onClick={() => onSelect(icon.id)}
-            className={`flex min-h-11 touch-manipulation items-center justify-center rounded-lg transition-colors duration-150 ${
+            className={`flex min-h-11 touch-manipulation items-center justify-center rounded-lg transition-[color,background-color,transform] duration-150 ease-out active:scale-[0.96] ${
               selected
                 ? 'bg-fd-foreground text-fd-background'
                 : 'text-fd-foreground [@media(hover:hover)]:hover:bg-fd-accent/70'
@@ -223,13 +232,11 @@ function GalleryBody({
   const [query, setQuery] = useState('');
   const [color, setColor] = useState(COLOR_PRESETS[0].hex);
   const [hexDraft, setHexDraft] = useState(COLOR_PRESETS[0].hex);
-  const [weight, setWeight] = useState(330);
+  const [weight, setWeight] = useState(DEFAULT_WEIGHT);
   const [size, setSize] = useState(32);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(manifest.icons[0]?.id ?? null);
 
-  const weightMin = Math.min(...manifest.fonts.map((f) => f.weight.min), 150);
-  const weightMax = Math.max(...manifest.fonts.map((f) => f.weight.max), 700);
   const surface = previewSurfaceHex(color);
   const galleryVars = {
     '--icon-wght': weight,
@@ -308,13 +315,18 @@ function GalleryBody({
             key={item.id}
             type="button"
             aria-pressed={active}
-            className={`relative shrink-0 px-3 py-2 text-sm font-medium transition-colors ${
+            className={`relative flex min-h-11 shrink-0 items-center px-3 text-sm font-medium transition-colors duration-150 ease-out ${
               active ? 'text-fd-foreground' : 'text-fd-muted-foreground hover:text-fd-foreground'
             }`}
             onClick={() => setFontId(item.id)}
           >
             {item.label}
-            {active ? <span className="absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-fd-foreground" /> : null}
+            {active ? (
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-fd-foreground"
+              />
+            ) : null}
           </button>
         );
       })}
@@ -328,7 +340,7 @@ function GalleryBody({
             key={item.id}
             type="button"
             aria-pressed={active}
-            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+            className={`min-h-8 rounded-full border px-3 py-1 text-xs font-medium transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.96] ${
               active
                 ? 'border-fd-foreground bg-fd-foreground text-fd-background'
                 : 'border-fd-border text-fd-muted-foreground hover:border-fd-foreground/40 hover:text-fd-foreground'
@@ -349,23 +361,32 @@ function GalleryBody({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="搜索名称、Unicode、Glyph Index"
-        className="w-full rounded-lg border border-fd-border bg-fd-background px-3 py-2 text-sm"
+        className="h-10 w-full rounded-lg border border-fd-border bg-fd-background px-3 text-sm outline-none transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-fd-muted-foreground focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40"
       />
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <div className="flex items-center gap-2">
-          {COLOR_PRESETS.map((preset) => (
-            <button
-              key={preset.id}
-              type="button"
-              title={preset.label}
-              onClick={() => {
-                setColor(preset.hex);
-                setHexDraft(preset.hex);
-              }}
-              className="size-6 rounded-full border border-fd-border"
-              style={{ backgroundColor: preset.hex }}
-            />
-          ))}
+          {COLOR_PRESETS.map((preset) => {
+            const selected = color.toLowerCase() === preset.hex.toLowerCase();
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                title={preset.label}
+                aria-label={preset.label}
+                aria-pressed={selected}
+                onClick={() => {
+                  setColor(preset.hex);
+                  setHexDraft(preset.hex);
+                }}
+                className={`relative size-8 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] ${
+                  selected
+                    ? 'border-fd-foreground ring-2 ring-fd-foreground/20 ring-offset-2 ring-offset-fd-background'
+                    : 'border-fd-border hover:border-fd-foreground/50'
+                }`}
+                style={{ backgroundColor: preset.hex }}
+              />
+            );
+          })}
           <input
             value={hexDraft}
             onChange={(e) => {
@@ -373,24 +394,43 @@ function GalleryBody({
               setHexDraft(next);
               setColor((prev) => parseHexColor(next, prev));
             }}
-            className="w-28 rounded-md border border-fd-border bg-fd-background px-2 py-1 font-mono text-xs"
+            className="ms-0.5 h-8 w-[7.25rem] rounded-md border border-fd-border bg-fd-background px-2 font-mono text-xs tabular-nums outline-none transition-[border-color,box-shadow] duration-150 ease-out focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40"
             aria-label="自定义颜色"
+            spellCheck={false}
           />
         </div>
-        <label className="flex min-w-40 flex-1 items-center gap-2 text-xs text-fd-muted-foreground">
-          粗细 {weight}
-          <input
-            type="range"
-            min={weightMin}
-            max={weightMax}
-            value={weight}
-            onChange={(e) => setWeight(Number(e.target.value))}
-            className="flex-1"
-          />
-        </label>
+        <div className="flex items-center gap-2 text-xs text-fd-muted-foreground">
+          <span id="icon-weight-label" className="shrink-0">
+            粗细
+          </span>
+          <Select value={String(weight)} onValueChange={(value) => setWeight(Number(value))}>
+            <SelectTrigger
+              size="sm"
+              aria-labelledby="icon-weight-label"
+              className="h-8 min-w-[9.5rem] rounded-md border-fd-border bg-fd-background py-0 pl-2.5 pr-2 text-xs tabular-nums text-fd-foreground shadow-none transition-[border-color,background-color,box-shadow] duration-150 ease-out focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40 dark:bg-fd-background dark:hover:bg-fd-muted/40"
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent
+              align="start"
+              position="popper"
+              className="border-fd-border bg-fd-popover text-fd-popover-foreground ring-fd-border"
+            >
+              {WEIGHT_PRESETS.map((preset) => (
+                <SelectItem
+                  key={preset.value}
+                  value={String(preset.value)}
+                  className="text-xs tabular-nums focus:bg-fd-accent focus:text-fd-accent-foreground"
+                >
+                  {preset.label} · {preset.value}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         {isApp ? null : (
           <label className="flex min-w-40 flex-1 items-center gap-2 text-xs text-fd-muted-foreground">
-            字号 {size}
+            <span className="tabular-nums">字号 {size}</span>
             <input
               type="range"
               min={16}
@@ -419,8 +459,11 @@ function GalleryBody({
         </header>
         <div className="shrink-0 border-b border-fd-border px-4 py-3">{tools}</div>
         {filtered.length === 0 ? (
-          <div className="m-4 rounded-xl border border-dashed border-fd-border p-8 text-center text-sm text-fd-muted-foreground">
-            没有匹配的图标
+          <div className="m-4 flex min-h-[12rem] flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center sm:min-h-[16rem]">
+            <p className="text-sm font-medium text-fd-foreground">没有匹配的图标</p>
+            <p className="max-w-sm text-sm text-fd-muted-foreground">
+              换个关键词，或切换套件后再试。可搜名称、Unicode、Glyph Index。
+            </p>
           </div>
         ) : (
           <div className="grid min-h-0 flex-1 overflow-hidden max-lg:grid-rows-[minmax(18rem,50vh)_minmax(0,1fr)] lg:grid-cols-[minmax(18rem,min(40%,38rem))_minmax(0,1fr)]">
@@ -439,7 +482,7 @@ function GalleryBody({
             </section>
             <section className="flex min-h-0 min-w-0 flex-col overflow-hidden">
               <p className="shrink-0 px-4 py-2 text-sm text-fd-muted-foreground sm:py-3">
-                {suiteTitle} · {filtered.length} glyphs
+                {suiteTitle} · <span className="tabular-nums">{filtered.length}</span> glyphs
               </p>
               <div className="min-h-0 flex-1 overflow-auto px-2 pb-6">
                 <IconPickerGrid
@@ -464,8 +507,11 @@ function GalleryBody({
       {suiteNav}
       {tools}
       {filtered.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-fd-border p-8 text-center text-sm text-fd-muted-foreground">
-          没有匹配的图标
+        <div className="flex min-h-[12rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center">
+          <p className="text-sm font-medium text-fd-foreground">没有匹配的图标</p>
+          <p className="max-w-sm text-sm text-fd-muted-foreground">
+            换个关键词，或切换套件后再试。可搜名称、Unicode、Glyph Index。
+          </p>
         </div>
       ) : (
         <IconGrid
@@ -511,15 +557,22 @@ export function IconGallery({ manifest: manifestProp, variant = 'embed' }: IconG
 
   if (error) {
     return (
-      <div className="my-6 rounded-xl border border-dashed border-fd-border p-6 text-sm text-fd-muted-foreground">
-        无法加载图标清单：{error}
+      <div className="my-6 flex min-h-[12rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center">
+        <p className="text-sm font-medium text-fd-foreground">无法加载图标清单</p>
+        <p className="max-w-sm text-sm text-fd-muted-foreground">{error}</p>
       </div>
     );
   }
 
   if (!manifest) {
     return (
-      <div className="my-6 rounded-xl border border-dashed border-fd-border p-6 text-sm text-fd-muted-foreground">
+      <div
+        className={
+          variant === 'app'
+            ? 'flex h-dvh flex-col items-center justify-center gap-1 text-sm text-fd-muted-foreground'
+            : 'my-6 flex min-h-[12rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center text-sm text-fd-muted-foreground'
+        }
+      >
         正在加载图标…
       </div>
     );
