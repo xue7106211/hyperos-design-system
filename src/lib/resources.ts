@@ -149,7 +149,7 @@ export const resourcesCatalog: CatalogColumn[] = [
       {
         name: '/ Icon /',
         description: '套件浏览、复制字符与 Unicode',
-        href: `#${resourcesSectionIds.icon}`,
+        href: '/icons',
       },
       {
         name: '/ Brand /',

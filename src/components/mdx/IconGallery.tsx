@@ -10,7 +10,6 @@ import {
   codePointToChar,
   filterIcons,
   formatUnicode,
-  parseHexColor,
   previewSurfaceHex,
 } from '@/lib/icon-query';
 import {
@@ -312,7 +311,6 @@ function GalleryBody({
   const [fontId, setFontId] = useState(ALL_FONTS);
   const [query, setQuery] = useState('');
   const [color, setColor] = useState(COLOR_PRESETS[0].hex);
-  const [hexDraft, setHexDraft] = useState(COLOR_PRESETS[0].hex);
   const [weight, setWeight] = useState(DEFAULT_WEIGHT);
   const [size, setSize] = useState(32);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -448,10 +446,7 @@ function GalleryBody({
                 title={preset.label}
                 aria-label={preset.label}
                 aria-pressed={selected}
-                onClick={() => {
-                  setColor(preset.hex);
-                  setHexDraft(preset.hex);
-                }}
+                onClick={() => setColor(preset.hex)}
                 className={`relative size-7 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] ${
                   selected
                     ? 'border-fd-foreground ring-2 ring-fd-foreground/20 ring-offset-2 ring-offset-fd-background'
@@ -461,17 +456,6 @@ function GalleryBody({
               />
             );
           })}
-          <input
-            value={hexDraft}
-            onChange={(e) => {
-              const next = e.target.value;
-              setHexDraft(next);
-              setColor((prev) => parseHexColor(next, prev));
-            }}
-            className="ms-0.5 h-8 w-[6.75rem] rounded-full border border-fd-border bg-fd-background px-2.5 font-mono text-xs tabular-nums outline-none transition-[border-color,box-shadow] duration-150 ease-out focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40"
-            aria-label="自定义颜色"
-            spellCheck={false}
-          />
         </div>
         <div className="flex items-center gap-2 text-xs text-fd-muted-foreground">
           <span id="icon-weight-label" className="shrink-0">
@@ -518,10 +502,7 @@ function GalleryBody({
                 title={preset.label}
                 aria-label={preset.label}
                 aria-pressed={selected}
-                onClick={() => {
-                  setColor(preset.hex);
-                  setHexDraft(preset.hex);
-                }}
+                onClick={() => setColor(preset.hex)}
                 className={`relative size-8 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] ${
                   selected
                     ? 'border-fd-foreground ring-2 ring-fd-foreground/20 ring-offset-2 ring-offset-fd-background'
@@ -531,17 +512,6 @@ function GalleryBody({
               />
             );
           })}
-          <input
-            value={hexDraft}
-            onChange={(e) => {
-              const next = e.target.value;
-              setHexDraft(next);
-              setColor((prev) => parseHexColor(next, prev));
-            }}
-            className="ms-0.5 h-8 w-[7.25rem] rounded-md border border-fd-border bg-fd-background px-2 font-mono text-xs tabular-nums outline-none transition-[border-color,box-shadow] duration-150 ease-out focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40"
-            aria-label="自定义颜色"
-            spellCheck={false}
-          />
         </div>
         <div className="flex items-center gap-2 text-xs text-fd-muted-foreground">
           <span id="icon-weight-label" className="shrink-0">
@@ -593,7 +563,14 @@ function GalleryBody({
         <div className="sr-only" aria-live="polite">
           {copyFeedback(copiedKey)}
         </div>
-        <div className="shrink-0 border-b border-fd-border/70">{tools}</div>
+        <div className="shrink-0 border-y border-fd-border/70">
+          <header className="px-4 pb-2.5 pt-4 sm:px-5 sm:pb-3 sm:pt-5">
+            <h1 className="text-balance text-2xl font-semibold tracking-tight text-fd-foreground sm:text-3xl">
+              HyperOS Symbols
+            </h1>
+          </header>
+          {tools}
+        </div>
         {filtered.length === 0 ? (
           <div className="m-4 flex min-h-[12rem] flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center sm:min-h-[16rem]">
             <p className="text-sm font-medium text-fd-foreground">没有匹配的图标</p>

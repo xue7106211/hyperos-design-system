@@ -239,7 +239,7 @@ package-lock.json       # npm 锁文件
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`
 - **旧路径兼容**：`/docs/foundations/...` 等永久重定向到新 IA（见 `next.config.mjs`）
 - **OS5**：侧栏可见但禁用；`/docs/os5` 暂重定向到 OS4，待内容发布后移除
-- **设计资源中心**：`/resources`（Landing `PillNav`「设计资源」；当前页短圆角底线选中态）；独立 hub，内容数据在 `src/lib/resources.ts`，组件在 `src/components/resources/`；Catalog（`#catalog`）设计类条目跳转页内锚点（`#components` / `#design-tools` / `#design-token` / `#fonts` / `#icon` / `#brand`）；右侧 Codex 导航见 `ResourcesCodexNav` + `resourcesPageAnchors`；「返回顶部」仅挂在 `/resources`（首页不挂，避免与 Ask AI 右下角入口重叠）
+- **设计资源中心**：`/resources`（Landing `PillNav`「设计资源」；当前页短圆角底线选中态）；独立 hub，内容数据在 `src/lib/resources.ts`，组件在 `src/components/resources/`；Catalog（`#catalog`）设计类条目多数跳转页内锚点（`#components` / `#design-tools` / `#design-token` / `#fonts` / `#brand`），**Icon** 直达 [`/icons`](/icons)；右侧 Codex 导航见 `ResourcesCodexNav` + `resourcesPageAnchors`；「返回顶部」仅挂在 `/resources`（首页不挂，避免与 Ask AI 右下角入口重叠）
 - **设计模式**（侧栏名；路径 `best-practices/`）：总览 + 二级占位页（页面模式 / 加载与刷新 / 下载 / 状态提示 / 启动 / 引导 / 资源选择 / 系统分享 / 自升级 / 系统能力衔接 / 数据图表化）；OS5 同步占位
 - **多端设备标准**（路径 `multi-device/`）：总览 + 二级占位页（设备特性发挥 / 设备互通与跨设备协同 / 应用最佳实践）；OS5 同步占位
 
