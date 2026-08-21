@@ -23,6 +23,7 @@ function HoverCardContent({
   className,
   align = "center",
   sideOffset = 4,
+  children,
   ...props
 }: React.ComponentProps<typeof HoverCardPrimitive.Content>) {
   return (
@@ -36,9 +37,24 @@ function HoverCardContent({
           className
         )}
         {...props}
-      />
+      >
+        {children}
+      </HoverCardPrimitive.Content>
     </HoverCardPrimitive.Portal>
   )
 }
 
-export { HoverCard, HoverCardTrigger, HoverCardContent }
+function HoverCardArrow({
+  className,
+  ...props
+}: React.ComponentProps<typeof HoverCardPrimitive.Arrow>) {
+  return (
+    <HoverCardPrimitive.Arrow
+      data-slot="hover-card-arrow"
+      className={cn("fill-popover", className)}
+      {...props}
+    />
+  )
+}
+
+export { HoverCard, HoverCardTrigger, HoverCardContent, HoverCardArrow }

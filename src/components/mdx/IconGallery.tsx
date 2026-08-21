@@ -20,6 +20,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import {
+  HoverCard,
+  HoverCardArrow,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
 import { IconInspector } from './IconInspector';
 
 type IconGalleryProps = {
@@ -153,14 +159,31 @@ const IconPickerGrid = memo(function IconPickerGrid({
   manifest,
   icons,
   selectedId,
+  copiedKey,
   onSelect,
+  onCopy,
 }: {
   manifest: IconManifest;
   icons: IconEntry[];
   selectedId: string | null;
+  copiedKey: string | null;
   onSelect: (id: string) => void;
+  onCopy: (key: string, text: string) => void;
 }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  // 滚动时热区已离开触发点，强制关闭（含祖先 overflow 容器）
+  useEffect(() => {
+    if (!openId) return;
+    const dismiss = () => setOpenId(null);
+    document.addEventListener('scroll', dismiss, true);
+    window.addEventListener('resize', dismiss);
+    return () => {
+      document.removeEventListener('scroll', dismiss, true);
+      window.removeEventListener('resize', dismiss);
+    };
+  }, [openId]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const index = icons.findIndex((icon) => icon.id === selectedId);
@@ -178,6 +201,7 @@ const IconPickerGrid = memo(function IconPickerGrid({
     else if (event.key === 'End') next = icons.length - 1;
     else return;
     event.preventDefault();
+    setOpenId(null);
     onSelect(icons[next].id);
   };
 
@@ -195,25 +219,83 @@ const IconPickerGrid = memo(function IconPickerGrid({
       {icons.map((icon) => {
         const selected = icon.id === selectedId;
         const font = fontOf(manifest, icon.fontId);
+        const unicodeText = formatUnicode(icon.unicode);
+        const hoverCopied =
+          copiedKey === `${icon.id}:hover-unicode:ok`
+            ? '已复制'
+            : copiedKey === `${icon.id}:hover-unicode:err`
+              ? '复制失败'
+              : null;
+
         return (
-          <button
+          <HoverCard
             key={icon.id}
-            id={`icon-cell-${icon.id}`}
-            data-icon-cell
-            type="button"
-            role="option"
-            aria-selected={selected}
-            aria-label={icon.name}
-            tabIndex={-1}
-            onClick={() => onSelect(icon.id)}
-            className={`flex aspect-square min-h-11 touch-manipulation items-center justify-center rounded-xl transition-[color,background-color,transform] duration-150 ease-out active:scale-[0.96] ${
-              selected
-                ? 'bg-fd-foreground text-fd-background'
-                : 'text-fd-foreground [@media(hover:hover)]:hover:bg-fd-accent/70'
-            }`}
+            open={openId === icon.id}
+            openDelay={380}
+            closeDelay={120}
+            onOpenChange={(open) => setOpenId(open ? icon.id : null)}
           >
-            <GlyphPreview icon={icon} font={font} tone="on-selected" />
-          </button>
+            <HoverCardTrigger asChild>
+              <button
+                id={`icon-cell-${icon.id}`}
+                data-icon-cell
+                type="button"
+                role="option"
+                aria-selected={selected}
+                aria-label={icon.name}
+                tabIndex={-1}
+                onClick={() => onSelect(icon.id)}
+                className={`flex aspect-square min-h-11 touch-manipulation items-center justify-center rounded-xl transition-[color,background-color,transform] duration-150 ease-out active:scale-[0.96] ${
+                  selected
+                    ? 'bg-fd-foreground text-fd-background'
+                    : 'text-fd-foreground [@media(hover:hover)]:hover:bg-fd-muted'
+                }`}
+              >
+                <GlyphPreview icon={icon} font={font} tone="on-selected" />
+              </button>
+            </HoverCardTrigger>
+            <HoverCardContent
+              side="top"
+              sideOffset={10}
+              collisionPadding={12}
+              className="z-[60] w-[11.75rem] border-0 bg-fd-popover p-0 text-fd-popover-foreground shadow-lg ring-1 ring-fd-border"
+            >
+              <div
+                className="flex h-[5.75rem] items-center justify-center"
+                style={
+                  {
+                    backgroundColor: 'var(--icon-surface)',
+                    '--icon-size': '2.75rem',
+                  } as CSSProperties
+                }
+              >
+                <GlyphPreview icon={icon} font={font} />
+              </div>
+              <div className="flex items-baseline justify-between gap-2 px-3 py-1.5 text-xs text-fd-muted-foreground">
+                <span className="min-w-0 truncate" title={icon.name}>
+                  {icon.name}
+                </span>
+                <span className="shrink-0 tabular-nums">{icon.glyphIndex}</span>
+              </div>
+              <div className="flex items-center gap-2 border-t border-fd-border px-2 py-1.5">
+                <span className="min-w-0 truncate rounded-full bg-fd-muted px-2 py-0.5 font-mono text-[10px] tabular-nums text-fd-muted-foreground">
+                  {unicodeText}
+                </span>
+                <button
+                  type="button"
+                  className="ms-auto shrink-0 rounded-md px-2 py-1 text-xs font-medium text-fd-foreground transition-colors duration-150 ease-out hover:bg-fd-accent"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    void onCopy(`${icon.id}:hover-unicode`, unicodeText);
+                  }}
+                >
+                  {hoverCopied ?? '拷贝'}
+                </button>
+              </div>
+              <HoverCardArrow className="fill-fd-popover" width={12} height={7} />
+            </HoverCardContent>
+          </HoverCard>
         );
       })}
     </div>
@@ -530,7 +612,9 @@ function GalleryBody({
                   manifest={manifest}
                   icons={filtered}
                   selectedId={selectedId}
+                  copiedKey={copiedKey}
                   onSelect={setSelectedId}
+                  onCopy={onCopy}
                 />
               </div>
             </section>
