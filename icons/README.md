@@ -27,5 +27,5 @@
 
 ## 文档站预览
 
-- 页面：`/icons`（独立页，无 docs 侧栏 / PillNav）
+- 页面：`/icons`（独立页，无 docs 侧栏；与首页/资源共用 PillNav）
 - 组件：`<IconGallery variant="app" />`（文档 / Tina 内嵌仍用默认 `embed`）

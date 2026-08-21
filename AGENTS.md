@@ -126,7 +126,7 @@ npm run dev            # dev server 会自动重新生成
 ### 图标资产（Agent 必读）
 
 - 源文件：`icons/font/*.ttf`；索引：`icons/manifest.json`；站点静态：`public/fonts/`
-- 文档页：`/icons`（独立页 `<IconGallery variant="app" />`；无 docs 侧栏、无 PillNav；顶栏为套件一级导航）
+- 文档页：`/icons`（独立页 `<IconGallery variant="app" />`；无 docs 侧栏；与首页/资源共用 PillNav，页内为套件二级栏 + 搜索）
 - 旧路径：`/docs/os4/resources/icons`、`/docs/os4/icons`、`/docs/os4/foundations/iconography`、`/docs/os4/general/icons` → `/icons`
 
 ## 容器化（Agent 必读）
@@ -188,7 +188,7 @@ public/
   uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
   app/                  # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og）
-    icons/              # /icons HyperOS Symbols 独立页（套件一级导航；无 PillNav / docs 侧栏）
+    icons/              # /icons HyperOS Symbols 独立页（PillNav + 页内套件二级栏；无 docs 侧栏）
     resources/          # 设计资源中心（独立 hub，非 docs 侧栏）
   components/
     ai/                 # Ask AI（AiAssistant 门闩 + search 浮动面板）
@@ -233,7 +233,7 @@ package-lock.json       # npm 锁文件
 
 （路径：`general` / `components` / `interaction` / `best-practices` / `system` / `multi-device`）
 
-`content/docs/{os}/resources/` 为资源总览（不进入 docs 侧栏一级）。**HyperOS 图标库**在独立页 [`/icons`](/icons)（无 docs 侧栏、无 PillNav；套件切换为页内一级导航）；入口在 [设计资源中心](/resources) 与文档内链。
+`content/docs/{os}/resources/` 为资源总览（不进入 docs 侧栏一级）。**HyperOS 图标库**在独立页 [`/icons`](/icons)（无 docs 侧栏；与首页/资源共用 PillNav；套件切换为页内二级导航）；入口在 [设计资源中心](/resources) 与文档内链。
 
 - **默认版本**：`/docs` → `/docs/os4`（`next.config.mjs` 重定向）
 - **版本切换**：侧边栏 `DocsVersionSwitcher`（`src/components/docs/`）；配置见 `src/lib/shared.ts`（`docsVersions`）与 `src/lib/docs-version-tabs.ts`

@@ -1,7 +1,6 @@
 'use client';
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
-import { ThemeSwitch } from 'fumadocs-ui/layouts/shared/slots/theme-switch';
 import type { IconEntry, IconFont, IconManifest } from '@/lib/icons';
 import {
   ALL_FONTS,
@@ -306,8 +305,16 @@ function GalleryBody({
   const suiteTitle =
     fontId === ALL_FONTS ? '全部' : (manifest.fonts.find((font) => font.id === fontId)?.label ?? fontId);
 
-  const suiteNav = isApp ? (
-    <nav aria-label="图标套件" className="flex min-w-0 flex-1 items-stretch gap-0.5 overflow-x-auto">
+  /** 页内筛选芯片：避免与 PillNav 同款下划线 Tab 抢层级 */
+  const suiteNav = (
+    <nav
+      aria-label="图标套件"
+      className={
+        isApp
+          ? 'flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto py-0.5'
+          : 'flex flex-wrap items-center gap-2'
+      }
+    >
       {suiteItems.map((item) => {
         const active = fontId === item.id;
         return (
@@ -315,32 +322,7 @@ function GalleryBody({
             key={item.id}
             type="button"
             aria-pressed={active}
-            className={`relative flex min-h-11 shrink-0 items-center px-3 text-sm font-medium transition-colors duration-150 ease-out ${
-              active ? 'text-fd-foreground' : 'text-fd-muted-foreground hover:text-fd-foreground'
-            }`}
-            onClick={() => setFontId(item.id)}
-          >
-            {item.label}
-            {active ? (
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-fd-foreground"
-              />
-            ) : null}
-          </button>
-        );
-      })}
-    </nav>
-  ) : (
-    <nav aria-label="图标套件" className="flex flex-wrap items-center gap-2">
-      {suiteItems.map((item) => {
-        const active = fontId === item.id;
-        return (
-          <button
-            key={item.id}
-            type="button"
-            aria-pressed={active}
-            className={`min-h-8 rounded-full border px-3 py-1 text-xs font-medium transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.96] ${
+            className={`min-h-8 shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.96] ${
               active
                 ? 'border-fd-foreground bg-fd-foreground text-fd-background'
                 : 'border-fd-border text-fd-muted-foreground hover:border-fd-foreground/40 hover:text-fd-foreground'
@@ -363,15 +345,86 @@ function GalleryBody({
       aria-label="搜索图标"
       className={
         isApp
-          ? 'h-8 w-40 shrink-0 rounded-md border border-fd-border bg-fd-background px-2.5 text-sm outline-none transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-fd-muted-foreground focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40 sm:w-56 lg:w-72'
+          ? 'h-8 w-36 shrink-0 rounded-full border border-fd-border bg-fd-background px-3 text-sm outline-none transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-fd-muted-foreground focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40 sm:w-48 lg:w-64'
           : 'h-10 w-full rounded-lg border border-fd-border bg-fd-background px-3 text-sm outline-none transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-fd-muted-foreground focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40'
       }
     />
   );
 
-  const tools = (
-    <div className={`flex flex-col gap-3 ${isApp ? '' : 'rounded-xl border border-fd-border p-3'}`}>
-      {isApp ? null : searchInput}
+  const tools = isApp ? (
+    <div className="flex flex-col gap-2.5 px-3 py-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-2 sm:px-4">
+      {suiteNav}
+      <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 sm:ms-auto">
+        {searchInput}
+        <div className="flex items-center gap-2">
+          {COLOR_PRESETS.map((preset) => {
+            const selected = color.toLowerCase() === preset.hex.toLowerCase();
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                title={preset.label}
+                aria-label={preset.label}
+                aria-pressed={selected}
+                onClick={() => {
+                  setColor(preset.hex);
+                  setHexDraft(preset.hex);
+                }}
+                className={`relative size-7 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] ${
+                  selected
+                    ? 'border-fd-foreground ring-2 ring-fd-foreground/20 ring-offset-2 ring-offset-fd-background'
+                    : 'border-fd-border hover:border-fd-foreground/50'
+                }`}
+                style={{ backgroundColor: preset.hex }}
+              />
+            );
+          })}
+          <input
+            value={hexDraft}
+            onChange={(e) => {
+              const next = e.target.value;
+              setHexDraft(next);
+              setColor((prev) => parseHexColor(next, prev));
+            }}
+            className="ms-0.5 h-8 w-[6.75rem] rounded-full border border-fd-border bg-fd-background px-2.5 font-mono text-xs tabular-nums outline-none transition-[border-color,box-shadow] duration-150 ease-out focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40"
+            aria-label="自定义颜色"
+            spellCheck={false}
+          />
+        </div>
+        <div className="flex items-center gap-2 text-xs text-fd-muted-foreground">
+          <span id="icon-weight-label" className="shrink-0">
+            粗细
+          </span>
+          <Select value={String(weight)} onValueChange={(value) => setWeight(Number(value))}>
+            <SelectTrigger
+              size="sm"
+              aria-labelledby="icon-weight-label"
+              className="h-8 min-w-[9rem] rounded-full border-fd-border bg-fd-background py-0 pl-2.5 pr-2 text-xs tabular-nums text-fd-foreground shadow-none transition-[border-color,background-color,box-shadow] duration-150 ease-out focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40 dark:bg-fd-background dark:hover:bg-fd-muted/40"
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent
+              align="start"
+              position="popper"
+              className="border-fd-border bg-fd-popover text-fd-popover-foreground ring-fd-border"
+            >
+              {WEIGHT_PRESETS.map((preset) => (
+                <SelectItem
+                  key={preset.value}
+                  value={String(preset.value)}
+                  className="text-xs tabular-nums focus:bg-fd-accent focus:text-fd-accent-foreground"
+                >
+                  {preset.label} · {preset.value}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="flex flex-col gap-3 rounded-xl border border-fd-border p-3">
+      {searchInput}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <div className="flex items-center gap-2">
           {COLOR_PRESETS.map((preset) => {
@@ -437,37 +490,28 @@ function GalleryBody({
             </SelectContent>
           </Select>
         </div>
-        {isApp ? null : (
-          <label className="flex min-w-40 flex-1 items-center gap-2 text-xs text-fd-muted-foreground">
-            <span className="tabular-nums">字号 {size}</span>
-            <input
-              type="range"
-              min={16}
-              max={64}
-              value={size}
-              onChange={(e) => setSize(Number(e.target.value))}
-              className="flex-1"
-            />
-          </label>
-        )}
+        <label className="flex min-w-40 flex-1 items-center gap-2 text-xs text-fd-muted-foreground">
+          <span className="tabular-nums">字号 {size}</span>
+          <input
+            type="range"
+            min={16}
+            max={64}
+            value={size}
+            onChange={(e) => setSize(Number(e.target.value))}
+            className="flex-1"
+          />
+        </label>
       </div>
     </div>
   );
 
   if (isApp) {
     return (
-      <div className="not-prose flex h-dvh flex-col overflow-hidden" style={galleryVars}>
+      <div className="not-prose flex h-full min-h-0 flex-1 flex-col overflow-hidden" style={galleryVars}>
         <div className="sr-only" aria-live="polite">
           {copyFeedback(copiedKey)}
         </div>
-        <header className="sticky top-0 z-40 border-b border-fd-border bg-fd-background/90 backdrop-blur-sm">
-          <div className="flex items-center gap-2 px-2 sm:gap-3 sm:px-4">
-            {suiteNav}
-            {searchInput}
-            <ThemeSwitch mode="light-dark" className="shrink-0 border-0 bg-transparent" />
-          </div>
-        </header>
-        <div className="shrink-0 border-b border-fd-border px-4 py-2.5">{tools}</div>
+        <div className="shrink-0 border-b border-fd-border/70">{tools}</div>
         {filtered.length === 0 ? (
           <div className="m-4 flex min-h-[12rem] flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center sm:min-h-[16rem]">
             <p className="text-sm font-medium text-fd-foreground">没有匹配的图标</p>
@@ -476,7 +520,7 @@ function GalleryBody({
             </p>
           </div>
         ) : (
-          <div className="grid min-h-0 flex-1 overflow-hidden max-lg:grid-rows-[minmax(0,1fr)_minmax(18rem,50vh)] lg:grid-cols-[minmax(0,1fr)_minmax(18rem,min(40%,38rem))]">
+          <div className="grid min-h-0 flex-1 overflow-hidden max-lg:grid-rows-[minmax(0,1fr)_minmax(12rem,0.45fr)] lg:grid-cols-[minmax(0,1fr)_minmax(18rem,min(40%,38rem))]">
             <section className="flex min-h-0 min-w-0 flex-col overflow-hidden border-b border-fd-border lg:border-r lg:border-b-0">
               <p className="shrink-0 px-4 py-2 text-sm text-fd-muted-foreground sm:py-3">
                 {suiteTitle} · <span className="tabular-nums">{filtered.length}</span> glyphs
@@ -579,7 +623,7 @@ export function IconGallery({ manifest: manifestProp, variant = 'embed' }: IconG
       <div
         className={
           variant === 'app'
-            ? 'flex h-dvh flex-col items-center justify-center gap-1 text-sm text-fd-muted-foreground'
+            ? 'flex h-full min-h-0 flex-1 flex-col items-center justify-center gap-1 text-sm text-fd-muted-foreground'
             : 'my-6 flex min-h-[12rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center text-sm text-fd-muted-foreground'
         }
       >

@@ -207,7 +207,10 @@ export function IconInspector({
 
   return (
     <div ref={rootRef} className="flex h-full min-h-0 flex-col overflow-hidden">
-      <div data-icon-inspector-header className="shrink-0 px-4 pt-3 sm:px-5 sm:pt-4">
+      <div
+        data-icon-inspector-header
+        className="flex shrink-0 flex-col justify-center px-4 py-2 sm:px-5"
+      >
         <p className="truncate text-sm font-medium tracking-tight" title={icon.name}>
           {icon.name}
         </p>
@@ -216,7 +219,10 @@ export function IconInspector({
         ) : null}
       </div>
 
-      <div className="relative min-h-0 flex-1 overflow-hidden">
+      <div
+        className="relative min-h-0 flex-1 overflow-hidden"
+        style={{ backgroundColor: 'var(--icon-surface)' }}
+      >
         <button
           type="button"
           aria-label={`复制 ${icon.name} 字符`}
