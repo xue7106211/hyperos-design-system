@@ -120,7 +120,7 @@ const IconGrid = memo(function IconGrid({
               type="button"
               aria-label={`复制 ${icon.name} 字符`}
               onClick={() => onCopy(`${icon.id}:glyph`, codePointToChar(icon.unicode))}
-              className="flex h-24 items-center justify-center transition-[opacity,transform] duration-150 ease-out active:scale-[0.96]"
+              className="flex h-24 items-center justify-center transition-[opacity,transform] duration-150 ease-out active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100"
               style={{ backgroundColor: 'var(--icon-surface)' }}
             >
               <GlyphPreview icon={icon} font={font} />
@@ -244,7 +244,7 @@ const IconPickerGrid = memo(function IconPickerGrid({
                 aria-label={icon.name}
                 tabIndex={-1}
                 onClick={() => onSelect(icon.id)}
-                className={`flex aspect-square min-h-11 touch-manipulation items-center justify-center rounded-xl transition-[color,background-color,transform] duration-150 ease-out active:scale-[0.96] ${
+                className={`flex aspect-square min-h-11 touch-manipulation items-center justify-center rounded-xl transition-[color,background-color,transform] duration-150 ease-out active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 ${
                   selected
                     ? 'bg-fd-foreground text-fd-background'
                     : 'text-fd-foreground [@media(hover:hover)]:hover:bg-fd-muted'
@@ -402,7 +402,7 @@ function GalleryBody({
             key={item.id}
             type="button"
             aria-pressed={active}
-            className={`min-h-8 shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.96] ${
+            className={`min-h-8 shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 ${
               active
                 ? 'border-fd-foreground bg-fd-foreground text-fd-background'
                 : 'border-fd-border text-fd-muted-foreground hover:border-fd-foreground/40 hover:text-fd-foreground'
@@ -447,7 +447,7 @@ function GalleryBody({
                 aria-label={preset.label}
                 aria-pressed={selected}
                 onClick={() => setColor(preset.hex)}
-                className={`relative size-7 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] ${
+                className={`relative size-7 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 ${
                   selected
                     ? 'border-fd-foreground ring-2 ring-fd-foreground/20 ring-offset-2 ring-offset-fd-background'
                     : 'border-fd-border hover:border-fd-foreground/50'
@@ -503,7 +503,7 @@ function GalleryBody({
                 aria-label={preset.label}
                 aria-pressed={selected}
                 onClick={() => setColor(preset.hex)}
-                className={`relative size-8 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] ${
+                className={`relative size-8 rounded-full border transition-[box-shadow,transform,border-color] duration-150 ease-out before:absolute before:-inset-1 before:content-[''] active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 ${
                   selected
                     ? 'border-fd-foreground ring-2 ring-fd-foreground/20 ring-offset-2 ring-offset-fd-background'
                     : 'border-fd-border hover:border-fd-foreground/50'
