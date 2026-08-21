@@ -22,6 +22,14 @@ export type IconFont = {
   path: string;
   weight: IconFontWeight;
   metrics?: IconFontMetrics;
+  /** name table id 6 */
+  postscriptName?: string;
+  /** name table id 0 */
+  copyright?: string;
+  /** name table id 7 */
+  trademark?: string;
+  /** name table id 5（字体版本字符串，非 manifest.version） */
+  fontVersion?: string;
 };
 
 export type IconEntry = {

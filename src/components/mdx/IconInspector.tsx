@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import type { IconEntry, IconFont, IconFontMetrics } from '@/lib/icons';
+import { useEffect, useEffectEvent, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import type { IconEntry, IconFont } from '@/lib/icons';
 import {
   codePointToChar,
   formatBBox,
@@ -19,28 +19,10 @@ type IconInspectorProps = {
   onCopy: (key: string, text: string) => void;
 };
 
-function metricLines(metrics: IconFontMetrics, compact: boolean) {
-  const lines = [
-    { label: compact ? 'Asc' : 'Ascender', value: metrics.ascender },
-    { label: compact ? 'Cap' : 'Cap height', value: metrics.capHeight },
-    { label: compact ? 'x' : 'x-height', value: metrics.xHeight },
-    { label: compact ? 'Base' : 'Baseline', value: 0 },
-    { label: compact ? 'Desc' : 'Descender', value: metrics.descender },
-  ];
-  return lines.filter((line, index, all) => {
-    if (line.label === 'Cap height' || line.label === 'Cap' || line.label === 'x-height' || line.label === 'x') {
-      return line.value !== 0;
-    }
-    return all.findIndex((item) => item.value === line.value) === index;
-  });
-}
-
-function yPercent(value: number, ascender: number, span: number) {
-  return ((ascender - value) / span) * 100;
-}
-
-/** Label column width in the same unit space as glyphWidth / span (font units). */
-const LABEL_UNITS = 220;
+const META_DEFAULT = 280;
+const META_MIN = 120;
+const PREVIEW_MIN = 144;
+const HANDLE_H = 20;
 
 export function IconInspector({
   icon,
@@ -51,8 +33,12 @@ export function IconInspector({
   copiedKey,
   onCopy,
 }: IconInspectorProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{ startY: number; startHeight: number } | null>(null);
   const [stage, setStage] = useState({ w: 0, h: 0 });
+  const [metaHeight, setMetaHeight] = useState(META_DEFAULT);
+  const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     const el = stageRef.current;
@@ -64,6 +50,67 @@ export function IconInspector({
     return () => observer.disconnect();
   }, []);
 
+  const clampMeta = (height: number) => {
+    const root = rootRef.current;
+    if (!root) return Math.max(META_MIN, height);
+    const header = root.querySelector<HTMLElement>('[data-icon-inspector-header]');
+    const max = Math.max(
+      META_MIN,
+      root.clientHeight - (header?.offsetHeight ?? 0) - HANDLE_H - PREVIEW_MIN,
+    );
+    return Math.min(max, Math.max(META_MIN, Math.round(height)));
+  };
+
+  const onPointerMove = useEffectEvent((event: PointerEvent) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    // 向上拖增大元数据区，向下拖缩小
+    const next = drag.startHeight + (drag.startY - event.clientY);
+    setMetaHeight(clampMeta(next));
+  });
+
+  const stopDragging = useEffectEvent(() => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    setDragging(false);
+    setMetaHeight((prev) => clampMeta(prev));
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  });
+
+  useEffect(() => {
+    if (!dragging) return;
+    const onMove = (event: PointerEvent) => onPointerMove(event);
+    const onUp = () => stopDragging();
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+    };
+  }, [dragging]);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const sync = () => setMetaHeight((prev) => clampMeta(prev));
+    sync();
+    const observer = new ResizeObserver(sync);
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
+
+  const startDrag = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    dragRef.current = { startY: event.clientY, startHeight: metaHeight };
+    setDragging(true);
+    document.body.style.cursor = 'ns-resize';
+    document.body.style.userSelect = 'none';
+  };
+
   const metrics = font?.metrics;
   const upm = metrics?.unitsPerEm ?? 1000;
   const ascender = metrics?.ascender ?? upm * 0.8;
@@ -74,14 +121,12 @@ export function IconInspector({
   const decimal = unicodeToDecimal(icon.unicode);
   const bboxW = icon.bbox ? icon.bbox[2] - icon.bbox[0] : 0;
   const glyphWidth = Math.max(icon.advanceWidth ?? upm, bboxW, 1);
-  const contentW = LABEL_UNITS + glyphWidth;
-  const aspect = contentW / span;
+  const aspect = glyphWidth / span;
 
   // Fit frame inside stage (contain), then derive font size from the real pixel height.
   const frameW = stage.w > 0 && stage.h > 0 ? Math.min(stage.w, stage.h * aspect) : 0;
   const frameH = frameW > 0 ? frameW / aspect : 0;
   const fontSize = frameH > 0 ? frameH * (upm / span) : 0;
-  const lines = metrics ? metricLines(metrics, frameW > 0 && frameW < 260) : [];
 
   const copyState = (part: string) => {
     if (copiedKey === `${icon.id}:${part}:ok`) return '已复制';
@@ -130,11 +175,39 @@ export function IconInspector({
       value: String(icon.glyphIndex),
       copy: String(icon.glyphIndex),
     },
+    {
+      label: 'PostScript',
+      part: 'ps',
+      value: font?.postscriptName || '—',
+      copy: font?.postscriptName || '',
+      wide: true,
+    },
+    {
+      label: 'Version',
+      part: 'fontver',
+      value: font?.fontVersion || '—',
+      copy: font?.fontVersion || '',
+      wide: true,
+    },
+    {
+      label: 'Copyright',
+      part: 'copyright',
+      value: font?.copyright || '—',
+      copy: font?.copyright || '',
+      wide: true,
+    },
+    {
+      label: 'Trademark',
+      part: 'trademark',
+      value: font?.trademark || '—',
+      copy: font?.trademark || '',
+      wide: true,
+    },
   ];
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden">
-      <div className="shrink-0 px-4 pt-3 sm:px-5 sm:pt-4">
+    <div ref={rootRef} className="flex h-full min-h-0 flex-col overflow-hidden">
+      <div data-icon-inspector-header className="shrink-0 px-4 pt-3 sm:px-5 sm:pt-4">
         <p className="truncate text-sm font-medium tracking-tight" title={icon.name}>
           {icon.name}
         </p>
@@ -143,7 +216,7 @@ export function IconInspector({
         ) : null}
       </div>
 
-      <div className="relative min-h-[9rem] flex-1 overflow-hidden sm:min-h-[12rem]">
+      <div className="relative min-h-0 flex-1 overflow-hidden">
         <button
           type="button"
           aria-label={`复制 ${icon.name} 字符`}
@@ -155,75 +228,79 @@ export function IconInspector({
           className="pointer-events-none absolute inset-3 grid place-items-center overflow-hidden select-none sm:inset-4"
         >
           {font && frameW > 0 ? (
-            <div className="relative overflow-hidden" style={{ width: frameW, height: frameH }}>
-              {lines.map((line) => (
-                <div
-                  key={line.label}
-                  className="absolute inset-x-0 flex items-center"
-                  style={{ top: `${yPercent(line.value, ascender, span)}%` }}
-                >
-                  <span
-                    className="shrink-0 -translate-y-1/2 truncate px-1 text-left leading-none text-fd-muted-foreground"
-                    style={{
-                      width: (LABEL_UNITS / contentW) * frameW,
-                      fontSize: Math.max(8, frameH * 0.022),
-                    }}
-                  >
-                    {line.label}
-                  </span>
-                  <span className="h-px min-w-0 flex-1 -translate-y-1/2 border-t border-dashed border-fd-foreground/20" />
-                </div>
-              ))}
-              <span
-                aria-hidden
-                className="absolute block overflow-hidden text-center [font-synthesis:none]"
-                style={{
-                  left: (LABEL_UNITS / contentW) * frameW,
-                  top: 0,
-                  width: (glyphWidth / contentW) * frameW,
-                  height: frameH,
-                  fontFamily: `"${font.family}", sans-serif`,
-                  fontWeight: weight,
-                  fontVariationSettings: `"wght" ${weight}`,
-                  fontSize,
-                  // Line box = fontSize * (span/upm) = frameH, so half-leading is ~0 and
-                  // the typographic baseline lands on Ascender→0 within the frame.
-                  lineHeight: span / upm,
-                  color,
-                }}
-              >
-                {char}
-              </span>
-            </div>
+            <span
+              aria-hidden
+              className="block overflow-hidden text-center [font-synthesis:none]"
+              style={{
+                width: frameW,
+                height: frameH,
+                fontFamily: `"${font.family}", sans-serif`,
+                fontWeight: weight,
+                fontVariationSettings: `"wght" ${weight}`,
+                fontSize,
+                // Line box = fontSize * (span/upm) = frameH, so half-leading is ~0 and
+                // the typographic baseline lands on Ascender→0 within the frame.
+                lineHeight: span / upm,
+                color,
+              }}
+            >
+              {char}
+            </span>
           ) : null}
         </div>
       </div>
 
-      <dl className="grid max-h-[40%] shrink-0 grid-cols-1 gap-x-6 gap-y-0.5 overflow-y-auto border-t border-fd-border px-4 py-2 sm:max-h-none sm:grid-cols-2 sm:gap-x-8 sm:gap-y-1 sm:px-5 sm:py-4 sm:pb-6">
-        {fields.map((field) => (
-          <div
-            key={field.label}
-            className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[7.25rem_minmax(0,1fr)]"
-          >
-            <dt className="text-[11px] text-fd-muted-foreground">{field.label}</dt>
-            <dd>
-              {field.copy ? (
-                <button
-                  type="button"
-                  className="min-h-8 max-w-full break-all rounded-sm py-1 text-left font-mono text-xs tabular-nums text-fd-foreground outline-none transition-colors duration-150 ease-out hover:text-fd-foreground/70 focus-visible:ring-2 focus-visible:ring-fd-ring"
-                  onClick={() => onCopy(`${icon.id}:${field.part}`, field.copy)}
-                >
-                  {copyState(field.part) ?? field.value}
-                </button>
-              ) : (
-                <span className="inline-flex min-h-8 items-center font-mono text-xs tabular-nums text-fd-muted-foreground">
-                  {field.value}
-                </span>
-              )}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      <div className="flex shrink-0 flex-col border-t border-fd-border">
+        <button
+          type="button"
+          role="separator"
+          aria-label="拖拽调整详情高度"
+          aria-orientation="horizontal"
+          aria-valuenow={metaHeight}
+          aria-valuemin={META_MIN}
+          onPointerDown={startDrag}
+          className={`flex h-5 w-full cursor-ns-resize touch-none items-center justify-center outline-none transition-colors duration-150 ease-out focus-visible:bg-fd-accent/40 ${
+            dragging ? 'bg-fd-accent/30' : 'hover:bg-fd-accent/20'
+          }`}
+        >
+          <span
+            aria-hidden
+            className="pointer-events-none h-1 w-9 rounded-full bg-fd-muted-foreground/35"
+          />
+        </button>
+        <dl
+          className="grid grid-cols-1 gap-x-6 gap-y-0.5 overflow-y-auto px-4 pb-2 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-1 sm:px-5 sm:pb-6"
+          style={{ height: metaHeight }}
+        >
+          {fields.map((field) => (
+            <div
+              key={field.label}
+              className={`grid items-start gap-2 ${
+                field.wide
+                  ? 'grid-cols-[6.5rem_minmax(0,1fr)] sm:col-span-2 sm:grid-cols-[7.25rem_minmax(0,1fr)]'
+                  : 'grid-cols-[6.5rem_minmax(0,1fr)] items-center sm:grid-cols-[7.25rem_minmax(0,1fr)]'
+              }`}
+            >
+              <dt className="pt-1 text-[11px] text-fd-muted-foreground sm:pt-0">{field.label}</dt>
+              <dd>
+                {field.copy ? (
+                  <button
+                    type="button"
+                    className="min-h-8 max-w-full break-all rounded-sm py-1 text-left font-mono text-xs tabular-nums text-fd-foreground outline-none transition-colors duration-150 ease-out hover:text-fd-foreground/70 focus-visible:ring-2 focus-visible:ring-fd-ring"
+                    onClick={() => onCopy(`${icon.id}:${field.part}`, field.copy)}
+                  >
+                    {copyState(field.part) ?? field.value}
+                  </button>
+                ) : (
+                  <span className="inline-flex min-h-8 items-center font-mono text-xs tabular-nums text-fd-muted-foreground">
+                    {field.value}
+                  </span>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </div>
   );
 }

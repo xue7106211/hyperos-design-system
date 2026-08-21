@@ -190,8 +190,8 @@ const IconPickerGrid = memo(function IconPickerGrid({
       aria-activedescendant={selectedId ? `icon-cell-${selectedId}` : undefined}
       tabIndex={0}
       onKeyDown={onKeyDown}
-      className="grid grid-cols-[repeat(auto-fill,minmax(2.75rem,1fr))] content-start rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
-      style={{ '--icon-size': '1.35rem' } as CSSProperties}
+      className="grid grid-cols-[repeat(auto-fill,minmax(3.5rem,1fr))] content-start gap-1.5 rounded-lg p-1 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+      style={{ '--icon-size': '1.5rem' } as CSSProperties}
     >
       {icons.map((icon) => {
         const selected = icon.id === selectedId;
@@ -207,7 +207,7 @@ const IconPickerGrid = memo(function IconPickerGrid({
             aria-label={icon.name}
             tabIndex={-1}
             onClick={() => onSelect(icon.id)}
-            className={`flex min-h-11 touch-manipulation items-center justify-center rounded-lg transition-[color,background-color,transform] duration-150 ease-out active:scale-[0.96] ${
+            className={`flex aspect-square min-h-11 touch-manipulation items-center justify-center rounded-xl transition-[color,background-color,transform] duration-150 ease-out active:scale-[0.96] ${
               selected
                 ? 'bg-fd-foreground text-fd-background'
                 : 'text-fd-foreground [@media(hover:hover)]:hover:bg-fd-accent/70'
@@ -354,15 +354,24 @@ function GalleryBody({
     </nav>
   );
 
+  const searchInput = (
+    <input
+      type="search"
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      placeholder="搜索名称、Unicode、Glyph Index"
+      aria-label="搜索图标"
+      className={
+        isApp
+          ? 'h-8 w-40 shrink-0 rounded-md border border-fd-border bg-fd-background px-2.5 text-sm outline-none transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-fd-muted-foreground focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40 sm:w-56 lg:w-72'
+          : 'h-10 w-full rounded-lg border border-fd-border bg-fd-background px-3 text-sm outline-none transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-fd-muted-foreground focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40'
+      }
+    />
+  );
+
   const tools = (
     <div className={`flex flex-col gap-3 ${isApp ? '' : 'rounded-xl border border-fd-border p-3'}`}>
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="搜索名称、Unicode、Glyph Index"
-        className="h-10 w-full rounded-lg border border-fd-border bg-fd-background px-3 text-sm outline-none transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-fd-muted-foreground focus-visible:border-fd-ring focus-visible:ring-2 focus-visible:ring-fd-ring/40"
-      />
+      {isApp ? null : searchInput}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <div className="flex items-center gap-2">
           {COLOR_PRESETS.map((preset) => {
@@ -452,12 +461,13 @@ function GalleryBody({
           {copyFeedback(copiedKey)}
         </div>
         <header className="sticky top-0 z-40 border-b border-fd-border bg-fd-background/90 backdrop-blur-sm">
-          <div className="flex items-center gap-3 px-2 sm:px-4">
+          <div className="flex items-center gap-2 px-2 sm:gap-3 sm:px-4">
             {suiteNav}
-            <ThemeSwitch mode="light-dark" className="ms-auto shrink-0 border-0 bg-transparent" />
+            {searchInput}
+            <ThemeSwitch mode="light-dark" className="shrink-0 border-0 bg-transparent" />
           </div>
         </header>
-        <div className="shrink-0 border-b border-fd-border px-4 py-3">{tools}</div>
+        <div className="shrink-0 border-b border-fd-border px-4 py-2.5">{tools}</div>
         {filtered.length === 0 ? (
           <div className="m-4 flex min-h-[12rem] flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center sm:min-h-[16rem]">
             <p className="text-sm font-medium text-fd-foreground">没有匹配的图标</p>
@@ -466,8 +476,21 @@ function GalleryBody({
             </p>
           </div>
         ) : (
-          <div className="grid min-h-0 flex-1 overflow-hidden max-lg:grid-rows-[minmax(18rem,50vh)_minmax(0,1fr)] lg:grid-cols-[minmax(18rem,min(40%,38rem))_minmax(0,1fr)]">
-            <section className="min-h-0 overflow-hidden border-b border-fd-border lg:border-r lg:border-b-0">
+          <div className="grid min-h-0 flex-1 overflow-hidden max-lg:grid-rows-[minmax(0,1fr)_minmax(18rem,50vh)] lg:grid-cols-[minmax(0,1fr)_minmax(18rem,min(40%,38rem))]">
+            <section className="flex min-h-0 min-w-0 flex-col overflow-hidden border-b border-fd-border lg:border-r lg:border-b-0">
+              <p className="shrink-0 px-4 py-2 text-sm text-fd-muted-foreground sm:py-3">
+                {suiteTitle} · <span className="tabular-nums">{filtered.length}</span> glyphs
+              </p>
+              <div className="min-h-0 flex-1 overflow-auto px-3 pb-6 sm:px-4">
+                <IconPickerGrid
+                  manifest={manifest}
+                  icons={filtered}
+                  selectedId={selectedId}
+                  onSelect={setSelectedId}
+                />
+              </div>
+            </section>
+            <section className="min-h-0 overflow-hidden">
               {selected ? (
                 <IconInspector
                   icon={selected}
@@ -479,19 +502,6 @@ function GalleryBody({
                   onCopy={onCopy}
                 />
               ) : null}
-            </section>
-            <section className="flex min-h-0 min-w-0 flex-col overflow-hidden">
-              <p className="shrink-0 px-4 py-2 text-sm text-fd-muted-foreground sm:py-3">
-                {suiteTitle} · <span className="tabular-nums">{filtered.length}</span> glyphs
-              </p>
-              <div className="min-h-0 flex-1 overflow-auto px-2 pb-6">
-                <IconPickerGrid
-                  manifest={manifest}
-                  icons={filtered}
-                  selectedId={selectedId}
-                  onSelect={setSelectedId}
-                />
-              </div>
             </section>
           </div>
         )}

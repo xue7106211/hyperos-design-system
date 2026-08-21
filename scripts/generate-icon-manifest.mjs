@@ -78,6 +78,13 @@ function writeWebFont(ttfPath, stem) {
   }
 }
 
+function nameRecord(font, key) {
+  const entry = font.name?.records?.[key];
+  if (!entry) return '';
+  const raw = typeof entry === 'string' ? entry : entry.en ?? Object.values(entry).find((v) => typeof v === 'string');
+  return typeof raw === 'string' ? raw.replace(/\s+/g, ' ').trim() : '';
+}
+
 function parseFontFile(fileName) {
   const meta = FONT_FILES[fileName];
   const ttfPath = join(FONT_DIR, fileName);
@@ -90,6 +97,11 @@ function parseFontFile(fileName) {
   const stem = basename(fileName, '.ttf');
   const path = writeWebFont(ttfPath, stem);
   const family = String(font.familyName).trim() || stem;
+  const postscriptName =
+    nameRecord(font, 'postscriptName') || String(font.postscriptName ?? '').trim() || stem;
+  const copyright = nameRecord(font, 'copyright') || String(font.copyright ?? '').trim();
+  const trademark = nameRecord(font, 'trademark');
+  const fontVersion = nameRecord(font, 'version') || String(font.version ?? '').trim();
 
   const icons = [];
   for (const cp of font.characterSet) {
@@ -125,6 +137,10 @@ function parseFontFile(fileName) {
       label: meta.label,
       family,
       path,
+      postscriptName,
+      copyright,
+      trademark,
+      fontVersion,
       weight: {
         min: wght.min,
         max: wght.max,

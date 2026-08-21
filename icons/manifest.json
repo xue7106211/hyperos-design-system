@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-20T13:56:46.006Z",
+  "generatedAt": "2026-08-21T06:41:53.747Z",
   "fonts": [
     {
       "id": "symbols",
       "label": "Symbols",
       "family": "HyperOS Symbols VF",
       "path": "/fonts/HyperOSSymbolsVF.woff2",
+      "postscriptName": "HyperOSSymbolsVF-Regular",
+      "copyright": "Copyright © 2025-2026 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved.",
+      "trademark": "Xiaomi is a trademark of Beijing Xiaomi Mobile Software Co.,Ltd.",
+      "fontVersion": "Version 1.018",
       "weight": {
         "min": 150,
         "max": 700,
@@ -25,6 +29,10 @@
       "label": "Content Regular",
       "family": "HyperOSSymbols-Content-Regular VF",
       "path": "/fonts/HyperOSSymbols-Content-RegularVF.woff2",
+      "postscriptName": "HyperOSSymbols-Content-RegularVF-Regular",
+      "copyright": "Copyright © 2025-2026 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved.",
+      "trademark": "Xiaomi is a trademark of Beijing Xiaomi Mobile Software Co.,Ltd.",
+      "fontVersion": "Version 1.020",
       "weight": {
         "min": 150,
         "max": 700,
@@ -43,6 +51,10 @@
       "label": "Content Secondary",
       "family": "HyperOSSymbols-Content-Secondary VF",
       "path": "/fonts/HyperOSSymbols-Content-SecondaryVF.woff2",
+      "postscriptName": "HyperOSSymbols-Content-SecondaryVF-Regular",
+      "copyright": "Copyright © 2025-2026 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved.",
+      "trademark": "Xiaomi is a trademark of Beijing Xiaomi Mobile Software Co.,Ltd.",
+      "fontVersion": "Version 1.000",
       "weight": {
         "min": 150,
         "max": 700,
@@ -61,6 +73,10 @@
       "label": "Small",
       "family": "HyperOSSymbols-Small VF",
       "path": "/fonts/HyperOSSymbols-SmallVF.woff2",
+      "postscriptName": "HyperOSSymbols-SmallVF-Regular",
+      "copyright": "Copyright © 2025-2026 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved.",
+      "trademark": "Xiaomi is a trademark of Beijing Xiaomi Mobile Software Co.,Ltd.",
+      "fontVersion": "Version 1.000",
       "weight": {
         "min": 150,
         "max": 700,
@@ -79,6 +95,10 @@
       "label": "Small Dualtone",
       "family": "HyperOSSymbols-Small-Dualtone VF",
       "path": "/fonts/HyperOSSymbols-Small-DualtoneVF.woff2",
+      "postscriptName": "HyperOSSymbols-Small-DualtoneVF-Regular",
+      "copyright": "Copyright © 2025-2026 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved.",
+      "trademark": "Xiaomi is a trademark of Beijing Xiaomi Mobile Software Co.,Ltd.",
+      "fontVersion": "Version 1.000",
       "weight": {
         "min": 150,
         "max": 700,
