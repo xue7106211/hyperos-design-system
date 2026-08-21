@@ -563,14 +563,7 @@ function GalleryBody({
         <div className="sr-only" aria-live="polite">
           {copyFeedback(copiedKey)}
         </div>
-        <div className="shrink-0 border-y border-fd-border/70">
-          <header className="px-4 pb-2.5 pt-4 sm:px-5 sm:pb-3 sm:pt-5">
-            <h1 className="text-balance text-2xl font-semibold tracking-tight text-fd-foreground sm:text-3xl">
-              HyperOS Symbols
-            </h1>
-          </header>
-          {tools}
-        </div>
+        <div className="shrink-0 border-y border-fd-border/70">{tools}</div>
         {filtered.length === 0 ? (
           <div className="m-4 flex min-h-[12rem] flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-fd-border px-6 py-10 text-center sm:min-h-[16rem]">
             <p className="text-sm font-medium text-fd-foreground">没有匹配的图标</p>
