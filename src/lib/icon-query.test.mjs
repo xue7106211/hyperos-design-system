@@ -6,6 +6,7 @@ import {
   filterIcons,
   formatBBox,
   formatUnicode,
+  glyphPreviewLayout,
   parseHexColor,
   previewSurfaceHex,
   unicodeToDecimal,
@@ -21,6 +22,37 @@ describe('unicodeToDecimal', () => {
   it('parses 5-digit PUA hex', () => {
     assert.equal(unicodeToDecimal('F0000'), 983040);
     assert.equal(unicodeToDecimal('U+F0000'), 983040);
+  });
+});
+
+describe('glyphPreviewLayout', () => {
+  it('centers a square glyph in a tall slot', () => {
+    const layout = glyphPreviewLayout({
+      slotW: 400,
+      slotH: 800,
+      unitsPerEm: 1000,
+      verticalSpan: 1000,
+      glyphWidth: 1000,
+      labelW: 80,
+    });
+    assert.equal(layout.fontSize, 320);
+    assert.equal(layout.frameW, 320);
+    assert.equal(layout.frameH, 320);
+    assert.equal(layout.offsetX, 0);
+    assert.equal(layout.offsetY, 240);
+  });
+
+  it('centers a square glyph in a wide slot', () => {
+    const layout = glyphPreviewLayout({
+      slotW: 800,
+      slotH: 200,
+      unitsPerEm: 1000,
+      verticalSpan: 1000,
+      glyphWidth: 1000,
+    });
+    assert.equal(layout.fontSize, 200);
+    assert.equal(layout.offsetX, 300);
+    assert.equal(layout.offsetY, 0);
   });
 });
 

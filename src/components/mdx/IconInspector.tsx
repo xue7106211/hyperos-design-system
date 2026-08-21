@@ -19,16 +19,16 @@ type IconInspectorProps = {
   onCopy: (key: string, text: string) => void;
 };
 
-function metricLines(metrics: IconFontMetrics) {
+function metricLines(metrics: IconFontMetrics, compact: boolean) {
   const lines = [
-    { label: 'Ascender', value: metrics.ascender },
-    { label: 'Cap height', value: metrics.capHeight },
-    { label: 'x-height', value: metrics.xHeight },
-    { label: 'Baseline', value: 0 },
-    { label: 'Descender', value: metrics.descender },
+    { label: compact ? 'Asc' : 'Ascender', value: metrics.ascender },
+    { label: compact ? 'Cap' : 'Cap height', value: metrics.capHeight },
+    { label: compact ? 'x' : 'x-height', value: metrics.xHeight },
+    { label: compact ? 'Base' : 'Baseline', value: 0 },
+    { label: compact ? 'Desc' : 'Descender', value: metrics.descender },
   ];
   return lines.filter((line, index, all) => {
-    if (line.label === 'Cap height' || line.label === 'x-height') {
+    if (line.label === 'Cap height' || line.label === 'Cap' || line.label === 'x-height' || line.label === 'x') {
       return line.value !== 0;
     }
     return all.findIndex((item) => item.value === line.value) === index;
@@ -39,6 +39,9 @@ function yPercent(value: number, ascender: number, span: number) {
   return ((ascender - value) / span) * 100;
 }
 
+/** Label column width in the same unit space as glyphWidth / span (font units). */
+const LABEL_UNITS = 220;
+
 export function IconInspector({
   icon,
   font,
@@ -48,13 +51,13 @@ export function IconInspector({
   copiedKey,
   onCopy,
 }: IconInspectorProps) {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const [frameH, setFrameH] = useState(280);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [stage, setStage] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
-    const el = frameRef.current;
+    const el = stageRef.current;
     if (!el) return;
-    const sync = () => setFrameH(el.clientHeight);
+    const sync = () => setStage({ w: el.clientWidth, h: el.clientHeight });
     sync();
     const observer = new ResizeObserver(sync);
     observer.observe(el);
@@ -69,9 +72,16 @@ export function IconInspector({
   const char = codePointToChar(icon.unicode);
   const unicodeText = formatUnicode(icon.unicode);
   const decimal = unicodeToDecimal(icon.unicode);
-  const lines = metrics ? metricLines(metrics) : [];
-  const baselinePct = yPercent(0, ascender, span);
-  const fontSize = frameH * (upm / span);
+  const bboxW = icon.bbox ? icon.bbox[2] - icon.bbox[0] : 0;
+  const glyphWidth = Math.max(icon.advanceWidth ?? upm, bboxW, 1);
+  const contentW = LABEL_UNITS + glyphWidth;
+  const aspect = contentW / span;
+
+  // Fit frame inside stage (contain), then derive font size from the real pixel height.
+  const frameW = stage.w > 0 && stage.h > 0 ? Math.min(stage.w, stage.h * aspect) : 0;
+  const frameH = frameW > 0 ? frameW / aspect : 0;
+  const fontSize = frameH > 0 ? frameH * (upm / span) : 0;
+  const lines = metrics ? metricLines(metrics, frameW > 0 && frameW < 260) : [];
 
   const copyState = (part: string) => {
     if (copiedKey === `${icon.id}:${part}:ok`) return '已复制';
@@ -123,8 +133,8 @@ export function IconInspector({
   ];
 
   return (
-    <div className="flex h-full min-h-0 flex-col">
-      <div className="shrink-0 px-5 pt-4">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden">
+      <div className="shrink-0 px-4 pt-3 sm:px-5 sm:pt-4">
         <p className="truncate text-sm font-medium" title={icon.name}>
           {icon.name}
         </p>
@@ -133,55 +143,65 @@ export function IconInspector({
         ) : null}
       </div>
 
-      <div className="relative min-h-0 flex-1 overflow-hidden">
+      <div className="relative min-h-[9rem] flex-1 overflow-hidden sm:min-h-[12rem]">
         <button
           type="button"
           aria-label={`复制 ${icon.name} 字符`}
           onClick={() => onCopy(`${icon.id}:glyph`, char)}
           className="absolute inset-0 z-10 cursor-pointer"
         />
-        <div ref={frameRef} className="pointer-events-none absolute inset-y-4 inset-x-0 select-none">
-          {lines.map((line) => (
+        <div ref={stageRef} className="pointer-events-none absolute inset-3 grid place-items-center overflow-hidden sm:inset-4">
+          {font && frameW > 0 ? (
             <div
-              key={line.label}
-              className="absolute inset-x-0 flex items-center"
-              style={{ top: `${yPercent(line.value, ascender, span)}%` }}
+              className="relative overflow-hidden"
+              style={{ width: frameW, height: frameH }}
             >
-              <span className="w-[5.25rem] shrink-0 -translate-y-1/2 px-3 text-[10px] leading-none text-fd-muted-foreground">
-                {line.label}
-              </span>
-              <span className="h-px flex-1 -translate-y-1/2 border-t border-dashed border-fd-foreground/20" />
-            </div>
-          ))}
-          {font ? (
-            <span className="absolute inset-0 block text-center leading-none">
+              {lines.map((line) => (
+                <div
+                  key={line.label}
+                  className="absolute inset-x-0 flex items-center"
+                  style={{ top: `${yPercent(line.value, ascender, span)}%` }}
+                >
+                  <span
+                    className="shrink-0 -translate-y-1/2 truncate px-1 text-left leading-none text-fd-muted-foreground"
+                    style={{
+                      width: (LABEL_UNITS / contentW) * frameW,
+                      fontSize: Math.max(8, frameH * 0.022),
+                    }}
+                  >
+                    {line.label}
+                  </span>
+                  <span className="h-px min-w-0 flex-1 -translate-y-1/2 border-t border-dashed border-fd-foreground/20" />
+                </div>
+              ))}
               <span
                 aria-hidden
-                className="inline-block align-baseline"
-                style={{ height: `${baselinePct}%`, width: 0 }}
-              />
-              <span
-                aria-hidden
-                className="inline-block align-baseline [font-synthesis:none]"
+                className="absolute block overflow-hidden text-center [font-synthesis:none]"
                 style={{
+                  left: (LABEL_UNITS / contentW) * frameW,
+                  top: 0,
+                  width: (glyphWidth / contentW) * frameW,
+                  height: frameH,
                   fontFamily: `"${font.family}", sans-serif`,
                   fontWeight: weight,
                   fontVariationSettings: `"wght" ${weight}`,
                   fontSize,
-                  lineHeight: 1,
+                  // Line box = fontSize * (span/upm) = frameH, so half-leading is ~0 and
+                  // the typographic baseline lands on Ascender→0 within the frame.
+                  lineHeight: span / upm,
                   color,
                 }}
               >
                 {char}
               </span>
-            </span>
+            </div>
           ) : null}
         </div>
       </div>
 
-      <dl className="grid shrink-0 grid-cols-1 gap-x-8 gap-y-2.5 border-t border-fd-border px-5 py-4 pb-6 sm:grid-cols-2">
+      <dl className="grid max-h-[40%] shrink-0 grid-cols-1 gap-x-6 gap-y-1 overflow-y-auto border-t border-fd-border px-4 py-2.5 sm:max-h-none sm:grid-cols-2 sm:gap-x-8 sm:gap-y-2.5 sm:px-5 sm:py-4 sm:pb-6">
         {fields.map((field) => (
-          <div key={field.label} className="grid grid-cols-[7.25rem_minmax(0,1fr)] items-baseline gap-2">
+          <div key={field.label} className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-baseline gap-2 sm:grid-cols-[7.25rem_minmax(0,1fr)]">
             <dt className="text-[11px] text-fd-muted-foreground">{field.label}</dt>
             <dd>
               {field.copy ? (

@@ -17,6 +17,50 @@ export function formatBBox(bbox: [number, number, number, number] | undefined): 
   return bbox.join(', ');
 }
 
+export type GlyphPreviewLayout = {
+  fontSize: number;
+  frameW: number;
+  frameH: number;
+  offsetX: number;
+  offsetY: number;
+};
+
+/** Fit metrics + glyph into a slot and center the resulting frame. */
+export function glyphPreviewLayout({
+  slotW,
+  slotH,
+  unitsPerEm,
+  verticalSpan,
+  glyphWidth,
+  labelW = 0,
+  padding = 0,
+}: {
+  slotW: number;
+  slotH: number;
+  unitsPerEm: number;
+  verticalSpan: number;
+  glyphWidth: number;
+  labelW?: number;
+  padding?: number;
+}): GlyphPreviewLayout {
+  const availW = Math.max(slotW - labelW - padding * 2, 1);
+  const availH = Math.max(slotH - padding * 2, 1);
+  const scale = Math.min(
+    availH / Math.max(verticalSpan, 1),
+    availW / Math.max(glyphWidth, 1),
+  );
+  const frameW = Math.max(glyphWidth, 1) * scale;
+  const frameH = Math.max(verticalSpan, 1) * scale;
+  const contentW = labelW + frameW;
+  return {
+    fontSize: scale * unitsPerEm,
+    frameW,
+    frameH,
+    offsetX: (slotW - contentW) / 2,
+    offsetY: (slotH - frameH) / 2,
+  };
+}
+
 export function formatUnicode(hex: string): string {
   const h = String(hex)
     .replace(/^U\+/i, '')

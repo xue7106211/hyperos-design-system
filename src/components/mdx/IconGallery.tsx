@@ -423,8 +423,8 @@ function GalleryBody({
             没有匹配的图标
           </div>
         ) : (
-          <div className="flex min-h-0 flex-1 overflow-hidden max-lg:flex-col">
-            <section className="flex min-h-0 w-full flex-col overflow-hidden max-lg:h-[min(48vh,28rem)] lg:w-[40%] lg:max-w-[38rem]">
+          <div className="grid min-h-0 flex-1 overflow-hidden max-lg:grid-rows-[minmax(18rem,50vh)_minmax(0,1fr)] lg:grid-cols-[minmax(18rem,min(40%,38rem))_minmax(0,1fr)]">
+            <section className="min-h-0 overflow-hidden border-b border-fd-border lg:border-r lg:border-b-0">
               {selected ? (
                 <IconInspector
                   icon={selected}
@@ -437,8 +437,8 @@ function GalleryBody({
                 />
               ) : null}
             </section>
-            <section className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden border-t border-fd-border lg:border-t-0 lg:border-l">
-              <p className="shrink-0 px-4 py-3 text-sm text-fd-muted-foreground">
+            <section className="flex min-h-0 min-w-0 flex-col overflow-hidden">
+              <p className="shrink-0 px-4 py-2 text-sm text-fd-muted-foreground sm:py-3">
                 {suiteTitle} · {filtered.length} glyphs
               </p>
               <div className="min-h-0 flex-1 overflow-auto px-2 pb-6">
