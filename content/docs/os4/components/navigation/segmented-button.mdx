@@ -1,6 +1,181 @@
 ---
-title: 分段按钮 Segmented Button
-description: HyperOS 分段按钮 Segmented Button 规范
+title: 分段控制按钮 Segmented Control Buttons
+description: 用于少量同级互斥选项之间快速切换的选择类控件
+maintainer: 冯晓洁
+maintainerOpenId: ou_e169312827003a3ed35a373b94e87452
 ---
 
-分段按钮规范占位，内容待补充。
+## 一、概述
+
+分段控制按钮是一种选择类控件，用于在同一页面或同一内容区域内，在少量同级选项之间快速切换。它适合切换内容展示方式、视图模式、时间尺度、筛选维度等场景，核心目标是让用户在不离开当前上下文的前提下完成状态切换。
+
+## 二、核心原则
+
+- **轻量简洁**：选项含义应简单、准确，每次只允许一个项处于选中态。
+- **语义性**：只表达同级、互斥、相关的局部切换语义，不承担页面导航或复杂操作。
+- **灵活可扩**：支持不同数量选项、不同背景场景和多端布局适配，但应控制复杂度，保持灵活。
+
+## 三、组成
+
+分段控制按钮由**选项名称**、**选中区域**、**未选中区域**和**容器**组成。
+
+![分段控制按钮组成](/media/os4/components/navigation/segmented-button/分段-组成.png)
+
+- **选项名称**：支持文字或图文组合。建议选项保持在 2–5 项内；超过 5 项时，应优先评估是否改用标签栏或其他更适合承载多项选择的组件。
+  - 同组内内容结构应保持一致，均使用纯文本或图标与文本结合的形式。
+  - 应精简文本内容；受展示空间限制，文本不应被隐藏、过长截断或折行处理。
+  - 图标仅作为辅助语义，不应让用户只能靠图标猜测含义。
+- **选中区域**：表示当前选中的项，用背景突出当前项。
+- **未选中区域**：表示未选中的项。
+- **容器**：承载全部分段项，统一控制背景和圆角。
+
+## 四、交互
+
+### 交互行为规则
+
+点击或拖拽分段项后，应立即切换到对应选项。
+
+- 支持点击切换。
+
+![点击切换分段项](/media/os4/components/navigation/segmented-button/分段控制-点击.png)
+
+- 支持按压选项背景后拖拽切换。
+
+![拖拽切换分段项](/media/os4/components/navigation/segmented-button/分段控制-拖拽.png)
+
+- 不支持通过内容区左右滑动进行切换。
+
+### 交互状态反馈
+
+分段控制按钮包含以下交互状态。
+
+![分段控制按钮交互状态](/media/os4/components/navigation/segmented-button/分段控制-交互状态%201.png)
+
+| 状态 | 说明 |
+| --- | --- |
+| 选中 | 当前激活项，背景呈压黑效果。 |
+| 按压 | 手指或指针按压选项时提供即时反馈：压黑加重、范围缩小、文案变浅。 |
+| 悬停 | 鼠标或触控板指针停留在可交互条目上时，显示轻量的悬停背景。 |
+
+## 五、视觉样式说明
+
+![分段控制按钮视觉样式](/media/os4/components/navigation/segmented-button/分段控制-视觉样式.png)
+
+分段控制按钮通常放置在应用界面布局内，可显示在标题栏下方。
+
+分段控制按钮有时会随页面上滑并固定于页面头部，此时应呈现悬浮状态；平面到悬浮状态的切换时机和动效应与[标题栏悬浮](/docs/os4/components/navigation/top-app-bar)保持一致，并与标题栏共用一套遮罩蒙层。
+
+页面滑动前，分段控制按钮与页面内容处于同一水平面，呈现平面状态。悬浮状态只用于需要固定头部的场景，并非所有分段控制按钮都需要使用。
+
+### 悬浮控件
+
+![分段控制按钮悬浮材质](/media/os4/components/navigation/segmented-button/分段控制-悬浮材质.png)
+
+悬浮状态下，分段控制按钮的底板支持以下三种材质类型，应根据不同机型适配：
+
+- **纯色背景（无材质）**：单一颜色，默认为白色，用于中低端机型或用户手动关闭高级材质的场景。
+- **模糊混色背景**：根据下方内容动态取色并模糊，用于高端机型或用户手动打开高级材质的场景。
+- **柔光玻璃背景**：具备更强的层次感与通透感，用于强调材质层次的页面。
+
+无论使用哪种材质，底板的识别性优先级最高：应保证图标与背景之间有足够对比度，且底板容器边缘清晰可辨。
+
+### 视觉规格
+
+#### 颜色
+
+![分段控制按钮颜色](/media/os4/components/navigation/segmented-button/分段-颜色.png)
+
+**材质底板**
+
+- 悬浮状态：使用[材质效果](https://mi.feishu.cn/wiki/IANxwj3qmioYGcknwwpcPIe8nrR#share-XLbFdYZ0NoEXJ2xjIuGc1LGLnDf)。
+- 平面状态、白色背景：背景使用 `segment/miuix_comp_seg_color_fill_enabled`，描边使用 `fill/status/miuix_color_fill_status_selected`。
+- 平面状态、灰色背景：背景和描边均使用 `segment/miuix_comp_seg_color_fill_enabled`。
+
+| 元素 | Token |
+| --- | --- |
+| 文案 | `text/default/miuix_color_text_primary-enable` |
+| 选中背景 | `fill/status/miuix_color_fill_status_selected` |
+
+![分段控制按钮交互颜色](/media/os4/components/navigation/segmented-button/分段控制-交互状态.png)
+
+| 状态 | Token |
+| --- | --- |
+| 选中 | `fill/status/miuix_color_fill_status_selected` |
+| 按压 | 背景：`fill/status/miuix_color_fill_status_pressed`；文案：`text/default/miuix_color_text_tertiary-enabled` |
+| 悬停 | `fill/status/miuix_color_fill_status_hover` |
+| 选中 + 悬停 | `fill/status/miuix_color_fill_status_selected` + `fill/status/miuix_color_fill_status_hover` |
+
+#### 布局
+
+![分段控制按钮布局](/media/os4/components/navigation/segmented-button/分段-布局.png)
+
+| 项目 | 规格 |
+| --- | --- |
+| 主体高度 | 40dp |
+| 文案最小内边距 | 16dp |
+| 选中背景距离材质底板 | 3dp |
+| 布局 | 上：4dp；下：8dp |
+
+分段控制按钮支持两种内容布局方式：
+
+- **等宽填充容器**：根据屏幕宽幅平均分配选项宽度。
+- **固定宽度值**：固定单个选项的宽度，再形成整体宽度。
+
+![分段控制按钮固定宽度布局](/media/os4/components/navigation/segmented-button/分段-布局2.png)
+
+| 选项数量 | 单个选项宽度 | 整体宽度 |
+| --- | --- | --- |
+| 2 个 | 220dp | 470dp |
+| 3 个 | 180dp | 570dp |
+| 4 个 | 150dp | 630dp |
+| 5 个 | 130dp | 680dp |
+
+标题栏内的分段控制按钮应优先采用内容自适应布局。
+
+![标题栏内的分段控制按钮](/media/os4/components/navigation/segmented-button/分段-布局3.png)
+
+#### 热区
+
+![分段控制按钮热区](/media/os4/components/navigation/segmented-button/分段-热区.png)
+
+## 六、多端适配
+
+应依照容器宽度判断布局：
+
+- 容器宽度小于 600dp 时，使用等宽填充容器。
+- 容器宽度大于或等于 600dp 时，使用固定宽度值；当固定宽度大于容器宽度时，改为等宽容器填充。
+
+![分段控制按钮多端适配](/media/os4/components/navigation/segmented-button/分段控制-适配布局.png)
+
+## 七、多语言
+
+### 多语言
+
+- 多语言文案应优先保持短文字。
+- 翻译后文字过长时，应优先精简文案或改词。
+- 遇到一行无法展示的较长文字时，可动态缩小字号。
+- 最小字号仍无法展示时，可折行展示，最多折两行；应保证较大字体折行后不会撑高容器。
+
+![分段控制按钮多语言缩小字号](/media/os4/components/navigation/segmented-button/分段-多语言.png)
+
+![分段控制按钮多语言折行](/media/os4/components/navigation/segmented-button/分段-多语言2.png)
+
+![分段控制按钮多语言容器高度](/media/os4/components/navigation/segmented-button/分段-多语言3.png)
+
+分段控制按钮不参与大字体适配。
+
+## 八、分段控制按钮和标签栏的差异选择
+
+分段控制按钮和标签栏都用于在多个选项之间进行切换，但二者的使用语义不同：**分段控制按钮更偏向状态、模式或视图切换；标签栏更偏向页面内的模块导航。**设计时，应优先根据选项之间的关系和切换后的内容变化来判断使用哪一种组件。
+
+| 项目 | 分段控制按钮 | 标签栏 |
+| --- | --- | --- |
+| 图示 | ![分段控制按钮示意](/media/os4/components/navigation/segmented-button/分段-分段示意.png) | ![标签栏示意](/media/os4/components/navigation/segmented-button/分段-标签示意.png) |
+| 表意 | ![分段控制按钮表意](/media/os4/components/navigation/segmented-button/Group%202147226784.png) | ![标签栏表意](/media/os4/components/navigation/segmented-button/Group%202147226785.png) |
+| 核心作用 | 用于在**少量互斥选项**之间切换，更像“状态或模式切换”。 | 用于在**多个并列模块**之间切换，更像“页面内二级导航”。 |
+| 语义属性 | 更偏状态切换。 | 更偏页面内二级导航。 |
+| 选项数量 | 通常较少，强调一眼看完。 | 可以更多，必要时支持横向滑动。 |
+| 选项关系 | 各项是同一任务下的不同方式。 | 各项是同一层级下的不同栏目。 |
+| 视觉特征 | 紧凑、整体感强，像一个操作组。 | 层级感更明显，像导航入口。 |
+| 选择判断 | 每一项可理解为“同一任务的不同模式”时，使用分段控制按钮。 | 每一项可理解为“同一页面下不同栏目页签”时，使用标签栏。 |
+| 实际案例 | ![分段控制按钮实际案例](/media/os4/components/navigation/segmented-button/Group%202147229237.png) | ![标签栏实际案例](/media/os4/components/navigation/segmented-button/Group%202147229236.png) |

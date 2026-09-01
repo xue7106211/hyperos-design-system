@@ -8,7 +8,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 移动端组件规范文档（无 Web 交互 demo）
 - Figma 设计稿 / Dev Mode / 原型 iframe 嵌入
 - Design Token 表格展示（OS4 Reference / Semantic / Component × Light / Dark）
-- 图标库预览（套件切换 / 搜索 / 复制字符、Unicode、Glyph Index）
+- 图标库预览（5 套件 / 搜索 / 字重与颜色预览 / 字形检查 / 复制字符、Unicode、Glyph Index）
 - 文档配图页内画廊（Fancybox；同页前后切换）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
@@ -46,10 +46,10 @@ npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/
 单元测试用 Node 内置 runner（没有 `npm test` script，也未引入 Jest / Vitest）：
 
 ```bash
-node --test "src/**/*.test.mjs"   # 当前 6 suites / 18 tests
+node --test "src/**/*.test.mjs"   # 当前 14 suites / 32 tests
 ```
 
-覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）与彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
+覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）、图标查询与预览计算（`src/lib/icon-query.test.mjs`）及彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
 
 生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/deployment.md](docs/deployment.md)；镜像定义见根目录 `Dockerfile`。
 
@@ -64,7 +64,7 @@ content/docs/        # 网站 MDX 文档（对外）
     best-practices/  # 设计模式（slug 仍为 best-practices）
     system/          # 系统特性与能力标准
     multi-device/     # 多端设备标准
-    resources/       # 图标库等（保留 URL，不在侧栏一级）
+    resources/       # 资源总览（不在侧栏一级；图标库已迁至 /icons）
   os5/               # HyperOS 5 占位（侧栏可见，内容未发布；结构同 os4）
 docs/                # 工程设计文档（对内，见 docs/index.md）
   index.md
@@ -76,7 +76,7 @@ docs/                # 工程设计文档（对内，见 docs/index.md）
   maintainers.md
   design-references/ # 参考站点截图（typotab.com、aiforui.dev；非对外）
   research/          # 调研笔记（aiforui.dev → /resources；typotab.com → Landing typotab）
-  superpowers/       # Agent 设计 / 实现计划产物（specs、plans；非对外）
+  superpowers/       # Agent 历史设计 / 实现计划记录（specs、plans；非对外，非当前实现依据）
 icons/               # HyperOS Symbols 可变字体 + manifest（见 icons/README.md）
   font/
   manifest.json
@@ -89,7 +89,7 @@ tina/                # TinaCMS schema 与 block 模板
 .env.example         # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
 components.json      # shadcn / AI Elements（Ask AI UI）
 src/
-  app/               # Next.js 路由（docs、resources、admin、api/tina|search|chat、llms、og）
+  app/               # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og）
   components/
     ai/              # Ask AI（AiAssistant + 浮动面板）
     ai-elements/     # AI Elements 对话组件
@@ -167,5 +167,5 @@ CLAUDE.md            # 指向 AGENTS.md
 | [docs/sidebar-ia.md](docs/sidebar-ia.md) | 侧栏目录对照（全景图） |
 | [docs/roadmap.md](docs/roadmap.md) | 实施进度 |
 | [docs/maintainers.md](docs/maintainers.md) | 维护人飞书 open_id 备忘 |
-| [docs/superpowers/](docs/superpowers/) | Agent 设计 / 实现计划产物（非对外） |
-| [icons/README.md](icons/README.md) | 图标 SVG 入库与 `icons:sync` 约定 |
+| [docs/superpowers/](docs/superpowers/) | Agent 历史设计 / 实现计划记录（非对外；路径和待办不作为当前实现依据） |
+| [icons/README.md](icons/README.md) | 图标字体入库与 `icons:sync` 约定 |

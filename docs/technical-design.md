@@ -1,8 +1,8 @@
 # HyperOS Design System 文档站 — V1 技术设计方案
 
-> **版本**：V1.7  
-> **日期**：2026-08-14  
-> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token / 图标库页 / 文档配图 Fancybox / 设计资源中心 `/resources` / 全站彩蛋 / Ask AI 已落地（正式环境已注入 `MI_LLM_*`）；docs 侧栏「资源」一级已移除（图标 URL 保留）；生产鉴权与 Token CI 规划中。§4.2 仓库结构与 §4.3 依赖别名已按当前代码校准
+> **版本**：V1.8
+> **日期**：2026-08-21
+> **状态**：Phase 0–1 已实施；Phase 2 TinaCMS 本地模式已接入；OS4 Token / 独立图标库 / 文档配图 Fancybox / 设计资源中心 `/resources` / 全站彩蛋 / Ask AI 已落地（正式环境已注入 `MI_LLM_*`）；docs 侧栏「资源」一级已移除；生产鉴权与 Token CI 规划中。§4.2 仓库结构与 §4.3 依赖别名已按当前代码校准
 
 ---
 
@@ -23,7 +23,7 @@ HyperOS 设计系统面向 **移动端客户端组件库**（Android / iOS 等�
 | Figma 设计稿 / 原型 iframe 嵌入 | Storybook / 在线 Playground |
 | Token 目录页（`tokens/*.{light,dark}.json`；Light / Dark；`TokenTable`） | Tokens Studio → Git 自动同步（Phase 3）；Typography Token（待导出） |
 | Android / iOS **静态**代码片段展示 | 完整 npm 组件包发布流水线 |
-| 图标库预览（`IconGallery` + `icons/`；独立页 `/icons`，无 docs 侧栏；共用 PillNav） | 可交互 icon picker / Storybook |
+| 图标库预览（`IconGallery` + `icons/`；独立页 `/icons`，PillNav + 5 套件筛选 / 搜索 / 字重与颜色预览 / 字形检查；无 docs 侧栏） | Storybook / Web 组件 demo |
 | 文档配图页内画廊（`DocsImage` + Fancybox；`public/media/`） | 可运行 Web 组件 playground |
 | 设计资源中心 `/resources`（Catalog + Codex；`src/lib/resources.ts`） | Engineering 目录外链 / 维护团队落地页（待补） |
 | 全站彩蛋浮层（`src/components/easter-egg/`；根布局挂载） | — |
@@ -285,7 +285,7 @@ hyperos-design-system/
 │   │   ├── ui/             # shadcn 基础组件（Ask AI 等站点 chrome，非文档 Web demo）
 │   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot、DocsModeSwitch
 │   │   ├── easter-egg/     # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
-│   │   ├── home/           # Landing：PillNav + typotab；资源页共用 PillNav
+│   │   ├── home/           # Landing：PillNav + typotab（Hero / Design Language / Value / Recent Updates / FAQ）；资源页共用 PillNav
 │   │   ├── resources/      # /resources：Hero、Catalog、CodexNav、FeatureCard、MatrixRain 等
 │   │   ├── mdx/            # DocsImage、DocFancybox、SpecImageGrid、FigmaEmbed、TokenTable、IconGallery、PlatformTabs 等
 │   │   ├── tina/           # Tina Visual Editing
@@ -361,7 +361,7 @@ export default defineConfig({ mdxOptions: {} });
 | 类型 | 路径示例 | 核心内容 |
 |------|----------|----------|
 | 通用设计 | `/docs/os4/general/design-token` | 原则说明 + TokenTable |
-| 图标 | `/icons` | IconGallery `variant="app"`（PillNav + 页内套件二级栏 / 搜索 / 复制字符、Unicode、Glyph Index；无 docs 侧栏） |
+| 图标 | `/icons` | IconGallery `variant="app"`（PillNav + 5 套件筛选 / 搜索 / 字重与颜色预览 / 字形检查 / 复制字符、Unicode、Glyph Index；无 docs 侧栏） |
 | 组件 | `/docs/os4/components/actions/button` | 完整规范 + `public/media/...` 配图；FigmaJump / TokenTable / PlatformTabs 等按页选用 |
 | 系统特性 | `/docs/os4/system` | 系统能力总览与专题页 |
 | 设计模式 | `/docs/os4/best-practices` | 页面模式、加载、引导、系统能力等应用层模式 |
@@ -449,7 +449,7 @@ Fumadocs 的 TOC 是 React 托管节点，带 scroll-spy 与进度条。Code 模
 | `PlatformTabs` / `PlatformTab` | Android / iOS 代码 Tab 切换 | P0 |
 | `PlatformCodeBlock` | Tina CMS 友好的平台代码 block（扁平 android/ios 字段） | P0 ✅ |
 | `TokenTable` | 从 `tokens/*.{light,dark}.json` 按 group 渲染；支持 Light / Dark | P0 ✅ |
-| `IconGallery` | 图标库预览（`icons/manifest.json`；套件切换 / 搜索 / 复制字符、Unicode、Glyph Index） | P1 ✅ |
+| `IconGallery` | 图标库预览（`icons/manifest.json`；5 套件筛选 / 搜索 / 字重与颜色预览 / 字形检查 / 复制字符、Unicode、Glyph Index） | P1 ✅ |
 | `SpecImageGrid` | 多张规范配图的响应式并排网格；图片仍接入 Fancybox | P1 ✅ |
 | `DeviceFrame` | 移动端设备框包裹静态截图 | P1（未实现） |
 | `StatusBadge` | stable / beta / deprecated | P1 ✅ |

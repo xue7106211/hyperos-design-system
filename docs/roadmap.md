@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 实施路线图
 
-> **版本**：V1.0  
-> **状态**：Phase 0–1 已完成；Phase 2 TinaCMS 本地模式已接入（2026-07-08）
+> **版本**：V1.1
+> **状态**：Phase 0–1 已完成；Phase 2 TinaCMS 本地模式已接入；独立图标库与 Ask AI 已上线（更新于 2026-08-21）
 
 ## 已完成
 
@@ -20,7 +20,7 @@
 - [x] 按设计系统全景图重构侧栏 IA（`general` / `components` / `interaction` / `system` / `multi-device` / `best-practices`；对照 [sidebar-ia.md](./sidebar-ia.md)）
 - [x] 文档页操作栏「跳转 Figma」（`FigmaJumpButton`；默认库 URL 见 `src/lib/shared.ts`）
 - [x] 图标库页 `/icons`（HyperOS Symbols 独立页；旧 docs 路径 301）
-- [x] 图标预览页 + `IconGallery` + `icons/` 资产管线（TTF 可变字体；`icons:sync`）
+- [x] 图标预览页 + `IconGallery` + `icons/` 资产管线（5 套 TTF 可变字体、947 个 glyph；`icons:sync`）
 - [x] 文档配图 Fancybox 同页画廊（`DocsImage` + `DocFancybox` + `@fancyapps/ui`；资产 `public/media/`）
 - [x] OS4「抽屉浮窗 Bottom Sheet」规范页（`containers/drawer`）
 - [x] 设计资源中心 `/resources`（Catalog `#catalog` + 分区锚点、Codex 侧栏、Feature 卡标题 CTA、Landing PillNav「设计资源」）
@@ -35,7 +35,7 @@
 - [ ] Design / Code 双模从 pilot 转约定（frontmatter 或 `*-code.mdx` 命名替代硬编码 slug；决定 Code 页是否排除出搜索索引；补 Tina 正文编辑绑定）
 - [ ] **staging** Matrix 注入 `MI_LLM_*` 并验收 Ask AI 入口（正式环境已于 2026-08-14 在部署单主容器环境变量注入并发布；staging 为独立部署空间，不继承 prod 变量。见 [deployment.md](./deployment.md)「Ask AI 环境变量」）
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
-- [ ] 图标库全量入库（约 400+）与分类 / 命名规范化
+- [ ] 图标分类 / 命名规范化（字体真源与 947 个 glyph 已入库）
 - [ ] `/resources` Engineering 目录外链与维护团队落地页（`taughtByHref`）补齐
 - [ ] MiFlow `main` 流水线补「发布prod」（与 staging 对称），减少手动发布
 - [ ] TinaCMS 生产鉴权（Auth.js / 内网 SSO）与 Git 同步

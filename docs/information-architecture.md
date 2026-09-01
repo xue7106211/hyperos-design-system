@@ -1,7 +1,7 @@
 # HyperOS Design System 文档站 — V1 信息架构
 
-> **版本**：V1.6  
-> **日期**：2026-07-28  
+> **版本**：V1.7
+> **日期**：2026-08-21
 > **关联**：[技术设计方案](./technical-design.md) · [侧栏对照](./sidebar-ia.md)
 
 ---
@@ -33,6 +33,7 @@
 │   │   └── multi-device/     # 多端设备标准
 │   └── os5/                 # HyperOS 5（占位；侧栏可见，/docs/os5 暂重定向 os4）
 │       └── （结构同 os4）
+├── /icons                   # HyperOS 图标库（独立页；PillNav + 套件筛选 / 搜索 / 字形检查）
 └── /resources               # 设计资源中心（独立 hub；右侧 Codex 锚点导航）
     ├── #catalog             # Catalog 总目录（Design / Engineering）
     ├── #components          # Components（OS4 / OS3 / AI 等）
@@ -89,9 +90,8 @@
     │   ├── device-characteristics          # 设备特性发挥
     │   ├── cross-device                    # 设备互通 / 跨设备协同
     │   └── app-best-practices              # 应用最佳实践
-    └── resources/                         # 图标库等（保留 URL，不在侧栏一级）
-        ├── index
-        └── icons                          # HyperOS 图标库
+    └── resources/                         # 资源总览（不在侧栏一级；图标库已迁至 /icons）
+        └── index
 ```
 
 完整叶子页清单见 [sidebar-ia.md](./sidebar-ia.md)。
@@ -148,7 +148,7 @@ Sidebar 通过各目录 `meta.json` 控制顺序与分组。
 |------|----------|
 | 说明正文 | 默认 MDX |
 | Token 可视化 | `<TokenTable groups={[...]} />` |
-| 图标预览 | `<IconGallery />`（独立页 `/icons`；文档内嵌仍可用） |
+| 图标预览 | `<IconGallery />`（独立页 `/icons` 提供 5 套件筛选、搜索、字重 / 颜色预览与字形检查；文档内嵌仍可用） |
 | 可选 Figma 参考 | `<FigmaEmbed />` |
 
 ### 4.3 组件页

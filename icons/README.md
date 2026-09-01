@@ -1,6 +1,6 @@
 # HyperOS 图标资产
 
-本目录存放 **HyperOS Symbols 可变字体**（5 字重）与由 sync 生成的清单。
+本目录存放 **HyperOS Symbols 可变字体**（5 套件）与由 sync 生成的清单。
 
 ## 结构
 
@@ -28,4 +28,5 @@
 ## 文档站预览
 
 - 页面：`/icons`（独立页，无 docs 侧栏；与首页/资源共用 PillNav）
+- 能力：套件筛选、名称 / Unicode / Glyph Index 搜索、字重与颜色预览、字形检查及字段复制
 - 组件：`<IconGallery variant="app" />`（文档 / Tina 内嵌仍用默认 `embed`）

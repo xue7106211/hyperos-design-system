@@ -15,17 +15,17 @@
 | 站点目录与路由规划 | [information-architecture.md](./information-architecture.md) |
 | 侧栏目录对照（全景图） | [sidebar-ia.md](./sidebar-ia.md) |
 | 实施进度与后续 Phase | [roadmap.md](./roadmap.md) |
-| Ask AI 文档问答 | 根布局浮动入口 · `POST /api/chat` · env `MI_LLM_*`（本地 `.env.local`；线上 Matrix **编辑 → 主容器环境变量**，见 [deployment.md](./deployment.md)）· 规格 [superpowers/specs/2026-08-11-ai-assistant-design.md](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
+| Ask AI 文档问答 | 根布局浮动入口 · `POST /api/chat` · env `MI_LLM_*`（本地 `.env.local`；线上 Matrix **编辑 → 主容器环境变量**，见 [deployment.md](./deployment.md)）· 历史规格 [superpowers/specs/2026-08-11-ai-assistant-design.md](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
 | 设计模式（原最佳实践） | 侧栏「设计模式」· 路径 `content/docs/os4/best-practices/` · 对照 [sidebar-ia.md](./sidebar-ia.md) |
 | 文档页 Design / Code 双模（pilot） | 仅「抽屉浮窗」一页：`content/docs/os4/components/containers/drawer.mdx` + 不进侧栏的 `drawer-code.mdx` · 代码 `src/components/docs/DocsDesignCodePilot.tsx` · 机制与易踩点见 [technical-design.md §5.4](./technical-design.md) |
 | 维护人飞书 open_id | [maintainers.md](./maintainers.md) |
-| 图标 SVG 入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
+| 图标字体入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
 | 规范配图入库 | `public/media/...` + MDX `/media/...`（Fancybox；见 AGENTS「文档配图」） |
-| 单元测试（纯逻辑） | `node --test "src/**/*.test.mjs"`（无 `npm test` script；覆盖 Ask AI 检索与彩蛋连点；约定见 [AGENTS.md](../AGENTS.md)「单元测试」） |
+| 单元测试（纯逻辑） | `node --test "src/**/*.test.mjs"`（无 `npm test` script；覆盖 Ask AI 检索、图标查询 / 预览计算与彩蛋连点；约定见 [AGENTS.md](../AGENTS.md)「单元测试」） |
 | 依赖补丁 | `patches/next-themes+0.4.6.patch`；`npm install` 的 `postinstall` 经 **patch-package** 自动应用，勿手改 `node_modules` |
 | 参考站点截图（比对用） | [design-references/](./design-references/)（typotab.com、aiforui.dev；非对外） |
-| Agent 设计 / 实现计划产物 | [superpowers/](./superpowers/)（`specs/`、`plans/`；非对外） |
+| Agent 历史设计 / 实现计划记录 | [superpowers/](./superpowers/)（`specs/`、`plans/`；非对外，路径和待办不作为当前实现依据） |
 
 ## 文档目录
 
@@ -37,11 +37,11 @@
 | [sidebar-ia.md](./sidebar-ia.md) | 设计系统全景图侧栏对照（已落地） |
 | [roadmap.md](./roadmap.md) | Phase 进度与后续计划 |
 | [maintainers.md](./maintainers.md) | 文档页 `maintainerOpenId` 备忘 |
-| [icons/README.md](../icons/README.md) | 图标 SVG 入库与 `icons:sync` 约定 |
-| [research/aiforui.dev/ADAPTATION.md](./research/aiforui.dev/ADAPTATION.md) | `/resources` 视觉适配笔记（调研，非对外文档） |
-| [research/typotab.com/](./research/typotab.com/) | Landing typotab 区块调研（页面拓扑 / 动效 / 行为 spec；非对外） |
+| [icons/README.md](../icons/README.md) | 图标字体入库与 `icons:sync` 约定 |
+| [research/aiforui.dev/](./research/aiforui.dev/) | `/resources` 调研与视觉适配笔记（页面拓扑 / 行为 / Token / 组件 spec；非对外） |
+| [research/typotab.com/](./research/typotab.com/) | Landing typotab 区块调研（页面拓扑 / 动效 / 行为 / 组件 spec；非对外） |
 | [design-references/](./design-references/) | 参考站点整页与局部截图（typotab.com、aiforui.dev；仅供比对，非对外） |
-| [superpowers/](./superpowers/) | Agent 设计 / 实现计划产物（如彩蛋、Ask AI specs / plans；非对外） |
+| [superpowers/](./superpowers/) | Agent 历史设计 / 实现计划记录（如彩蛋、Ask AI specs / plans；非对外，路径和待办不作为当前实现依据） |
 
 ## 路径对照
 
@@ -79,12 +79,13 @@
 | `src/components/easter-egg/` | 全站彩蛋（`EasterEggProvider` 挂根布局；短时连点打开签名浮层） |
 | `src/components/home/` | Landing：`PillNav` + typotab 区块（`TypoHero` / `TypoValueProp` / `TypoRecentUpdates` / `TypoFaq` 等） |
 | `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
-| `docs/superpowers/` | Agent specs / plans（非对外；与站点内容无关） |
+| `docs/superpowers/` | Agent 历史 specs / plans（非对外；与站点内容无关，路径和待办不作为当前实现依据） |
 | `docs/design-references/` | 参考站点截图（typotab.com、aiforui.dev；非对外） |
 | `docs/research/` | 调研笔记（`aiforui.dev` → `/resources`；`typotab.com` → Landing typotab） |
 | `src/lib/git-file-mtime.ts` | 文档「更新时间」（git 最后提交日） |
 | `src/lib/recent-docs.ts` | Landing「最近更新」：按 git 提交时间排序的 OS4 文档（跳过总览页与 `-code` 伴生页） |
 | `src/lib/icons.ts` | 图标 manifest 读取 |
+| `src/lib/icon-query.ts` / `icon-query.test.mjs` | 图标筛选、Unicode / 色彩格式化、预览布局及纯逻辑测试 |
 | `src/lib/search-tokenizer.ts` | Orama 中英文混合搜索分词（`Intl.Segmenter('zh-CN')`） |
 | `src/lib/shared.ts` | 站点常量、默认维护人、飞书 AppLink |
 | `src/lib/tina-docs.ts` / `tina-docs-client.ts` / `tina-node-handler.ts` | Tina 文档读取与 `/api/tina` 桥接 |
@@ -97,6 +98,7 @@
 
 ## 变更摘要
 
+- **2026-08-21**：全仓文档同步：补齐图标查询单测与当前 14 suites / 32 tests，修正图标资产从 SVG 到 5 套可变字体的旧称，更新 `/icons` 能力、IA 与 947 glyph 路线图状态，并扩充调研目录索引。
 - **2026-08-20（二）**：HyperOS 图标库迁出 Fumadocs 文档壳，独立页 `/icons`（套件导航；无 docs 侧栏；后与首页/资源共用 PillNav）；旧 `/docs/**/icons` 等 301 至此。
 - **2026-08-20**：`IconGallery` 改为 HyperOS Symbols 可变字体画廊（5 套件 + 搜索 / 复制字符、Unicode、Glyph Index）；下线 SVG 管线与 `icons:import`，真源改为 `icons/font/*.ttf`。
 - **2026-08-17（二）**：修正 `IconGallery` 的能力过度声称。README / AGENTS / technical-design 三处原写「分类 / 搜索 / 深浅色 / 复制名称与 SVG」，但 `src/components/mdx/IconGallery.tsx` 只有 `activeCategory` 与 `copiedKey` 两个 state——**没有搜索框、没有深浅色切换**，预览底色固定白、单色图标固定 `#111111`；复制的是 icon `id` 而非 name。全部统一为「分类过滤 / 复制 ID 与 SVG」。同批核对 `TokenTable`（Light/Dark ModeToggle）、`DocsImage`（`rounded-none` + `data-fancybox="doc-gallery"`）、`DocFancybox`（`Carousel.infinite: false`）、`FigmaEmbed`（`embed-host=hyperos-ds` + `mode=dev`）、`SpecImageGrid` 均与文档描述一致，无需改动。

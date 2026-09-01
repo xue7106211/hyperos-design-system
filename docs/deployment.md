@@ -1,6 +1,6 @@
 # 部署指南：MiFlow / Matrix
 
-> **状态**：与 2026-07 线上配置一致  
+> **状态**：与 2026-08 线上配置一致
 > **相关**：根目录 `Dockerfile` · Agent 精简约定见 [AGENTS.md](../AGENTS.md) · 索引 [docs/index.md](./index.md)
 
 本文说明 **MiFlow（DEVX 流水线）** 与 **Matrix（部署平台）** 的职责拆分、发布流程与常见卡点。网站对外 MDX 不在此目录（见 `content/docs/`）。

@@ -1,12 +1,170 @@
 ---
-title: 子页签 Tabs
-description: 同级内容切换 Tab
-status: beta
-platforms: [android, ios]
+title: 标签栏 Tabs
+description: 用于页面内同层级模块切换的标签栏控件
+maintainer: 冯晓洁
+maintainerOpenId: ou_e169312827003a3ed35a373b94e87452
 ---
 
-<StatusBadge status="beta" />
+## 一、概述
 
-Tabs 文档占位。
+标签栏是展示在应用程序顶部的切换筛选类控件，通常用于页面内的二级模块切换。用户点击不同标签后，可在同一内容框架下切换到对应模块。标签栏适合承载同层级、并列关系的内容组织方式，不承担搜索、编辑等页面内工具职责。
 
-<FigmaEmbed />
+## 二、核心原则
+
+- **可扩展性**：支持不同数量选项、不同屏幕尺寸和多端适配；内容增加时可横向滑动。
+- **简洁性**：文案应简短明确，选中与未选中状态清晰，交互反馈及时且不干扰内容阅读。
+- **语义性**：用于同一层级的并列模块切换，不承载页面级导航或其他操作职责。
+
+## 三、组成
+
+标签栏由**选中项**、**未选中项**和**承载选项底板**组成。
+
+![标签栏组成](/media/os4/components/navigation/tabs/标签栏-组成.png)
+
+- **选中项**：支持文字或图文组合，最多为 1 项，表示当前所在模块。选中态应使用更高的视觉权重和对比度，并控制文本信息数量，避免文本过长导致阅读困难。
+- **未选中项**：支持文字或图文组合，最少有 1 项，表示其他可切换模块。未选中态应使用弱化文字色和更轻的视觉表达。展示数量建议为 3–6 个；数量过多会增加产品复杂度，并降低每个标签的可操作空间。
+- **承载选项底板**：承接标签与背景的关系，保证可读性和层次感，并能够区分选中项和未选中项。
+
+## 四、交互
+
+### 交互行为规则
+
+- 点击标签可切换对应模块。
+
+![点击切换标签栏](/media/os4/components/navigation/tabs/标签栏-点击切换.png)
+
+- 标签行可滚动时，支持横向滑动查看被截断的标签。
+
+![横向滑动标签栏](/media/os4/components/navigation/tabs/标签栏-横向滑动.png)
+
+- 某个标签部分露出屏幕外时，点击后应尽量将其完整露出，便于后续操作。
+
+![点击后完整展示标签](/media/os4/components/navigation/tabs/标签栏-点击以展示完整.png)
+
+- 不建议通过下方内容区横滑来切换标签，以免与内容滚动产生冲突。
+
+### 交互状态反馈
+
+标签栏包含以下交互状态。
+
+![标签栏交互状态](/media/os4/components/navigation/tabs/标签栏-交互状态.png)
+
+| 状态 | 说明 |
+| --- | --- |
+| 选中 | 当前激活项，背景呈压黑效果。 |
+| 按压 | 手指或指针按压选项时提供即时反馈：压黑加重、范围缩小、文案变浅。 |
+| 悬停 | 鼠标或触控板指针停留在可交互条目上时，显示轻量的悬停背景。 |
+
+## 五、视觉样式说明
+
+![标签栏视觉样式](/media/os4/components/navigation/tabs/标签栏-视觉样式.png)
+
+标签栏通常放置在应用界面布局内，可显示在标题栏下方。
+
+标签栏有时会随页面上滑并固定于页面头部，此时应呈现悬浮状态；平面到悬浮状态的切换时机和动效应与[标题栏悬浮](/docs/os4/components/navigation/top-app-bar)保持一致，并与标题栏共用一套遮罩蒙层。
+
+页面滑动前，标签栏和页面内容处于同一水平面，呈现平面状态。悬浮状态只用于需要固定头部的场景，并非所有标签栏都需要使用。
+
+### 悬浮控件
+
+![标签栏悬浮材质](/media/os4/components/navigation/tabs/标签栏-悬浮材质.png)
+
+悬浮状态下，标签栏材质底板支持以下三种材质类型，应根据不同机型适配：
+
+- **纯色背景（无材质）**：单一颜色，默认为白色，用于中低端机型或用户手动关闭高级材质的场景。
+- **模糊混色背景**：根据下方内容动态取色并模糊，用于高端机型或用户手动打开高级材质的场景。
+- **柔光玻璃背景**：具备更强的层次感与通透感，用于强调材质层次的页面。
+
+无论使用哪种材质，底板的识别性优先级最高：应保证图标与背景之间有足够对比度，且底板容器边缘清晰可辨。
+
+### 视觉规格
+
+#### 颜色
+
+标签栏整体设计建议使用品牌色填充激活项，以保障应用界面整体风格统一。业务可在系统设计对齐的前提下使用自定义品牌色，表现应用的个性化。
+
+![标签栏颜色](/media/os4/components/navigation/tabs/标签栏-颜色.png)
+
+**选中材质底板**
+
+- 悬浮状态：使用[材质效果](https://mi.feishu.cn/wiki/IANxwj3qmioYGcknwwpcPIe8nrR#share-XLbFdYZ0NoEXJ2xjIuGc1LGLnDf)，不同颜色对应不同材质效果。
+- 平面状态：蓝色为默认提供的品牌色，应用无主题色时使用 `fill/brand/miuix_color_fill_brand_enable`；黄色适用于文化、娱乐、活动场景，例如笔记；绿色适用于通行、传递、自然场景，例如通话、短信；红色适用于生动、声音、强烈的场景，例如录音机。新增颜色应与系统设计拉齐。
+
+**未选中材质底板**
+
+- 悬浮状态：使用[材质效果](https://mi.feishu.cn/wiki/IANxwj3qmioYGcknwwpcPIe8nrR#share-XLbFdYZ0NoEXJ2xjIuGc1LGLnDf)。
+- 平面状态、白色背景：背景使用 `segment/miuix_comp_seg_color_fill_enabled`，投影使用 `Shadow/Shadow_Low`。
+- 平面状态、灰色背景：背景使用 `segment/miuix_comp_seg_color_fill_enabled`。
+
+| 元素 | Token |
+| --- | --- |
+| 选中文案 | `text/static_white/miuix_color_text_static_white_enabled` |
+| 未选中文案 | `text/default/miuix_color_text_tertiary_enabled` |
+
+![标签栏交互颜色](/media/os4/components/navigation/tabs/标签栏-交互状态%201.png)
+
+| 状态 | Token |
+| --- | --- |
+| 选中 | `text/brand/miuix_color_text_brand_enable` |
+| 按压 | 背景：`text/brand/miuix_color_text_brand_enable` + `fill/status/miuix_color_fill_status_pressed`；文案：`text/default/miuix_color_text_tertiary-enabled` |
+| 悬停 | `fill/status/miuix_color_fill_status_hover` |
+| 选中 + 悬停 | `text/brand/miuix_color_text_brand_enable` + `fill/status/miuix_color_fill_status_hover` |
+
+#### 布局
+
+![标签栏布局](/media/os4/components/navigation/tabs/标签栏-布局.png)
+
+| 项目 | 规格 |
+| --- | --- |
+| 主体高度 | 40dp |
+| 文案最小内边距 | 16dp |
+| 选项之间内边距 | 12dp |
+| 布局 | 上：4dp；下：8dp |
+
+标签栏支持三种内容布局方式：
+
+- **自适应内容**：标签宽度随文案长度变化。
+- **等宽填充容器**：不超过 4 个标签时，平均分配可用宽度；适合标签数量较少且希望视觉更整齐的场景。
+- **固定宽度值**：根据不同数量的选项，固定单个选项宽度，再形成整体宽度。
+
+![标签栏固定宽度布局](/media/os4/components/navigation/tabs/标签栏-布局1.png)
+
+| 选项数量 | 单个选项宽度 | 整体宽度 |
+| --- | --- | --- |
+| 2 个 | 220dp | 476dp |
+| 3 个 | 180dp | 588dp |
+| 4 个 | 150dp | 660dp |
+| 5 个 | 130dp | 722dp |
+
+#### 热区
+
+![标签栏热区](/media/os4/components/navigation/tabs/标签栏-热区.png)
+
+## 六、多端适配
+
+应依照容器宽度判断布局：
+
+- 容器宽度小于 600dp 时，优先使用等宽填充容器；内容较多无法容纳时，可使用自适应内容布局并支持横向滑动。
+- 容器宽度大于或等于 600dp 时，使用固定宽度值；固定宽度大于容器宽度时，改为等宽容器填充。内容仍无法容纳时，可使用自适应内容布局并支持横向滑动。
+
+![标签栏多端适配](/media/os4/components/navigation/tabs/标签栏-适配布局.png)
+
+## 七、多语言与大字体
+
+### 多语言
+
+- 多语言文案应优先保持短文字。
+- 翻译后文字过长时，应优先精简文案或改词。
+- 遇到较长文字时，应优先采用**自适应内容**布局，保证左右内边距不小于 16dp，并支持横向滑动以完整展示内容。
+
+![标签栏多语言](/media/os4/components/navigation/tabs/标签栏-多语言.png)
+
+### 大字体
+
+- 标签栏大字体分为 100%、145%、200% 三档。
+- 适配大字体时，应保持上下内边距为 10dp、左右内边距不小于 16dp，圆角保持为 20dp。
+- 某个选项文案较长时，可调整展示以达到协调的视觉效果。
+
+![标签栏大字体](/media/os4/components/navigation/tabs/标签栏-大字体.png)
+
+![标签栏大字体长文案](/media/os4/components/navigation/tabs/标签栏-大字体2.png)
