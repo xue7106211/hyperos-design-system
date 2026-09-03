@@ -16,6 +16,7 @@ import type { ChatUIMessage } from '@/lib/ai/types';
 export const maxDuration = 60;
 
 const MODEL_UNAVAILABLE_MESSAGE = '模型服务暂时不可用，请稍后重试';
+const MAX_SEARCH_STEPS = 4;
 
 const searchTool = tool({
   description: [
@@ -56,9 +57,15 @@ export async function POST(req: Request) {
     const result = streamText({
       model: getMiLlmModel(),
       instructions: SYSTEM_PROMPT,
-      stopWhen: stepCountIs(5),
+      // 检索完成后关闭工具，强制下一步产出文本，避免模型反复搜索直到步数上限。
+      stopWhen: stepCountIs(MAX_SEARCH_STEPS + 1),
       tools: { search: searchTool },
       toolChoice: 'auto',
+      prepareStep: ({ stepNumber }) => {
+        if (stepNumber < MAX_SEARCH_STEPS) return undefined;
+
+        return { activeTools: [], toolChoice: 'none' };
+      },
       messages: await convertToModelMessages(messages, {
         convertDataPart(part) {
           if (part.type === 'data-client') {
