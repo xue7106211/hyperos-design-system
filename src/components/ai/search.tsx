@@ -116,6 +116,9 @@ const DEFAULT_PANEL_SIZE = { width: 384, height: 640 };
 const MIN_PANEL_SIZE = { width: 320, height: 420 };
 const DESKTOP_DOCK_MEDIA_QUERY = '(min-width: 1280px)';
 const MAX_PROMPT_LENGTH = 1000;
+const DOCKED_PANEL_MOTION = { opacity: 0, x: 24 };
+const FLOATING_PANEL_INITIAL_MOTION = { opacity: 0, scale: 0.97, y: 12 };
+const FLOATING_PANEL_EXIT_MOTION = { opacity: 0, scale: 0.97, y: 8 };
 
 /** 空状态可点预设问题，点击后直接发送 */
 const SUGGESTED_PROMPTS = [
@@ -127,6 +130,57 @@ const SUGGESTED_PROMPTS = [
 
 type PanelSize = { width: number; height: number };
 type ResizeEdge = 'n' | 'w' | 'nw';
+type PanelAnimation = {
+  opacity: number;
+  scale?: number;
+  x?: number;
+  y?: number;
+};
+
+function getPanelInitialMotion(
+  reduceMotion: boolean,
+  isDocked: boolean,
+): PanelAnimation | false {
+  if (reduceMotion) return false;
+  return isDocked ? DOCKED_PANEL_MOTION : FLOATING_PANEL_INITIAL_MOTION;
+}
+
+function getPanelExitMotion(
+  reduceMotion: boolean,
+  isDocked: boolean,
+): PanelAnimation {
+  if (reduceMotion) return { opacity: 0 };
+  return isDocked ? DOCKED_PANEL_MOTION : FLOATING_PANEL_EXIT_MOTION;
+}
+
+function getPanelStyle(isDocked: boolean, size: PanelSize): CSSProperties {
+  if (isDocked) {
+    return {
+      position: 'fixed',
+      right: 0,
+      bottom: 0,
+      left: 'auto',
+      top: 0,
+      width: 'var(--ai-ask-dock-width)',
+      height: '100dvh',
+      maxWidth: 'none',
+      maxHeight: 'none',
+    };
+  }
+
+  return {
+    position: 'fixed',
+    // 入口隐藏后，面板落在同一角落，形成空间连续感
+    right: 24,
+    bottom: 24,
+    left: 'auto',
+    top: 'auto',
+    width: size.width,
+    height: size.height,
+    maxWidth: 'calc(100vw - 2rem)',
+    maxHeight: 'calc(100dvh - 6rem)',
+  };
+}
 
 function isInternalAppLink(href: string | undefined): href is string {
   return Boolean(href?.startsWith('/') && !href.startsWith('//'));
@@ -197,6 +251,68 @@ function getSearchResultCount(output: unknown): number | null {
     : null;
 }
 
+type SearchChainPresentation = {
+  detail: string;
+  label: string;
+  status: 'active' | 'complete' | 'pending';
+  statusLabel: string;
+};
+
+const COMPLETE_SEARCH_PRESENTATION = {
+  label: '检索 OS4 设计规范',
+  status: 'complete',
+  statusLabel: '已完成',
+} satisfies Omit<SearchChainPresentation, 'detail'>;
+
+function getSearchChainPresentation({
+  invocation,
+  isCompleted,
+  isRunning,
+  resultCount,
+}: {
+  invocation: ToolUIPart;
+  isCompleted: boolean;
+  isRunning: boolean;
+  resultCount: number | null;
+}): SearchChainPresentation {
+  if (isCompleted) {
+    let detail = '文档检索已完成。';
+    if (resultCount === 0) {
+      detail = '未找到相关文档。';
+    } else if (resultCount !== null) {
+      detail = `已检索到 ${resultCount} 篇相关文档。`;
+    }
+
+    return {
+      ...COMPLETE_SEARCH_PRESENTATION,
+      detail,
+    };
+  }
+
+  if (isRunning) {
+    return {
+      detail: '正在检索 OS4 设计规范…',
+      label: '正在检索 OS4 设计规范',
+      status: 'active',
+      statusLabel: '检索中',
+    };
+  }
+
+  let detail = '正在检索 OS4 设计规范…';
+  if (invocation.state === 'output-error') {
+    detail = '文档检索暂时不可用，请稍后重试。';
+  } else if (invocation.state === 'output-denied') {
+    detail = '此次文档检索未执行。';
+  }
+
+  return {
+    detail,
+    label: '检索 OS4 设计规范',
+    status: 'pending',
+    statusLabel: '未完成',
+  };
+}
+
 function SearchChain({ invocation }: { invocation: ToolUIPart }) {
   const isRunning =
     invocation.state === 'input-streaming' ||
@@ -207,18 +323,12 @@ function SearchChain({ invocation }: { invocation: ToolUIPart }) {
   const wasRunning = useRef(isRunning);
   const isCompleted = invocation.state === 'output-available';
   const resultCount = isCompleted ? getSearchResultCount(invocation.output) : null;
-  const statusLabel = isCompleted ? '已完成' : isRunning ? '检索中' : '未完成';
-  const detail = isCompleted
-    ? resultCount === null
-      ? '文档检索已完成。'
-      : resultCount === 0
-        ? '未找到相关文档。'
-        : `已检索到 ${resultCount} 篇相关文档。`
-    : invocation.state === 'output-error'
-      ? '文档检索暂时不可用，请稍后重试。'
-      : invocation.state === 'output-denied'
-        ? '此次文档检索未执行。'
-        : '正在检索 OS4 设计规范…';
+  const presentation = getSearchChainPresentation({
+    invocation,
+    isCompleted,
+    isRunning,
+    resultCount,
+  });
 
   useEffect(() => {
     if (wasRunning.current && !isRunning) setOpen(false);
@@ -231,13 +341,15 @@ function SearchChain({ invocation }: { invocation: ToolUIPart }) {
       onOpenChange={setOpen}
       open={open}
     >
-      <ChainOfThoughtHeader>文档检索 · {statusLabel}</ChainOfThoughtHeader>
+      <ChainOfThoughtHeader>
+        文档检索 · {presentation.statusLabel}
+      </ChainOfThoughtHeader>
       <ChainOfThoughtContent>
         <ChainOfThoughtStep
-          description={detail}
+          description={presentation.detail}
           icon={SearchIcon}
-          label={isRunning ? '正在检索 OS4 设计规范' : '检索 OS4 设计规范'}
-          status={isCompleted ? 'complete' : isRunning ? 'active' : 'pending'}
+          label={presentation.label}
+          status={presentation.status}
         />
       </ChainOfThoughtContent>
     </ChainOfThought>
@@ -527,6 +639,10 @@ export function AISearchPanel() {
   const [text, setText] = useState('');
   const { size, resizing, startResize } = useResizablePanelSize();
   const reduceMotion = useReducedMotion();
+  const shouldReduceMotion = Boolean(reduceMotion);
+  const panelInitialMotion = getPanelInitialMotion(shouldReduceMotion, isDocked);
+  const panelExitMotion = getPanelExitMotion(shouldReduceMotion, isDocked);
+  const panelStyle = getPanelStyle(isDocked, size);
 
   useHotKey(disabled);
 
@@ -596,55 +712,18 @@ export function AISearchPanel() {
               : 'origin-bottom-right rounded-2xl shadow-xl',
             resizing && 'transition-none',
           )}
-          initial={
-            reduceMotion
-              ? false
-              : isDocked
-                ? { opacity: 0, x: 24 }
-                : { opacity: 0, scale: 0.97, y: 12 }
-          }
+          initial={panelInitialMotion}
           animate={isDocked ? { opacity: 1, x: 0 } : { opacity: 1, scale: 1, y: 0 }}
-          exit={
-            reduceMotion
-              ? { opacity: 0 }
-              : isDocked
-                ? { opacity: 0, x: 24 }
-                : { opacity: 0, scale: 0.97, y: 8 }
-          }
+          exit={panelExitMotion}
           transition={
-            reduceMotion
+            shouldReduceMotion
               ? { duration: 0 }
               : {
                   duration: open ? 0.22 : 0.16,
                   ease: ASK_MOTION_EASE,
                 }
           }
-          style={
-            isDocked
-              ? ({
-                  position: 'fixed',
-                  right: 0,
-                  bottom: 0,
-                  left: 'auto',
-                  top: 0,
-                  width: 'var(--ai-ask-dock-width)',
-                  height: '100dvh',
-                  maxWidth: 'none',
-                  maxHeight: 'none',
-                } satisfies CSSProperties)
-              : ({
-                  position: 'fixed',
-                  // 入口隐藏后，面板落在同一角落，形成空间连续感
-                  right: 24,
-                  bottom: 24,
-                  left: 'auto',
-                  top: 'auto',
-                  width: size.width,
-                  height: size.height,
-                  maxWidth: 'calc(100vw - 2rem)',
-                  maxHeight: 'calc(100dvh - 6rem)',
-                } satisfies CSSProperties)
-          }
+          style={panelStyle}
         >
         {/* 锚定右下角：左侧 / 顶部 / 左上角可拖拽调节大小 */}
         <div
@@ -764,10 +843,6 @@ export function AISearchPanel() {
                 status={chat.status}
                 disabled={!text.trim() && chat.status === 'ready'}
                 onStop={() => chat.stop()}
-                style={{
-                  backgroundColor: 'var(--ai-ask-accent, #0082fb)',
-                  color: 'white',
-                }}
               />
             </PromptInputFooter>
           </PromptInput>
