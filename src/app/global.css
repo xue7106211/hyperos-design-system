@@ -192,6 +192,41 @@ html > body[data-scroll-locked] {
   --removed-body-scroll-bar-size: 0px !important;
 }
 
+:root {
+  --ai-ask-dock-width: clamp(22rem, 30vw, 28rem);
+}
+
+/* 宽屏文档页为 Ask AI 预留右侧列；TOC 暂时让位，正文不会被停靠栏覆盖。 */
+@media (min-width: 80rem) {
+  #nd-docs-layout {
+    transition: margin-inline-end 220ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  body[data-ai-ask-dock='true'] #nd-docs-layout {
+    width: calc(100% - var(--ai-ask-dock-width));
+    margin-inline-end: var(--ai-ask-dock-width);
+    --fd-toc-width: 0px;
+    --fd-layout-width: min(
+      97rem,
+      calc(100vw - var(--ai-ask-dock-width))
+    );
+  }
+
+  body[data-ai-ask-dock='true'] #nd-docs-layout #nd-toc {
+    display: none;
+  }
+
+  .ai-ask-panel--dock .ai-ask-resize-handle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nd-docs-layout {
+    transition: none;
+  }
+}
+
 /* Compact docs typography — closer to ui.shadcn.com/docs density */
 #nd-docs-layout {
   font-size: 15px;
@@ -466,6 +501,38 @@ html > body[data-scroll-locked] {
 
 .ai-ask-trigger:hover {
   box-shadow: var(--ai-ask-elevation-hover);
+}
+
+/* Ask AI — 局部使用 HyperOS 蓝色，不改变文档站全局 neutral 主题。 */
+.ai-ask-panel {
+  --ai-ask-accent: #0082fb;
+  --ai-ask-accent-hover: #006edc;
+  --ai-ask-accent-ring: rgb(0 130 251 / 0.24);
+}
+
+.dark .ai-ask-panel {
+  --ai-ask-accent: #4194ff;
+  --ai-ask-accent-hover: #6aaeff;
+  --ai-ask-accent-ring: rgb(65 148 255 / 0.32);
+}
+
+.ai-ask-submit:focus-visible {
+  outline: 2px solid var(--ai-ask-accent);
+  outline-offset: 2px;
+}
+
+.ai-ask-prompt:focus-within {
+  border-color: var(--ai-ask-accent);
+  box-shadow: 0 0 0 3px var(--ai-ask-accent-ring);
+}
+
+.ai-ask-submit {
+  background-color: var(--ai-ask-accent);
+  color: white;
+}
+
+.ai-ask-submit:hover:not(:disabled) {
+  background-color: var(--ai-ask-accent-hover);
 }
 
 @layer base {

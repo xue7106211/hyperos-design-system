@@ -6,8 +6,14 @@ import {
   type ToolUIPart,
   isToolUIPart,
 } from 'ai';
-import { MessageCircleIcon, XIcon } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import {
+  BookOpenIcon,
+  ChevronDownIcon,
+  SearchIcon,
+  XIcon,
+} from 'lucide-react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   createContext,
   use,
@@ -44,14 +50,27 @@ import {
   type PromptInputMessage,
 } from '@/components/ai-elements/prompt-input';
 import {
-  Tool,
-  ToolContent,
-  ToolHeader,
-  ToolInput,
-  ToolOutput,
-} from '@/components/ai-elements/tool';
+  ChainOfThought,
+  ChainOfThoughtContent,
+  ChainOfThoughtHeader,
+  ChainOfThoughtStep,
+} from '@/components/ai-elements/chain-of-thought';
+import {
+  Source,
+  Sources,
+  SourcesContent,
+  SourcesTrigger,
+} from '@/components/ai-elements/sources';
+import {
+  Suggestion,
+  Suggestions,
+} from '@/components/ai-elements/suggestion';
 import { Button } from '@/components/ui/button';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import {
+  getDocumentSources,
+  type DocumentSource,
+} from '@/lib/ai/document-sources';
 import type { ChatUIMessage } from '@/lib/ai/types';
 import { cn } from '@/lib/utils';
 
@@ -74,9 +93,29 @@ function isAdminPath(pathname: string | null): boolean {
   return pathname === '/admin' || pathname.startsWith('/admin/');
 }
 
+function isDocsPath(pathname: string | null): boolean {
+  return pathname === '/docs' || Boolean(pathname?.startsWith('/docs/'));
+}
+
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const updateMatches = () => setMatches(mediaQuery.matches);
+    updateMatches();
+    mediaQuery.addEventListener('change', updateMatches);
+    return () => mediaQuery.removeEventListener('change', updateMatches);
+  }, [query]);
+
+  return matches;
+}
+
 const PANEL_SIZE_KEY = '__ai_assistant_panel_size';
 const DEFAULT_PANEL_SIZE = { width: 384, height: 640 };
 const MIN_PANEL_SIZE = { width: 320, height: 420 };
+const DESKTOP_DOCK_MEDIA_QUERY = '(min-width: 1280px)';
+const MAX_PROMPT_LENGTH = 1000;
 
 /** 空状态可点预设问题，点击后直接发送 */
 const SUGGESTED_PROMPTS = [
@@ -88,6 +127,122 @@ const SUGGESTED_PROMPTS = [
 
 type PanelSize = { width: number; height: number };
 type ResizeEdge = 'n' | 'w' | 'nw';
+
+function isInternalAppLink(href: string | undefined): href is string {
+  return Boolean(href?.startsWith('/') && !href.startsWith('//'));
+}
+
+/**
+ * Streamdown 默认把 Markdown 链接设为新窗口打开。Ask AI 的文档引用是
+ * 站内路径，改用 Next Link 才能软跳转并保留根布局中的聊天状态。
+ */
+function AskAiResponseLink({
+  className,
+  href,
+  node: _node,
+  rel: _rel,
+  target: _target,
+  ...props
+}: ComponentProps<'a'> & { node?: unknown }) {
+  const linkProps = {
+    ...props,
+    className: cn('wrap-anywhere font-medium text-primary underline', className),
+    'data-incomplete': href === 'streamdown:incomplete-link' || undefined,
+    'data-streamdown': 'link',
+  };
+
+  if (isInternalAppLink(href)) {
+    return <Link href={href} {...linkProps} />;
+  }
+
+  return <a href={href} {...linkProps} />;
+}
+
+function DocumentSources({ citations }: { citations: DocumentSource[] }) {
+  const router = useRouter();
+
+  if (citations.length === 0) return null;
+
+  return (
+    <Sources>
+      <SourcesTrigger count={citations.length}>
+        <BookOpenIcon className="size-3.5" aria-hidden />
+        <span>引用 {citations.length} 篇文档</span>
+        <ChevronDownIcon className="size-3.5" aria-hidden />
+      </SourcesTrigger>
+      <SourcesContent>
+        {citations.map(({ href, title }) => (
+          <Source
+            href={href}
+            key={href}
+            onClick={(event) => {
+              event.preventDefault();
+              router.push(href);
+            }}
+            target="_self"
+            title={title}
+          />
+        ))}
+      </SourcesContent>
+    </Sources>
+  );
+}
+
+function getSearchResultCount(output: unknown): number | null {
+  if (!output || typeof output !== 'object') return null;
+
+  const result = output as { hits?: unknown; status?: unknown };
+  return result.status === 'ok' && Array.isArray(result.hits)
+    ? result.hits.length
+    : null;
+}
+
+function SearchChain({ invocation }: { invocation: ToolUIPart }) {
+  const isRunning =
+    invocation.state === 'input-streaming' ||
+    invocation.state === 'input-available' ||
+    invocation.state === 'approval-requested' ||
+    invocation.state === 'approval-responded';
+  const [open, setOpen] = useState(isRunning);
+  const wasRunning = useRef(isRunning);
+  const isCompleted = invocation.state === 'output-available';
+  const resultCount = isCompleted ? getSearchResultCount(invocation.output) : null;
+  const statusLabel = isCompleted ? '已完成' : isRunning ? '检索中' : '未完成';
+  const detail = isCompleted
+    ? resultCount === null
+      ? '文档检索已完成。'
+      : resultCount === 0
+        ? '未找到相关文档。'
+        : `已检索到 ${resultCount} 篇相关文档。`
+    : invocation.state === 'output-error'
+      ? '文档检索暂时不可用，请稍后重试。'
+      : invocation.state === 'output-denied'
+        ? '此次文档检索未执行。'
+        : '正在检索 OS4 设计规范…';
+
+  useEffect(() => {
+    if (wasRunning.current && !isRunning) setOpen(false);
+    wasRunning.current = isRunning;
+  }, [isRunning]);
+
+  return (
+    <ChainOfThought
+      className="not-prose mb-4 w-full"
+      onOpenChange={setOpen}
+      open={open}
+    >
+      <ChainOfThoughtHeader>文档检索 · {statusLabel}</ChainOfThoughtHeader>
+      <ChainOfThoughtContent>
+        <ChainOfThoughtStep
+          description={detail}
+          icon={SearchIcon}
+          label={isRunning ? '正在检索 OS4 设计规范' : '检索 OS4 设计规范'}
+          status={isCompleted ? 'complete' : isRunning ? 'active' : 'pending'}
+        />
+      </ChainOfThoughtContent>
+    </ChainOfThought>
+  );
+}
 
 function clampPanelSize(width: number, height: number): PanelSize {
   if (typeof window === 'undefined') {
@@ -298,8 +453,8 @@ function useHotKey(disabled: boolean) {
       setOpen(false);
       e.preventDefault();
     }
-    if (e.key === '/' && (e.metaKey || e.ctrlKey) && !open) {
-      setOpen(true);
+    if (e.key === '/' && (e.metaKey || e.ctrlKey)) {
+      setOpen(!open);
       e.preventDefault();
     }
   });
@@ -311,13 +466,27 @@ function useHotKey(disabled: boolean) {
   }, [disabled]);
 }
 
-function MessageParts({ message }: { message: ChatUIMessage }) {
+function MessageParts({
+  message,
+  showSources = true,
+}: {
+  message: ChatUIMessage;
+  showSources?: boolean;
+}) {
+  const citations = getDocumentSources(message);
+  const hasText = message.parts.some(
+    (part) => part.type === 'text' && part.text.trim().length > 0,
+  );
+
   return (
     <>
       {message.parts.map((part, i) => {
         if (part.type === 'text') {
           return (
-            <MessageResponse key={`${message.id}-text-${i}`}>
+            <MessageResponse
+              components={{ a: AskAiResponseLink }}
+              key={`${message.id}-text-${i}`}
+            >
               {part.text}
             </MessageResponse>
           );
@@ -325,41 +494,24 @@ function MessageParts({ message }: { message: ChatUIMessage }) {
 
         if (isToolUIPart(part)) {
           const invocation = part as ToolUIPart;
-          const toolName = invocation.type.replace(/^tool-/, '');
+          if (invocation.type !== 'tool-search') return null;
 
           return (
-            <Tool key={invocation.toolCallId ?? `${message.id}-tool-${i}`} defaultOpen={false}>
-              <ToolHeader
-                title={toolName === 'search' ? '检索文档' : toolName}
-                type={invocation.type}
-                state={invocation.state}
-              />
-              <ToolContent>
-                {invocation.input != null ? (
-                  <ToolInput input={invocation.input} />
-                ) : null}
-                {invocation.state === 'output-available' ||
-                invocation.state === 'output-error' ? (
-                  <ToolOutput
-                    output={
-                      invocation.state === 'output-available'
-                        ? invocation.output
-                        : undefined
-                    }
-                    errorText={
-                      invocation.state === 'output-error'
-                        ? invocation.errorText
-                        : undefined
-                    }
-                  />
-                ) : null}
-              </ToolContent>
-            </Tool>
+            <SearchChain
+              invocation={invocation}
+              key={invocation.toolCallId ?? `${message.id}-tool-${i}`}
+            />
           );
         }
 
         return null;
       })}
+      {showSources && !hasText && citations.length > 0 ? (
+        <p className="rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-muted-foreground text-sm">
+          文档已检索完成，但未能生成文字回答。请重新提问。
+        </p>
+      ) : null}
+      {showSources ? <DocumentSources citations={citations} /> : null}
     </>
   );
 }
@@ -368,12 +520,24 @@ export function AISearchPanel() {
   const { open, setOpen, chat } = useAISearchContext();
   const pathname = usePathname();
   const disabled = isAdminPath(pathname);
+  const supportsDesktopDock = isDocsPath(pathname);
+  const isDesktop = useMediaQuery(DESKTOP_DOCK_MEDIA_QUERY);
+  const isDocked = supportsDesktopDock && isDesktop;
   const [actualOpen, setActualOpen] = useState(false);
   const [text, setText] = useState('');
   const { size, resizing, startResize } = useResizablePanelSize();
   const reduceMotion = useReducedMotion();
 
   useHotKey(disabled);
+
+  useEffect(() => {
+    if (!actualOpen || !supportsDesktopDock) return;
+
+    document.body.dataset.aiAskDock = 'true';
+    return () => {
+      delete document.body.dataset.aiAskDock;
+    };
+  }, [actualOpen, supportsDesktopDock]);
 
   // 打开时同步挂载，避免入口已退出、面板晚一帧才出现
   if (open && !actualOpen) {
@@ -384,9 +548,12 @@ export function AISearchPanel() {
 
   const messages = chat.messages.filter((msg) => msg.role !== 'system');
   const canSend = chat.status === 'ready';
+  const latestAssistantMessageId = [...messages]
+    .reverse()
+    .find((message) => message.role === 'assistant')?.id;
 
   const sendUserText = (value: string) => {
-    const textValue = value.trim();
+    const textValue = value.trim().slice(0, MAX_PROMPT_LENGTH);
     if (!textValue || !canSend) return;
 
     void chat.sendMessage({
@@ -423,17 +590,26 @@ export function AISearchPanel() {
           aria-label="Ask AI"
           className={cn(
             // 只用 fixed：勿再加 relative，否则 Tailwind 层叠可能覆盖 position
-            'fixed z-40 flex flex-col overflow-hidden rounded-2xl border bg-background text-foreground shadow-xl origin-bottom-right',
+            'ai-ask-panel fixed z-40 flex flex-col overflow-hidden border bg-background text-foreground',
+            isDocked
+              ? 'ai-ask-panel--dock origin-right rounded-none border-y-0 border-e-0 shadow-none'
+              : 'origin-bottom-right rounded-2xl shadow-xl',
             resizing && 'transition-none',
           )}
           initial={
-            reduceMotion ? false : { opacity: 0, scale: 0.97, y: 12 }
+            reduceMotion
+              ? false
+              : isDocked
+                ? { opacity: 0, x: 24 }
+                : { opacity: 0, scale: 0.97, y: 12 }
           }
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          animate={isDocked ? { opacity: 1, x: 0 } : { opacity: 1, scale: 1, y: 0 }}
           exit={
             reduceMotion
               ? { opacity: 0 }
-              : { opacity: 0, scale: 0.97, y: 8 }
+              : isDocked
+                ? { opacity: 0, x: 24 }
+                : { opacity: 0, scale: 0.97, y: 8 }
           }
           transition={
             reduceMotion
@@ -444,18 +620,30 @@ export function AISearchPanel() {
                 }
           }
           style={
-            {
-              position: 'fixed',
-              // 入口隐藏后，面板落在同一角落，形成空间连续感
-              right: 24,
-              bottom: 24,
-              left: 'auto',
-              top: 'auto',
-              width: size.width,
-              height: size.height,
-              maxWidth: 'calc(100vw - 2rem)',
-              maxHeight: 'calc(100dvh - 6rem)',
-            } satisfies CSSProperties
+            isDocked
+              ? ({
+                  position: 'fixed',
+                  right: 0,
+                  bottom: 0,
+                  left: 'auto',
+                  top: 0,
+                  width: 'var(--ai-ask-dock-width)',
+                  height: '100dvh',
+                  maxWidth: 'none',
+                  maxHeight: 'none',
+                } satisfies CSSProperties)
+              : ({
+                  position: 'fixed',
+                  // 入口隐藏后，面板落在同一角落，形成空间连续感
+                  right: 24,
+                  bottom: 24,
+                  left: 'auto',
+                  top: 'auto',
+                  width: size.width,
+                  height: size.height,
+                  maxWidth: 'calc(100vw - 2rem)',
+                  maxHeight: 'calc(100dvh - 6rem)',
+                } satisfies CSSProperties)
           }
         >
         {/* 锚定右下角：左侧 / 顶部 / 左上角可拖拽调节大小 */}
@@ -463,20 +651,20 @@ export function AISearchPanel() {
           role="separator"
           aria-orientation="vertical"
           aria-label="调节面板宽度"
-          className="absolute inset-y-3 left-0 z-20 w-1.5 cursor-ew-resize touch-none"
+          className="ai-ask-resize-handle absolute inset-y-3 left-0 z-20 w-1.5 cursor-ew-resize touch-none"
           onPointerDown={(event) => startResize('w', event)}
         />
         <div
           role="separator"
           aria-orientation="horizontal"
           aria-label="调节面板高度"
-          className="absolute inset-x-3 top-0 z-20 h-1.5 cursor-ns-resize touch-none"
+          className="ai-ask-resize-handle absolute inset-x-3 top-0 z-20 h-1.5 cursor-ns-resize touch-none"
           onPointerDown={(event) => startResize('n', event)}
         />
         <div
           role="separator"
           aria-label="调节面板大小"
-          className="absolute top-0 left-0 z-30 size-4 cursor-nwse-resize touch-none"
+          className="ai-ask-resize-handle absolute top-0 left-0 z-30 size-4 cursor-nwse-resize touch-none"
           onPointerDown={(event) => startResize('nw', event)}
         />
 
@@ -499,39 +687,46 @@ export function AISearchPanel() {
         </header>
 
         <Conversation className="min-h-0 flex-1">
-          <ConversationContent className="gap-4">
+          <ConversationContent
+            className={cn(
+              'gap-4',
+              messages.length === 0 && 'min-h-full p-0',
+            )}
+          >
             {messages.length === 0 ? (
-              <ConversationEmptyState>
-                <div className="text-muted-foreground">
-                  <MessageCircleIcon className="size-8" />
-                </div>
-                <div className="space-y-1">
-                  <h3 className="font-medium text-sm">询问 OS4 设计规范</h3>
-                  <p className="text-muted-foreground text-xs">
-                    点击下方问题快速开始
-                  </p>
-                </div>
-                <div className="mt-1 flex w-full flex-wrap justify-center gap-2">
+              <ConversationEmptyState className="min-h-0 flex-1 items-stretch justify-end gap-0 px-4 pt-4 pb-1 text-left">
+                <Suggestions className="w-full flex-col items-start gap-2">
                   {SUGGESTED_PROMPTS.map((prompt) => (
-                    <Button
+                    <Suggestion
                       key={prompt}
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      className="h-auto w-auto max-w-full shrink-0 justify-start whitespace-normal px-3 py-2 text-left font-normal"
                       disabled={!canSend}
-                      onClick={() => sendUserText(prompt)}
-                    >
-                      {prompt}
-                    </Button>
+                      onClick={sendUserText}
+                      suggestion={prompt}
+                    />
                   ))}
-                </div>
+                </Suggestions>
+                <p className="mt-6 flex flex-wrap items-center gap-1.5 text-muted-foreground text-xs">
+                  <span>Tips：按</span>
+                  <kbd className="rounded border bg-muted px-1 py-0.5 font-mono text-[10px] text-foreground">
+                    ⌘
+                  </kbd>
+                  <kbd className="rounded border bg-muted px-1 py-0.5 font-mono text-[10px] text-foreground">
+                    /
+                  </kbd>
+                  <span>打开或关闭 Ask AI</span>
+                </p>
               </ConversationEmptyState>
             ) : (
               messages.map((message) => (
                 <Message from={message.role} key={message.id}>
                   <MessageContent>
-                    <MessageParts message={message} />
+                    <MessageParts
+                      message={message}
+                      showSources={
+                        chat.status !== 'streaming' ||
+                        message.id !== latestAssistantMessageId
+                      }
+                    />
                   </MessageContent>
                 </Message>
               ))
@@ -549,21 +744,30 @@ export function AISearchPanel() {
           <ConversationScrollButton />
         </Conversation>
 
-        <div className="border-t p-3">
-          <PromptInput onSubmit={handleSubmit} className="rounded-xl border">
+        <div className={cn('p-3', messages.length > 0 && 'border-t')}>
+          <PromptInput onSubmit={handleSubmit} className="ai-ask-prompt rounded-xl border">
             <PromptInputBody>
               <PromptInputTextarea
                 value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="询问 OS4 设计规范…"
-                className="min-h-12"
+                onChange={(e) => setText(e.target.value.slice(0, MAX_PROMPT_LENGTH))}
+                maxLength={MAX_PROMPT_LENGTH}
+                placeholder="输入 OS4 设计规范问题…"
+                className="min-h-20 max-h-40 text-sm"
               />
             </PromptInputBody>
-            <PromptInputFooter className="justify-end">
+            <PromptInputFooter className="justify-between gap-3">
+              <span aria-live="polite" className="text-muted-foreground text-xs">
+                {text.length} / {MAX_PROMPT_LENGTH}
+              </span>
               <PromptInputSubmit
+                className="ai-ask-submit shrink-0 rounded-lg disabled:opacity-100"
                 status={chat.status}
                 disabled={!text.trim() && chat.status === 'ready'}
                 onStop={() => chat.stop()}
+                style={{
+                  backgroundColor: 'var(--ai-ask-accent, #0082fb)',
+                  color: 'white',
+                }}
               />
             </PromptInputFooter>
           </PromptInput>
