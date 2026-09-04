@@ -289,7 +289,7 @@ const IconPickerGrid = memo(function IconPickerGrid({
                     void onCopy(`${icon.id}:hover-unicode`, unicodeText);
                   }}
                 >
-                  {hoverCopied ?? '拷贝'}
+                  {hoverCopied ?? '拷贝字符'}
                 </button>
               </div>
               <HoverCardArrow className="fill-fd-popover" width={12} height={7} />
