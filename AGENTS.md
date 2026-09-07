@@ -360,7 +360,7 @@ package-lock.json       # npm 锁文件
 仓库有少量纯逻辑单测，用 **Node 内置 test runner**（`node:test` + `node:assert`），**没有** `npm test` script、也没引入 Jest / Vitest。
 
 ```bash
-node --test "src/**/*.test.mjs"   # 全部（当前 14 suites / 32 tests）
+node --test "src/**/*.test.mjs"   # 全部（当前 15 suites / 35 tests）
 node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 ```
 

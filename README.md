@@ -46,7 +46,7 @@ npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/
 单元测试用 Node 内置 runner（没有 `npm test` script，也未引入 Jest / Vitest）：
 
 ```bash
-node --test "src/**/*.test.mjs"   # 当前 14 suites / 32 tests
+node --test "src/**/*.test.mjs"   # 当前 15 suites / 35 tests
 ```
 
 覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）、图标查询与预览计算（`src/lib/icon-query.test.mjs`）及彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
