@@ -286,7 +286,7 @@ const IconPickerGrid = memo(function IconPickerGrid({
                   onClick={(event) => {
                     event.preventDefault();
                     event.stopPropagation();
-                    void onCopy(`${icon.id}:hover-unicode`, unicodeText);
+                    void onCopy(`${icon.id}:hover-unicode`, codePointToChar(icon.unicode));
                   }}
                 >
                   {hoverCopied ?? '拷贝字符'}
