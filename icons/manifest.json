@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-21T06:41:53.747Z",
+  "generatedAt": "2026-09-16T07:56:37.694Z",
   "fonts": [
     {
       "id": "symbols",
@@ -32,7 +32,7 @@
       "postscriptName": "HyperOSSymbols-Content-RegularVF-Regular",
       "copyright": "Copyright © 2025-2026 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved.",
       "trademark": "Xiaomi is a trademark of Beijing Xiaomi Mobile Software Co.,Ltd.",
-      "fontVersion": "Version 1.020",
+      "fontVersion": "Version 1.050",
       "weight": {
         "min": 150,
         "max": 700,
@@ -7658,6 +7658,328 @@
         -86,
         1894,
         842
+      ]
+    },
+    {
+      "id": "content-regular.wlan_technical_standard_line",
+      "fontId": "content-regular",
+      "name": "wlan_technical_standard_line",
+      "unicode": "F03F6",
+      "glyphIndex": 364,
+      "advanceWidth": 1330,
+      "bbox": [
+        94,
+        -33,
+        1234,
+        786
+      ]
+    },
+    {
+      "id": "content-regular.connection_speed_line",
+      "fontId": "content-regular",
+      "name": "connection_speed_line",
+      "unicode": "F03F7",
+      "glyphIndex": 365,
+      "advanceWidth": 1330,
+      "bbox": [
+        136,
+        -105,
+        1194,
+        850
+      ]
+    },
+    {
+      "id": "content-regular.signal_strength_line",
+      "fontId": "content-regular",
+      "name": "signal_strength_line",
+      "unicode": "F03F8",
+      "glyphIndex": 366,
+      "advanceWidth": 1330,
+      "bbox": [
+        201,
+        -49,
+        1129,
+        799
+      ]
+    },
+    {
+      "id": "content-regular.security_line",
+      "fontId": "content-regular",
+      "name": "security_line",
+      "unicode": "F03F9",
+      "glyphIndex": 367,
+      "advanceWidth": 1330,
+      "bbox": [
+        189,
+        -173,
+        1142,
+        917
+      ]
+    },
+    {
+      "id": "content-regular.ip_address_line",
+      "fontId": "content-regular",
+      "name": "ip_address_line",
+      "unicode": "F03FA",
+      "glyphIndex": 368,
+      "advanceWidth": 1330,
+      "bbox": [
+        231,
+        -203,
+        1101,
+        924
+      ]
+    },
+    {
+      "id": "content-regular.subnet_mask_line",
+      "fontId": "content-regular",
+      "name": "subnet_mask_line",
+      "unicode": "F03FB",
+      "glyphIndex": 369,
+      "advanceWidth": 1330,
+      "bbox": [
+        194,
+        -128,
+        1138,
+        879
+      ]
+    },
+    {
+      "id": "content-regular.router_line",
+      "fontId": "content-regular",
+      "name": "router_line",
+      "unicode": "F03FC",
+      "glyphIndex": 370,
+      "advanceWidth": 1330,
+      "bbox": [
+        160,
+        -99,
+        1170,
+        849
+      ]
+    },
+    {
+      "id": "content-regular.cycle_surface",
+      "fontId": "content-regular",
+      "name": "cycle_surface",
+      "unicode": "F03FD",
+      "glyphIndex": 371,
+      "advanceWidth": 1330,
+      "bbox": [
+        126,
+        -219,
+        1204,
+        969
+      ]
+    },
+    {
+      "id": "content-regular.sleep_surface",
+      "fontId": "content-regular",
+      "name": "sleep_surface",
+      "unicode": "F03FE",
+      "glyphIndex": 372,
+      "advanceWidth": 1330,
+      "bbox": [
+        94,
+        -26,
+        1236,
+        779
+      ]
+    },
+    {
+      "id": "content-regular.calories_surface",
+      "fontId": "content-regular",
+      "name": "calories_surface",
+      "unicode": "F03FF",
+      "glyphIndex": 373,
+      "advanceWidth": 1330,
+      "bbox": [
+        166,
+        -190,
+        1175,
+        911
+      ]
+    },
+    {
+      "id": "content-regular.steps_surface",
+      "fontId": "content-regular",
+      "name": "steps_surface",
+      "unicode": "F0400",
+      "glyphIndex": 374,
+      "advanceWidth": 1330,
+      "bbox": [
+        73,
+        -71,
+        1204,
+        875
+      ]
+    },
+    {
+      "id": "content-regular.activity_surface",
+      "fontId": "content-regular",
+      "name": "activity_surface",
+      "unicode": "F0401",
+      "glyphIndex": 375,
+      "advanceWidth": 1330,
+      "bbox": [
+        157,
+        -133,
+        1170,
+        880
+      ]
+    },
+    {
+      "id": "content-regular.arrow_down",
+      "fontId": "content-regular",
+      "name": "arrow_down",
+      "unicode": "F0402",
+      "glyphIndex": 376,
+      "advanceWidth": 1330,
+      "bbox": [
+        267,
+        -179,
+        1063,
+        930
+      ]
+    },
+    {
+      "id": "content-regular.arrow_up",
+      "fontId": "content-regular",
+      "name": "arrow_up",
+      "unicode": "F0403",
+      "glyphIndex": 377,
+      "advanceWidth": 1330,
+      "bbox": [
+        268,
+        -181,
+        1064,
+        928
+      ]
+    },
+    {
+      "id": "content-regular.overview_surface",
+      "fontId": "content-regular",
+      "name": "overview_surface",
+      "unicode": "F0404",
+      "glyphIndex": 378,
+      "advanceWidth": 1330,
+      "bbox": [
+        190,
+        -110,
+        1140,
+        846
+      ]
+    },
+    {
+      "id": "content-regular.mini_games_surface",
+      "fontId": "content-regular",
+      "name": "mini_games_surface",
+      "unicode": "F0405",
+      "glyphIndex": 379,
+      "advanceWidth": 1330,
+      "bbox": [
+        218,
+        -72,
+        1112,
+        822
+      ]
+    },
+    {
+      "id": "content-regular.find_games_surface",
+      "fontId": "content-regular",
+      "name": "find_games_surface",
+      "unicode": "F0406",
+      "glyphIndex": 380,
+      "advanceWidth": 1330,
+      "bbox": [
+        146,
+        -42,
+        1186,
+        788
+      ]
+    },
+    {
+      "id": "content-regular.online_surface",
+      "fontId": "content-regular",
+      "name": "online_surface",
+      "unicode": "F0407",
+      "glyphIndex": 381,
+      "advanceWidth": 1330,
+      "bbox": [
+        166,
+        -120,
+        1160,
+        874
+      ]
+    },
+    {
+      "id": "content-regular.leaderboard_surface",
+      "fontId": "content-regular",
+      "name": "leaderboard_surface",
+      "unicode": "F0408",
+      "glyphIndex": 382,
+      "advanceWidth": 1330,
+      "bbox": [
+        139,
+        -100,
+        1188,
+        850
+      ]
+    },
+    {
+      "id": "content-regular.ai_search_surface",
+      "fontId": "content-regular",
+      "name": "ai_search_surface",
+      "unicode": "F0409",
+      "glyphIndex": 383,
+      "advanceWidth": 1330,
+      "bbox": [
+        119,
+        -171,
+        1211,
+        921
+      ]
+    },
+    {
+      "id": "content-regular.video_content_surface",
+      "fontId": "content-regular",
+      "name": "video_content_surface",
+      "unicode": "F040A",
+      "glyphIndex": 384,
+      "advanceWidth": 1330,
+      "bbox": [
+        274,
+        -108,
+        1082,
+        858
+      ]
+    },
+    {
+      "id": "content-regular.membership_surface",
+      "fontId": "content-regular",
+      "name": "membership_surface",
+      "unicode": "F040B",
+      "glyphIndex": 385,
+      "advanceWidth": 1330,
+      "bbox": [
+        119,
+        -138,
+        1211,
+        874
+      ]
+    },
+    {
+      "id": "content-regular.user_surface",
+      "fontId": "content-regular",
+      "name": "user_surface",
+      "unicode": "F040C",
+      "glyphIndex": 386,
+      "advanceWidth": 1330,
+      "bbox": [
+        191,
+        -148,
+        1139,
+        846
       ]
     },
     {
