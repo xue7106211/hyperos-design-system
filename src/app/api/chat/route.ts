@@ -79,7 +79,14 @@ export async function POST(req: Request) {
     });
 
     return createUIMessageStreamResponse({
-      stream: toUIMessageStream({ stream: result.stream }),
+      stream: toUIMessageStream({
+        stream: result.stream,
+        // SDK 默认把流式错误收成 "An error occurred."，服务端日志会丢掉网关原文。
+        onError: (error) => {
+          console.error('[ask-ai/chat]', error);
+          return MODEL_UNAVAILABLE_MESSAGE;
+        },
+      }),
     });
   } catch (error) {
     console.error('[ask-ai/chat]', error);

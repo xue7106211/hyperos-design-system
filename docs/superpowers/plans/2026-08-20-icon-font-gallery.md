@@ -1,6 +1,8 @@
 # 字体图标库画廊 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **状态：已失效（2026-10-13）**。迁移已完成，不要再执行文内 checkbox。`icons:import` 与 `icons/svg/` 已删除；图标页在 `/icons`，不在 `/docs/os4/resources/icons`。现行约定见 [icons/README.md](../../../icons/README.md)。
+
+> **不要执行本计划。** 上方「已失效」覆盖文末任何「按任务实现」说明。
 
 **Goal:** 把 `/docs/os4/resources/icons` 的 `<IconGallery />` 从 SVG 预览改成 HyperOS Symbols 可变字体画廊：5 个套件 +「全部」、搜索、全局颜色/粗细/字号、复制字符 / `U+F0000` / Glyph Index。
 

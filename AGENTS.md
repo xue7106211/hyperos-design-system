@@ -187,7 +187,7 @@ public/
   admin/                # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
   uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
-  app/                  # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og）
+  app/                  # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og、robots；根级 error / not-found）
     icons/              # /icons HyperOS Symbols 独立页（PillNav + 页内套件二级栏；无 docs 侧栏）
     resources/          # 设计资源中心（独立 hub，非 docs 侧栏）
   components/
@@ -201,6 +201,7 @@ src/
     mdx/                # 自定义 MDX（含 DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/               # Tina Visual Editing（useTina + TinaMarkdown）
     BackToTop.tsx       # 「返回顶部」（首页不挂；/resources 经 ResourcesBackToTop 使用）
+    SkipLink.tsx        # 「跳到正文」（文档页 #nd-page，其余 #main；根布局挂载）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
   lib/                  # source、layout、shared、resources、icons、recent-docs、tina-docs*、ai/、cn、utils（shadcn）等
 source.config.ts        # MDX frontmatter Zod schema
@@ -367,6 +368,7 @@ node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 | 测试 | 覆盖 |
 |------|------|
 | `src/lib/ai/search-docs.test.mjs` | Ask AI 检索层：查询归一化、OS4 过滤、「无结果」与「检索故障」区分 |
+| `src/lib/ai/document-sources.test.mjs` | Ask AI 回答来源：优先正文 Markdown 引用，否则回退到已完成的 search 结果 |
 | `src/lib/icon-query.test.mjs` | 图标查询、Unicode / 色彩格式化与字形预览布局计算 |
 | `src/components/easter-egg/rapid-click.test.mjs` | 彩蛋连点判定 `recordRapidClick` |
 

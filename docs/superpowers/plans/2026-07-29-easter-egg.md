@@ -1,6 +1,6 @@
 # 全站彩蛋浮层 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **状态：已执行完毕（2026-10-13 核对）**。彩蛋已挂在根布局。不要再按文内 checkbox 新建文件。行为以 `src/components/easter-egg/` 为准。
 
 **Goal:** 全站（排除 `/admin`）在 1.2s 内连点 4 次后打开居中签名浮层，文案为「无人区」彩蛋。
 

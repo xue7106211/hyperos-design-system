@@ -1,5 +1,7 @@
 # AI 问答助手（Ask AI）Implementation Plan
 
+> **状态：已失效（2026-10-13）**。下文 checkbox 与安装命令不要再执行。`react-markdown`、`@ai-sdk/openai-compatible`、`flexsearch` 不在当前 `package.json`。模型以 [deployment.md](../../deployment.md) 为准（`amber_ai/claude-sonnet-5`）。
+
 > **As-built（2026-08-11）**：本计划为实施过程记录。落地与计划差异如下，以代码与 [设计规格](../specs/2026-08-11-ai-assistant-design.md) 为准，勿按下文旧步骤重做：
 >
 > - Provider：`@ai-sdk/anthropic`（非 `@ai-sdk/openai-compatible`）
@@ -8,7 +10,7 @@
 > - Chat API：AI SDK 7 使用 `instructions`（非 system message 塞进 `messages`）
 > - 首页不挂「返回顶部」；打开 Ask AI 时入口淡出，面板从右下角进入
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **不要执行本计划。** 上方「已失效」覆盖文末任何「按任务实现」说明。
 
 **Goal:** 全站浮动 Ask AI：经小米内网 Anthropic 网关流式问答，检索仅限 OS4 文档，回答必须附带来源链接。
 

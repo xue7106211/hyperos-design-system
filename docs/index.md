@@ -22,10 +22,10 @@
 | 图标字体入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
 | 规范配图入库 | `public/media/...` + MDX `/media/...`（Fancybox；见 AGENTS「文档配图」） |
-| 单元测试（纯逻辑） | `node --test "src/**/*.test.mjs"`（无 `npm test` script；覆盖 Ask AI 检索、图标查询 / 预览计算与彩蛋连点；约定见 [AGENTS.md](../AGENTS.md)「单元测试」） |
+| 单元测试（纯逻辑） | `node --test "src/**/*.test.mjs"`（无 `npm test` script；当前 15 suites / 35 tests；覆盖 Ask AI 检索、回答来源、图标查询 / 预览计算与彩蛋连点；约定见 [AGENTS.md](../AGENTS.md)「单元测试」） |
 | 依赖补丁 | `patches/next-themes+0.4.6.patch`；`npm install` 的 `postinstall` 经 **patch-package** 自动应用，勿手改 `node_modules` |
 | 参考站点截图（比对用） | [design-references/](./design-references/)（typotab.com、aiforui.dev；非对外） |
-| Agent 历史设计 / 实现计划记录 | [superpowers/](./superpowers/)（`specs/`、`plans/`；非对外，路径和待办不作为当前实现依据） |
+| Agent 历史设计 / 实现计划记录 | [superpowers/](./superpowers/)（`specs/`、`plans/`；非对外。文首标「已失效」或「已执行完毕」的计划不要再执行） |
 
 ## 文档目录
 
@@ -72,10 +72,12 @@
 | `src/components/ai/` | Ask AI：`AiAssistant` 门闩 + `search` 浮动面板（AI Elements） |
 | `src/components/ai-elements/` | AI Elements（conversation / message / prompt / tool） |
 | `src/components/ui/` | shadcn 基础组件（Ask AI chrome；非文档 Web demo） |
-| `src/lib/ai/` | Ask AI：config / provider / prompt / search-docs / types |
+| `src/lib/ai/` | Ask AI：config / provider / prompt / search-docs / document-sources / types |
 | `src/app/api/chat/` | Ask AI 流式对话 API |
 | `components.json` | shadcn / AI Elements 注册表 |
 | `src/components/BackToTop.tsx` | 「返回顶部」；首页不挂载（与 Ask AI 冲突）；`/resources` 经 `ResourcesBackToTop` 使用 |
+| `src/components/SkipLink.tsx` | 「跳到正文」（文档页 `#nd-page`，其余 `#main`；根布局挂载） |
+| `src/app/error.tsx` / `not-found.tsx` / `robots.ts` | 全站错误页、404、robots（允许 `/`，禁止 `/admin`） |
 | `src/components/easter-egg/` | 全站彩蛋（`EasterEggProvider` 挂根布局；短时连点打开签名浮层） |
 | `src/components/home/` | Landing：`PillNav` + typotab 区块（`TypoHero` / `TypoValueProp` / `TypoRecentUpdates` / `TypoFaq` 等） |
 | `src/components/mdx/` | 自定义 MDX（含 `DocsImage` / `DocFancybox` / `SpecImageGrid` / `IconGallery` 等） |
@@ -98,6 +100,7 @@
 
 ## 变更摘要
 
+- **2026-10-13**：Ask AI 模型改为 `amber_ai/claude-sonnet-5`（`ppio/pa/claude-sonnet-4-6` 已下线）；staging 与 prod 均已发布。单测计数仍为 15 suites / 35 tests，补记 `document-sources`；目录树补上 `SkipLink`、全站 `error` / `not-found` / `robots`。`docs/superpowers/plans/` 中 Ask AI、图标字体两份计划标为已失效，彩蛋计划标为已执行完毕。
 - **2026-08-21**：全仓文档同步：补齐图标查询单测与当前 14 suites / 32 tests，修正图标资产从 SVG 到 5 套可变字体的旧称，更新 `/icons` 能力、IA 与 947 glyph 路线图状态，并扩充调研目录索引。
 - **2026-08-20（二）**：HyperOS 图标库迁出 Fumadocs 文档壳，独立页 `/icons`（套件导航；无 docs 侧栏；后与首页/资源共用 PillNav）；旧 `/docs/**/icons` 等 301 至此。
 - **2026-08-20**：`IconGallery` 改为 HyperOS Symbols 可变字体画廊（5 套件 + 搜索 / 复制字符、Unicode、Glyph Index）；下线 SVG 管线与 `icons:import`，真源改为 `icons/font/*.ttf`。

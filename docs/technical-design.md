@@ -278,7 +278,7 @@ hyperos-design-system/
 │   ├── admin/              # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
 │   └── uploads/            # TinaCMS 媒体上传（本地模式；gitignore）
 ├── src/
-│   ├── app/                # Next.js App Router（docs、icons、resources、admin、api/tina|search|chat、llms、og）
+│   ├── app/                # Next.js App Router（docs、icons、resources、admin、api/tina|search|chat、llms、og、robots；根级 error / not-found）
 │   ├── components/
 │   │   ├── ai/             # Ask AI（AiAssistant 门闩 + search 浮动面板）
 │   │   ├── ai-elements/    # AI Elements（conversation / message / prompt / tool）
@@ -290,6 +290,7 @@ hyperos-design-system/
 │   │   ├── mdx/            # DocsImage、DocFancybox、SpecImageGrid、FigmaEmbed、TokenTable、IconGallery、PlatformTabs 等
 │   │   ├── tina/           # Tina Visual Editing
 │   │   ├── BackToTop.tsx   # 「返回顶部」（首页不挂；/resources 使用）
+│   │   ├── SkipLink.tsx    # 「跳到正文」（文档页 #nd-page，其余 #main；根布局挂载）
 │   │   └── HyperOSLogo.tsx
 │   └── lib/                # source、layout、shared、resources、icons、recent-docs、docs-version-tabs、tina-docs*、search-tokenizer、git-file-mtime、ai/、cn、utils
 ├── source.config.ts        # frontmatter Zod schema

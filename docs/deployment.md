@@ -147,7 +147,7 @@ Ask AI 入口由服务端门闩控制：未配齐 `MI_LLM_*`（或 `AI_CHAT_ENAB
 |------|-------------|
 | `MI_LLM_BASE_URL` | `https://api.llm.mioffice.cn/anthropic/v1`（勿带末尾 `/messages`） |
 | `MI_LLM_API_KEY` | 站点统一 Bearer Key |
-| `MI_LLM_MODEL` | 如 `ppio/pa/claude-sonnet-4-6` |
+| `MI_LLM_MODEL` | `amber_ai/claude-sonnet-5`（`ppio/pa/claude-sonnet-4-6` 已下线）。2026-10-13：staging 与 prod 均已改为该值并发布 |
 | `AI_CHAT_ENABLED`（可选） | 设为 `false` 时强制隐藏入口 |
 
 网关需支持流式；请求会自动带唯一 `X-Model-Request-Id`。本地模板见 `.env.example`；设计说明见 [ai-assistant-design](./superpowers/specs/2026-08-11-ai-assistant-design.md)。

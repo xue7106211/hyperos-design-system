@@ -1,8 +1,8 @@
 # 字体图标库（TTF / Variable Font）设计
 
 日期：2026-08-20  
-状态：待实现  
-范围：`/docs/os4/resources/icons` 的 `<IconGallery />` 从 SVG 预览改为可变字体图标预览；OS5 图标页共用同一套
+状态：已实现（2026-08-20）。配套计划 [2026-08-20-icon-font-gallery.md](../plans/2026-08-20-icon-font-gallery.md) 已失效，勿再执行其中的 `icons:import` 删除步骤  
+范围：图标库为独立页 `/icons`（原 `/docs/os4/resources/icons` 已重定向）；`<IconGallery />` 为可变字体预览
 
 ## 目标
 

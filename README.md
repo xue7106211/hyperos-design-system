@@ -12,7 +12,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 文档配图页内画廊（Fancybox；同页前后切换）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
-- Ask AI 文档问答（全站浮动；仅 OS4；小米内网 Anthropic 网关；本地 `.env.local` / 线上 Matrix 部署空间「编辑 → 环境变量」配置 `MI_LLM_*`）
+- Ask AI 文档问答（全站浮动；仅 OS4；小米内网 Anthropic 网关；本地 `.env.local` / 线上 Matrix 部署空间「编辑 → 主容器环境变量」配置 `MI_LLM_*`）
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
 - TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 图标 / 代码 block
 - OS 版本切换（HyperOS 4 / 5；侧边栏 `DocsVersionSwitcher`，当前默认 OS4）
@@ -49,7 +49,7 @@ npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/
 node --test "src/**/*.test.mjs"   # 当前 15 suites / 35 tests
 ```
 
-覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）、图标查询与预览计算（`src/lib/icon-query.test.mjs`）及彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
+覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）、回答来源（`src/lib/ai/document-sources.test.mjs`）、图标查询与预览计算（`src/lib/icon-query.test.mjs`）及彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
 
 生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/deployment.md](docs/deployment.md)；镜像定义见根目录 `Dockerfile`。
 
@@ -89,7 +89,7 @@ tina/                # TinaCMS schema 与 block 模板
 .env.example         # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
 components.json      # shadcn / AI Elements（Ask AI UI）
 src/
-  app/               # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og）
+  app/               # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og、robots；根级 error / not-found）
   components/
     ai/              # Ask AI（AiAssistant + 浮动面板）
     ai-elements/     # AI Elements 对话组件
@@ -101,6 +101,7 @@ src/
     mdx/             # 自定义 MDX 组件（DocsImage、DocFancybox、SpecImageGrid、IconGallery 等）
     tina/            # Tina Visual Editing
     BackToTop.tsx    # 「返回顶部」（首页不挂；/resources 使用）
+    SkipLink.tsx     # 「跳到正文」（文档页 #nd-page，其余 #main；根布局挂载）
     HyperOSLogo.tsx  # 站点 Logo
   lib/               # source、layout、shared、resources、icons、recent-docs、tina-docs*、ai/、cn、utils 等
 public/

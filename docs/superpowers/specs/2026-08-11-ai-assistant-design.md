@@ -1,7 +1,7 @@
 # AI 问答助手（Ask AI）设计
 
 日期：2026-08-11  
-状态：已实现（上线需在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入 `MI_LLM_*`；见 [deployment.md](../../deployment.md)）
+状态：已实现。2026-10-13：staging 与 prod 的 `MI_LLM_MODEL` 均为 `amber_ai/claude-sonnet-5` 并已发布（见 [deployment.md](../../deployment.md)）
 范围：全站浮动 Ask AI；知识源仅 OS4 文档；小米内网 Anthropic Messages 网关
 
 ## 目标
@@ -103,7 +103,7 @@ Next.js Route Handler
 |------|------|
 | `MI_LLM_BASE_URL` | Anthropic 网关前缀，如 `https://api.llm.mioffice.cn/anthropic/v1` |
 | `MI_LLM_API_KEY` | 站点统一 Bearer Key |
-| `MI_LLM_MODEL` | 模型 ID（如 `ppio/pa/claude-sonnet-4-6`） |
+| `MI_LLM_MODEL` | 模型 ID，如 `amber_ai/claude-sonnet-5`（`ppio/pa/claude-sonnet-4-6` 已下线） |
 | `AI_CHAT_ENABLED`（可选） | 缺 Key / 预发关闭时隐藏入口 |
 
 由本地 `.env.local` 与 Matrix 部署空间 **编辑 → 主容器「环境变量」** 注入（勿与「设置 → 变量配置」混淆，后者只注入平台元数据）；**不进 git、不进镜像层**。操作步骤见 [deployment.md](../../deployment.md)「Ask AI 环境变量」。
