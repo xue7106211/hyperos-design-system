@@ -36,7 +36,7 @@ export function PlatformTabs({ children }: { children: ReactNode }) {
 
   return (
     <div className="my-6 not-prose">
-      <div className="flex gap-1 rounded-lg border border-fd-border bg-fd-muted/30 p-1">
+      <div role="tablist" aria-label="平台" className="flex gap-1 rounded-lg border border-fd-border bg-fd-muted/30 p-1">
         {tabs.map((tab) => {
           const platform = tab.props.platform;
           const label = tab.props.title ?? platformLabels[platform];
@@ -45,6 +45,8 @@ export function PlatformTabs({ children }: { children: ReactNode }) {
             <button
               key={platform}
               type="button"
+              role="tab"
+              aria-selected={active === platform}
               onClick={() => setActive(platform)}
               className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                 active === platform
@@ -57,7 +59,7 @@ export function PlatformTabs({ children }: { children: ReactNode }) {
           );
         })}
       </div>
-      <div className="mt-3 overflow-x-auto rounded-xl border border-fd-border bg-fd-muted/20 p-4">
+      <div role="tabpanel" className="mt-3 overflow-x-auto rounded-xl border border-fd-border bg-fd-muted/20 p-4">
         <pre className="m-0 overflow-x-auto text-sm leading-relaxed">
           <code>{String(activeTab?.props.children).trim()}</code>
         </pre>

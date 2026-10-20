@@ -58,7 +58,7 @@ export function TypoReveal({
 
   return (
     <motion.div
-      className={className}
+      className={['typo-reveal', className].filter(Boolean).join(' ')}
       variants={variants}
       initial="hidden"
       whileInView="visible"
@@ -89,7 +89,7 @@ export function TypoStagger({
 
   return (
     <motion.div
-      className={className}
+      className={['typo-reveal', className].filter(Boolean).join(' ')}
       variants={{
         hidden: {},
         visible: {
@@ -115,7 +115,7 @@ export function TypoStaggerItem({
   className?: string;
 } & Omit<HTMLMotionProps<'div'>, 'children' | 'variants'>) {
   return (
-    <motion.div className={className} variants={fadeUpSoft} {...rest}>
+    <motion.div className={['typo-reveal', className].filter(Boolean).join(' ')} variants={fadeUpSoft} {...rest}>
       {children}
     </motion.div>
   );

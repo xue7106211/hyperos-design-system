@@ -66,7 +66,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const leadingAction = designCodePilot ? <DocsModeToolbarSwitch /> : undefined;
   const actions = (
     <>
-      <MarkdownCopyButton markdownUrl={markdownUrl}>Copy</MarkdownCopyButton>
+      <MarkdownCopyButton markdownUrl={markdownUrl}>复制</MarkdownCopyButton>
       <ViewOptionsPopover
         markdownUrl={markdownUrl}
         githubUrl={`${gitRepoUrl}/-/blob/${gitConfig.branch}/content/docs/${page.path}`}

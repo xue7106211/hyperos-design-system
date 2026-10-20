@@ -121,8 +121,10 @@
   transition: color var(--resources-duration-hover) ease-out;
 }
 
-.resources-shell .home-nav-link:hover {
-  color: var(--home-fg-high);
+@media (hover: hover) and (pointer: fine) {
+  .resources-shell .home-nav-link:hover {
+    color: var(--home-fg-high);
+  }
 }
 
 .resources-shell .home-nav-link.is-active,

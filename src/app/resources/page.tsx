@@ -22,7 +22,7 @@ export default function ResourcesPage() {
     <>
       <MatrixRain />
       <PillNav />
-      <main className="resources-layout-root">
+      <main id="main" tabIndex={-1} className="resources-layout-root">
         <section className="resources-hero-band">
           <ResourceHero />
           <ResourcesRule />

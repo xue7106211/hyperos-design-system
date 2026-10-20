@@ -12,7 +12,9 @@ export default function IconsLayout({ children }: { children: ReactNode }) {
     <div className="home-shell flex h-dvh flex-col overflow-hidden bg-fd-background text-fd-foreground">
       <PillNav />
       <div aria-hidden className={PILL_NAV_SPACER} />
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">{children}</div>
+      <main id="main" tabIndex={-1} className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        {children}
+      </main>
     </div>
   );
 }

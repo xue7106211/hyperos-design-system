@@ -1,8 +1,9 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Geist } from 'next/font/google';
 import { Suspense } from 'react';
 import { AiAssistant } from '@/components/ai/AiAssistant';
+import { SkipLink } from '@/components/SkipLink';
 import { EasterEggProvider } from '@/components/easter-egg/EasterEggProvider';
 import { appDescription, appName, appShortTitle } from '@/lib/shared';
 import './global.css';
@@ -13,6 +14,14 @@ const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 const inter = Inter({
   subsets: ['latin'],
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  interactiveWidget: 'resizes-content',
+  colorScheme: 'light dark',
+};
 
 export const metadata: Metadata = {
   title: {
@@ -38,8 +47,9 @@ export const metadata: Metadata = {
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="zh-CN" className={cn(inter.className, "font-sans", geist.variable)} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-dvh">
         <RootProvider>
+          <SkipLink />
           <EasterEggProvider>
             {children}
             <Suspense fallback={null}>

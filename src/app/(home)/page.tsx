@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       <PillNav />
-      <div className="typo-clone">
+      <main id="main" tabIndex={-1} className="typo-clone">
         <TypoHero />
         <TypoRule />
         <TypoDesignLanguage />
@@ -32,7 +32,7 @@ export default function HomePage() {
         <TypoRecentUpdates items={recentDocs} />
         <TypoRule />
         <TypoFaq />
-      </div>
+      </main>
     </>
   );
 }

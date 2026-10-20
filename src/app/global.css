@@ -8,6 +8,63 @@
 
 html {
   scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-synthesis: none;
+}
+
+/* iOS Safari zooms inputs under 16px and does not zoom back. Desktop keeps the utility size. */
+@media (pointer: coarse) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+button,
+a,
+input,
+select,
+textarea,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+button,
+[role='button'] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.skip-link {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top, 0px));
+  left: max(0.75rem, env(safe-area-inset-left, 0px));
+  z-index: 80;
+  transform: translateY(-200%);
+  border-radius: 0.5rem;
+  background: var(--color-fd-background, #fff);
+  color: var(--color-fd-foreground, #111);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--color-fd-foreground, #111);
+  outline-offset: 2px;
 }
 
 /* Home landing — Delphi-inspired reveal (build.delphi.ai) */
@@ -72,8 +129,10 @@ html {
   transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.home-shell .home-link:hover {
-  color: var(--home-accent);
+@media (hover: hover) and (pointer: fine) {
+  .home-shell .home-link:hover {
+    color: var(--home-accent);
+  }
 }
 
 /* Back to top — home & /resources (shells define --home-nav-* / --home-fg-*) */
@@ -126,19 +185,23 @@ html {
   pointer-events: none;
 }
 
+.site-back-to-top:active {
+  scale: 0.96;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .site-back-to-top:hover {
     background: color-mix(in srgb, var(--home-bg, #fdfdfc) 92%, transparent);
-  }
-
-  .site-back-to-top:active {
-    scale: 0.96;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .site-back-to-top {
     transition: none;
+  }
+
+  .site-back-to-top:active {
+    scale: none;
   }
 }
 
@@ -149,8 +212,10 @@ html {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.home-shell .home-nav-link:hover {
-  color: var(--home-fg-high);
+@media (hover: hover) and (pointer: fine) {
+  .home-shell .home-nav-link:hover {
+    color: var(--home-fg-high);
+  }
 }
 
 .home-shell .home-nav-link.is-active,
@@ -499,8 +564,15 @@ html > body[data-scroll-locked] {
   transition: box-shadow 150ms ease-out;
 }
 
-.ai-ask-trigger:hover {
-  box-shadow: var(--ai-ask-elevation-hover);
+@media (hover: hover) and (pointer: fine) {
+  .ai-ask-trigger:hover {
+    box-shadow: var(--ai-ask-elevation-hover);
+  }
+}
+
+.ai-ask-anchor {
+  right: max(1.5rem, env(safe-area-inset-right, 0px));
+  bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
 }
 
 /* Ask AI — 局部使用 HyperOS 蓝色，不改变文档站全局 neutral 主题。 */
@@ -531,8 +603,10 @@ html > body[data-scroll-locked] {
   color: white;
 }
 
-.ai-ask-submit:hover:not(:disabled) {
-  background-color: var(--ai-ask-accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  .ai-ask-submit:hover:not(:disabled) {
+    background-color: var(--ai-ask-accent-hover);
+  }
 }
 
 @layer base {

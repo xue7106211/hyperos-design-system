@@ -171,8 +171,8 @@ function getPanelStyle(isDocked: boolean, size: PanelSize): CSSProperties {
   return {
     position: 'fixed',
     // 入口隐藏后，面板落在同一角落，形成空间连续感
-    right: 24,
-    bottom: 24,
+    right: 'max(1.5rem, env(safe-area-inset-right, 0px))',
+    bottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))',
     left: 'auto',
     top: 'auto',
     width: size.width,
@@ -396,6 +396,8 @@ function readStoredPanelSize(): PanelSize {
 function useResizablePanelSize() {
   const [size, setSize] = useState<PanelSize>(DEFAULT_PANEL_SIZE);
   const [resizing, setResizing] = useState(false);
+  const sizeRef = useRef(size);
+  if (!resizing) sizeRef.current = size;
   const dragRef = useRef<{
     edge: ResizeEdge;
     startX: number;
@@ -426,22 +428,27 @@ function useResizablePanelSize() {
       drag.edge === 'n' ? drag.startWidth : drag.startWidth - dx;
     const nextHeight =
       drag.edge === 'w' ? drag.startHeight : drag.startHeight - dy;
-    setSize(clampPanelSize(nextWidth, nextHeight));
+    const next = clampPanelSize(nextWidth, nextHeight);
+    sizeRef.current = next;
+    const panel = document.getElementById('ai-ask-panel');
+    if (panel) {
+      panel.style.width = `${next.width}px`;
+      panel.style.height = `${next.height}px`;
+    }
   });
 
   const stopDragging = useEffectEvent(() => {
     if (!dragRef.current) return;
     dragRef.current = null;
+    const next = clampPanelSize(sizeRef.current.width, sizeRef.current.height);
+    sizeRef.current = next;
+    setSize(next);
     setResizing(false);
-    setSize((prev) => {
-      const next = clampPanelSize(prev.width, prev.height);
-      try {
-        localStorage.setItem(PANEL_SIZE_KEY, JSON.stringify(next));
-      } catch {
-        // ignore quota / private mode
-      }
-      return next;
-    });
+    try {
+      localStorage.setItem(PANEL_SIZE_KEY, JSON.stringify(next));
+    } catch {
+      // ignore quota / private mode
+    }
     document.body.style.cursor = '';
     document.body.style.userSelect = '';
   });
@@ -468,18 +475,22 @@ function useResizablePanelSize() {
         edge,
         startX: event.clientX,
         startY: event.clientY,
-        startWidth: size.width,
-        startHeight: size.height,
+        startWidth: sizeRef.current.width,
+        startHeight: sizeRef.current.height,
       };
       setResizing(true);
       document.body.style.userSelect = 'none';
       document.body.style.cursor =
         edge === 'nw' ? 'nwse-resize' : edge === 'n' ? 'ns-resize' : 'ew-resize';
     },
-    [size.height, size.width],
+    [],
   );
 
-  return { size, resizing, startResize };
+  return {
+    size: resizing ? sizeRef.current : size,
+    resizing,
+    startResize,
+  };
 }
 
 export function AISearch({ children }: { children: ReactNode }) {
@@ -520,7 +531,7 @@ export function AISearchTrigger({
       aria-controls="ai-ask-panel"
       className={cn(
         position === 'float' &&
-          'ai-ask-trigger h-9 gap-2 rounded-full px-4 shadow-none transition-[box-shadow] active:scale-[0.96]',
+          'ai-ask-trigger relative h-9 gap-2 rounded-full px-4 shadow-none transition-[box-shadow] before:absolute before:inset-x-0 before:-inset-y-1 before:content-[\'\'] active:scale-[0.96] motion-reduce:active:scale-100',
         className,
       )}
       onClick={() => setOpen(true)}
@@ -535,7 +546,7 @@ export function AISearchTrigger({
       {!open ? (
         <motion.div
           key="ai-ask-trigger"
-          className="fixed right-6 bottom-6 z-40 origin-bottom-right"
+          className="ai-ask-anchor fixed z-40 origin-bottom-right"
           initial={false}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={
@@ -637,6 +648,7 @@ export function AISearchPanel() {
   const isDocked = supportsDesktopDock && isDesktop;
   const [actualOpen, setActualOpen] = useState(false);
   const [text, setText] = useState('');
+  const sendLock = useRef(false);
   const { size, resizing, startResize } = useResizablePanelSize();
   const reduceMotion = useReducedMotion();
   const shouldReduceMotion = Boolean(reduceMotion);
@@ -655,6 +667,26 @@ export function AISearchPanel() {
     };
   }, [actualOpen, supportsDesktopDock]);
 
+  useEffect(() => {
+    if (!open || !actualOpen) return;
+    const panel = document.getElementById('ai-ask-panel');
+    if (!panel) return;
+
+    const inerted: HTMLElement[] = [];
+    for (const child of document.body.children) {
+      if (!(child instanceof HTMLElement)) continue;
+      if (child === panel || child.contains(panel) || child.inert) continue;
+      child.inert = true;
+      inerted.push(child);
+    }
+    panel.focus();
+
+    return () => {
+      for (const el of inerted) el.inert = false;
+      document.querySelector<HTMLElement>('button[aria-controls="ai-ask-panel"]')?.focus();
+    };
+  }, [open, actualOpen]);
+
   // 打开时同步挂载，避免入口已退出、面板晚一帧才出现
   if (open && !actualOpen) {
     setActualOpen(true);
@@ -670,9 +702,11 @@ export function AISearchPanel() {
 
   const sendUserText = (value: string) => {
     const textValue = value.trim().slice(0, MAX_PROMPT_LENGTH);
-    if (!textValue || !canSend) return;
+    if (!textValue || !canSend || sendLock.current) return;
+    sendLock.current = true;
 
-    void chat.sendMessage({
+    void Promise.resolve(
+      chat.sendMessage({
       role: 'user',
       parts: [
         {
@@ -684,6 +718,9 @@ export function AISearchPanel() {
           text: textValue,
         },
       ],
+    }),
+    ).finally(() => {
+      sendLock.current = false;
     });
     setText('');
   };
@@ -703,7 +740,9 @@ export function AISearchPanel() {
           key="ai-ask-panel"
           id="ai-ask-panel"
           role="dialog"
+          aria-modal="true"
           aria-label="Ask AI"
+          tabIndex={-1}
           className={cn(
             // 只用 fixed：勿再加 relative，否则 Tailwind 层叠可能覆盖 position
             'ai-ask-panel fixed z-40 flex flex-col overflow-hidden border bg-background text-foreground',
@@ -759,6 +798,7 @@ export function AISearchPanel() {
             size="icon-sm"
             variant="ghost"
             aria-label="关闭"
+            className="relative before:absolute before:-inset-2 before:content-['']"
             onClick={() => setOpen(false)}
           >
             <XIcon className="size-4" />
@@ -812,7 +852,7 @@ export function AISearchPanel() {
             )}
 
             {chat.error ? (
-              <div className="rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm">
+              <div role="alert" className="rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm">
                 <p className="font-medium">模型服务暂时不可用，请稍后重试</p>
                 <p className="mt-1 text-muted-foreground text-xs">
                   {chat.error.message}
@@ -830,8 +870,9 @@ export function AISearchPanel() {
                 value={text}
                 onChange={(e) => setText(e.target.value.slice(0, MAX_PROMPT_LENGTH))}
                 maxLength={MAX_PROMPT_LENGTH}
+                aria-label="向 Ask AI 提问"
                 placeholder="输入 OS4 设计规范问题…"
-                className="min-h-20 max-h-40 text-sm"
+                className="min-h-20 max-h-40"
               />
             </PromptInputBody>
             <PromptInputFooter className="justify-between gap-3">

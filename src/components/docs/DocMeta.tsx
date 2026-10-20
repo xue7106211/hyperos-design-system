@@ -27,7 +27,7 @@ function MetaTag({
   const tip = tooltip ?? label;
   const shellClass = cn(
     'group relative inline-flex h-8 max-w-full items-center rounded-full',
-    'bg-fd-secondary/70 px-2.5 outline-none',
+    'bg-fd-secondary/70 px-2.5 outline-none focus-visible:ring-2 focus-visible:ring-fd-ring',
     'text-xs text-fd-foreground/80',
     href &&
       'transition-colors hover:text-fd-primary has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-fd-ring',

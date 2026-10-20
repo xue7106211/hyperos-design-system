@@ -244,12 +244,14 @@
   );
 }
 
-.typo-clone .typo-panel:hover {
-  box-shadow: var(--typo-elevation-raised-hover);
-}
+@media (hover: hover) and (pointer: fine) {
+  .typo-clone .typo-panel:hover {
+    box-shadow: var(--typo-elevation-raised-hover);
+  }
 
-.typo-clone .typo-panel:hover::before {
-  opacity: 1;
+  .typo-clone .typo-panel:hover::before {
+    opacity: 1;
+  }
 }
 
 .typo-clone .typo-panel > * {
@@ -269,9 +271,11 @@
 }
 
 /* Quiet 入口卡：轻抬升 + 柔阴影，描边保持中性 */
-.typo-clone .typo-panel--quiet:hover {
-  box-shadow: var(--typo-elevation-quiet-hover);
-  transform: translateY(-3px);
+@media (hover: hover) and (pointer: fine) {
+  .typo-clone .typo-panel--quiet:hover {
+    box-shadow: var(--typo-elevation-quiet-hover);
+    transform: translateY(-3px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -363,9 +367,11 @@
     transform var(--typo-duration-hover) ease-out;
 }
 
-.typo-clone .typo-badge--sky:hover {
-  box-shadow: var(--typo-hero-badge-elevation-hover);
-  background: color-mix(in oklch, var(--typo-hero-badge-bg) 92%, white);
+@media (hover: hover) and (pointer: fine) {
+  .typo-clone .typo-badge--sky:hover {
+    box-shadow: var(--typo-hero-badge-elevation-hover);
+    background: color-mix(in oklch, var(--typo-hero-badge-bg) 92%, white);
+  }
 }
 
 .typo-clone .typo-badge--sky:active {
@@ -405,9 +411,11 @@
     transform var(--typo-duration-hover) ease-out;
 }
 
-.typo-clone .typo-badge--sky:hover .typo-badge__chevron {
-  color: var(--typo-accent);
-  transform: translateX(1px);
+@media (hover: hover) and (pointer: fine) {
+  .typo-clone .typo-badge--sky:hover .typo-badge__chevron {
+    color: var(--typo-accent);
+    transform: translateX(1px);
+  }
 }
 
 /* Full-bleed hairline + end crosses (resources rule language) */
@@ -580,8 +588,10 @@
   text-decoration-color: color-mix(in oklch, var(--typo-ink) 30%, transparent);
 }
 
-.typo-clone .typo-link-ink:hover {
-  text-decoration-color: color-mix(in oklch, var(--typo-ink) 60%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .typo-clone .typo-link-ink:hover {
+    text-decoration-color: color-mix(in oklch, var(--typo-ink) 60%, transparent);
+  }
 }
 
 .typo-clone .typo-badge {
@@ -594,8 +604,10 @@
     transform var(--typo-duration-hover) ease-out;
 }
 
-.typo-clone .typo-badge:hover {
-  border-color: color-mix(in oklch, var(--typo-accent) 35%, var(--typo-guide));
+@media (hover: hover) and (pointer: fine) {
+  .typo-clone .typo-badge:hover {
+    border-color: color-mix(in oklch, var(--typo-accent) 35%, var(--typo-guide));
+  }
 }
 
 /*
@@ -726,5 +738,14 @@
 
 :is(html.dark, .dark) .typo-clone .typo-faq-item {
   background: var(--typo-card);
+}
+
+/* Motion writes opacity: 0 inline. No-JS and print must still show the sections. */
+@media print, (scripting: none) {
+  .typo-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
