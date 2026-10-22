@@ -1,6 +1,12 @@
 import { source } from '@/lib/source';
 import { getDocsVersionTabs } from '@/lib/docs-version-tabs';
 import { DocsVersionSwitcher } from '@/components/docs/DocsVersionSwitcher';
+import {
+  HiddenNavSidebarProvider,
+  HiddenNavSidebarRoot,
+  HiddenNavSidebarTrigger,
+  useHiddenNavSidebar,
+} from '@/components/docs/HiddenNavSidebar';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { baseOptions } from '@/lib/layout.shared';
 
@@ -14,6 +20,14 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
       tabs={false}
       sidebar={{
         banner: <DocsVersionSwitcher key="docs-version-switcher" tabs={tabs} />,
+      }}
+      slots={{
+        sidebar: {
+          provider: HiddenNavSidebarProvider,
+          root: HiddenNavSidebarRoot,
+          trigger: HiddenNavSidebarTrigger,
+          useSidebar: useHiddenNavSidebar,
+        },
       }}
       {...baseOptions()}
     >
