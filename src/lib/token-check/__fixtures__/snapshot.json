@@ -1,0 +1,59 @@
+{
+  "source": { "fileKey": "LIBfileKey0000000000000", "fileName": "HyperOS Design Token（测试）", "exportedAt": "2026-11-09T00:00:00.000Z" },
+  "collections": [
+    { "name": "Reference Token", "tier": "reference", "modes": ["Light", "Dark"] },
+    { "name": "Semantic Token", "tier": "semantic", "modes": ["Light", "Dark"] },
+    { "name": "Component Token", "tier": "component", "modes": ["Light", "Dark"] }
+  ],
+  "variables": [
+    {
+      "key": "refBlue50", "id": "VariableID:100:1", "name": "color/blue/miuix_ref_blue_50",
+      "collection": "Reference Token", "tier": "reference", "type": "COLOR", "scopes": ["ALL_SCOPES"],
+      "description": "", "hiddenFromPublishing": false,
+      "aliasOf": { "Light": null, "Dark": null }, "resolved": { "Light": "#3482FF", "Dark": "#3482FF" }
+    },
+    {
+      "key": "refGray10", "id": "VariableID:100:2", "name": "color/gray/miuix_ref_gray_10",
+      "collection": "Reference Token", "tier": "reference", "type": "COLOR", "scopes": ["ALL_SCOPES"],
+      "description": "", "hiddenFromPublishing": false,
+      "aliasOf": { "Light": null, "Dark": null }, "resolved": { "Light": "#F7F7F7", "Dark": "#F7F7F7" }
+    },
+    {
+      "key": "semPrimary", "id": "VariableID:200:1", "name": "brand/miuix_sys_color_primary",
+      "collection": "Semantic Token", "tier": "semantic", "type": "COLOR", "scopes": ["ALL_FILLS"],
+      "description": "品牌主色", "hiddenFromPublishing": false,
+      "aliasOf": { "Light": "color/blue/miuix_ref_blue_50", "Dark": "color/blue/miuix_ref_blue_50" },
+      "resolved": { "Light": "#3482FF", "Dark": "#3482FF" }
+    },
+    {
+      "key": "semLink", "id": "VariableID:200:2", "name": "text/miuix_sys_color_link",
+      "collection": "Semantic Token", "tier": "semantic", "type": "COLOR", "scopes": ["TEXT_FILL"],
+      "description": "链接文字", "hiddenFromPublishing": false,
+      "aliasOf": { "Light": "color/blue/miuix_ref_blue_50", "Dark": "color/blue/miuix_ref_blue_60" },
+      "resolved": { "Light": "#3482FF", "Dark": "#277AF7" }
+    },
+    {
+      "key": "semSpace16", "id": "VariableID:200:3", "name": "spacing/miuix_sys_spacing_16",
+      "collection": "Semantic Token", "tier": "semantic", "type": "FLOAT", "scopes": ["GAP"],
+      "description": "", "hiddenFromPublishing": false,
+      "aliasOf": { "Light": null, "Dark": null }, "resolved": { "Light": 16, "Dark": 16 }
+    },
+    {
+      "key": "semFontSize", "id": "VariableID:200:4", "name": "font/miuix_sys_font_size_body",
+      "collection": "Semantic Token", "tier": "semantic", "type": "FLOAT", "scopes": ["FONT_SIZE"],
+      "description": "", "hiddenFromPublishing": false,
+      "aliasOf": { "Light": null, "Dark": null }, "resolved": { "Light": 16, "Dark": 16 }
+    },
+    {
+      "key": "compCardRadius", "id": "VariableID:300:1", "name": "card/miuix_comp_card_radius",
+      "collection": "Component Token", "tier": "component", "type": "FLOAT", "scopes": ["CORNER_RADIUS"],
+      "description": "", "hiddenFromPublishing": false,
+      "aliasOf": { "Light": null, "Dark": null }, "resolved": { "Light": 24, "Dark": 24 }
+    }
+  ],
+  "styles": [
+    { "key": "styleBody", "id": "S:1", "name": "Body/Regular", "styleType": "TEXT", "description": "", "font": { "family": "MiSans", "style": "Regular", "size": 16, "lineHeight": 22 } },
+    { "key": "styleSurface", "id": "S:2", "name": "Surface/Primary", "styleType": "FILL", "description": "" },
+    { "key": "styleShadow", "id": "S:3", "name": "Shadow/Card", "styleType": "EFFECT", "description": "" }
+  ]
+}
