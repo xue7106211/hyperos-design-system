@@ -2,6 +2,7 @@
  * 把检查报告导出为中文 Markdown。
  */
 import type {
+  BindableProperty,
   BindingState,
   CoverageStat,
   ExclusionReason,
@@ -77,7 +78,11 @@ function formatDate(iso: string): string {
   return Number.isNaN(date.getTime()) ? iso : date.toISOString().replace('T', ' ').slice(0, 16) + ' UTC';
 }
 
-export function reportToMarkdown(report: TokenCheckReport): string {
+export function reportToMarkdown(
+  report: TokenCheckReport,
+  options: { waived?: BindableProperty[] } = {},
+): string {
+  const waived = options.waived ?? [];
   const lines: string[] = [];
   const push = (...rows: string[]) => lines.push(...rows);
 
@@ -151,6 +156,17 @@ export function reportToMarkdown(report: TokenCheckReport): string {
     push('没有发现未绑定或绑定到非 HyperOS 库的属性。');
   }
   push('');
+
+  // 有意保留：不计入覆盖率，但公开列出，供评审核对
+  if (waived.length) {
+    push(`## 有意保留（${waived.length}）`, '', '设计师标记为有意不绑定 Token 的属性，已从覆盖率分母中移除。', '', '| 图层 | 类别 | 字段 | 原状态 | 当前值 |', '| --- | --- | --- | --- | --- |');
+    for (const issue of waived) {
+      push(
+        `| ${link(cell(issue.path.join(' / ')), issue.figmaUrl)} | ${CATEGORY_LABELS[issue.category]} | \`${cell(issue.field)}\` | ${STATE_LABELS[issue.state]} | ${cell(issue.value)} |`,
+      );
+    }
+    push('');
+  }
 
   // 准确性发现
   push(`## 准确性发现（${report.findings.length}）`, '');

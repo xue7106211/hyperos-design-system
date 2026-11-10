@@ -125,3 +125,9 @@ export function formatDateTime(iso: string) {
     hour12: false,
   }).format(d);
 }
+
+/** 修好一组后覆盖率上升的百分点，如「+7.6 个百分点」 */
+export function formatGain(points: number) {
+  if (points <= 0) return '+0';
+  return points < 0.05 ? '+<0.1' : `+${points.toFixed(1)}`;
+}

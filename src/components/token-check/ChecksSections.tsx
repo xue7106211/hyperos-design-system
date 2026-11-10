@@ -4,16 +4,29 @@ import { useState } from 'react';
 import { Accordion } from '@/components/arc/accordion/accordion';
 import { Button } from '@/components/arc/button/button';
 import { EmptyState } from '@/components/arc/empty-state/empty-state';
-import type { Exclusion, TokenCheckReport } from '@/lib/token-check/types';
+import { waiverKey } from '@/lib/token-check/review-state';
+import type { BindableProperty, Exclusion, TokenCheckReport } from '@/lib/token-check/types';
 import {
+  categoryLabels,
   checkLabel,
   exclusionHints,
   exclusionLabels,
   exclusionOrder,
   formatDateTime,
+  stateLabels,
   uncertainLabels,
 } from './labels';
-import { Count, FigmaLink, LayerPath, NodeIdTag, nodeIdOf, Section, SeverityBadge, Tag } from './primitives';
+import {
+  Count,
+  FigmaLink,
+  LayerPath,
+  NodeIdTag,
+  nodeIdOf,
+  Section,
+  SeverityBadge,
+  Tag,
+  ValueText,
+} from './primitives';
 
 const PAGE_SIZE = 20;
 
@@ -111,8 +124,70 @@ function ExclusionItems({ reason, items }: { reason: Exclusion['reason']; items:
   );
 }
 
+/** 有意保留：公开列出，任何人都能看到哪些值被跳过，并可撤销 */
+function WaivedList({
+  waived,
+  onWaive,
+}: {
+  waived: BindableProperty[];
+  onWaive: (keys: string[], waived: boolean) => void;
+}) {
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const remaining = waived.length - visible;
+  return (
+    <>
+      <div className="tc-waived-head">
+        <p className="tc-section-desc">
+          设计师标记为故意不绑定 Token 的值，例如给开发看的标注。它们不计入覆盖率，导出报告时会一并列出。标记只存在这台电脑的浏览器里
+        </p>
+        <Button type="button" variant="ghost" size="sm" onClick={() => onWaive(waived.map(waiverKey), false)}>
+          全部撤销
+        </Button>
+      </div>
+      <ul className="tc-rows tc-rows--appendix">
+        {waived.slice(0, visible).map((issue, i) => (
+          <li key={`${waiverKey(issue)}-${i}`} className="tc-row">
+            <div className="tc-node-head">
+              <div className="min-w-0 flex-1">
+                <LayerPath path={issue.path} />
+                <div className="tc-waived-value">
+                  <span className="tc-meta shrink-0">
+                    {categoryLabels[issue.category]} · {stateLabels[issue.state]}
+                  </span>
+                  <ValueText value={issue.value} />
+                </div>
+              </div>
+              <span className="flex shrink-0 items-center gap-2">
+                <Button type="button" variant="ghost" size="sm" onClick={() => onWaive([waiverKey(issue)], false)}>
+                  撤销
+                </Button>
+                <FigmaLink href={issue.figmaUrl} label={issue.nodeName} />
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {remaining > 0 ? (
+        <div className="tc-more">
+          <Button type="button" variant="ghost" size="sm" onClick={() => setVisible((v) => v + PAGE_SIZE)}>
+            再显示 {Math.min(PAGE_SIZE, remaining)} 条（剩余 {remaining} 条）
+          </Button>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 /** 校对说明：数字从哪来、哪些被排除、哪些拿不准。读者想核对时才会看，排版更轻 */
-export function Appendix({ report }: { report: TokenCheckReport }) {
+export function Appendix({
+  report,
+  waived,
+  onWaive,
+}: {
+  report: TokenCheckReport;
+  waived: BindableProperty[];
+  onWaive: (keys: string[], waived: boolean) => void;
+}) {
   const { exclusionSummary, exclusions, uncertain, checksRun } = report;
   const totalNodes = exclusionOrder.reduce((s, r) => s + exclusionSummary[r].nodeCount, 0);
 
@@ -138,6 +213,10 @@ export function Appendix({ report }: { report: TokenCheckReport }) {
             本次运行{checksRun.length > 0 ? checksRun.map(checkLabel).join('、') : '：无'}。作用域、取值匹配和语义检查会在后续版本提供
           </dd>
         </div>
+        <div>
+          <dt>键盘</dt>
+          <dd>在「按修复」视图里，J / K 切换到下一条或上一条并展开，O 在 Figma 中打开当前这条的第一处，Enter 展开或收起</dd>
+        </div>
       </dl>
 
       <h3 className="tc-subtitle">
@@ -160,6 +239,18 @@ export function Appendix({ report }: { report: TokenCheckReport }) {
           content: <ExclusionItems reason={reason} items={exclusions.filter((e) => e.reason === reason)} />,
         }))}
       />
+
+      <h3 id="tc-waived" className="tc-subtitle">
+        有意保留
+        <Count n={waived.length} />
+      </h3>
+      {waived.length === 0 ? (
+        <p className="tc-row-text">
+          没有标为有意保留的值。在问题清单的「按修复」视图里展开一条，可以把整组标为有意保留
+        </p>
+      ) : (
+        <WaivedList waived={waived} onWaive={onWaive} />
+      )}
 
       <h3 className="tc-subtitle">
         待确认

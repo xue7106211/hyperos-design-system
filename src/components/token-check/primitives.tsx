@@ -103,15 +103,20 @@ export function Count({ n }: { n: number }) {
 
 export const barStates: BindingState[] = ['hyperos', 'legacy', 'other', 'unbound'];
 
-/** 四档堆叠比例条，全页唯一的彩色区域。颜色只是辅助，旁边始终有数字，读屏读 aria-label */
+/**
+ * 四档堆叠比例条，全页唯一的彩色区域。颜色只是辅助，旁边始终有数字，读屏读 aria-label。
+ * 传 onSelect 时，未覆盖的几段可以点，用来筛选问题清单；键盘和读屏走旁边的数量按钮，这里不进 Tab 序列。
+ */
 export function CoverageBar({
   stat,
   className,
   size = 'sm',
+  onSelect,
 }: {
   stat: CoverageStat;
   className?: string;
   size?: 'sm' | 'lg';
+  onSelect?: (state: Exclude<BindingState, 'hyperos'>) => void;
 }) {
   const { total } = stat;
   const pct = (n: number) => (total > 0 ? `${(n / total) * 100}%` : '0%');
@@ -123,14 +128,32 @@ export function CoverageBar({
           ? `HyperOS ${stat.hyperos}，旧版 Kit 变量 ${stat.legacy}，非 HyperOS 库 ${stat.other}，未绑定 ${stat.unbound}，共 ${total}`
           : '无此类属性'
       }
-      className={cn('tc-bar', size === 'lg' ? 'tc-bar--lg' : 'tc-bar--sm', className)}
+      className={cn(
+        'tc-bar',
+        size === 'lg' ? 'tc-bar--lg' : 'tc-bar--sm',
+        onSelect && 'tc-bar--interactive',
+        className,
+      )}
     >
       {total > 0
         ? barStates
             .filter((state) => stat[state] > 0)
-            .map((state) => (
-              <span key={state} className={cn('tc-seg', `tc-seg--${state}`)} style={{ width: pct(stat[state]) }} />
-            ))
+            .map((state) =>
+              onSelect && state !== 'hyperos' ? (
+                <button
+                  key={state}
+                  type="button"
+                  tabIndex={-1}
+                  aria-hidden
+                  title={`${stateLabels[state]} ${stat[state]} 处，点击筛选问题清单`}
+                  className={cn('tc-seg', `tc-seg--${state}`)}
+                  style={{ width: pct(stat[state]) }}
+                  onClick={() => onSelect(state)}
+                />
+              ) : (
+                <span key={state} className={cn('tc-seg', `tc-seg--${state}`)} style={{ width: pct(stat[state]) }} />
+              ),
+            )
         : null}
     </div>
   );

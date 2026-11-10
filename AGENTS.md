@@ -348,6 +348,7 @@ package-lock.json       # npm 锁文件
 - Token 库快照 `tokens/figma/hyperos-design-token.snapshot.json` 由 Figma MCP 离线导出（Org 计划无 Variables REST），刷新见 `scripts/token-check/export-library-snapshot.figma.js`，提交前跑 `node scripts/token-check/verify-snapshot.mjs`；旧版 Kit 变量清单 `tokens/figma/miuix-kit-legacy-variables.json`（刷新见 `scripts/token-check/export-legacy-kit-variables.figma.js`）；两份快照与 `tokens/*.{light,dark}.json`（OS4，TokenTable 用）是不同数据，不要混用
 - 测试：`node --test "src/**/*.test.mjs"` 已包含 `src/lib/token-check/*.test.mjs`
 - 开发期演示数据：`/tools/token-check?demo=1`（生产构建不加载）
+- 复核状态（有意保留、与上次对比）只存在浏览器 localStorage（`tc-waivers:v1`、`tc-history:v1`），口径在 `src/lib/token-check/review-state.ts`；有意保留会改变覆盖率分母，必须在附录和导出里公开列出
 - **UI 组件约定**：工具页控件统一用 Arc 免费组件源码（`src/components/arc/`，来源 https://uiarc.dev ，手动拷入而非 CLI 安装）。规则：
   1. 不新增直接依赖：Arc 里的 `@radix-ui/react-*` 一律改成从已有的 `radix-ui` 包导入；只用已有的 `motion`、`lucide-react`
   2. 不引入 Arc 的 `foundation.css`（它在 `:root` 定义 `--background` 等，会覆盖 shadcn 变量）；变量映射在 `src/app/tools/arc-theme.css`，只作用于 `.tc-arc` 容器和 Tooltip 浮层 `.arc-layer`

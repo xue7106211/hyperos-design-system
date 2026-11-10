@@ -1,18 +1,20 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { BookmarkCheck } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Accordion } from '@/components/arc/accordion/accordion';
 import { Button } from '@/components/arc/button/button';
 import { EmptyState } from '@/components/arc/empty-state/empty-state';
 import SegmentedControl from '@/components/arc/segmented-control/segmented-control';
 import { groupIssuesByFix, type FixGroup } from '@/lib/token-check/fix-groups';
+import { fixGain, waiverKey } from '@/lib/token-check/review-state';
 import type {
   BindableProperty,
   BindingState,
   PropertyCategory,
   TokenCheckReport,
 } from '@/lib/token-check/types';
-import { categoryLabels, categoryOrder, fixActionLabels } from './labels';
+import { categoryLabels, categoryOrder, fixActionLabels, formatGain } from './labels';
 import {
   FigmaLink,
   NodeIdTag,
@@ -32,6 +34,23 @@ type StateFilter = Exclude<BindingState, 'hyperos'> | 'all';
 
 /** 由「结论 · 先改这几处」发起：切到按修复视图、清空筛选、展开并滚到该条 */
 export type FixFocusRequest = { key: string; seq: number };
+
+/** 由结论区的比例条 / 数量发起：只看某一档 */
+export type StateFilterRequest = { state: Exclude<BindingState, 'hyperos'>; seq: number };
+
+type WaiveHandler = (keys: string[], waived: boolean) => void;
+
+function isTypingTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) return false;
+  return target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
+}
+
+function focusFixTrigger(index: number, block: ScrollLogicalPosition = 'nearest') {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const trigger = document.getElementById(`tc-fix-${index}`)?.closest('button');
+  trigger?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block });
+  trigger?.focus({ preventScroll: true });
+}
 
 /* ---------- 按图层：同一检查目标内、同一图层的问题合并成一行 ---------- */
 
@@ -174,11 +193,29 @@ function FixTitle({ fix, index }: { fix: FixGroup; index: number }) {
   );
 }
 
-function FixLayers({ fix }: { fix: FixGroup }) {
+function FixLayers({ fix, onWaive }: { fix: FixGroup; onWaive: WaiveHandler }) {
   const [visible, setVisible] = useState(PAGE_SIZE);
   const shown = fix.issues.slice(0, visible);
   return (
     <>
+      <div className="tc-fix-actions">
+        <p className="tc-meta">
+          {fix.state === 'unbound'
+            ? '在 Figma 里选中这些图层，把这个值换成对应的 HyperOS Token'
+            : fix.state === 'legacy'
+              ? '把旧版 Kit 变量换成 HyperOS 库里语义相同的 Token'
+              : '这些值绑的不是 HyperOS 库，换成 HyperOS 库里对应的 Token'}
+        </p>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={() => onWaive(fix.issues.map(waiverKey), true)}
+        >
+          <BookmarkCheck aria-hidden className="size-4" strokeWidth={1.5} />
+          标为有意保留
+        </Button>
+      </div>
       <ul className="tc-fix-layers">
         {shown.map((issue, i) => (
           <li key={`${issue.nodeId}-${issue.field}-${i}`} className="tc-fix-layer">
@@ -206,16 +243,21 @@ function FixLayers({ fix }: { fix: FixGroup }) {
 
 function FixView({
   fixes,
+  total,
   open,
   onOpenChange,
   visible,
   onMore,
+  onWaive,
 }: {
   fixes: FixGroup[];
+  /** 覆盖率分母，用来换算每条修改的收益 */
+  total: number;
   open: number;
   onOpenChange: (index: number) => void;
   visible: number;
   onMore: () => void;
+  onWaive: WaiveHandler;
 }) {
   const shown = fixes.slice(0, visible);
   return (
@@ -233,9 +275,12 @@ function FixView({
               <span className="tc-fix-count">
                 <b>{fix.issues.length}</b> 处 · {fix.nodeCount} 个图层
               </span>
+              <span className="tc-fix-gain" title="改完后覆盖率提升的百分点">
+                {formatGain(fixGain(fix.issues.length, total))}
+              </span>
             </span>
           ),
-          content: <FixLayers fix={fix} />,
+          content: <FixLayers fix={fix} onWaive={onWaive} />,
         }))}
       />
       <MoreButton remaining={fixes.length - shown.length} unit="条" onClick={onMore} />
@@ -340,11 +385,18 @@ export function IssueList({
   report,
   fixes,
   focusRequest,
+  filterRequest,
+  onWaive,
+  waivedCount,
 }: {
   report: TokenCheckReport;
   /** 全量（未筛选）的修复分组，与「结论」共用同一份 */
   fixes: FixGroup[];
   focusRequest?: FixFocusRequest;
+  filterRequest?: StateFilterRequest;
+  onWaive: WaiveHandler;
+  /** 已标为有意保留的处数，用于空状态文案 */
+  waivedCount: number;
 }) {
   const [view, setView] = useState<View>('fix');
   const [category, setCategory] = useState<CategoryFilter>('all');
@@ -381,9 +433,12 @@ export function IssueList({
     };
   }, [report.issues, category]);
 
-  // 结论区「先改这几处」：定位到对应的修改
+  // 结论区「先改这几处」：定位到对应的修改。只处理新的请求；
+  // fixes 会因标记有意保留而变化，不能让旧请求再触发一次定位
+  const handledFocus = useRef(0);
   useEffect(() => {
-    if (!focusRequest) return;
+    if (!focusRequest || focusRequest.seq === handledFocus.current) return;
+    handledFocus.current = focusRequest.seq;
     const index = fixes.findIndex((f) => f.key === focusRequest.key);
     if (index < 0) return;
     setView('fix');
@@ -391,14 +446,52 @@ export function IssueList({
     setState('all');
     setVisibleFixes((v) => Math.max(v, index + 1));
     setOpenFix(index);
+    requestAnimationFrame(() => focusFixTrigger(index, 'start'));
+  }, [focusRequest, fixes]);
+
+  // 结论区的比例条 / 数量：切到这一档，滚到清单开头
+  useEffect(() => {
+    if (!filterRequest) return;
+    setState(filterRequest.state);
+    setCategory('all');
+    setOpenFix(0);
+    setVisibleFixes(PAGE_SIZE);
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     requestAnimationFrame(() => {
-      const title = document.getElementById(`tc-fix-${index}`);
-      const trigger = title?.closest('button');
-      trigger?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-      trigger?.focus({ preventScroll: true });
+      const section = document.getElementById('tc-issues');
+      section?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      section?.querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
     });
-  }, [focusRequest, fixes]);
+  }, [filterRequest]);
+
+  // 键盘逐条处理（按修复视图）：J / K 上下一条并展开，O 在 Figma 中打开当前这条的第一处
+  const keyState = useRef({ view, openFix, shownFixes, visibleFixes });
+  keyState.current = { view, openFix, shownFixes, visibleFixes };
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || isTypingTarget(e.target)) return;
+      const { view, openFix, shownFixes, visibleFixes } = keyState.current;
+      if (view !== 'fix' || shownFixes.length === 0) return;
+      const key = e.key.toLowerCase();
+      if (key === 'j' || key === 'k') {
+        e.preventDefault();
+        const next =
+          key === 'j'
+            ? Math.min(openFix < 0 ? 0 : openFix + 1, shownFixes.length - 1)
+            : Math.max(openFix < 0 ? 0 : openFix - 1, 0);
+        if (next >= visibleFixes) setVisibleFixes(next + 1);
+        setOpenFix(next);
+        requestAnimationFrame(() => focusFixTrigger(next));
+      } else if (key === 'o' && openFix >= 0) {
+        const url = shownFixes[openFix]?.issues[0]?.figmaUrl;
+        if (!url) return;
+        e.preventDefault();
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    }
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
 
   function changeFilter<T>(set: (v: T) => void) {
     return (v: T) => {
@@ -412,7 +505,14 @@ export function IssueList({
     return (
       <Section id="tc-issues" title="问题清单">
         <div className="tc-box">
-          <EmptyState title="没有需要处理的属性" description="所有可绑定属性都已绑定到 HyperOS Token" />
+          <EmptyState
+            title="没有需要处理的属性"
+            description={
+              waivedCount > 0
+                ? `其余属性都已绑定到 HyperOS Token，另有 ${waivedCount} 处标为有意保留`
+                : '所有可绑定属性都已绑定到 HyperOS Token'
+            }
+          />
         </div>
       </Section>
     );
@@ -494,6 +594,12 @@ export function IssueList({
         ) : view === 'fix' ? (
           <FixView
             fixes={shownFixes}
+            total={report.coverage.overall.total}
+            onWaive={(keys, waived) => {
+              // 被标记的组会移出列表；收起展开项，避免下一组顶上来被自动展开
+              setOpenFix(-1);
+              onWaive(keys, waived);
+            }}
             open={openFix}
             onOpenChange={setOpenFix}
             visible={visibleFixes}

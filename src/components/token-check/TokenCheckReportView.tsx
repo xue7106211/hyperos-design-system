@@ -2,13 +2,35 @@
 
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from 'react';
 import { groupIssuesByFix } from '@/lib/token-check/fix-groups';
+import {
+  applyWaivers,
+  diffRuns,
+  historyKey,
+  recordRun,
+  snapshotOf,
+  type RunDiff,
+} from '@/lib/token-check/review-state';
 import type { TokenCheckReport } from '@/lib/token-check/types';
 import { AccuracySection, Appendix } from './ChecksSections';
 import { Distribution, Verdict } from './CoverageSections';
 import { ExportActions } from './ExportActions';
-import { IssueList, type FixFocusRequest } from './IssueList';
+import { IssueList, type FixFocusRequest, type StateFilterRequest } from './IssueList';
 import { formatDateTime, formatRate } from './labels';
 import { CoverageBar } from './primitives';
+import { readHistory, useWaivers, writeHistory } from './review-store';
+
+/** 与同一组检查目标的上一次结果对比；只在浏览器里记录 */
+function useRunDiff(raw: TokenCheckReport) {
+  const [diff, setDiff] = useState<RunDiff | null>(null);
+  useEffect(() => {
+    const key = historyKey(raw);
+    const current = snapshotOf(raw);
+    const history = recordRun(readHistory(key), current);
+    writeHistory(key, history);
+    setDiff(diffRuns(history, current));
+  }, [raw]);
+  return diff;
+}
 
 type Anchor = { id: string; label: string; count?: number };
 
@@ -32,7 +54,9 @@ function useActiveSection(ids: string[]) {
         }
         if (performance.now() < lockedUntil.current) return;
         const first = ids.find((id) => visible.has(id));
+        // 回到页首时结论区还在观察带下方，没有区块命中；此时高亮第一项
         if (first) setActive(first);
+        else if (window.scrollY < 120) setActive(ids[0]);
       },
       // 只看 PillNav 下方、视口上半部的区域：哪个区块先进入这条带就算当前
       { rootMargin: `-${NAV_CLEAR + 8}px 0px -55% 0px` },
@@ -81,16 +105,26 @@ function useActiveSection(ids: string[]) {
  * 宽屏右侧是固定的页边栏（覆盖率小计、目录、导出），窄屏收到正文上方。
  */
 export const TokenCheckReportView = forwardRef<HTMLHeadingElement, { report: TokenCheckReport }>(
-  function TokenCheckReportView({ report }, headingRef) {
+  function TokenCheckReportView({ report: raw }, headingRef) {
+    const [waivers, setWaived] = useWaivers();
+    const { report, waived } = useMemo(() => applyWaivers(raw, waivers), [raw, waivers]);
+    const diff = useRunDiff(raw);
     const fixes = useMemo(() => groupIssuesByFix(report.issues), [report.issues]);
     const [focusRequest, setFocusRequest] = useState<FixFocusRequest>();
+    const [filterRequest, setFilterRequest] = useState<StateFilterRequest>();
+    const filterState = useCallback(
+      (state: StateFilterRequest['state']) => {
+        setFilterRequest((prev) => ({ state, seq: (prev?.seq ?? 0) + 1 }));
+      },
+      [],
+    );
 
     const anchors: Anchor[] = [
       { id: 'tc-verdict', label: '结论' },
       { id: 'tc-issues', label: '问题清单', count: fixes.length },
       { id: 'tc-accuracy', label: '准确性检查', count: report.findings.length },
       { id: 'tc-distribution', label: '分布' },
-      { id: 'tc-appendix', label: '校对说明' },
+      { id: 'tc-appendix', label: '校对说明', count: waived.length > 0 ? waived.length : undefined },
     ];
     const [active, setActive] = useActiveSection(sectionIds);
 
@@ -136,7 +170,7 @@ export const TokenCheckReportView = forwardRef<HTMLHeadingElement, { report: Tok
                 <span className="tc-aside-rate">{formatRate(overall.rate)}</span>
                 <span className="tc-meta">HyperOS 覆盖率</span>
               </p>
-              <CoverageBar stat={overall} />
+              <CoverageBar stat={overall} onSelect={overall.total > overall.hyperos ? filterState : undefined} />
             </div>
 
             <nav aria-label="报告目录" className="tc-toc">
@@ -158,17 +192,31 @@ export const TokenCheckReportView = forwardRef<HTMLHeadingElement, { report: Tok
             </nav>
 
             <div className="tc-aside-export">
-              <ExportActions report={report} />
+              <ExportActions report={report} waived={waived} />
             </div>
           </div>
         </aside>
 
         <div className="tc-report-body">
-          <Verdict report={report} fixes={fixes} onFocusFix={focusFix} />
-          <IssueList report={report} fixes={fixes} focusRequest={focusRequest} />
+          <Verdict
+            report={report}
+            fixes={fixes}
+            waivedCount={waived.length}
+            diff={diff}
+            onFocusFix={focusFix}
+            onFilterState={filterState}
+          />
+          <IssueList
+            report={report}
+            fixes={fixes}
+            focusRequest={focusRequest}
+            filterRequest={filterRequest}
+            onWaive={setWaived}
+            waivedCount={waived.length}
+          />
           <AccuracySection report={report} />
           <Distribution report={report} />
-          <Appendix report={report} />
+          <Appendix report={report} waived={waived} onWaive={setWaived} />
         </div>
       </article>
     );

@@ -95,7 +95,7 @@
 }
 
 .tc-page-head {
-  max-width: 40rem;
+  max-width: none;
 }
 
 .tc-breadcrumb {
@@ -285,7 +285,6 @@ h1.tc-title {
 
 .tc-panel-desc {
   margin-top: 0.25rem;
-  max-width: 42rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: var(--color-fd-muted-foreground);
@@ -559,7 +558,6 @@ h1.tc-title {
 
 .tc-section-desc {
   margin-top: 0.25rem;
-  max-width: 40rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
   text-wrap: pretty;
@@ -629,7 +627,6 @@ h1.tc-title {
 }
 
 .tc-verdict-sentence {
-  max-width: 30rem;
   font-size: 1rem;
   line-height: 1.625rem;
   text-wrap: pretty;
@@ -791,7 +788,6 @@ h1.tc-title {
 }
 
 .tc-notes dd {
-  max-width: 40rem;
   text-wrap: pretty;
   color: var(--color-fd-muted-foreground);
 }
@@ -1455,5 +1451,161 @@ p.tc-row.tc-row-text {
 @media (max-width: 1023px) {
   .tc-aside-score {
     display: none;
+  }
+}
+
+/* ---------- 复核：可点的比例条、收益、与上次对比、有意保留 ---------- */
+
+.tc-verdict-note {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+
+/* 清零：数字不变，备注换成一句收尾，其余全部安静 */
+.tc-verdict-clear {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  text-wrap: balance;
+  color: var(--color-fd-foreground);
+}
+
+.tc-diff {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-diff--better {
+  color: var(--color-fd-foreground);
+}
+
+.tc-text-link {
+  color: var(--color-fd-foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--tc-line-strong);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tc-text-link:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* 结论区比例条：未覆盖的几段可以点（键盘走下方数量按钮） */
+.tc-bar.tc-bar--interactive {
+  pointer-events: auto;
+}
+
+.tc-bar--interactive button.tc-seg {
+  cursor: pointer;
+  transition: opacity 150ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tc-bar--interactive:hover .tc-seg {
+    opacity: 0.55;
+  }
+
+  .tc-bar--interactive:hover .tc-seg:hover {
+    opacity: 1;
+  }
+}
+
+.tc-state-button {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 150ms ease-out;
+}
+
+.tc-state-button::before {
+  content: '';
+  position: absolute;
+  inset: -8px -4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tc-state-button:hover {
+    text-decoration-color: var(--tc-line-strong);
+  }
+}
+
+.tc-state-button:focus-visible {
+  outline: 2px solid var(--color-fd-foreground);
+  outline-offset: 4px;
+}
+
+/* 每条修改的收益：改完覆盖率 +x 个百分点 */
+.tc-top-fix-unit {
+  font-size: 0.75rem;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-fix-gain {
+  min-width: 3rem;
+  text-align: right;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-fd-foreground);
+}
+
+.tc-fix-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  border-bottom: 1px solid var(--tc-line);
+  padding: 0.5rem 1.25rem;
+  background: var(--tc-hover);
+}
+
+.tc-waived-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.tc-waived-head .tc-section-desc {
+  flex: 1 1 24rem;
+}
+
+.tc-waived-value {
+  margin-top: 0.25rem;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+#tc-waived {
+  scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tc-text-link,
+  .tc-state-button,
+  .tc-bar--interactive button.tc-seg {
+    transition: none;
+  }
+}
+
+/* 结论句里的每个分句不在中间断开（窄屏放开，避免溢出） */
+@media (min-width: 640px) {
+  .tc-phrase {
+    white-space: nowrap;
   }
 }
