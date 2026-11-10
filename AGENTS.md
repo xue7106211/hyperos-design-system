@@ -423,3 +423,13 @@ node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 - [docs/superpowers/](docs/superpowers/) — Agent 历史设计 / 实现计划记录（非对外；路径和待办不作为当前实现依据）
 - [icons/README.md](icons/README.md) — 图标字体入库与 sync 约定
 - [Fumadocs 官方文档](https://www.fumadocs.dev)
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
