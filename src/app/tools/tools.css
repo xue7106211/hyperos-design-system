@@ -417,6 +417,8 @@ h1.tc-title {
 /* 窄屏：覆盖率小计 + 横向目录 + 导出，一块安静的条 */
 .tc-aside-inner {
   display: grid;
+  /* minmax(0, 1fr)：横向目录不换行，默认 auto 轨道会被它撑宽，窄屏溢出几 px */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   border-top: 1px solid var(--tc-line);
   border-bottom: 1px solid var(--tc-line);
