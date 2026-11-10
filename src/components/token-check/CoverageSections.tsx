@@ -11,6 +11,7 @@ import {
 } from './labels';
 import {
   barStates,
+  Count,
   CoverageBar,
   FigmaLink,
   Legend,
@@ -33,7 +34,7 @@ function share(n: number, total: number) {
 
 function Conclusion({ report }: { report: TokenCheckReport }) {
   const { overall } = report.coverage;
-  if (overall.total === 0) return <>没有可绑定的属性。</>;
+  if (overall.total === 0) return <>没有可绑定的属性</>;
   const pending = overall.total - overall.hyperos;
   if (pending === 0) return <>全部 <span className="tabular-nums">{overall.total}</span> 项可绑定属性都已绑定 HyperOS Token。</>;
   return (
@@ -53,7 +54,7 @@ export function CoverageOverview({ report }: { report: TokenCheckReport }) {
     <Panel
       id="tc-overview"
       title="总览"
-      description="覆盖率 = 绑定到 HyperOS Token 的属性 ÷ 可绑定属性。排除的图层不计入。"
+      description="覆盖率 = 绑定到 HyperOS Token 的属性 ÷ 可绑定属性，排除的图层不计入"
       flush
       footer={
         report.warnings.length > 0 ? (
@@ -104,7 +105,7 @@ export function CoverageOverview({ report }: { report: TokenCheckReport }) {
 
       <h3 className="tc-subhead">
         检查目标
-        <span className="tc-count">{report.targets.length}</span>
+        <Count n={report.targets.length} />
       </h3>
       <table className="tc-table">
         <caption className="sr-only">各检查目标的覆盖率</caption>
@@ -137,7 +138,7 @@ export function CoverageOverview({ report }: { report: TokenCheckReport }) {
               <td className="max-w-0 sm:max-w-none">
                 <span className="block truncate font-medium text-fd-foreground">{summary.nodeName}</span>
               </td>
-              <td className="hidden font-mono text-xs text-fd-muted-foreground sm:table-cell">
+              <td className="hidden text-xs text-fd-muted-foreground sm:table-cell">
                 {summary.nodeType}
               </td>
               <td className="hidden md:table-cell">
@@ -171,14 +172,14 @@ export function CategoryCoverage({ report }: { report: TokenCheckReport }) {
     <Panel
       id="tc-categories"
       title="分类覆盖率"
-      description="旧版 Kit 变量、非 HyperOS 库和未绑定的属性都算未覆盖。"
+      description="旧版 Kit 变量、非 HyperOS 库和未绑定的属性都算未覆盖"
       actions={<Legend />}
       flush
       footer={
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
           <span className="text-fd-foreground">已绑定 Token 的层级</span>
           {tierTotal === 0 ? (
-            <span>没有绑定 HyperOS Token 的属性。</span>
+            <span>没有绑定 HyperOS Token 的属性</span>
           ) : (
             <>
               <dl className="flex flex-wrap gap-x-6 gap-y-1 tabular-nums">

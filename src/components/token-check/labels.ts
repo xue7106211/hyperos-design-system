@@ -57,10 +57,10 @@ export const exclusionLabels: Record<ExclusionReason, string> = {
 };
 
 export const exclusionHints: Record<ExclusionReason, string> = {
-  'miuix-instance': '组件内部由 UI Kit 维护，只统计覆写过的属性。',
-  illustration: '自绘矢量、图片、图标不要求绑定 Token。',
-  annotation: '标注、交互说明和画板外的文字不计入。',
-  hidden: '不可见图层及其子级不计入。',
+  'miuix-instance': '组件内部由 UI Kit 维护，只统计覆写过的属性',
+  illustration: '自绘矢量、图片、图标不要求绑定 Token',
+  annotation: '标注、交互说明和画板外的文字不计入',
+  hidden: '不可见图层及其子级不计入',
 };
 
 export const uncertainLabels: Record<Uncertain['kind'], string> = {

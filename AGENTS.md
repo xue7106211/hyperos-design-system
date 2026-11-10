@@ -348,6 +348,11 @@ package-lock.json       # npm 锁文件
 - Token 库快照 `tokens/figma/hyperos-design-token.snapshot.json` 由 Figma MCP 离线导出（Org 计划无 Variables REST），刷新见 `scripts/token-check/export-library-snapshot.figma.js`，提交前跑 `node scripts/token-check/verify-snapshot.mjs`；旧版 Kit 变量清单 `tokens/figma/miuix-kit-legacy-variables.json`（刷新见 `scripts/token-check/export-legacy-kit-variables.figma.js`）；两份快照与 `tokens/*.{light,dark}.json`（OS4，TokenTable 用）是不同数据，不要混用
 - 测试：`node --test "src/**/*.test.mjs"` 已包含 `src/lib/token-check/*.test.mjs`
 - 开发期演示数据：`/tools/token-check?demo=1`（生产构建不加载）
+- **UI 组件约定**：工具页控件统一用 Arc 免费组件源码（`src/components/arc/`，来源 https://uiarc.dev ，手动拷入而非 CLI 安装）。规则：
+  1. 不新增直接依赖：Arc 里的 `@radix-ui/react-*` 一律改成从已有的 `radix-ui` 包导入；只用已有的 `motion`、`lucide-react`
+  2. 不引入 Arc 的 `foundation.css`（它在 `:root` 定义 `--background` 等，会覆盖 shadcn 变量）；变量映射在 `src/app/tools/arc-theme.css`，只作用于 `.tc-arc` 容器和 Tooltip 浮层 `.arc-layer`
+  3. 同一种控件只用一套：工具页用 Arc，Ask AI 继续用 shadcn（`src/components/ui/`），文档站 chrome 用 Fumadocs；不要在工具页再手写按钮、输入框、分段控件、折叠面板等样式
+  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题）直接改在 `src/components/arc/` 里
 
 ## Figma 集成
 

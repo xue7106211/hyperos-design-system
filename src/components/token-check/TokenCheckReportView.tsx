@@ -129,18 +129,17 @@ export const TokenCheckReportView = forwardRef<HTMLHeadingElement, { report: Tok
         <div ref={barRef} className="tc-report-bar">
           <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 pb-3">
             <div className="min-w-0">
-              <p className="tc-segment-title">检查报告</p>
               <h2
                 id="tc-report-title"
                 ref={headingRef}
                 tabIndex={-1}
-                className="tc-heading mt-1 rounded-sm text-xl font-medium text-fd-foreground"
+                className="tc-heading tc-report-heading"
               >
                 {report.targets.length === 1
                   ? report.targets[0].nodeName
                   : `${report.targets.length} 个检查目标`}
               </h2>
-              <p className="mt-1 text-xs tabular-nums text-fd-muted-foreground">
+              <p className="tc-meta mt-1 tabular-nums">
                 {formatDateTime(report.generatedAt)} 生成 · 对照 {report.library.fileName}（
                 {formatDateTime(report.library.exportedAt)} 快照）
               </p>

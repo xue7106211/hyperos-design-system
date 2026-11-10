@@ -1,7 +1,10 @@
 'use client';
 
-import { ChevronRight } from 'lucide-react';
-import { useId, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { Accordion } from '@/components/arc/accordion/accordion';
+import { Button } from '@/components/arc/button/button';
+import { EmptyState } from '@/components/arc/empty-state/empty-state';
+import SegmentedControl from '@/components/arc/segmented-control/segmented-control';
 import type {
   BindableProperty,
   BindingState,
@@ -10,12 +13,14 @@ import type {
 } from '@/lib/token-check/types';
 import { categoryLabels, categoryOrder } from './labels';
 import {
+  Count,
   FigmaLink,
-  MonoPath,
   NodeIdTag,
   nodeIdOf,
   Panel,
+  ParentPath,
   StateBadge,
+  Tag,
   ValueText,
 } from './primitives';
 
@@ -99,7 +104,7 @@ function groupByTarget(report: TokenCheckReport, issues: BindableProperty[]): Is
 
 type SegmentOption<T extends string> = { value: T; label: string; count: number };
 
-/** 宽屏为分段控件，窄屏收成 select；两者共用同一份状态 */
+/** 筛选：Arc 分段控件，窄屏在控件内横向滚动 */
 function FilterControl<T extends string>({
   label,
   value,
@@ -111,50 +116,22 @@ function FilterControl<T extends string>({
   onChange: (value: T) => void;
   options: SegmentOption<T>[];
 }) {
-  const selectId = useId();
   return (
-    <>
-      <div className="hidden min-w-0 items-center gap-3 sm:flex">
-        <span className="shrink-0 text-xs text-fd-muted-foreground" aria-hidden>
-          {label}
-        </span>
-        <div role="group" aria-label={`按${label}筛选`} className="tc-segmented">
-          {options.map((o) => {
-            const active = value === o.value;
-            return (
-              <button
-                key={o.value}
-                type="button"
-                aria-pressed={active}
-                onClick={() => onChange(o.value)}
-                disabled={o.count === 0 && !active}
-                className="tc-segment"
-              >
-                {o.label}
-                <span className="tc-segment-count">{o.count}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <div className="flex min-w-0 flex-1 flex-col gap-1 sm:hidden">
-        <label htmlFor={selectId} className="text-xs text-fd-muted-foreground">
-          {label}
-        </label>
-        <select
-          id={selectId}
-          className="tc-select"
-          value={value}
-          onChange={(e) => onChange(e.target.value as T)}
-        >
-          {options.map((o) => (
-            <option key={o.value} value={o.value} disabled={o.count === 0 && o.value !== value}>
-              {o.label}（{o.count}）
-            </option>
-          ))}
-        </select>
-      </div>
-    </>
+    <div className="tc-filter">
+      <span className="tc-filter-label" aria-hidden>
+        {label}
+      </span>
+      <SegmentedControl
+        label={`按${label}筛选`}
+        value={value}
+        onValueChange={(v) => onChange(v as T)}
+        options={options.map((o) => ({
+          value: o.value,
+          label: o.label,
+          accessory: <span className="tc-segment-count">{o.count}</span>,
+        }))}
+      />
+    </div>
   );
 }
 
@@ -164,30 +141,22 @@ function IssueProp({ issue }: { issue: BindableProperty }) {
       ? `${issue.token.collection ? `${issue.token.collection} / ` : ''}${issue.token.name}`
       : null;
   return (
-    <li className="tc-prop tc-prop-grid">
-      <span className="flex min-w-0 items-center gap-1.5">
-        <span className="shrink-0 text-fd-foreground">{categoryLabels[issue.category]}</span>
-        <span aria-hidden className="text-fd-muted-foreground">·</span>
-        <span className="truncate font-mono text-fd-muted-foreground">{issue.field}</span>
+    <li className="tc-prop">
+      <span className="tc-prop-field">
+        {categoryLabels[issue.category]}
+        <span className="tc-prop-key">{issue.field}</span>
       </span>
-      <span className="min-w-0">
+      <span className="tc-prop-value">
         <ValueText value={issue.value} />
-      </span>
-      <span className="flex justify-end md:justify-start">
-        <StateBadge state={issue.state} />
-      </span>
-      <span className="flex min-w-0 flex-wrap items-center gap-2 text-fd-muted-foreground">
-        {issue.fromInstanceOverride ? <span className="tc-tag">实例覆写</span> : null}
         {note ? (
-          <span className="min-w-0 truncate font-mono" title={note}>
+          <span className="tc-prop-note" title={note}>
             {note}
           </span>
         ) : null}
-        {!note && !issue.fromInstanceOverride ? (
-          <span aria-hidden className="hidden md:inline">
-            —
-          </span>
-        ) : null}
+      </span>
+      <span className="tc-prop-state">
+        {issue.fromInstanceOverride ? <Tag>实例覆写</Tag> : null}
+        <StateBadge state={issue.state} />
       </span>
     </li>
   );
@@ -196,16 +165,13 @@ function IssueProp({ issue }: { issue: BindableProperty }) {
 function IssueNodeRow({ row }: { row: NodeRow }) {
   return (
     <li className="tc-node">
-      <div className="flex items-start justify-between gap-3">
+      <div className="tc-node-head">
         <div className="min-w-0 flex-1">
           <div className="flex min-w-0 items-center gap-2">
-            <span className="truncate text-sm font-medium text-fd-foreground">{row.nodeName}</span>
+            <span className="tc-layer-name">{row.nodeName}</span>
             <NodeIdTag id={row.nodeId} />
-            <span className="shrink-0 text-xs tabular-nums text-fd-muted-foreground">
-              {row.issues.length} 项
-            </span>
           </div>
-          <MonoPath path={row.path} className="mt-0.5" />
+          <ParentPath path={row.path} className="mt-0.5" />
         </div>
         <FigmaLink href={row.figmaUrl} label={row.nodeName} />
       </div>
@@ -218,58 +184,25 @@ function IssueNodeRow({ row }: { row: NodeRow }) {
   );
 }
 
-function IssueGroupBlock({ group, defaultOpen }: { group: IssueGroup; defaultOpen: boolean }) {
-  const [open, setOpen] = useState(defaultOpen);
+function IssueGroupBody({ group }: { group: IssueGroup }) {
   const [visible, setVisible] = useState(PAGE_SIZE);
-  const contentId = useId();
   const shown = group.rows.slice(0, visible);
   const remaining = group.rows.length - shown.length;
-
   return (
-    <div className="tc-group">
-      <h3 className="tc-group-sticky">
-        <button
-          type="button"
-          className="tc-group-head"
-          aria-expanded={open}
-          aria-controls={contentId}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <ChevronRight aria-hidden className="tc-chevron size-4" strokeWidth={1.5} />
-          <span className="min-w-0 truncate text-sm font-medium text-fd-foreground">
-            {group.title}
-          </span>
-          <NodeIdTag id={group.nodeId} />
-          <span className="ml-auto shrink-0 text-xs tabular-nums text-fd-muted-foreground">
-            {group.rows.length} 个图层 · {group.count} 项
-          </span>
-        </button>
-      </h3>
-      <div id={contentId} hidden={!open}>
-        <div className="tc-prop-head tc-prop-grid" aria-hidden>
-          <span>类别 · 字段</span>
-          <span>当前值</span>
-          <span>状态</span>
-          <span>备注</span>
+    <>
+      <ul>
+        {shown.map((row) => (
+          <IssueNodeRow key={row.key} row={row} />
+        ))}
+      </ul>
+      {remaining > 0 ? (
+        <div className="tc-more">
+          <Button type="button" variant="ghost" size="sm" onClick={() => setVisible((v) => v + PAGE_SIZE)}>
+            再显示 {Math.min(PAGE_SIZE, remaining)} 个图层（剩余 {remaining} 个）
+          </Button>
         </div>
-        <ul>
-          {shown.map((row) => (
-            <IssueNodeRow key={row.key} row={row} />
-          ))}
-        </ul>
-        {remaining > 0 ? (
-          <div className="border-t border-[var(--tc-line)] px-5 py-2">
-            <button
-              type="button"
-              className="tc-button tc-button--ghost w-full"
-              onClick={() => setVisible((v) => v + PAGE_SIZE)}
-            >
-              再显示 {Math.min(PAGE_SIZE, remaining)} 个图层（剩余 {remaining} 个）
-            </button>
-          </div>
-        ) : null}
-      </div>
-    </div>
+      ) : null}
+    </>
   );
 }
 
@@ -310,8 +243,8 @@ export function IssueList({ report }: { report: TokenCheckReport }) {
 
   if (report.issues.length === 0) {
     return (
-      <Panel id="tc-issues" title="问题清单" flush>
-        <p className="tc-empty">所有可绑定属性都已绑定到 HyperOS Token。</p>
+      <Panel id="tc-issues" title="问题清单">
+        <EmptyState title="没有需要处理的属性" description="所有可绑定属性都已绑定到 HyperOS Token" />
       </Panel>
     );
   }
@@ -323,12 +256,12 @@ export function IssueList({ report }: { report: TokenCheckReport }) {
     <Panel
       id="tc-issues"
       title={
-        <span className="flex items-center gap-2">
+        <>
           问题清单
-          <span className="tc-count">{report.issues.length}</span>
-        </span>
+          <Count n={report.issues.length} />
+        </>
       }
-      description="旧版 Kit 变量需要迁移，非 HyperOS 库和未绑定需要重新绑定。按检查目标分组，同一图层的问题合并在一行。"
+      description="旧版 Kit 变量需要迁移，非 HyperOS 库和未绑定需要重新绑定。同一图层的问题合并在一起"
       actions={
         <span className="text-xs tabular-nums text-fd-muted-foreground">
           {allRows} 个图层 · {report.issues.length} 项
@@ -368,29 +301,40 @@ export function IssueList({ report }: { report: TokenCheckReport }) {
       </p>
 
       {groups.length === 0 ? (
-        <div className="tc-empty">
-          <p>当前筛选条件下没有问题。</p>
-          <button
-            type="button"
-            className="tc-button tc-button--secondary tc-button--sm mt-3"
-            onClick={() => {
-              setCategory('all');
-              setState('all');
-            }}
-          >
-            清除筛选
-          </button>
-        </div>
+        <EmptyState
+          title="没有符合条件的问题"
+          description="换一个类别或状态试试"
+          action={
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={() => {
+                setCategory('all');
+                setState('all');
+              }}
+            >
+              清除筛选
+            </Button>
+          }
+        />
       ) : (
-        <div>
-          {groups.map((group, index) => (
-            <IssueGroupBlock
-              key={`${filterKey}-${group.key}`}
-              group={group}
-              defaultOpen={index === 0}
-            />
-          ))}
-        </div>
+        <Accordion
+          key={filterKey}
+          className="tc-groups"
+          defaultOpen={0}
+          items={groups.map((group) => ({
+            id: group.key,
+            title: (
+              <span className="flex min-w-0 items-center gap-2">
+                <span className="truncate">{group.title}</span>
+                <NodeIdTag id={group.nodeId} />
+              </span>
+            ),
+            meta: `${group.rows.length} 个图层 · ${group.count} 项`,
+            content: <IssueGroupBody group={group} />,
+          }))}
+        />
       )}
     </Panel>
   );
