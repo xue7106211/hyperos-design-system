@@ -8,7 +8,7 @@ import { formatRate, severityLabels, stateLabels } from './labels';
 
 /**
  * 一级区块：Header（标题 + 一句说明 + 右侧操作）/ Body / 可选 Footer。
- * 面板内的子分组只用 hairline 行、表格或浅底分组头（.tc-subhead），不再嵌套带框卡片。
+ * 现在只用于加载状态和输入表单；报告区块用 Section + .tc-box。
  */
 export function Panel({
   id,
@@ -54,26 +54,54 @@ export function Panel({
   );
 }
 
+/**
+ * 报告区块：标题和说明直接落在页面上，只有表格、清单这类数据装进 .tc-box。
+ * 结论和附录不套框，靠段距（区块间 64px、区块内 24px）分组。
+ */
+export function Section({
+  id,
+  title,
+  count,
+  description,
+  actions,
+  children,
+  appendix = false,
+  headingRef,
+}: {
+  id: string;
+  title: ReactNode;
+  count?: number;
+  description?: ReactNode;
+  actions?: ReactNode;
+  children?: ReactNode;
+  /** 附录：标题更小、正文更轻 */
+  appendix?: boolean;
+  headingRef?: Ref<HTMLHeadingElement>;
+}) {
+  const headingId = `${id}-title`;
+  return (
+    <section id={id} aria-labelledby={headingId} className={cn('tc-section', appendix && 'tc-section--appendix')}>
+      <div className="tc-section-head">
+        <div className="min-w-0">
+          <h2 id={headingId} ref={headingRef} tabIndex={-1} className="tc-heading">
+            {title}
+            {count !== undefined ? <Count n={count} /> : null}
+          </h2>
+          {description ? <p className="tc-section-desc">{description}</p> : null}
+        </div>
+        {actions ? <div className="tc-panel-actions">{actions}</div> : null}
+      </div>
+      {children}
+    </section>
+  );
+}
+
 /** 面板标题后的数量：安静的数字，不做胶囊 */
 export function Count({ n }: { n: number }) {
   return <span className="tc-count">{n}</span>;
 }
 
 export const barStates: BindingState[] = ['hyperos', 'legacy', 'other', 'unbound'];
-
-/** 四档图例：方块与比例条同色 */
-export function Legend() {
-  return (
-    <ul className="tc-legend">
-      {barStates.map((state) => (
-        <li key={state}>
-          <LegendDot state={state} />
-          {stateLabels[state]}
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 /** 四档堆叠比例条，全页唯一的彩色区域。颜色只是辅助，旁边始终有数字，读屏读 aria-label */
 export function CoverageBar({

@@ -5,26 +5,28 @@ import { Accordion } from '@/components/arc/accordion/accordion';
 import { Button } from '@/components/arc/button/button';
 import { EmptyState } from '@/components/arc/empty-state/empty-state';
 import type { Exclusion, TokenCheckReport } from '@/lib/token-check/types';
-import { checkLabel, exclusionHints, exclusionLabels, exclusionOrder, uncertainLabels } from './labels';
-import { Count, FigmaLink, LayerPath, NodeIdTag, nodeIdOf, Panel, SeverityBadge, Tag } from './primitives';
+import {
+  checkLabel,
+  exclusionHints,
+  exclusionLabels,
+  exclusionOrder,
+  formatDateTime,
+  uncertainLabels,
+} from './labels';
+import { Count, FigmaLink, LayerPath, NodeIdTag, nodeIdOf, Section, SeverityBadge, Tag } from './primitives';
 
 const PAGE_SIZE = 20;
 
 export function AccuracySection({ report }: { report: TokenCheckReport }) {
-  const { findings, checksRun } = report;
+  const { findings } = report;
   return (
-    <Panel
+    <Section
       id="tc-accuracy"
-      title={
-        <>
-          准确性检查
-          <Count n={findings.length} />
-        </>
-      }
-      description={<>本次运行：{checksRun.length > 0 ? checksRun.map(checkLabel).join('、') : '无'}</>}
-      flush
-      footer="作用域、取值匹配和语义检查会在后续版本提供"
+      title="准确性检查"
+      count={findings.length}
+      description="已绑定的 Token 用得对不对。业务稿应绑定 Semantic 或 Component 层，不直接用 Reference 色板"
     >
+      <div className="tc-box">
       {findings.length === 0 ? (
         <EmptyState title="没有发现问题" description="已绑定的 Token 都用在了合适的层级" />
       ) : (
@@ -69,7 +71,8 @@ export function AccuracySection({ report }: { report: TokenCheckReport }) {
           ))}
         </ul>
       )}
-    </Panel>
+      </div>
+    </Section>
   );
 }
 
@@ -108,17 +111,40 @@ function ExclusionItems({ reason, items }: { reason: Exclusion['reason']; items:
   );
 }
 
-export function ExclusionSection({ report }: { report: TokenCheckReport }) {
-  const { exclusionSummary, exclusions, uncertain } = report;
+/** 校对说明：数字从哪来、哪些被排除、哪些拿不准。读者想核对时才会看，排版更轻 */
+export function Appendix({ report }: { report: TokenCheckReport }) {
+  const { exclusionSummary, exclusions, uncertain, checksRun } = report;
   const totalNodes = exclusionOrder.reduce((s, r) => s + exclusionSummary[r].nodeCount, 0);
 
   return (
-    <Panel
-      id="tc-exclusions"
-      title="排除与待确认"
-      description={`共排除 ${totalNodes} 个图层，不计入覆盖率。展开可抽查判定是否合理`}
-      flush
-    >
+    <Section id="tc-appendix" title="校对说明" appendix>
+      <dl className="tc-notes">
+        <div>
+          <dt>统计口径</dt>
+          <dd>
+            统计填充、文字颜色、描边、文字样式、圆角和间距 6 类可绑定属性。覆盖率 = 绑定 HyperOS Token 的属性 ÷
+            可绑定属性。阴影等效果不在 Design Token 范围内，不统计
+          </dd>
+        </div>
+        <div>
+          <dt>对照的 Token 库</dt>
+          <dd>
+            {report.library.fileName}，{formatDateTime(report.library.exportedAt)} 导出的快照
+          </dd>
+        </div>
+        <div>
+          <dt>准确性检查</dt>
+          <dd>
+            本次运行{checksRun.length > 0 ? checksRun.map(checkLabel).join('、') : '：无'}。作用域、取值匹配和语义检查会在后续版本提供
+          </dd>
+        </div>
+      </dl>
+
+      <h3 className="tc-subtitle">
+        排除的图层
+        <Count n={totalNodes} />
+      </h3>
+      <p className="tc-section-desc">不计入覆盖率。展开可以抽查判定是否合理</p>
       <Accordion
         className="tc-exclusion-groups"
         defaultOpen={-1}
@@ -135,15 +161,15 @@ export function ExclusionSection({ report }: { report: TokenCheckReport }) {
         }))}
       />
 
-      <h3 className="tc-subhead">
+      <h3 className="tc-subtitle">
         待确认
         <Count n={uncertain.length} />
-        <span className="ml-auto truncate">照常计入统计，建议人工看一眼</span>
       </h3>
+      <p className="tc-section-desc">规则拿不准的图层，照常计入统计，建议人工看一眼</p>
       {uncertain.length === 0 ? (
-        <p className="tc-row tc-row-text">没有待确认的图层</p>
+        <p className="tc-row-text">没有待确认的图层</p>
       ) : (
-        <ul className="tc-rows">
+        <ul className="tc-rows tc-rows--appendix">
           {uncertain.map((u) => (
             <li key={`${u.kind}-${u.nodeId}`} className="tc-row">
               <div className="tc-node-head">
@@ -163,6 +189,6 @@ export function ExclusionSection({ report }: { report: TokenCheckReport }) {
           ))}
         </ul>
       )}
-    </Panel>
+    </Section>
   );
 }

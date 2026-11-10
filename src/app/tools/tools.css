@@ -30,9 +30,8 @@
   /* PillNav（fixed，top 16px + 52px）下沿 */
   --tc-nav-clear: 4.5rem;
 
-  /* 页内层级：分组头吸顶 < 报告头吸顶（PillNav 在站点层级之上） */
+  /* 页内层级：按图层视图的分组头吸顶（PillNav 在站点层级之上） */
   --tc-z-group: 10;
-  --tc-z-bar: 20;
 
   --tc-focus: var(--color-fd-foreground);
 
@@ -66,25 +65,37 @@
 }
 
 /* ---------- 页面 ---------- */
+/* 检查前：一栏居中，只有输入框；出报告后：正文 + 右侧页边栏 */
 
 .tc-page {
   margin-inline: auto;
   width: 100%;
-  max-width: 72rem;
   padding: 1.5rem 1rem 8rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
+.tc-page--compose {
+  max-width: 44rem;
+}
+
+.tc-page--report {
+  max-width: 76rem;
+}
+
 @media (min-width: 640px) {
   .tc-page {
     padding: 2.5rem 2rem 8rem;
   }
+
+  .tc-page--compose {
+    padding-top: 4rem;
+  }
 }
 
 .tc-page-head {
-  max-width: 42rem;
+  max-width: 40rem;
 }
 
 .tc-breadcrumb {
@@ -104,21 +115,102 @@ h1.tc-title {
   color: var(--color-fd-foreground);
 }
 
+.tc-page--report h1.tc-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: 0;
+}
+
 .tc-lede {
   margin-top: 0.75rem;
   font-size: 1rem;
   line-height: 1.5rem;
+  text-wrap: pretty;
   color: var(--color-fd-muted-foreground);
+}
+
+.tc-page--report .tc-lede {
+  display: none;
+}
+
+/* 检查范围：输入框下方三行安静的说明 */
+.tc-scope {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  list-style: disc;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-scope ::marker {
+  color: var(--tc-line-strong);
+}
+
+/* 出报告后的输入行 */
+.tc-checked {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  border-top: 1px solid var(--tc-line-strong);
+  border-bottom: 1px solid var(--tc-line);
+  padding: 0.75rem 0;
+}
+
+.tc-checked-targets {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.tc-checked-targets ul {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.tc-checked-targets li {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tc-checked-link {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-fd-foreground);
+  text-decoration-line: underline;
+  text-decoration-color: var(--tc-line-strong);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tc-checked-link:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+.tc-checked-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
 }
 
 /* 报告前的占位、加载、出错与报告本体，与输入面板拉开一段 */
 .tc-report-slot {
   margin-top: 1.5rem;
-}
-
-.tc-empty-report {
-  border: 1px dashed var(--tc-line-strong);
-  border-radius: 0.75rem;
 }
 
 .tc-error {
@@ -168,12 +260,6 @@ h1.tc-title {
   border-radius: 0.75rem;
   background: var(--tc-panel);
   scroll-margin-top: 5rem;
-}
-
-@media (min-width: 1024px) {
-  .tc-report .tc-panel {
-    scroll-margin-top: calc(var(--tc-bar-h, 0px) + 1rem);
-  }
 }
 
 .tc-panel-head {
@@ -241,47 +327,10 @@ h1.tc-title {
   color: var(--color-fd-muted-foreground);
 }
 
-/* 面板内浅底分组头（检查目标表、待确认等） */
-.tc-subhead {
-  display: flex;
-  min-height: 2.25rem;
-  align-items: center;
-  gap: 0.5rem;
-  border-top: 1px solid var(--tc-line);
-  border-bottom: 1px solid var(--tc-line);
-  background: var(--tc-subtle);
-  padding: 0 1.25rem;
-  font-size: 0.8125rem;
-  color: var(--color-fd-muted-foreground);
-}
-
-.tc-subhead .tc-count {
-  font-size: 0.8125rem;
-}
-
-.tc-panel-head + .tc-subhead {
-  border-top: 0;
-}
-
 .tc-meta {
   font-size: 0.75rem;
   line-height: 1rem;
   color: var(--color-fd-muted-foreground);
-}
-
-.tc-legend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.25rem 1rem;
-  font-size: 0.75rem;
-  color: var(--color-fd-muted-foreground);
-}
-
-.tc-legend > li {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
 }
 
 /* ---------- 输入 ---------- */
@@ -323,42 +372,115 @@ h1.tc-title {
 }
 
 
-/* ---------- 报告头（宽屏 sticky） ---------- */
-/* ---------- 报告头（宽屏 sticky） ---------- */
+/* ---------- 报告：正文 + 页边栏 ---------- */
 
-.tc-report-bar {
-  background: var(--tc-page);
+.tc-report {
+  display: grid;
+  grid-template-areas: 'head' 'aside' 'body';
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
 }
 
 @media (min-width: 1024px) {
-  .tc-report-bar {
-    position: sticky;
-    top: 0;
-    z-index: var(--tc-z-bar);
-    /* 顶部让出 PillNav，同时充当与输入段之间的段距 */
-    padding-top: var(--tc-nav-clear);
+  .tc-report {
+    grid-template-areas: 'head aside' 'body aside';
+    grid-template-columns: minmax(0, 1fr) 14rem;
+    grid-template-rows: auto 1fr;
+    column-gap: 3rem;
   }
 }
 
-.tc-tabs {
-  display: flex;
-  gap: 1.25rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  border-bottom: 1px solid var(--tc-line-strong);
+.tc-report-head {
+  grid-area: head;
 }
 
-.tc-tabs::-webkit-scrollbar {
+.tc-report-heading {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 500;
+  text-wrap: balance;
+  color: var(--color-fd-foreground);
+}
+
+.tc-report-body {
+  grid-area: body;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.tc-aside {
+  grid-area: aside;
+  min-width: 0;
+}
+
+/* 窄屏：覆盖率小计 + 横向目录 + 导出，一块安静的条 */
+.tc-aside-inner {
+  display: grid;
+  gap: 1rem;
+  border-top: 1px solid var(--tc-line);
+  border-bottom: 1px solid var(--tc-line);
+  padding: 1rem 0;
+}
+
+@media (min-width: 1024px) {
+  .tc-aside-inner {
+    position: sticky;
+    top: calc(var(--tc-nav-clear) + 1rem);
+    gap: 1.5rem;
+    border-bottom: 0;
+    padding: 1.25rem 0 0;
+  }
+}
+
+.tc-aside-score {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tc-aside-score > p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.tc-aside-rate {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--tc-hyperos-ink);
+}
+
+.tc-toc ol {
+  display: flex;
+  gap: 0.25rem 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tc-toc ol::-webkit-scrollbar {
   display: none;
 }
 
-.tc-tab {
+@media (min-width: 1024px) {
+  .tc-toc ol {
+    flex-direction: column;
+    gap: 0;
+    overflow: visible;
+    border-left: 1px solid var(--tc-line);
+  }
+}
+
+.tc-toc-link {
   position: relative;
-  display: inline-flex;
-  height: 2.5rem;
+  display: flex;
+  height: 2.25rem;
   flex-shrink: 0;
   align-items: center;
-  gap: 0.375rem;
+  justify-content: space-between;
+  gap: 0.75rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
   color: var(--color-fd-muted-foreground);
@@ -366,80 +488,329 @@ h1.tc-title {
   transition: color 150ms ease-out;
 }
 
-.tc-tab::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 -1px;
-  height: 2px;
-  border-radius: 1px;
-  background: transparent;
-  transition: background-color 150ms ease-out;
+@media (min-width: 1024px) {
+  .tc-toc-link {
+    height: 2rem;
+    padding-left: 0.875rem;
+  }
+
+  /* 当前项：左侧一段前景色细线，压在目录竖线上 */
+  .tc-toc-link::before {
+    content: '';
+    position: absolute;
+    inset: 0.375rem auto 0.375rem -1px;
+    width: 2px;
+    border-radius: 1px;
+    background: transparent;
+    transition: background-color 150ms ease-out;
+  }
+
+  .tc-toc-link[aria-current='true']::before {
+    background: var(--color-fd-foreground);
+  }
 }
 
-.tc-tab[aria-current='true'] {
+.tc-toc-link[aria-current='true'] {
   color: var(--color-fd-foreground);
 }
 
-.tc-tab[aria-current='true']::after {
-  background: var(--color-fd-foreground);
-}
-
-.tc-tab-count {
+.tc-toc-count {
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
   color: var(--color-fd-muted-foreground);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .tc-tab:hover {
+  .tc-toc-link:hover {
     color: var(--color-fd-foreground);
   }
 }
 
-/* ---------- KPI 条 ---------- */
-
-/* gap-px + 线色底：任意断点下格与格之间都是 1px hairline，不给单格加框 */
-.tc-kpis {
-  display: grid;
-  gap: 1px;
-  background: var(--tc-line);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.tc-kpis > * {
-  background: var(--tc-panel);
-  padding: 1.25rem;
-}
-
-.tc-kpi-main {
-  grid-column: 1 / -1;
-}
-
 @media (min-width: 1024px) {
-  .tc-kpis {
-    grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr));
+  .tc-aside-export {
+    border-top: 1px solid var(--tc-line);
+    padding-top: 1.25rem;
   }
+}
 
-  .tc-kpi-main {
-    grid-column: auto;
+/* ---------- 区块 ---------- */
+/* 标题与说明落在页面上；只有表格和清单装进 .tc-box */
+
+.tc-section {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+  scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
+}
+
+.tc-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.tc-section .tc-heading {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.tc-section-desc {
+  margin-top: 0.25rem;
+  max-width: 40rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-wrap: pretty;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-box {
+  overflow: clip;
+  border: 1px solid var(--tc-border);
+  border-radius: 0.75rem;
+  background: var(--tc-panel);
+}
+
+.tc-box-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+  border-top: 1px solid var(--tc-line);
+  background: var(--tc-subtle);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-subtitle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: var(--color-fd-foreground);
+}
+
+/* ---------- 结论 ---------- */
+
+.tc-verdict {
+  gap: 0;
+}
+
+.tc-verdict-main {
+  display: grid;
+  gap: 1rem 3rem;
+  align-items: end;
+}
+
+@media (min-width: 768px) {
+  .tc-verdict-main {
+    grid-template-columns: auto minmax(0, 1fr);
   }
+}
+
+.tc-verdict-label {
+  font-size: 0.875rem;
+  color: var(--color-fd-muted-foreground);
 }
 
 .tc-figure {
-  font-size: 3rem;
+  margin-top: 0.5rem;
+  font-size: 4rem;
   line-height: 1;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   color: var(--tc-hyperos-ink);
 }
 
-.tc-stat-value {
-  font-size: 1.75rem;
-  line-height: 2rem;
+.tc-verdict-sentence {
+  max-width: 30rem;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  text-wrap: pretty;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-verdict-sentence b {
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   color: var(--color-fd-foreground);
+}
+
+/* 四档数量：比例条正下方一行，窄屏 2×2 */
+.tc-states {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .tc-states {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tc-state dt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-state dd {
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.tc-state-value {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-fd-foreground);
+}
+
+.tc-top-fixes {
+  margin-top: 2.5rem;
+}
+
+.tc-top-fixes ol {
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--tc-line);
+}
+
+.tc-top-fixes li {
+  border-bottom: 1px solid var(--tc-line);
+}
+
+.tc-top-fix {
+  display: grid;
+  width: 100%;
+  min-height: 3rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: 'value count' 'meta count';
+  align-items: center;
+  gap: 0.125rem 1rem;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  text-align: left;
+  font-size: 0.875rem;
+  transition: background-color 150ms ease-out;
+}
+
+@media (min-width: 768px) {
+  .tc-top-fix {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    grid-template-areas: 'value meta count';
+  }
+}
+
+.tc-top-fix-value {
+  grid-area: value;
+  min-width: 0;
+}
+
+.tc-top-fix-meta {
+  grid-area: meta;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-top-fix-count {
+  grid-area: count;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-fd-foreground);
+}
+
+.tc-top-fix-count svg {
+  color: var(--color-fd-muted-foreground);
+  transition: color 150ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tc-top-fix:hover {
+    background: color-mix(in oklab, var(--color-fd-foreground) 3%, transparent);
+  }
+
+  .tc-top-fix:hover .tc-top-fix-count svg {
+    color: var(--color-fd-foreground);
+  }
+}
+
+/* ---------- 校对说明（附录） ---------- */
+
+.tc-section--appendix {
+  border-top: 1px solid var(--tc-line-strong);
+  padding-top: 2rem;
+}
+
+.tc-section--appendix .tc-subtitle {
+  margin-top: 1.5rem;
+}
+
+.tc-section--appendix .tc-subtitle + .tc-section-desc {
+  margin-top: -0.75rem;
+}
+
+.tc-notes {
+  display: grid;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+.tc-notes > div {
+  display: grid;
+  gap: 0.125rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .tc-notes > div {
+    grid-template-columns: 8rem minmax(0, 1fr);
+  }
+}
+
+.tc-notes dt {
+  color: var(--color-fd-foreground);
+}
+
+.tc-notes dd {
+  max-width: 40rem;
+  text-wrap: pretty;
+  color: var(--color-fd-muted-foreground);
+}
+
+/* 附录里的折叠与列表不套框，只留上下细线 */
+.tc-section--appendix .tc-exclusion-groups,
+.tc-rows--appendix {
+  border-top: 1px solid var(--tc-line);
+  border-bottom: 1px solid var(--tc-line);
+}
+
+.tc-section--appendix .tc-exclusion-groups h3 > button,
+.tc-rows--appendix .tc-row {
+  padding-inline: 0;
+}
+
+.tc-section--appendix .tc-row--inset {
+  background: transparent;
+  padding-left: 1rem;
 }
 
 /* ---------- 表格 ---------- */
@@ -495,6 +866,10 @@ h1.tc-title {
   padding-right: 1.25rem;
 }
 
+.tc-table--sub {
+  border-top: 1px solid var(--tc-line-strong);
+}
+
 .tc-table .tc-num {
   text-align: right;
   white-space: nowrap;
@@ -547,12 +922,6 @@ h1.tc-title {
   position: sticky;
   top: var(--tc-nav-clear);
   z-index: var(--tc-z-group);
-}
-
-@media (min-width: 1024px) {
-  .tc-groups h3 {
-    top: var(--tc-bar-h, var(--tc-nav-clear));
-  }
 }
 
 .tc-groups h3 > button,
@@ -694,6 +1063,102 @@ h1.tc-title {
   justify-content: center;
   border-top: 1px solid var(--tc-line);
   padding: 0.5rem 1.25rem;
+}
+
+/* ---------- 按修复 ---------- */
+
+.tc-fixes > div:last-child {
+  border-bottom: 0;
+}
+
+.tc-fixes h3 > button {
+  scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
+  min-height: 3.5rem;
+  gap: 1rem;
+  padding: 0.625rem 1.25rem;
+  transition: background-color 150ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tc-fixes h3 > button:hover {
+    background: var(--tc-hover);
+  }
+}
+
+.tc-fixes [data-state] > div {
+  padding: 0;
+}
+
+.tc-fix-title {
+  display: grid;
+  min-width: 0;
+  gap: 0.125rem;
+  scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
+}
+
+.tc-fix-value {
+  min-width: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.tc-fix-sub {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 0 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-fix-token {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tc-fix-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tc-fix-count {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-fix-count b {
+  font-weight: 500;
+  color: var(--color-fd-foreground);
+}
+
+/* 窄屏只留数量，状态写在副标题的动作里 */
+@media (max-width: 639px) {
+  .tc-fix-meta > :first-child {
+    display: none;
+  }
+}
+
+.tc-fix-layers {
+  border-top: 1px solid var(--tc-line);
+  background: var(--tc-subtle);
+}
+
+.tc-fix-layer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 1.25rem 0.625rem 2rem;
+}
+
+.tc-fix-layer + .tc-fix-layer {
+  border-top: 1px solid var(--tc-line);
 }
 
 /* ---------- 行列表（准确性、排除明细、待确认） ---------- */
@@ -948,15 +1413,17 @@ p.tc-row.tc-row-text {
     font-size: 1rem;
   }
 
-  .tc-tab {
+  .tc-toc-link {
     height: 2.75rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tc-icon-button,
-  .tc-tab,
-  .tc-tab::after,
+  .tc-toc-link,
+  .tc-toc-link::before,
+  .tc-top-fix,
+  .tc-fixes h3 > button,
   .tc-groups h3 > button,
   .tc-exclusion-groups h3 > button {
     transition: none;
@@ -972,6 +1439,21 @@ p.tc-row.tc-row-text {
   text-wrap: pretty;
 }
 
-.tc-arc .tc-empty-report p {
-  max-width: 28rem;
+
+
+/* 窄屏：已检查的目标占满一行，操作换到下一行；页边栏不再重复覆盖率（结论里已有） */
+@media (max-width: 639px) {
+  .tc-checked-targets {
+    flex-basis: 100%;
+  }
+
+  .tc-checked-targets ul {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1023px) {
+  .tc-aside-score {
+    display: none;
+  }
 }

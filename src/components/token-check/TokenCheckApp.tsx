@@ -1,18 +1,18 @@
 'use client';
 
-import { FileSearch, RotateCw } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { PencilLine, RotateCw } from 'lucide-react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Alert } from '@/components/arc/alert/alert';
 import { Button } from '@/components/arc/button/button';
-import { EmptyState } from '@/components/arc/empty-state/empty-state';
 import { Skeleton } from '@/components/arc/skeleton/skeleton';
+import { cn } from '@/lib/cn';
 import type {
   TokenCheckErrorCode,
   TokenCheckReport,
   TokenCheckResponse,
 } from '@/lib/token-check/types';
 import { errorMessages } from './labels';
-import { Panel } from './primitives';
+import { NodeIdTag, Panel } from './primitives';
 import { TokenCheckReportView } from './TokenCheckReportView';
 import { UrlInputForm } from './UrlInputForm';
 
@@ -63,7 +63,54 @@ function LoadingPanel({ startedAt }: { startedAt: number }) {
   );
 }
 
-export function TokenCheckApp({ initialReport }: { initialReport?: TokenCheckReport }) {
+/** 出报告后，输入区收成一行：检查了什么 + 修改链接 / 重新检查 */
+function CheckedBar({
+  report,
+  onEdit,
+  onRerun,
+}: {
+  report: TokenCheckReport;
+  onEdit: () => void;
+  onRerun: () => void;
+}) {
+  return (
+    <div className="tc-checked" role="group" aria-label="检查输入">
+      <div className="tc-checked-targets">
+        <span className="tc-meta shrink-0">已检查</span>
+        <ul>
+          {report.targets.map((t) => (
+            <li key={t.target.url}>
+              <a href={t.target.url} target="_blank" rel="noopener noreferrer" className="tc-checked-link">
+                {t.nodeName}
+              </a>
+              <NodeIdTag id={t.target.nodeId} />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="tc-checked-actions">
+        <Button type="button" variant="ghost" size="sm" onClick={onEdit}>
+          <PencilLine aria-hidden className="size-4" strokeWidth={1.5} />
+          修改链接
+        </Button>
+        <Button type="button" variant="secondary" size="sm" onClick={onRerun}>
+          <RotateCw aria-hidden className="size-4" strokeWidth={1.5} />
+          重新检查
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/** 检查前只有输入框；出报告后页面交给报告 */
+export function TokenCheckApp({
+  initialReport,
+  intro,
+}: {
+  initialReport?: TokenCheckReport;
+  /** 面包屑、标题、说明（及开发期演示提示），由页面传入 */
+  intro: ReactNode;
+}) {
   const [input, setInput] = useState('');
   const [state, setState] = useState<State>(
     initialReport ? { status: 'done', report: initialReport } : { status: 'idle' },
@@ -73,6 +120,9 @@ export function TokenCheckApp({ initialReport }: { initialReport?: TokenCheckRep
   const errorRef = useRef<HTMLHeadingElement>(null);
   const lastUrls = useRef<string[]>([]);
   const focusAfterRun = useRef(false);
+  const [editing, setEditing] = useState(false);
+  /** 最近一份报告：修改链接时仍可返回，重新检查时沿用其目标 */
+  const [lastReport, setLastReport] = useState<TokenCheckReport | undefined>(initialReport);
 
   useEffect(() => () => abortRef.current?.abort(), []);
 
@@ -82,10 +132,7 @@ export function TokenCheckApp({ initialReport }: { initialReport?: TokenCheckRep
     if (state.status === 'done') {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       reportHeadingRef.current?.focus({ preventScroll: true });
-      // 标题在 sticky 报告头里，滚动到整份报告的起点
-      reportHeadingRef.current
-        ?.closest('article')
-        ?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     } else if (state.status === 'error') {
       errorRef.current?.focus();
     }
@@ -96,6 +143,7 @@ export function TokenCheckApp({ initialReport }: { initialReport?: TokenCheckRep
     const controller = new AbortController();
     abortRef.current = controller;
     lastUrls.current = urls;
+    setEditing(false);
     setState({ status: 'loading', startedAt: Date.now() });
 
     let next: State;
@@ -134,6 +182,7 @@ export function TokenCheckApp({ initialReport }: { initialReport?: TokenCheckRep
 
     abortRef.current = null;
     focusAfterRun.current = true;
+    if (next.status === 'done') setLastReport(next.report);
     setState(next);
   }
 
@@ -142,31 +191,55 @@ export function TokenCheckApp({ initialReport }: { initialReport?: TokenCheckRep
   }
 
   const loading = state.status === 'loading';
+  const showReport = state.status === 'done' && !editing;
+
+  function targetUrls(report: TokenCheckReport) {
+    return lastUrls.current.length > 0 ? lastUrls.current : report.targets.map((t) => t.target.url);
+  }
+
+  function edit(report: TokenCheckReport) {
+    if (!input.trim()) setInput(targetUrls(report).join('\n'));
+    setEditing(true);
+  }
+
+  function backToReport() {
+    if (!lastReport) return;
+    setEditing(false);
+    setState({ status: 'done', report: lastReport });
+  }
 
   return (
-    <>
-      <UrlInputForm
-        value={input}
-        onChange={setInput}
-        loading={loading}
-        onSubmit={run}
-        onCancel={cancel}
-      />
+    <div className={cn('tc-page', showReport ? 'tc-page--report' : 'tc-page--compose')}>
+      {intro}
+
+      {state.status === 'done' && !editing ? (
+        <CheckedBar
+          report={state.report}
+          onEdit={() => edit(state.report)}
+          onRerun={() => run(targetUrls(state.report))}
+        />
+      ) : (
+        <UrlInputForm
+          value={input}
+          onChange={setInput}
+          loading={loading}
+          onSubmit={run}
+          onCancel={cancel}
+          onBack={lastReport && state.status !== 'loading' ? backToReport : undefined}
+        />
+      )}
 
       <div aria-live="polite" className="sr-only">
         {loading ? '正在检查，通常需要 10 到 30 秒' : ''}
         {state.status === 'done' && state.report !== initialReport ? '检查完成' : ''}
       </div>
 
-      {state.status === 'idle' ? (
-        <div className="tc-report-slot">
-          <EmptyState
-            className="tc-empty-report"
-            icon={<FileSearch width={24} height={24} strokeWidth={1.5} />}
-            title="还没有报告"
-            description="贴入链接并开始检查，这里会列出 Token 覆盖率、需要处理的图层，以及被排除的组件实例、插图和标注"
-          />
-        </div>
+      {state.status === 'idle' || (state.status === 'done' && editing) ? (
+        <ul className="tc-scope" aria-label="检查范围">
+          <li>统计颜色、文字样式、圆角、间距是否绑定了 HyperOS Design Token</li>
+          <li>自动排除 MIUIX 组件实例、插图与矢量、标注和交互说明</li>
+          <li>列出每一处没绑定的值，以及在 Figma 里的位置</li>
+        </ul>
       ) : null}
 
       {loading ? (
@@ -210,9 +283,7 @@ export function TokenCheckApp({ initialReport }: { initialReport?: TokenCheckRep
         </div>
       ) : null}
 
-      {state.status === 'done' ? (
-        <TokenCheckReportView ref={reportHeadingRef} report={state.report} />
-      ) : null}
-    </>
+      {showReport ? <TokenCheckReportView ref={reportHeadingRef} report={state.report} /> : null}
+    </div>
   );
 }

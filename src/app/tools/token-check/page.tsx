@@ -26,31 +26,32 @@ async function loadDemoReport(
 export default async function TokenCheckPage({ searchParams }: PageProps<'/tools/token-check'>) {
   const demoReport = await loadDemoReport(searchParams);
 
-  return (
-    <div className="tc-arc tc-page">
+  const intro = (
+    <>
       <header className="tc-page-head">
-        <div className="min-w-0">
-          <p className="tc-breadcrumb">
-            <Link href="/resources#design-tools" className="tc-anchor">
-              设计资源
-            </Link>
-            <span aria-hidden>/</span>
-            工具
-          </p>
-          <h1 className="tc-title">Token 绑定检查</h1>
-          <p className="tc-lede">
-            检查 Figma 设计稿中颜色、文字、圆角、间距是否绑定了 HyperOS Design Token，并列出需要处理的图层
-          </p>
-        </div>
+        <p className="tc-breadcrumb">
+          <Link href="/resources#design-tools" className="tc-anchor">
+            设计资源
+          </Link>
+          <span aria-hidden>/</span>
+          工具
+        </p>
+        <h1 className="tc-title">Token 绑定检查</h1>
+        <p className="tc-lede">
+          设计稿里的每个颜色、字号、圆角和间距，都应该能追溯到 HyperOS Design Token。贴入 Figma 链接，找出还没有出处的值
+        </p>
       </header>
-
       {demoReport ? (
         <Alert tone="info" title="当前显示演示数据" className="tc-demo-note">
           仅开发环境可见，去掉地址中的 ?demo=1 即可正常使用
         </Alert>
       ) : null}
+    </>
+  );
 
-      <TokenCheckApp initialReport={demoReport} />
+  return (
+    <div className="tc-arc">
+      <TokenCheckApp initialReport={demoReport} intro={intro} />
     </div>
   );
 }

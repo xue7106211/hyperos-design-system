@@ -352,7 +352,7 @@ package-lock.json       # npm 锁文件
   1. 不新增直接依赖：Arc 里的 `@radix-ui/react-*` 一律改成从已有的 `radix-ui` 包导入；只用已有的 `motion`、`lucide-react`
   2. 不引入 Arc 的 `foundation.css`（它在 `:root` 定义 `--background` 等，会覆盖 shadcn 变量）；变量映射在 `src/app/tools/arc-theme.css`，只作用于 `.tc-arc` 容器和 Tooltip 浮层 `.arc-layer`
   3. 同一种控件只用一套：工具页用 Arc，Ask AI 继续用 shadcn（`src/components/ui/`），文档站 chrome 用 Fumadocs；不要在工具页再手写按钮、输入框、分段控件、折叠面板等样式
-  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题）直接改在 `src/components/arc/` 里
+  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题与受控展开）直接改在 `src/components/arc/` 里
 
 ## Figma 集成
 

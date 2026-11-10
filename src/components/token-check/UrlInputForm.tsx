@@ -37,12 +37,15 @@ export function UrlInputForm({
   loading,
   onSubmit,
   onCancel,
+  onBack,
 }: {
   value: string;
   onChange: (value: string) => void;
   loading: boolean;
   onSubmit: (urls: string[]) => void;
   onCancel: () => void;
+  /** 已有报告时回到报告，不重新检查 */
+  onBack?: () => void;
 }) {
   const parsed = useMemo(() => parseUrlInput(value), [value]);
   const [touched, setTouched] = useState(false);
@@ -102,6 +105,11 @@ export function UrlInputForm({
         {loading ? (
           <Button type="button" variant="secondary" onClick={onCancel}>
             取消
+          </Button>
+        ) : null}
+        {!loading && onBack ? (
+          <Button type="button" variant="ghost" onClick={onBack}>
+            返回报告
           </Button>
         ) : null}
         <span className="tc-input-note">只读取文件，不会修改设计稿</span>

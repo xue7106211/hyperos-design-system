@@ -36,6 +36,13 @@ export const stateLabels: Record<BindingState, string> = {
 
 export const tierOrder: TokenTier[] = ['semantic', 'component', 'reference'];
 
+/** 「按修复」视图里每条修改要做的事 */
+export const fixActionLabels: Record<Exclude<BindingState, 'hyperos'>, string> = {
+  unbound: '绑定 HyperOS Token',
+  legacy: '迁移到 HyperOS Token',
+  other: '改绑 HyperOS Token',
+};
+
 export const tierLabels: Record<TokenTier, string> = {
   reference: 'Reference',
   semantic: 'Semantic',

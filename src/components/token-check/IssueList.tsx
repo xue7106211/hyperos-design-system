@@ -1,24 +1,24 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Accordion } from '@/components/arc/accordion/accordion';
 import { Button } from '@/components/arc/button/button';
 import { EmptyState } from '@/components/arc/empty-state/empty-state';
 import SegmentedControl from '@/components/arc/segmented-control/segmented-control';
+import { groupIssuesByFix, type FixGroup } from '@/lib/token-check/fix-groups';
 import type {
   BindableProperty,
   BindingState,
   PropertyCategory,
   TokenCheckReport,
 } from '@/lib/token-check/types';
-import { categoryLabels, categoryOrder } from './labels';
+import { categoryLabels, categoryOrder, fixActionLabels } from './labels';
 import {
-  Count,
   FigmaLink,
   NodeIdTag,
   nodeIdOf,
-  Panel,
   ParentPath,
+  Section,
   StateBadge,
   Tag,
   ValueText,
@@ -26,10 +26,15 @@ import {
 
 const PAGE_SIZE = 20;
 
+type View = 'fix' | 'layer';
 type CategoryFilter = PropertyCategory | 'all';
 type StateFilter = Exclude<BindingState, 'hyperos'> | 'all';
 
-/** 同一检查目标内、同一图层的问题合并成一行 */
+/** 由「结论 · 先改这几处」发起：切到按修复视图、清空筛选、展开并滚到该条 */
+export type FixFocusRequest = { key: string; seq: number };
+
+/* ---------- 按图层：同一检查目标内、同一图层的问题合并成一行 ---------- */
+
 type NodeRow = {
   key: string;
   nodeId?: string;
@@ -102,9 +107,10 @@ function groupByTarget(report: TokenCheckReport, issues: BindableProperty[]): Is
     .map((b) => ({ key: b.key, title: b.title, nodeId: b.nodeId, rows: toRows(b.issues), count: b.issues.length }));
 }
 
-type SegmentOption<T extends string> = { value: T; label: string; count: number };
+/* ---------- 控件 ---------- */
 
-/** 筛选：Arc 分段控件，窄屏在控件内横向滚动 */
+type SegmentOption<T extends string> = { value: T; label: string; count?: number };
+
 function FilterControl<T extends string>({
   label,
   value,
@@ -128,12 +134,116 @@ function FilterControl<T extends string>({
         options={options.map((o) => ({
           value: o.value,
           label: o.label,
-          accessory: <span className="tc-segment-count">{o.count}</span>,
+          accessory: o.count !== undefined ? <span className="tc-segment-count">{o.count}</span> : undefined,
         }))}
       />
     </div>
   );
 }
+
+function MoreButton({ remaining, unit, onClick }: { remaining: number; unit: string; onClick: () => void }) {
+  if (remaining <= 0) return null;
+  return (
+    <div className="tc-more">
+      <Button type="button" variant="ghost" size="sm" onClick={onClick}>
+        再显示 {Math.min(PAGE_SIZE, remaining)} {unit}（剩余 {remaining} {unit}）
+      </Button>
+    </div>
+  );
+}
+
+/* ---------- 按修复 ---------- */
+
+function FixTitle({ fix, index }: { fix: FixGroup; index: number }) {
+  return (
+    <span id={`tc-fix-${index}`} className="tc-fix-title">
+      <span className="tc-fix-value">
+        <ValueText value={fix.value} />
+      </span>
+      <span className="tc-fix-sub">
+        <span>{categoryLabels[fix.category]}</span>
+        <span aria-hidden>·</span>
+        <span>{fixActionLabels[fix.state]}</span>
+        {fix.tokenLabel ? (
+          <span className="tc-fix-token" title={fix.tokenLabel}>
+            {fix.tokenLabel}
+          </span>
+        ) : null}
+      </span>
+    </span>
+  );
+}
+
+function FixLayers({ fix }: { fix: FixGroup }) {
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const shown = fix.issues.slice(0, visible);
+  return (
+    <>
+      <ul className="tc-fix-layers">
+        {shown.map((issue, i) => (
+          <li key={`${issue.nodeId}-${issue.field}-${i}`} className="tc-fix-layer">
+            <div className="min-w-0 flex-1">
+              <div className="flex min-w-0 items-center gap-2">
+                <span className="tc-layer-name">{issue.nodeName}</span>
+                <NodeIdTag id={nodeIdOf(issue.nodeId, issue.figmaUrl)} />
+                <span className="tc-prop-key">{issue.field}</span>
+                {issue.fromInstanceOverride ? <Tag>实例覆写</Tag> : null}
+              </div>
+              <ParentPath path={issue.path} className="mt-0.5" />
+            </div>
+            <FigmaLink href={issue.figmaUrl} label={issue.nodeName} />
+          </li>
+        ))}
+      </ul>
+      <MoreButton
+        remaining={fix.issues.length - shown.length}
+        unit="处"
+        onClick={() => setVisible((v) => v + PAGE_SIZE)}
+      />
+    </>
+  );
+}
+
+function FixView({
+  fixes,
+  open,
+  onOpenChange,
+  visible,
+  onMore,
+}: {
+  fixes: FixGroup[];
+  open: number;
+  onOpenChange: (index: number) => void;
+  visible: number;
+  onMore: () => void;
+}) {
+  const shown = fixes.slice(0, visible);
+  return (
+    <>
+      <Accordion
+        className="tc-fixes"
+        value={open}
+        onValueChange={onOpenChange}
+        items={shown.map((fix, index) => ({
+          id: fix.key,
+          title: <FixTitle fix={fix} index={index} />,
+          meta: (
+            <span className="tc-fix-meta">
+              <StateBadge state={fix.state} />
+              <span className="tc-fix-count">
+                <b>{fix.issues.length}</b> 处 · {fix.nodeCount} 个图层
+              </span>
+            </span>
+          ),
+          content: <FixLayers fix={fix} />,
+        }))}
+      />
+      <MoreButton remaining={fixes.length - shown.length} unit="条" onClick={onMore} />
+    </>
+  );
+}
+
+/* ---------- 按图层 ---------- */
 
 function IssueProp({ issue }: { issue: BindableProperty }) {
   const note =
@@ -187,7 +297,6 @@ function IssueNodeRow({ row }: { row: NodeRow }) {
 function IssueGroupBody({ group }: { group: IssueGroup }) {
   const [visible, setVisible] = useState(PAGE_SIZE);
   const shown = group.rows.slice(0, visible);
-  const remaining = group.rows.length - shown.length;
   return (
     <>
       <ul>
@@ -195,20 +304,53 @@ function IssueGroupBody({ group }: { group: IssueGroup }) {
           <IssueNodeRow key={row.key} row={row} />
         ))}
       </ul>
-      {remaining > 0 ? (
-        <div className="tc-more">
-          <Button type="button" variant="ghost" size="sm" onClick={() => setVisible((v) => v + PAGE_SIZE)}>
-            再显示 {Math.min(PAGE_SIZE, remaining)} 个图层（剩余 {remaining} 个）
-          </Button>
-        </div>
-      ) : null}
+      <MoreButton
+        remaining={group.rows.length - shown.length}
+        unit="个图层"
+        onClick={() => setVisible((v) => v + PAGE_SIZE)}
+      />
     </>
   );
 }
 
-export function IssueList({ report }: { report: TokenCheckReport }) {
+function LayerView({ groups, filterKey }: { groups: IssueGroup[]; filterKey: string }) {
+  return (
+    <Accordion
+      key={filterKey}
+      className="tc-groups"
+      defaultOpen={0}
+      items={groups.map((group) => ({
+        id: group.key,
+        title: (
+          <span className="flex min-w-0 items-center gap-2">
+            <span className="truncate">{group.title}</span>
+            <NodeIdTag id={group.nodeId} />
+          </span>
+        ),
+        meta: `${group.rows.length} 个图层 · ${group.count} 项`,
+        content: <IssueGroupBody group={group} />,
+      }))}
+    />
+  );
+}
+
+/* ---------- 问题清单 ---------- */
+
+export function IssueList({
+  report,
+  fixes,
+  focusRequest,
+}: {
+  report: TokenCheckReport;
+  /** 全量（未筛选）的修复分组，与「结论」共用同一份 */
+  fixes: FixGroup[];
+  focusRequest?: FixFocusRequest;
+}) {
+  const [view, setView] = useState<View>('fix');
   const [category, setCategory] = useState<CategoryFilter>('all');
   const [state, setState] = useState<StateFilter>('all');
+  const [openFix, setOpenFix] = useState(0);
+  const [visibleFixes, setVisibleFixes] = useState(PAGE_SIZE);
 
   const byState = useMemo(
     () => report.issues.filter((i) => state === 'all' || i.state === state),
@@ -218,16 +360,14 @@ export function IssueList({ report }: { report: TokenCheckReport }) {
     () => byState.filter((i) => category === 'all' || i.category === category),
     [byState, category],
   );
-  const groups = useMemo(() => groupByTarget(report, filtered), [report, filtered]);
-  const allRows = useMemo(
-    () => groupByTarget(report, report.issues).reduce((s, g) => s + g.rows.length, 0),
-    [report],
+  const filtering = category !== 'all' || state !== 'all';
+  const shownFixes = useMemo(
+    () => (filtering ? groupIssuesByFix(filtered) : fixes),
+    [filtering, filtered, fixes],
   );
+  const groups = useMemo(() => groupByTarget(report, filtered), [report, filtered]);
   const categoryCounts = useMemo(() => {
-    const counts = Object.fromEntries(categoryOrder.map((c) => [c, 0])) as Record<
-      PropertyCategory,
-      number
-    >;
+    const counts = Object.fromEntries(categoryOrder.map((c) => [c, 0])) as Record<PropertyCategory, number>;
     for (const i of byState) counts[i.category] += 1;
     return counts;
   }, [byState]);
@@ -241,101 +381,128 @@ export function IssueList({ report }: { report: TokenCheckReport }) {
     };
   }, [report.issues, category]);
 
+  // 结论区「先改这几处」：定位到对应的修改
+  useEffect(() => {
+    if (!focusRequest) return;
+    const index = fixes.findIndex((f) => f.key === focusRequest.key);
+    if (index < 0) return;
+    setView('fix');
+    setCategory('all');
+    setState('all');
+    setVisibleFixes((v) => Math.max(v, index + 1));
+    setOpenFix(index);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    requestAnimationFrame(() => {
+      const title = document.getElementById(`tc-fix-${index}`);
+      const trigger = title?.closest('button');
+      trigger?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      trigger?.focus({ preventScroll: true });
+    });
+  }, [focusRequest, fixes]);
+
+  function changeFilter<T>(set: (v: T) => void) {
+    return (v: T) => {
+      set(v);
+      setOpenFix(0);
+      setVisibleFixes(PAGE_SIZE);
+    };
+  }
+
   if (report.issues.length === 0) {
     return (
-      <Panel id="tc-issues" title="问题清单">
-        <EmptyState title="没有需要处理的属性" description="所有可绑定属性都已绑定到 HyperOS Token" />
-      </Panel>
+      <Section id="tc-issues" title="问题清单">
+        <div className="tc-box">
+          <EmptyState title="没有需要处理的属性" description="所有可绑定属性都已绑定到 HyperOS Token" />
+        </div>
+      </Section>
     );
   }
 
   const filterKey = `${category}-${state}`;
-  const rowCount = groups.reduce((s, g) => s + g.rows.length, 0);
+  const layerCount = groups.reduce((s, g) => s + g.rows.length, 0);
 
   return (
-    <Panel
+    <Section
       id="tc-issues"
-      title={
-        <>
-          问题清单
-          <Count n={report.issues.length} />
-        </>
+      title="问题清单"
+      count={report.issues.length}
+      description={
+        view === 'fix'
+          ? '相同的值归成一条，从影响面最大的开始改。绑一次 Token，整组都会修好'
+          : '按检查目标和图层列出，同一图层的问题合并在一起'
       }
-      description="旧版 Kit 变量需要迁移，非 HyperOS 库和未绑定需要重新绑定。同一图层的问题合并在一起"
       actions={
-        <span className="text-xs tabular-nums text-fd-muted-foreground">
-          {allRows} 个图层 · {report.issues.length} 项
-        </span>
+        <SegmentedControl
+          label="问题清单的视图"
+          value={view}
+          onValueChange={(v) => setView(v as View)}
+          options={[
+            { value: 'fix', label: '按修复' },
+            { value: 'layer', label: '按图层' },
+          ]}
+        />
       }
-      flush
     >
-      <div className="tc-toolbar">
-        <FilterControl<CategoryFilter>
-          label="类别"
-          value={category}
-          onChange={setCategory}
-          options={[
-            { value: 'all', label: '全部', count: byState.length },
-            ...categoryOrder.map((c) => ({
-              value: c,
-              label: categoryLabels[c],
-              count: categoryCounts[c],
-            })),
-          ]}
-        />
-        <FilterControl<StateFilter>
-          label="状态"
-          value={state}
-          onChange={setState}
-          options={[
-            { value: 'all', label: '全部', count: stateCounts.all },
-            { value: 'unbound', label: '未绑定', count: stateCounts.unbound },
-            { value: 'legacy', label: '旧版 Kit 变量', count: stateCounts.legacy },
-            { value: 'other', label: '非 HyperOS 库', count: stateCounts.other },
-          ]}
-        />
+      <div className="tc-box">
+        <div className="tc-toolbar">
+          <FilterControl<CategoryFilter>
+            label="类别"
+            value={category}
+            onChange={changeFilter(setCategory)}
+            options={[
+              { value: 'all', label: '全部', count: byState.length },
+              ...categoryOrder.map((c) => ({ value: c, label: categoryLabels[c], count: categoryCounts[c] })),
+            ]}
+          />
+          <FilterControl<StateFilter>
+            label="状态"
+            value={state}
+            onChange={changeFilter(setState)}
+            options={[
+              { value: 'all', label: '全部', count: stateCounts.all },
+              { value: 'unbound', label: '未绑定', count: stateCounts.unbound },
+              { value: 'legacy', label: '旧版 Kit 变量', count: stateCounts.legacy },
+              { value: 'other', label: '非 HyperOS 库', count: stateCounts.other },
+            ]}
+          />
+        </div>
+
+        <p className="sr-only" aria-live="polite">
+          {view === 'fix'
+            ? `筛选结果 ${filtered.length} 项，合并为 ${shownFixes.length} 处修改`
+            : `筛选结果 ${filtered.length} 项，涉及 ${layerCount} 个图层`}
+        </p>
+
+        {filtered.length === 0 ? (
+          <EmptyState
+            title="没有符合条件的问题"
+            description="换一个类别或状态试试"
+            action={
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  setCategory('all');
+                  setState('all');
+                }}
+              >
+                清除筛选
+              </Button>
+            }
+          />
+        ) : view === 'fix' ? (
+          <FixView
+            fixes={shownFixes}
+            open={openFix}
+            onOpenChange={setOpenFix}
+            visible={visibleFixes}
+            onMore={() => setVisibleFixes((v) => v + PAGE_SIZE)}
+          />
+        ) : (
+          <LayerView groups={groups} filterKey={filterKey} />
+        )}
       </div>
-
-      <p className="sr-only" aria-live="polite">
-        筛选结果 {filtered.length} 项，涉及 {rowCount} 个图层
-      </p>
-
-      {groups.length === 0 ? (
-        <EmptyState
-          title="没有符合条件的问题"
-          description="换一个类别或状态试试"
-          action={
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              onClick={() => {
-                setCategory('all');
-                setState('all');
-              }}
-            >
-              清除筛选
-            </Button>
-          }
-        />
-      ) : (
-        <Accordion
-          key={filterKey}
-          className="tc-groups"
-          defaultOpen={0}
-          items={groups.map((group) => ({
-            id: group.key,
-            title: (
-              <span className="flex min-w-0 items-center gap-2">
-                <span className="truncate">{group.title}</span>
-                <NodeIdTag id={group.nodeId} />
-              </span>
-            ),
-            meta: `${group.rows.length} 个图层 · ${group.count} 项`,
-            content: <IssueGroupBody group={group} />,
-          }))}
-        />
-      )}
-    </Panel>
+    </Section>
   );
 }
