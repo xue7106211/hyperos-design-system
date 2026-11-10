@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { PillNav } from '@/components/home/PillNav';
 import './tools.css';
+import './arc-theme.css';
 
 /**
  * 工具页外壳：与 /icons 共用 PillNav（fixed），但页面正常滚动。
