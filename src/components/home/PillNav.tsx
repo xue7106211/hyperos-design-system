@@ -21,12 +21,9 @@ function linkIsActive(pathname: string, href: string) {
     return pathname === '/';
   }
   if (href === '/resources') {
-    // 图标库独立页归入「设计资源」一级入口
-    return (
-      pathname === '/resources' ||
-      pathname.startsWith('/resources/') ||
-      pathname === '/icons' ||
-      pathname.startsWith('/icons/')
+    // 图标库与工具页归入「设计资源」一级入口
+    return ['/resources', '/icons', '/tools'].some(
+      (base) => pathname === base || pathname.startsWith(`${base}/`),
     );
   }
   return pathname === href || pathname.startsWith(`${href}/`);
