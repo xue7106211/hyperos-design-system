@@ -916,10 +916,18 @@ button.tc-disclosure {
 }
 
 .tc-anchor {
+  position: relative;
   border-radius: 0.25rem;
   color: var(--color-fd-muted-foreground);
   text-underline-offset: 3px;
   transition: color 150ms ease-out;
+}
+
+/* 行内文字链接：纵向热区补到约 40px，横向不扩，避免盖住相邻文字 */
+.tc-anchor::before {
+  content: '';
+  position: absolute;
+  inset: -12px 0;
 }
 
 @media (hover: hover) and (pointer: fine) {

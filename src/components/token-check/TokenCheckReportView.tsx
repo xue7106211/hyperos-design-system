@@ -22,6 +22,8 @@ const sectionIds = ['tc-overview', 'tc-categories', 'tc-issues', 'tc-accuracy', 
 
 function useActiveSection(ids: string[], topOffset: number) {
   const [active, setActive] = useState(ids[0]);
+  /** 点击导航后的平滑滚动期间不跟随滚动位置，避免高亮在途经区块间跳动；并排区块也能停在用户选的那个 */
+  const lockedUntil = useRef(0);
 
   useEffect(() => {
     const visible = new Set<string>();
@@ -31,6 +33,7 @@ function useActiveSection(ids: string[], topOffset: number) {
           if (entry.isIntersecting) visible.add(entry.target.id);
           else visible.delete(entry.target.id);
         }
+        if (performance.now() < lockedUntil.current) return;
         const first = ids.find((id) => visible.has(id));
         if (first) setActive(first);
       },
@@ -44,7 +47,33 @@ function useActiveSection(ids: string[], topOffset: number) {
     return () => observer.disconnect();
   }, [ids, topOffset]);
 
-  return [active, setActive] as const;
+  const select = useCallback((id: string) => {
+    // 滚动结束（scrollend）时解锁；不支持该事件的浏览器最多锁 3 秒
+    lockedUntil.current = performance.now() + 3000;
+    const release = () => {
+      lockedUntil.current = 0;
+    };
+    window.addEventListener('scrollend', release, { once: true });
+    setActive(id);
+  }, []);
+
+  // 用户自己滚动（滚轮、触摸、键盘）时立即解除锁定
+  useEffect(() => {
+    const release = () => {
+      lockedUntil.current = 0;
+    };
+    const opts = { passive: true } as const;
+    window.addEventListener('wheel', release, opts);
+    window.addEventListener('touchmove', release, opts);
+    window.addEventListener('keydown', release);
+    return () => {
+      window.removeEventListener('wheel', release);
+      window.removeEventListener('touchmove', release);
+      window.removeEventListener('keydown', release);
+    };
+  }, []);
+
+  return [active, select] as const;
 }
 
 export const TokenCheckReportView = forwardRef<HTMLHeadingElement, { report: TokenCheckReport }>(
