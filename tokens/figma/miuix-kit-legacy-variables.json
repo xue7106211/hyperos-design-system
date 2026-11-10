@@ -1,0 +1,941 @@
+{
+  "source": {
+    "fileKey": "7PVSm4yEbknNLFaqauI4EM",
+    "fileName": "Xiaomi Hyper OS5 UI Kit",
+    "exportedAt": "2026-11-09T07:57:36.389Z",
+    "note": "旧版 Kit 变量：集合已删除但仍被图层绑定，扫描全部页面得到"
+  },
+  "variables": [
+    {
+      "key": "1fc6dd5fe8e0659d4880896a897253f8748d041b",
+      "id": "VariableID:8219:20936",
+      "name": "元素色/container_list",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "d2b0c492370138c9496495d67d5d912916458f5f",
+      "id": "VariableID:20157:16588",
+      "name": "元素色/container_list_solid",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "6173017d48db2319efb830da423d78a41b07de72",
+      "id": "VariableID:36275:50692",
+      "name": "元素色/container_notice_bar",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "7ea9a0c4e1972e9684613df6f38ead5036e9e2e8",
+      "id": "VariableID:6059:3358",
+      "name": "元素色/surface_container",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "925c88db345f91462f167878bff8311495329c23",
+      "id": "VariableID:6059:3361",
+      "name": "元素色/surface_container_high",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "27c012bacb2596fce8c85c915931f7e42300a18e",
+      "id": "VariableID:6059:3359",
+      "name": "元素色/surface_container_low",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "3ee90a0f9a5cceb52dc0dac609ace7fdb9bb891c",
+      "id": "VariableID:6059:3360",
+      "name": "元素色/surface_container_medium",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "285977a672b65a2b6366bd3f1cf49953dddb8b98",
+      "id": "VariableID:39824:48903",
+      "name": "全系统色板/Apricot orange",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "a50e77e08c853b31820908ad508c2513112e86e2",
+      "id": "VariableID:39824:48947",
+      "name": "全系统色板/Black",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "affc9166877379bbe53274e4b7bceaa12724b61f",
+      "id": "VariableID:39824:48927",
+      "name": "全系统色板/Blue",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "afb104a177a82a8c996cee0fa500f1f4e29c86b4",
+      "id": "VariableID:39824:48912",
+      "name": "全系统色板/Chartreuse",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "5e68c88e4e8dbde80dbbc17897cb64036be8ba2d",
+      "id": "VariableID:39824:48921",
+      "name": "全系统色板/Cyan",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "ba263d321c29399f87befe1bf2faa272dd4a0d16",
+      "id": "VariableID:39824:47770",
+      "name": "全系统色板/Deep orange",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "ecb8f94477270933cc001aa1eea6c2c8c224ed45",
+      "id": "VariableID:39824:48941",
+      "name": "全系统色板/Gray",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "8194857a95451e58585ed97a33fd56953554e6bd",
+      "id": "VariableID:39824:48915",
+      "name": "全系统色板/Green",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "708a43c3eef515827d08dfb3b93c2891d99c1f4f",
+      "id": "VariableID:39824:48909",
+      "name": "全系统色板/Lemon yellow",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "011b84bc0acfc1d01db8ff52638bbb33fa145a46",
+      "id": "VariableID:39824:48938",
+      "name": "全系统色板/Magenta",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "76b4594806df151f444e76943dad89f5d4321062",
+      "id": "VariableID:39824:47773",
+      "name": "全系统色板/Orange",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "c65e8c908cc6c2c5abe682a91046c2f8046d02ae",
+      "id": "VariableID:39824:48930",
+      "name": "全系统色板/Purple",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "3c7083526465f572bd2b459ab81984331f5a250f",
+      "id": "VariableID:39824:47767",
+      "name": "全系统色板/Red",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "58307f21318ff875fa3f99dda8cd80486a19e986",
+      "id": "VariableID:39824:48924",
+      "name": "全系统色板/Sky blue",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "59c584532ef4f14adb8b5981b40e87220882fdc7",
+      "id": "VariableID:39824:48918",
+      "name": "全系统色板/Turquoise",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "4b41e7ffab85efad7757d8c571a3f60c08390d5c",
+      "id": "VariableID:39824:48933",
+      "name": "全系统色板/Violet",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "e965fba697ff2f630ae13d3cfb2feb225fcbf2fa",
+      "id": "VariableID:39824:48944",
+      "name": "全系统色板/White",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "e93003dd4365cae86d0b4b0a57d3ff0f0b448368",
+      "id": "VariableID:39824:48906",
+      "name": "全系统色板/Yellow",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "96f2cf4d1ce0d56cff2f8e98da6a5e16bd59983e",
+      "id": "VariableID:6059:3363",
+      "name": "分割线色/outline",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "e3e4ac618198168c5b13907e773a0c1ea874f3aa",
+      "id": "VariableID:6059:3364",
+      "name": "文字图标色/on_surface",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "7d4683053d96b70fbd1e2ddf18540bd866b9e7cf",
+      "id": "VariableID:13985:3479",
+      "name": "文字图标色/on_Surface_button_disable",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "2a9f87405da6d29fcb9ed2b79a1dc0ccd4738c08",
+      "id": "VariableID:43967:14147",
+      "name": "文字图标色/on_Surface_empty_state",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "d6954bc7342df17ba9c2adfbf60d141cea483461",
+      "id": "VariableID:6059:3368",
+      "name": "文字图标色/on_surface_octonary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "90e5e9a5cff59643468d83fcb4c9ab5e43a12034",
+      "id": "VariableID:6059:3367",
+      "name": "文字图标色/on_surface_quaternary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "bb1bc92df4dad8b66a621f2f4c7d516b9a4d784a",
+      "id": "VariableID:9648:20978",
+      "name": "文字图标色/on_Surface_right_button_bg",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "9a1c5a699d00f3536096b906de8cc95c8e07d5e8",
+      "id": "VariableID:9648:20974",
+      "name": "文字图标色/on_Surface_right_icon",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "555c8ac81e3b3fea5cc32242d742344b918c6c40",
+      "id": "VariableID:6059:3365",
+      "name": "文字图标色/on_surface_secondary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "38112eba6f7f7c2622813f67aec3cff72eb16d17",
+      "id": "VariableID:6059:3366",
+      "name": "文字图标色/on_surface_tertiary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "7c5b50584ce9f283aa67e747d2c18c9c5796607e",
+      "id": "VariableID:83286:67232",
+      "name": "新增色彩变量/container_list_hover",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "8224d8ac8a3dce1165c5833dabbda43f8d0da2fb",
+      "id": "VariableID:78339:10304",
+      "name": "新增色彩变量/container_nav",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "d4ed1cd3077baca66a18a56e2603f1c434bf8b40",
+      "id": "VariableID:6059:3348",
+      "name": "系统主色/on_primary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "f0d3bfade7aeab41cf0c70e0f12256f85f9327d2",
+      "id": "VariableID:6059:3350",
+      "name": "系统主色/on_secondary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "06f3774f783ea29c298d1e2215c9005f059dc799",
+      "id": "VariableID:6059:3352",
+      "name": "系统主色/on_tertiary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "63664d2681aafb3fe5acffa00387f2eb9613106b",
+      "id": "VariableID:6059:3347",
+      "name": "系统主色/primary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "93df9bd781d2cecaf7c88c0ab71129d92df00c54",
+      "id": "VariableID:6059:3349",
+      "name": "系统主色/secondary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "9bbe5f61d864c46573e12dfafe45b87c43122557",
+      "id": "VariableID:6059:3351",
+      "name": "系统主色/tertiary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "1381158e3b48ffaabd35e3cac1c66a31b815f1f3",
+      "id": "VariableID:6059:3369",
+      "name": "系统功能色/caution",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "210057720075c5f43e4e0a2a6761bcb28b418897",
+      "id": "VariableID:6059:3370",
+      "name": "系统功能色/caution_container",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "d81bf458f8020a877be820203fb60a3c5427e294",
+      "id": "VariableID:6059:3371",
+      "name": "系统功能色/error",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "8d9ebe68ff2581e9bab1faca4dd29cd8e033860c",
+      "id": "VariableID:6059:3372",
+      "name": "系统功能色/error_container",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "58e5d05a0fdddaf27b1ca1864566aad08df8b4cf",
+      "id": "VariableID:43971:134753",
+      "name": "线框插图色/container_Illustration_primary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "377ba8e1db8c13cd85ff0d3f7cd2dc91f3b82438",
+      "id": "VariableID:37891:134156",
+      "name": "线框插图色/container_Illustration_quaternary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "d9755cb7ab6a55afb6aab98cc56dcce64134e77d",
+      "id": "VariableID:37891:134594",
+      "name": "线框插图色/container_Illustration_secondary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "8a7dfd8d410da2c4d887c46d22fa26f5705aee03",
+      "id": "VariableID:37891:134157",
+      "name": "线框插图色/container_Illustration_tertiary",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "5804f51e302d6fda00b3a8ce9d509d9b8ee09225",
+      "id": "VariableID:6059:3353",
+      "name": "背景色/surface",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "558264cff708efdb41aa530637e081b440f00b83",
+      "id": "VariableID:6059:3356",
+      "name": "背景色/surface_high",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "6c2d297f52487ee57454088654267447e068104a",
+      "id": "VariableID:6059:3357",
+      "name": "背景色/surface_highest",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "e74b063d74a3444a44a4e00bb7417c2dbea305ba",
+      "id": "VariableID:6059:3354",
+      "name": "背景色/surface_low",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "919e1e066eec7d63fb747879368de81fb8f63c83",
+      "id": "VariableID:6059:3355",
+      "name": "背景色/surface_medium",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "9e80de04bafd8ca74d039a59fcbb541971971248",
+      "id": "VariableID:27964:17682",
+      "name": "背景色/surface_menubar",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "13c411e8d616e47b39f0353000b755c3c176e264",
+      "id": "VariableID:6630:20888",
+      "name": "背景色/surface_pop_window",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "bd6eefd4ca2419a4f44ca6b5080ab1ad8a3cdd60",
+      "id": "VariableID:109390:4134",
+      "name": "背景色/surface_select",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "e6ce91394b3ff9d07a82ef389b96929de34d0481",
+      "id": "VariableID:109390:4133",
+      "name": "背景色/surface_touch",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "0ed62540049dd3839b40b63d40f82492c4bac664",
+      "id": "VariableID:6059:3362",
+      "name": "遮罩色/mask",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "3f29ecab0653159d78f62ef8d44a6c36c8d4ca67",
+      "id": "VariableID:18514:23217",
+      "name": "遮罩色/mask_menu",
+      "collection": "1. feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "d8678c700954470d25ac142dd7ef54d1d4a63ed9",
+      "id": "VariableID:3377:3548",
+      "name": "black/color-black-level7",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "aad0eb1fe7a725961c0355d75db1115fabc94061",
+      "id": "VariableID:6059:3373",
+      "name": "black/color-black-solid-10",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "55c8474c9f55a3e185a05aa0e5470f076dad47f6",
+      "id": "VariableID:6059:3384",
+      "name": "black/color-black-solid-100",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "4e1c15887f0535ef6bbe0278c3a15dcfc7250e61",
+      "id": "VariableID:6059:3392",
+      "name": "black/color-black-solid-20",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "2d5f86df00c40f9e9b5104729e0eac8b87b5ce0e",
+      "id": "VariableID:6059:3391",
+      "name": "black/color-black-solid-30",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "018164b034d05eea2932f04747cc59300b11be16",
+      "id": "VariableID:6059:3390",
+      "name": "black/color-black-solid-40",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "f370bcd2c29851bea90964a455892ad3520b3a92",
+      "id": "VariableID:39824:142641",
+      "name": "black/color-black-solid-45",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "bd093cf31ca741fce68834ff5d72833b126aee2e",
+      "id": "VariableID:6059:3389",
+      "name": "black/color-black-solid-50",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "c903e764a92f19b594399fa89fe8d7dadfeea859",
+      "id": "VariableID:6059:3388",
+      "name": "black/color-black-solid-60",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "b26f8597c1e97b126d0ab0cdbc37aebaaadb1c3f",
+      "id": "VariableID:39824:142642",
+      "name": "black/color-black-solid-65",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "64f6d3536e87838360f5d78ccd614b25f94c0001",
+      "id": "VariableID:6059:3387",
+      "name": "black/color-black-solid-70",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "8e89161fbdf3e16133dfc1c46fc9a36ff69a1b96",
+      "id": "VariableID:39824:142538",
+      "name": "black/color-black-solid-75",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "97c34b9ec4fd505b69122244eaad0e98aeac6cd0",
+      "id": "VariableID:6059:3386",
+      "name": "black/color-black-solid-80",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "921807404c79dcb88b101cdd21ff2b8a61021f61",
+      "id": "VariableID:6059:3385",
+      "name": "black/color-black-solid-90",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "cef998ffe0ac4ce08959b0eda1c040a85d9e4f09",
+      "id": "VariableID:17704:29280",
+      "name": "white/color-white-level1-1",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "1a8490081f05b59398eeee0d1011324aac56bbf8",
+      "id": "VariableID:36149:9168",
+      "name": "white/color-white-solid-00",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "3edbb5f8c5a2598b6982fadd9bde2947693aebf8",
+      "id": "VariableID:6059:3374",
+      "name": "white/color-white-solid-10",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "c6a29a32de27927af6f675baa36fc37a59106624",
+      "id": "VariableID:6059:3376",
+      "name": "white/color-white-solid-100",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "1bb102ae6b9996258d0ac46c69dce2fbe0c62f1d",
+      "id": "VariableID:6059:3383",
+      "name": "white/color-white-solid-20",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "1c8b6acc1e535b30431b3b4c7ce24f4bcae9b3f1",
+      "id": "VariableID:39824:142494",
+      "name": "white/color-white-solid-25",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "258259560b294180f1e76e2c0d7724dc29d15dcb",
+      "id": "VariableID:6059:3375",
+      "name": "white/color-white-solid-30",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "ecbd7092cea4e9a8f35fede65d5584f56dd26e9d",
+      "id": "VariableID:6059:3382",
+      "name": "white/color-white-solid-40",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "3bc263bfa247fa27573d6c2e078be74eafb3d1e6",
+      "id": "VariableID:6059:3381",
+      "name": "white/color-white-solid-50",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "12546a72a4ab37f37c8da74a3d4366c1acb2d709",
+      "id": "VariableID:6059:3380",
+      "name": "white/color-white-solid-60",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "9645da395fa30075ea9f88eeac6f7f991503a08a",
+      "id": "VariableID:6059:3379",
+      "name": "white/color-white-solid-70",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "53ed65783bb51fe974f970fadc1451ba2f4f5c0e",
+      "id": "VariableID:6059:3378",
+      "name": "white/color-white-solid-80",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "1ba56793f88e74903c694a316e17ee6e4a7980a4",
+      "id": "VariableID:6059:3377",
+      "name": "white/color-white-solid-90",
+      "collection": "2. color token",
+      "type": "COLOR"
+    },
+    {
+      "key": "1843d2ff65b107003531c3328ed7e27bf90d4d67",
+      "id": "VariableID:13601:10",
+      "name": "big",
+      "collection": "3.Radius token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "5a098f654708a766df3397655f8918f27f1eaa95",
+      "id": "VariableID:13601:11",
+      "name": "circle",
+      "collection": "3.Radius token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "18af857e007ba405df7693ddbf11b4c3e8ab1f97",
+      "id": "VariableID:13601:7",
+      "name": "common",
+      "collection": "3.Radius token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "bc4f9998f38599b4d1a5463cdfc29f445f75027a",
+      "id": "VariableID:13601:9",
+      "name": "demi_big",
+      "collection": "3.Radius token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "1377f3c4f3dc69322bb21df7b59c29c6f0923e4d",
+      "id": "VariableID:13601:8",
+      "name": "medium",
+      "collection": "3.Radius token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "5de0bee32888cbbb8b35039f90a59eb2cbfd0bf8",
+      "id": "VariableID:13601:6",
+      "name": "small",
+      "collection": "3.Radius token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "d1e82d3189fd0ea584e2ce23a691b743c30a14af",
+      "id": "VariableID:13601:3",
+      "name": "tiny",
+      "collection": "3.Radius token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "f91510d8821a27349ff114108b0622b24aad4e0a",
+      "id": "VariableID:13934:15197",
+      "name": "margin/base_horizontal",
+      "collection": "4.Number Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "03739c9d5b44c0c35060331a15f2db8d2998991a",
+      "id": "VariableID:87415:2527",
+      "name": "padding/padding_lg",
+      "collection": "4.Number Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "b42d69602405cb11d8ba767876f797f4495233d2",
+      "id": "VariableID:87415:2524",
+      "name": "padding/padding_md",
+      "collection": "4.Number Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "0b5a2b563f3235a99edd3a48df37b0859e171c7b",
+      "id": "VariableID:87440:2494",
+      "name": "padding/padding_sm",
+      "collection": "4.Number Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "02003f27c26f2946413818f62c021f5216ecfab2",
+      "id": "VariableID:87415:2520",
+      "name": "padding/padding_xs",
+      "collection": "4.Number Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "be6eaee36755b1551f59717b1d5cb92767371752",
+      "id": "VariableID:14184:7068",
+      "name": "Row Height/body 1 - window",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "0732b6d2bc845a638cf170706bcc1b8ecfa75585",
+      "id": "VariableID:13712:24938",
+      "name": "Size/Body 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "e85e287683911ab1248420c1e15ea7c660d39831",
+      "id": "VariableID:13712:24939",
+      "name": "Size/Body 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "347cd403864b729f0ab6f32ce22cc3a8d77f089b",
+      "id": "VariableID:13712:24943",
+      "name": "Size/Button",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "7362b9f33422a433fc386b217deedc8674b392b8",
+      "id": "VariableID:13712:24940",
+      "name": "Size/Footnote 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "e2c2530341e60f5b0aba2f3a1f569757c68eb01c",
+      "id": "VariableID:13712:24942",
+      "name": "Size/Footnote 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "799d94f15d450d20de20f7d288b1c09e4fc65b53",
+      "id": "VariableID:30420:610",
+      "name": "Size/Footnote 3",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "ce4252c9664be87304d486adea45394ed3ea6024",
+      "id": "VariableID:13712:24935",
+      "name": "Size/Headline 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "ca8f1c2410c82b768fa35ca5e33bac3fef7eaf7a",
+      "id": "VariableID:13712:24936",
+      "name": "Size/Headline 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "a207e7c5fef865e98c7418c6cb5318deeee734eb",
+      "id": "VariableID:13712:24937",
+      "name": "Size/Subtitle",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "2fcb797f30381439fb8a71be475de86dd063b9e6",
+      "id": "VariableID:39913:6139",
+      "name": "Size/Subtitle 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "a665826410ea3d70215bb1b16a3f8eae2b625dc1",
+      "id": "VariableID:41601:51135",
+      "name": "Size/Subtitle 3",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "57c8a28a1d924cc6ab57a16767d019661c274e3a",
+      "id": "VariableID:13712:24923",
+      "name": "Size/Title 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "8eb2a2f18aeda3f5a65cd33fd3c686905469b0cc",
+      "id": "VariableID:13712:24932",
+      "name": "Size/Title 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "00cb16f66538b524c1fbc00d3b7efc02b3d81da0",
+      "id": "VariableID:13712:24933",
+      "name": "Size/Title 3",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "415644c004988f164f0f6fcda15ed794415c8d90",
+      "id": "VariableID:13712:24934",
+      "name": "Size/Title 4",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "2db1f8a78b4c353c378ccf3e9f4ad6ad488ac504",
+      "id": "VariableID:13743:24978",
+      "name": "Weight/Body 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "58f26a5e4f1ff6a871a0072c0f7f88db35cc2a7c",
+      "id": "VariableID:13743:24979",
+      "name": "Weight/Body 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "885b7e2b472d7b54a324efc20383420a8b34c8af",
+      "id": "VariableID:13743:24972",
+      "name": "Weight/Button",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "d01bea160ccc68429e5b6f48696706df94530de8",
+      "id": "VariableID:13743:24971",
+      "name": "Weight/Footnote 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "849065f3cc432fd93d85ebe09b8eaffbe45e688d",
+      "id": "VariableID:13743:24980",
+      "name": "Weight/Footnote 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "dfe037e54c57d767ec8cb45140deb27307200ad1",
+      "id": "VariableID:30420:614",
+      "name": "Weight/Footnote 3",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "bbfa4434972ef1f626fb5d66ac7acacaa6456dc2",
+      "id": "VariableID:13743:24975",
+      "name": "Weight/Headline 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "a883252e5da16ab500aaa74971eca61900cc0b75",
+      "id": "VariableID:13743:24976",
+      "name": "Weight/Headline 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "7b41930bc9e43e79612ff1122c97c691160a866f",
+      "id": "VariableID:13743:24977",
+      "name": "Weight/Subtitle",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "cacb718b77b2d783b347c3bca10dfaf30f9900e4",
+      "id": "VariableID:39913:6143",
+      "name": "Weight/Subtitle 2",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "b059fd4b04092e12e0b581b2a28727ae5bb6e5b1",
+      "id": "VariableID:41601:51139",
+      "name": "Weight/Subtitle 3",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "10586c9a96fc1e53840cbf74a98df15aa0938343",
+      "id": "VariableID:13743:24969",
+      "name": "Weight/Title 1",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "99a7575c972a70b7c77614308ad39fd378174836",
+      "id": "VariableID:13743:24973",
+      "name": "Weight/Title 3",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "4d8305963df80db6ba5b11f1dac33f0ac404bde4",
+      "id": "VariableID:13743:24974",
+      "name": "Weight/Title 4",
+      "collection": "5.Types Token",
+      "type": "FLOAT"
+    },
+    {
+      "key": "154d0e34ad528602f3d8bd0bf67e4b1243d88dd2",
+      "id": "VariableID:7483:22957",
+      "name": "文字图标色/on_surface",
+      "collection": "feature token",
+      "type": "COLOR"
+    },
+    {
+      "key": "2d5a03401262f62799ec1d21fee27b8bc7f38381",
+      "id": "VariableID:7483:22956",
+      "name": "文字图标色/on_surface_tertiary",
+      "collection": "feature token",
+      "type": "COLOR"
+    }
+  ]
+}

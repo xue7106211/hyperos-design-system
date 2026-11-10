@@ -237,6 +237,12 @@ export type ToolItem = {
 
 export const resourcesTools: ToolItem[] = [
   {
+    name: 'Token 绑定检查',
+    description: '贴入 Figma 链接，检查设计稿的 Token 覆盖率与问题图层。',
+    href: '/tools/token-check',
+    image: '/resources/tools-placeholder.png',
+  },
+  {
     name: 'Figma 材质插件',
     description: 'HyperOS 设计效率插件。',
     href: 'https://www.figma.com/community/plugin/1562763338973560719/hyperos4-material',

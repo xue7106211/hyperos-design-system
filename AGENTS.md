@@ -8,7 +8,7 @@
 
 - **技术栈**：Fumadocs + Next.js App Router + MDX + Tailwind CSS 4 + TinaCMS（本地模式）
 - **目标用户**：设计、文档、客户端工程（Android / iOS）
-- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、文档配图页内画廊（Fancybox）、Compose / SwiftUI 静态代码参考、**设计资源中心**（`/resources`）、**Ask AI**（全站浮动问答，仅 OS4 文档）
+- **核心能力**：Guidelines 文档、Figma embed、Design Token 展示、图标库预览、文档配图页内画廊（Fancybox）、Compose / SwiftUI 静态代码参考、**设计资源中心**（`/resources`）、**Ask AI**（全站浮动问答，仅 OS4 文档）、**Token 绑定检查**（`/tools/token-check`，开发中）
 
 客户端组件 **源码在独立仓库** 维护；本仓只负责规范传播与 Figma / Token / 图标资产连接。
 
@@ -340,6 +340,21 @@ package-lock.json       # npm 锁文件
 - LLM 导出：`/llms.txt`（索引）、`/llms-full.txt`（全文）、`/llms.mdx/docs/*`（单页 Markdown）
 - **Ask AI**（全站右下角浮动；`/admin` 隐藏）：根布局挂载 `AiAssistant`；UI 为 AI Elements + shadcn（`src/components/ai/`、`ai-elements/`、`ui/`）；打开后面板取代入口按钮（Motion 进出场）；`POST /api/chat` + `@ai-sdk/anthropic` 对接小米内网网关；检索 tool 对模型暴露为 `search`（实现 `searchDocs`，Orama，仅 OS4）。服务端 env：`MI_LLM_BASE_URL` / `MI_LLM_API_KEY` / `MI_LLM_MODEL`，可选 `AI_CHAT_ENABLED=false` 关闭。线上在 Matrix 部署空间 **右上角「编辑」→ 主容器「环境变量」** 注入后发布（滚动升级；不是「设置 → 变量配置」）；细节见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」；历史规格 [docs/superpowers/specs/2026-08-11-ai-assistant-design.md](docs/superpowers/specs/2026-08-11-ai-assistant-design.md)。**勿**把 shadcn 组件当文档页 Web 可交互 demo。首页不挂「返回顶部」；`/resources` 仍可有返回顶部，注意与 Ask AI 同角共存。
 
+## Token 绑定检查（开发中，Agent 必读）
+
+- 工具页 `/tools/token-check` + `POST /api/token-check`；规格见 [docs/superpowers/specs/2026-11-09-figma-token-check-design.md](docs/superpowers/specs/2026-11-09-figma-token-check-design.md)
+- 引擎为纯函数：`src/lib/token-check/`（类型 `types.ts`；排除 `classify.ts`；属性 `properties.ts`；准确性检查注册在 `checks/index.ts`）；UI 在 `src/components/token-check/`
+- 服务端 env：`FIGMA_ACCESS_TOKEN`（必填）、`TOKEN_CHECK_KIT_FILE_KEYS`、`TOKEN_CHECK_ENABLED`
+- Token 库快照 `tokens/figma/hyperos-design-token.snapshot.json` 由 Figma MCP 离线导出（Org 计划无 Variables REST），刷新见 `scripts/token-check/export-library-snapshot.figma.js`，提交前跑 `node scripts/token-check/verify-snapshot.mjs`；旧版 Kit 变量清单 `tokens/figma/miuix-kit-legacy-variables.json`（刷新见 `scripts/token-check/export-legacy-kit-variables.figma.js`）；两份快照与 `tokens/*.{light,dark}.json`（OS4，TokenTable 用）是不同数据，不要混用
+- 测试：`node --test "src/**/*.test.mjs"` 已包含 `src/lib/token-check/*.test.mjs`
+- 开发期演示数据：`/tools/token-check?demo=1`（生产构建不加载）
+- 复核状态（有意保留、与上次对比）只存在浏览器 localStorage（`tc-waivers:v1`、`tc-history:v1`），口径在 `src/lib/token-check/review-state.ts`；有意保留会改变覆盖率分母，必须在附录和导出里公开列出
+- **UI 组件约定**：工具页控件统一用 Arc 免费组件源码（`src/components/arc/`，来源 https://uiarc.dev ，手动拷入而非 CLI 安装）。规则：
+  1. 不新增直接依赖：Arc 里的 `@radix-ui/react-*` 一律改成从已有的 `radix-ui` 包导入；只用已有的 `motion`、`lucide-react`
+  2. 不引入 Arc 的 `foundation.css`（它在 `:root` 定义 `--background` 等，会覆盖 shadcn 变量）；变量映射在 `src/app/tools/arc-theme.css`，只作用于 `.tc-arc` 容器和 Tooltip 浮层 `.arc-layer`
+  3. 同一种控件只用一套：工具页用 Arc，Ask AI 继续用 shadcn（`src/components/ui/`），文档站 chrome 用 Fumadocs；不要在工具页再手写按钮、输入框、分段控件、折叠面板等样式
+  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题与受控展开）直接改在 `src/components/arc/` 里
+
 ## Figma 集成
 
 - Embed API：https://developers.figma.com/docs/embeds/embed-figma-file/
@@ -414,3 +429,13 @@ node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 - [docs/superpowers/](docs/superpowers/) — Agent 历史设计 / 实现计划记录（非对外；路径和待办不作为当前实现依据）
 - [icons/README.md](icons/README.md) — 图标字体入库与 sync 约定
 - [Fumadocs 官方文档](https://www.fumadocs.dev)
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
