@@ -14,7 +14,8 @@ import type {
   PropertyCategory,
   TokenCheckReport,
 } from '@/lib/token-check/types';
-import { categoryLabels, categoryOrder, fixActionLabels, formatGain, stateLabels } from './labels';
+import { categoryLabels, categoryOrder, formatGain, stateLabels } from './labels';
+import { LayerCard, SuggestionsContext, ValueCard } from './DetailCards';
 import {
   DetailTip,
   FigmaLink,
@@ -57,16 +58,8 @@ function tokenLabelOf(issue: BindableProperty) {
     : null;
 }
 
-function layerDetails(
-  issue: { nodeId?: string; figmaUrl: string; path: string[] },
-  extra: [string, string | null][] = [],
-): [string, ReactNode][] {
-  const id = nodeIdOf(issue.nodeId, issue.figmaUrl);
-  return [
-    ['节点', id ? <span className="tc-mono">{id}</span> : null],
-    ['路径', issue.path.length > 1 ? issue.path.join(' / ') : null],
-    ...extra,
-  ];
+function layerMeta(issue: { nodeId?: string; figmaUrl: string }, extra: (string | null)[] = []) {
+  return [nodeIdOf(issue.nodeId, issue.figmaUrl), ...extra];
 }
 
 /* ---------- 按图层：同一检查目标内、同一图层的问题合并成一行 ---------- */
@@ -190,16 +183,21 @@ function MoreButton({ remaining, unit, onClick }: { remaining: number; unit: str
 function FixTitle({ fix, index, total }: { fix: FixGroup; index: number; total: number }) {
   return (
     <DetailTip
-      rows={[
-        ['当前值', fix.value],
-        ['类别', categoryLabels[fix.category]],
-        ['状态', stateLabels[fix.state]],
-        ['旧版变量', fix.tokenLabel],
-        ['建议', fixActionLabels[fix.state]],
-        ['影响', `${fix.issues.length} 处 · ${fix.nodeCount} 个图层`],
-        ['收益', `改完覆盖率 ${formatGain(fixGain(fix.issues.length, total))} 个百分点`],
-      ]}
       clickToOpen={false}
+      content={
+        <ValueCard
+          category={fix.category}
+          state={fix.state}
+          value={fix.value}
+          layers={fix.issues}
+          total={fix.issues.length}
+          footer={[
+            fix.tokenLabel ?? '',
+            `${fix.issues.length} 处 · ${fix.nodeCount} 个图层`,
+            `改完覆盖率 ${formatGain(fixGain(fix.issues.length, total))}`,
+          ]}
+        />
+      }
     >
       <span id={`tc-fix-${index}`} className="tc-fix-title">
         <span className="tc-fix-value">
@@ -220,10 +218,12 @@ function FixLayers({ fix, onWaive }: { fix: FixGroup; onWaive: WaiveHandler }) {
         {shown.map((issue, i) => (
           <li key={`${issue.nodeId}-${issue.field}-${i}`} className="tc-fix-layer">
             <DetailTip
-              rows={layerDetails(issue, [
-                ['字段', issue.field],
-                ['来源', issue.fromInstanceOverride ? '实例覆写' : null],
-              ])}
+              content={
+                <LayerCard
+                  path={issue.path}
+                  meta={layerMeta(issue, [issue.field, issue.fromInstanceOverride ? '实例覆写' : null])}
+                />
+              }
             >
               <span className="tc-layer-name" tabIndex={0}>
                 {issue.nodeName}
@@ -308,13 +308,18 @@ function IssueProp({ issue }: { issue: BindableProperty }) {
     <li className="tc-prop">
       <span className="tc-prop-field">{categoryLabels[issue.category]}</span>
       <DetailTip
-        rows={[
-          ['当前值', issue.value],
-          ['字段', issue.field],
-          ['旧版变量', tokenLabelOf(issue)],
-          ['来源', issue.fromInstanceOverride ? '实例覆写' : null],
-          ['建议', issue.state === 'hyperos' ? null : fixActionLabels[issue.state]],
-        ]}
+        content={
+          issue.state === 'hyperos' ? (
+            <LayerCard path={issue.path} meta={[issue.field]} />
+          ) : (
+            <ValueCard
+              category={issue.category}
+              state={issue.state}
+              value={issue.value}
+              footer={[tokenLabelOf(issue) ?? '', issue.field, issue.fromInstanceOverride ? '实例覆写' : '']}
+            />
+          )
+        }
       >
         <span className="tc-prop-value" tabIndex={0}>
           <ValueText value={issue.value} />
@@ -331,7 +336,7 @@ function IssueNodeRow({ row }: { row: NodeRow }) {
   return (
     <li className="tc-node">
       <div className="tc-node-head">
-        <DetailTip rows={layerDetails(row)}>
+        <DetailTip content={<LayerCard path={row.path} meta={layerMeta(row)} />}>
           <span className="tc-layer-name" tabIndex={0}>
             {row.nodeName}
           </span>
@@ -537,6 +542,7 @@ export function IssueList({
   const layerCount = groups.reduce((s, g) => s + g.rows.length, 0);
 
   return (
+    <SuggestionsContext.Provider value={report.suggestions}>
     <Section
       id="tc-issues"
       title="问题清单"
@@ -626,5 +632,6 @@ export function IssueList({
         )}
       </div>
     </Section>
+    </SuggestionsContext.Provider>
   );
 }

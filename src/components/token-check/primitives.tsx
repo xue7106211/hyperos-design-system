@@ -303,40 +303,22 @@ export function StateMark({ state }: { state: BindingState }) {
   );
 }
 
-export type DetailRow = [label: string, value: ReactNode];
-
 /**
- * 悬停详情卡（Arc Hover Card）：默认只露出关键信息，其余字段放在这里。
+ * 悬停详情卡（Arc Hover Card）：默认只露出关键信息，处境与候选放在这里（内容见 DetailCards.tsx）。
  * 悬停 0.5 秒或键盘聚焦打开，Esc 关闭，触屏点按切换；指针可以移进卡片选中文字。
  * 触发器在折叠行按钮里时传 clickToOpen={false}，点击只负责展开。
  */
 export function DetailTip({
-  rows,
+  content,
   children,
   clickToOpen = true,
 }: {
-  rows: DetailRow[];
+  content: ReactNode;
   children: ReactElement;
   clickToOpen?: boolean;
 }) {
-  const shown = rows.filter(([, v]) => v !== null && v !== undefined && v !== '' && v !== false);
   return (
-    <HoverCard
-      side="bottom"
-      align="start"
-      className="tc-detail"
-      clickToOpen={clickToOpen}
-      content={
-        <dl className="tc-detail-list">
-          {shown.map(([k, v]) => (
-            <div key={k}>
-              <dt>{k}</dt>
-              <dd>{v}</dd>
-            </div>
-          ))}
-        </dl>
-      }
-    >
+    <HoverCard side="bottom" align="start" className="tc-detail" clickToOpen={clickToOpen} content={content}>
       {children}
     </HoverCard>
   );
