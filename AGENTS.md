@@ -353,7 +353,7 @@ package-lock.json       # npm 锁文件
   1. 不新增直接依赖：Arc 里的 `@radix-ui/react-*` 一律改成从已有的 `radix-ui` 包导入；只用已有的 `motion`、`lucide-react`
   2. 不引入 Arc 的 `foundation.css`（它在 `:root` 定义 `--background` 等，会覆盖 shadcn 变量）；变量映射在 `src/app/tools/arc-theme.css`，只作用于 `.tc-arc` 容器和 Tooltip 浮层 `.arc-layer`
   3. 同一种控件只用一套：工具页用 Arc，Ask AI 继续用 shadcn（`src/components/ui/`），文档站 chrome 用 Fumadocs；不要在工具页再手写按钮、输入框、分段控件、折叠面板等样式。例外：页底「校对说明」小字里的文字链接（「撤销」「全部撤销」「再显示 N 条」）用 `tools.css` 的 `.tc-fine-link`，因为 Arc Button 在 12px 段落里太重；不要把它扩展到正文或其他区块
-  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题与受控展开、Hover Card 的 `clickToOpen` 开关、`alignTo` 定位（宽屏放在列表右外侧，窄屏贴列表左边缘）与 `.arc-layer` 类名）直接改在 `src/components/arc/` 里
+  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题与受控展开、Hover Card 的 `clickToOpen` 开关、`alignTo` 定位（宽屏放在列表右外侧，窄屏贴列表左边缘）、`hoverArea` 整行热区与 `.arc-layer` 类名）直接改在 `src/components/arc/` 里
 
 ## Figma 集成
 

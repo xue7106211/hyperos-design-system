@@ -61,6 +61,8 @@ export interface HoverCardProps {
    * 放不下（窄屏）时退回到触发器下方，左边缘对齐这个祖先。
    */
   alignTo?: string;
+  /** 本地改动：祖先元素的选择器；指针进入这个祖先（如整行）就算悬停，卡片也和它的顶部对齐 */
+  hoverArea?: string;
 }
 
 interface SurfaceProps extends Omit<HTMLAttributes<HTMLDivElement>, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"> { instant: boolean; reduced: boolean }
@@ -107,7 +109,7 @@ const Surface = forwardRef<HTMLDivElement, SurfaceProps>(function Surface({ inst
   </motion.div>;
 });
 
-export function HoverCard({ children, content, side = "bottom", align = "start", openDelay = OPEN_DELAY, closeDelay = CLOSE_DELAY, className, clickToOpen = true, alignTo }: HoverCardProps) {
+export function HoverCard({ children, content, side = "bottom", align = "start", openDelay = OPEN_DELAY, closeDelay = CLOSE_DELAY, className, clickToOpen = true, alignTo, hoverArea }: HoverCardProps) {
   const id = useId();
   const cardId = `${id}-card`;
   const state = useSyncExternalStore(cards.subscribe, cards.get, cards.server);
@@ -128,13 +130,14 @@ export function HoverCard({ children, content, side = "bottom", align = "start",
     if (!trigger || !box) return;
     const t = trigger.getBoundingClientRect();
     const b = box.getBoundingClientRect();
+    const row = hoverArea ? trigger.closest(hoverArea)?.getBoundingClientRect() : undefined;
     const room = window.innerWidth - b.right - BESIDE_GAP - 12;
     if (room >= BESIDE_MIN) {
-      setPlacement({ beside: true, sideOffset: b.right - t.right + BESIDE_GAP, alignOffset: 0, width: Math.min(BESIDE_MAX, room) });
+      setPlacement({ beside: true, sideOffset: b.right - t.right + BESIDE_GAP, alignOffset: row ? row.top - t.top : 0, width: Math.min(BESIDE_MAX, room) });
     } else {
-      setPlacement({ beside: false, sideOffset: 8, alignOffset: b.left - t.left });
+      setPlacement({ beside: false, sideOffset: 8 + (row ? row.bottom - t.bottom : 0), alignOffset: b.left - t.left });
     }
-  }, [open, alignTo]);
+  }, [open, alignTo, hoverArea]);
   // 卡片在列表外侧时离触发器较远，给指针多一点时间移过去
   const effectiveCloseDelay = placement.beside ? Math.max(closeDelay, 400) : closeDelay;
 
@@ -161,10 +164,24 @@ export function HoverCard({ children, content, side = "bottom", align = "start",
   };
   const mouse = (event: PointerEvent) => event.pointerType !== "touch";
 
+  // 整行做热区：监听 hoverArea 祖先的进出，代替触发器自身的进出
+  const handlers = useRef({ scheduleOpen, scheduleClose });
+  handlers.current = { scheduleOpen, scheduleClose };
+  useEffect(() => {
+    if (!hoverArea) return;
+    const area = triggerRef.current?.closest(hoverArea);
+    if (!(area instanceof HTMLElement)) return;
+    const enter = (event: globalThis.PointerEvent) => { if (event.pointerType === "touch") return; inside.current.trigger = true; handlers.current.scheduleOpen(); };
+    const leave = (event: globalThis.PointerEvent) => { if (event.pointerType === "touch") return; inside.current.trigger = false; dismissed.current = false; handlers.current.scheduleClose(); };
+    area.addEventListener("pointerenter", enter);
+    area.addEventListener("pointerleave", leave);
+    return () => { area.removeEventListener("pointerenter", enter); area.removeEventListener("pointerleave", leave); };
+  }, [hoverArea]);
+
   return <PopoverPrimitive.Root open={open} onOpenChange={next => { if (!next) hide(); }}>
     <PopoverPrimitive.Anchor asChild ref={triggerRef} aria-describedby={open ? cardId : undefined} data-hover-card={open ? "open" : "closed"}
-      onPointerEnter={(event: PointerEvent) => { if (!mouse(event)) return; inside.current.trigger = true; scheduleOpen(); }}
-      onPointerLeave={(event: PointerEvent) => { if (!mouse(event)) return; inside.current.trigger = false; dismissed.current = false; scheduleClose(); }}
+      onPointerEnter={(event: PointerEvent) => { if (hoverArea || !mouse(event)) return; inside.current.trigger = true; scheduleOpen(); }}
+      onPointerLeave={(event: PointerEvent) => { if (hoverArea || !mouse(event)) return; inside.current.trigger = false; dismissed.current = false; scheduleClose(); }}
       onPointerDown={(event: PointerEvent) => { pointerType.current = event.pointerType; }}
       onClick={() => {
         if (!clickToOpen) return;

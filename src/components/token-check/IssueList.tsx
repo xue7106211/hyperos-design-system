@@ -184,6 +184,7 @@ function FixTitle({ fix, index, total }: { fix: FixGroup; index: number; total: 
   return (
     <DetailTip
       clickToOpen={false}
+      row="h3"
       content={
         <ValueCard
           category={fix.category}
@@ -218,6 +219,7 @@ function FixLayers({ fix, onWaive }: { fix: FixGroup; onWaive: WaiveHandler }) {
         {shown.map((issue, i) => (
           <li key={`${issue.nodeId}-${issue.field}-${i}`} className="tc-fix-layer">
             <DetailTip
+              row=".tc-fix-layer"
               content={
                 <LayerCard
                   path={issue.path}
@@ -308,6 +310,7 @@ function IssueProp({ issue }: { issue: BindableProperty }) {
     <li className="tc-prop">
       <span className="tc-prop-field">{categoryLabels[issue.category]}</span>
       <DetailTip
+        row=".tc-prop"
         content={
           issue.state === 'hyperos' ? (
             <LayerCard path={issue.path} meta={[issue.field]} />
@@ -336,7 +339,7 @@ function IssueNodeRow({ row }: { row: NodeRow }) {
   return (
     <li className="tc-node">
       <div className="tc-node-head">
-        <DetailTip content={<LayerCard path={row.path} meta={layerMeta(row)} />}>
+        <DetailTip row=".tc-node-head" content={<LayerCard path={row.path} meta={layerMeta(row)} />}>
           <span className="tc-layer-name" tabIndex={0}>
             {row.nodeName}
           </span>

@@ -313,16 +313,20 @@ export function DetailTip({
   content,
   children,
   clickToOpen = true,
+  row,
 }: {
   content: ReactNode;
   children: ReactElement;
   clickToOpen?: boolean;
+  /** 整行热区的选择器（触发器的祖先），悬停这一行任意位置都会打开 */
+  row?: string;
 }) {
   return (
     <HoverCard
       side="bottom"
       align="start"
       alignTo="#tc-issues"
+      hoverArea={row}
       className="tc-detail"
       clickToOpen={clickToOpen}
       content={content}
