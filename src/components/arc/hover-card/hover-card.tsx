@@ -13,6 +13,10 @@ const CLOSE_DELAY = 140;
 const SKIP_WINDOW = 300;
 /** Even warm, a trigger waits this long, so a pointer crossing it on the way into an open card does not steal the card. */
 const INTENT = 80;
+/** 本地改动：卡片放在 alignTo 祖先右外侧时的间距、最小 / 最大宽度 */
+const BESIDE_GAP = 24;
+const BESIDE_MIN = 260;
+const BESIDE_MAX = 336;
 /** How far the card starts toward its trigger, in px. */
 const TRAVEL = 4;
 const enter = [...motionTokens.ease.enter] as [number, number, number, number];
@@ -52,7 +56,10 @@ export interface HoverCardProps {
   className?: string;
   /** 本地改动：触发器放在别的可点击控件里（如折叠行）时关掉点击打开，点击只交给外层控件 */
   clickToOpen?: boolean;
-  /** 本地改动：祖先元素的选择器；给了就让卡片左边缘对齐这个祖先，而不是触发器本身 */
+  /**
+   * 本地改动：祖先元素的选择器。右侧放得下时，卡片出现在这个祖先的右外侧、与触发器顶部对齐；
+   * 放不下（窄屏）时退回到触发器下方，左边缘对齐这个祖先。
+   */
   alignTo?: string;
 }
 
@@ -112,15 +119,24 @@ export function HoverCard({ children, content, side = "bottom", align = "start",
   /** Set by Escape, so a pointer resting on the trigger does not reopen what was just dismissed. */
   const dismissed = useRef(false);
   const pointerType = useRef("");
-  // 卡片对齐到祖先元素的左边缘：用 alignOffset 抵消触发器离祖先左边缘的距离
-  const [alignOffset, setAlignOffset] = useState(0);
+  type Placement = { beside: boolean; sideOffset: number; alignOffset: number; width?: number };
+  const [placement, setPlacement] = useState<Placement>({ beside: false, sideOffset: 8, alignOffset: 0 });
   useLayoutEffect(() => {
     if (!open || !alignTo) return;
     const trigger = triggerRef.current;
     const box = trigger?.closest(alignTo);
     if (!trigger || !box) return;
-    setAlignOffset(box.getBoundingClientRect().left - trigger.getBoundingClientRect().left);
+    const t = trigger.getBoundingClientRect();
+    const b = box.getBoundingClientRect();
+    const room = window.innerWidth - b.right - BESIDE_GAP - 12;
+    if (room >= BESIDE_MIN) {
+      setPlacement({ beside: true, sideOffset: b.right - t.right + BESIDE_GAP, alignOffset: 0, width: Math.min(BESIDE_MAX, room) });
+    } else {
+      setPlacement({ beside: false, sideOffset: 8, alignOffset: b.left - t.left });
+    }
   }, [open, alignTo]);
+  // 卡片在列表外侧时离触发器较远，给指针多一点时间移过去
+  const effectiveCloseDelay = placement.beside ? Math.max(closeDelay, 400) : closeDelay;
 
   useEffect(() => {
     const pending = timers.current;
@@ -141,7 +157,7 @@ export function HoverCard({ children, content, side = "bottom", align = "start",
     const { trigger, card, focus } = inside.current;
     if (trigger || card || focus) return;
     window.clearTimeout(timers.current.close);
-    timers.current.close = window.setTimeout(() => cards.close(id), closeDelay);
+    timers.current.close = window.setTimeout(() => cards.close(id), effectiveCloseDelay);
   };
   const mouse = (event: PointerEvent) => event.pointerType !== "touch";
 
@@ -163,7 +179,8 @@ export function HoverCard({ children, content, side = "bottom", align = "start",
     </PopoverPrimitive.Anchor>
     <AnimatePresence>
       {open && <PopoverPrimitive.Portal forceMount key="card">
-        <PopoverPrimitive.Content forceMount asChild id={cardId} role="tooltip" side={side} align={align} alignOffset={alignTo ? alignOffset : 0} sideOffset={8} collisionPadding={12}
+        <PopoverPrimitive.Content forceMount asChild id={cardId} role="tooltip" side={placement.beside ? "right" : side} align={placement.beside ? "start" : align} alignOffset={alignTo ? placement.alignOffset : 0} sideOffset={alignTo ? placement.sideOffset : 8} collisionPadding={12}
+          style={placement.beside && placement.width ? { width: placement.width } : undefined}
           onOpenAutoFocus={event => event.preventDefault()} onCloseAutoFocus={event => event.preventDefault()}
           onEscapeKeyDown={() => { dismissed.current = true; }}
           onInteractOutside={event => { if (triggerRef.current?.contains(event.target as Node)) event.preventDefault(); }}
