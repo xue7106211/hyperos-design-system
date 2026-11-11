@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
-import type { AriaRole, ReactNode, Ref } from 'react';
+import type { AriaRole, ReactElement, ReactNode, Ref } from 'react';
 import { Badge, type BadgeTone } from '@/components/arc/badge/badge';
+import { HoverCard } from '@/components/arc/hover-card/hover-card';
 import { Tooltip } from '@/components/arc/tooltip/tooltip';
 import { cn } from '@/lib/cn';
 import type { BindingState, CoverageStat, FindingSeverity } from '@/lib/token-check/types';
@@ -271,7 +272,7 @@ export function ValueText({ value }: { value: string }) {
   const match = value.match(HEX_LEAD);
   if (!match) {
     return (
-      <span className="tc-value truncate" title={value}>
+      <span className="tc-value truncate">
         {value}
       </span>
     );
@@ -280,7 +281,7 @@ export function ValueText({ value }: { value: string }) {
   const alphaMatch = rest.match(/^\s+(\d{1,3})%/);
   const alpha = alphaMatch ? Number(alphaMatch[1]) / 100 : 1;
   return (
-    <span className="flex min-w-0 items-center gap-2" title={value}>
+    <span className="flex min-w-0 items-center gap-2">
       <span aria-hidden className="tc-swatch">
         <span style={{ backgroundColor: hex.slice(0, 7), opacity: alpha }} />
       </span>
@@ -289,5 +290,54 @@ export function ValueText({ value }: { value: string }) {
         {rest}
       </span>
     </span>
+  );
+}
+
+/** 列表里的简洁状态：色点 + 短标签，不用胶囊底，避免每行一个色块 */
+export function StateMark({ state }: { state: BindingState }) {
+  return (
+    <span className="tc-state-mark">
+      <LegendDot state={state} />
+      {stateLabels[state]}
+    </span>
+  );
+}
+
+export type DetailRow = [label: string, value: ReactNode];
+
+/**
+ * 悬停详情卡（Arc Hover Card）：默认只露出关键信息，其余字段放在这里。
+ * 悬停 0.5 秒或键盘聚焦打开，Esc 关闭，触屏点按切换；指针可以移进卡片选中文字。
+ * 触发器在折叠行按钮里时传 clickToOpen={false}，点击只负责展开。
+ */
+export function DetailTip({
+  rows,
+  children,
+  clickToOpen = true,
+}: {
+  rows: DetailRow[];
+  children: ReactElement;
+  clickToOpen?: boolean;
+}) {
+  const shown = rows.filter(([, v]) => v !== null && v !== undefined && v !== '' && v !== false);
+  return (
+    <HoverCard
+      side="bottom"
+      align="start"
+      className="tc-detail"
+      clickToOpen={clickToOpen}
+      content={
+        <dl className="tc-detail-list">
+          {shown.map(([k, v]) => (
+            <div key={k}>
+              <dt>{k}</dt>
+              <dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
+      }
+    >
+      {children}
+    </HoverCard>
   );
 }

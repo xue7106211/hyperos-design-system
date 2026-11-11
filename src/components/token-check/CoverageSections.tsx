@@ -12,7 +12,6 @@ import type {
 import {
   categoryLabels,
   categoryOrder,
-  fixActionLabels,
   formatDateTime,
   formatGain,
   formatRate,
@@ -258,8 +257,7 @@ export function Verdict({
                     <ValueText value={fix.value} />
                   </span>
                   <span className="tc-top-fix-meta">
-                    {categoryLabels[fix.category]} ·{" "}
-                    {fixActionLabels[fix.state]} · {fix.issues.length} 处
+                    {categoryLabels[fix.category]} · {fix.issues.length} 处
                   </span>
                   <span className="tc-top-fix-count">
                     <span>
