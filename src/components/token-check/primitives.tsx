@@ -307,6 +307,7 @@ export function StateMark({ state }: { state: BindingState }) {
  * 悬停详情卡（Arc Hover Card）：默认只露出关键信息，处境与候选放在这里（内容见 DetailCards.tsx）。
  * 悬停 0.5 秒或键盘聚焦打开，Esc 关闭，触屏点按切换；指针可以移进卡片选中文字。
  * 触发器在折叠行按钮里时传 clickToOpen={false}，点击只负责展开。
+ * 卡片统一贴着问题清单的左边缘出现，不跟着触发器横向跳动。
  */
 export function DetailTip({
   content,
@@ -318,7 +319,14 @@ export function DetailTip({
   clickToOpen?: boolean;
 }) {
   return (
-    <HoverCard side="bottom" align="start" className="tc-detail" clickToOpen={clickToOpen} content={content}>
+    <HoverCard
+      side="bottom"
+      align="start"
+      alignTo="#tc-issues"
+      className="tc-detail"
+      clickToOpen={clickToOpen}
+      content={content}
+    >
       {children}
     </HoverCard>
   );

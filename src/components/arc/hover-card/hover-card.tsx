@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
+import { forwardRef, useCallback, useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { FocusEvent, HTMLAttributes, PointerEvent, ReactElement, ReactNode } from "react";
 import { Popover as PopoverPrimitive } from "radix-ui";
 import { AnimatePresence, animate, motion, useMotionValue, usePresence, useReducedMotion } from "motion/react";
@@ -52,6 +52,8 @@ export interface HoverCardProps {
   className?: string;
   /** 本地改动：触发器放在别的可点击控件里（如折叠行）时关掉点击打开，点击只交给外层控件 */
   clickToOpen?: boolean;
+  /** 本地改动：祖先元素的选择器；给了就让卡片左边缘对齐这个祖先，而不是触发器本身 */
+  alignTo?: string;
 }
 
 interface SurfaceProps extends Omit<HTMLAttributes<HTMLDivElement>, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"> { instant: boolean; reduced: boolean }
@@ -98,7 +100,7 @@ const Surface = forwardRef<HTMLDivElement, SurfaceProps>(function Surface({ inst
   </motion.div>;
 });
 
-export function HoverCard({ children, content, side = "bottom", align = "start", openDelay = OPEN_DELAY, closeDelay = CLOSE_DELAY, className, clickToOpen = true }: HoverCardProps) {
+export function HoverCard({ children, content, side = "bottom", align = "start", openDelay = OPEN_DELAY, closeDelay = CLOSE_DELAY, className, clickToOpen = true, alignTo }: HoverCardProps) {
   const id = useId();
   const cardId = `${id}-card`;
   const state = useSyncExternalStore(cards.subscribe, cards.get, cards.server);
@@ -110,6 +112,15 @@ export function HoverCard({ children, content, side = "bottom", align = "start",
   /** Set by Escape, so a pointer resting on the trigger does not reopen what was just dismissed. */
   const dismissed = useRef(false);
   const pointerType = useRef("");
+  // 卡片对齐到祖先元素的左边缘：用 alignOffset 抵消触发器离祖先左边缘的距离
+  const [alignOffset, setAlignOffset] = useState(0);
+  useLayoutEffect(() => {
+    if (!open || !alignTo) return;
+    const trigger = triggerRef.current;
+    const box = trigger?.closest(alignTo);
+    if (!trigger || !box) return;
+    setAlignOffset(box.getBoundingClientRect().left - trigger.getBoundingClientRect().left);
+  }, [open, alignTo]);
 
   useEffect(() => {
     const pending = timers.current;
@@ -152,7 +163,7 @@ export function HoverCard({ children, content, side = "bottom", align = "start",
     </PopoverPrimitive.Anchor>
     <AnimatePresence>
       {open && <PopoverPrimitive.Portal forceMount key="card">
-        <PopoverPrimitive.Content forceMount asChild id={cardId} role="tooltip" side={side} align={align} sideOffset={8} collisionPadding={12}
+        <PopoverPrimitive.Content forceMount asChild id={cardId} role="tooltip" side={side} align={align} alignOffset={alignTo ? alignOffset : 0} sideOffset={8} collisionPadding={12}
           onOpenAutoFocus={event => event.preventDefault()} onCloseAutoFocus={event => event.preventDefault()}
           onEscapeKeyDown={() => { dismissed.current = true; }}
           onInteractOutside={event => { if (triggerRef.current?.contains(event.target as Node)) event.preventDefault(); }}
