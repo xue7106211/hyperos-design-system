@@ -17,7 +17,10 @@ async function loadDemoReport(
     const { demo } = await searchParams;
     if (demo === '1') {
       const { demoReport } = await import('@/components/token-check/__fixtures__/demo-report');
-      return demoReport;
+      // 演示数据是手写的，候选用真实快照现算，和线上报告走同一个函数
+      const { suggestForIssues } = await import('@/lib/token-check/nearest');
+      const { getLibrarySnapshot } = await import('@/lib/token-check/library-snapshot');
+      return { ...demoReport, suggestions: suggestForIssues(demoReport.issues, getLibrarySnapshot()) };
     }
   }
   return undefined;
