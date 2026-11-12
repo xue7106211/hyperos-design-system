@@ -8,6 +8,7 @@ import { TokenCheckError } from './errors';
 import type { FigmaNode, FigmaNodeEntry, FigmaNodesResponse } from './figma-api-types';
 import { buildFigmaUrl } from './figma-url';
 import { createLibraryIndex, type LibraryIndex } from './library';
+import { suggestForIssues } from './nearest';
 import { createNodeIndex } from './node-index';
 import { extractProperties } from './properties';
 import type {
@@ -279,17 +280,20 @@ export async function runTokenCheck(input: RunTokenCheckInput): Promise<TokenChe
     exclusionSummary[exclusion.reason].nodeCount += exclusion.nodeCount;
   }
 
+  const issues = props.filter((prop) => prop.state !== 'hyperos');
+
   return {
     generatedAt: (input.now ?? new Date()).toISOString(),
     library: { fileName: snapshot.source.fileName, exportedAt: snapshot.source.exportedAt },
     targets: summaries,
     coverage: { overall: coverageOf(props), byCategory, byTier },
-    issues: props.filter((prop) => prop.state !== 'hyperos'),
+    issues,
     exclusions,
     exclusionSummary,
     uncertain,
     findings,
     checksRun: checks.map((check) => check.id),
     warnings,
+    suggestions: suggestForIssues(issues, snapshot),
   };
 }

@@ -23,6 +23,8 @@ export interface AccordionProps {
   /** 受控模式：当前展开项的下标，-1 表示全部收起（本地扩展） */
   value?: number;
   onValueChange?: (index: number) => void;
+  /** 本地扩展：程序或键盘触发的展开不播放动画（键盘逐条浏览、跳转定位） */
+  instant?: boolean;
   /** "lg" suits page-level FAQs: questions at the large text size, answers at body size. */
   size?: "md" | "lg";
   className?: string;
@@ -46,7 +48,7 @@ const contentMotion: Variants = {
 const panelStill: Variants = { open: { ...panelOpen, transition: { duration: 0 } }, closed: { ...panelClosed, transition: { duration: 0 } } };
 const contentStill: Variants = { open: { ...contentOpen, transition: { duration: 0 } }, closed: { ...contentClosed, transition: { duration: 0 } } };
 
-export function Accordion({ items, defaultOpen = 0, value, onValueChange, size = "md", className }: AccordionProps) {
+export function Accordion({ items, defaultOpen = 0, value, onValueChange, instant = false, size = "md", className }: AccordionProps) {
   const initialValue = defaultOpen >= 0 && defaultOpen < items.length ? String(defaultOpen) : "";
   const [innerValue, setInnerValue] = useState(initialValue);
   const controlled = value !== undefined;
@@ -55,7 +57,7 @@ export function Accordion({ items, defaultOpen = 0, value, onValueChange, size =
     if (!controlled) setInnerValue(next);
     onValueChange?.(next === "" ? -1 : Number(next));
   };
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotion() || instant;
   return <AccordionPrimitive.Root className={[styles.accordion, size === "lg" ? styles.lg : "", className].filter(Boolean).join(" ")} type="single" collapsible value={openValue} onValueChange={setOpenValue}>
     {items.map((item, index) => { const open = openValue === String(index); return <AccordionPrimitive.Item className={styles.item} value={String(index)} key={item.id ?? index}>
       <AccordionPrimitive.Header className={styles.header}>

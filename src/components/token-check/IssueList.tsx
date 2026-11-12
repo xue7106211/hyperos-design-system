@@ -1,7 +1,7 @@
 'use client';
 
 import { BookmarkCheck } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Accordion } from '@/components/arc/accordion/accordion';
 import { Button } from '@/components/arc/button/button';
 import { EmptyState } from '@/components/arc/empty-state/empty-state';
@@ -14,15 +14,15 @@ import type {
   PropertyCategory,
   TokenCheckReport,
 } from '@/lib/token-check/types';
-import { categoryLabels, categoryOrder, fixActionLabels, formatGain } from './labels';
+import { categoryLabels, categoryOrder, formatGain, stateLabels } from './labels';
+import { LayerCard, SuggestionsContext, ValueCard } from './DetailCards';
 import {
+  DetailTip,
   FigmaLink,
   NodeIdTag,
   nodeIdOf,
-  ParentPath,
   Section,
-  StateBadge,
-  Tag,
+  StateMark,
   ValueText,
 } from './primitives';
 
@@ -45,11 +45,21 @@ function isTypingTarget(target: EventTarget | null) {
   return target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
 }
 
-function focusFixTrigger(index: number, block: ScrollLogicalPosition = 'nearest') {
+function focusFixTrigger(index: number, block: ScrollLogicalPosition, smooth: boolean) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const trigger = document.getElementById(`tc-fix-${index}`)?.closest('button');
-  trigger?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block });
+  trigger?.scrollIntoView({ behavior: smooth && !reduce ? 'smooth' : 'auto', block });
   trigger?.focus({ preventScroll: true });
+}
+
+function tokenLabelOf(issue: BindableProperty) {
+  return issue.state === 'legacy' && issue.token
+    ? `${issue.token.collection ? `${issue.token.collection} / ` : ''}${issue.token.name}`
+    : null;
+}
+
+function layerMeta(issue: { nodeId?: string; figmaUrl: string }, extra: (string | null)[] = []) {
+  return [nodeIdOf(issue.nodeId, issue.figmaUrl), ...extra];
 }
 
 /* ---------- 按图层：同一检查目标内、同一图层的问题合并成一行 ---------- */
@@ -143,9 +153,6 @@ function FilterControl<T extends string>({
 }) {
   return (
     <div className="tc-filter">
-      <span className="tc-filter-label" aria-hidden>
-        {label}
-      </span>
       <SegmentedControl
         label={`按${label}筛选`}
         value={value}
@@ -173,23 +180,33 @@ function MoreButton({ remaining, unit, onClick }: { remaining: number; unit: str
 
 /* ---------- 按修复 ---------- */
 
-function FixTitle({ fix, index }: { fix: FixGroup; index: number }) {
+function FixTitle({ fix, index, total }: { fix: FixGroup; index: number; total: number }) {
   return (
-    <span id={`tc-fix-${index}`} className="tc-fix-title">
-      <span className="tc-fix-value">
-        <ValueText value={fix.value} />
+    <DetailTip
+      clickToOpen={false}
+      row="h3"
+      content={
+        <ValueCard
+          category={fix.category}
+          state={fix.state}
+          value={fix.value}
+          layers={fix.issues}
+          total={fix.issues.length}
+          footer={[
+            fix.tokenLabel ?? '',
+            `${fix.issues.length} 处 · ${fix.nodeCount} 个图层`,
+            `改完覆盖率 ${formatGain(fixGain(fix.issues.length, total))}`,
+          ]}
+        />
+      }
+    >
+      <span id={`tc-fix-${index}`} className="tc-fix-title">
+        <span className="tc-fix-value">
+          <ValueText value={fix.value} />
+        </span>
+        <span className="tc-fix-cat">{categoryLabels[fix.category]}</span>
       </span>
-      <span className="tc-fix-sub">
-        <span>{categoryLabels[fix.category]}</span>
-        <span aria-hidden>·</span>
-        <span>{fixActionLabels[fix.state]}</span>
-        {fix.tokenLabel ? (
-          <span className="tc-fix-token" title={fix.tokenLabel}>
-            {fix.tokenLabel}
-          </span>
-        ) : null}
-      </span>
-    </span>
+    </DetailTip>
   );
 }
 
@@ -198,14 +215,32 @@ function FixLayers({ fix, onWaive }: { fix: FixGroup; onWaive: WaiveHandler }) {
   const shown = fix.issues.slice(0, visible);
   return (
     <>
+      <ul className="tc-fix-layers">
+        {shown.map((issue, i) => (
+          <li key={`${issue.nodeId}-${issue.field}-${i}`} className="tc-fix-layer">
+            <DetailTip
+              row=".tc-fix-layer"
+              content={
+                <LayerCard
+                  path={issue.path}
+                  meta={layerMeta(issue, [issue.field, issue.fromInstanceOverride ? '实例覆写' : null])}
+                />
+              }
+            >
+              <span className="tc-layer-name" tabIndex={0}>
+                {issue.nodeName}
+              </span>
+            </DetailTip>
+            <FigmaLink href={issue.figmaUrl} label={issue.nodeName} />
+          </li>
+        ))}
+      </ul>
+      <MoreButton
+        remaining={fix.issues.length - shown.length}
+        unit="处"
+        onClick={() => setVisible((v) => v + PAGE_SIZE)}
+      />
       <div className="tc-fix-actions">
-        <p className="tc-meta">
-          {fix.state === 'unbound'
-            ? '在 Figma 里选中这些图层，把这个值换成对应的 HyperOS Token'
-            : fix.state === 'legacy'
-              ? '把旧版 Kit 变量换成 HyperOS 库里语义相同的 Token'
-              : '这些值绑的不是 HyperOS 库，换成 HyperOS 库里对应的 Token'}
-        </p>
         <Button
           type="button"
           variant="ghost"
@@ -216,27 +251,6 @@ function FixLayers({ fix, onWaive }: { fix: FixGroup; onWaive: WaiveHandler }) {
           标为有意保留
         </Button>
       </div>
-      <ul className="tc-fix-layers">
-        {shown.map((issue, i) => (
-          <li key={`${issue.nodeId}-${issue.field}-${i}`} className="tc-fix-layer">
-            <div className="min-w-0 flex-1">
-              <div className="flex min-w-0 items-center gap-2">
-                <span className="tc-layer-name">{issue.nodeName}</span>
-                <NodeIdTag id={nodeIdOf(issue.nodeId, issue.figmaUrl)} />
-                <span className="tc-prop-key">{issue.field}</span>
-                {issue.fromInstanceOverride ? <Tag>实例覆写</Tag> : null}
-              </div>
-              <ParentPath path={issue.path} className="mt-0.5" />
-            </div>
-            <FigmaLink href={issue.figmaUrl} label={issue.nodeName} />
-          </li>
-        ))}
-      </ul>
-      <MoreButton
-        remaining={fix.issues.length - shown.length}
-        unit="处"
-        onClick={() => setVisible((v) => v + PAGE_SIZE)}
-      />
     </>
   );
 }
@@ -245,6 +259,7 @@ function FixView({
   fixes,
   total,
   open,
+  instant,
   onOpenChange,
   visible,
   onMore,
@@ -254,6 +269,8 @@ function FixView({
   /** 覆盖率分母，用来换算每条修改的收益 */
   total: number;
   open: number;
+  /** 键盘或跳转定位触发的展开不播放动画 */
+  instant: boolean;
   onOpenChange: (index: number) => void;
   visible: number;
   onMore: () => void;
@@ -265,18 +282,16 @@ function FixView({
       <Accordion
         className="tc-fixes"
         value={open}
+        instant={instant}
         onValueChange={onOpenChange}
         items={shown.map((fix, index) => ({
           id: fix.key,
-          title: <FixTitle fix={fix} index={index} />,
+          title: <FixTitle fix={fix} index={index} total={total} />,
           meta: (
             <span className="tc-fix-meta">
-              <StateBadge state={fix.state} />
+              <StateMark state={fix.state} />
               <span className="tc-fix-count">
-                <b>{fix.issues.length}</b> 处 · {fix.nodeCount} 个图层
-              </span>
-              <span className="tc-fix-gain" title="改完后覆盖率提升的百分点">
-                {formatGain(fixGain(fix.issues.length, total))}
+                <b>{fix.issues.length}</b> 处
               </span>
             </span>
           ),
@@ -291,27 +306,30 @@ function FixView({
 /* ---------- 按图层 ---------- */
 
 function IssueProp({ issue }: { issue: BindableProperty }) {
-  const note =
-    issue.state === 'legacy' && issue.token
-      ? `${issue.token.collection ? `${issue.token.collection} / ` : ''}${issue.token.name}`
-      : null;
   return (
     <li className="tc-prop">
-      <span className="tc-prop-field">
-        {categoryLabels[issue.category]}
-        <span className="tc-prop-key">{issue.field}</span>
-      </span>
-      <span className="tc-prop-value">
-        <ValueText value={issue.value} />
-        {note ? (
-          <span className="tc-prop-note" title={note}>
-            {note}
-          </span>
-        ) : null}
-      </span>
+      <span className="tc-prop-field">{categoryLabels[issue.category]}</span>
+      <DetailTip
+        row=".tc-prop"
+        content={
+          issue.state === 'hyperos' ? (
+            <LayerCard path={issue.path} meta={[issue.field]} />
+          ) : (
+            <ValueCard
+              category={issue.category}
+              state={issue.state}
+              value={issue.value}
+              footer={[tokenLabelOf(issue) ?? '', issue.field, issue.fromInstanceOverride ? '实例覆写' : '']}
+            />
+          )
+        }
+      >
+        <span className="tc-prop-value" tabIndex={0}>
+          <ValueText value={issue.value} />
+        </span>
+      </DetailTip>
       <span className="tc-prop-state">
-        {issue.fromInstanceOverride ? <Tag>实例覆写</Tag> : null}
-        <StateBadge state={issue.state} />
+        <StateMark state={issue.state} />
       </span>
     </li>
   );
@@ -321,13 +339,11 @@ function IssueNodeRow({ row }: { row: NodeRow }) {
   return (
     <li className="tc-node">
       <div className="tc-node-head">
-        <div className="min-w-0 flex-1">
-          <div className="flex min-w-0 items-center gap-2">
-            <span className="tc-layer-name">{row.nodeName}</span>
-            <NodeIdTag id={row.nodeId} />
-          </div>
-          <ParentPath path={row.path} className="mt-0.5" />
-        </div>
+        <DetailTip row=".tc-node-head" content={<LayerCard path={row.path} meta={layerMeta(row)} />}>
+          <span className="tc-layer-name" tabIndex={0}>
+            {row.nodeName}
+          </span>
+        </DetailTip>
         <FigmaLink href={row.figmaUrl} label={row.nodeName} />
       </div>
       <ul className="tc-props" aria-label={`${row.nodeName} 的问题字段`}>
@@ -401,7 +417,14 @@ export function IssueList({
   const [view, setView] = useState<View>('fix');
   const [category, setCategory] = useState<CategoryFilter>('all');
   const [state, setState] = useState<StateFilter>('all');
-  const [openFix, setOpenFix] = useState(0);
+  const [openFix, setOpenFixState] = useState(0);
+  // 只有鼠标点开的那一下播放展开动画；键盘逐条浏览、跳转定位、筛选重置都直接到位，
+  // 否则上一条收起、下一条展开的高度变化会和滚动定位同时进行，滚动会落空
+  const [instantOpen, setInstantOpen] = useState(false);
+  const setOpenFix = (index: number, instant = true) => {
+    setInstantOpen(instant);
+    setOpenFixState(index);
+  };
   const [visibleFixes, setVisibleFixes] = useState(PAGE_SIZE);
 
   const byState = useMemo(
@@ -446,7 +469,7 @@ export function IssueList({
     setState('all');
     setVisibleFixes((v) => Math.max(v, index + 1));
     setOpenFix(index);
-    requestAnimationFrame(() => focusFixTrigger(index, 'start'));
+    requestAnimationFrame(() => focusFixTrigger(index, 'start', true));
   }, [focusRequest, fixes]);
 
   // 结论区的比例条 / 数量：切到这一档，滚到清单开头
@@ -481,7 +504,7 @@ export function IssueList({
             : Math.max(openFix < 0 ? 0 : openFix - 1, 0);
         if (next >= visibleFixes) setVisibleFixes(next + 1);
         setOpenFix(next);
-        requestAnimationFrame(() => focusFixTrigger(next));
+        requestAnimationFrame(() => focusFixTrigger(next, 'nearest', false));
       } else if (key === 'o' && openFix >= 0) {
         const url = shownFixes[openFix]?.issues[0]?.figmaUrl;
         if (!url) return;
@@ -522,14 +545,15 @@ export function IssueList({
   const layerCount = groups.reduce((s, g) => s + g.rows.length, 0);
 
   return (
+    <SuggestionsContext.Provider value={report.suggestions}>
     <Section
       id="tc-issues"
       title="问题清单"
       count={report.issues.length}
       description={
         view === 'fix'
-          ? '相同的值归成一条，从影响面最大的开始改。绑一次 Token，整组都会修好'
-          : '按检查目标和图层列出，同一图层的问题合并在一起'
+          ? '相同的值归成一条，按影响处数排序'
+          : '按检查目标和图层列出'
       }
       actions={
         <SegmentedControl
@@ -601,7 +625,8 @@ export function IssueList({
               onWaive(keys, waived);
             }}
             open={openFix}
-            onOpenChange={setOpenFix}
+            instant={instantOpen}
+            onOpenChange={(index) => setOpenFix(index, false)}
             visible={visibleFixes}
             onMore={() => setVisibleFixes((v) => v + PAGE_SIZE)}
           />
@@ -610,5 +635,6 @@ export function IssueList({
         )}
       </div>
     </Section>
+    </SuggestionsContext.Provider>
   );
 }

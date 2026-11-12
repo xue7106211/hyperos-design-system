@@ -3,9 +3,11 @@
  * 结构：页面底 → 面板（Panel，hairline 边框 + 12px 圆角，比页面底亮一级）→ 面板内 hairline 行 / 表格 / 浅底分组头。
  * 唯一强调色是 HyperOS 蓝：覆盖率数字、HyperOS 段、主按钮。焦点环用中性前景色，不和强调色抢。 */
 
-.tools-shell {
+/* Arc Tooltip 浮层 Portal 到 body，不在 .tools-shell 内，变量要一起挂上 */
+.tools-shell,
+.arc-layer {
   /* 页面底比面板底暗一级，面板靠明度差和 hairline 边框成组 */
-  --tc-page: #f6f6f4;
+  --tc-page: rgb(248 248 250);
   --tc-panel: #ffffff;
   /* 面板内浅底：分组头、Footer、表头 */
   --tc-subtle: color-mix(in oklab, var(--color-fd-foreground) 3%, var(--tc-panel));
@@ -39,7 +41,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dark .tools-shell {
+.dark .tools-shell,
+.dark .arc-layer {
   --tc-page: #111110;
   --tc-panel: #1a1a19;
   --tc-subtle: color-mix(in oklab, var(--color-fd-foreground) 4%, var(--tc-panel));
@@ -417,6 +420,8 @@ h1.tc-title {
 /* 窄屏：覆盖率小计 + 横向目录 + 导出，一块安静的条 */
 .tc-aside-inner {
   display: grid;
+  /* minmax(0, 1fr)：横向目录不换行，默认 auto 轨道会被它撑宽，窄屏溢出几 px */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   border-top: 1px solid var(--tc-line);
   border-bottom: 1px solid var(--tc-line);
@@ -750,63 +755,166 @@ h1.tc-title {
   }
 }
 
-/* ---------- 校对说明（附录） ---------- */
+/* ---------- 校对说明：产品页底部那种参考说明 ---------- */
 
-.tc-section--appendix {
-  border-top: 1px solid var(--tc-line-strong);
-  padding-top: 2rem;
-}
-
-.tc-section--appendix .tc-subtitle {
-  margin-top: 1.5rem;
-}
-
-.tc-section--appendix .tc-subtitle + .tc-section-desc {
-  margin-top: -0.75rem;
-}
-
-.tc-notes {
+/* 一条细线隔开正文；之后全是 12px 弱色小字，段距小，不再有区块标题和框 */
+.tc-fine {
   display: grid;
-  gap: 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.375rem;
+  gap: 0.625rem;
+  border-top: 1px solid var(--tc-line);
+  padding-top: 1.5rem;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  text-wrap: pretty;
+  color: var(--color-fd-muted-foreground);
+  scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
 }
 
-.tc-notes > div {
-  display: grid;
-  gap: 0.125rem 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .tc-notes > div {
-    grid-template-columns: 8rem minmax(0, 1fr);
-  }
-}
-
-.tc-notes dt {
+.tc-fine-title {
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 500;
   color: var(--color-fd-foreground);
 }
 
-.tc-notes dd {
-  text-wrap: pretty;
-  color: var(--color-fd-muted-foreground);
+.tc-fine-title:focus {
+  outline: none;
 }
 
-/* 附录里的折叠与列表不套框，只留上下细线 */
-.tc-section--appendix .tc-exclusion-groups,
-.tc-rows--appendix {
+.tc-fine-title:focus-visible {
+  outline: 2px solid var(--color-fd-foreground);
+  outline-offset: 2px;
+}
+
+.tc-fine .tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 文字链接：和 Apple 底注一样带下划线，不做成按钮 */
+.tc-fine-link,
+.tc-fine-more {
+  position: relative;
+  margin-left: 0.375rem;
+  color: var(--color-fd-foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--tc-line-strong);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 150ms ease-out;
+}
+
+.tc-fine-link::before,
+.tc-fine-more::before {
+  content: '';
+  position: absolute;
+  inset: -8px -2px;
+}
+
+.tc-fine-more {
+  justify-self: start;
+  margin-left: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tc-fine-link:hover,
+  .tc-fine-more:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+.tc-fine-link:focus-visible,
+.tc-fine-more:focus-visible {
+  outline: 2px solid var(--color-fd-foreground);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 明细行：一行一个图层，名称稍深，其余同色 */
+.tc-fine-list {
+  display: grid;
+}
+
+.tc-fine-row {
+  display: flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: 1rem;
   border-top: 1px solid var(--tc-line);
+  padding-block: 0.25rem;
+}
+
+.tc-fine-row:last-child {
   border-bottom: 1px solid var(--tc-line);
 }
 
-.tc-section--appendix .tc-exclusion-groups h3 > button,
-.tc-rows--appendix .tc-row {
-  padding-inline: 0;
+.tc-fine-row-text {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
 }
 
-.tc-section--appendix .tc-row--inset {
-  background: transparent;
-  padding-left: 1rem;
+.tc-fine-name {
+  color: var(--color-fd-foreground);
+}
+
+.tc-fine-row-end {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tc-fine-row-end .tc-fine-link {
+  margin-left: 0;
+}
+
+.tc-fine-empty {
+  padding-block: 0.5rem;
+}
+
+/* 排除明细：Arc Accordion 压成小字的「查看明细」行 */
+.tc-fine-accordion {
+  border-top: 0;
+}
+
+.tc-fine-accordion > div {
+  border-bottom: 0;
+}
+
+.tc-fine-accordion h3 > button {
+  min-height: 2rem;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  color: var(--color-fd-foreground);
+}
+
+.tc-fine-accordion h3 > button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tc-fine-accordion [data-state] > div,
+.tc-fine-accordion [data-state] > div > div {
+  padding: 0;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  color: var(--color-fd-muted-foreground);
+}
+
+.tc-fine-accordion .tc-fine-list {
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tc-fine-link,
+  .tc-fine-more {
+    transition: none;
+  }
 }
 
 /* ---------- 表格 ---------- */
@@ -877,9 +985,9 @@ h1.tc-title {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem 1.5rem;
+  gap: 0.5rem 0.75rem;
   border-bottom: 1px solid var(--tc-line);
-  padding: 0.75rem 1.25rem;
+  padding: 0.625rem 1.25rem;
 }
 
 .tc-filter {
@@ -888,12 +996,6 @@ h1.tc-title {
   max-width: 100%;
   align-items: center;
   gap: 0.75rem;
-}
-
-.tc-filter-label {
-  flex-shrink: 0;
-  font-size: 0.75rem;
-  color: var(--color-fd-muted-foreground);
 }
 
 .tc-segment-count {
@@ -985,12 +1087,10 @@ h1.tc-title {
 
 .tc-prop {
   display: grid;
-  grid-template-areas:
-    'field state'
-    'value value';
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: 'field value state';
+  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.25rem 0.75rem;
+  gap: 0 0.75rem;
   padding: 0.5rem 0;
   font-size: 0.8125rem;
   line-height: 1.25rem;
@@ -1002,45 +1102,26 @@ h1.tc-title {
 
 @media (min-width: 768px) {
   .tc-prop {
-    grid-template-areas: 'field value state';
-    grid-template-columns: 11rem minmax(0, 1fr) auto;
+    grid-template-columns: 6rem minmax(0, 1fr) auto;
     gap: 0 1.5rem;
   }
 }
 
 .tc-prop-field {
   grid-area: field;
-  display: flex;
   min-width: 0;
-  align-items: baseline;
-  gap: 0.5rem;
-  color: var(--color-fd-foreground);
-}
-
-.tc-prop-key {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 0.75rem;
   color: var(--color-fd-muted-foreground);
 }
+
 
 .tc-prop-value {
   grid-area: value;
   display: flex;
   min-width: 0;
-  flex-direction: column;
-  gap: 0.125rem;
+  justify-self: start;
+  max-width: 100%;
 }
 
-.tc-prop-note {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-left: 1.25rem;
-  font-size: 0.75rem;
-  color: var(--color-fd-muted-foreground);
-}
 
 .tc-prop-state {
   grid-area: state;
@@ -1069,9 +1150,9 @@ h1.tc-title {
 
 .tc-fixes h3 > button {
   scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
-  min-height: 3.5rem;
+  min-height: 3rem;
   gap: 1rem;
-  padding: 0.625rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   transition: background-color 150ms ease-out;
 }
 
@@ -1086,41 +1167,36 @@ h1.tc-title {
 }
 
 .tc-fix-title {
-  display: grid;
+  display: flex;
   min-width: 0;
-  gap: 0.125rem;
+  align-items: baseline;
+  gap: 0.75rem;
   scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
 }
 
 .tc-fix-value {
   min-width: 0;
+  overflow: hidden;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
-.tc-fix-sub {
-  display: flex;
-  min-width: 0;
-  flex-wrap: wrap;
-  gap: 0 0.375rem;
+.tc-fix-cat {
+  flex-shrink: 0;
   font-size: 0.75rem;
   font-weight: 400;
   color: var(--color-fd-muted-foreground);
 }
 
-.tc-fix-token {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .tc-fix-meta {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .tc-fix-count {
+  min-width: 2.5rem;
+  text-align: right;
   font-size: 0.8125rem;
   font-weight: 400;
   font-variant-numeric: tabular-nums;
@@ -1133,10 +1209,11 @@ h1.tc-title {
   color: var(--color-fd-foreground);
 }
 
-/* 窄屏只留数量，状态写在副标题的动作里 */
+/* 窄屏状态只留色点 */
 @media (max-width: 639px) {
-  .tc-fix-meta > :first-child {
-    display: none;
+  .tc-fix-meta .tc-state-mark {
+    font-size: 0;
+    gap: 0;
   }
 }
 
@@ -1147,10 +1224,15 @@ h1.tc-title {
 
 .tc-fix-layer {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.625rem 1.25rem 0.625rem 2rem;
+  padding: 0.375rem 1.25rem 0.375rem 2rem;
+}
+
+.tc-fix-layer .tc-layer-name,
+.tc-node-head .tc-layer-name {
+  font-weight: 400;
 }
 
 .tc-fix-layer + .tc-fix-layer {
@@ -1544,30 +1626,19 @@ p.tc-row.tc-row-text {
   outline-offset: 4px;
 }
 
-/* 每条修改的收益：改完覆盖率 +x 个百分点 */
+/* 「先改这几处」里的收益单位 */
 .tc-top-fix-unit {
   font-size: 0.75rem;
   color: var(--color-fd-muted-foreground);
 }
 
-.tc-fix-gain {
-  min-width: 3rem;
-  text-align: right;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  color: var(--color-fd-foreground);
-}
 
 .tc-fix-actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
-  border-bottom: 1px solid var(--tc-line);
-  padding: 0.5rem 1.25rem;
-  background: var(--tc-hover);
+  justify-content: flex-end;
+  border-top: 1px solid var(--tc-line);
+  padding: 0.25rem 1.25rem;
+  background: var(--tc-subtle);
 }
 
 .tc-waived-head {
@@ -1592,6 +1663,8 @@ p.tc-row.tc-row-text {
 }
 
 #tc-waived {
+  display: grid;
+  gap: 0.625rem;
   scroll-margin-top: calc(var(--tc-nav-clear) + 1rem);
 }
 
@@ -1608,4 +1681,245 @@ p.tc-row.tc-row-text {
   .tc-phrase {
     white-space: nowrap;
   }
+}
+
+/* ---------- 列表里的状态与悬停详情 ---------- */
+
+.tc-state-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  white-space: nowrap;
+  color: var(--color-fd-muted-foreground);
+}
+
+/* 悬停详情卡（Arc Hover Card）：白底卡片，左列灰色字段名、右列值 */
+.arc-layer.tc-detail {
+  width: 21rem;
+  max-width: min(21rem, var(--radix-popover-content-available-width, calc(100vw - 24px)));
+  padding: 0.75rem 0.875rem;
+  border-radius: 12px;
+}
+
+/* 卡片内容：一行值，然后按「出现在 / 最接近的值 / 切到暗色时」分段，段间用细线 */
+.tc-dc {
+  display: grid;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+}
+
+.tc-dc-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.tc-dc-value {
+  min-width: 0;
+  font-size: 0.8125rem;
+  color: var(--foreground);
+}
+
+.tc-dc-meta,
+.tc-dc-label,
+.tc-dc-more,
+.tc-dc-note,
+.tc-dc-cap,
+.tc-dc-where-parent {
+  color: var(--text-muted);
+}
+
+.tc-dc-meta {
+  flex-shrink: 0;
+}
+
+.tc-dc-section {
+  display: grid;
+  gap: 0.375rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.tc-dc > .tc-dc-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.tc-dc-times {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tc-dc-role {
+  display: block;
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+
+.tc-dc-label,
+.tc-dc-more,
+.tc-dc-none,
+.tc-dc-foot {
+  margin: 0;
+}
+
+.tc-dc-none {
+  color: var(--text-secondary);
+}
+
+.tc-dc-where,
+.tc-dc-near {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tc-dc-where li {
+  display: flex;
+  min-width: 0;
+  gap: 0.375rem;
+}
+
+.tc-dc-where-parent,
+.tc-dc-leaf {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tc-dc-where-parent {
+  flex-shrink: 1;
+  max-width: 50%;
+}
+
+.tc-dc-where-parent::after {
+  content: ' ›';
+}
+
+.tc-dc-leaf {
+  color: var(--foreground);
+}
+
+/* 路径：越靠近根越淡，长路径换行而不是截断 */
+.tc-dc-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.25rem;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.tc-dc-crumb::after {
+  content: ' ›';
+}
+
+.tc-dc-near li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.tc-dc-num {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.tc-dc-token {
+  color: var(--foreground);
+  overflow-wrap: anywhere;
+}
+
+.tc-dc-note {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.tc-dc-near .tc-swatch {
+  margin-top: 0.1875rem;
+}
+
+/* 两张「页面」：同一个值放在亮色和暗色底上 */
+.tc-dc-themes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.tc-dc-page {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.625rem 0.5rem 0.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.tc-dc-pair {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+}
+
+.tc-dc-page[data-mode='Dark'] .tc-dc-cap {
+  color: rgb(255 255 255 / 0.5);
+}
+
+.tc-dc-page[data-mode='Light'] .tc-dc-cap {
+  color: rgb(0 0 0 / 0.45);
+}
+
+.tc-dc-cap {
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+}
+
+.tc-dc-sample-text {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.tc-dc-sample-fill,
+.tc-dc-sample-stroke {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 6px;
+}
+
+.tc-dc-sample-fill {
+  box-shadow: inset 0 0 0 1px rgb(128 128 128 / 0.25);
+}
+
+.tc-dc-sample-stroke {
+  border: 1.5px solid;
+}
+
+.tc-dc-foot {
+  padding-top: 0.625rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 详情触发器可聚焦：只在键盘聚焦时显示中性焦点环 */
+.tc-layer-name[tabindex]:focus-visible,
+.tc-prop-value[tabindex]:focus-visible {
+  outline: 2px solid var(--color-fd-foreground);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.tc-fix-value .tc-value {
+  display: block;
 }

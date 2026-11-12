@@ -32,7 +32,7 @@
 
 ## 下一步
 
-- [ ] Figma Token 绑定检查（分支 `feat/figma-token-check`）：第一期覆盖率 + `reference-tier` 已实现；待配置 `FIGMA_ACCESS_TOKEN` 实测；后续作用域 / 值匹配 / 语义检查（[spec](./superpowers/specs/2026-11-09-figma-token-check-design.md)）
+- [ ] Figma Token 绑定检查 `/tools/token-check`：第一期覆盖率 + `reference-tier` 已合入 `main`；L3 值匹配（`nearest.ts`）与悬停详情卡已实现（GitLab !10）；待在 Matrix 配置 `FIGMA_ACCESS_TOKEN` 实测；后续作用域 / 语义检查（[spec](./superpowers/specs/2026-11-09-figma-token-check-design.md)）
 - [ ] Design / Code 双模从 pilot 转约定（frontmatter 或 `*-code.mdx` 命名替代硬编码 slug；决定 Code 页是否排除出搜索索引；补 Tina 正文编辑绑定）
 - [ ] **staging** Matrix 注入 `MI_LLM_*` 并验收 Ask AI 入口（正式环境已于 2026-08-14 在部署单主容器环境变量注入并发布；staging 为独立部署空间，不继承 prod 变量。见 [deployment.md](./deployment.md)「Ask AI 环境变量」）
 - [ ] 发布 HyperOS 5 文档内容并解除 OS5 禁用 / 重定向
@@ -44,6 +44,8 @@
 - [ ] Phase 3：Tokens Studio → Git 自动同步；补充 Typography Token
 - [ ] Figma Code Connect（Compose / SwiftUI）试点
 - [ ] 已有规范文本批量导入
+- [ ] 站点字体核实：根布局同时挂 Inter（next/font）与 Geist（`--font-sans`），在浏览器确认实际生效字体；若是 Inter，考虑去掉 Geist 加载（DESIGN.md Typography 暂按 Inter 记）
+- [ ] 资源页主 / 次文字色（`#000` / `#404040`）是否与 Landing（`#21201c` / `#43423d`）统一，需设计确认
 
 ## 相关文档
 
