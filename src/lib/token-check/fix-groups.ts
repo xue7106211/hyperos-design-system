@@ -1,6 +1,6 @@
 /**
  * 「按修复」视图：把同一类别、同一状态、同一取值的问题归成一条修改。
- * 设计师绑一次 Token（或替换一次旧变量）就能修好整组，所以按影响面从大到小排。
+ * 设计师绑一次 Token（或替换一次旧变量）就能修好整组。列表先按类别聚在一起，类别内按影响面从大到小排。
  */
 import type { BindableProperty, BindingState, PropertyCategory } from './types';
 
@@ -61,13 +61,22 @@ export function groupIssuesByFix(issues: BindableProperty[]): FixGroup[] {
     if (issue.fromInstanceOverride) group.overrideCount += 1;
   }
 
+  // 列表按类别聚在一起（顺序同筛选栏），类别内再按影响面从大到小
   return [...groups.values()]
     .map(({ nodes, ...group }) => ({ ...group, nodeCount: nodes.size }))
-    .sort(
-      (a, b) =>
-        b.issues.length - a.issues.length ||
-        b.nodeCount - a.nodeCount ||
-        categoryRank[a.category] - categoryRank[b.category] ||
-        a.value.localeCompare(b.value),
-    );
+    .sort((a, b) => categoryRank[a.category] - categoryRank[b.category] || byImpact(a, b));
+}
+
+function byImpact(a: FixGroup, b: FixGroup) {
+  return (
+    b.issues.length - a.issues.length ||
+    b.nodeCount - a.nodeCount ||
+    categoryRank[a.category] - categoryRank[b.category] ||
+    a.value.localeCompare(b.value)
+  );
+}
+
+/** 跨类别按影响面排序，给结论区「先改这几处」用 */
+export function rankFixesByImpact(fixes: FixGroup[]): FixGroup[] {
+  return [...fixes].sort(byImpact);
 }

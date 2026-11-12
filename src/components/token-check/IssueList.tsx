@@ -96,7 +96,11 @@ function toRows(issues: BindableProperty[]): NodeRow[] {
         issues: [issue],
       });
   }
-  return [...rows.values()];
+  const rank = (c: PropertyCategory) => categoryOrder.indexOf(c);
+  return [...rows.values()].map((row) => ({
+    ...row,
+    issues: [...row.issues].sort((a, b) => rank(a.category) - rank(b.category)),
+  }));
 }
 
 /**
@@ -552,7 +556,7 @@ export function IssueList({
       count={report.issues.length}
       description={
         view === 'fix'
-          ? '相同的值归成一条，按影响处数排序'
+          ? '相同的值归成一条，按类别聚合，类别内按影响处数排序'
           : '按检查目标和图层列出'
       }
       actions={
