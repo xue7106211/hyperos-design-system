@@ -2,7 +2,7 @@ import { ArrowDown } from "lucide-react";
 import type { ReactNode } from "react";
 import { Alert } from "@/components/arc/alert/alert";
 import { cn } from "@/lib/cn";
-import type { FixGroup } from "@/lib/token-check/fix-groups";
+import { rankFixesByImpact, type FixGroup } from "@/lib/token-check/fix-groups";
 import { fixGain, type RunDiff } from "@/lib/token-check/review-state";
 import type {
   BindingState,
@@ -12,7 +12,6 @@ import type {
 import {
   categoryLabels,
   categoryOrder,
-  fixActionLabels,
   formatDateTime,
   formatGain,
   formatRate,
@@ -127,7 +126,7 @@ export function Verdict({
   const { overall } = report.coverage;
   const pending = overall.total - overall.hyperos;
   const clear = overall.total > 0 && pending === 0;
-  const top = fixes.slice(0, TOP_FIXES);
+  const top = rankFixesByImpact(fixes).slice(0, TOP_FIXES);
 
   return (
     <section
@@ -258,8 +257,7 @@ export function Verdict({
                     <ValueText value={fix.value} />
                   </span>
                   <span className="tc-top-fix-meta">
-                    {categoryLabels[fix.category]} ·{" "}
-                    {fixActionLabels[fix.state]} · {fix.issues.length} 处
+                    {categoryLabels[fix.category]} · {fix.issues.length} 处
                   </span>
                   <span className="tc-top-fix-count">
                     <span>

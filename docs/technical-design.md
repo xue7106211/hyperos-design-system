@@ -259,15 +259,16 @@ hyperos-design-system/
 ├── tokens/                 # Design Tokens（层 × light/dark）
 │   ├── reference.{light,dark}.json
 │   ├── semantic.{light,dark}.json
-│   └── component.{light,dark}.json
+│   ├── component.{light,dark}.json
+│   └── figma/              # Token 绑定检查用的 Figma 库快照（离线导出；与上面 OS4 JSON 不是同一份数据）
 ├── icons/                  # HyperOS Symbols 可变字体 + manifest（IconGallery）
 │   ├── font/
 │   ├── manifest.json
 │   └── README.md
-├── scripts/                # generate-icon-manifest.mjs、import-os4-tokens.mjs
+├── scripts/                # generate-icon-manifest.mjs、import-os4-tokens.mjs；token-check/（库快照导出 / 合并 / 校验）
 ├── patches/                # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
 ├── tina/                   # TinaCMS schema（按 os4/os5 × 分组 collections）；tina-lock.json 与 __generated__/ 已提交
-├── .env.example            # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
+├── .env.example            # TinaCMS + Ask AI（MI_LLM_*）+ Token 绑定检查（FIGMA_ACCESS_TOKEN 等）环境变量模板
 ├── public/
 │   ├── logo/               # HyperOS Logo（light / dark）
 │   ├── home/               # Landing 页静态图
@@ -278,12 +279,14 @@ hyperos-design-system/
 │   ├── admin/              # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
 │   └── uploads/            # TinaCMS 媒体上传（本地模式；gitignore）
 ├── src/
-│   ├── app/                # Next.js App Router（docs、icons、resources、admin、api/tina|search|chat、llms、og、robots；根级 error / not-found）
+│   ├── app/                # Next.js App Router（docs、icons、resources、tools/token-check、admin、api/tina|search|chat|token-check、llms、og、robots；根级 error / not-found）
 │   ├── components/
 │   │   ├── ai/             # Ask AI（AiAssistant 门闩 + search 浮动面板）
 │   │   ├── ai-elements/    # AI Elements（conversation / message / prompt / tool）
 │   │   ├── ui/             # shadcn 基础组件（Ask AI 等站点 chrome，非文档 Web demo）
-│   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot、DocsModeSwitch
+│   │   ├── arc/            # Arc 组件源码（手动拷入并本地化；仅工具页）
+│   │   ├── token-check/    # /tools/token-check 页面 UI
+│   │   ├── docs/           # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot、DocsModeSwitch、HiddenNavSidebar
 │   │   ├── easter-egg/     # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
 │   │   ├── home/           # Landing：PillNav + typotab（Hero / Design Language / Value / Recent Updates / FAQ）；资源页共用 PillNav
 │   │   ├── resources/      # /resources：Hero、Catalog、CodexNav、FeatureCard、MatrixRain 等
@@ -292,13 +295,14 @@ hyperos-design-system/
 │   │   ├── BackToTop.tsx   # 「返回顶部」（首页不挂；/resources 使用）
 │   │   ├── SkipLink.tsx    # 「跳到正文」（文档页 #nd-page，其余 #main；根布局挂载）
 │   │   └── HyperOSLogo.tsx
-│   └── lib/                # source、layout、shared、resources、icons、recent-docs、docs-version-tabs、tina-docs*、search-tokenizer、git-file-mtime、ai/、cn、utils
+│   └── lib/                # source、layout、shared、resources、icons、recent-docs、docs-version-tabs、hidden-nav-pages、tina-docs*、search-tokenizer、git-file-mtime、ai/、token-check/、cn、utils
 ├── source.config.ts        # frontmatter Zod schema
 ├── next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 ├── proxy.ts                # Markdown 内容协商
 ├── .npmrc                  # legacy-peer-deps
 ├── docs/                   # 工程设计文档（本目录；含 research/、design-references/、superpowers/）
 ├── AGENTS.md               # Agent 工作指引（精简；部署细节见 deployment.md）
+├── DESIGN.md               # 文档站自身的视觉与交互约定
 ├── CLAUDE.md               # 指向 AGENTS.md
 ├── Dockerfile              # 生产镜像（builder 保留 .git 以解析文档更新时间）
 ├── README.md
