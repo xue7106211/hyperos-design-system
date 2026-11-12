@@ -12,6 +12,7 @@ HyperOS 移动端客户端组件库的设计系统文档站，基于 [Fumadocs](
 - 文档配图页内画廊（Fancybox；同页前后切换）
 - Android / iOS 静态代码参考（Compose / SwiftUI）
 - 全文搜索、明暗主题切换
+- Figma Token 绑定检查（`/tools/token-check`，开发中：贴入 Figma 链接，输出 Token 覆盖率、问题清单与 Markdown 报告；需服务端配置 `FIGMA_ACCESS_TOKEN`）
 - Ask AI 文档问答（全站浮动；仅 OS4；小米内网 Anthropic 网关；本地 `.env.local` / 线上 Matrix 部署空间「编辑 → 主容器环境变量」配置 `MI_LLM_*`）
 - LLM 友好导出（`/llms.txt`、`/llms-full.txt`）
 - TinaCMS 后台（`/admin`）录入规范，支持 Figma / Token / 图标 / 代码 block
@@ -30,7 +31,7 @@ npm run dev
 
 `npm install` 的 `postinstall` 会依次跑 `fumadocs-mdx` 与 `patch-package`（应用 `patches/` 下的补丁，当前只有 `next-themes+0.4.6.patch`）；不要手改 `node_modules`。
 
-`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`（`npm run tina:dev` 为同一命令的别名）。Ask AI 需在 `.env.local` 配置 `MI_LLM_*`（模板见 `.env.example`）；未配置时不显示入口。线上在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入同名变量后发布（见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」）。
+`npm run dev` 已设置 TinaCMS 本地模式所需的 `TINA_PUBLIC_IS_LOCAL=true`（`npm run tina:dev` 为同一命令的别名）。Ask AI 需在 `.env.local` 配置 `MI_LLM_*`，Token 绑定检查需配置 `FIGMA_ACCESS_TOKEN`（模板均见 `.env.example`）；未配置时 Ask AI 不显示入口，Token 检查接口返回「未配置」。线上在 Matrix 部署空间 **编辑 → 主容器环境变量** 注入同名变量后发布（见 [docs/deployment.md](docs/deployment.md)「Ask AI 环境变量」）。
 
 ## 构建与检查
 
@@ -46,10 +47,10 @@ npm run tokens:import -- /path/to/OS4Token  # Figma Variables 导出 → tokens/
 单元测试用 Node 内置 runner（没有 `npm test` script，也未引入 Jest / Vitest）：
 
 ```bash
-node --test "src/**/*.test.mjs"   # 当前 15 suites / 35 tests
+node --test "src/**/*.test.mjs"   # 当前 39 suites / 138 tests
 ```
 
-覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）、回答来源（`src/lib/ai/document-sources.test.mjs`）、图标查询与预览计算（`src/lib/icon-query.test.mjs`）及彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
+覆盖范围：Ask AI 检索层（`src/lib/ai/search-docs.test.mjs`）、回答来源（`src/lib/ai/document-sources.test.mjs`）、图标查询与预览计算（`src/lib/icon-query.test.mjs`）、Token 绑定检查引擎（`src/lib/token-check/*.test.mjs`）及彩蛋连点判定（`src/components/easter-egg/rapid-click.test.mjs`）。约定见 [AGENTS.md](AGENTS.md)「单元测试」。
 
 生产 Docker 构建只跑 `npx next build`（不跑 `tinacms build`）。部署流程（MiFlow / Matrix、分支与环境）见 [docs/deployment.md](docs/deployment.md)；镜像定义见根目录 `Dockerfile`。
 
@@ -81,20 +82,24 @@ icons/               # HyperOS Symbols 可变字体 + manifest（见 icons/READM
   font/
   manifest.json
 scripts/             # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
+  token-check/       # Token 库快照导出 / 合并 / 校验
 patches/             # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
 tokens/              # Design Tokens（reference / semantic / component × light / dark）
+  figma/             # Token 绑定检查用的 Figma 库快照（离线导出，已提交）
 tina/                # TinaCMS schema 与 block 模板
   tina-lock.json     # tinacms 依赖/schema 锁（产物，已提交）
   __generated__/     # tinacms build 产物（已提交仓库，供生产 next build）
-.env.example         # TinaCMS + Ask AI（MI_LLM_*）环境变量模板
+.env.example         # TinaCMS + Ask AI（MI_LLM_*）+ Token 绑定检查环境变量模板
 components.json      # shadcn / AI Elements（Ask AI UI）
 src/
-  app/               # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og、robots；根级 error / not-found）
+  app/               # Next.js 路由（docs、icons、resources、tools/token-check、admin、api/tina|search|chat|token-check、llms、og、robots；根级 error / not-found）
   components/
     ai/              # Ask AI（AiAssistant + 浮动面板）
     ai-elements/     # AI Elements 对话组件
     ui/              # shadcn 基础组件（Ask AI chrome）
-    docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot
+    arc/             # Arc 组件源码（仅工具页使用）
+    token-check/     # /tools/token-check 页面 UI
+    docs/            # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot、HiddenNavSidebar
     easter-egg/      # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/            # Landing：PillNav + typotab；资源页共用 PillNav
     resources/       # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
@@ -103,7 +108,7 @@ src/
     BackToTop.tsx    # 「返回顶部」（首页不挂；/resources 使用）
     SkipLink.tsx     # 「跳到正文」（文档页 #nd-page，其余 #main；根布局挂载）
     HyperOSLogo.tsx  # 站点 Logo
-  lib/               # source、layout、shared、resources、icons、recent-docs、tina-docs*、ai/、cn、utils 等
+  lib/               # source、layout、shared、resources、icons、recent-docs、hidden-nav-pages、tina-docs*、ai/、token-check/、cn、utils 等
 public/
   logo/              # HyperOS Logo 静态资源
   home/              # Landing 页静态图
@@ -120,6 +125,7 @@ proxy.ts             # Markdown 内容协商
 Dockerfile           # 生产镜像（MiFlow 构建 / Matrix 运行；builder 保留 .git）
 package-lock.json    # npm 锁文件
 AGENTS.md            # Agent / 协作者指引（权威，保持精简）
+DESIGN.md            # 文档站自身的视觉与交互约定
 CLAUDE.md            # 指向 AGENTS.md
 ```
 
@@ -161,8 +167,9 @@ CLAUDE.md            # 指向 AGENTS.md
 |------|------|
 | [AGENTS.md](AGENTS.md) | Agent 工作约定与验证清单（权威，精简） |
 | [CLAUDE.md](CLAUDE.md) | Claude 入口，指向 AGENTS.md |
+| [DESIGN.md](DESIGN.md) | 文档站自身的视觉与交互约定（站点 chrome，非 HyperOS 业务规范） |
 | [docs/index.md](docs/index.md) | 工程设计文档索引 |
-| [docs/deployment.md](docs/deployment.md) | MiFlow / Matrix 部署、Ask AI 环境变量与卡点 |
+| [docs/deployment.md](docs/deployment.md) | MiFlow / Matrix 部署、Ask AI 与 Token 绑定检查环境变量、卡点 |
 | [docs/technical-design.md](docs/technical-design.md) | 技术方案 |
 | [docs/information-architecture.md](docs/information-architecture.md) | 站点 IA |
 | [docs/sidebar-ia.md](docs/sidebar-ia.md) | 侧栏目录对照（全景图） |
