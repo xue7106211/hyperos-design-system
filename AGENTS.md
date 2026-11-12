@@ -162,10 +162,12 @@ docs/                   # 工程设计文档（见 docs/index.md）
   research/             # 调研笔记（aiforui.dev → /resources；typotab.com → Landing typotab）
   superpowers/          # Agent 历史设计 / 实现计划记录（specs、plans；非对外，非当前实现依据）
 tokens/                 # Design Tokens（reference|semantic|component × light|dark）
+  figma/                # Token 绑定检查用的 Figma 库快照（离线导出，已提交；与上面 OS4 JSON 不是同一份数据）
 icons/                  # HyperOS Symbols 可变字体 + manifest（IconGallery；见 icons/README.md）
   font/
   manifest.json
 scripts/                # 仓库脚本（generate-icon-manifest.mjs、import-os4-tokens.mjs）
+  token-check/          # Token 库快照导出 / 合并 / 校验（*.figma.js 在 Figma 内运行，*.mjs 在本地 Node 运行）
 patches/                # patch-package 补丁（next-themes+0.4.6.patch；postinstall 自动应用）
 tina/
   config.ts             # TinaCMS schema 入口（只 import createDocsCollection）
@@ -175,7 +177,7 @@ tina/
   database.ts           # 本地 filesystem datalayer
   tina-lock.json        # tinacms 依赖/schema 锁（产物，已提交）
   __generated__/        # tinacms build 产物（**已提交仓库**，供生产 next build 使用）
-.env.example            # TinaCMS + Ask AI（MI_LLM_*）模板；线上见 docs/deployment.md
+.env.example            # TinaCMS + Ask AI（MI_LLM_*）+ Token 绑定检查（FIGMA_ACCESS_TOKEN 等）模板；线上见 docs/deployment.md
 components.json         # shadcn / AI Elements 注册表配置（Ask AI UI）
 public/
   logo/                 # HyperOS Logo 静态资源
@@ -187,14 +189,17 @@ public/
   admin/                # TinaCMS 后台静态产物（tinacms build 生成；gitignore）
   uploads/              # TinaCMS 媒体上传（本地模式；gitignore）
 src/
-  app/                  # Next.js 路由（docs、icons、resources、admin、api/tina|search|chat、llms、og、robots；根级 error / not-found）
+  app/                  # Next.js 路由（docs、icons、resources、tools、admin、api/tina|search|chat|token-check、llms、og、robots；根级 error / not-found）
     icons/              # /icons HyperOS Symbols 独立页（PillNav + 页内套件二级栏；无 docs 侧栏）
     resources/          # 设计资源中心（独立 hub，非 docs 侧栏）
+    tools/              # 工具页外壳（PillNav）+ tools.css / arc-theme.css；当前只有 token-check/
   components/
     ai/                 # Ask AI（AiAssistant 门闩 + search 浮动面板）
     ai-elements/        # AI Elements（conversation / message / prompt / tool）
     ui/                 # shadcn 基础组件（仅服务于 Ask AI 等站点 chrome，非文档 Web demo）
-    docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot
+    arc/                # Arc 组件源码（手动拷入并本地化；仅工具页使用）
+    token-check/        # /tools/token-check 页面 UI（报告、问题清单、导出）
+    docs/               # DocsVersionSwitcher、FigmaJumpButton、DocMeta、DocsDesignCodePilot、HiddenNavSidebar
     easter-egg/         # 全站彩蛋（根布局挂载；短时连点打开签名浮层）
     home/               # Landing：PillNav + typotab（TypoHero / TypoDesignLanguage / TypoValueProp / TypoRecentUpdates / TypoFaq 等）；资源页共用 PillNav
     resources/          # /resources：Hero、Catalog、CodexNav、FeatureCard、Tools、Topics、MatrixRain 等
@@ -203,13 +208,14 @@ src/
     BackToTop.tsx       # 「返回顶部」（首页不挂；/resources 经 ResourcesBackToTop 使用）
     SkipLink.tsx        # 「跳到正文」（文档页 #nd-page，其余 #main；根布局挂载）
     HyperOSLogo.tsx     # 站点 Logo（light / dark）
-  lib/                  # source、layout、shared、resources、icons、recent-docs、tina-docs*、ai/、cn、utils（shadcn）等
+  lib/                  # source、layout、shared、resources、icons、recent-docs、hidden-nav-pages、tina-docs*、ai/、token-check/、cn、utils（shadcn）等
 source.config.ts        # MDX frontmatter Zod schema
 next.config.mjs         # Next.js + fumadocs-mdx；/docs 重定向与旧路径兼容
 proxy.ts                # Markdown 内容协商（.md / Accept 重写）
 Dockerfile              # 生产镜像（deps → builder → runner；MiFlow 构建；builder 保留 .git）
 .npmrc                  # legacy-peer-deps（TinaCMS 依赖兼容）
 AGENTS.md               # 本文件（Agent 指引；部署细节见 docs/deployment.md）
+DESIGN.md               # 文档站自身的视觉与交互约定（站点 chrome，不是 HyperOS 业务规范）
 CLAUDE.md               # 指向本文件
 package-lock.json       # npm 锁文件
 ```
@@ -219,6 +225,7 @@ package-lock.json       # npm 锁文件
 - `tina/__generated__/`（`tinacms build` 生成）— **已提交仓库**，改 `tina/config.ts` 或 `tina/schema/**` 后需一并更新（详见上面「TinaCMS schema 变更」节）；子目录 `.cache/` 仍 gitignore
 - `icons/manifest.json` 与 `public/fonts/`（`icons:sync` 生成）— **已提交仓库**，改 `icons/font/**` 后需一并更新
 - `tokens/*.{light,dark}.json`（`tokens:import` 生成/更新）— **已提交仓库**，改 Token 真源后需一并更新
+- `tokens/figma/*.json`（Figma 内运行 `scripts/token-check/*.figma.js` 离线导出）— **已提交仓库**，刷新后跑 `node scripts/token-check/verify-snapshot.mjs`
 
 **注意**：`docs/` ≠ `content/docs/`。前者是仓库内设计说明，后者是站点页面内容。
 
@@ -243,6 +250,8 @@ package-lock.json       # npm 锁文件
 - **设计资源中心**：`/resources`（Landing `PillNav`「设计资源」；当前页短圆角底线选中态）；独立 hub，内容数据在 `src/lib/resources.ts`，组件在 `src/components/resources/`；Catalog（`#catalog`）设计类条目多数跳转页内锚点（`#components` / `#design-tools` / `#design-token` / `#fonts` / `#brand`），**Icon** 直达 [`/icons`](/icons)；右侧 Codex 导航见 `ResourcesCodexNav` + `resourcesPageAnchors`；「返回顶部」仅挂在 `/resources`（首页不挂，避免与 Ask AI 右下角入口重叠）
 - **设计模式**（侧栏名；路径 `best-practices/`）：总览 + 二级占位页（页面模式 / 加载与刷新 / 下载 / 状态提示 / 启动 / 引导 / 资源选择 / 系统分享 / 自升级 / 系统能力衔接 / 数据图表化）；OS5 同步占位
 - **多端设备标准**（路径 `multi-device/`）：总览 + 二级占位页（设备特性发挥 / 设备互通与跨设备协同 / 应用最佳实践）；OS5 同步占位
+- **隐藏页**（只靠正文链接到达，不进 `meta.json`）：`components/containers/dialog-vs-drawer`（弹窗与抽屉辨析）登记在 `src/lib/hidden-nav-pages.ts`，打开时连同搜索框、版本切换器一起隐藏侧栏（`HiddenNavSidebar`）；`components/navigation/segmented-button-vs-tabs` 同样不进 `meta.json`，但**未登记**，侧栏外壳照常显示
+- **工具页**：`/tools/token-check`（入口在 `/resources` 设计工具区；共用 PillNav，无 docs 侧栏）
 
 新增页面时 **必须**：
 
@@ -324,6 +333,7 @@ package-lock.json       # npm 锁文件
 
 ## 主题与品牌
 
+- 视觉与交互约定汇总在 [DESIGN.md](DESIGN.md)（各页面外壳的配色、字号、动效、组件归属）；改站点 UI 前先读
 - 文档站 UI：Fumadocs 默认 `neutral.css` 主题（`src/app/global.css` 未覆盖 `--color-fd-*` 品牌色）
 - 排版与布局：`global.css` 中紧凑 typography、sidebar 贴左 + 内容居中 grid
 - Logo：`src/components/HyperOSLogo.tsx` + `public/logo/`
@@ -343,8 +353,8 @@ package-lock.json       # npm 锁文件
 ## Token 绑定检查（开发中，Agent 必读）
 
 - 工具页 `/tools/token-check` + `POST /api/token-check`；规格见 [docs/superpowers/specs/2026-11-09-figma-token-check-design.md](docs/superpowers/specs/2026-11-09-figma-token-check-design.md)
-- 引擎为纯函数：`src/lib/token-check/`（类型 `types.ts`；排除 `classify.ts`；属性 `properties.ts`；准确性检查注册在 `checks/index.ts`）；UI 在 `src/components/token-check/`
-- 服务端 env：`FIGMA_ACCESS_TOKEN`（必填）、`TOKEN_CHECK_KIT_FILE_KEYS`、`TOKEN_CHECK_ENABLED`
+- 引擎为纯函数：`src/lib/token-check/`（类型 `types.ts`；排除 `classify.ts`；属性 `properties.ts`；准确性检查注册在 `checks/index.ts`；值匹配候选 `nearest.ts`）；UI 在 `src/components/token-check/`
+- 服务端 env：`FIGMA_ACCESS_TOKEN`（必填）、`TOKEN_CHECK_KIT_FILE_KEYS`、`TOKEN_CHECK_ENABLED`；缺 Token 或设为 `false` 时 API 返回 503 `not-configured`（线上注入方式见 [docs/deployment.md](docs/deployment.md)「Token 绑定检查环境变量」）
 - Token 库快照 `tokens/figma/hyperos-design-token.snapshot.json` 由 Figma MCP 离线导出（Org 计划无 Variables REST），刷新见 `scripts/token-check/export-library-snapshot.figma.js`，提交前跑 `node scripts/token-check/verify-snapshot.mjs`；旧版 Kit 变量清单 `tokens/figma/miuix-kit-legacy-variables.json`（刷新见 `scripts/token-check/export-legacy-kit-variables.figma.js`）；两份快照与 `tokens/*.{light,dark}.json`（OS4，TokenTable 用）是不同数据，不要混用
 - 测试：`node --test "src/**/*.test.mjs"` 已包含 `src/lib/token-check/*.test.mjs`
 - 开发期演示数据：`/tools/token-check?demo=1`（生产构建不加载）
@@ -353,7 +363,7 @@ package-lock.json       # npm 锁文件
   1. 不新增直接依赖：Arc 里的 `@radix-ui/react-*` 一律改成从已有的 `radix-ui` 包导入；只用已有的 `motion`、`lucide-react`
   2. 不引入 Arc 的 `foundation.css`（它在 `:root` 定义 `--background` 等，会覆盖 shadcn 变量）；变量映射在 `src/app/tools/arc-theme.css`，只作用于 `.tc-arc` 容器和 Tooltip 浮层 `.arc-layer`
   3. 同一种控件只用一套：工具页用 Arc，Ask AI 继续用 shadcn（`src/components/ui/`），文档站 chrome 用 Fumadocs；不要在工具页再手写按钮、输入框、分段控件、折叠面板等样式。例外：页底「校对说明」小字里的文字链接（「撤销」「全部撤销」「再显示 N 条」）用 `tools.css` 的 `.tc-fine-link`，因为 Arc Button 在 12px 段落里太重；不要把它扩展到正文或其他区块
-  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题与受控展开）直接改在 `src/components/arc/` 里
+  4. 新增 Arc 组件前先确认没有已有组件能覆盖；拷入后的本地化改动（中文文案、Accordion 支持富标题与受控展开、Hover Card 的 `clickToOpen` 开关、`alignTo` 定位（宽屏放在列表右外侧，窄屏贴列表左边缘）、`hoverArea` 整行热区与 `.arc-layer` 类名）直接改在 `src/components/arc/` 里
 
 ## Figma 集成
 
@@ -376,7 +386,7 @@ package-lock.json       # npm 锁文件
 仓库有少量纯逻辑单测，用 **Node 内置 test runner**（`node:test` + `node:assert`），**没有** `npm test` script、也没引入 Jest / Vitest。
 
 ```bash
-node --test "src/**/*.test.mjs"   # 全部（当前 15 suites / 35 tests）
+node --test "src/**/*.test.mjs"   # 全部（当前 39 suites / 138 tests）
 node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 ```
 
@@ -386,6 +396,7 @@ node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 | `src/lib/ai/document-sources.test.mjs` | Ask AI 回答来源：优先正文 Markdown 引用，否则回退到已完成的 search 结果 |
 | `src/lib/icon-query.test.mjs` | 图标查询、Unicode / 色彩格式化与字形预览布局计算 |
 | `src/components/easter-egg/rapid-click.test.mjs` | 彩蛋连点判定 `recordRapidClick` |
+| `src/lib/token-check/*.test.mjs`（9 个文件） | Token 绑定检查：链接解析、排除规则、属性提取、引擎、按修复归并、值匹配、复核状态、Markdown 导出、API 服务层 |
 
 约定：只给**不依赖 React 渲染 / Next 运行时**的纯函数写 `.test.mjs`（与被测文件同目录）。组件行为不做单测，靠 `npm run build` + 人工验收。
 
@@ -394,7 +405,7 @@ node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 提交改动前：
 
 - [ ] `npm run build` 成功（含 `tinacms build`）
-- [ ] 若改了带 `.test.mjs` 的纯逻辑文件（Ask AI 检索、彩蛋连点等），`node --test "src/**/*.test.mjs"` 全绿
+- [ ] 若改了带 `.test.mjs` 的纯逻辑文件（Ask AI 检索、图标查询、Token 绑定检查、彩蛋连点等），`node --test "src/**/*.test.mjs"` 全绿
 - [ ] 新页面已在 `meta.json` 注册
 - [ ] 未破坏 `docs/` 工程设计文档
 - [ ] 未添加 Storybook / Web 组件 playground
@@ -418,9 +429,10 @@ node --test src/lib/ai/search-docs.test.mjs   # 单个文件
 ## 相关文档
 
 - [README.md](README.md) — 快速上手
+- [DESIGN.md](DESIGN.md) — 文档站自身的视觉与交互约定
 - [CLAUDE.md](CLAUDE.md) — Claude 入口（指向本文件）
 - [docs/index.md](docs/index.md) — 工程设计文档索引
-- [docs/deployment.md](docs/deployment.md) — MiFlow / Matrix 部署、Ask AI 环境变量与卡点
+- [docs/deployment.md](docs/deployment.md) — MiFlow / Matrix 部署、Ask AI 与 Token 绑定检查环境变量、卡点
 - [docs/technical-design.md](docs/technical-design.md) — 技术方案
 - [docs/information-architecture.md](docs/information-architecture.md) — 站点 IA
 - [docs/sidebar-ia.md](docs/sidebar-ia.md) — 侧栏目录对照（全景图）

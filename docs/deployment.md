@@ -202,6 +202,18 @@ curl -i -X POST https://<域名>/api/chat -H 'Content-Type: application/json' -d
 | **镜像配置** | 镜像 tag 过滤 / 审批 |
 | **高级设置 → 自定义配置** | 高影响覆盖，非首选；改前先问 Matrix Oncall |
 
+### Token 绑定检查环境变量
+
+`/tools/token-check` 的接口 `POST /api/token-check` 在运行时读取服务端 env（`getTokenCheckConfig()`，见 `src/lib/token-check/config.ts`）。注入位置与 Ask AI 相同：Matrix 部署空间 **编辑 → 主容器「环境变量」**，prod 与 staging 各配一次，不必重建镜像。
+
+| 变量 | 说明 |
+|------|------|
+| `FIGMA_ACCESS_TOKEN` | 必填。Figma 个人访问令牌（PAT），需 `file_content:read`；只能读到该账号有权限的文件 |
+| `TOKEN_CHECK_KIT_FILE_KEYS`（可选） | MIUIX UI Kit 文件 key，逗号分隔；不填时默认 `7PVSm4yEbknNLFaqauI4EM` |
+| `TOKEN_CHECK_ENABLED`（可选） | 设为 `false` 时关闭检查 |
+
+未配置或已关闭时，接口返回 `503`，错误码 `not-configured`；页面本身仍可打开。Token 库快照在仓库里（`tokens/figma/`），不需要额外 env。截至 2026-11-12，文档中没有记录线上已注入该变量。
+
 ## 6. 卡点排查（2026-07）
 
 | 现象 | 原因 | 处理 |

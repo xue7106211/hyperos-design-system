@@ -161,3 +161,11 @@ TOKEN_CHECK_ENABLED=true                    # false 时 API 返回 not-configure
 - `node --test "src/lib/token-check/**/*.test.mjs"`：链接解析、排除规则、属性提取、覆盖率、Markdown，用合成的 REST 响应 fixture。
 - `npm run build`。
 - 拿到 PAT 后用一个真实 Section 人工验收：抽查排除列表与 5 条问题链接。
+
+## 值匹配（L3）与悬停详情卡
+
+- 实现：`src/lib/token-check/nearest.ts`（纯函数，测试 `nearest.test.mjs`）。引擎在报告里写入 `suggestions`，key 为 `类别|取值`；演示页用同一函数现算。
+- 候选池：已发布的 Semantic / Component 变量；Reference 层不推荐。颜色只和 Light 模式比较（默认业务稿按亮色绘制），叠到白底后算 OKLab 距离，透明度差另加 0.1 权重；上限 0.25。间距 / 圆角按作用域（GAP、CORNER_RADIUS 或 ALL_SCOPES）筛，差值上限 max(4, 25%)。
+- 排序偏好：Token 名里的用途（`_color_text_` / `_color_fill_|_color_bg_` / `_color_stroke_`）和属性类别对不上 +0.03，日历 / 时钟 / 录音机专属分组 +0.01。只影响先后，界面会标「原用于文字」等。
+- 无法比较的值（文字样式、渐变、四角不同的圆角）不写入 `suggestions`，卡片不显示这一段；写入空数组表示比较过但库里没有接近的值。
+- 悬停卡（`DetailCards.tsx`）不下结论，按「出现在 / 库里最接近的值 / 切到暗色时」三段呈现；暗色对比用最接近的候选在两种主题底色上和写死值并排。

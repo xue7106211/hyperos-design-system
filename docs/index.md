@@ -8,6 +8,7 @@
 |------|------|
 | 快速上手、本地运行 | [README.md](../README.md) |
 | Agent / 协作者约定 | [AGENTS.md](../AGENTS.md)（[CLAUDE.md](../CLAUDE.md) 同指向） |
+| 改站点 UI（配色、字号、动效、组件归属） | [DESIGN.md](../DESIGN.md) |
 | CMS 后台录入规范 | `npm run dev` → [http://localhost:3000/admin](http://localhost:3000/admin) |
 | 设计资源中心 `/resources` | Landing PillNav「设计资源」· 数据 `src/lib/resources.ts`（含 `resourcesPageAnchors`）· 组件 `src/components/resources/`（含 Codex / Catalog / FeatureCard）· 适配笔记 [research/aiforui.dev/ADAPTATION.md](./research/aiforui.dev/ADAPTATION.md) |
 | 容器化 / MiFlow / Matrix 部署 | [deployment.md](./deployment.md) · 根目录 `Dockerfile` |
@@ -16,13 +17,14 @@
 | 侧栏目录对照（全景图） | [sidebar-ia.md](./sidebar-ia.md) |
 | 实施进度与后续 Phase | [roadmap.md](./roadmap.md) |
 | Ask AI 文档问答 | 根布局浮动入口 · `POST /api/chat` · env `MI_LLM_*`（本地 `.env.local`；线上 Matrix **编辑 → 主容器环境变量**，见 [deployment.md](./deployment.md)）· 历史规格 [superpowers/specs/2026-08-11-ai-assistant-design.md](./superpowers/specs/2026-08-11-ai-assistant-design.md) |
+| Figma Token 绑定检查 `/tools/token-check`（开发中） | `POST /api/token-check` · 引擎 `src/lib/token-check/` · UI `src/components/token-check/` + Arc（`src/components/arc/`）· env `FIGMA_ACCESS_TOKEN`（见 [deployment.md](./deployment.md)）· 规格 [superpowers/specs/2026-11-09-figma-token-check-design.md](./superpowers/specs/2026-11-09-figma-token-check-design.md) · 约定见 [AGENTS.md](../AGENTS.md)「Token 绑定检查」 |
 | 设计模式（原最佳实践） | 侧栏「设计模式」· 路径 `content/docs/os4/best-practices/` · 对照 [sidebar-ia.md](./sidebar-ia.md) |
 | 文档页 Design / Code 双模（pilot） | 仅「抽屉浮窗」一页：`content/docs/os4/components/containers/drawer.mdx` + 不进侧栏的 `drawer-code.mdx` · 代码 `src/components/docs/DocsDesignCodePilot.tsx` · 机制与易踩点见 [technical-design.md §5.4](./technical-design.md) |
 | 维护人飞书 open_id | [maintainers.md](./maintainers.md) |
 | 图标字体入库 / sync | [icons/README.md](../icons/README.md) · `npm run icons:sync` |
 | Design Token 导入 | `npm run tokens:import -- /path/to/OS4Token` |
 | 规范配图入库 | `public/media/...` + MDX `/media/...`（Fancybox；见 AGENTS「文档配图」） |
-| 单元测试（纯逻辑） | `node --test "src/**/*.test.mjs"`（无 `npm test` script；当前 15 suites / 35 tests；覆盖 Ask AI 检索、回答来源、图标查询 / 预览计算与彩蛋连点；约定见 [AGENTS.md](../AGENTS.md)「单元测试」） |
+| 单元测试（纯逻辑） | `node --test "src/**/*.test.mjs"`（无 `npm test` script；当前 39 suites / 138 tests；覆盖 Ask AI 检索、回答来源、图标查询 / 预览计算、Token 绑定检查与彩蛋连点；约定见 [AGENTS.md](../AGENTS.md)「单元测试」） |
 | 依赖补丁 | `patches/next-themes+0.4.6.patch`；`npm install` 的 `postinstall` 经 **patch-package** 自动应用，勿手改 `node_modules` |
 | 参考站点截图（比对用） | [design-references/](./design-references/)（typotab.com、aiforui.dev；非对外） |
 | Agent 历史设计 / 实现计划记录 | [superpowers/](./superpowers/)（`specs/`、`plans/`；非对外。文首标「已失效」或「已执行完毕」的计划不要再执行） |
@@ -31,7 +33,7 @@
 
 | 文档 | 说明 |
 |------|------|
-| [deployment.md](./deployment.md) | MiFlow / Matrix：平台职责、分支环境、发布步骤、Ask AI 环境变量、卡点排查 |
+| [deployment.md](./deployment.md) | MiFlow / Matrix：平台职责、分支环境、发布步骤、Ask AI 与 Token 绑定检查环境变量、卡点排查 |
 | [technical-design.md](./technical-design.md) | 架构、选型、内容模型、Figma / Token / 图标集成 |
 | [information-architecture.md](./information-architecture.md) | Sidebar 结构、页面类型、MVP 页面集 |
 | [sidebar-ia.md](./sidebar-ia.md) | 设计系统全景图侧栏对照（已落地） |
@@ -64,7 +66,14 @@
 | `public/fonts/` | 图标 web 字体（`icons:sync` 产物） |
 | `public/icons/manifest.json` | 图标清单（`icons:sync` 产物） |
 | `public/media/` | 规范配图（已提交；MDX 用 `/media/...`；勿用 gitignore 的 `uploads/`） |
-| `scripts/` | 仓库脚本（`generate-icon-manifest.mjs`、`import-os4-tokens.mjs`） |
+| `scripts/` | 仓库脚本（`generate-icon-manifest.mjs`、`import-os4-tokens.mjs`；`token-check/` 下为 Token 库快照导出 / 合并 / 校验） |
+| `tokens/figma/` | Token 绑定检查用的 Figma 库快照（`hyperos-design-token.snapshot.json`、`miuix-kit-legacy-variables.json`；与 `tokens/*.{light,dark}.json` 不是同一份数据） |
+| `src/app/tools/` | 工具页外壳（PillNav）与 `tools.css` / `arc-theme.css`；当前只有 `token-check/` |
+| `src/app/api/token-check/` | Token 绑定检查 API |
+| `src/lib/token-check/` | Token 绑定检查引擎（纯函数 + 单测） |
+| `src/components/token-check/` | Token 绑定检查页面 UI |
+| `src/components/arc/` | Arc 组件源码（手动拷入并本地化；仅工具页使用） |
+| `src/lib/hidden-nav-pages.ts` | 隐藏页白名单：命中时 docs 侧栏整体隐藏（`HiddenNavSidebar`） |
 | `patches/` | patch-package 补丁（`next-themes+0.4.6.patch`；`postinstall` 自动应用） |
 | `public/admin/` | TinaCMS 后台静态产物（`tinacms build` 生成；**gitignore**） |
 | `src/components/docs/` | `DocsVersionSwitcher`、`FigmaJumpButton`、`DocMeta`、`DocsDesignCodePilot` / `DocsModeSwitch`（Design / Code 双模 pilot） |
@@ -100,6 +109,7 @@
 
 ## 变更摘要
 
+- **2026-11-12**：全仓文档同步。补记 Figma Token 绑定检查（`/tools/token-check`、`POST /api/token-check`、`src/lib/token-check/`、Arc 组件、`tokens/figma/` 快照、`scripts/token-check/`）在 README / AGENTS / 本索引 / technical-design 的目录树与入口；单测计数改为 39 suites / 138 tests；deployment 增加 Token 检查环境变量一节；roadmap 更新 Token 检查进度（第一期已合入 `main`，值匹配与悬停详情卡随 !10 合入）；补记隐藏页机制（`hidden-nav-pages.ts`）。新增根目录 [DESIGN.md](../DESIGN.md)，按 Google DESIGN.md 规范（alpha，YAML Token + 正文）记录文档站自身的视觉与交互约定，可用 `npx -y @google/design.md lint DESIGN.md` 校验。
 - **2026-10-13**：Ask AI 模型改为 `amber_ai/claude-sonnet-5`（`ppio/pa/claude-sonnet-4-6` 已下线）；staging 与 prod 均已发布。单测计数仍为 15 suites / 35 tests，补记 `document-sources`；目录树补上 `SkipLink`、全站 `error` / `not-found` / `robots`。`docs/superpowers/plans/` 中 Ask AI、图标字体两份计划标为已失效，彩蛋计划标为已执行完毕。
 - **2026-08-21**：全仓文档同步：补齐图标查询单测与当前 14 suites / 32 tests，修正图标资产从 SVG 到 5 套可变字体的旧称，更新 `/icons` 能力、IA 与 947 glyph 路线图状态，并扩充调研目录索引。
 - **2026-08-20（二）**：HyperOS 图标库迁出 Fumadocs 文档壳，独立页 `/icons`（套件导航；无 docs 侧栏；后与首页/资源共用 PillNav）；旧 `/docs/**/icons` 等 301 至此。

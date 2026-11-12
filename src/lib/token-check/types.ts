@@ -5,6 +5,8 @@
 
 /* ---------- Token 库快照（tokens/figma/hyperos-design-token.snapshot.json） ---------- */
 
+import type { SuggestionMap } from './nearest';
+
 export type TokenTier = 'reference' | 'semantic' | 'component';
 
 export type SnapshotVariable = {
@@ -192,6 +194,8 @@ export type TokenCheckReport = {
   checksRun: string[];
   /** 截断、限流等提示 */
   warnings: string[];
+  /** 值匹配候选：key 为 `类别|取值`，见 nearest.ts（旧报告可能没有） */
+  suggestions?: SuggestionMap;
 };
 
 /* ---------- API ---------- */
